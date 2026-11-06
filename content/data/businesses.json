@@ -1,0 +1,137 @@
+[
+  {
+    "id": "retail",
+    "name": "Retail Stores",
+    "tagline": "From a corner kiosk to a chain of boutiques.",
+    "chapter": 1,
+    "sector": "consumer",
+    "icon": "Store",
+    "unlockCost": "0.00",
+    "baseCost": "4.00",
+    "costGrowth": "1.085",
+    "baseRevenue": "1.00",
+    "upkeep": "0.12",
+    "storageSeconds": 30,
+    "tiers": [
+      { "level": 10, "multiplier": "2", "name": "Neighbourhood Shop", "description": "Regulars know your name. Output doubles." },
+      { "level": 25, "multiplier": "2", "name": "High-Street Store", "description": "Prime frontage on a busy street. Output doubles." },
+      { "level": 50, "multiplier": "2", "name": "Regional Chain", "description": "A dozen branches under one sign. Output doubles." },
+      { "level": 100, "multiplier": "2.5", "name": "Flagship Boutique", "description": "A destination store with a waiting list. Output ×2.5." },
+      { "level": 150, "multiplier": "2.5", "name": "Department Store", "description": "Five floors of everything. Output ×2.5." },
+      { "level": 250, "multiplier": "3", "name": "Retail Group", "description": "Several brands, one balance sheet. Output ×3." },
+      { "level": 400, "multiplier": "3", "name": "Retail Empire", "description": "Your stores define the high street. Output ×3." }
+    ],
+    "managers": [
+      { "id": "retail_mira", "name": "Mira Castellane", "title": "Store Lead", "stars": 2, "cost": "350.00", "policy": "Balanced", "trait": "Never lets a shelf go empty." },
+      { "id": "retail_tobias", "name": "Tobias Wren", "title": "Operations Manager", "stars": 3, "cost": "25000.00", "policy": "Safe", "trait": "Steady margins, no surprises." },
+      { "id": "retail_leena", "name": "Leena Okafor-Hale", "title": "Merchandising Director", "stars": 4, "cost": "4000000.00", "policy": "Balanced", "trait": "Reads shoppers like a book." },
+      { "id": "retail_dario", "name": "Dario Vance", "title": "Chief Retail Officer", "stars": 5, "cost": "900000000.00", "policy": "Aggressive", "trait": "Prices to the edge, every time." }
+    ],
+    "expansions": [
+      { "id": "market_stall", "name": "Weekend Market Stall", "description": "A second stand at the Saturday market.", "requiresLevel": 5, "cost": "120.00", "durationSeconds": 60, "multiplier": "1.25" },
+      { "id": "second_storefront", "name": "Second Storefront", "description": "Lease the empty unit across the street.", "requiresLevel": 15, "cost": "2500.00", "durationSeconds": 600, "multiplier": "1.5" },
+      { "id": "flagship_arcade", "name": "Flagship Arcade", "description": "A covered arcade of your own shops.", "requiresLevel": 40, "cost": "120000.00", "durationSeconds": 3600, "multiplier": "2" }
+    ],
+    "mechanic": {
+      "type": "retail",
+      "elasticity": 1.6,
+      "minPricePct": 80,
+      "maxPricePct": 200,
+      "promoSeconds": 120,
+      "promoFootfall": 1.6,
+      "promoCostSeconds": 30
+    }
+  },
+  {
+    "id": "restaurants",
+    "name": "Restaurants",
+    "tagline": "Win the critics, fill the tables.",
+    "chapter": 1,
+    "sector": "consumer",
+    "icon": "Star",
+    "unlockCost": "300.00",
+    "baseCost": "60.00",
+    "costGrowth": "1.09",
+    "baseRevenue": "9.00",
+    "upkeep": "0.18",
+    "storageSeconds": 45,
+    "tiers": [
+      { "level": 10, "multiplier": "2", "name": "Busy Bistro", "description": "Booked out on weekends. Output doubles." },
+      { "level": 25, "multiplier": "2", "name": "Local Favourite", "description": "The place everyone recommends. Output doubles." },
+      { "level": 50, "multiplier": "2", "name": "Restaurant Group", "description": "Four kitchens, one standard. Output doubles." },
+      { "level": 100, "multiplier": "2.5", "name": "Celebrated Kitchen", "description": "Critics travel to dine with you. Output ×2.5." },
+      { "level": 150, "multiplier": "2.5", "name": "Hospitality House", "description": "Restaurants, bars and catering. Output ×2.5." },
+      { "level": 250, "multiplier": "3", "name": "Dining Dynasty", "description": "A name diners trust worldwide. Output ×3." },
+      { "level": 400, "multiplier": "3", "name": "Culinary Empire", "description": "Your kitchens set the trends. Output ×3." }
+    ],
+    "managers": [
+      { "id": "rest_amara", "name": "Amara Lindqvist", "title": "Head Chef", "stars": 2, "cost": "4000.00", "policy": "Safe", "trait": "Consistency above all." },
+      { "id": "rest_rafael", "name": "Rafael Duarte", "title": "General Manager", "stars": 3, "cost": "300000.00", "policy": "Balanced", "trait": "Knows when quality pays." },
+      { "id": "rest_sunhee", "name": "Sun-Hee Park", "title": "Executive Chef", "stars": 4, "cost": "50000000.00", "policy": "Aggressive", "trait": "Chases the perfect review." },
+      { "id": "rest_odette", "name": "Odette Marchetti", "title": "Culinary Director", "stars": 5, "cost": "10000000000.00", "policy": "Balanced", "trait": "Every table, every night." }
+    ],
+    "expansions": [
+      { "id": "terrace", "name": "Garden Terrace", "description": "Forty extra covers under string lights.", "requiresLevel": 5, "cost": "900.00", "durationSeconds": 180, "multiplier": "1.25" },
+      { "id": "central_kitchen", "name": "Central Kitchen", "description": "Prep for every branch in one place.", "requiresLevel": 20, "cost": "40000.00", "durationSeconds": 1200, "multiplier": "1.5" },
+      { "id": "chefs_table", "name": "Chef's Table Experience", "description": "A twelve-course counter that sells out months ahead.", "requiresLevel": 45, "cost": "2500000.00", "durationSeconds": 5400, "multiplier": "2" }
+    ],
+    "mechanic": {
+      "type": "restaurant",
+      "startStars": 3.0,
+      "driftPerHour": 0.5,
+      "qualityTiers": [
+        { "id": "diner", "name": "Comfort Diner", "targetStars": 2.6, "upkeepMultiplier": 0.8 },
+        { "id": "bistro", "name": "Bistro", "targetStars": 3.6, "upkeepMultiplier": 1.0 },
+        { "id": "fine", "name": "Fine Dining", "targetStars": 4.7, "upkeepMultiplier": 1.5 }
+      ],
+      "efficiencyBase": 0.3,
+      "efficiencyPerStar": 0.25
+    }
+  },
+  {
+    "id": "logistics",
+    "name": "Logistics",
+    "tagline": "Move the goods that move the city.",
+    "chapter": 1,
+    "sector": "industrial",
+    "icon": "Map",
+    "unlockCost": "6000.00",
+    "baseCost": "720.00",
+    "costGrowth": "1.095",
+    "baseRevenue": "70.00",
+    "upkeep": "0.20",
+    "storageSeconds": 60,
+    "tiers": [
+      { "level": 10, "multiplier": "2", "name": "Courier Fleet", "description": "Vans on every corner. Output doubles." },
+      { "level": 25, "multiplier": "2", "name": "Regional Hauler", "description": "Trucks between cities. Output doubles." },
+      { "level": 50, "multiplier": "2", "name": "Freight Network", "description": "Rail, road and depot. Output doubles." },
+      { "level": 100, "multiplier": "2.5", "name": "National Carrier", "description": "Your livery on every highway. Output ×2.5." },
+      { "level": 150, "multiplier": "2.5", "name": "Intermodal Group", "description": "Ships, trains and planes in sync. Output ×2.5." },
+      { "level": 250, "multiplier": "3", "name": "Global Forwarder", "description": "Goods cross oceans on your schedule. Output ×3." },
+      { "level": 400, "multiplier": "3", "name": "Supply-Chain Empire", "description": "Commerce flows through you. Output ×3." }
+    ],
+    "managers": [
+      { "id": "log_kofi", "name": "Kofi Mensah-Clarke", "title": "Dispatcher", "stars": 2, "cost": "45000.00", "policy": "Safe", "trait": "Fills the obvious routes first." },
+      { "id": "log_ingrid", "name": "Ingrid Solberg", "title": "Fleet Manager", "stars": 3, "cost": "3500000.00", "policy": "Balanced", "trait": "Balances every lane." },
+      { "id": "log_vikram", "name": "Vikram Rao-Bennett", "title": "Network Planner", "stars": 4, "cost": "600000000.00", "policy": "Balanced", "trait": "Sees the whole map at once." },
+      { "id": "log_marisol", "name": "Marisol Quintero", "title": "Chief Logistics Officer", "stars": 5, "cost": "120000000000.00", "policy": "Aggressive", "trait": "Not one empty truck." }
+    ],
+    "expansions": [
+      { "id": "cross_dock", "name": "Cross-Dock Depot", "description": "Unload, sort and reload in one hour.", "requiresLevel": 5, "cost": "15000.00", "durationSeconds": 300, "multiplier": "1.25" },
+      { "id": "rail_siding", "name": "Private Rail Siding", "description": "Your own track to the main line.", "requiresLevel": 20, "cost": "600000.00", "durationSeconds": 1800, "multiplier": "1.5" },
+      { "id": "cargo_hub", "name": "Air Cargo Hub", "description": "Overnight delivery to every city.", "requiresLevel": 45, "cost": "40000000.00", "durationSeconds": 7200, "multiplier": "2" }
+    ],
+    "mechanic": {
+      "type": "logistics",
+      "routes": [
+        { "id": "harbor_market", "name": "Harbour → Market District", "baseDemand": 2.0, "margin": 1.0, "unlockLevel": 1 },
+        { "id": "rail_shuttle", "name": "Rail Yard Shuttle", "baseDemand": 3.0, "margin": 1.3, "unlockLevel": 10 },
+        { "id": "airport_express", "name": "Airport Express", "baseDemand": 2.5, "margin": 1.7, "unlockLevel": 25 },
+        { "id": "cross_country", "name": "Cross-Country Freight", "baseDemand": 6.0, "margin": 2.1, "unlockLevel": 60 },
+        { "id": "container_loop", "name": "Port Container Loop", "baseDemand": 10.0, "margin": 2.6, "unlockLevel": 120 }
+      ],
+      "vehiclesPerLevel": 0.5,
+      "vehicleCapacity": 2.0
+    }
+  }
+]

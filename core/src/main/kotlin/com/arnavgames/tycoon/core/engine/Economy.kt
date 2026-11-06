@@ -1,0 +1,264 @@
+package com.arnavgames.tycoon.core.engine
+
+import com.arnavgames.tycoon.core.content.BusinessDef
+import com.arnavgames.tycoon.core.content.ContentPack
+import com.arnavgames.tycoon.core.content.MechanicDef
+import com.arnavgames.tycoon.core.money.Money
+import com.arnavgames.tycoon.core.money.Multiplier
+import com.arnavgames.tycoon.core.money.Rate
+import com.arnavgames.tycoon.core.state.BusinessState
+import com.arnavgames.tycoon.core.state.GameState
+import com.arnavgames.tycoon.core.state.MechanicState
+import java.math.BigDecimal
+import java.math.MathContext
+import java.math.RoundingMode
+import kotlin.math.floor
+import kotlin.math.sqrt
+
+/** Pure economy formulas (docs/ECONOMY.md §3). Everything here is deterministic and side-effect free. */
+class Economy(val content: ContentPack) {
+
+    // ---------------- Level costs ----------------
+
+    /** Cost of buying [count] levels starting at [level]: base · g^(L−1) · (g^n − 1)/(g − 1). */
+    fun levelCost(def: BusinessDef, level: Int, count: Int): Money {
+        require(count >= 1)
+        val g = def.costGrowth.value
+        val first = g.pow(level - 1, MC)
+        val series = g.pow(count, MC).subtract(BigDecimal.ONE).divide(g.subtract(BigDecimal.ONE), MC)
+        val cents = BigDecimal(def.baseCost.cents).multiply(first, MC).multiply(series, MC)
+        return Money.ofCents(cents.setScale(0, RoundingMode.CEILING).toBigIntegerExact())
+    }
+
+    /** Largest n (≤ cap) such that levelCost(level, n) ≤ budget. 0 if not even one is affordable. */
+    fun maxAffordable(def: BusinessDef, level: Int, budget: Money, cap: Int = 10_000): Int {
+        if (levelCost(def, level, 1) > budget) return 0
+        var lo = 1
+        var hi = 1
+        while (hi < cap && levelCost(def, level, minOf(hi * 2, cap)) <= budget) hi = minOf(hi * 2, cap)
+        if (hi == cap) return cap
+        hi = minOf(hi * 2, cap)
+        while (lo < hi) {
+            val mid = (lo + hi + 1) / 2
+            if (levelCost(def, level, mid) <= budget) lo = mid else hi = mid - 1
+        }
+        return lo
+    }
+
+    /** Total spent to reach [level] (unlock + levels 1→level). Used for valuation. */
+    fun investedIn(def: BusinessDef, level: Int): Money =
+        def.unlockCost + if (level > 1) levelCost(def, 1, level - 1) else Money.ZERO
+
+    fun tierMultiplier(def: BusinessDef, level: Int): Multiplier =
+        Multiplier.product(def.tiers.filter { level >= it.level }.map { it.multiplier })
+
+    fun nextTier(def: BusinessDef, level: Int) = def.tiers.firstOrNull { it.level > level }
+
+    fun expansionMultiplier(def: BusinessDef, b: BusinessState): Multiplier =
+        Multiplier.product(def.expansions.filter { it.id in b.expansionsDone }.map { it.multiplier })
+
+    // ---------------- Managers ----------------
+
+    fun managerSkill(def: BusinessDef, b: BusinessState): Double? {
+        val m = def.managers.firstOrNull { it.id == b.managerId } ?: return null
+        return (content.balance.managerSkillFloor + content.balance.managerSkillPerStar * m.stars).coerceIn(0.0, 1.0)
+    }
+
+    // ---------------- Efficiency (mechanics) ----------------
+
+    /** Efficiency E ∈ [0.25, 2.5] from the business's own mechanic at sim time [now]. */
+    fun efficiency(def: BusinessDef, b: BusinessState, now: Long): Double {
+        val e = when (val m = def.mechanic) {
+            MechanicDef.Simple -> 1.0
+            is MechanicDef.Retail -> Mechanics.retailEfficiency(m, b.mechanic as? MechanicState.Retail ?: MechanicState.Retail(), now)
+            is MechanicDef.Restaurant -> Mechanics.restaurantEfficiency(m, b.mechanic as? MechanicState.Restaurant ?: Mechanics.restaurantInitial(m))
+            is MechanicDef.Logistics -> Mechanics.logisticsEfficiency(m, b.level, b.mechanic as? MechanicState.Logistics ?: MechanicState.Logistics())
+        }
+        return e.coerceIn(E_MIN, E_MAX)
+    }
+
+    /** Extra upkeep factor from the mechanic (restaurant quality tier). */
+    fun upkeepFactor(def: BusinessDef, b: BusinessState): Double = when (val m = def.mechanic) {
+        is MechanicDef.Restaurant -> {
+            val st = b.mechanic as? MechanicState.Restaurant
+            m.qualityTiers.firstOrNull { it.id == st?.qualityTier }?.upkeepMultiplier ?: 1.0
+        }
+        else -> 1.0
+    }
+
+    // ---------------- Rates ----------------
+
+    /** Global multiplier G shared by all businesses (frenzy now; Legacy, Status, boosts in later phases). */
+    fun globalMultiplier(state: GameState, now: Long): Multiplier {
+        var g = Multiplier.ONE
+        if (state.hustle.frenzyUntil > now) g *= Multiplier.ofDouble(content.balance.hustle.frenzyMultiplier)
+        return g
+    }
+
+    data class BusinessRate(val gross: Rate, val upkeep: Rate, val net: Rate, val efficiency: Double)
+
+    fun businessRate(state: GameState, id: String, now: Long = state.simTimeMs): BusinessRate {
+        val b = state.businesses[id] ?: return ZERO_RATE
+        if (b.mothballed) return ZERO_RATE
+        val def = content.business(id)
+        val e = efficiency(def, b, now)
+        val factor = Multiplier.of(b.level.toLong()) *
+            tierMultiplier(def, b.level) *
+            expansionMultiplier(def, b) *
+            Multiplier.ofDouble(round6(e)) *
+            globalMultiplier(state, now)
+        val gross = Rate.perSecond(def.baseRevenue, factor)
+        val upkeepShare = (def.upkeep * Multiplier.ofDouble(round6(upkeepFactor(def, b)))).min(Multiplier.of("0.95"))
+        val upkeep = gross * upkeepShare
+        return BusinessRate(gross, upkeep, gross - upkeep, e)
+    }
+
+    fun totalNetRate(state: GameState, managedOnly: Boolean = false, now: Long = state.simTimeMs): Rate =
+        state.businesses.values
+            .filter { !managedOnly || it.managerId != null }
+            .fold(Rate.ZERO) { acc, b -> acc + businessRate(state, b.id, now).net }
+
+    /** Unmanaged storage cap = storageSeconds of net output. */
+    fun storageCap(state: GameState, id: String, now: Long = state.simTimeMs): Money {
+        val def = content.business(id)
+        return businessRate(state, id, now).net.over(def.storageSeconds.toLong())
+    }
+
+    // ---------------- Slots, HQ, offline ----------------
+
+    fun slots(state: GameState): Int =
+        content.balance.baseSlots + content.balance.hqLevels.filter { it.level <= state.hq.level }.sumOf { it.extraSlots }
+
+    fun usedSlots(state: GameState): Int = state.businesses.values.count { !it.mothballed }
+
+    fun offlineCapMs(state: GameState): Long {
+        val bonus = content.balance.hqLevels.filter { it.level <= state.hq.level }.sumOf { it.offlineCapBonusSeconds }
+        return (content.balance.offlineCapBaseSeconds + bonus).coerceAtMost(content.balance.offlineCapMaxSeconds) * 1000
+    }
+
+    fun hustleMultiplier(state: GameState): Multiplier =
+        Multiplier.product(content.balance.hqLevels.filter { it.level <= state.hq.level }.map { it.hustleMultiplier })
+
+    // ---------------- Net worth ----------------
+
+    /** Net worth = cash + 60% of capital invested in businesses (+ other asset classes in later phases). */
+    fun netWorth(state: GameState): Money {
+        var nw = state.cash
+        for (b in state.businesses.values) {
+            val def = content.businessById[b.id] ?: continue
+            nw += investedIn(def, b.level) * Multiplier.of("0.6") + b.stored
+        }
+        return nw
+    }
+
+    companion object {
+        const val E_MIN = 0.25
+        const val E_MAX = 2.5
+        private val MC: MathContext = MathContext.DECIMAL128
+        private val ZERO_RATE = BusinessRate(Rate.ZERO, Rate.ZERO, Rate.ZERO, 0.0)
+
+        /** Doubles from mechanics are rounded to 6 decimals before becoming exact multipliers (stable, platform-independent). */
+        fun round6(x: Double): Double = floor(x * 1_000_000.0 + 0.5) / 1_000_000.0
+    }
+}
+
+/** The individual business mechanics (GDD §5.2). Pure functions; tested in MechanicsTest. */
+object Mechanics {
+
+    // ----- Retail: price slider along a constant-elasticity demand curve with unit costs -----
+    /** Unit cost as a fraction of the reference price. Profit-optimal price = ε·c/(ε−1). */
+    const val RETAIL_UNIT_COST = 0.55
+
+    fun retailProfitFactor(m: MechanicDef.Retail, pricePct: Int): Double {
+        val p = pricePct / 100.0
+        val demand = StrictMath.pow(p, -m.elasticity)
+        val profit = (p - RETAIL_UNIT_COST) * demand
+        return profit / (1.0 - RETAIL_UNIT_COST)
+    }
+
+    fun retailOptimalPricePct(m: MechanicDef.Retail): Int {
+        val raw = m.elasticity * RETAIL_UNIT_COST / (m.elasticity - 1.0) * 100.0
+        return raw.toInt().coerceIn(m.minPricePct, m.maxPricePct)
+    }
+
+    fun retailEfficiency(m: MechanicDef.Retail, s: MechanicState.Retail, now: Long): Double {
+        val footfall = if (s.promoUntil > now) m.promoFootfall else 1.0
+        return retailProfitFactor(m, s.pricePct) * footfall
+    }
+
+    /** The price a manager with [skill] sets: moves from the reference price toward the optimum. */
+    fun retailManagerPrice(m: MechanicDef.Retail, skill: Double): Int {
+        val opt = retailOptimalPricePct(m)
+        return (100 + (opt - 100) * skill).toInt().coerceIn(m.minPricePct, m.maxPricePct)
+    }
+
+    // ----- Restaurant: reputation stars drift toward the chosen quality tier's target -----
+    fun restaurantInitial(m: MechanicDef.Restaurant) =
+        MechanicState.Restaurant((m.startStars * 1000).toInt(), m.qualityTiers[m.qualityTiers.size / 2].id)
+
+    fun restaurantEfficiency(m: MechanicDef.Restaurant, s: MechanicState.Restaurant): Double =
+        m.efficiencyBase + m.efficiencyPerStar * (s.milliStars / 1000.0)
+
+    /** Applies one game minute of reputation drift (called at every minute boundary). */
+    fun restaurantMinute(m: MechanicDef.Restaurant, s: MechanicState.Restaurant): MechanicState.Restaurant {
+        val target = ((m.qualityTiers.firstOrNull { it.id == s.qualityTier }?.targetStars ?: m.startStars) * 1000).toInt()
+        val step = maxOf(1, (m.driftPerHour * 1000 / 60).toInt())
+        val next = when {
+            s.milliStars < target -> minOf(target, s.milliStars + step)
+            s.milliStars > target -> maxOf(target, s.milliStars - step)
+            else -> s.milliStars
+        }
+        return if (next == s.milliStars) s else s.copy(milliStars = next.coerceIn(1000, 5000))
+    }
+
+    /** Long-run net value of a tier (efficiency at target × (1 − upkeep share)); used by managers. */
+    fun restaurantTierValue(m: MechanicDef.Restaurant, tierId: String, baseUpkeep: Double): Double {
+        val t = m.qualityTiers.first { it.id == tierId }
+        val e = m.efficiencyBase + m.efficiencyPerStar * t.targetStars
+        return e * (1.0 - baseUpkeep * t.upkeepMultiplier)
+    }
+
+    // ----- Logistics: assign vehicles to routes; throughput = min(capacity, demand) -----
+    fun vehicles(m: MechanicDef.Logistics, level: Int): Int = floor(level * m.vehiclesPerLevel).toInt().coerceAtLeast(1)
+
+    fun routeDemand(r: com.arnavgames.tycoon.core.content.RouteDef, level: Int): Double = r.baseDemand * sqrt(level.toDouble())
+
+    fun unlockedRoutes(m: MechanicDef.Logistics, level: Int) = m.routes.filter { it.unlockLevel <= level }
+
+    fun logisticsEfficiency(m: MechanicDef.Logistics, level: Int, s: MechanicState.Logistics): Double {
+        val v = vehicles(m, level)
+        val refMargin = m.routes.first().margin
+        var moved = 0.0
+        for (r in unlockedRoutes(m, level)) {
+            val assigned = (s.assignments[r.id] ?: 0).coerceAtLeast(0)
+            moved += minOf(assigned * m.vehicleCapacity, routeDemand(r, level)) * r.margin
+        }
+        return moved / (v * m.vehicleCapacity * refMargin)
+    }
+
+    fun assignedTotal(s: MechanicState.Logistics) = s.assignments.values.sum()
+
+    /**
+     * Assigns vehicles one at a time to the route with the largest marginal gain (min(capacity, unmet demand) × margin).
+     * Each route's value is concave in vehicles, so this greedy is optimal at skill = 1. A manager with [skill] < 1 plans
+     * only that share of the fleet; the rest stays on the default (first) route, modelling an imperfect plan.
+     */
+    fun logisticsPlan(m: MechanicDef.Logistics, level: Int, skill: Double): Map<String, Int> {
+        val total = vehicles(m, level)
+        val routes = unlockedRoutes(m, level)
+        val smart = (total * skill.coerceIn(0.0, 1.0)).toInt()
+        val assigned = IntArray(routes.size)
+        repeat(smart) {
+            var best = -1
+            var bestGain = 0.0
+            for (i in routes.indices) {
+                val unmet = routeDemand(routes[i], level) - assigned[i] * m.vehicleCapacity
+                val gain = minOf(m.vehicleCapacity, unmet) * routes[i].margin
+                if (gain > bestGain + 1e-12) { bestGain = gain; best = i }
+            }
+            assigned[if (best >= 0) best else 0]++
+        }
+        assigned[0] += total - smart
+        return routes.indices.filter { assigned[it] > 0 }.associate { routes[it].id to assigned[it] }
+    }
+}

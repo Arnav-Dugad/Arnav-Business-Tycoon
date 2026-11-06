@@ -1,0 +1,30 @@
+[
+  {
+    "number": 1,
+    "title": "The Kiosk",
+    "summary": "Every empire starts somewhere. Yours starts with a folding table and a cash box.",
+    "unlocksBusinesses": ["retail", "restaurants", "logistics"],
+    "missions": [
+      { "id": "c1_open_kiosk", "title": "Open for business", "description": "Open your first Retail Store: a corner kiosk.", "goal": { "type": "ownBusiness", "businessId": "retail" }, "rewardCash": "25.00" },
+      { "id": "c1_hustle", "title": "Work the counter", "description": "Serve 60 customers by tapping your kiosk.", "goal": { "type": "hustleTaps", "count": 60 }, "rewardCash": "60.00", "rewardFavor": 5 },
+      { "id": "c1_retail_10", "title": "A real shop", "description": "Grow Retail Stores to level 10.", "goal": { "type": "businessLevel", "businessId": "retail", "level": 10 }, "rewardCash": "150.00", "rewardBullion": 5 },
+      { "id": "c1_first_manager", "title": "Hand over the keys", "description": "Hire a manager for Retail Stores so it runs while you are away.", "goal": { "type": "hireManager", "businessId": "retail" }, "rewardCash": "300.00", "rewardFavor": 10 },
+      { "id": "c1_restaurant", "title": "Taste of success", "description": "Open your first restaurant.", "goal": { "type": "ownBusiness", "businessId": "restaurants" }, "rewardCash": "600.00" },
+      { "id": "c1_market_stall", "title": "Weekend market", "description": "Complete the Weekend Market Stall expansion.", "goal": { "type": "expansionDone", "businessId": "retail", "expansionId": "market_stall" }, "rewardCash": "1500.00", "rewardFavor": 10 },
+      { "id": "c1_income", "title": "Momentum", "description": "Reach an income of $120 per second.", "goal": { "type": "incomePerSecond", "amount": "120.00" }, "rewardCash": "8000.00", "rewardBullion": 10 }
+    ]
+  },
+  {
+    "number": 2,
+    "title": "Main Street",
+    "summary": "The city notices you. Bigger deals, bigger risks, and the first rival.",
+    "unlocksBusinesses": [],
+    "missions": [
+      { "id": "c2_logistics", "title": "On the road", "description": "Open Logistics and put a fleet on the street.", "goal": { "type": "ownBusiness", "businessId": "logistics" }, "rewardCash": "20000.00", "rewardFavor": 15 },
+      { "id": "c2_hq3", "title": "A proper office", "description": "Upgrade your headquarters to level 3.", "goal": { "type": "hqLevel", "level": 3 }, "rewardCash": "40000.00", "rewardBullion": 10 },
+      { "id": "c2_restaurant_25", "title": "Local favourite", "description": "Grow Restaurants to level 25.", "goal": { "type": "businessLevel", "businessId": "restaurants", "level": 25 }, "rewardCash": "75000.00" },
+      { "id": "c2_logistics_mgr", "title": "Dispatch desk", "description": "Hire a manager for Logistics.", "goal": { "type": "hireManager", "businessId": "logistics" }, "rewardCash": "150000.00", "rewardFavor": 20 },
+      { "id": "c2_networth", "title": "First million", "description": "Reach a net worth of $1,000,000.", "goal": { "type": "netWorth", "amount": "1000000.00" }, "rewardCash": "250000.00", "rewardBullion": 20 }
+    ]
+  }
+]

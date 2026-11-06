@@ -1,0 +1,221 @@
+{
+  "startingCash": "0.00",
+  "baseSlots": 3,
+  "offlineCapBaseSeconds": 7200,
+  "offlineCapMaxSeconds": 72000,
+  "hustle": {
+    "basePerTap": "1.00",
+    "incomeSecondsPerTap": 0.5,
+    "comboWindowMs": 1200,
+    "maxCombo": 25,
+    "comboStep": 0.04,
+    "frenzyChargesPerDay": 3,
+    "frenzySeconds": 30,
+    "frenzyMultiplier": 3.0
+  },
+  "hqLevels": [
+    {
+      "level": 1,
+      "cost": "0.00",
+      "extraSlots": 0,
+      "offlineCapBonusSeconds": 0,
+      "hustleMultiplier": "1",
+      "name": "Garage Office"
+    },
+    {
+      "level": 2,
+      "cost": "500.00",
+      "extraSlots": 0,
+      "offlineCapBonusSeconds": 1800,
+      "hustleMultiplier": "1.6",
+      "name": "Shared Desk"
+    },
+    {
+      "level": 3,
+      "cost": "3000.00",
+      "extraSlots": 0,
+      "offlineCapBonusSeconds": 0,
+      "hustleMultiplier": "1.6",
+      "name": "Corner Office"
+    },
+    {
+      "level": 4,
+      "cost": "18000.00",
+      "extraSlots": 0,
+      "offlineCapBonusSeconds": 1800,
+      "hustleMultiplier": "1.6",
+      "name": "Loft Studio"
+    },
+    {
+      "level": 5,
+      "cost": "108000.00",
+      "extraSlots": 1,
+      "offlineCapBonusSeconds": 0,
+      "hustleMultiplier": "1.6",
+      "name": "Downtown Suite"
+    },
+    {
+      "level": 6,
+      "cost": "648000.00",
+      "extraSlots": 0,
+      "offlineCapBonusSeconds": 1800,
+      "hustleMultiplier": "1.6",
+      "name": "Glass Floor"
+    },
+    {
+      "level": 7,
+      "cost": "3888000.00",
+      "extraSlots": 0,
+      "offlineCapBonusSeconds": 0,
+      "hustleMultiplier": "1.6",
+      "name": "Riverside Offices"
+    },
+    {
+      "level": 8,
+      "cost": "23328000.00",
+      "extraSlots": 0,
+      "offlineCapBonusSeconds": 1800,
+      "hustleMultiplier": "1.6",
+      "name": "Executive Wing"
+    },
+    {
+      "level": 9,
+      "cost": "139968000.00",
+      "extraSlots": 0,
+      "offlineCapBonusSeconds": 0,
+      "hustleMultiplier": "1.6",
+      "name": "Boardroom Level"
+    },
+    {
+      "level": 10,
+      "cost": "839808000.00",
+      "extraSlots": 1,
+      "offlineCapBonusSeconds": 1800,
+      "hustleMultiplier": "1.6",
+      "name": "Tower Floor"
+    },
+    {
+      "level": 11,
+      "cost": "5038848000.00",
+      "extraSlots": 0,
+      "offlineCapBonusSeconds": 0,
+      "hustleMultiplier": "1.6",
+      "name": "Twin Floors"
+    },
+    {
+      "level": 12,
+      "cost": "30233088000.00",
+      "extraSlots": 0,
+      "offlineCapBonusSeconds": 1800,
+      "hustleMultiplier": "1.6",
+      "name": "Atrium HQ"
+    },
+    {
+      "level": 13,
+      "cost": "181398528000.00",
+      "extraSlots": 0,
+      "offlineCapBonusSeconds": 0,
+      "hustleMultiplier": "1.6",
+      "name": "Penthouse Offices"
+    },
+    {
+      "level": 14,
+      "cost": "1088391168000.00",
+      "extraSlots": 0,
+      "offlineCapBonusSeconds": 1800,
+      "hustleMultiplier": "1.6",
+      "name": "Skyline Campus"
+    },
+    {
+      "level": 15,
+      "cost": "6530347008000.00",
+      "extraSlots": 1,
+      "offlineCapBonusSeconds": 0,
+      "hustleMultiplier": "1.6",
+      "name": "Harbour Tower"
+    },
+    {
+      "level": 16,
+      "cost": "39182082048000.00",
+      "extraSlots": 0,
+      "offlineCapBonusSeconds": 1800,
+      "hustleMultiplier": "1.6",
+      "name": "Meridian Plaza"
+    },
+    {
+      "level": 17,
+      "cost": "235092492288000.00",
+      "extraSlots": 0,
+      "offlineCapBonusSeconds": 0,
+      "hustleMultiplier": "1.6",
+      "name": "Gilded Spire"
+    },
+    {
+      "level": 18,
+      "cost": "1410554953728000.00",
+      "extraSlots": 0,
+      "offlineCapBonusSeconds": 1800,
+      "hustleMultiplier": "1.6",
+      "name": "Summit Tower"
+    },
+    {
+      "level": 19,
+      "cost": "8463329722368000.00",
+      "extraSlots": 0,
+      "offlineCapBonusSeconds": 0,
+      "hustleMultiplier": "1.6",
+      "name": "Crown Exchange"
+    },
+    {
+      "level": 20,
+      "cost": "50779978334208000.00",
+      "extraSlots": 1,
+      "offlineCapBonusSeconds": 1800,
+      "hustleMultiplier": "1.6",
+      "name": "Grand Atrium"
+    },
+    {
+      "level": 21,
+      "cost": "304679870005248000.00",
+      "extraSlots": 0,
+      "offlineCapBonusSeconds": 0,
+      "hustleMultiplier": "1.6",
+      "name": "Sovereign Tower"
+    },
+    {
+      "level": 22,
+      "cost": "1828079220031488000.00",
+      "extraSlots": 0,
+      "offlineCapBonusSeconds": 1800,
+      "hustleMultiplier": "1.6",
+      "name": "Empire Plaza"
+    },
+    {
+      "level": 23,
+      "cost": "10968475320188928000.00",
+      "extraSlots": 0,
+      "offlineCapBonusSeconds": 0,
+      "hustleMultiplier": "1.6",
+      "name": "Dynasty House"
+    },
+    {
+      "level": 24,
+      "cost": "65810851921133568000.00",
+      "extraSlots": 0,
+      "offlineCapBonusSeconds": 1800,
+      "hustleMultiplier": "1.6",
+      "name": "Legacy Spire"
+    },
+    {
+      "level": 25,
+      "cost": "394865111526801408000.00",
+      "extraSlots": 1,
+      "offlineCapBonusSeconds": 0,
+      "hustleMultiplier": "1.6",
+      "name": "Crown Tower"
+    }
+  ],
+  "managerSkillFloor": 0.7,
+  "managerSkillPerStar": 0.06,
+  "favorPerRushMinute": 1.0
+}
