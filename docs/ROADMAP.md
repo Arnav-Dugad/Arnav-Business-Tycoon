@@ -13,7 +13,7 @@ Optional friend previews: alpha APKs (`v0.x.0-alpha`) can be published after Pha
 | **4** | Simulator v1 ✅ DONE | `:sim` with all 6 bots + probes on the Chapter 1–2 content; reports generated; early-game pacing tuned to targets; CI smoke batch |
 | **5** | All businesses + merger tree ✅ DONE (Chapter 8 pacing deferred to Phase 11) | The remaining 15 business mechanics, conglomerates, Holding Co; per-mechanic tests; Empire UI for each |
 | **6** | Markets ✅ DONE (income-share bands and Chapter 8 deferred to Phase 11) | 120 stocks, sectors, news, earnings, board seats, slippage, funds and bonds desk, commodities, crypto, short selling; Compose Canvas charts; Markets tab; flow 3 passes |
-| **7** | Real estate | Map, cities, districts, cycles, properties, rent, renovation, flips, mortgages, insurance, tenant events, skyscrapers; Estates tab; flow 4 passes |
+| **7** | Real estate ✅ DONE (real cities; income-share bands and Chapter 8 deferred to Phase 11) | Map, cities, districts, cycles, properties, rent, renovation, flips, mortgages, insurance, tenant events, skyscrapers; Estates tab; flow 4 passes |
 | **8** | Luxury and collections + art pipeline | Art pipeline built; all photos sourced, licensed and credited; luxury items, Status, live auctions, showrooms, collection sets, Heirlooms; Credits screen; flow 5 passes |
 | **9** | World, rivals, finance pressure | Cycle, events, decision cards, disasters; 220 rivals, Fortune List, takeovers, nemesis; credit rating, loans, taxes (auto and self-file), restructuring, Phoenix protocol; flow 6 passes |
 | **10** | Progression and mini-games | Story chapters 1–8, missions, achievements, daily ladder, weekly events, seasons, Dynasty prestige with Family Charter, heir traits, challenges, IPO; Negotiation, Auction, Market Timing, Frenzy polish; flow 7 passes |
@@ -35,7 +35,7 @@ Later: v1.x seasons and content drops, each a minor version, with upgrade-instal
 4. ✅ Tool upgrades approved: firebase-tools 15.35.0, build-tools 37.0.0, API 37 system image, new AVD.
 
 ### Before Phase 8 (art)
-5. **Pexels API key** (free): create an account at pexels.com → API → generate a key. Then set it as a *user environment variable* `PEXELS_API_KEY` (Windows: Settings → System → About → Advanced system settings → Environment Variables). Do not paste it into the repo or chat if you prefer; I only read the environment variable.
+5. ~~Pexels API key~~ — no longer needed: Pexels paused new keys (2026-11-06), so photos come from Wikimedia Commons and museum open-access APIs, which need no key.
 6. **Portraits decision**: licensed stock photos of real (non-famous) people for the 220 rivals, as requested, *or* original illustrated avatars (zero likeness risk, smaller APK). The default is stock portraits under the respect rules in ART_PIPELINE.md.
 
 ### Phase 12 (Firebase)

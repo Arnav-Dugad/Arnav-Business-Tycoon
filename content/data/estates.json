@@ -1,0 +1,1906 @@
+{
+  "config": {
+    "transactionCost": 0.03,
+    "propertyTaxPerDay": 0.002,
+    "insurancePerDay": 0.0005,
+    "mortgageSpreadPerDay": 0.003,
+    "mortgageLtvOptions": [
+      0.0,
+      0.5,
+      0.6
+    ],
+    "foreclosureLtv": 0.95,
+    "listingRefreshHours": 6,
+    "listingsMin": 3,
+    "listingsMax": 5,
+    "distressedChance": 0.25,
+    "distressedDiscountMin": 0.7,
+    "distressedDiscountMax": 0.85,
+    "disasterChancePer6h": 0.004,
+    "eventChancePer6h": 0.03,
+    "maxQueuedEvents": 3,
+    "unresolvedRentFactor": 0.8,
+    "gentrificationChancePerDay": 0.03,
+    "gentrificationBoost": 0.08,
+    "repairCost": 0.06,
+    "repairHours": 2,
+    "maxRenovations": 3,
+    "maxProperties": 40,
+    "hostedUpkeepFactor": 0.9,
+    "towerConstructionDiscount": 0.8,
+    "unlocks": {
+      "estates": 2,
+      "mortgages": 3,
+      "skyscrapers": 5
+    },
+    "macroAmplitude": {
+      "boom": 0.06,
+      "expansion": 0.02,
+      "slowdown": -0.03,
+      "recession": -0.08
+    }
+  },
+  "cities": [
+    {
+      "id": "lisbon",
+      "name": "Lisbon",
+      "chapter": 2,
+      "x": 0.4621,
+      "y": 0.4084,
+      "longitude": -9.14,
+      "latitude": 38.72,
+      "description": "Hills, trams and river light. Old neighbourhoods are being restored one building at a time: where most property fortunes start.",
+      "priceScale": "1",
+      "periodDays": 8.54,
+      "amplitude": 0.03,
+      "phase": 3.249
+    },
+    {
+      "id": "london",
+      "name": "London",
+      "chapter": 2,
+      "x": 0.5135,
+      "y": 0.184,
+      "longitude": -0.13,
+      "latitude": 51.51,
+      "description": "A global capital of finance, Georgian squares and warehouse conversions. Expensive, but it never really goes out of fashion.",
+      "priceScale": "12",
+      "periodDays": 7.16,
+      "amplitude": 0.045,
+      "phase": 5.158
+    },
+    {
+      "id": "miami",
+      "name": "Miami",
+      "chapter": 3,
+      "x": 0.0561,
+      "y": 0.6358,
+      "longitude": -80.19,
+      "latitude": 25.76,
+      "description": "Beaches, art deco and a skyline that keeps climbing. Hurricane season makes insurance worth having.",
+      "priceScale": "1500",
+      "periodDays": 9.74,
+      "amplitude": 0.046,
+      "phase": 5.84
+    },
+    {
+      "id": "mumbai",
+      "name": "Mumbai",
+      "chapter": 4,
+      "x": 0.9307,
+      "y": 0.753,
+      "longitude": 72.88,
+      "latitude": 19.08,
+      "description": "India's commercial capital: old mill land turning into offices, sea-facing towers and some of the world's priciest square feet.",
+      "priceScale": "1725000",
+      "periodDays": 11.76,
+      "amplitude": 0.023,
+      "phase": 2.197
+    },
+    {
+      "id": "new_york",
+      "name": "New York",
+      "chapter": 5,
+      "x": 0.0914,
+      "y": 0.3735,
+      "longitude": -74.01,
+      "latitude": 40.71,
+      "description": "Towers, brownstones and the world's busiest property market. Fortunes are made a block at a time.",
+      "priceScale": "2623509375",
+      "periodDays": 7.77,
+      "amplitude": 0.042,
+      "phase": 4.696
+    },
+    {
+      "id": "dubai",
+      "name": "Dubai",
+      "chapter": 6,
+      "x": 0.8301,
+      "y": 0.6456,
+      "longitude": 55.27,
+      "latitude": 25.2,
+      "description": "Artificial islands, record-breaking towers and marinas full of yachts. The final frontier of luxury property.",
+      "priceScale": "3990029820703",
+      "periodDays": 10.3,
+      "amplitude": 0.043,
+      "phase": 1.892
+    }
+  ],
+  "districts": [
+    {
+      "id": "lis_alfama",
+      "city": "lisbon",
+      "name": "Alfama",
+      "tier": 1.0,
+      "yieldPerDay": 0.034,
+      "cbd": false,
+      "risk": 1.0,
+      "types": [
+        "apartment",
+        "townhouse",
+        "retail_unit",
+        "mixed_use"
+      ],
+      "periodDays": 5.42,
+      "amplitude": 0.107,
+      "phase": 6.054,
+      "trendPerDay": 0.0057,
+      "x": 0.464,
+      "y": 0.377
+    },
+    {
+      "id": "lis_baixa",
+      "city": "lisbon",
+      "name": "Baixa",
+      "tier": 1.4,
+      "yieldPerDay": 0.032,
+      "cbd": false,
+      "risk": 0.9,
+      "types": [
+        "retail_unit",
+        "apartment",
+        "hotel_plot",
+        "mixed_use"
+      ],
+      "periodDays": 4.46,
+      "amplitude": 0.074,
+      "phase": 5.418,
+      "trendPerDay": 0.0023,
+      "x": 0.464,
+      "y": 0.452
+    },
+    {
+      "id": "lis_chiado",
+      "city": "lisbon",
+      "name": "Chiado",
+      "tier": 2.0,
+      "yieldPerDay": 0.028,
+      "cbd": false,
+      "risk": 0.9,
+      "types": [
+        "apartment",
+        "retail_unit",
+        "penthouse"
+      ],
+      "periodDays": 6.58,
+      "amplitude": 0.092,
+      "phase": 3.121,
+      "trendPerDay": 0.0058,
+      "x": 0.494,
+      "y": 0.418
+    },
+    {
+      "id": "lis_belem",
+      "city": "lisbon",
+      "name": "Belém",
+      "tier": 1.6,
+      "yieldPerDay": 0.03,
+      "cbd": false,
+      "risk": 1.1,
+      "types": [
+        "villa",
+        "townhouse",
+        "hotel_plot"
+      ],
+      "periodDays": 6.43,
+      "amplitude": 0.115,
+      "phase": 5.898,
+      "trendPerDay": 0.0048,
+      "x": 0.403,
+      "y": 0.397
+    },
+    {
+      "id": "lis_cais_do_sodre",
+      "city": "lisbon",
+      "name": "Cais do Sodré",
+      "tier": 1.2,
+      "yieldPerDay": 0.035,
+      "cbd": false,
+      "risk": 1.1,
+      "types": [
+        "apartment",
+        "retail_unit",
+        "warehouse",
+        "mixed_use"
+      ],
+      "periodDays": 5.02,
+      "amplitude": 0.086,
+      "phase": 0.762,
+      "trendPerDay": -0.0002,
+      "x": 0.493,
+      "y": 0.416
+    },
+    {
+      "id": "lis_parque_das_nacoes",
+      "city": "lisbon",
+      "name": "Parque das Nações",
+      "tier": 1.8,
+      "yieldPerDay": 0.029,
+      "cbd": true,
+      "risk": 1.0,
+      "types": [
+        "office_floor",
+        "land",
+        "apartment",
+        "penthouse"
+      ],
+      "periodDays": 5.58,
+      "amplitude": 0.1,
+      "phase": 1.061,
+      "trendPerDay": -0.0005,
+      "x": 0.462,
+      "y": 0.378
+    },
+    {
+      "id": "lon_city_of_london",
+      "city": "london",
+      "name": "City of London",
+      "tier": 2.8,
+      "yieldPerDay": 0.026,
+      "cbd": true,
+      "risk": 0.8,
+      "types": [
+        "office_floor",
+        "land",
+        "penthouse",
+        "mixed_use"
+      ],
+      "periodDays": 6.31,
+      "amplitude": 0.115,
+      "phase": 2.099,
+      "trendPerDay": 0.0,
+      "x": 0.458,
+      "y": 0.216
+    },
+    {
+      "id": "lon_mayfair",
+      "city": "london",
+      "name": "Mayfair",
+      "tier": 3.0,
+      "yieldPerDay": 0.022,
+      "cbd": false,
+      "risk": 0.8,
+      "types": [
+        "penthouse",
+        "townhouse",
+        "hotel_plot"
+      ],
+      "periodDays": 8.35,
+      "amplitude": 0.12,
+      "phase": 1.297,
+      "trendPerDay": 0.0042,
+      "x": 0.57,
+      "y": 0.132
+    },
+    {
+      "id": "lon_kensington",
+      "city": "london",
+      "name": "Kensington",
+      "tier": 2.6,
+      "yieldPerDay": 0.024,
+      "cbd": false,
+      "risk": 0.8,
+      "types": [
+        "townhouse",
+        "apartment",
+        "villa"
+      ],
+      "periodDays": 4.56,
+      "amplitude": 0.096,
+      "phase": 2.061,
+      "trendPerDay": 0.0051,
+      "x": 0.569,
+      "y": 0.177
+    },
+    {
+      "id": "lon_shoreditch",
+      "city": "london",
+      "name": "Shoreditch",
+      "tier": 1.4,
+      "yieldPerDay": 0.033,
+      "cbd": false,
+      "risk": 0.9,
+      "types": [
+        "office_floor",
+        "apartment",
+        "retail_unit",
+        "mixed_use"
+      ],
+      "periodDays": 6.33,
+      "amplitude": 0.044,
+      "phase": 3.901,
+      "trendPerDay": 0.0036,
+      "x": 0.502,
+      "y": 0.136
+    },
+    {
+      "id": "lon_camden",
+      "city": "london",
+      "name": "Camden",
+      "tier": 1.2,
+      "yieldPerDay": 0.034,
+      "cbd": false,
+      "risk": 0.9,
+      "types": [
+        "apartment",
+        "retail_unit",
+        "townhouse"
+      ],
+      "periodDays": 8.27,
+      "amplitude": 0.091,
+      "phase": 1.225,
+      "trendPerDay": 0.0052,
+      "x": 0.521,
+      "y": 0.221
+    },
+    {
+      "id": "lon_canary_wharf",
+      "city": "london",
+      "name": "Canary Wharf",
+      "tier": 2.2,
+      "yieldPerDay": 0.029,
+      "cbd": false,
+      "risk": 1.0,
+      "types": [
+        "office_floor",
+        "penthouse",
+        "apartment"
+      ],
+      "periodDays": 4.83,
+      "amplitude": 0.078,
+      "phase": 0.922,
+      "trendPerDay": 0.0027,
+      "x": 0.516,
+      "y": 0.221
+    },
+    {
+      "id": "lon_southwark",
+      "city": "london",
+      "name": "Southwark",
+      "tier": 1.1,
+      "yieldPerDay": 0.035,
+      "cbd": false,
+      "risk": 1.0,
+      "types": [
+        "warehouse",
+        "apartment",
+        "mixed_use",
+        "retail_unit"
+      ],
+      "periodDays": 6.69,
+      "amplitude": 0.11,
+      "phase": 3.223,
+      "trendPerDay": 0.0016,
+      "x": 0.445,
+      "y": 0.189
+    },
+    {
+      "id": "mia_south_beach",
+      "city": "miami",
+      "name": "South Beach",
+      "tier": 2.2,
+      "yieldPerDay": 0.029,
+      "cbd": false,
+      "risk": 1.6,
+      "types": [
+        "hotel_plot",
+        "apartment",
+        "retail_unit",
+        "penthouse"
+      ],
+      "periodDays": 8.56,
+      "amplitude": 0.101,
+      "phase": 2.729,
+      "trendPerDay": -0.0003,
+      "x": 0.085,
+      "y": 0.647
+    },
+    {
+      "id": "mia_brickell",
+      "city": "miami",
+      "name": "Brickell",
+      "tier": 2.0,
+      "yieldPerDay": 0.028,
+      "cbd": true,
+      "risk": 1.3,
+      "types": [
+        "office_floor",
+        "land",
+        "penthouse",
+        "mixed_use"
+      ],
+      "periodDays": 7.27,
+      "amplitude": 0.112,
+      "phase": 0.337,
+      "trendPerDay": 0.0004,
+      "x": 0.102,
+      "y": 0.657
+    },
+    {
+      "id": "mia_wynwood",
+      "city": "miami",
+      "name": "Wynwood",
+      "tier": 1.1,
+      "yieldPerDay": 0.035,
+      "cbd": false,
+      "risk": 1.2,
+      "types": [
+        "warehouse",
+        "retail_unit",
+        "mixed_use"
+      ],
+      "periodDays": 5.48,
+      "amplitude": 0.047,
+      "phase": 1.544,
+      "trendPerDay": 0.0002,
+      "x": 0.05,
+      "y": 0.643
+    },
+    {
+      "id": "mia_coconut_grove",
+      "city": "miami",
+      "name": "Coconut Grove",
+      "tier": 1.8,
+      "yieldPerDay": 0.027,
+      "cbd": false,
+      "risk": 1.4,
+      "types": [
+        "villa",
+        "townhouse",
+        "apartment"
+      ],
+      "periodDays": 5.48,
+      "amplitude": 0.067,
+      "phase": 5.02,
+      "trendPerDay": 0.0042,
+      "x": 0.102,
+      "y": 0.636
+    },
+    {
+      "id": "mia_little_havana",
+      "city": "miami",
+      "name": "Little Havana",
+      "tier": 0.8,
+      "yieldPerDay": 0.039,
+      "cbd": false,
+      "risk": 1.2,
+      "types": [
+        "apartment",
+        "retail_unit",
+        "townhouse"
+      ],
+      "periodDays": 8.17,
+      "amplitude": 0.1,
+      "phase": 2.168,
+      "trendPerDay": 0.0046,
+      "x": 0.119,
+      "y": 0.682
+    },
+    {
+      "id": "mia_coral_gables",
+      "city": "miami",
+      "name": "Coral Gables",
+      "tier": 1.6,
+      "yieldPerDay": 0.029,
+      "cbd": false,
+      "risk": 1.2,
+      "types": [
+        "villa",
+        "townhouse",
+        "office_floor"
+      ],
+      "periodDays": 7.87,
+      "amplitude": 0.118,
+      "phase": 6.16,
+      "trendPerDay": 0.0016,
+      "x": 0.05,
+      "y": 0.652
+    },
+    {
+      "id": "mia_key_biscayne",
+      "city": "miami",
+      "name": "Key Biscayne",
+      "tier": 2.6,
+      "yieldPerDay": 0.025,
+      "cbd": false,
+      "risk": 1.7,
+      "types": [
+        "villa",
+        "hotel_plot",
+        "land"
+      ],
+      "periodDays": 5.8,
+      "amplitude": 0.043,
+      "phase": 0.287,
+      "trendPerDay": 0.0047,
+      "x": 0.112,
+      "y": 0.663
+    },
+    {
+      "id": "mum_nariman_point",
+      "city": "mumbai",
+      "name": "Nariman Point",
+      "tier": 2.6,
+      "yieldPerDay": 0.027,
+      "cbd": true,
+      "risk": 1.1,
+      "types": [
+        "office_floor",
+        "land",
+        "penthouse",
+        "hotel_plot"
+      ],
+      "periodDays": 5.13,
+      "amplitude": 0.114,
+      "phase": 2.815,
+      "trendPerDay": 0.0018,
+      "x": 0.931,
+      "y": 0.746
+    },
+    {
+      "id": "mum_bandra",
+      "city": "mumbai",
+      "name": "Bandra",
+      "tier": 2.0,
+      "yieldPerDay": 0.03,
+      "cbd": false,
+      "risk": 1.1,
+      "types": [
+        "apartment",
+        "penthouse",
+        "retail_unit"
+      ],
+      "periodDays": 5.58,
+      "amplitude": 0.095,
+      "phase": 1.22,
+      "trendPerDay": 0.0014,
+      "x": 0.95,
+      "y": 0.711
+    },
+    {
+      "id": "mum_colaba",
+      "city": "mumbai",
+      "name": "Colaba",
+      "tier": 1.8,
+      "yieldPerDay": 0.031,
+      "cbd": false,
+      "risk": 1.2,
+      "types": [
+        "hotel_plot",
+        "apartment",
+        "retail_unit"
+      ],
+      "periodDays": 5.39,
+      "amplitude": 0.084,
+      "phase": 3.903,
+      "trendPerDay": 0.0031,
+      "x": 0.95,
+      "y": 0.785
+    },
+    {
+      "id": "mum_juhu",
+      "city": "mumbai",
+      "name": "Juhu",
+      "tier": 2.2,
+      "yieldPerDay": 0.028,
+      "cbd": false,
+      "risk": 1.3,
+      "types": [
+        "villa",
+        "apartment",
+        "hotel_plot"
+      ],
+      "periodDays": 4.83,
+      "amplitude": 0.041,
+      "phase": 1.479,
+      "trendPerDay": 0.0051,
+      "x": 0.95,
+      "y": 0.737
+    },
+    {
+      "id": "mum_lower_parel",
+      "city": "mumbai",
+      "name": "Lower Parel",
+      "tier": 1.6,
+      "yieldPerDay": 0.032,
+      "cbd": false,
+      "risk": 1.0,
+      "types": [
+        "office_floor",
+        "mixed_use",
+        "apartment",
+        "warehouse"
+      ],
+      "periodDays": 4.59,
+      "amplitude": 0.094,
+      "phase": 0.335,
+      "trendPerDay": 0.0009,
+      "x": 0.883,
+      "y": 0.785
+    },
+    {
+      "id": "mum_andheri",
+      "city": "mumbai",
+      "name": "Andheri",
+      "tier": 1.0,
+      "yieldPerDay": 0.037,
+      "cbd": false,
+      "risk": 1.0,
+      "types": [
+        "apartment",
+        "office_floor",
+        "warehouse",
+        "land"
+      ],
+      "periodDays": 4.73,
+      "amplitude": 0.116,
+      "phase": 3.292,
+      "trendPerDay": 0.0002,
+      "x": 0.941,
+      "y": 0.723
+    },
+    {
+      "id": "new_financial_district",
+      "city": "new_york",
+      "name": "Financial District",
+      "tier": 3.0,
+      "yieldPerDay": 0.025,
+      "cbd": true,
+      "risk": 0.9,
+      "types": [
+        "office_floor",
+        "land",
+        "penthouse",
+        "mixed_use"
+      ],
+      "periodDays": 4.44,
+      "amplitude": 0.071,
+      "phase": 3.605,
+      "trendPerDay": 0.0008,
+      "x": 0.05,
+      "y": 0.405
+    },
+    {
+      "id": "new_midtown",
+      "city": "new_york",
+      "name": "Midtown",
+      "tier": 2.8,
+      "yieldPerDay": 0.026,
+      "cbd": false,
+      "risk": 0.8,
+      "types": [
+        "office_floor",
+        "hotel_plot",
+        "penthouse",
+        "retail_unit"
+      ],
+      "periodDays": 7.5,
+      "amplitude": 0.053,
+      "phase": 2.685,
+      "trendPerDay": 0.0015,
+      "x": 0.082,
+      "y": 0.342
+    },
+    {
+      "id": "new_soho",
+      "city": "new_york",
+      "name": "SoHo",
+      "tier": 2.4,
+      "yieldPerDay": 0.027,
+      "cbd": false,
+      "risk": 0.9,
+      "types": [
+        "retail_unit",
+        "apartment",
+        "mixed_use"
+      ],
+      "periodDays": 4.97,
+      "amplitude": 0.042,
+      "phase": 0.278,
+      "trendPerDay": -0.0001,
+      "x": 0.05,
+      "y": 0.352
+    },
+    {
+      "id": "new_upper_east_side",
+      "city": "new_york",
+      "name": "Upper East Side",
+      "tier": 2.6,
+      "yieldPerDay": 0.024,
+      "cbd": false,
+      "risk": 0.8,
+      "types": [
+        "townhouse",
+        "penthouse",
+        "apartment"
+      ],
+      "periodDays": 6.2,
+      "amplitude": 0.094,
+      "phase": 0.791,
+      "trendPerDay": 0.004,
+      "x": 0.1,
+      "y": 0.426
+    },
+    {
+      "id": "new_brooklyn_heights",
+      "city": "new_york",
+      "name": "Brooklyn Heights",
+      "tier": 1.8,
+      "yieldPerDay": 0.029,
+      "cbd": false,
+      "risk": 1.0,
+      "types": [
+        "townhouse",
+        "apartment"
+      ],
+      "periodDays": 5.22,
+      "amplitude": 0.085,
+      "phase": 0.227,
+      "trendPerDay": 0.0059,
+      "x": 0.102,
+      "y": 0.392
+    },
+    {
+      "id": "new_harlem",
+      "city": "new_york",
+      "name": "Harlem",
+      "tier": 1.0,
+      "yieldPerDay": 0.036,
+      "cbd": false,
+      "risk": 1.0,
+      "types": [
+        "apartment",
+        "townhouse",
+        "retail_unit"
+      ],
+      "periodDays": 8.91,
+      "amplitude": 0.063,
+      "phase": 2.639,
+      "trendPerDay": 0.0014,
+      "x": 0.154,
+      "y": 0.395
+    },
+    {
+      "id": "new_hudson_yards",
+      "city": "new_york",
+      "name": "Hudson Yards",
+      "tier": 2.2,
+      "yieldPerDay": 0.028,
+      "cbd": false,
+      "risk": 1.0,
+      "types": [
+        "office_floor",
+        "land",
+        "mixed_use",
+        "penthouse"
+      ],
+      "periodDays": 4.89,
+      "amplitude": 0.081,
+      "phase": 4.727,
+      "trendPerDay": 0.0037,
+      "x": 0.126,
+      "y": 0.376
+    },
+    {
+      "id": "dub_downtown_dubai",
+      "city": "dubai",
+      "name": "Downtown Dubai",
+      "tier": 3.0,
+      "yieldPerDay": 0.025,
+      "cbd": false,
+      "risk": 0.9,
+      "types": [
+        "penthouse",
+        "hotel_plot",
+        "apartment",
+        "mixed_use"
+      ],
+      "periodDays": 6.84,
+      "amplitude": 0.059,
+      "phase": 4.948,
+      "trendPerDay": 0.0025,
+      "x": 0.791,
+      "y": 0.648
+    },
+    {
+      "id": "dub_palm_jumeirah",
+      "city": "dubai",
+      "name": "Palm Jumeirah",
+      "tier": 3.2,
+      "yieldPerDay": 0.024,
+      "cbd": false,
+      "risk": 1.3,
+      "types": [
+        "villa",
+        "hotel_plot",
+        "penthouse"
+      ],
+      "periodDays": 5.39,
+      "amplitude": 0.045,
+      "phase": 3.871,
+      "trendPerDay": 0.0007,
+      "x": 0.888,
+      "y": 0.586
+    },
+    {
+      "id": "dub_dubai_marina",
+      "city": "dubai",
+      "name": "Dubai Marina",
+      "tier": 2.5,
+      "yieldPerDay": 0.027,
+      "cbd": false,
+      "risk": 1.1,
+      "types": [
+        "apartment",
+        "penthouse",
+        "retail_unit"
+      ],
+      "periodDays": 4.46,
+      "amplitude": 0.112,
+      "phase": 1.417,
+      "trendPerDay": -0.0009,
+      "x": 0.762,
+      "y": 0.686
+    },
+    {
+      "id": "dub_difc",
+      "city": "dubai",
+      "name": "DIFC",
+      "tier": 3.0,
+      "yieldPerDay": 0.025,
+      "cbd": true,
+      "risk": 0.8,
+      "types": [
+        "office_floor",
+        "land",
+        "mixed_use",
+        "penthouse"
+      ],
+      "periodDays": 8.73,
+      "amplitude": 0.078,
+      "phase": 4.584,
+      "trendPerDay": 0.0016,
+      "x": 0.767,
+      "y": 0.688
+    },
+    {
+      "id": "dub_jumeirah",
+      "city": "dubai",
+      "name": "Jumeirah",
+      "tier": 2.6,
+      "yieldPerDay": 0.026,
+      "cbd": false,
+      "risk": 1.0,
+      "types": [
+        "villa",
+        "townhouse",
+        "hotel_plot"
+      ],
+      "periodDays": 7.4,
+      "amplitude": 0.104,
+      "phase": 2.434,
+      "trendPerDay": 0.0005,
+      "x": 0.789,
+      "y": 0.656
+    },
+    {
+      "id": "dub_business_bay",
+      "city": "dubai",
+      "name": "Business Bay",
+      "tier": 1.8,
+      "yieldPerDay": 0.03,
+      "cbd": false,
+      "risk": 1.0,
+      "types": [
+        "office_floor",
+        "apartment",
+        "mixed_use",
+        "land"
+      ],
+      "periodDays": 8.41,
+      "amplitude": 0.103,
+      "phase": 4.129,
+      "trendPerDay": 0.0057,
+      "x": 0.829,
+      "y": 0.653
+    },
+    {
+      "id": "dub_deira",
+      "city": "dubai",
+      "name": "Deira",
+      "tier": 0.9,
+      "yieldPerDay": 0.037,
+      "cbd": false,
+      "risk": 1.0,
+      "types": [
+        "warehouse",
+        "retail_unit",
+        "apartment"
+      ],
+      "periodDays": 8.07,
+      "amplitude": 0.058,
+      "phase": 1.774,
+      "trendPerDay": 0.0029,
+      "x": 0.866,
+      "y": 0.597
+    }
+  ],
+  "types": [
+    {
+      "id": "apartment",
+      "name": "Apartment",
+      "icon": "Buildings",
+      "basePrice": "25000.00",
+      "yieldMultiplier": 1.0,
+      "renovationCost": 0.1,
+      "renovationHours": 2,
+      "renovationValue": 0.15,
+      "renovationRent": 0.12,
+      "saleHours": 2,
+      "risk": 1.0,
+      "hosts": []
+    },
+    {
+      "id": "townhouse",
+      "name": "Townhouse",
+      "icon": "House",
+      "basePrice": "60000.00",
+      "yieldMultiplier": 0.95,
+      "renovationCost": 0.12,
+      "renovationHours": 3,
+      "renovationValue": 0.18,
+      "renovationRent": 0.14,
+      "saleHours": 3,
+      "risk": 1.0,
+      "hosts": []
+    },
+    {
+      "id": "villa",
+      "name": "Villa",
+      "icon": "Villa",
+      "basePrice": "250000.00",
+      "yieldMultiplier": 0.8,
+      "renovationCost": 0.14,
+      "renovationHours": 5,
+      "renovationValue": 0.22,
+      "renovationRent": 0.16,
+      "saleHours": 5,
+      "risk": 1.2,
+      "hosts": []
+    },
+    {
+      "id": "office_floor",
+      "name": "Office floor",
+      "icon": "Briefcase",
+      "basePrice": "120000.00",
+      "yieldMultiplier": 1.05,
+      "renovationCost": 0.1,
+      "renovationHours": 3,
+      "renovationValue": 0.14,
+      "renovationRent": 0.15,
+      "saleHours": 3,
+      "risk": 0.8,
+      "hosts": [
+        "bank",
+        "tech",
+        "media"
+      ]
+    },
+    {
+      "id": "retail_unit",
+      "name": "Retail unit",
+      "icon": "Store",
+      "basePrice": "45000.00",
+      "yieldMultiplier": 1.1,
+      "renovationCost": 0.09,
+      "renovationHours": 2,
+      "renovationValue": 0.13,
+      "renovationRent": 0.15,
+      "saleHours": 2,
+      "risk": 1.0,
+      "hosts": [
+        "retail",
+        "restaurants",
+        "fashion"
+      ]
+    },
+    {
+      "id": "warehouse",
+      "name": "Warehouse",
+      "icon": "Warehouse",
+      "basePrice": "80000.00",
+      "yieldMultiplier": 1.15,
+      "renovationCost": 0.08,
+      "renovationHours": 3,
+      "renovationValue": 0.12,
+      "renovationRent": 0.12,
+      "saleHours": 4,
+      "risk": 1.1,
+      "hosts": [
+        "logistics",
+        "factory"
+      ]
+    },
+    {
+      "id": "hotel_plot",
+      "name": "Hotel plot",
+      "icon": "Bed",
+      "basePrice": "900000.00",
+      "yieldMultiplier": 0.9,
+      "renovationCost": 0.16,
+      "renovationHours": 6,
+      "renovationValue": 0.25,
+      "renovationRent": 0.2,
+      "saleHours": 6,
+      "risk": 1.2,
+      "hosts": [
+        "hotels"
+      ]
+    },
+    {
+      "id": "land",
+      "name": "Land",
+      "icon": "Plot",
+      "basePrice": "10000.00",
+      "yieldMultiplier": 0.5,
+      "renovationCost": 0.2,
+      "renovationHours": 4,
+      "renovationValue": 0.3,
+      "renovationRent": 0.25,
+      "saleHours": 6,
+      "risk": 0.6,
+      "hosts": []
+    },
+    {
+      "id": "penthouse",
+      "name": "Penthouse",
+      "icon": "Tower",
+      "basePrice": "600000.00",
+      "yieldMultiplier": 0.85,
+      "renovationCost": 0.15,
+      "renovationHours": 5,
+      "renovationValue": 0.22,
+      "renovationRent": 0.18,
+      "saleHours": 4,
+      "risk": 1.0,
+      "hosts": []
+    },
+    {
+      "id": "mixed_use",
+      "name": "Mixed-use block",
+      "icon": "Buildings",
+      "basePrice": "400000.00",
+      "yieldMultiplier": 1.0,
+      "renovationCost": 0.12,
+      "renovationHours": 6,
+      "renovationValue": 0.18,
+      "renovationRent": 0.16,
+      "saleHours": 5,
+      "risk": 1.0,
+      "hosts": [
+        "retail",
+        "restaurants",
+        "fashion"
+      ]
+    }
+  ],
+  "towers": [
+    {
+      "id": "aurelia",
+      "name": "The Aurelia",
+      "floors": 40,
+      "stageCosts": [
+        "400000.00",
+        "1200000.00",
+        "2000000.00",
+        "900000.00"
+      ],
+      "stageHours": [
+        3,
+        6,
+        8,
+        4
+      ],
+      "stageNames": [
+        "Foundation",
+        "Structure",
+        "Floors",
+        "Fit-out"
+      ],
+      "value": "5500000.00",
+      "floorRentPerDay": 0.032,
+      "landmarkBoost": 0.04
+    },
+    {
+      "id": "needle",
+      "name": "Harbour Needle",
+      "floors": 55,
+      "stageCosts": [
+        "600000.00",
+        "1800000.00",
+        "3000000.00",
+        "1400000.00"
+      ],
+      "stageHours": [
+        4,
+        7,
+        10,
+        5
+      ],
+      "stageNames": [
+        "Foundation",
+        "Structure",
+        "Floors",
+        "Fit-out"
+      ],
+      "value": "8000000.00",
+      "floorRentPerDay": 0.031,
+      "landmarkBoost": 0.05
+    },
+    {
+      "id": "prism",
+      "name": "The Prism",
+      "floors": 48,
+      "stageCosts": [
+        "500000.00",
+        "1500000.00",
+        "2600000.00",
+        "1100000.00"
+      ],
+      "stageHours": [
+        3,
+        6,
+        9,
+        5
+      ],
+      "stageNames": [
+        "Foundation",
+        "Structure",
+        "Floors",
+        "Fit-out"
+      ],
+      "value": "6800000.00",
+      "floorRentPerDay": 0.032,
+      "landmarkBoost": 0.045
+    },
+    {
+      "id": "helix",
+      "name": "Helix Tower",
+      "floors": 64,
+      "stageCosts": [
+        "800000.00",
+        "2400000.00",
+        "3800000.00",
+        "1800000.00"
+      ],
+      "stageHours": [
+        4,
+        8,
+        12,
+        6
+      ],
+      "stageNames": [
+        "Foundation",
+        "Structure",
+        "Floors",
+        "Fit-out"
+      ],
+      "value": "10500000.00",
+      "floorRentPerDay": 0.03,
+      "landmarkBoost": 0.06
+    },
+    {
+      "id": "monarch",
+      "name": "Monarch Plaza",
+      "floors": 36,
+      "stageCosts": [
+        "350000.00",
+        "1000000.00",
+        "1700000.00",
+        "800000.00"
+      ],
+      "stageHours": [
+        2,
+        5,
+        7,
+        4
+      ],
+      "stageNames": [
+        "Foundation",
+        "Structure",
+        "Floors",
+        "Fit-out"
+      ],
+      "value": "4600000.00",
+      "floorRentPerDay": 0.033,
+      "landmarkBoost": 0.035
+    },
+    {
+      "id": "spire",
+      "name": "Summit Spire",
+      "floors": 80,
+      "stageCosts": [
+        "1100000.00",
+        "3200000.00",
+        "5200000.00",
+        "2400000.00"
+      ],
+      "stageHours": [
+        5,
+        9,
+        14,
+        7
+      ],
+      "stageNames": [
+        "Foundation",
+        "Structure",
+        "Floors",
+        "Fit-out"
+      ],
+      "value": "14500000.00",
+      "floorRentPerDay": 0.029,
+      "landmarkBoost": 0.07
+    },
+    {
+      "id": "lumen",
+      "name": "Lumen Works",
+      "floors": 44,
+      "stageCosts": [
+        "450000.00",
+        "1300000.00",
+        "2300000.00",
+        "1000000.00"
+      ],
+      "stageHours": [
+        3,
+        6,
+        8,
+        4
+      ],
+      "stageNames": [
+        "Foundation",
+        "Structure",
+        "Floors",
+        "Fit-out"
+      ],
+      "value": "6100000.00",
+      "floorRentPerDay": 0.032,
+      "landmarkBoost": 0.04
+    },
+    {
+      "id": "tidewater",
+      "name": "Tidewater Tower",
+      "floors": 52,
+      "stageCosts": [
+        "550000.00",
+        "1700000.00",
+        "2800000.00",
+        "1300000.00"
+      ],
+      "stageHours": [
+        4,
+        7,
+        9,
+        5
+      ],
+      "stageNames": [
+        "Foundation",
+        "Structure",
+        "Floors",
+        "Fit-out"
+      ],
+      "value": "7400000.00",
+      "floorRentPerDay": 0.031,
+      "landmarkBoost": 0.05
+    }
+  ],
+  "events": [
+    {
+      "id": "late_rent",
+      "text": "The tenant of your {type} in {district} is a week late with the rent.",
+      "choices": [
+        {
+          "label": "Give them a month",
+          "gainRent": 0.0,
+          "boostDays": 1.0
+        },
+        {
+          "label": "Charge a late fee",
+          "gainRent": 0.4
+        },
+        {
+          "label": "Start eviction",
+          "vacancyHours": 8
+        }
+      ]
+    },
+    {
+      "id": "leak",
+      "text": "A pipe burst in your {type} in {district}.",
+      "choices": [
+        {
+          "label": "Call a plumber now",
+          "costRent": 0.8
+        },
+        {
+          "label": "Patch it yourself",
+          "costRent": 0.2,
+          "condition": -60
+        }
+      ]
+    },
+    {
+      "id": "long_lease",
+      "text": "A reliable tenant offers a long lease on your {type} in {district} if you take 5 % off.",
+      "choices": [
+        {
+          "label": "Accept",
+          "boostDays": -2.0,
+          "condition": 0,
+          "gainRent": 1.5
+        },
+        {
+          "label": "Decline"
+        }
+      ]
+    },
+    {
+      "id": "noise",
+      "text": "Neighbours complain about noise from your {type} in {district}.",
+      "choices": [
+        {
+          "label": "Soundproof the walls",
+          "costRent": 1.0,
+          "boostDays": 1.0
+        },
+        {
+          "label": "Warn the tenant"
+        },
+        {
+          "label": "Ignore it",
+          "condition": -40
+        }
+      ]
+    },
+    {
+      "id": "pet",
+      "text": "Your tenant in {district} asks to keep a large dog.",
+      "choices": [
+        {
+          "label": "Allow it, with a deposit",
+          "gainRent": 0.3,
+          "condition": -30
+        },
+        {
+          "label": "Refuse"
+        }
+      ]
+    },
+    {
+      "id": "sublet",
+      "text": "You discover your {type} in {district} is being sublet without permission.",
+      "choices": [
+        {
+          "label": "Take a cut",
+          "gainRent": 0.6,
+          "condition": -40
+        },
+        {
+          "label": "End the sublet",
+          "vacancyHours": 4
+        }
+      ]
+    },
+    {
+      "id": "roof",
+      "text": "Storm damage to the roof of your {type} in {district}.",
+      "choices": [
+        {
+          "label": "Full repair",
+          "costRent": 1.5
+        },
+        {
+          "label": "Temporary fix",
+          "costRent": 0.4,
+          "condition": -80
+        }
+      ]
+    },
+    {
+      "id": "upgrade_request",
+      "text": "Your tenant in {district} asks for a new kitchen and offers to pay more rent.",
+      "choices": [
+        {
+          "label": "Install it",
+          "costRent": 2.0,
+          "boostDays": 3.0,
+          "condition": 40
+        },
+        {
+          "label": "Not now"
+        }
+      ]
+    },
+    {
+      "id": "film_crew",
+      "text": "A film crew wants to shoot at your {type} in {district} for a day.",
+      "choices": [
+        {
+          "label": "Say yes",
+          "gainRent": 1.2,
+          "condition": -20
+        },
+        {
+          "label": "Say no"
+        }
+      ]
+    },
+    {
+      "id": "inspection",
+      "text": "The city schedules a safety inspection of your {type} in {district}.",
+      "choices": [
+        {
+          "label": "Prepare properly",
+          "costRent": 0.6
+        },
+        {
+          "label": "Wing it",
+          "costRent": 0.0,
+          "condition": -50
+        }
+      ]
+    },
+    {
+      "id": "rent_strike",
+      "text": "Tenants in {district} organise a rent strike over rising prices.",
+      "choices": [
+        {
+          "label": "Freeze rents",
+          "boostDays": -1.0
+        },
+        {
+          "label": "Negotiate",
+          "costRent": 0.5
+        },
+        {
+          "label": "Hold firm",
+          "vacancyHours": 6
+        }
+      ]
+    },
+    {
+      "id": "break_in",
+      "text": "A break-in at your {type} in {district}.",
+      "choices": [
+        {
+          "label": "Install new locks and cameras",
+          "costRent": 0.7,
+          "boostDays": 1.0
+        },
+        {
+          "label": "Just replace the door",
+          "costRent": 0.2
+        }
+      ]
+    },
+    {
+      "id": "mould",
+      "text": "Mould is spreading in your {type} in {district}.",
+      "choices": [
+        {
+          "label": "Treat it properly",
+          "costRent": 1.0
+        },
+        {
+          "label": "Paint over it",
+          "costRent": 0.1,
+          "condition": -90
+        }
+      ]
+    },
+    {
+      "id": "heating",
+      "text": "The heating fails at your {type} in {district} in a cold snap.",
+      "choices": [
+        {
+          "label": "Emergency repair",
+          "costRent": 0.9
+        },
+        {
+          "label": "Lend heaters",
+          "costRent": 0.2,
+          "condition": -30
+        }
+      ]
+    },
+    {
+      "id": "referral",
+      "text": "Your tenant in {district} refers a friend who wants a similar place.",
+      "choices": [
+        {
+          "label": "Thank them with a discount",
+          "costRent": 0.2,
+          "boostDays": 1.0
+        },
+        {
+          "label": "Just say thanks"
+        }
+      ]
+    },
+    {
+      "id": "art",
+      "text": "A local artist offers to paint a mural on your {type} in {district}.",
+      "choices": [
+        {
+          "label": "Commission it",
+          "costRent": 0.5,
+          "boostDays": 2.0
+        },
+        {
+          "label": "Decline politely"
+        }
+      ]
+    },
+    {
+      "id": "early_exit",
+      "text": "Your tenant in {district} wants to leave early and offers two weeks' rent.",
+      "choices": [
+        {
+          "label": "Accept",
+          "gainRent": 1.0,
+          "vacancyHours": 4
+        },
+        {
+          "label": "Hold them to the lease"
+        }
+      ]
+    },
+    {
+      "id": "parking",
+      "text": "Tenants in {district} ask for parking spaces.",
+      "choices": [
+        {
+          "label": "Build them",
+          "costRent": 1.4,
+          "boostDays": 2.5
+        },
+        {
+          "label": "Refuse"
+        }
+      ]
+    },
+    {
+      "id": "short_stay",
+      "text": "A short-stay platform offers to rent your {type} in {district} by the night.",
+      "choices": [
+        {
+          "label": "Try it for a week",
+          "boostDays": 2.0,
+          "condition": -60
+        },
+        {
+          "label": "Keep long-term tenants"
+        }
+      ]
+    },
+    {
+      "id": "elevator",
+      "text": "The lift in your {type} in {district} breaks down.",
+      "choices": [
+        {
+          "label": "Replace it",
+          "costRent": 1.6,
+          "condition": 50
+        },
+        {
+          "label": "Repair it",
+          "costRent": 0.5
+        }
+      ]
+    },
+    {
+      "id": "party",
+      "text": "Your tenant in {district} threw a party that damaged the hallway.",
+      "choices": [
+        {
+          "label": "Bill the tenant",
+          "gainRent": 0.2
+        },
+        {
+          "label": "Fix it quietly",
+          "costRent": 0.3
+        }
+      ]
+    },
+    {
+      "id": "solar",
+      "text": "An installer offers solar panels for your {type} in {district}.",
+      "choices": [
+        {
+          "label": "Install them",
+          "costRent": 1.8,
+          "boostDays": 4.0
+        },
+        {
+          "label": "Not interested"
+        }
+      ]
+    },
+    {
+      "id": "smart_locks",
+      "text": "Tenants in {district} ask for smart locks.",
+      "choices": [
+        {
+          "label": "Fit them",
+          "costRent": 0.4,
+          "boostDays": 1.0
+        },
+        {
+          "label": "Keep the old keys"
+        }
+      ]
+    },
+    {
+      "id": "charity",
+      "text": "A charity asks to use your vacant storage in {district} rent-free for a month.",
+      "choices": [
+        {
+          "label": "Say yes",
+          "costRent": 0.0,
+          "boostDays": 0.5
+        },
+        {
+          "label": "Say no"
+        }
+      ]
+    },
+    {
+      "id": "tree",
+      "text": "A neighbour's tree fell onto your {type} in {district}.",
+      "choices": [
+        {
+          "label": "Repair and claim from the neighbour",
+          "costRent": 0.4
+        },
+        {
+          "label": "Repair it all yourself",
+          "costRent": 1.0,
+          "condition": 30
+        }
+      ]
+    },
+    {
+      "id": "lawsuit_threat",
+      "text": "A former tenant in {district} threatens to sue over their deposit.",
+      "choices": [
+        {
+          "label": "Settle",
+          "costRent": 0.6
+        },
+        {
+          "label": "Fight it",
+          "costRent": 0.2,
+          "boostDays": -0.5
+        }
+      ]
+    },
+    {
+      "id": "renovation_neighbor",
+      "text": "Construction next door is disturbing your tenants in {district}.",
+      "choices": [
+        {
+          "label": "Offer a rent discount",
+          "boostDays": -1.0
+        },
+        {
+          "label": "Do nothing",
+          "vacancyHours": 3
+        }
+      ]
+    },
+    {
+      "id": "energy_rating",
+      "text": "New rules require a better energy rating for your {type} in {district}.",
+      "choices": [
+        {
+          "label": "Upgrade insulation",
+          "costRent": 1.2,
+          "condition": 60
+        },
+        {
+          "label": "Apply for an exemption",
+          "costRent": 0.2
+        }
+      ]
+    },
+    {
+      "id": "rodents",
+      "text": "Tenants in {district} report mice.",
+      "choices": [
+        {
+          "label": "Call pest control",
+          "costRent": 0.3
+        },
+        {
+          "label": "Set traps yourself",
+          "condition": -30
+        }
+      ]
+    },
+    {
+      "id": "cleaning",
+      "text": "Tenants in {district} ask for a cleaning service in the shared areas.",
+      "choices": [
+        {
+          "label": "Hire cleaners",
+          "costRent": 0.5,
+          "boostDays": 1.5
+        },
+        {
+          "label": "Leave it to the tenants",
+          "condition": -20
+        }
+      ]
+    },
+    {
+      "id": "wifi",
+      "text": "Tenants in {district} complain about slow internet.",
+      "choices": [
+        {
+          "label": "Install fibre",
+          "costRent": 0.6,
+          "boostDays": 2.0
+        },
+        {
+          "label": "Shrug"
+        }
+      ]
+    },
+    {
+      "id": "viewing",
+      "text": "A buyer asks to view your {type} in {district}: they love it.",
+      "choices": [
+        {
+          "label": "Invite them for a viewing",
+          "boostDays": 0.0,
+          "gainRent": 0.2
+        },
+        {
+          "label": "Not selling"
+        }
+      ]
+    },
+    {
+      "id": "historic",
+      "text": "Your {type} in {district} might be listed as a historic building.",
+      "choices": [
+        {
+          "label": "Support the listing",
+          "boostDays": 2.0,
+          "costRent": 0.3
+        },
+        {
+          "label": "Object",
+          "costRent": 0.5
+        }
+      ]
+    },
+    {
+      "id": "window",
+      "text": "A window shattered at your {type} in {district}.",
+      "choices": [
+        {
+          "label": "Replace it today",
+          "costRent": 0.3
+        },
+        {
+          "label": "Board it up",
+          "condition": -40
+        }
+      ]
+    },
+    {
+      "id": "flood_risk",
+      "text": "Forecasters warn of flooding near {district}.",
+      "choices": [
+        {
+          "label": "Sandbags and pumps",
+          "costRent": 0.6
+        },
+        {
+          "label": "Hope for the best",
+          "condition": -70
+        }
+      ]
+    },
+    {
+      "id": "community",
+      "text": "Residents in {district} ask you to sponsor a street festival.",
+      "choices": [
+        {
+          "label": "Sponsor it",
+          "costRent": 0.5,
+          "boostDays": 2.0
+        },
+        {
+          "label": "Decline"
+        }
+      ]
+    },
+    {
+      "id": "rent_review",
+      "text": "It is time for the annual rent review on your {type} in {district}.",
+      "choices": [
+        {
+          "label": "Small rise",
+          "gainRent": 0.5
+        },
+        {
+          "label": "Keep it flat",
+          "boostDays": 1.0
+        }
+      ]
+    },
+    {
+      "id": "furnish",
+      "text": "A tenant in {district} would pay more for a furnished place.",
+      "choices": [
+        {
+          "label": "Furnish it",
+          "costRent": 1.0,
+          "boostDays": 2.5
+        },
+        {
+          "label": "Leave it unfurnished"
+        }
+      ]
+    },
+    {
+      "id": "balcony",
+      "text": "Your tenant in {district} wants permission to enclose the balcony.",
+      "choices": [
+        {
+          "label": "Allow it",
+          "condition": 30
+        },
+        {
+          "label": "Refuse"
+        }
+      ]
+    },
+    {
+      "id": "insurance_audit",
+      "text": "An insurer offers a free risk audit of your {type} in {district}.",
+      "choices": [
+        {
+          "label": "Accept the audit",
+          "costRent": 0.1,
+          "condition": 20
+        },
+        {
+          "label": "Skip it"
+        }
+      ]
+    }
+  ]
+}

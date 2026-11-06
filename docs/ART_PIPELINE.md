@@ -2,24 +2,24 @@
 
 ## 1. Rules
 1. **Only properly licensed images.** Every image has a recorded source URL, author, license and license URL in `assets/credits.json`. No exceptions.
-2. **No real logos, badges or trademarks.** Prefer photos without visible badges. When a badge is visible, the manifest specifies **blur or crop regions** and the pipeline applies them. Vehicle, company, coin and watch names are always original fictional names.
-3. **No real public figures.** No photos or names of celebrities, politicians or real billionaires. Rival names are checked against a real-person blocklist.
+2. **No real logos or badges.** Prefer photos without visible badges. When a badge is visible, the manifest specifies **blur or crop regions** and the pipeline applies them. Vehicle, company, coin and watch names are parodies (GDD §1.1), never exact real names.
+3. **No photos of real people.** Rivals and billionaires use parody names with illustrated portraits (GDD §1.1); exact real names are rejected by a real-person blocklist.
 4. **Stock portraits for fictional people**, used respectfully: no demeaning captions, no criminal or scandal storylines attached to a pictured person (scandals attach to companies), no implied endorsement.
 5. **Paintings and antiques** come from public-domain museum open-access programs (CC0 / public domain).
 6. **No Firebase Storage or any remote image hosting.** Everything is bundled in the APK as WebP.
-7. **Curated, not bulk-scraped.** Each image is chosen individually from contact sheets, in line with Pexels' terms against bulk or systematic copying. API usage stays within the default limits (Pexels: 200 requests/hour, 20,000/month).
+7. **Curated, not bulk-scraped.** Each image is chosen individually from contact sheets, and API use stays polite (Wikimedia's User-Agent and rate guidance).
 
 ## 2. Sources and allowed licenses
 | Source | Use | Key needed | License handling |
 |---|---|---|---|
-| **Pexels API** | cars, jets, yachts, mansions, offices, factories, portraits, cities | **Yes — free API key (please create one)** | Pexels License: free use, attribution not required but we credit photographer + "Photos provided by Pexels" link, as the API guidelines ask |
-| **Wikimedia Commons API** | aircraft, ships, generic cityscapes, raw materials, extra cars | No (sends a descriptive User-Agent with the repo URL, no email) | Accept CC0, PD, CC BY 2.0/3.0/4.0, CC BY-SA 3.0/4.0. **Reject** NC, ND, GFDL-only and unknown. License read from `extmetadata`, never typed by hand |
+| ~~Pexels API~~ | — | — | **Dropped (2026-11-06): Pexels has paused new API key issuance.** Unsplash was also rejected: its API terms require hotlinking, which conflicts with bundling images in the APK |
+| **Wikimedia Commons API** (primary) | city skylines and neighbourhoods (real places), buildings, aircraft, ships, cars, raw materials | No (sends a descriptive User-Agent with the repo URL, no email) | Accept CC0, PD, CC BY 2.0/3.0/4.0, CC BY-SA 3.0/4.0. **Reject** NC, ND, GFDL-only and unknown. License read from `extmetadata`, never typed by hand |
 | **Art Institute of Chicago API** | paintings, sculptures | No | Only records with `is_public_domain = true`; images via IIIF |
 | **The Met Open Access API** | paintings, antiques, watches, jewelry | No | Only `isPublicDomain = true` |
 | **Cleveland Museum of Art Open Access** | paintings, antiques | No | Only `share_license_status = CC0` |
 | **National Gallery of Art (open data)** | paintings | No | Only open-access (CC0) images |
 
-Licenses accepted by the validator: `Pexels`, `CC0-1.0`, `PDM-1.0`, `PD`, `CC-BY-2.0`, `CC-BY-3.0`, `CC-BY-4.0`, `CC-BY-SA-3.0`, `CC-BY-SA-4.0`. For CC BY-SA, our cropped or blurred derivative is offered under the same license, and the Credits screen says so.
+Licenses accepted by the validator: `CC0-1.0`, `PDM-1.0`, `PD`, `CC-BY-2.0`, `CC-BY-3.0`, `CC-BY-4.0`, `CC-BY-SA-3.0`, `CC-BY-SA-4.0`. For CC BY-SA, our cropped or blurred derivative is offered under the same license, and the Credits screen says so.
 
 ## 3. Pipeline (`tools/art/`, Python 3.13 + Pillow 11.3, both already installed)
 

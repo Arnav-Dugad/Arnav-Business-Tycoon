@@ -1,8 +1,8 @@
 """Generates content/data/markets.json: sectors, 120 stocks, 4 funds, 8 bonds, 20 coins, 12 commodities,
 news templates and market tunables (docs/GDD.md §6, docs/ECONOMY.md §5).
 
-Company and coin names are coined from syllables with a fixed seed, so they are original and stable. They are
-checked against a blocklist of real brands and well-known real tickers (the Kotlin validator checks again).
+Company and coin names are parodies of real ones (owner request): puns, never the exact real name or ticker. Tickers are
+checked against a blocklist of well-known real tickers, and the Kotlin validator rejects exact real brand names.
 
 Usage: python -I tools/content/gen_markets.py <repo-root>
 """
@@ -118,9 +118,33 @@ BLOCKED_TICKERS = {
     "SPOT", "ZM", "SHOP", "SQ", "PYPL", "COIN", "HOOD", "PLTR", "SNOW", "NET", "DDOG", "MU", "ARM", "SONY", "TM",
     "HMC", "BABA", "TCEHY", "NIO", "LI", "BIDU", "JD", "PDD", "SAP", "ASML", "TSM", "NVO", "AZN", "GSK", "BP",
     "SHEL", "RIO", "BHP", "VALE", "TTE", "EQNR", "HSBC", "UBS", "ING", "BCS", "LYG", "DB", "SAN", "BBVA", "ACN",
-    "NIST", "SATA", "NASA", "NATO", "FIFA", "UEFA", "FB", "TWTR", "X", "AA", "CL", "KHC", "MDLZ", "HSY", "GIS", "K", "CPB", "SJM", "MO", "PM", "BUD", "STZ", "TAP",
+    "NIKE", "MSTR", "DLTR", "PLNT", "KRFT", "CORN", "INTL", "ASTR", "COST", "TGT", "NSRGY", "MCD", "KO", "NIST", "SATA", "NASA", "NATO", "FIFA", "UEFA", "FB", "TWTR", "X", "AA", "CL", "KHC", "MDLZ", "HSY", "GIS", "K", "CPB", "SJM", "MO", "PM", "BUD", "STZ", "TAP",
 }
 
+
+
+# Parody companies (owner request, 2026-11-06): GTA-style puns on real names, never the exact name. Ordered to match
+# SECTOR_BANDS (established giants first, long shots last). The Kotlin validator still rejects exact real brands.
+PARODY = {
+    "consumer": ["Wallmark Stores", "Costgo Wholesale", "Targit", "Amazoom", "Nikey", "Adidash", "Ikeyah Home", "Zaru Fashion", "Sephorah Beauty", "Best Bye Electronics"],
+    "food": ["Cola-Kola", "Nestlay Foods", "Pepsy", "McDowell's", "Krafty Foods", "Danown Dairy", "Heinzel Sauces", "Burger Kingdom", "Starbux Coffee", "Subwave Sandwiches"],
+    "industrials": ["General Electrick", "Seamens Industries", "Honeywall", "3N Company", "Katerpillar", "Deer & Co", "Bosh Engineering", "Hitachy", "Komatsoo", "ABBA Robotics"],
+    "energy": ["Exxtron Oil", "Shelf Energy", "Chevrolon", "Aramcoe", "British Pertolium", "TotalEnergiez", "Dook Energy", "NexEra Power", "Iberdrolla", "Petrobrass"],
+    "materials": ["Rio Tintin", "BHB Billiton", "Glenkore", "Vayle Mining", "Nucore Steel", "Alcoe Aluminium", "ArcelorMittel", "Newmount Gold", "Barrik Gold", "Freeport McMoney"],
+    "financials": ["J.P. Morgain", "Bank of Amerigo", "Wells Fargone", "Goldmine Sachs", "Morgan Stanly", "BlackRuck", "Sitygroup", "Barklays", "MasterKard", "Visar Payments"],
+    "technology": ["Microhard", "Pear Inc", "Gooble", "Metta Platforms", "Nvidiya", "Samsong Electronics", "Orakle", "Sisco Systems", "Intell", "Adobee"],
+    "media": ["Verizone", "AT&Tee Telecom", "Comcastle", "Diznee", "Netflicks", "Warnor Bros", "Paramountain Pictures", "Spotifly", "Vodafun", "TikTak"],
+    "healthcare": ["Johnson & Johnsen", "Fizer Pharma", "Rosh Holding", "Novartiz", "AstraZenica", "Bayir", "Eli Silly", "AbbVee", "GlaxoSmithClone", "Moderno"],
+    "property": ["Brookfeeld Properties", "Simon Says Property", "Emar Properties", "Vinchi Construction", "Skanske", "Bechtell", "DLX Developers", "Godrage Properties", "Lodhar Group", "Ever-Grande Group"],
+    "transport": ["Brown Parcel Service", "FedUp Express", "Mersk Line", "Delter Air Lines", "Untied Airlines", "Emirata Airlines", "Cryanair", "Marryott Hotels", "AirBnBee", "Ubar Rides"],
+    "frontier": ["Tesler Motors", "SpaceZ", "Blue Original", "ClosedAI", "Palantear", "Neuralinked", "Rivion", "Virgil Galactic", "Pocket Lab", "Bored Tunnel Co"],
+}
+PARODY_COINS = {
+    1: [("Bitcorn", "BCRN"), ("Etherion", "ETHN"), ("Binants Coin", "BNNT"), ("Ripplet", "RPLT"), ("Solarna", "SLRN")],
+    2: [("Cardanno", "CRDN"), ("Dogecorn", "DGCN"), ("Polkadotty", "DOTY"), ("Chainlinked", "CHNL"), ("Avalanch", "AVLN")],
+    3: [("Shiba Inuit", "SHBI"), ("Litecorn", "LTCN"), ("Tonne Coin", "TONN"), ("Stellur", "STLR"), ("Pepegg", "PEGG")],
+    4: [("Mooncoin Rocket", "MNRK"), ("SafeMoonish", "SAFM"), ("Squidd Token", "SQID"), ("RugPull Token", "RUGP"), ("FrogBucks", "FROG")],
+}
 
 def coin_word(rng: random.Random, syllables: int) -> str:
     """Pronounceable coined word: onset-vowel-(middle-vowel)*-ending, e.g. "Kolvara", "Tremix"."""
@@ -168,6 +192,10 @@ def make_ticker(name: str, used: set, length: int) -> str:
                 if len(t) == length:
                     candidates.append(t)
     candidates += [first + "".join(letters[1:length])]
+    # Fallback for short names: any ordered letters, then a trailing X.
+    from itertools import combinations
+    candidates += [first + "".join(c) for c in combinations(letters[1:], length - 1)]
+    candidates += [first + "".join(c) + "X" for c in combinations(letters[1:], length - 2)]
     for t in candidates:
         if any(a == b for a, b in zip(t, t[1:])):
             continue
@@ -203,9 +231,8 @@ def main(repo: Path) -> None:
         for i in range(10):
             band = bands[i]
             drift, vol_r, div_r, beta_r, cap_r = BANDS[band]
-            base = fresh_word(rng.choice([2, 2, 3]))
-            name = f"{base} {nouns[i]}"
-            ticker = make_ticker(base + nouns[i], used_tickers, 4)
+            name = PARODY[sid][i]
+            ticker = make_ticker("".join(ch for ch in name if ch.isalpha()), used_tickers, 4)
             used_tickers.add(ticker)
             vol = rng.uniform(*vol_r)
             cap_b = round(rng.uniform(*cap_r), 1)
@@ -262,16 +289,14 @@ def main(repo: Path) -> None:
     coins = []
     for tier in (1, 2, 3, 4):
         drift, vol, crash, depth, stake, cap_r, price_r, words = tiers[tier]
-        for _ in range(5):
-            base = fresh_word(rng.choice([2, 2, 3]))
-            name = base + rng.choice(["", " Coin", " Chain", " Token", "", " Network"])
-            t = make_ticker(base, used_tickers, 4)
+        for name, t in PARODY_COINS[tier]:
+            assert t not in BLOCKED_TICKERS and t not in used_tickers, t
             used_tickers.add(t)
             price = rng.uniform(*price_r)
             coins.append({
                 "id": "c_" + t.lower(),
                 "ticker": t,
-                "name": name.strip(),
+                "name": name,
                 "tier": tier,
                 "driftPerDay": r6(drift * rng.uniform(0.85, 1.15)),
                 "volPerDay": r6(vol * rng.uniform(0.85, 1.15)),

@@ -22,10 +22,11 @@ object Milestones {
     const val HQ_5 = "hq_level_5"
     const val FIRST_CONGLOMERATE = "first_conglomerate"
     const val HOLDING = "holding_formed"
+    const val FIRST_PROPERTY = "first_property"
     fun chapterDone(n: Int) = "chapter${n}_done"
 
     val ALL = listOf(FIRST_LEVEL, FIRST_MANAGER, RESTAURANT_OPEN, CHAPTER1_DONE, LOGISTICS_OPEN, NW_10K, NW_1M, HQ_5, CHAPTER2_DONE, NW_100M, NW_10B) +
-        (3..8).map { chapterDone(it) } + listOf(FIRST_CONGLOMERATE, HOLDING)
+        (3..8).map { chapterDone(it) } + listOf(FIRST_CONGLOMERATE, HOLDING, FIRST_PROPERTY)
 }
 
 /** One sample of the economy over real time (for curves and dead-zone analysis). */
@@ -111,6 +112,7 @@ class Simulation(private val engine: GameEngine, private val contentHash: String
             }
             if (s.conglomerates.isNotEmpty()) milestones.putIfAbsent(Milestones.FIRST_CONGLOMERATE, minute)
             if (s.holdingName != null) milestones.putIfAbsent(Milestones.HOLDING, minute)
+            if (s.estate.properties.isNotEmpty()) milestones.putIfAbsent(Milestones.FIRST_PROPERTY, minute)
         }
 
         for ((startMin, lengthMin) in sessions) {
@@ -175,7 +177,7 @@ class Simulation(private val engine: GameEngine, private val contentHash: String
         return RunResult(bot.name, seed, milestones, samples, deadMinutes, sessionMinutes, longestStall, eco.netWorth(s))
     }
 
-    private val marketSources = setOf("dividends", "coupons", "staking", "capital_gains")
+    private val marketSources = setOf("dividends", "coupons", "staking", "capital_gains", "rent", "property_gains")
 
     /** Lifetime income split from the ledger's revenue accounts (revenue balances are credits, so negated). */
     private fun incomeBySource(s: GameState): Pair<Double, Double> {

@@ -137,13 +137,23 @@ object AbtIcons {
     )
     val Buildings = icon("Buildings", "M4 21V8h7v13", "M11 21V3.5h9V21", "M2.5 21h19", "M6.5 11.5h2M6.5 15h2M14 7h3M14 10.5h3M14 14h3")
 
+    // ---- Real estate ----
+    val House = icon("House", "M3.5 11 12 4l8.5 7", "M5.5 9.5V20h13V9.5", "M10 20v-5.5h4V20")
+    val Villa = icon("Villa", "M2.5 12 9 6.5l6.5 5.5", "M4.5 10.5V18h9v-7.5", "M15.5 12H21v6h-7.5", "M2 21c2 0 2-1.2 4-1.2s2 1.2 4 1.2 2-1.2 4-1.2 2 1.2 4 1.2 2-1.2 4-1.2", "M7.5 18v-3h3v3")
+    val Warehouse = icon("Warehouse", "M2.5 9 12 4l9.5 5v11.5h-19Z", "M6.5 20.5v-8h11v8", "M6.5 15h11M6.5 17.8h11")
+    val Plot = icon("Plot", "M3 19.5 7 9.5h10l4 10Z", "M12 9.5v10M5 14.5h14", "M9.5 6.5V3.5l3 1.5-3 1.5")
+    val Tower = icon("Tower", "M8 21V6.5L12 3l4 3.5V21", "M5 21h14", "M10.5 9h3M10.5 12h3M10.5 15h3M10.5 18h3")
+    val Key = icon("Key", circle(8f, 15.5f, 4.5f), "M11.3 12.2 20 3.5", "M16.5 7l2.5 2.5M14.3 9.2l1.8 1.8")
+    val Wrench = icon("Wrench", "M14.5 4.2a4.5 4.5 0 0 0-5.3 6L3.8 15.6a2 2 0 0 0 2.8 2.8L12 13a4.5 4.5 0 0 0 6-5.3l-2.8 2.8-2.5-.4-.4-2.5Z")
+    val Umbrella = icon("Umbrella", "M3 12a9 9 0 0 1 18 0Z", "M12 12v6.5a2 2 0 0 1-4 0", "M12 3v-.5")
+
     private val byName: Map<String, ImageVector> by lazy {
         listOf(
             Empire, Markets, Estates, Collection, Crown, Cash, Bullion, Coin, Favor, ChevronRight, ChevronLeft, ChevronDown,
             ChevronUp, Close, Plus, Minus, Check, ArrowUp, ArrowDown, Refresh, Sliders, Info, Warning, Lock, Eye, EyeOff,
             Mail, Bell, User, Rivals, Clock, Bolt, Sparkle, Star, Trophy, Briefcase, Store, Gift, Shield, Factory, News, Map,
             Hand, Sun, Moon, Timer, Manager, Expand, Inbox, Chart, Volume, Music, Vibrate, Logout, Trash, Download, Cloud,
-            Upload, Book, Fleet, Route, Tag, Megaphone, Chef, Pause, Play, StarFilled,
+            Upload, Book, Fleet, Route, Tag, Megaphone, Chef, Pause, Play, StarFilled, House, Villa, Warehouse, Plot, Tower, Key, Wrench, Umbrella,
             Wheat, Hanger, Pickaxe, Flame, Bed, Bank, Crane, Film, Chip, Antenna, Plane, Flask, Ball, Rocket, Buildings,
         ).associateBy { it.name }
     }

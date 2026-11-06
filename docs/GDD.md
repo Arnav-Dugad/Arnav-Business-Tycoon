@@ -27,6 +27,14 @@ The planning recommendation was Crownfolio; the owner chose Arnav Business Tycoo
 
 ---
 
+### 1.1 Real places, parody names (owner decision, 2026-11-06)
+The owner asked for the world to feel as real as possible, GTA-style:
+- **Places are real**: cities and neighbourhoods use their real names; everything that happens there (prices, cycles, events) is invented.
+- **Companies, coins, products and people are parodies**: clear puns on real names, never the exact name or ticker. The content validator still rejects exact real brand names, so every name stays a parody.
+- **No real logos, badges or photos of real people.** Logos are procedural; portraits are illustrated.
+- The Credits screen states that companies, products and people are parodies and not affiliated with anyone they resemble.
+This replaces the original brief's "no real brands, no real public figures" rule. It suits a personal project shared with friends; revisit before any public store release.
+
 ## 2. Vision and pillars
 
 A premium-feeling finance tycoon in which you grow a corner kiosk into a multi-generational dynasty. Early tapping quickly gives way to **meaningful decisions**: what to buy, expand, automate, hedge, or gamble on.
@@ -144,7 +152,7 @@ Because members overlap (Telecom appears in two, Tech in two, Farmland in two), 
 ## 6. Investing
 
 ### 6.1 Stock market
-- **120 fictional companies** in 12 sectors (10 each), each with an original name, ticker, procedurally generated vector logo, beta, volatility band, dividend policy and a personality trait (for example "serial acquirer" or "meme darling").
+- **120 parody companies** in 12 sectors (10 each): GTA-style puns on real companies (owner decision 2026-11-06, see §1.1), never the exact real name or ticker, each with a ticker, procedurally generated vector logo, beta, volatility band, dividend policy and a personality trait (for example "serial acquirer" or "meme darling").
 - Prices are driven by fundamentals (sector cycle, macro cycle, quarterly earnings), mean-reverting noise and **news-driven jumps**. Model in ECONOMY §5.
 - **Earnings season** every 3 real days, with guidance, beats and misses.
 - **Board seats**: owning ≥5% of a company gives a sector perk (+5% income for your businesses in that sector); ≥20% (a division stake) makes opening a business in that sector 25% cheaper; holding stock in a rival's flagship blocks that rival's takeover attempts on you (arrives with rivals, Phase 9). You can own at most 49% of a listed company, and stakes are diluted when a new chapter deepens the market.
@@ -156,14 +164,14 @@ Because members overlap (Telecom appears in two, Tech in two, Farmland in two), 
 - 8 bonds (government short/long, investment-grade and high-yield corporate) with duration. Prices move inversely to the central-bank rate cycle; high-yield bonds can default in recessions.
 
 ### 6.3 Crypto
-- 20 fictional coins in 4 risk tiers. Hype cycles, staking yields and rare crash or "rug" events for low-tier coins. Each coin's risk rating is shown in plain words.
+- 20 parody coins in 4 risk tiers. Hype cycles, staking yields and rare crash or "rug" events for low-tier coins. Each coin's risk rating is shown in plain words.
 - Unlocks in Chapter 2. It is meant to be exciting and optional, never the dominant strategy.
 
 ### 6.4 Commodities
 12 commodities (crude oil, natural gas, gold, silver, copper, iron ore, lithium, rare earths, wheat, coffee, cocoa, timber). Their prices set business input costs and output prices. You can trade spot, and forward contracts are available through Farmland and Energy.
 
 ### 6.5 News feed
-Headlines are generated from templates naming fictional entities. Some news is **predictive** (with stated reliability: "Rumor", "Report", "Confirmed"). Reading news is how skilled players beat the market and call fashion trends.
+Headlines are generated from templates naming the game's parody companies, coins, sectors and commodities. Some news is **predictive** (with stated reliability: "Rumor", "Report", "Confirmed"). Reading news is how skilled players beat the market and call fashion trends.
 
 ### 6.6 IPO — your Holding Co goes public
 - Choose how much to float (10–49%; a ≥51% control guard is enforced) and receive a large cash injection.
@@ -175,7 +183,7 @@ Headlines are generated from templates naming fictional entities. Some news is *
 
 ## 7. Real estate
 
-- **World map** with 6 fictional cities (Halcyon Bay, Meridian, Solara, Kestrel Point, Ardent Falls, Verdemar) and 40 districts.
+- **World map** with 6 real cities, unlocking by chapter: Lisbon and London (2), Miami (3), Mumbai (4), New York (5), Dubai (6), and 40 real neighbourhoods (for example Alfama, Mayfair, Brickell, Bandra, SoHo, Palm Jumeirah). Prices, cycles and events are invented. The map is a stylised world map drawn in code.
 - Each district has a **price index** on its own market cycle (correlated with its city and the global cycle), plus a rent yield, a trend and gentrification events.
 - **Property types**: apartment, townhouse, villa, office floor, retail unit, warehouse, hotel plot, land, penthouse, mixed-use block.
 - **Verbs**:
@@ -192,7 +200,7 @@ Headlines are generated from templates naming fictional entities. Some news is *
 
 ## 8. Luxury and collections
 
-- **Categories**: cars, jets, helicopters, yachts, islands, mansions, paintings (public-domain museum works), watches, wine, sculptures and antiques, jewelry. All brands and models use original fictional names.
+- **Categories**: cars, jets, helicopters, yachts, islands, mansions, paintings (public-domain museum works), watches, wine, sculptures and antiques, jewelry. Brands and models use parody names (puns on real ones, never the exact name); real logos and badges are never shown.
 - **Status**: luxury generates Status points. Status tiers unlock elite deals (lower acquisition prices), exclusive auctions, rival alliances and are a requirement for the IPO. That is luxury's real return.
 - **Value behavior**: cars depreciate (except classics); art follows an art-market cycle; watches are stable; yachts carry heavy upkeep. Some items are investments, some are pure Status.
 - **Live auctions** every few hours against 3–5 AI rivals with personalities (aggressive, sniper, budget-limited collector). Bidding uses a resetting timer and readable rival "tells". See the mini-games section.
@@ -213,7 +221,7 @@ Headlines are generated from templates naming fictional entities. Some news is *
 
 ## 10. Rivals
 
-- A **Fortune List** of 220 fictional billionaires, ranked weekly. You climb it.
+- A **Fortune List** of 220 billionaires with parody names (no photos of real people), ranked weekly. You climb it.
 - Each rival has a name, age, home city, archetype (Shark, Old Money, Disruptor, Collector, Philanthropist, Gambler, Recluse, Heir), favorite sectors, aggression, risk appetite and a **relationship score** with you (−100 to +100).
 - **Interactions**: competing auction bids, construction tenders and property bids; acquisition offers for your businesses; joint-venture offers; hostile takeover attempts on undervalued businesses or on your IPO float.
 - **Takeover defense**: white knight (an allied rival), buyback, poison pill (costly), negotiate, or accept the premium.
@@ -301,7 +309,7 @@ Headlines are generated from templates naming fictional entities. Some news is *
 - **Custom icon set** (~140 vector icons on a 24dp grid, 1.75 stroke). No emoji anywhere.
 - **Audio**: separate volume and toggle for music, SFX and haptics. Licensed CC0/CC-BY sources are credited in-app.
 - **Accessibility**: TalkBack labels on every control, font scale up to 200% without clipping, minimum 48dp touch targets, a reduced-motion setting, color-blind-safe signals.
-- **States**: onboarding, helpful empty states ("No properties yet — Meridian's Old Town is in a dip"), skeleton loading, clear error and retry states.
+- **States**: onboarding, helpful empty states ("No properties yet — Lisbon's listings refresh every six hours"), skeleton loading, clear error and retry states.
 
 ---
 

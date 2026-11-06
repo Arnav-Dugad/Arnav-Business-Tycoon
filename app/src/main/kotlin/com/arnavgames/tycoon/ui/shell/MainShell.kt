@@ -43,14 +43,18 @@ fun MainShell(
     onOpenCredits: () -> Unit,
     onOpenInstrument: (String) -> Unit = {},
     onOpenNews: () -> Unit = {},
+    onOpenCity: (String) -> Unit = {},
+    onOpenProperty: (Long) -> Unit = {},
 ) {
     var tab by rememberSaveable { mutableStateOf("empire") }
     val empire by vm.empire.collectAsStateWithLifecycle()
     val claimable = (empire?.claimableCount ?: 0) > 0
+    val estatesUi by vm.estates.collectAsStateWithLifecycle()
+    val decisions = (estatesUi?.decisions?.size ?: 0) > 0
     val items = listOf(
         NavItem("empire", "Empire", AbtIcons.Empire),
         NavItem("markets", "Markets", AbtIcons.Markets),
-        NavItem("estates", "Estates", AbtIcons.Estates),
+        NavItem("estates", "Estates", AbtIcons.Estates, badge = decisions),
         NavItem("collection", "Collection", AbtIcons.Collection),
         NavItem("dynasty", "Dynasty", AbtIcons.Crown, badge = claimable),
     )
@@ -59,10 +63,7 @@ fun MainShell(
             when (t) {
                 "empire" -> EmpireScreen(vm, onOpenBusiness = onOpenBusiness)
                 "markets" -> MarketsScreen(vm, onOpenInstrument = onOpenInstrument, onOpenNews = onOpenNews)
-                "estates" -> ComingSoonScreen(
-                    icon = AbtIcons.Estates, title = "Estates", chapter = 3,
-                    lines = listOf("Six cities and forty districts on a living market cycle", "Rent, renovate and flip properties", "Build your own skyscraper"),
-                )
+                "estates" -> com.arnavgames.tycoon.ui.estates.EstatesScreen(vm, onOpenCity = onOpenCity, onOpenProperty = onOpenProperty)
                 "collection" -> ComingSoonScreen(
                     icon = AbtIcons.Collection, title = "Collection", chapter = 3,
                     lines = listOf("Cars, jets, yachts, islands and masterpieces", "Live auctions against rival billionaires", "Showrooms and set bonuses"),

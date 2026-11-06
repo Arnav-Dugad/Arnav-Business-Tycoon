@@ -39,6 +39,19 @@ sealed interface Command {
     data class SellInstrument(val instrumentId: String, val permille: Int) : Command
     data class OpenShort(val stockId: String, val amount: Money) : Command
     data class CoverShort(val stockId: String) : Command
+    // Real estate (docs/GDD.md §7)
+    data class BuyProperty(val listingId: String, val ltv: Double = 0.0, val insured: Boolean = false) : Command
+    data class SetRent(val propertyId: Long, val rentPct: Int) : Command
+    data class RenovateProperty(val propertyId: Long, val repair: Boolean = false) : Command
+    data class SellProperty(val propertyId: Long) : Command
+    data class CancelPropertySale(val propertyId: Long) : Command
+    data class SetInsured(val propertyId: Long, val insured: Boolean) : Command
+    data class RepayMortgage(val propertyId: Long) : Command
+    /** Run a business from this property (null = stop and rent it out again). */
+    data class HostBusiness(val propertyId: Long, val businessId: String?) : Command
+    /** Starts the next construction stage of a skyscraper (the design is fixed by the first stage). */
+    data class BuildTower(val propertyId: Long, val designId: String) : Command
+    data class ResolveTenantEvent(val eventId: Long, val choice: Int) : Command
 }
 
 sealed interface GameError {
@@ -75,6 +88,18 @@ sealed interface GameEvent {
     data class MarketNews(val newsId: Long) : GameEvent
     data class EarningsSeason(val beats: Int, val misses: Int) : GameEvent
     data class MarketPayout(val amount: Money) : GameEvent
+    data class PropertyBought(val propertyId: Long, val price: Money) : GameEvent
+    data class PropertySold(val propertyId: Long, val net: Money, val gain: Money) : GameEvent
+    data class RenovationStarted(val propertyId: Long, val endsAt: Long) : GameEvent
+    data class RenovationCompleted(val propertyId: Long) : GameEvent
+    data class SaleListed(val propertyId: Long, val endsAt: Long) : GameEvent
+    data class TowerStageStarted(val propertyId: Long, val stage: Int, val endsAt: Long) : GameEvent
+    data class TowerStageCompleted(val propertyId: Long, val stagesDone: Int) : GameEvent
+    data class TowerCompleted(val propertyId: Long) : GameEvent
+    data class Disaster(val propertyId: Long, val insured: Boolean) : GameEvent
+    data class Foreclosure(val propertyId: Long) : GameEvent
+    data class TenantEventRaised(val propertyId: Long) : GameEvent
+    data class TenantDecision(val eventId: Long) : GameEvent
 }
 
 sealed interface CommandResult {

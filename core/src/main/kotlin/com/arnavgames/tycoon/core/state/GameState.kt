@@ -32,6 +32,7 @@ data class GameState(
     val conglomerates: Set<String> = emptySet(),
     val holdingName: String? = null,
     val market: MarketState = MarketState(),
+    val estate: EstateState = EstateState(),
 ) {
     val cash: Money get() = ledger.cash
 }
@@ -118,7 +119,7 @@ data class TimerState(
 )
 
 @Serializable
-enum class TimerKind { Expansion }
+enum class TimerKind { Expansion, Renovation, Sale, TowerStage }
 
 @Serializable
 data class ProgressState(

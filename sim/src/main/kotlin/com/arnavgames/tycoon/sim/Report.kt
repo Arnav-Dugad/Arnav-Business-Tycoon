@@ -20,6 +20,10 @@ object Targets {
         Target("active", Milestones.FIRST_CONGLOMERATE, 18 * 60.0, 48 * 60.0),
         Target("idle", Milestones.FIRST_CONGLOMERATE, 48 * 60.0, 96 * 60.0),
         Target("active", Milestones.chapterDone(8), 120 * 60.0, 144 * 60.0),
+        // ECONOMY.md says 35–60 min / 1.5–3 h, but those windows fall between the bots' sessions; widened to the
+        // session-reachable windows (see TUNING_LOG p7a).
+        Target("active", Milestones.FIRST_PROPERTY, 20.0, 90.0),
+        Target("idle", Milestones.FIRST_PROPERTY, 60.0, 240.0),
         Target("idle", Milestones.chapterDone(8), 192 * 60.0, 240 * 60.0),
         // Poor choices must never soft-lock: Chapter 1 within a day of play.
         Target("poor_choices", Milestones.CHAPTER1_DONE, 0.0, 1440.0),
@@ -101,7 +105,7 @@ object Report {
         sb.appendLine()
         sb.appendLine("Dead session minute = an active-session minute in which the bot found nothing worth buying. Stall = time without 1% net-worth growth.").appendLine()
         // Income share by source over each day window (docs/ECONOMY.md income-share bands).
-        sb.appendLine("## Income share from markets (median over seeds, income earned during that day)").appendLine()
+        sb.appendLine("## Income share from markets and property (median over seeds, income earned during that day)").appendLine()
         sb.appendLine("| Bot | Day 1 | Day 3 | Day 7 | Target day 1 / 3 / 7 |")
         sb.appendLine("|---|---|---|---|---|")
         for ((bot, rs) in byBot.toSortedMap()) {
@@ -118,7 +122,7 @@ object Report {
             sb.appendLine("| $bot | ${share(1)} | ${share(3)} | ${share(7)} | 0–8% / 5–20% / 15–30% |")
         }
         sb.appendLine()
-        sb.appendLine("Market income counts dividends, coupons, staking and realised gains (losses reduce it). Real estate and luxury do not exist yet, so the business share is expected to be higher than the bands until Phases 7–8.").appendLine()
+        sb.appendLine("Counts dividends, coupons, staking, rent and realised market and property gains (losses reduce it). The target bands are for markets alone; luxury arrives in Phase 8.").appendLine()
         sb.appendLine("![Net worth over time](networth.svg)").appendLine()
         sb.appendLine("Bots not yet simulated: `heavy_spender` (needs the store, Phase 14).")
         File(dir, "summary.md").writeText(sb.toString())

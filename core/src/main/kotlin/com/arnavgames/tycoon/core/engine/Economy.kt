@@ -21,6 +21,10 @@ import kotlin.math.sqrt
 /** Pure economy formulas (docs/ECONOMY.md §3). Everything here is deterministic and side-effect free. */
 class Economy(val content: ContentPack) {
     val market = com.arnavgames.tycoon.core.market.MarketMath(content.markets)
+    private val refRate = content.markets.macro.map { it.ratePerDay }.average().takeIf { !it.isNaN() } ?: 0.0
+    val estate = com.arnavgames.tycoon.core.estate.EstateEngine(content.estates) { s ->
+        content.markets.macro.firstOrNull { it.id == s.market.macro.phase }?.ratePerDay ?: refRate
+    }
 
     // Commodity links (docs/GDD.md §6.4): business id -> (commodity id, elasticity), by mode.
     private val commodityRevenue: Map<String, List<Pair<String, Double>>> = commodityLinks("revenue")
@@ -170,7 +174,8 @@ class Economy(val content: ContentPack) {
             else -> 1.0
         }
         val cong = conglomerateOf(state, b.id)?.upkeepMultiplier?.toDouble() ?: 1.0
-        return own * MechanicRegistry.crossUpkeep(state.businesses.keys, b.id) * cong * commodityUpkeepFactor(state, b.id)
+        val hosted = if (b.id in state.estate.hosted) content.estates.config.hostedUpkeepFactor else 1.0
+        return own * MechanicRegistry.crossUpkeep(state.businesses.keys, b.id) * cong * commodityUpkeepFactor(state, b.id) * hosted
     }
 
     // ---------------- Merger tree ----------------
@@ -264,6 +269,7 @@ class Economy(val content: ContentPack) {
     /** Net worth = cash + 60% of capital invested in businesses (+ other asset classes in later phases). */
     fun netWorth(state: GameState): Money {
         var nw = state.cash + market.portfolioValue(state) + market.shortEquity(state)
+        if (state.estate.properties.isNotEmpty()) nw += estate.portfolioValue(state) - estate.debt(state)
         for (b in state.businesses.values) {
             val def = content.businessById[b.id] ?: continue
             nw += investedIn(def, b.level) * Multiplier.of("0.6") + b.stored

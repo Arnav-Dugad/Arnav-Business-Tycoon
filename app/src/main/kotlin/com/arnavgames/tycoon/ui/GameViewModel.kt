@@ -113,6 +113,17 @@ class GameViewModel @Inject constructor(
 
     fun instrument(s: GameState, id: String) = marketsMapper.detail(s, id)
 
+    private val estatesMapper by lazy { com.arnavgames.tycoon.ui.estates.EstatesMapper(session.engine) }
+
+    val estates: StateFlow<com.arnavgames.tycoon.ui.estates.EstatesUi?> = session.state.filterNotNull()
+        .map { s -> estatesMapper.toUi(s) }
+        .flowOn(Dispatchers.Default)
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), null)
+
+    fun city(s: GameState, id: String) = estatesMapper.city(s, id)
+    fun district(s: GameState, id: String) = estatesMapper.district(s, id)
+    fun property(s: GameState, id: Long) = estatesMapper.property(s, id)
+
     fun previewOrder(s: GameState, id: String, side: com.arnavgames.tycoon.ui.markets.OrderSide, fraction: Double, fmt: (Money) -> String) =
         marketsMapper.preview(s, id, side, fraction, fmt)
 

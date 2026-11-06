@@ -47,14 +47,14 @@
 
 ## 3. Content validation
 - Schema conformance, unique IDs, references resolve, numeric ranges, counts ≥ CONTENT.md minimums.
-- Name rules: no entry in the real-brand or real-ticker blocklists; no rival or manager name in the real-person blocklist; no duplicate names.
+- Name rules: parody names only (GDD §1.1): no exact real brand, famous real ticker or exact real-person name; no duplicate names.
 - Images: every referenced image exists; every image appears in `credits.json` with an allowed license; no orphans; sizes within budget.
 
 ## 4. Compose UI flows (instrumented, emulator)
 1. Fresh install → onboarding → first Hustle taps → buy first level → hire first manager.
 2. Expansion: start a timer → advance a fake clock → complete → collect.
 3. Markets: buy stock → sell → portfolio and ledger update; short-selling lock before Chapter 5. (`MarketsFlowTest`, from the debug `markets` scenario.)
-4. Estates: open map → district → buy property → set rent → renovate.
+4. Estates: open map → district → buy property → set rent → renovate. (`EstatesFlowTest`, from the debug `markets` scenario.)
 5. Collection: auction flow (bid, win or lose) → item appears in showroom.
 6. Decision card resolve; tax filing (auto and self).
 7. Dynasty prestige flow with confirmation.

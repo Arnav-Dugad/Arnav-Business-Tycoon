@@ -62,6 +62,9 @@ import kotlinx.serialization.Serializable
 @Serializable object CreditsRoute
 @Serializable data class InstrumentRoute(val id: String)
 @Serializable object NewsRoute
+@Serializable data class CityRoute(val id: String)
+@Serializable data class DistrictRoute(val id: String)
+@Serializable data class PropertyRoute(val id: Long)
 
 @Composable
 fun AppRoot(vm: GameViewModel, forcedTheme: ThemeMode?, onDarkChanged: (Boolean) -> Unit) {
@@ -88,7 +91,8 @@ fun AppRoot(vm: GameViewModel, forcedTheme: ThemeMode?, onDarkChanged: (Boolean)
                     is GameEvent.ManagerHired, is GameEvent.BusinessOpened, is GameEvent.MissionClaimed,
                     is GameEvent.TierReached, is GameEvent.ExpansionCompleted, is GameEvent.HqUpgraded,
                     is GameEvent.ChapterCompleted, is GameEvent.FrenzyStarted,
-                    is GameEvent.ConglomerateFormed, is GameEvent.HoldingFormed, is GameEvent.TradeExecuted -> HapticFeedbackType.Confirm
+                    is GameEvent.ConglomerateFormed, is GameEvent.HoldingFormed, is GameEvent.TradeExecuted,
+                    is GameEvent.PropertyBought, is GameEvent.PropertySold, is GameEvent.TowerCompleted -> HapticFeedbackType.Confirm
                     is GameEvent.ShortCovered -> if (e.forced) HapticFeedbackType.Reject else HapticFeedbackType.Confirm
                     else -> null
                 }
@@ -153,7 +157,18 @@ private fun ReadyContent(vm: GameViewModel) {
                         onOpenCredits = { nav.navigate(CreditsRoute) },
                         onOpenInstrument = { nav.navigate(InstrumentRoute(it)) },
                         onOpenNews = { nav.navigate(NewsRoute) },
+                        onOpenCity = { nav.navigate(CityRoute(it)) },
+                        onOpenProperty = { nav.navigate(PropertyRoute(it)) },
                     )
+                }
+                composable<CityRoute> { entry ->
+                    com.arnavgames.tycoon.ui.estates.CityScreen(vm, entry.toRoute<CityRoute>().id, onBack = { nav.popBackStack() }, onOpenDistrict = { nav.navigate(DistrictRoute(it)) })
+                }
+                composable<DistrictRoute> { entry ->
+                    com.arnavgames.tycoon.ui.estates.DistrictScreen(vm, entry.toRoute<DistrictRoute>().id, onBack = { nav.popBackStack() }, onOpenProperty = { nav.navigate(PropertyRoute(it)) })
+                }
+                composable<PropertyRoute> { entry ->
+                    com.arnavgames.tycoon.ui.estates.PropertyScreen(vm, entry.toRoute<PropertyRoute>().id, onBack = { nav.popBackStack() })
                 }
                 composable<InstrumentRoute> { entry ->
                     com.arnavgames.tycoon.ui.markets.InstrumentScreen(vm = vm, instrumentId = entry.toRoute<InstrumentRoute>().id, onBack = { nav.popBackStack() })

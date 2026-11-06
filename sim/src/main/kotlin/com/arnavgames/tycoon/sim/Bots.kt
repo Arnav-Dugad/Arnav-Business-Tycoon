@@ -266,6 +266,58 @@ internal class Planner(private val engine: GameEngine) {
         return target * Multiplier.ofDouble((1 + slip) * 1.02)
     }
 
+    // ----- Real estate -----
+
+    private val est get() = engine.estate
+
+    private fun cheapestListing(s: GameState, maxCost: Money, type: String? = null): com.arnavgames.tycoon.core.estate.EstateEngine.Listing? =
+        engine.content.estates.districts.filter { est.cityUnlocked(s, it.city) }
+            .flatMap { est.listings(s, it.id) }
+            .filter { type == null || it.type == type }
+            .filter { est.buyCost(it, 0.0).first <= maxCost }
+            .minByOrNull { it.price }
+
+    /** Story missions that need properties, running businesses from owned property, tenant decisions, upkeep. */
+    fun estates(s: GameState, renovateShare: String): GameState {
+        if (!est.isUnlocked(s, "estates")) return s
+        var st = s
+        val ch = engine.content.chapters.firstOrNull { it.number == st.progress.chapter }
+        ch?.missions?.forEach { mi ->
+            val g = mi.goal
+            if (mi.id !in st.progress.completedMissions && g is com.arnavgames.tycoon.core.content.GoalDef.PropertiesOwned) {
+                repeat(g.count - st.estate.properties.size) {
+                    val l = cheapestListing(st, st.cash * Multiplier.of("0.5")) ?: return@repeat
+                    st = engine.tryApply(st, Command.BuyProperty(l.id))
+                }
+            }
+        }
+        // Run businesses from your own property when a suitable one is cheap (saves 10 % of their upkeep).
+        val types = engine.content.estates.types
+        for (b in st.businesses.keys.sorted()) {
+            if (b in st.estate.hosted) continue
+            val owned = st.estate.properties.values.firstOrNull { it.hostedBusiness == null && b in types.first { t -> t.id == it.type }.hosts }
+            if (owned != null) { st = engine.tryApply(st, Command.HostBusiness(owned.id, b)); continue }
+            val hostType = types.firstOrNull { b in it.hosts } ?: continue
+            val l = cheapestListing(st, st.cash * Multiplier.of("0.05"), hostType.id) ?: continue
+            val bought = engine.tryApply(st, Command.BuyProperty(l.id))
+            if (bought !== st) st = engine.tryApply(bought, Command.HostBusiness(bought.estate.nextPropertyId - 1, b))
+        }
+        // Tenant decisions: take the cheapest option.
+        for (ev in st.estate.events) {
+            val def = engine.content.estates.eventById.getValue(ev.event)
+            val best = def.choices.indices.minBy { def.choices[it].costRent - def.choices[it].gainRent }
+            st = engine.tryApply(st, Command.ResolveTenantEvent(ev.id, best))
+        }
+        // Repairs and cheap renovations.
+        for (p in st.estate.properties.values.sortedBy { it.id }) {
+            if (est.busy(st, p.id)) continue
+            val repair = p.condition < 700
+            if (!repair && p.renovations >= engine.content.estates.config.maxRenovations) continue
+            if (est.renovationCost(st, p, repair) <= st.cash * Multiplier.of(renovateShare)) st = engine.tryApply(st, Command.RenovateProperty(p.id, repair))
+        }
+        return st
+    }
+
     /** Parks spare cash in the total-market fund when a session ends. Positions that hold board seats are never touched. */
     fun parkCash(s: GameState, incomePerSec: Money, share: String = "0.9"): GameState {
         if (!market.isUnlocked(s, "funds")) return s
@@ -301,6 +353,7 @@ class ActiveBot(override val name: String = "active", private val reserveFractio
         s = engine.tryApply(s, Command.CollectAll)
         if (sessionStart) s = p.unpark(engine.tryApply(s, Command.ActivateFrenzy))
         s = p.marketMissions(s)
+        s = p.estates(s, "0.02")
         s = p.tuneMechanics(s, skill = 1.0)
         val income = engine.economy.totalNetRate(s).perSecond()
         // Managers keep money flowing offline; an engaged player hires one as soon as it pays back within ~20 minutes.
@@ -345,6 +398,7 @@ class IdleBot : Bot {
         s = engine.tryApply(s, Command.CollectAll)
         if (sessionStart) s = p.unpark(s)
         s = p.marketMissions(s)
+        s = p.estates(s, "0.0")
         p.firstManager(s)?.let { (cmd, _) -> s = engine.tryApply(s, cmd) }
         // Idle players use the free auto-plan button rather than fine-tuning.
         for (b in s.businesses.values) if (engine.content.business(b.id).mechanic is MechanicDef.Logistics && b.managerId == null) s = engine.tryApply(s, Command.AutoPlanRoutes(b.id))

@@ -91,7 +91,7 @@
   {
     "number": 2,
     "title": "Main Street",
-    "summary": "The city notices you. Bigger deals, a seat on the stock exchange, and bigger risks.",
+    "summary": "The city notices you. Bigger deals, a seat on the stock exchange, your first property, and bigger risks.",
     "unlocksBusinesses": [
       "farmland",
       "factory",
@@ -128,7 +128,18 @@
           "type": "marketTrades",
           "count": 1
         },
-        "rewardCash": "25000.00",
+        "rewardCash": "2500.00",
+        "rewardFavor": 10
+      },
+      {
+        "id": "c2_first_property",
+        "title": "Landlord",
+        "description": "Buy your first property on the Estates tab.",
+        "goal": {
+          "type": "propertiesOwned",
+          "count": 1
+        },
+        "rewardCash": "2500.00",
         "rewardFavor": 10
       },
       {
@@ -296,6 +307,17 @@
         },
         "rewardCash": "1725000000.00",
         "rewardBullion": 30
+      },
+      {
+        "id": "c4_landlord",
+        "title": "Property portfolio",
+        "description": "Own five properties.",
+        "goal": {
+          "type": "propertiesOwned",
+          "count": 5
+        },
+        "rewardCash": "1725000000.00",
+        "rewardBullion": 20
       },
       {
         "id": "c4_networth",

@@ -32,6 +32,8 @@ class GameEngine(val content: ContentPack) {
     private val missions = Missions(content, economy)
     val market = com.arnavgames.tycoon.core.market.MarketEngine(content.markets)
     val trading = com.arnavgames.tycoon.core.market.Trading(market)
+    val estate get() = economy.estate
+    private val cgt get() = content.markets.config.capitalGainsTax
 
     fun newGame(worldSeed: Long, contentHash: String, clock: GameClock): GameState {
         val base = GameState(
@@ -137,6 +139,7 @@ class GameEngine(val content: ContentPack) {
         // Minute tick: reputation drift, managers act, missions and peak net worth update.
         if (now % MINUTE == 0L) {
             s = market.tick(s, now / MINUTE, events)
+            s = economy.estate.tick(s, now / MINUTE, cgt, events)
             s = minuteTick(s)
             s = missions.evaluate(s, events)
             val nw = economy.netWorth(s)
@@ -215,6 +218,7 @@ class GameEngine(val content: ContentPack) {
     }
 
     private fun completeTimer(s: GameState, t: TimerState, events: MutableList<GameEvent>): GameState = when (t.kind) {
+        TimerKind.Renovation, TimerKind.Sale, TimerKind.TowerStage -> economy.estate.completeTimer(s, t, cgt, events)
         TimerKind.Expansion -> {
             val b = s.businesses[t.targetId]
             if (b == null) s else {
@@ -258,6 +262,16 @@ class GameEngine(val content: ContentPack) {
             is Command.SellInstrument -> trade(trading.sell(state, cmd.instrumentId, cmd.permille, events))
             is Command.OpenShort -> trade(trading.openShort(state, cmd.stockId, cmd.amount, events))
             is Command.CoverShort -> trade(trading.cover(state, cmd.stockId, forced = false, events = events))
+            is Command.BuyProperty -> est(economy.estate.buy(state, cmd.listingId, cmd.ltv, cmd.insured, events))
+            is Command.SetRent -> est(economy.estate.setRent(state, cmd.propertyId, cmd.rentPct))
+            is Command.RenovateProperty -> est(economy.estate.renovate(state, cmd.propertyId, cmd.repair, events))
+            is Command.SellProperty -> est(economy.estate.startSale(state, cmd.propertyId, events))
+            is Command.CancelPropertySale -> est(economy.estate.cancelSale(state, cmd.propertyId))
+            is Command.SetInsured -> est(economy.estate.setInsured(state, cmd.propertyId, cmd.insured))
+            is Command.RepayMortgage -> est(economy.estate.repay(state, cmd.propertyId))
+            is Command.HostBusiness -> est(economy.estate.host(state, cmd.propertyId, cmd.businessId))
+            is Command.BuildTower -> est(economy.estate.buildTower(state, cmd.propertyId, cmd.designId, events))
+            is Command.ResolveTenantEvent -> est(economy.estate.resolveEvent(state, cmd.eventId, cmd.choice, events))
         }
         return when (result) {
             is Either.Err -> CommandResult.Rejected(result.error)
@@ -269,6 +283,11 @@ class GameEngine(val content: ContentPack) {
     internal sealed interface Either {
         data class Ok(val state: GameState) : Either
         data class Err(val error: GameError) : Either
+    }
+
+    private fun est(r: com.arnavgames.tycoon.core.estate.EstateEngine.Result): Either = when (r) {
+        is com.arnavgames.tycoon.core.estate.EstateEngine.Result.Ok -> Either.Ok(r.state)
+        is com.arnavgames.tycoon.core.estate.EstateEngine.Result.Err -> Either.Err(r.error)
     }
 
     private fun trade(r: com.arnavgames.tycoon.core.market.Trading.Result): Either = when (r) {

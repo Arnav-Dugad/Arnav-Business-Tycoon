@@ -147,11 +147,15 @@ value_p(τ)   = base_p · PI_d(τ) · condition_p · renovation_mult_p
 PI_d(τ)      = trend_d(τ) · (1 + A_d · sin(2π τ / period_d + φ_d)) · city_corr · cycle_corr
 rent_p/6h    = value_p · yield_d · occupancy(rent_price, tenant_quality) / 4
 ```
-- Period_d: 2–5 days; amplitude A_d: 10–35%; yield_d: 2.0–4.0% per day gross.
-- Buy/sell transaction cost 3% each way. Listing timer 1–6 h (illiquid by design).
-- Renovation: cost 8–20% of value, timer 1–8 h, +12–30% value, +10–25% rent.
+- Period_d: 4–9 days; amplitude A_d: 4–12% (city cycle 6–12 days, 2–5%); yield_d: 2.2–4.0% per day gross. (The original 10–35% over 2–5 days made the deterministic cycle a near-doubling buy-low/sell-high exploit; reduced in Phase 7.) Macro phase adds −8 % … +6 %; gentrification (3 % a day per district) and finished landmarks add permanent boosts.
+- Buy/sell transaction cost 3% each way. Sale timer 2–6 h by type (illiquid by design). Listings: 3–5 per district, refreshed every 6 h from the world seed; 25 % are distressed (15–30 % below value, poor condition).
+- Renovation: cost 8–20% of value, timer 2–6 h, +12–30% value, +12–25% rent, up to 3 times; the tenant leaves during works. Repair: 6 % of value, 2 h, restores condition.
+- Rent: market rent × asking-rent factor; occupancy falls above 95 % of market rent, so revenue peaks near 100 %. Vacancy 1.5–3.9 h depending on asking rent. Unresolved tenant decisions cut rent by 20 %.
+- Insurance 0.05 % of value a day; disasters (≈0.4 % per property per 6 h × district and type risk) damage uninsured properties only.
+- Hosting: a business operating from your own property (retail unit, office floor, warehouse, hotel plot, mixed-use) pays no rent: its upkeep × 0.9.
 - Property tax: 0.2% of value per day.
-- Mortgage: loan-to-value 50–80% by credit rating; rate = base + spread.
+- Mortgage (Chapter 3+): loan-to-value 0 / 50 / 60 % until credit ratings arrive (Phase 9); interest = central-bank rate + 0.3 % a day, paid every 6 h; unpaid interest is added to the loan; at 95 % loan-to-value the bank sells (foreclosure) and absorbs any shortfall.
+- City price scales follow the business ladder: Lisbon ×1, London ×12, then each later city is pegged to 1/1000 of the opening price of its chapter's first business.
 
 ## 7. Luxury and Status
 - Value drift per day: cars −0.5% (classics +0.3%), jets −0.4%, yachts −0.3% with upkeep 0.3% per day, art cycle ±(0.2–1.5%), watches ±0.2%, wine +0.2%.

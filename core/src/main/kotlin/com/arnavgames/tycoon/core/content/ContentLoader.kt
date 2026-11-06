@@ -18,7 +18,7 @@ object ContentLoader {
     }
 
     /** Files that make up the pack, relative to the content root. Order matters for the hash. */
-    val FILES = listOf("data/businesses.json", "data/chapters.json", "data/conglomerates.json", "data/markets.json", "balance/balance.json")
+    val FILES = listOf("data/businesses.json", "data/chapters.json", "data/conglomerates.json", "data/markets.json", "data/estates.json", "balance/balance.json")
 
     data class Loaded(val pack: ContentPack, val hash: String, val issues: List<ContentIssue>)
 
@@ -28,8 +28,9 @@ object ContentLoader {
         val chapters = json.decodeFromString<List<ChapterDef>>(texts.getValue("data/chapters.json"))
         val conglomerates = json.decodeFromString<List<ConglomerateDef>>(texts.getValue("data/conglomerates.json"))
         val markets = json.decodeFromString<MarketContent>(texts.getValue("data/markets.json"))
+        val estates = json.decodeFromString<EstateContent>(texts.getValue("data/estates.json"))
         val balance = json.decodeFromString<BalanceConfig>(texts.getValue("balance/balance.json"))
-        val pack = ContentPack(businesses, balance, chapters, conglomerates, markets)
+        val pack = ContentPack(businesses, balance, chapters, conglomerates, markets, estates)
         val digest = MessageDigest.getInstance("SHA-256")
         FILES.forEach { digest.update(it.toByteArray()); digest.update(texts.getValue(it).replace("\r\n", "\n").toByteArray()) }
         val hash = digest.digest().joinToString("") { "%02x".format(it) }.take(16)
@@ -56,7 +57,7 @@ object ContentValidator {
         "Empire", "Markets", "Estates", "Collection", "Crown", "Cash", "Bullion", "Coin", "Favor", "Briefcase", "Store",
         "Factory", "Map", "Expand", "Timer", "Manager", "Chart", "News", "Shield", "Rivals", "Trophy", "Star", "Bolt",
         "Chef", "Fleet", "Route", "Tag", "Megaphone", "Wheat", "Hanger", "Pickaxe", "Flame", "Bed", "Bank", "Crane", "Film",
-        "Chip", "Antenna", "Plane", "Flask", "Ball", "Rocket", "Buildings",
+        "Chip", "Antenna", "Plane", "Flask", "Ball", "Rocket", "Buildings", "House", "Villa", "Warehouse", "Plot", "Tower",
     )
     private val TICKER = Regex("^[A-Z][A-Z0-9]{2,4}$")
 
@@ -166,7 +167,40 @@ object ContentValidator {
             }
         }
         validateMarkets(pack, ids, ::check)
+        validateEstates(pack, ids, ::check)
         return out
+    }
+
+    private fun validateEstates(pack: ContentPack, businessIds: List<String>, check: (Boolean, String, String) -> Unit) {
+        val e = pack.estates
+        if (e.districts.isEmpty()) return
+        check(e.cities.map { it.id }.toSet().size == e.cities.size, "estates", "duplicate city ids")
+        check(e.districts.map { it.id }.toSet().size == e.districts.size, "estates", "duplicate district ids")
+        check(e.cities.size >= 6 && e.districts.size >= 36 && e.types.size >= 10, "estates", "at least 6 cities, 36 districts, 10 property types")
+        e.cities.forEach { c ->
+            check(c.chapter in 1..8 && c.priceScale.toBigDecimal().signum() > 0, "estates.${c.id}", "chapter/scale")
+            findBlockedBrand(c.name)?.let { check(false, "estates.${c.id}", "contains blocked real brand '$it'") }
+        }
+        e.districts.forEach { d ->
+            val p = "estates.${d.id}"
+            check(ID.matches(d.id), p, "bad id format")
+            check(d.city in e.cityById, p, "unknown city")
+            check(d.types.isNotEmpty() && d.types.all { it in e.typeById }, p, "unknown property type")
+            check(d.yieldPerDay in 0.01..0.05 && d.amplitude in 0.0..0.5 && d.periodDays in 1.0..10.0 && d.tier > 0, p, "cycle/yield out of range")
+        }
+        check(e.districts.any { it.cbd }, "estates", "at least one central business district")
+        e.types.forEach { t ->
+            check(t.icon in ICONS, "estates.${t.id}", "unknown icon '${t.icon}'")
+            t.hosts.forEach { b -> check(b in businessIds, "estates.${t.id}", "unknown business '$b'") }
+            check(t.renovationCost in 0.0..0.5 && t.renovationHours in 1..24 && t.saleHours in 1..24, "estates.${t.id}", "renovation/sale range")
+        }
+        e.towers.forEach { t ->
+            check(t.stageCosts.size == 4 && t.stageHours.size == 4 && t.stageNames.size == 4, "estates.${t.id}", "towers have four stages")
+            check(t.floors in 10..150 && t.landmarkBoost in 0.0..0.2, "estates.${t.id}", "floors/boost")
+        }
+        check(e.events.size >= 30, "estates", "at least 30 tenant events")
+        e.events.forEach { ev -> check(ev.choices.size in 2..3, "estates.events.${ev.id}", "2–3 choices") }
+        check(e.config.mortgageLtvOptions.all { it in 0.0..0.8 } && e.config.foreclosureLtv in 0.8..1.0, "estates.config", "LTV range")
     }
 
     private fun validateMarkets(pack: ContentPack, businessIds: List<String>, check: (Boolean, String, String) -> Unit) {

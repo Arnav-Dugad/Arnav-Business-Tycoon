@@ -47,6 +47,14 @@ internal object DebugScenarios {
             s = s.run(Command.HustleTap(20))
             // The story asks for a first trade (chapter 2) and a board seat (chapter 3).
             if (s.market.trades == 0L) s = s.run(Command.BuyInstrument("fund_total", Money.ofDollars(1_000)))
+            // ...and properties (one in chapter 2, five in chapter 4).
+            val wantProps = if (s.progress.chapter >= 4) 5 else if (s.progress.chapter >= 2) 1 else 0
+            while (s.estate.properties.size < wantProps) {
+                val l = content.estates.districts.filter { it.city == "lisbon" }.flatMap { engine.estate.listings(s, it.id) }.minByOrNull { it.price } ?: break
+                val before = s.estate.properties.size
+                s = s.run(Command.BuyProperty(l.id))
+                if (s.estate.properties.size == before) break
+            }
             if (s.progress.chapter == 3 && engine.market.math.boardSeats(s).isEmpty()) {
                 val st = content.markets.stocks.filter { it.sector == "consumer" }.minBy { it.baseCapBillions }
                 val target = engine.market.math.outstanding(s, st.id).fraction(60, 1000).valueAt(engine.market.math.priceMicros(s, st.id)!!)
@@ -74,6 +82,27 @@ internal object DebugScenarios {
         s = s.run(Command.BuyInstrument(m.coins[2].id, s.cash * com.arnavgames.tycoon.core.money.Multiplier.of("0.00002")))
         s = s.run(Command.BuyInstrument(m.stocks.first { it.sector == "technology" && it.band == "growth" }.id, s.cash * com.arnavgames.tycoon.core.money.Multiplier.of("0.00002")))
         s = s.run(Command.OpenShort(m.stocks.first { it.sector == "energy" }.id, s.cash * com.arnavgames.tycoon.core.money.Multiplier.of("0.00002")))
+        // Real estate: a property in several cities (one mortgaged, one insured), a business at home, and a tower.
+        val est = engine.estate
+        for (city in listOf("lisbon", "london", "miami", "mumbai", "new_york", "dubai")) {
+            val d = content.estates.districts.first { it.city == city }
+            est.listings(s, d.id).firstOrNull()?.let { l -> s = s.run(Command.BuyProperty(l.id, if (city == "miami") 0.5 else 0.0, insured = city == "london")) }
+        }
+        val cbd = content.estates.districts.first { it.cbd && it.city == "dubai" }
+        var t = s
+        repeat(20) { if (est.listings(t, cbd.id).none { it.type == "land" }) t = engine.advance(t, 6 * 3_600_000L).state }
+        s = t
+        est.listings(s, cbd.id).firstOrNull { it.type == "land" }?.let { l ->
+            s = s.run(Command.BuyProperty(l.id))
+            val id = s.estate.nextPropertyId - 1
+            repeat(2) { s = s.run(Command.BuildTower(id, content.estates.towers.first().id)); s = engine.advance(s, 9 * 3_600_000L).state }
+        }
+        content.estates.districts.firstOrNull { "retail_unit" in it.types && it.city == "london" }?.let { d ->
+            est.listings(s, d.id).firstOrNull { it.type == "retail_unit" }?.let { l ->
+                s = s.run(Command.BuyProperty(l.id))
+                s = s.run(Command.HostBusiness(s.estate.nextPropertyId - 1, "retail"))
+            }
+        }
         return engine.advance(s, 90_000).state
     }
 

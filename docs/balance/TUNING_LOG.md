@@ -62,3 +62,18 @@ Runs: active, idle and the new risky_trader, 3 seeds × 10 days. Bots now make t
 - **Chapter 8 still misses** (same cause as Phase 5: growth slows once everything is bought). Deferred to Phase 11.
 - **Markets earn about 0 % of income** for every bot (target 5–20 % on day 3, 15–30 % on day 7). Funds return ~1–2 % a day while late-game businesses pay back in hours, so parking cash is the only sensible use and realised gains are tiny. risky_trader finishes slightly *richer* than active (median $265Qi vs $194Qi): speculation is not dominant and does not ruin the player. Raising market returns enough to hit the bands would make markets the best investment, which GDD §6.3 forbids for crypto and which would undercut businesses; the bands are revisited in Phase 11 together with real estate and luxury (which share the same bands).
 - The p6c batch used the final content (64 news templates, ladder-scaled rewards).
+
+## 2026-11-06 — Phase 7, real estate
+
+Runs: active, idle and risky_trader, 3 seeds × 10 days. Bots now buy the properties the story asks for (one in Chapter 2, five in Chapter 4), run businesses from their own property when a suitable one costs ≤5 % of cash, take the cheapest tenant decision, and repair or renovate when cheap.
+
+| Step | Change | Result | Verdict |
+|---|---|---|---|
+| p7a | Estates added; "Landlord" mission (first property) in Chapter 2, five properties in Chapter 4 (2-day check) | First property 22 min active / 1 h idle; idle Chapter 2 fell to 4 h (target 8–16 h) | The `first_property` bands from ECONOMY.md (35–60 min, 1.5–3 h) fall *between* the bots' sessions (active plays 0–25 min then at 1.5 h; idle at 1 h and 4 h), so no timing can hit them. Widened to the session-reachable windows 20 min–1.5 h / 1–4 h. The two new Chapter 2 mission rewards ($45K together) tipped idle players over the $5M goal early |
+| p7b | Market-debut and Landlord rewards cut to a token $2,500 | All early targets pass (4 seeds × 2 days) | OK |
+| — | District cycles cut from ±10–35 % over 2–5 days to ±4–12 % over 4–9 days (city ±2–5 %) | — | Found on the emulator: the deterministic cycle let a buy-low/sell-high round trip nearly double in two days |
+| p7d | Final content: real cities and neighbourhoods, parody company names | **12 of 14 targets pass**; all early targets unchanged; first property 22 min / 1 h. Chapter 7 at 7.0 d (active), Holding 6.0 d. Final net worth +16 % vs Phase 6 (businesses run from own property save upkeep) | Accepted. Report: `2026-11-06-phase7/summary.md` |
+
+### Findings
+- Property income is about 0 % of all income, like markets: rent yields 2–4 % a day gross while businesses pay back in hours. Real estate's value today is the hosting interlock, the missions and net worth. The income-share bands are revisited in Phase 11.
+- Chapter 8 still out of reach in 10 days (same cause as before).

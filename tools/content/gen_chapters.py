@@ -50,6 +50,7 @@ LATER = [
          m("c4_energy", "Power play", "Open Energy.", own("energy"), "30000000000.00"),
          m("c4_hotels", "Check-in", "Open Hotels & Resorts.", own("hotels"), "400000000000.00", favor=25),
          m("c4_first_conglomerate", "Synergy", "Form your first conglomerate.", {"type": "conglomerates", "count": 1}, "200000000000.00", bullion=30),
+         m("c4_landlord", "Property portfolio", "Own five properties.", {"type": "propertiesOwned", "count": 5}, "0.00", bullion=20),
          m("c4_networth", "Trillionaire", "Reach a net worth of $1 trillion.", nw("1000000000000.00"), "200000000000.00", bullion=30),
      ]},
     {"number": 5, "title": "Disruption", "summary": "Banks, builders and broadcasters. Then the technologists arrive.",

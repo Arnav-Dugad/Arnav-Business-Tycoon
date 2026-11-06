@@ -141,7 +141,7 @@ fun CreditsScreen(onBack: () -> Unit) {
                 Text("Arnav Business Tycoon", style = Aurum.type.headline, color = c.textPrimary)
                 Text("Design and development: Arnav Games", style = Aurum.type.body, color = c.textSecondary)
                 Spacer(Modifier.height(Space.sm))
-                Text("All companies, people, places and products in this game are fictional. Any resemblance is coincidental.", style = Aurum.type.bodySmall, color = c.textTertiary)
+                Text("Cities and neighbourhoods are real places. Companies, coins, products and people are parodies or fictional: satire, not real, and not affiliated with or endorsed by anyone they may resemble. All prices, news and events are made up.", style = Aurum.type.bodySmall, color = c.textTertiary)
             }
         }
         item { SectionHeader("Typeface") }

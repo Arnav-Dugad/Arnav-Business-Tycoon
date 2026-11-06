@@ -63,7 +63,7 @@ fun WelcomeScreen(onBegin: () -> Unit) {
             )
             Spacer(Modifier.height(Space.xl))
             Text(
-                "Every fortune starts small. Yours starts with a folding table on a busy corner of Halcyon Bay.",
+                "Every fortune starts small. Yours starts with a folding table on a busy corner of Lisbon.",
                 style = Aurum.type.body, color = c.textSecondary, textAlign = TextAlign.Center, modifier = Modifier.widthIn(max = 420.dp),
             )
             Spacer(Modifier.height(Space.xxl))
