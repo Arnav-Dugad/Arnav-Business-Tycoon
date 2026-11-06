@@ -5,7 +5,7 @@
   "offlineCapMaxSeconds": 72000,
   "hustle": {
     "basePerTap": "1.00",
-    "incomeSecondsPerTap": 0.5,
+    "incomeSecondsPerTap": 0.12,
     "comboWindowMs": 1200,
     "maxCombo": 25,
     "comboStep": 0.04,

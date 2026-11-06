@@ -34,4 +34,6 @@ tasks.named<JavaExec>("run") {
 tasks.test {
     useJUnitPlatform()
     systemProperty("abt.contentDir", rootProject.layout.projectDirectory.dir("content").asFile.absolutePath)
+    // Content is read at runtime, so declare it as an input or Gradle may skip the tests after a balance change.
+    inputs.dir(rootProject.layout.projectDirectory.dir("content"))
 }

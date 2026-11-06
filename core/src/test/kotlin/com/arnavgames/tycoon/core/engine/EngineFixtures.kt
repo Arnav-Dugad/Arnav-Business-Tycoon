@@ -31,7 +31,8 @@ object EngineFixtures {
 
     /** A busy mid-game state: three businesses, one unmanaged, a running expansion, frenzy and a promo active. */
     fun busyState(): GameState {
-        var s = newGame(7).withCash(5_000_000).withFavor(50)
+        // Grant far more than any content price so these tests exercise rules, not balance numbers.
+        var s = newGame(7).withCash(1_000_000_000_000).withFavor(50)
         s = s.run(Command.OpenBusiness("retail"))
             .run(Command.BuyLevels("retail", 30))
             .run(Command.OpenBusiness("restaurants"))

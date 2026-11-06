@@ -1,0 +1,9 @@
+{
+  "missions": {
+    "c2_logistics": { "rewardCash": "30000.00" },
+    "c2_hq3": { "rewardCash": "20000.00" },
+    "c2_restaurant_25": { "rewardCash": "50000.00" },
+    "c2_logistics_mgr": { "rewardCash": "150000.00" },
+    "c2_networth": { "amount": "5000000.00", "rewardCash": "1000000.00" }
+  }
+}

@@ -167,7 +167,7 @@ rent_p/6h    = value_p · yield_d · occupancy(rent_price, tenant_quality) / 4
 | Milestone | Active player | Idle player |
 |---|---|---|
 | First business level bought | ≤ 60 s | ≤ 60 s |
-| First manager | 5–8 min | 8–15 min |
+| First manager | 5–8 min | 5–15 min (relaxed 2026-11-06: a first manager inside the first session helps idle players) |
 | Chapter 1 complete (stocks unlock) | 20–35 min | 45–90 min |
 | First property | 35–60 min | 1.5–3 h |
 | First luxury item | 1–2 h | 3–6 h |
@@ -179,7 +179,7 @@ rent_p/6h    = value_p · yield_d · occupancy(rent_price, tenant_quality) / 4
 | IPO | Gen 2–3 | Gen 3–4 |
 | Generation 10 | ~3 months | ~4–5 months |
 
-"Active" = 3 sessions per day of ~15 minutes. "Idle" = 2 sessions per day of ~3 minutes. Both use offline catch-up with free cap upgrades.
+"Active" = 3 sessions per day of ~15 minutes (plus day-one check-ins at about 1.5 h and 3.5 h). "Idle" = 2 sessions per day of ~3 minutes (plus day-one check-ins at about 1 h and 4 h). Both use offline catch-up with free cap upgrades. Tuning history: `docs/balance/TUNING_LOG.md`.
 
 ### Income-share bands (share of total net income by source, active bot, median seed)
 

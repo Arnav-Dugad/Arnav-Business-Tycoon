@@ -35,6 +35,15 @@ class FirstSessionFlowTest {
         repeat(times) { counter.performClick(); rule.waitForIdle() }
     }
 
+    /** One burst of play: tap the counter and collect the till if it has money. */
+    private fun earnRound() {
+        tapCounter(25)
+        scrollEmpireTo("Collect")
+        val collect = rule.onAllNodes(hasText("Collect") and isEnabled()).fetchSemanticsNodes()
+        if (collect.isNotEmpty()) rule.onNode(hasText("Collect") and isEnabled()).performClick()
+        rule.onAllNodes(hasScrollAction()).onFirst().performScrollToNode(hasContentDescription("Serve a customer", substring = true))
+    }
+
     private fun scrollEmpireTo(text: String) {
         rule.onAllNodes(hasScrollAction()).onFirst().performScrollToNode(hasText(text, substring = true))
     }
@@ -64,15 +73,21 @@ class FirstSessionFlowTest {
         }
         waitForText("Lv 5")
 
-        // Earn enough for the Weekend Market Stall ($120).
-        tapCounter(70)
-
-        // Flow 2: open business detail, build the expansion and rush it with Favor.
-        scrollEmpireTo("Retail Stores")
-        rule.onNodeWithText("Retail Stores").performClick()
-        waitForText("Price level")
-        rule.onAllNodes(hasScrollAction()).onFirst().performScrollToNode(hasText("Weekend Market Stall"))
-        rule.waitUntil(30_000) { rule.onAllNodes(hasText("Build ·", substring = true) and isEnabled()).fetchSemanticsNodes().isNotEmpty() }
+        // Earn enough for the Weekend Market Stall the way a player would: work the counter and bank the till.
+        // (Prices come from tuned content, so the test earns until the button is enabled instead of assuming a price.)
+        var buildEnabled = false
+        for (attempt in 0 until 3) {
+            repeat(10) { earnRound() }
+            scrollEmpireTo("Retail Stores")
+            rule.onNodeWithText("Retail Stores").performClick()
+            waitForText("Price level")
+            rule.onAllNodes(hasScrollAction()).onFirst().performScrollToNode(hasText("Weekend Market Stall"))
+            buildEnabled = rule.onAllNodes(hasText("Build ·", substring = true) and isEnabled()).fetchSemanticsNodes().isNotEmpty()
+            if (buildEnabled) break
+            rule.onNodeWithContentDescription("Back").performClick()
+            waitForText("Work the counter")
+        }
+        check(buildEnabled) { "could not afford the expansion after earning" }
         rule.onNode(hasText("Build ·", substring = true) and isEnabled()).performClick()
         waitForText("Rush ·")
         rule.onNodeWithText("Rush ·", substring = true).performClick()

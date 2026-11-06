@@ -1,0 +1,33 @@
+{
+  "businesses": {
+    "retail": {
+      "baseCost": "5.00", "costGrowth": "1.13", "baseRevenue": "1.20",
+      "managers": { "retail_mira": "2500.00", "retail_tobias": "400000.00", "retail_leena": "90000000.00", "retail_dario": "30000000000.00" },
+      "expansions": { "market_stall": "450.00", "second_storefront": "30000.00", "flagship_arcade": "9000000.00" }
+    },
+    "restaurants": {
+      "unlockCost": "1500.00", "baseCost": "100.00", "costGrowth": "1.135", "baseRevenue": "12.00",
+      "managers": { "rest_amara": "45000.00", "rest_rafael": "8000000.00", "rest_sunhee": "2500000000.00", "rest_odette": "700000000000.00" },
+      "expansions": { "terrace": "9000.00", "central_kitchen": "1800000.00", "chefs_table": "450000000.00" }
+    },
+    "logistics": {
+      "unlockCost": "75000.00", "baseCost": "5000.00", "costGrowth": "1.14", "baseRevenue": "170.00",
+      "managers": { "log_kofi": "1500000.00", "log_ingrid": "300000000.00", "log_vikram": "110000000000.00", "log_marisol": "40000000000000.00" },
+      "expansions": { "cross_dock": "450000.00", "rail_siding": "75000000.00", "cargo_hub": "25000000000.00" }
+    }
+  },
+  "missions": {
+    "c1_open_kiosk": { "rewardCash": "25.00" },
+    "c1_hustle": { "rewardCash": "75.00" },
+    "c1_retail_10": { "rewardCash": "250.00" },
+    "c1_first_manager": { "rewardCash": "600.00" },
+    "c1_restaurant": { "rewardCash": "1200.00" },
+    "c1_market_stall": { "rewardCash": "2500.00" },
+    "c1_income": { "rewardCash": "15000.00", "amount": "120.00" },
+    "c2_logistics": { "rewardCash": "60000.00" },
+    "c2_hq3": { "rewardCash": "40000.00" },
+    "c2_restaurant_25": { "rewardCash": "120000.00" },
+    "c2_logistics_mgr": { "rewardCash": "400000.00" },
+    "c2_networth": { "rewardCash": "500000.00", "amount": "1000000.00" }
+  }
+}

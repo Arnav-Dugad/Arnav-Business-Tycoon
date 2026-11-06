@@ -1,0 +1,6 @@
+{
+  "businesses": {
+    "retail": { "managers": { "retail_mira": "4000.00" } },
+    "logistics": { "unlockCost": "150000.00", "managers": { "log_kofi": "2000000.00" } }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "businesses": {
+    "retail": { "managers": { "retail_mira": "6000.00" } },
+    "restaurants": { "unlockCost": "12000.00" }
+  },
+  "missions": {
+    "c1_income": { "amount": "300.00", "rewardCash": "25000.00" }
+  }
+}

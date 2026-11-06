@@ -1,0 +1,21 @@
+{
+  "businesses": {
+    "retail": {
+      "baseCost": "10.00", "costGrowth": "1.15", "baseRevenue": "0.50",
+      "tiers": { "10": "1.5", "25": "2", "50": "2", "100": "2.5", "150": "2.5", "250": "3", "400": "3" },
+      "managers": { "retail_mira": "3000.00" }
+    },
+    "restaurants": {
+      "unlockCost": "6000.00", "baseCost": "300.00", "costGrowth": "1.15", "baseRevenue": "5.00",
+      "tiers": { "10": "1.5", "25": "2", "50": "2" },
+      "managers": { "rest_amara": "90000.00", "rest_rafael": "12000000.00" },
+      "expansions": { "terrace": "15000.00", "central_kitchen": "3000000.00" }
+    },
+    "logistics": {
+      "unlockCost": "300000.00", "baseCost": "18000.00", "costGrowth": "1.15", "baseRevenue": "90.00",
+      "tiers": { "10": "1.5", "25": "2", "50": "2" },
+      "managers": { "log_kofi": "6000000.00", "log_ingrid": "900000000.00" },
+      "expansions": { "cross_dock": "1500000.00", "rail_siding": "200000000.00" }
+    }
+  }
+}

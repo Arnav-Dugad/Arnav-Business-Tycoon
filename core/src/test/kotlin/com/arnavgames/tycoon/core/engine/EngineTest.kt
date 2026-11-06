@@ -131,7 +131,7 @@ class EngineTest {
 
     @Test
     fun hiringAManagerCollectsAndAutomates() {
-        var s = newGame().withCash(1_000).run(Command.OpenBusiness("retail")).adv(20_000)
+        var s = newGame().withCash(100_000).run(Command.OpenBusiness("retail")).adv(20_000)
         val stored = s.businesses.getValue("retail").stored
         assertTrue(stored.isPositive)
         val cashBefore = s.cash
@@ -198,7 +198,7 @@ class EngineTest {
 
     @Test
     fun restaurantReputationDriftsTowardTheChosenTier() {
-        var s = newGame().withCash(10_000).run(Command.OpenBusiness("restaurants"))
+        var s = newGame().withCash(1_000_000).run(Command.OpenBusiness("restaurants"))
         s = s.run(Command.SetRestaurantQuality("restaurants", "fine"))
         val start = (s.businesses.getValue("restaurants").mechanic as MechanicState.Restaurant).milliStars
         s = s.adv(2 * hour)
@@ -210,7 +210,7 @@ class EngineTest {
 
     @Test
     fun logisticsPlanningBeatsTheDefaultDepotAssignment() {
-        var s = newGame().withCash(10_000_000).run(Command.OpenBusiness("logistics")).run(Command.BuyLevels("logistics", 39))
+        var s = newGame().withCash(1_000_000_000_000).run(Command.OpenBusiness("logistics")).run(Command.BuyLevels("logistics", 39))
         val default = engine.economy.businessRate(s, "logistics").efficiency
         s = s.run(Command.AutoPlanRoutes("logistics"))
         val planned = engine.economy.businessRate(s, "logistics").efficiency
@@ -224,7 +224,7 @@ class EngineTest {
 
     @Test
     fun missionsCompleteAndChapterAdvances() {
-        var s = newGame().withCash(1_000_000).withFavor(100)
+        var s = newGame().withCash(1_000_000_000_000).withFavor(100)
         s = s.run(Command.OpenBusiness("retail"))
         assertTrue("c1_open_kiosk" in s.progress.claimableMissions)
         repeat(60) { s = s.run(Command.HustleTap(1)) }

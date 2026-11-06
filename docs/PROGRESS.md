@@ -8,7 +8,8 @@ _Last updated: 2026-11-06._
 - Phase 2 (Core foundations): **DONE**.
 - Phase 3 (First playable, Chapter 1): **DONE**. Details below.
 - **Design refresh "Aurum Glass"**: done (owner request). Details below.
-- Next: **Phase 4: Simulator v1** (bots, seeded batch runs, early-game pacing tuned to ECONOMY.md targets).
+- Phase 4 (Simulator v1): **DONE**. Details below.
+- Next: **Phase 5: All businesses + merger tree** (15 more business mechanics, conglomerates, Holding Co).
 
 ## Decisions
 | Topic | Decision |
@@ -145,6 +146,35 @@ All in `:core` (pure Kotlin/JVM, enforced by `verifyCorePurity`):
 - Fixed during review: muddy light-mode gold (new fill tokens), invisible light-mode tab lens (selection token), dialog state lost on theme change (`rememberSaveable`).
 - Tests: core 62, data 5, instrumented first-session flow all pass on the redesign.
 - **Performance (emulator, benchmark build, detail-screen scroll)**: blur on gives 90th percentile 22 ms / 99th 32 ms; blur off gives 18 ms / 26 ms. The emulator's baseline frame pacing is about 17 ms even without blur, so this is indicative only. **A physical mid-range phone test is still required** (manual step 12).
+
+## Phase 4: what was done and verified
+- **`:sim`**: bots play the real engine through the public Command API.
+  - `ActiveBot` and `cautiousBot` (30% reserve, no promotions) buy by payback and play the mechanics optimally.
+  - `IdleBot` hires managers first and uses auto-plan.
+  - `PoorChoicesBot` makes random purchases and sets bad prices.
+  - Schedules include day-one check-ins. Live steps are 5 s; gaps between sessions use the same offline cap as the app.
+- **Reports**: `docs/balance/<run>/summary.md` (targets, all milestones p10/p50/p90, health), `results.csv`, `networth.svg`. CLI: `./gradlew :sim:run --args="--seeds 100 --days 2"`.
+- **Tuning tooling**: `tools/content/tune.py` + knob files `tools/content/knobs/t01…t07.json`. History in `docs/balance/TUNING_LOG.md`.
+- **CI smoke test** `SimulationSmokeTest`: every bot runs without errors, runs are reproducible, early pacing stays within ×2 of target.
+
+### Evidence
+- **Final batch `docs/balance/2026-11-06-phase4/`**: 4 bots × 100 seeds × 2 days, 400 runs, 0 errors, 505 s. **All 9 pacing targets pass**:
+  - active: first manager 8 m, Chapter 1 20 m, Chapter 2 3.5 h;
+  - idle: first manager 10 m, Chapter 1 1.1 h, Chapter 2 12.1 h;
+  - poor choices: Chapter 1 1.7 h.
+- Tests: core 62, sim 3, data 5, instrumented UI flow 1, all pass.
+- Fixed along the way:
+  - The idle bot only valued managed income, so it never opened a second business.
+  - Engine tests had hard-coded prices.
+  - The UI test assumed an expansion price (it now earns until the action is affordable).
+  - Sim tests did not declare the content folder as a Gradle input.
+
+### Known gaps (honest)
+- **Dead session minutes are 72% for the active bot over 2 days**, and stalls reach up to 12 h. Only three businesses exist, so growth saturates after Chapter 2. The dead-zone target (<5%) is expected to fail until Phase 5+ content exists.
+- Targets were run on 100 seeds rather than the planned 1,000. Bots currently have little randomness (only schedule jitter), so p10 = p90 for most milestones. More seeds become meaningful once world events and markets add variance.
+- Batch speed is about 1.3 s per 2-day run per thread; the planned full batch would take about 17 minutes. Engine profiling is planned before Phase 11.
+- Two active-bot values sit on band edges (first manager 8.0 m, Chapter 1 20.0 m). Re-check after Phase 5.
+- `risky_trader` and `heavy_spender` wait for markets (Phase 6) and the store (Phase 14).
 
 ## Environment inventory (verified 2026-11-06)
 | Tool | State |
