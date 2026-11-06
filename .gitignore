@@ -1,0 +1,51 @@
+# --- Secrets: NEVER commit ---
+google-services.json
+**/google-services.json
+*.jks
+*.keystore
+*.p12
+*.pem
+keystore.properties
+signing.properties
+.env
+.env.*
+*.secret
+.secret-patterns.local
+service-account*.json
+
+# --- Build outputs / binaries: NEVER commit ---
+*.apk
+*.aab
+*.apks
+*.idsig
+build/
+/build
+.gradle/
+.kotlin/
+captures/
+output-metadata.json
+
+# --- Local machine ---
+local.properties
+.idea/
+*.iml
+.DS_Store
+Thumbs.db
+.vscode/
+
+# --- Firebase ---
+firebase-debug.log
+firestore-debug.log
+ui-debug.log
+database-debug.log
+.firebase/
+firebase/node_modules/
+
+# --- Tools ---
+tools/art/cache/
+tools/**/__pycache__/
+*.pyc
+node_modules/
+
+# --- Local scratch screenshots (curated ones live in docs/screenshots) ---
+/screenshots-local/

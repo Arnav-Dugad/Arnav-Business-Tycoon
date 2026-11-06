@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+
+      - name: Secret scan
+        run: python -I tools/scripts/scan_secrets.py .
+
+      - name: Color contrast (WCAG AA)
+        run: python -I tools/scripts/check_contrast.py .
+
+      - uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: "21"
+
+      - uses: gradle/actions/setup-gradle@v6
+
+      - name: Core purity, unit/property tests, simulator tests
+        run: ./gradlew verifyCorePurity :core:test :sim:test --console=plain
+
+      - name: Build debug APK (offline edition, no Firebase config in CI)
+        run: ./gradlew :app:assembleDebug :app:testDebugUnitTest --console=plain
+
+      - name: Upload test reports
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: test-reports
+          path: "**/build/reports/tests/"

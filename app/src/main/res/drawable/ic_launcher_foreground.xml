@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Original crown crest (same geometry as CrownMark), centered in the 108dp adaptive-icon safe zone. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="108dp" android:height="108dp"
+    android:viewportWidth="108" android:viewportHeight="108">
+    <group android:translateX="30" android:translateY="30" android:scaleX="2" android:scaleY="2" android:pivotX="0" android:pivotY="0">
+        <path android:pathData="M12,1.2a10.8,10.8 0,1 0,0.01 0z"
+            android:strokeWidth="0.6" android:fillColor="#00000000" android:strokeColor="#D9B26F" />
+        <path android:pathData="M6,9.4L9,12.2L12,6.6L15,12.2L18,9.4L16.9,15.8L7.1,15.8Z">
+            <aapt:attr name="android:fillColor">
+                <gradient android:type="linear" android:startX="6" android:startY="6" android:endX="18" android:endY="16">
+                    <item android:offset="0" android:color="#FFF2D49A" />
+                    <item android:offset="0.5" android:color="#FFD9B26F" />
+                    <item android:offset="1" android:color="#FFA27A38" />
+                </gradient>
+            </aapt:attr>
+        </path>
+        <path android:pathData="M7.1,17.6L16.9,17.6" android:strokeWidth="1.0"
+            android:strokeColor="#D9B26F" android:strokeLineCap="round" />
+    </group>
+</vector>

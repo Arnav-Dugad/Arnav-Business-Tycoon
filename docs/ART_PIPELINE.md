@@ -1,0 +1,58 @@
+# Arnav Business Tycoon — Art Pipeline (photo sourcing and licensing)
+
+## 1. Rules
+1. **Only properly licensed images.** Every image has a recorded source URL, author, license and license URL in `assets/credits.json`. No exceptions.
+2. **No real logos, badges or trademarks.** Prefer photos without visible badges. When a badge is visible, the manifest specifies **blur or crop regions** and the pipeline applies them. Vehicle, company, coin and watch names are always original fictional names.
+3. **No real public figures.** No photos or names of celebrities, politicians or real billionaires. Rival names are checked against a real-person blocklist.
+4. **Stock portraits for fictional people**, used respectfully: no demeaning captions, no criminal or scandal storylines attached to a pictured person (scandals attach to companies), no implied endorsement.
+5. **Paintings and antiques** come from public-domain museum open-access programs (CC0 / public domain).
+6. **No Firebase Storage or any remote image hosting.** Everything is bundled in the APK as WebP.
+7. **Curated, not bulk-scraped.** Each image is chosen individually from contact sheets, in line with Pexels' terms against bulk or systematic copying. API usage stays within the default limits (Pexels: 200 requests/hour, 20,000/month).
+
+## 2. Sources and allowed licenses
+| Source | Use | Key needed | License handling |
+|---|---|---|---|
+| **Pexels API** | cars, jets, yachts, mansions, offices, factories, portraits, cities | **Yes — free API key (please create one)** | Pexels License: free use, attribution not required but we credit photographer + "Photos provided by Pexels" link, as the API guidelines ask |
+| **Wikimedia Commons API** | aircraft, ships, generic cityscapes, raw materials, extra cars | No (sends a descriptive User-Agent with the repo URL, no email) | Accept CC0, PD, CC BY 2.0/3.0/4.0, CC BY-SA 3.0/4.0. **Reject** NC, ND, GFDL-only and unknown. License read from `extmetadata`, never typed by hand |
+| **Art Institute of Chicago API** | paintings, sculptures | No | Only records with `is_public_domain = true`; images via IIIF |
+| **The Met Open Access API** | paintings, antiques, watches, jewelry | No | Only `isPublicDomain = true` |
+| **Cleveland Museum of Art Open Access** | paintings, antiques | No | Only `share_license_status = CC0` |
+| **National Gallery of Art (open data)** | paintings | No | Only open-access (CC0) images |
+
+Licenses accepted by the validator: `Pexels`, `CC0-1.0`, `PDM-1.0`, `PD`, `CC-BY-2.0`, `CC-BY-3.0`, `CC-BY-4.0`, `CC-BY-SA-3.0`, `CC-BY-SA-4.0`. For CC BY-SA, our cropped or blurred derivative is offered under the same license, and the Credits screen says so.
+
+## 3. Pipeline (`tools/art/`, Python 3.13 + Pillow 11.3, both already installed)
+
+```
+1. search.py   <category> <query>   → candidates.json (id, preview URL, license, author) via the APIs
+2. sheet.py    candidates.json      → contact-sheet JPGs with numbered thumbnails
+3. (review)    Claude inspects each contact sheet visually and picks images: no badges, no
+               recognizable people (except portraits), no watermarks, good composition
+4. manifest    content/art/<category>.json  (asset id ↔ source id, crop box, blur regions, alt text)
+5. fetch.py    downloads originals into tools/art/cache/ (git-ignored); re-verifies license from source metadata
+6. process.py  crop → blur redactions → resize (hero 1080w / thumb 360w / portrait 320²) → WebP (q=78, method 6)
+               → app/src/main/assets/img/<category>/<id>.webp
+7. credits.py  → app/src/main/assets/credits.json  { id, title, author, authorUrl, source, sourceUrl, license, licenseUrl, modifications }
+8. check.py    every content image reference exists; every file is in credits; no orphan files;
+               total size ≤ budget; per-file max 250 KB; dimensions correct
+```
+
+- The **in-app Credits screen** is generated from `credits.json`: grouped by category, searchable, each entry linking to the source and license.
+- Re-running the pipeline is deterministic (same manifest → byte-identical WebP output with pinned Pillow settings).
+- Processed WebP files are committed (they are the game's assets). Original downloads stay in the git-ignored cache.
+
+## 4. Non-photo art (made for this game)
+- **Icons**: ~140 original glyphs (24-unit grid, 1.75 stroke, round caps and joins), hand-authored as path data in `designsystem/.../icons/AbtIcons.kt` and built into Compose `ImageVector`s at runtime. No emoji and no third-party icon packs anywhere in the game.
+- **Company and coin logos**: generated procedurally in code (geometric monograms from a seeded shape grammar) and checked against the brand blocklist, so they cannot resemble real marks.
+- **World and city maps**: original vector illustrations.
+- **Player avatars**: illustrated, not photos.
+- **Fonts**: Fraunces and Inter (SIL Open Font License), subsetted.
+- **Audio**: CC0 sound effects (for example Kenney audio packs) and CC0/CC-BY music, recorded in `credits.json` with the same fields.
+
+## 5. Budget
+| Group | Budget |
+|---|---|
+| Photos (~736) | ≤ 32 MB |
+| Audio | ≤ 6 MB |
+| Fonts | ≤ 0.6 MB |
+| **APK total** | **≤ 60 MB hard cap, target ≤ 45 MB** |

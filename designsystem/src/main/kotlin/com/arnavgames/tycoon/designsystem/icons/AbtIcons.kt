@@ -1,0 +1,100 @@
+package com.arnavgames.tycoon.designsystem.icons
+
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.graphics.StrokeJoin
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.graphics.vector.addPathNodes
+import androidx.compose.ui.unit.dp
+
+/**
+ * The game's original icon set. Every glyph is hand-authored path data on a 24-unit grid,
+ * 1.75 stroke, round caps and joins. Emoji and third-party icon packs are never used.
+ * Icons are tinted at the call site (see AbtIcon).
+ */
+object AbtIcons {
+    private const val STROKE = 1.75f
+
+    private fun icon(name: String, vararg strokes: String, filled: List<String> = emptyList()): ImageVector {
+        val b = ImageVector.Builder(name = name, defaultWidth = 24.dp, defaultHeight = 24.dp, viewportWidth = 24f, viewportHeight = 24f)
+        filled.forEach { d -> b.addPath(pathData = addPathNodes(d), fill = SolidColor(Color.Black)) }
+        strokes.forEach { d ->
+            b.addPath(
+                pathData = addPathNodes(d),
+                fill = null,
+                stroke = SolidColor(Color.Black),
+                strokeLineWidth = STROKE,
+                strokeLineCap = StrokeCap.Round,
+                strokeLineJoin = StrokeJoin.Round,
+            )
+        }
+        return b.build()
+    }
+
+    private fun circle(cx: Float, cy: Float, r: Float) =
+        "M${cx - r} $cy A$r $r 0 1 0 ${cx + r} $cy A$r $r 0 1 0 ${cx - r} $cy Z"
+
+    // ---- Navigation ----
+    val Empire = icon("Empire", "M4 20V9.5L9 7v13", "M9 20V3.5l7 2.8V20", "M16 20v-8.5h4V20", "M2.5 20h19", "M11.5 9h2M11.5 12h2M11.5 15h2")
+    val Markets = icon("Markets", "M3 17.5l6-6 4 3.5 8-8", "M15.5 7H21v5.5")
+    val Estates = icon("Estates", "M12 21s-7-6.4-7-11.5a7 7 0 0 1 14 0C19 14.6 12 21 12 21Z", "M9.5 12V9.4L12 7.6l2.5 1.8V12Z")
+    val Collection = icon("Collection", "M6.5 4h11L21 9l-9 11.5L3 9Z", "M3 9h18", "M9.5 4L8 9l4 11.5L16 9l-1.5-5")
+    val Crown = icon("Crown", "M3.5 8.5L7.5 12 12 5l4.5 7 4-3.5L19 17H5Z", "M5 20h14")
+
+    // ---- Currencies ----
+    val Cash = icon("Cash", "M2.5 6.5h19v11h-19Z", circle(12f, 12f, 2.5f), "M6 12h.01M18 12h.01")
+    val Bullion = icon("Bullion", "M3 18l3-7h12l3 7Z", "M6 11l2.5-4h7l2.5 4", "M9 14.5h6")
+    val Coin = icon("Coin", circle(12f, 12f, 8.5f), circle(12f, 12f, 4.5f))
+    val Favor = icon("Favor", "M12 20.5S3.5 15.3 3.5 9.2A4.4 4.4 0 0 1 12 7a4.4 4.4 0 0 1 8.5 2.2C20.5 15.3 12 20.5 12 20.5Z")
+
+    // ---- Actions & UI ----
+    val ChevronRight = icon("ChevronRight", "M9.5 5.5L16 12l-6.5 6.5")
+    val ChevronLeft = icon("ChevronLeft", "M14.5 5.5L8 12l6.5 6.5")
+    val ChevronDown = icon("ChevronDown", "M5.5 9.5L12 16l6.5-6.5")
+    val ChevronUp = icon("ChevronUp", "M5.5 14.5L12 8l6.5 6.5")
+    val Close = icon("Close", "M6 6l12 12M18 6L6 18")
+    val Plus = icon("Plus", "M12 5v14M5 12h14")
+    val Minus = icon("Minus", "M5 12h14")
+    val Check = icon("Check", "M5 12.5l5 5L19 7")
+    val ArrowUp = icon("ArrowUp", "M12 19V5M6 11l6-6 6 6")
+    val ArrowDown = icon("ArrowDown", "M12 5v14M6 13l6 6 6-6")
+    val Refresh = icon("Refresh", "M19.5 9A8 8 0 0 0 5 7.5M4.5 15A8 8 0 0 0 19 16.5", "M19.5 4v5h-5M4.5 20v-5h5")
+    val Sliders = icon("Sliders", "M4 7h10M18 7h2M4 17h4M12 17h8", circle(16f, 7f, 2f), circle(10f, 17f, 2f))
+    val Info = icon("Info", circle(12f, 12f, 9f), "M12 11v5.5M12 7.6v-.1")
+    val Warning = icon("Warning", "M12 3.5l9.5 16h-19Z", "M12 9.5v4M12 16.6v-.1")
+    val Lock = icon("Lock", "M5.5 10.5h13v10h-13Z", "M8 10.5v-3a4 4 0 0 1 8 0v3", "M12 14.5v2")
+    val Eye = icon("Eye", "M2.5 12C5 7 8.5 5 12 5s7 2 9.5 7c-2.5 5-6 7-9.5 7s-7-2-9.5-7Z", circle(12f, 12f, 3f))
+    val EyeOff = icon("EyeOff", "M4 4l16 16", "M9.9 5.3A9 9 0 0 1 12 5c3.5 0 7 2 9.5 7a14 14 0 0 1-2.6 3.6M6.4 6.9A13.5 13.5 0 0 0 2.5 12c2.5 5 6 7 9.5 7a9 9 0 0 0 4.3-1.1", "M9.9 9.9a3 3 0 0 0 4.2 4.2")
+    val Mail = icon("Mail", "M3 5.5h18v13H3Z", "M3.5 6L12 13l8.5-7")
+    val Bell = icon("Bell", "M6 16.5V11a6 6 0 0 1 12 0v5.5l1.5 1.5h-15Z", "M10 20.5a2 2 0 0 0 4 0")
+    val User = icon("User", circle(12f, 8f, 4f), "M4.5 20.5a7.5 7.5 0 0 1 15 0")
+    val Rivals = icon("Rivals", circle(8.5f, 8.5f, 3.2f), circle(16.5f, 9.5f, 2.6f), "M2.5 19.5a6 6 0 0 1 12 0", "M14.8 14.2a5 5 0 0 1 6.7 4.8")
+    val Clock = icon("Clock", circle(12f, 12f, 9f), "M12 7.5V12l3 2")
+    val Bolt = icon("Bolt", "M13 2.5L5 13.5h6l-1 8 9-11.5h-6Z")
+    val Sparkle = icon("Sparkle", "M12 3l1.8 7.2L21 12l-7.2 1.8L12 21l-1.8-7.2L3 12l7.2-1.8Z")
+    val Star = icon("Star", "M12 3l2.7 5.6 6.1.7-4.5 4.2 1.2 6.1-5.5-3-5.5 3 1.2-6.1-4.5-4.2 6.1-.7Z")
+    val Trophy = icon("Trophy", "M7.5 4h9v5a4.5 4.5 0 0 1-9 0Z", "M7.5 6h-3v1.5a3 3 0 0 0 3.3 3M16.5 6h3v1.5a3 3 0 0 1-3.3 3", "M12 13.5V17M8.5 20.5h7M10 17h4l.5 3.5h-5Z")
+    val Briefcase = icon("Briefcase", "M3 8h18v11H3Z", "M8.5 8V5.5h7V8", "M3 13h18")
+    val Store = icon("Store", "M5 8h14l-1 12.5H6Z", "M9 10.5V7a3 3 0 0 1 6 0v3.5")
+    val Gift = icon("Gift", "M4 10h16v10.5H4Z", "M3 7h18v3H3Z", "M12 7v13.5", "M12 7C10 3.5 6.5 4.5 7.5 7M12 7c2-3.5 5.5-2.5 4.5 0")
+    val Shield = icon("Shield", "M12 3l7.5 3v5.5c0 4.5-3.2 8.1-7.5 9.5-4.3-1.4-7.5-5-7.5-9.5V6Z", "M8.8 12l2.2 2.2 4.2-4.4")
+    val Factory = icon("Factory", "M2.5 20.5h19", "M4 20.5V11l5 3v-3l5 3V5h5v15.5", "M16.5 5V3")
+    val News = icon("News", "M4 5h13v14a1.5 1.5 0 0 1-1.5 1.5h-10A1.5 1.5 0 0 1 4 19Z", "M17 9h3v10a1.5 1.5 0 0 1-3 0", "M7 8.5h7M7 12h7M7 15.5h4")
+    val Map = icon("Map", "M3.5 6.5L9 4.5l6 2 5.5-2v13l-5.5 2-6-2-5.5 2Z", "M9 4.5v13M15 6.5v13")
+    val Hand = icon("Hand", "M9 11V5.5a1.5 1.5 0 0 1 3 0V11M12 10a1.5 1.5 0 0 1 3 0v1.5M15 11a1.5 1.5 0 0 1 3 0v4.5a6 6 0 0 1-6 6h-.5a6 6 0 0 1-4.9-2.6l-2.3-3.3a1.5 1.5 0 0 1 2.4-1.8L9 16")
+    val Sun = icon("Sun", circle(12f, 12f, 4f), "M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4")
+    val Moon = icon("Moon", "M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5Z")
+    val Timer = icon("Timer", circle(12f, 13.5f, 7.5f), "M12 9.5v4l2.5 1.5", "M9.5 2.5h5M12 2.5V6")
+    val Manager = icon("Manager", circle(12f, 7.5f, 3.5f), "M5 20.5a7 7 0 0 1 14 0", "M12 12.5l-1.2 2.3L12 19l1.2-4.2Z")
+    val Expand = icon("Expand", "M4 20V10l8-5.5L20 10v10", "M9 20v-6h6v6", "M2.5 20h19")
+    val Inbox = icon("Inbox", "M3 13.5l2.5-8h13l2.5 8v6H3Z", "M3 13.5h5l1.5 2.5h5l1.5-2.5h5")
+    val Chart = icon("Chart", "M4 20V4", "M4 20h16", "M8 16v-4M12 16V8M16 16v-6")
+    val Volume = icon("Volume", "M4 9.5h3.5L12 5.5v13l-4.5-4H4Z", "M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11")
+    val Music = icon("Music", "M9 18V5.5l11-2V16", circle(6.5f, 18f, 2.5f), circle(17.5f, 16f, 2.5f))
+    val Vibrate = icon("Vibrate", "M8 3.5h8v17H8Z", "M4.5 8v8M19.5 8v8M2 10v4M22 10v4")
+    val Logout = icon("Logout", "M14 4.5H6.5v15H14", "M10.5 12h10M17 8.5l3.5 3.5-3.5 3.5")
+    val Trash = icon("Trash", "M4 6.5h16", "M9 6.5V4h6v2.5", "M6 6.5l1 14h10l1-14", "M10 10.5v6M14 10.5v6")
+    val Download = icon("Download", "M12 4v11M7 10.5l5 5 5-5", "M4.5 19.5h15")
+    val Cloud = icon("Cloud", "M7 18.5a4.5 4.5 0 0 1-.6-9 6 6 0 0 1 11.4 1.5A3.8 3.8 0 0 1 17.5 18.5Z")
+}
