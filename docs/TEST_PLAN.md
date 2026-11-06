@@ -58,11 +58,11 @@
 5. Collection: auction flow (bid, win or lose) → item appears in showroom. (`AuctionFlowTest`, from the debug `auction` scenario: proxy bid in, 45 s before the hammer.)
 6. Decision card resolve; tax filing (auto and self). (`DeskAndTaxFlowTest`, from the debug `world` scenario: late game played through a tax quarter.)
 7. Dynasty prestige flow with confirmation. (`CrownFlowTest`, from the debug `crown` scenario.)
-8. Store: demo purchase sheet shows the DEMO label → entitlement granted → Boosted flag set.
+8. Store: demo purchase sheet shows the DEMO label → entitlement granted → Boosted flag set. (`StoreFlowTest`.)
 9. Settings: theme switch, audio toggles, reduced motion, export save.
-10. Auth (against the Firebase Auth emulator): sign up → verification banner → sign out → sign in; guest → upgrade.
-11. Sync conflict screen appears when both copies changed; both choices work; nothing is lost.
-12. Accessibility: TalkBack content descriptions present on all interactive nodes (automated check); 200% font scale has no clipped text on key screens (screenshot review).
+10. Auth (against the Firebase Auth emulator): sign up → verification banner → sign out → sign in; guest → upgrade. (`CloudFlowTest`.)
+11. Sync conflict screen appears when both copies changed; both choices work; nothing is lost. (`CloudFlowTest`.)
+12. Accessibility: TalkBack content descriptions present on all interactive nodes (automated check); 200% font scale has no clipped text on key screens (screenshot review). (`AccessibilityFlowTest` + reviewed screenshots.)
 
 ## 5. Firestore rules tests
 For each collection: owner allowed, other user denied, unauthenticated denied, unverified-email denied where required. Plus:

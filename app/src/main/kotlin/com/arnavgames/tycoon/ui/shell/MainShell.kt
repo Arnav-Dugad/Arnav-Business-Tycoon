@@ -55,6 +55,7 @@ fun MainShell(
     onOpenStore: () -> Unit = {},
     onOpenAccount: () -> Unit = {},
     onOpenSocial: () -> Unit = {},
+    onOpenTiming: () -> Unit = {},
 ) {
     var tab by rememberSaveable { mutableStateOf("empire") }
     val empire by vm.empire.collectAsStateWithLifecycle()
@@ -77,7 +78,7 @@ fun MainShell(
         AnimatedContent(tab, transitionSpec = { fadeIn(tween(220)) togetherWith fadeOut(tween(160)) }, label = "tab") { t ->
             when (t) {
                 "empire" -> EmpireScreen(vm, onOpenBusiness = onOpenBusiness, onOpenDesk = onOpenDesk, onOpenFortune = onOpenFortune, onOpenFinance = onOpenFinance)
-                "markets" -> MarketsScreen(vm, onOpenInstrument = onOpenInstrument, onOpenNews = onOpenNews)
+                "markets" -> MarketsScreen(vm, onOpenInstrument = onOpenInstrument, onOpenNews = onOpenNews, onOpenTiming = onOpenTiming)
                 "estates" -> com.arnavgames.tycoon.ui.estates.EstatesScreen(vm, onOpenCity = onOpenCity, onOpenProperty = onOpenProperty)
                 "collection" -> com.arnavgames.tycoon.ui.collection.CollectionScreen(vm, onOpenCategory = onOpenLuxuryCategory, onOpenAuction = onOpenAuction)
                 else -> DynastyScreen(vm, onOpenSettings = onOpenSettings, onOpenCredits = onOpenCredits, onOpenAchievements = onOpenAchievements, onOpenCrown = onOpenCrown, onOpenStore = onOpenStore, onOpenAccount = onOpenAccount, onOpenSocial = onOpenSocial)

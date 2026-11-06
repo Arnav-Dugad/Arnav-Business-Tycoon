@@ -81,7 +81,12 @@ fun SettingsScreen(vm: GameViewModel, onBack: () -> Unit, onCredits: () -> Unit)
             item {
                 AurumCard(Modifier.fillMaxWidth()) {
                     ToggleRow("Haptics", "Gentle vibrations for taps and milestones", settings.haptics) { v -> vm.updateSettings { it.copy(haptics = v) } }
-                    Text("Music and sound effects arrive in the polish phase.", style = Aurum.type.bodySmall, color = c.textTertiary)
+                    Spacer(Modifier.height(Space.sm))
+                    Text("Sound effects", style = Aurum.type.title, color = c.textPrimary)
+                    Spacer(Modifier.height(Space.xs))
+                    SegmentedSelector(listOf(0f, 0.4f, 0.8f), listOf(0f, 0.4f, 0.8f).minBy { kotlin.math.abs(it - settings.sfxVolume) },
+                        { when (it) { 0f -> "Off"; 0.4f -> "Quiet"; else -> "Normal" } }, { v -> vm.updateSettings { it.copy(sfxVolume = v) } }, Modifier.fillMaxWidth())
+                    Text("Music is not included yet.", style = Aurum.type.bodySmall, color = c.textTertiary)
                 }
             }
             item { SectionHeader("Your save") }
@@ -167,7 +172,8 @@ fun CreditsScreen(onBack: () -> Unit, artCredits: List<String> = emptyList(), po
                 Text("All icons, the crest, logos and the world map are original artwork drawn in code for this game.", style = Aurum.type.body, color = c.textSecondary)
                 if (portraitCount > 0) {
                     Spacer(Modifier.height(Space.xs))
-                    Text("$portraitCount manager portraits are AI-generated caricatures of invented people (Figma AI). They do not depict real people.", style = Aurum.type.bodySmall, color = c.textTertiary)
+                    Text("$portraitCount manager and rival portraits are AI-generated caricatures of invented people (Figma AI). They do not depict real people, including the rivals with parody names.", style = Aurum.type.bodySmall, color = c.textTertiary)
+                    Text("Sound effects were synthesized for this game (no third-party audio).", style = Aurum.type.bodySmall, color = c.textTertiary)
                 }
             }
         }

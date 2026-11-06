@@ -104,13 +104,15 @@ fun WorldStrip(vm: GameViewModel, onOpenDesk: () -> Unit, onOpenFortune: () -> U
     val fin by vm.financeSummary.collectAsStateWithLifecycle()
     val d = desk ?: return
     if (!d.unlocked) return
-    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(Space.sm)) {
-        StripTile(AbtIcons.Cards, "Desk", if (d.cards.isEmpty()) "No decisions" else "${d.cards.size} waiting", d.cards.isNotEmpty(), onOpenDesk, Modifier.weight(1f))
-        fortune?.let { (unlocked, rank) ->
-            if (unlocked) StripTile(AbtIcons.Trophy, "Fortune", if (rank <= 220) "#$rank" else "Unranked", false, onOpenFortune, Modifier.weight(1f))
-        }
-        fin?.let { (unlocked, rating) -> if (unlocked) StripTile(AbtIcons.Gauge, "Credit", rating, false, onOpenFinance, Modifier.weight(1f)) }
+    // Three tiles side by side; at large font sizes they stack so nothing is cut off.
+    val stacked = androidx.compose.ui.platform.LocalDensity.current.fontScale > 1.3f
+    val tiles: List<@Composable (Modifier) -> Unit> = buildList {
+        add { m -> StripTile(AbtIcons.Cards, "Desk", if (d.cards.isEmpty()) "No decisions" else "${d.cards.size} waiting", d.cards.isNotEmpty(), onOpenDesk, m) }
+        fortune?.let { (unlocked, rank) -> if (unlocked) add { m -> StripTile(AbtIcons.Trophy, "Fortune", if (rank <= 220) "#$rank" else "Unranked", false, onOpenFortune, m) } }
+        fin?.let { (unlocked, rating) -> if (unlocked) add { m -> StripTile(AbtIcons.Gauge, "Credit", rating, false, onOpenFinance, m) } }
     }
+    if (stacked) Column(verticalArrangement = Arrangement.spacedBy(Space.sm)) { tiles.forEach { it(Modifier.fillMaxWidth()) } }
+    else Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(Space.sm)) { tiles.forEach { it(Modifier.weight(1f)) } }
 }
 
 @Composable
@@ -138,6 +140,8 @@ fun DeskScreen(vm: GameViewModel, onBack: () -> Unit, onOpenRival: (String) -> U
     val fmt: (Money) -> String = { MoneyFormat.short(it, vm.notation(settings)) }
     val d = ui ?: return
     val c = Aurum.colors
+    var negotiating by remember { mutableStateOf<Pair<CardUi, Int>?>(null) }
+    Box(Modifier.fillMaxSize()) {
     GlassScaffold(title = "The Desk", onBack = onBack) {
         item(key = "economy") {
             AurumCard(Modifier.fillMaxWidth()) {
@@ -161,7 +165,7 @@ fun DeskScreen(vm: GameViewModel, onBack: () -> Unit, onOpenRival: (String) -> U
             Text("Nothing needs you right now. New decisions arrive every few hours; up to three wait for you, and none is ever decided without you.",
                 style = Aurum.type.bodySmall, color = c.textSecondary, modifier = Modifier.padding(horizontal = Space.xs))
         }
-        items(d.cards, key = { "card-${it.id}" }) { card -> DecisionCard(card, fmt, onChoose = { vm.resolveCard(card.id, it) }, onOpenRival = onOpenRival) }
+        items(d.cards, key = { "card-${it.id}" }) { card -> DecisionCard(card, fmt, onChoose = { vm.resolveCard(card.id, it) }, onOpenRival = onOpenRival, onNegotiate = { negotiating = card to it }) }
         if (d.modifiers.isNotEmpty()) {
             item(key = "mods-h") { SectionHeader("In effect") }
             item(key = "mods") {
@@ -194,10 +198,15 @@ fun DeskScreen(vm: GameViewModel, onBack: () -> Unit, onOpenRival: (String) -> U
             }
         }
     }
+    negotiating?.let { (card, option) ->
+        NegotiationDialog(card.rival?.name ?: "The other side", card.rival?.archetype, card.options[option].label,
+            onDone = { edge -> negotiating = null; vm.resolveCard(card.id, option, edge) }, onCancel = { negotiating = null })
+    }
+    }
 }
 
 @Composable
-private fun DecisionCard(card: CardUi, fmt: (Money) -> String, onChoose: (Int) -> Unit, onOpenRival: (String) -> Unit) {
+private fun DecisionCard(card: CardUi, fmt: (Money) -> String, onChoose: (Int) -> Unit, onOpenRival: (String) -> Unit, onNegotiate: (Int) -> Unit = {}) {
     val c = Aurum.colors
     val kind = when (card.kind) {
         "takeover" -> "Takeover"; "acquisition" -> "Offer"; "jv" -> "Partnership"; "rival" -> "Rival"; "nemesis" -> "Nemesis"
@@ -231,7 +240,7 @@ private fun DecisionCard(card: CardUi, fmt: (Money) -> String, onChoose: (Int) -
         card.options.forEachIndexed { i, o ->
             if (i > 0) Spacer(Modifier.height(Space.sm))
             Column(
-                Modifier.fillMaxWidth().testTag(if (o.enabled) "card-option" else "card-option-disabled").clip(AurumShapes.medium).background(c.separator.copy(alpha = 0.35f))
+                Modifier.fillMaxWidth().testTag(if (o.enabled) "card-option" else "card-option-disabled").clip(AurumShapes.medium).background(c.textPrimary.copy(alpha = 0.06f))
                     .clickable(enabled = o.enabled, role = Role.Button, onClickLabel = o.label, onClick = { onChoose(o.index) })
                     .padding(Space.md),
             ) {
@@ -244,6 +253,10 @@ private fun DecisionCard(card: CardUi, fmt: (Money) -> String, onChoose: (Int) -
                     o.outcomes.forEach { oc -> Text("${oc.percent}%: ${oc.text}", style = Aurum.type.bodySmall, color = c.textTertiary) }
                 }
                 o.reason?.let { Text(it, style = Aurum.type.label, color = c.loss) }
+                if (o.enabled && o.outcomes.size > 1 && (o.label.startsWith("Negotiate") || o.label.startsWith("Counter") || o.label.startsWith("Call"))) {
+                    Spacer(Modifier.height(Space.xs))
+                    PillAction("Negotiate first (mini-game)", true, { onNegotiate(o.index) }, style = PillStyle.Glass)
+                }
             }
         }
     }

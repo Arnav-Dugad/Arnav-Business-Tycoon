@@ -195,4 +195,14 @@ class ProgressionTest {
         assertEquals(a.dynasty, b.dynasty)
         assertEquals(a.ledger.balances, b.ledger.balances)
     }
+
+    @Test
+    fun marketTimingPaysFavorOnceADay() {
+        val s = busyState()
+        val r = s.run(Command.FinishMarketTiming(100))
+        assertEquals(s.ledger.favor + Money.ofCents(10), r.ledger.favor)
+        assertInstanceOf(GameError.Locked::class.java, r.reject(Command.FinishMarketTiming(50)))
+        val nextDay = r.adv(day)
+        assertEquals(nextDay.ledger.favor + Money.ofCents(1), nextDay.run(Command.FinishMarketTiming(0)).ledger.favor, "a poor score still earns 1 Favor")
+    }
 }

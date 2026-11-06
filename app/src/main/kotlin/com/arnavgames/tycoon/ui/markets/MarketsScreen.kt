@@ -63,7 +63,7 @@ import com.arnavgames.tycoon.ui.locked.ComingSoonScreen
 
 /** The Markets tab (docs/GDD.md §6): portfolio header, news, positions and the four instrument desks. */
 @Composable
-fun MarketsScreen(vm: GameViewModel, onOpenInstrument: (String) -> Unit, onOpenNews: () -> Unit) {
+fun MarketsScreen(vm: GameViewModel, onOpenInstrument: (String) -> Unit, onOpenNews: () -> Unit, onOpenTiming: () -> Unit = {}) {
     val ui by vm.markets.collectAsStateWithLifecycle()
     val settings by vm.settings.collectAsStateWithLifecycle()
     val notation = vm.notation(settings)
@@ -95,6 +95,12 @@ fun MarketsScreen(vm: GameViewModel, onOpenInstrument: (String) -> Unit, onOpenN
         ) {
             if (mk.news.isNotEmpty()) {
                 item(key = "news") { NewsCard(mk.news.take(3), onOpenNews, onOpenInstrument) }
+            }
+            item(key = "timing") {
+                com.arnavgames.tycoon.designsystem.components.MenuRow(
+                    "Market Timing", AbtIcons.Chart, onOpenTiming,
+                    subtitle = "30-second practice on a real price tape · up to 10 Favor a day",
+                )
             }
             if (mk.positions.isNotEmpty()) {
                 item(key = "pos-header") { SectionHeader("Your positions") { Text("${mk.positions.size}", style = Aurum.type.label, color = c.textTertiary) } }

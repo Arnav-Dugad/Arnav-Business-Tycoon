@@ -84,7 +84,7 @@ class StoreEngine(private val content: ContentPack) {
             // A new boost extends the running one rather than stacking multipliers.
             val current = ns.world.modifiers.firstOrNull { it.source == BOOST && it.untilSim > ns.simTimeMs }
             val until = (current?.untilSim ?: ns.simTimeMs) + g.boostHours * 3_600_000L
-            val mods = ns.world.modifiers.filterNot { it.source == BOOST } + ModifierState(BOOST, "all", 1.0, until, "Double income")
+            val mods = ns.world.modifiers.filterNot { it.source == BOOST } + ModifierState(BOOST, "all", cfg.boostPct, until, "Income boost")
             ns = ns.copy(world = ns.world.copy(modifiers = mods))
         }
         var st = ns.store

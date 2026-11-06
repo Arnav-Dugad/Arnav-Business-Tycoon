@@ -19,7 +19,10 @@ _Last updated: 2026-11-06._
 - **Overnight run (owner request, 2026-11-06)**: the owner asked for all remaining phases and a GitHub release by morning, and answered the Phase 12/13 questions before sleeping (Firestore asia-south1; create a new project or fall back to the emulator; Email + Guest sign-in now, Google later; social as designed).
 - Phase 10 (Progression): **DONE except the mini-games** (Negotiation, Market Timing), which move to Phase 15. Details below.
 - **Preview release v0.9.0** published on GitHub (signed with the new release key; see Phase 16 notes below).
-- Next: **Phase 14 (Store)**, then Phases 12–13 (Firebase, social), 15 (polish) and 16 (release).
+- Phase 14 (Store): **DONE** (simulated purchases only). Details below.
+- Phases 12–13 (Firebase, social): **BUILT AND TESTED ON THE LOCAL EMULATOR**. The real Firebase project could not be created (account project quota), so the released app is the **offline edition**. Owner checklist below.
+- Phase 15 (Polish): **PARTLY DONE**: sound effects, Market Timing and Negotiation mini-games, update checker, accessibility checks, light-mode fixes. Not done: music, baseline-profile and macrobenchmark refresh.
+- Phase 16 (Release): **v1.0.0 published on GitHub Releases** (signed APK). Gates below.
 
 ## Decisions
 | Topic | Decision |
@@ -407,10 +410,84 @@ All in `:core` (pure Kotlin/JVM, enforced by `verifyCorePurity`):
   3. Test waits matched the wrong text.
 
 ### Known gaps (honest)
-- **Mini-games** (Negotiation, Market Timing) are not built; negotiation options keep their visible odds. Moved to Phase 15.
+- **Mini-games** were moved to Phase 15 (both now built there).
 - Idle Chapter 2 now completes at the 4 h check-in for all three seeds (target 8–16 h; it was 4/12/24 h before), a knife-edge between check-ins. For Phase 11.
 - Chapter 8 (and so prestige) is still out of reach in the 10-day simulator runs (Phase 11). Generation content scaling (each generation 60–80 % of the last) is not built; Legacy is the only speed-up.
 - Daily and weekly missions use game days (sim time), so a player who is away longer than the offline cap sees fewer days.
+
+## Phase 14: what was done and verified
+- `content/data/store.json` (`tools/content/gen_store.py`): 24 products in 5 sections.
+  - Demo Bullion packs, a once-only starter pack, ×2 income boosts (2/8/24 h, extending, not stacking), Favor bundles.
+  - Permanent +10 % income (max 3), extra slots (max 3; every slot is also earnable in play), +4 h offline (max 2).
+  - VIP 30 days (+10 % income, +2 h offline, +20 Bullion per daily reward), Season Pass (unlocks the premium track), 9 titles and frames.
+  - Banned by design and checked by the validator and tests: random rewards, countdowns, "only N left".
+- `core/store/StoreEngine.kt`: `DemoPurchase` (sets the Boosted flag), `BuyWithBullion` (does not), `EquipCosmetic`; entitlements survive prestige; VIP expiry is an engine boundary.
+- App: `PurchaseProvider` with the only implementation `SimulatedPurchaseProvider` (no Play Billing, no payment UI or data). Store screen with a demo banner and a "DEMO PURCHASE — no real money is charged" confirmation sheet; Boosted chip on the Dynasty tab.
+- Tests: `StoreTest` (7) and `StoreFlowTest` (flow 8) pass.
+- **Spender gap** (`heavy_spender` buys every demo product vs `active`):
+  - First design (×2 boosts kept running, +30 % permanent, VIP +10 %, +8 h offline): 51–85 % faster at every chapter, Chapter 8 reached at 5.2 days. That is far beyond the target of 25–40 % faster and never more than 2×.
+  - Rebalanced: boosts +25 %, permanent 3 × 5 %, VIP +5 % and +1 h, offline +2 h (max 4).
+  - Result (2 seeds × 6 days): level at Chapter 2, 29 % faster at Chapter 3, 7 % at Chapter 4, 20 % at Chapter 5, 26 % at Chapter 6. The first conglomerate is exactly 2× faster (extra slots).
+  - Accepted: about the low edge of the band and at most 2× at any milestone. Time to the first prestige can't be measured until Chapter 8 is reachable (Phase 11).
+
+## Phases 12–13: what was done and verified
+- **Firebase project**: `firebase projects:create` failed with "you have exceeded your allotted project quota" (24 projects on the owner account). As the owner chose, nothing was deleted; everything was built and tested against the local Firebase Emulator Suite using the project id `demo-arnav-business-tycoon`.
+- **Rules** (`firebase/firestore.rules`): saves (owner only, rev+1, ≤900 KB, server time), profiles (verified only, Boosted can't be cleared), unique friend codes, friend requests, friends lists (≤100), sharded leaderboards (own key only, 10-minute rate limit, growth plausibility, Boosted sticky), gifts (friends only, one per day, capped), Sealed Lots (sealed until the week closes). **14 rules tests** pass (`cd firebase && npm test`).
+- **App** (`cloud/`):
+  - `CloudService`: guest sign-in and upgrade (same account), email sign-up with verification and a 60 s resend cooldown, sign-in, password reset, sign-out, account deletion (cloud data first, local save kept).
+  - Cloud save with revision lineage and a conflict screen ("Keep this device", "Use cloud", "Decide later"; the losing copy is kept locally). Daily read and write counters with a budget stop.
+  - `SocialService`: friend codes and requests, profiles, global / friends / fair-play / weekly-league leaderboards, daily Favor gifts, weekly Sealed Lots resolved identically on every client.
+  - Three modes: Live (with `google-services.json`), Emulator (debug builds, plain HTTP allowed only to 10.0.2.2), Offline (release without config: cloud screens explain this).
+- Tests: `CloudFlowTest` (3, against the emulators): sign-up → verification banner → sign-out → sign-in; guest → sync → another device's newer save → conflict screen → keep local (revision 6); verified player publishes and sees themself on the leaderboard. All pass.
+- **Not built**: Google sign-in (needs the real project's web client id), the friend-profile showcase screen, background sync on a schedule (sync is manual from the Account screen).
+
+## Phase 15: what was done and verified
+- Sound effects: 7 short effects synthesized for this game (`tools/audio/gen_sfx.py`, 65 KB), played through `SoundPool` with an Off / Quiet / Normal setting. Music is not included.
+- Market Timing mini-game (GDD §13.3): a 30-second replay of a real in-game price tape with a practice position; pays 1–10 Favor once a game day (`FinishMarketTiming`, tested).
+- Negotiation mini-game (GDD §13.1): on Desk options that negotiate, three rounds against the rival's personality (each archetype prefers firm, fair or personal offers) with a mood meter and tells. The result shifts the best outcome's odds by up to ±15 points (`ResolveCard.edge`, tested). Skipping keeps the shown odds.
+- In-app update checker: GitHub releases API at most once a day, banner on the Dynasty tab (generic User-Agent, no personal data).
+- Accessibility: `AccessibilityFlowTest` (flow 12) checks every tappable element on the five tabs has a label; 200 % font-scale screenshots reviewed (the world strip now stacks at large sizes).
+- Light mode reviewed; decision-option fills fixed for light backgrounds.
+- **Not done**: music, baseline-profile and macrobenchmark refresh for the new screens.
+
+## Content still below the CONTENT.md minimums (honest list)
+| Category | Minimum | Now | Note |
+|---|---|---|---|
+| Cosmetics | 30 | 14 (5 titles, 4 frames, 5 season titles) | Themes, HQ skins and card backs not built |
+| Player avatar options | 24 | 0 | Profiles use a crown badge |
+| Mentor and nemesis dialogue lines | 200 | ~40 (21 nemesis beats, chapter summaries, card texts aside) | The Chairman mentor has no dialogue system yet |
+| Story missions | 50 | 41 | Chapters 5–8 have 3–4 missions each instead of 7 |
+| World-event mood photos, property and luxury photos | 20 + 86 + ~200 | 0 + 0 + 99 (museum) | Illustrated cards are used instead |
+| Music tracks | 4 | 0 | |
+
+## Release gates (TEST_PLAN §7)
+Checked for 1.0.0 on 2026-11-07:
+
+| Gate | Result | Evidence |
+|---|---|---|
+| G1 unit and property tests | ✅ core 159, sim 3, data 5 | Gradle reports |
+| G2 content and image validation | ✅ | `ContentTest` + validator |
+| G3 balance targets | ⚠️ 14 of 17 (Chapter 8 active and idle, idle Chapter 2 at 4 h) | `docs/balance/2026-11-07-release-1.0.0/` |
+| G4 UI flows, API 37 and API 28 | ⚠️ API 37: 11/11. API 28: 10/11 (`FirstSessionFlowTest` fails on API 28's shorter screen in a test scrolling helper; the same flow passes on API 37 and the screen renders correctly on API 28) | androidTest reports, screenshot |
+| G5 Firestore rules tests | ✅ 14/14 | `cd firebase && npm test` |
+| G6 stress test ≥ 30 min | ⚠️ 88,200 monkey events over 65 min, **0 crashes**. 2 ANRs of type "no focused window", each right after the monkey opened the system Settings app over the game from the status bar (environment, not a blocked main thread). An earlier run stopped on a crash of the emulator's launcher, not the game | logcat scan |
+| G7 upgrade install keeps the save | ✅ 0.9.0 → 1.0.0: same cash, kiosk level and chapter progress | before/after screenshots |
+| G8 every screen in dark and light | ⚠️ New screens reviewed in dark; Empire and Desk in light (option fills fixed); not every screen re-shot in light | screenshots-local |
+| G9 signed release smoke test | ✅ Release (R8, shrink) installs, launches, saves and reloads | emulator |
+| G10 APK ≤ 60 MB | ✅ 10.4 MB | `tools/scripts/check_release.py` |
+| G11 secret scan, no APK or keystore in git | ✅ | `scan_secrets.py`, `check_release.py` |
+| G12 credits complete | ✅ 211 images credited (CC0 / AI-generated), 7 original sounds | `check_release.py` |
+
+The release is published with the ⚠️ items listed here and in the release notes (the owner asked for a release by morning; none of them blocks play).
+
+## Owner checklist (morning)
+1. **Back up the release keystore** now: `C:\Users\rduga\Keystores\arnav-business-tycoon\abt-release.jks` **and** the passwords in `C:\Users\rduga\.gradle\gradle.properties` (lines starting `ABT_`). Keep two copies (password manager + USB or private cloud). Without them, updates can't be installed over the existing app.
+2. **Firebase (to switch cloud features on)**: free a project slot (delete an unused project in the Firebase console, or request more quota), then tell me, and I will:
+   - create `arnav-business-tycoon`, Firestore in **asia-south1**, deploy `firebase/firestore.rules`;
+   - register the Android app with the debug and release SHA fingerprints and download `google-services.json` (never committed);
+   - enable Email/Password and Anonymous sign-in.
+   You then enable **Google** sign-in in the console (Authentication → Sign-in method → Google; public name "Arnav Business Tycoon", support email).
+3. Optional: try the release APK on a real phone (emulator frame timings are not a reliable 60 fps check).
 
 ## Environment inventory (verified 2026-11-06)
 | Tool | State |

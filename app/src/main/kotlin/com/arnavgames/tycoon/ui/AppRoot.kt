@@ -78,6 +78,7 @@ import kotlinx.serialization.Serializable
 @Serializable object StoreRoute
 @Serializable object AccountRoute
 @Serializable object SocialRoute
+@Serializable object TimingRoute
 
 @Composable
 fun AppRoot(vm: GameViewModel, forcedTheme: ThemeMode?, onDarkChanged: (Boolean) -> Unit) {
@@ -95,6 +96,10 @@ fun AppRoot(vm: GameViewModel, forcedTheme: ThemeMode?, onDarkChanged: (Boolean)
         val haptics = LocalHapticFeedback.current
 
         LaunchedEffect(Unit) { vm.messages.collect { snackbar.currentSnackbarData?.dismiss(); snackbar.showSnackbar(it) } }
+        LaunchedEffect(settings.sfxVolume) {
+            if (settings.sfxVolume <= 0f) return@LaunchedEffect
+            vm.events.collect { e -> vm.sounds.onEvent(e, settings.sfxVolume) }
+        }
         LaunchedEffect(settings.haptics) {
             if (!settings.haptics) return@LaunchedEffect
             vm.events.collect { e ->
@@ -184,8 +189,10 @@ private fun ReadyContent(vm: GameViewModel) {
                         onOpenStore = { nav.navigate(StoreRoute) },
                         onOpenAccount = { nav.navigate(AccountRoute) },
                         onOpenSocial = { nav.navigate(SocialRoute) },
+                        onOpenTiming = { nav.navigate(TimingRoute) },
                     )
                 }
+                composable<TimingRoute> { com.arnavgames.tycoon.ui.markets.MarketTimingScreen(vm, onBack = { nav.popBackStack() }) }
                 composable<SocialRoute> { com.arnavgames.tycoon.ui.social.SocialScreen(vm, onBack = { nav.popBackStack() }, onOpenAccount = { nav.navigate(AccountRoute) }) }
                 composable<AccountRoute> { com.arnavgames.tycoon.ui.account.AccountScreen(vm, onBack = { nav.popBackStack() }) }
                 composable<StoreRoute> { com.arnavgames.tycoon.ui.store.StoreScreen(vm, onBack = { nav.popBackStack() }) }

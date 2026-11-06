@@ -304,7 +304,7 @@ class GameEngine(val content: ContentPack) {
             is Command.UpgradeShowroom -> lux(economy.luxury.upgradeShowroom(state, cmd.showroomId))
             Command.BidAuction -> lux(economy.luxury.bid(state, events))
             is Command.SetMaxBid -> lux(economy.luxury.setMaxBid(state, cmd.max, events))
-            is Command.ResolveCard -> desk(desk.resolve(state, cmd.cardId, cmd.option, events))
+            is Command.ResolveCard -> desk(desk.resolve(state, cmd.cardId, cmd.option, events, cmd.edge))
             is Command.TakeLoan -> fin(finance.takeLoan(state, cmd.amount, cmd.days, events))
             is Command.RepayLoan -> fin(finance.repayLoan(state, cmd.loanId, events))
             is Command.DrawCredit -> fin(finance.drawCredit(state, cmd.amount))
@@ -327,6 +327,14 @@ class GameEngine(val content: ContentPack) {
             is Command.ReceiveGift -> if (cmd.favor !in 1..50) Either.Err(GameError.Invalid("Gift out of range")) else
                 Either.Ok(state.copy(ledger = Grants.grant(state.ledger, state.simTimeMs, "gift from a friend", Money.ZERO, 0, cmd.favor)))
             is Command.WinSealedLot -> winSealedLot(state, cmd.itemId, cmd.price, events)
+            is Command.FinishMarketTiming -> {
+                val day = dynasty.day(state.simTimeMs)
+                if (state.meta.timingDay == day) Either.Err(GameError.Locked("Market Timing pays once a day; practice again tomorrow"))
+                else {
+                    val favor = (1 + cmd.score.coerceIn(0, 100) / 11).toLong().coerceIn(1, 10)
+                    Either.Ok(state.copy(ledger = Grants.grant(state.ledger, state.simTimeMs, "Market Timing practice", Money.ZERO, 0, favor), meta = state.meta.copy(timingDay = day)))
+                }
+            }
         }
         return when (result) {
             is Either.Err -> CommandResult.Rejected(result.error)

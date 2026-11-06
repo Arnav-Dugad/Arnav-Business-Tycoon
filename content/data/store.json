@@ -73,7 +73,7 @@
   {
    "id": "starter_pack",
    "name": "Starter pack",
-   "description": "300 Bullion, 50 Favor and a 2-hour ×2 income boost. Once per account.",
+   "description": "300 Bullion, 50 Favor and a 2-hour income boost. Once per account.",
    "section": "bullion",
    "demoPrice": "$2.99",
    "bullionPrice": null,
@@ -86,8 +86,8 @@
   },
   {
    "id": "boost_2h",
-   "name": "Double income · 2 h",
-   "description": "Every business earns ×2 for 2 hours. Stacks by extending the time.",
+   "name": "Income boost · 2 h",
+   "description": "Every business earns 25% more for 2 hours. Buying again extends the time.",
    "section": "boosts",
    "demoPrice": "$0.99",
    "bullionPrice": 60,
@@ -98,8 +98,8 @@
   },
   {
    "id": "boost_8h",
-   "name": "Double income · 8 h",
-   "description": "Every business earns ×2 for 8 hours.",
+   "name": "Income boost · 8 h",
+   "description": "Every business earns 25% more for 8 hours.",
    "section": "boosts",
    "demoPrice": null,
    "bullionPrice": 180,
@@ -110,8 +110,8 @@
   },
   {
    "id": "boost_24h",
-   "name": "Double income · 24 h",
-   "description": "Every business earns ×2 for a full day.",
+   "name": "Income boost · 24 h",
+   "description": "Every business earns 25% more for a full day.",
    "section": "boosts",
    "demoPrice": null,
    "bullionPrice": 450,
@@ -145,14 +145,14 @@
    "limit": 0
   },
   {
-   "id": "permanent_10",
+   "id": "permanent_5",
    "name": "Investor's edge",
-   "description": "+10% income from every business, permanently (up to 3).",
+   "description": "+5% income from every business, permanently (up to 3).",
    "section": "upgrades",
    "demoPrice": "$4.99",
    "bullionPrice": 1500,
    "grants": {
-    "permanentPct": 0.1
+    "permanentPct": 0.05
    },
    "limit": 3
   },
@@ -169,21 +169,21 @@
    "limit": 3
   },
   {
-   "id": "offline_4h",
+   "id": "offline_2h",
    "name": "Night shift",
-   "description": "+4 hours of offline earnings, permanently (up to 2).",
+   "description": "+2 hours of offline earnings, permanently (up to 2).",
    "section": "upgrades",
    "demoPrice": null,
    "bullionPrice": 900,
    "grants": {
-    "offlineHours": 4
+    "offlineHours": 2
    },
    "limit": 2
   },
   {
    "id": "vip_30",
    "name": "VIP · 30 days",
-   "description": "For 30 game days: +10% income, +2 h offline earnings and 20 extra Bullion with every daily reward.",
+   "description": "For 30 game days: +5% income, +1 h offline earnings and 20 extra Bullion with every daily reward.",
    "section": "passes",
    "demoPrice": "$9.99",
    "bullionPrice": 2500,
@@ -361,11 +361,12 @@
   }
  ],
  "config": {
-  "maxPermanentPct": 0.3,
+  "maxPermanentPct": 0.15,
   "maxSlots": 3,
-  "maxOfflineHours": 8,
-  "vipIncomePct": 0.1,
-  "vipOfflineHours": 2,
-  "vipLadderBullion": 20
+  "maxOfflineHours": 4,
+  "vipIncomePct": 0.05,
+  "vipOfflineHours": 1,
+  "vipLadderBullion": 20,
+  "boostPct": 0.25
  }
 }

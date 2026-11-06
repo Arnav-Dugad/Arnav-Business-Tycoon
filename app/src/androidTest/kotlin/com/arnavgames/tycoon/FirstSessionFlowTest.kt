@@ -3,6 +3,7 @@ package com.arnavgames.tycoon
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.hasContentDescription
 import androidx.compose.ui.test.hasText
+import androidx.compose.ui.test.performScrollToIndex
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onNodeWithContentDescription
@@ -41,6 +42,8 @@ class FirstSessionFlowTest {
         scrollEmpireTo("Collect")
         val collect = rule.onAllNodes(hasText("Collect") and isEnabled()).fetchSemanticsNodes()
         if (collect.isNotEmpty()) rule.onNode(hasText("Collect") and isEnabled()).performClick()
+        // Back to the top first: on short screens the counter scrolls out of view while the test buys and collects.
+        rule.onAllNodes(hasScrollAction()).onFirst().performScrollToIndex(0)
         rule.onAllNodes(hasScrollAction()).onFirst().performScrollToNode(hasContentDescription("Serve a customer", substring = true))
     }
 
@@ -86,6 +89,8 @@ class FirstSessionFlowTest {
             if (buildEnabled) break
             rule.onNodeWithContentDescription("Back").performClick()
             waitForText("Work the counter")
+            // Wait for the detail screen to finish leaving, so "the first scrollable list" is the Empire tab again.
+            rule.waitUntil(10_000) { rule.onAllNodesWithText("Price level").fetchSemanticsNodes().isEmpty() }
         }
         check(buildEnabled) { "could not afford the expansion after earning" }
         rule.onNode(hasText("Build ·", substring = true) and isEnabled()).performClick()

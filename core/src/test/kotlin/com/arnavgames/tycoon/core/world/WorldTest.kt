@@ -169,4 +169,15 @@ class WorldTest {
         assertTrue(w.rivals.none { it.name.lowercase() in com.arnavgames.tycoon.core.content.ContentValidator.REAL_PEOPLE_BLOCKLIST })
         assertEquals(Money.ZERO, Money.ZERO)
     }
+
+    @Test
+    fun aGoodNegotiationImprovesTheOdds() {
+        fun wins(edge: Double) = (1L..60L).count { seed ->
+            val (s0, id) = withCard(at(busyState().copy(worldSeed = seed), 2), "gen_consultant", "retail")
+            s0.run(Command.ResolveCard(id, 0, edge)).world.modifiers.any { it.source.startsWith("card:gen_consultant") }
+        }
+        assertTrue(wins(0.15) > wins(0.0) && wins(0.0) > wins(-0.15), "edge shifts the 60 % odds")
+        val (s0, id) = withCard(at(busyState(), 2), "gen_consultant", "retail")
+        assertInstanceOf(GameError.Invalid::class.java, s0.reject(Command.ResolveCard(id, 0, 0.5)))
+    }
 }

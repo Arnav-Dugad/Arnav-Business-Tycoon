@@ -62,4 +62,6 @@ data class StoreConfig(
     val vipIncomePct: Double = 0.1,
     val vipOfflineHours: Int = 2,
     val vipLadderBullion: Long = 20,
+    /** Income bonus of a timed boost (0.25 = +25 %). */
+    val boostPct: Double = 0.25,
 )

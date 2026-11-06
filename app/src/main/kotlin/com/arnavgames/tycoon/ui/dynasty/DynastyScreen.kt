@@ -85,6 +85,9 @@ fun DynastyScreen(
     val ladder = remember(s.meta, s.simTimeMs / 60_000) { m.ladder(s) }
     val season = remember(s.meta, s.simTimeMs / 60_000) { m.season(s) }
     var ipoConfirm by remember { mutableStateOf<Double?>(null) }
+    val update by vm.update.collectAsStateWithLifecycle()
+    val uriHandler = androidx.compose.ui.platform.LocalUriHandler.current
+    androidx.compose.runtime.LaunchedEffect(Unit) { vm.checkForUpdate() }
     Box(Modifier.fillMaxSize()) {
         LazyColumn(
             Modifier.fillMaxSize().glassSource(GlassLayer.Content),
@@ -99,6 +102,20 @@ fun DynastyScreen(
                     val title = s.store.title?.let { content.store.cosmeticById[it]?.name }
                     Text("Generation ${dy.generation}" + (dy.trait?.let { " · $it" } ?: "") + (title?.let { " · $it" } ?: ""), style = Aurum.type.bodySmall, color = c.textSecondary)
                     if (s.store.boosted) { Spacer(Modifier.height(Space.xs)); AurumChip("Boosted (demo purchases)", icon = AbtIcons.Bolt, tint = c.gain) }
+                }
+            }
+            update?.let { u ->
+                item(key = "update") {
+                    AurumCard(Modifier.fillMaxWidth(), highlighted = true, onClick = { runCatching { uriHandler.openUri(u.url) } }) {
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            AbtIcon(AbtIcons.Download, null, tint = c.goldText, size = 24.dp)
+                            Spacer(Modifier.width(Space.md))
+                            Column(Modifier.weight(1f)) {
+                                Text("Update available: ${u.version}", style = Aurum.type.titleSmall, color = c.textPrimary)
+                                Text("Tap to open the download page. Installing over this version keeps your save.", style = Aurum.type.bodySmall, color = c.textSecondary)
+                            }
+                        }
+                    }
                 }
             }
             item(key = "dynasty") {
@@ -300,7 +317,7 @@ private fun SeasonCard(season: SeasonUi, onClaim: (Int) -> Unit) {
         Row(Modifier.horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(Space.xs)) {
             season.tiers.take(30).forEach { t ->
                 Column(
-                    Modifier.width(112.dp).clip(AurumShapes.medium).background(if (t.reached && !t.claimed) c.gold.copy(alpha = 0.18f) else c.separator.copy(alpha = 0.3f))
+                    Modifier.width(112.dp).clip(AurumShapes.medium).background(if (t.reached && !t.claimed) c.gold.copy(alpha = 0.18f) else c.textPrimary.copy(alpha = 0.06f))
                         .clickable(enabled = t.reached && !t.claimed, role = Role.Button) { onClaim(t.tier) }.padding(Space.sm),
                 ) {
                     Text("Tier ${t.tier}", style = Aurum.type.label, color = if (t.reached) c.goldText else c.textTertiary)
@@ -376,7 +393,7 @@ fun CrownScreen(vm: GameViewModel, onBack: () -> Unit) {
             items(ui.heirlooms.take(30), key = { "h-${it.id}" }) { h ->
                 val on = h.id in heirlooms
                 Row(
-                    Modifier.fillMaxWidth().clip(AurumShapes.medium).background(if (on) c.gold.copy(alpha = 0.16f) else c.separator.copy(alpha = 0.25f))
+                    Modifier.fillMaxWidth().clip(AurumShapes.medium).background(if (on) c.gold.copy(alpha = 0.16f) else c.textPrimary.copy(alpha = 0.06f))
                         .clickable(role = Role.Checkbox) { heirlooms = if (on) heirlooms - h.id else if (heirlooms.size < ui.heirloomsAllowed) heirlooms + h.id else heirlooms }
                         .padding(Space.sm),
                     verticalAlignment = Alignment.CenterVertically,
@@ -433,7 +450,7 @@ fun CrownScreen(vm: GameViewModel, onBack: () -> Unit) {
 private fun ChoiceRow(title: String, text: String, selected: Boolean, enabled: Boolean, onClick: () -> Unit) {
     val c = Aurum.colors
     Row(
-        Modifier.fillMaxWidth().clip(AurumShapes.medium).background(if (selected) c.gold.copy(alpha = 0.18f) else c.separator.copy(alpha = 0.25f))
+        Modifier.fillMaxWidth().clip(AurumShapes.medium).background(if (selected) c.gold.copy(alpha = 0.18f) else c.textPrimary.copy(alpha = 0.06f))
             .clickable(enabled = enabled, role = Role.RadioButton, onClick = onClick).padding(Space.md),
         verticalAlignment = Alignment.CenterVertically,
     ) {

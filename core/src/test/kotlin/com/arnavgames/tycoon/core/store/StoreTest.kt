@@ -62,8 +62,8 @@ class StoreTest {
         assertInstanceOf(GameError.Locked::class.java, s.reject(Command.BuyWithBullion("slot_1")))
         s = s.run(Command.DemoPurchase("starter_pack"))
         assertInstanceOf(GameError.Locked::class.java, s.reject(Command.DemoPurchase("starter_pack")), "once per account")
-        repeat(3) { s = s.run(Command.BuyWithBullion("permanent_10")) }
-        assertInstanceOf(GameError.Locked::class.java, s.reject(Command.BuyWithBullion("permanent_10")))
+        repeat(3) { s = s.run(Command.BuyWithBullion("permanent_5")) }
+        assertInstanceOf(GameError.Locked::class.java, s.reject(Command.BuyWithBullion("permanent_5")))
     }
 
     @Test
@@ -83,7 +83,7 @@ class StoreTest {
         var s = withBullion(busyState(), 10_000).adv(60_000)
         val offline = engine.economy.offlineCapMs(s)
         s = s.run(Command.BuyWithBullion("vip_30"))
-        assertEquals(offline + 2 * hour, engine.economy.offlineCapMs(s).coerceAtMost(offline + 2 * hour))
+        assertEquals(offline + 1 * hour, engine.economy.offlineCapMs(s).coerceAtMost(offline + 1 * hour))
         assertInstanceOf(GameError.Locked::class.java, s.copy(meta = s.meta.copy(seasonXp = 500)).reject(Command.ClaimSeasonTier(1, premium = true)))
         s = s.run(Command.BuyWithBullion("season_pass")).copy(meta = s.meta.copy(seasonXp = 500))
         val r = s.run(Command.ClaimSeasonTier(1, premium = true))

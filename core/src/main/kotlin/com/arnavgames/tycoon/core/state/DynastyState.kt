@@ -29,6 +29,8 @@ data class MetaState(
     val seasonClaimedPremium: Set<Int> = emptySet(),
     /** Weekly event goals finished this week ("<eventId>:<metric>"), with their baselines. */
     val eventGoals: List<MissionState> = emptyList(),
+    /** Game day the Market Timing practice bonus was last collected (once a day). */
+    val timingDay: Long = -1,
 )
 
 @Serializable

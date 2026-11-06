@@ -113,3 +113,11 @@ Runs: active and idle (plus risky_trader in the final batch), 3 seeds × 7–10 
 | p10a | Missions, ladder, achievements, seasons; cash rewards = hours of income | Chapter 1 in 3 minutes in the smoke test | Rewards in "hours of income" are jackpots early, when chapters last minutes |
 | p10b | Rewards scaled by chapter (×0.02 → ×1) | Active pacing back on target; idle Chapter 2 at 4 h on all seeds | — |
 | p10c | Weekly events start in Chapter 3 | Idle Chapter 2 still 4 h | Logged for Phase 11 (knife-edge between the 4 h and 9 h idle check-ins) |
+
+## 2026-11-07 — Phase 14, store spender gap and the 1.0.0 batch
+
+| Step | Change | Result | Verdict |
+|---|---|---|---|
+| p14a | Store as first designed; `heavy_spender` vs `active`, 3 seeds × 7 days | Spender 51–85 % faster at every chapter, reaches Chapter 8 at 5.2 d (active never does) | Fails the gap target (25–40 %, never more than 2×): a permanent ×2 boost and +8 h offline are too strong |
+| p14b | Boosts +25 %, permanent 3 × 5 %, VIP +5 % / +1 h, offline +2 h (max 4); 2 seeds × 6 days | Chapter 3: 29 % faster; Chapter 4: 7 %; Chapter 5: 20 %; Chapter 6: 26 %; first conglomerate 2× | Accepted (low edge of the band, at most 2×) |
+| r100 | Release batch on 1.0.0 code: active, idle, poor choices × 3 seeds × 10 days | **14 of 17 pass**, 0 errors. Active final $237Qi (Phase 9: $37.5Qi; mission and achievement rewards), Chapter 7 at 7.5 d; idle $75.8Qa. Fails: Chapter 8 ×2, idle Chapter 2 at 4.0 h | Archived as `2026-11-07-release-1.0.0/` |

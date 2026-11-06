@@ -168,6 +168,12 @@ class GameViewModel @Inject constructor(
     /** Accounts, cloud save and (Phase 13) social features. */
     val cloud by lazy { com.arnavgames.tycoon.cloud.CloudService(session.appContext, session) }
 
+    val sounds by lazy { com.arnavgames.tycoon.audio.SoundPlayer(session.appContext) }
+    val updates by lazy { com.arnavgames.tycoon.update.UpdateChecker(session.appContext) }
+    val update = MutableStateFlow<com.arnavgames.tycoon.update.UpdateInfo?>(null)
+
+    fun checkForUpdate(force: Boolean = false) { viewModelScope.launch { update.value = updates.check(force) } }
+
     val social by lazy { com.arnavgames.tycoon.cloud.SocialService(cloud, session, session.appContext) }
 
     fun say(message: String) { _messages.tryEmit(message) }
@@ -190,7 +196,7 @@ class GameViewModel @Inject constructor(
     fun rivalPortrait(id: String) = worldMapper.portrait(id)
 
     /** Resolves a decision card and shows its outcome. */
-    fun resolveCard(cardId: Long, option: Int) = dispatch(Command.ResolveCard(cardId, option)) {
+    fun resolveCard(cardId: Long, option: Int, edge: Double = 0.0) = dispatch(Command.ResolveCard(cardId, option, edge)) {
         session.state.value?.world?.log?.lastOrNull()?.let { _messages.tryEmit(it.text) }
     }
 

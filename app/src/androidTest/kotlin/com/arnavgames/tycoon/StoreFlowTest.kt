@@ -45,6 +45,13 @@ class StoreFlowTest {
     @After
     fun close() { scenario?.close() }
 
+    /** The midgame scenario is ready once the Empire list can scroll to Restaurants (it may be below the fold on short screens). */
+    private fun waitForMidgame(timeout: Long = 60_000) {
+        rule.waitUntil(timeout) {
+            runCatching { rule.onAllNodes(hasScrollAction()).onFirst().performScrollToNode(hasText("Restaurants", substring = true)); true }.getOrDefault(false)
+        }
+    }
+
     private fun waitForText(text: String, timeout: Long = 15_000) = try {
         rule.waitUntil(timeout) { rule.onAllNodesWithText(text, substring = true).fetchSemanticsNodes().isNotEmpty() }
     } catch (e: Throwable) {
@@ -53,7 +60,7 @@ class StoreFlowTest {
 
     @Test
     fun demoPurchaseIsLabelledAndSetsBoosted() {
-        waitForText("Restaurants", timeout = 60_000)
+        waitForMidgame()
         rule.onNodeWithContentDescription("Dynasty", substring = true).performClick()
         waitForText("Your Dynasty")
         rule.onAllNodes(hasScrollAction()).onFirst().performScrollToNode(hasText("Store (demo)"))

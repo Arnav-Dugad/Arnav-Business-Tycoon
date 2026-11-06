@@ -614,9 +614,9 @@ class HeavySpenderBot : Bot {
                 s = engine.tryApply(s, Command.BuyWithBullion(id))
             }
             demo("starter_pack")
-            repeat(3) { demo("permanent_10") }
+            repeat(3) { demo("permanent_5") }
             repeat(3) { bullion("slot_1") }
-            repeat(2) { bullion("offline_4h") }
+            repeat(2) { bullion("offline_2h") }
             if (!engine.economy.store.vipActive(s)) demo("vip_30")
             if (!engine.economy.store.seasonPassActive(s, engine.dynasty.season(s.simTimeMs))) demo("season_pass")
             if (s.world.modifiers.none { it.source == com.arnavgames.tycoon.core.store.StoreEngine.BOOST && it.untilSim > s.simTimeMs }) bullion("boost_24h")

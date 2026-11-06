@@ -61,7 +61,8 @@ sealed interface Command {
     /** Leaves a proxy maximum: the game bids for you up to this amount, even while you are away. */
     data class SetMaxBid(val max: Money) : Command
     // World, rivals and finance (docs/GDD.md §9–11)
-    data class ResolveCard(val cardId: Long, val option: Int) : Command
+    /** [edge] (−0.15..0.15) comes from the Negotiation mini-game: it shifts the odds of the option's first (best) outcome. */
+    data class ResolveCard(val cardId: Long, val option: Int, val edge: Double = 0.0) : Command
     data class TakeLoan(val amount: Money, val days: Int) : Command
     data class RepayLoan(val loanId: Long) : Command
     data class DrawCredit(val amount: Money) : Command
@@ -91,6 +92,8 @@ sealed interface Command {
     data class ReceiveGift(val favor: Long) : Command
     /** The player won this week's friends' Sealed Lot: pay the winning bid and take the piece. */
     data class WinSealedLot(val itemId: String, val price: Money) : Command
+    /** Market Timing mini-game (GDD §13): a practice run on a replayed price tape; score 0–100 pays 1–10 Favor once a day. */
+    data class FinishMarketTiming(val score: Int) : Command
 }
 
 sealed interface GameError {

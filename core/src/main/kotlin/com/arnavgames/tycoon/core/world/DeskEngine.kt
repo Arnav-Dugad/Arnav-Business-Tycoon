@@ -240,7 +240,8 @@ class DeskEngine(private val content: ContentPack, private val economy: Economy,
             .replace("{business}", biz).replace("{rival}", rival)
     }
 
-    fun resolve(s0: GameState, cardId: Long, optionIndex: Int, events: MutableList<GameEvent>): Result {
+    fun resolve(s0: GameState, cardId: Long, optionIndex: Int, events: MutableList<GameEvent>, edge: Double = 0.0): Result {
+        if (edge !in -0.15..0.15) return Result.Err(GameError.Invalid("Negotiation edge out of range"))
         val card = s0.world.cards.firstOrNull { it.id == cardId } ?: return Result.Err(GameError.NotFound("card"))
         val def = w.cardById[card.card] ?: return Result.Err(GameError.NotFound("card definition"))
         val option = def.options.getOrNull(optionIndex) ?: return Result.Err(GameError.Invalid("No such option"))
@@ -253,7 +254,17 @@ class DeskEngine(private val content: ContentPack, private val economy: Economy,
         }
         val r = GameRandom.stream(s0.worldSeed, "card_resolve", card.id)
         var x = r.nextDouble()
-        val outcome = option.outcomes.firstOrNull { x -= it.p; x < 0 } ?: option.outcomes.last()
+        // A negotiation moves probability toward (or away from) the first outcome; the rest scale to fit.
+        val ps = option.outcomes.map { it.p }.toMutableList()
+        if (edge != 0.0 && ps.size > 1) {
+            val first = (ps[0] + edge).coerceIn(0.0, 1.0)
+            val restOld = 1.0 - ps[0]
+            val restNew = 1.0 - first
+            for (i in 1 until ps.size) ps[i] = if (restOld <= 0) restNew / (ps.size - 1) else ps[i] * restNew / restOld
+            ps[0] = first
+        }
+        val idx = ps.indices.firstOrNull { x -= ps[it]; x < 0 } ?: ps.lastIndex
+        val outcome = option.outcomes[idx]
         var s = s0.copy(world = s0.world.copy(cards = s0.world.cards - card))
         val h = hourly(s0)
         var good: Boolean? = null

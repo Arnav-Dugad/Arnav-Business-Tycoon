@@ -49,6 +49,9 @@ Licenses accepted by the validator: `CC0-1.0`, `PDM-1.0`, `PD`, `CC-BY-2.0`, `CC
 ## 3b. Museum works (built in Phase 8)
 - `tools/art/fetch_aic.py` queries the Art Institute of Chicago API for highlighted works with `is_public_domain = true` (CC0), downloads 600-px IIIF images into the cache, writes 480-px WebP to `app/src/main/assets/img/art/` and `credits.json` (title, artist, date, credit line, source URL, CC0). Contact sheets are reviewed before use. 99 works (80 paintings, 19 sculptures), 2.1 MB.
 
+## 3c. Sound effects (Phase 15)
+- 7 effects synthesized from sine, square and filtered-noise tones by `tools/audio/gen_sfx.py` (deterministic WAV, 22.05 kHz mono, 65 KB). No third-party audio. Music is not included yet.
+
 ## 4. Non-photo art (made for this game)
 - **Icons**: ~140 original glyphs (24-unit grid, 1.75 stroke, round caps and joins), hand-authored as path data in `designsystem/.../icons/AbtIcons.kt` and built into Compose `ImageVector`s at runtime. No emoji and no third-party icon packs anywhere in the game.
 - **Company and coin logos**: generated procedurally in code (geometric monograms from a seeded shape grammar) and checked against the brand blocklist, so they cannot resemble real marks.
