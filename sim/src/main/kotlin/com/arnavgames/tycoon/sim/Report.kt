@@ -100,8 +100,27 @@ object Report {
         }
         sb.appendLine()
         sb.appendLine("Dead session minute = an active-session minute in which the bot found nothing worth buying. Stall = time without 1% net-worth growth.").appendLine()
+        // Income share by source over each day window (docs/ECONOMY.md income-share bands).
+        sb.appendLine("## Income share from markets (median over seeds, income earned during that day)").appendLine()
+        sb.appendLine("| Bot | Day 1 | Day 3 | Day 7 | Target day 1 / 3 / 7 |")
+        sb.appendLine("|---|---|---|---|---|")
+        for ((bot, rs) in byBot.toSortedMap()) {
+            fun share(day: Int): String {
+                val vals = rs.mapNotNull { r ->
+                    val a = r.samples.lastOrNull { it.realMinutes <= (day - 1) * 1440L }
+                    val b = r.samples.lastOrNull { it.realMinutes <= day * 1440L } ?: return@mapNotNull null
+                    val biz = b.businessIncome - (a?.businessIncome ?: 0.0)
+                    val mkt = b.marketIncome - (a?.marketIncome ?: 0.0)
+                    if (biz + mkt <= 0) null else mkt / (biz + mkt)
+                }.sorted()
+                return percentile(vals, 0.5)?.let { String.format(Locale.US, "%.1f%%", it * 100) } ?: "—"
+            }
+            sb.appendLine("| $bot | ${share(1)} | ${share(3)} | ${share(7)} | 0–8% / 5–20% / 15–30% |")
+        }
+        sb.appendLine()
+        sb.appendLine("Market income counts dividends, coupons, staking and realised gains (losses reduce it). Real estate and luxury do not exist yet, so the business share is expected to be higher than the bands until Phases 7–8.").appendLine()
         sb.appendLine("![Net worth over time](networth.svg)").appendLine()
-        sb.appendLine("Bots not yet simulated: `risky_trader` (needs markets, Phase 6) and `heavy_spender` (needs the store, Phase 14).")
+        sb.appendLine("Bots not yet simulated: `heavy_spender` (needs the store, Phase 14).")
         File(dir, "summary.md").writeText(sb.toString())
 
         // CSV

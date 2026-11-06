@@ -22,6 +22,8 @@ internal class Missions(private val content: ContentPack, private val economy: E
         is GoalDef.HqLevel -> s.hq.level >= goal.level
         is GoalDef.Conglomerates -> s.conglomerates.size >= goal.count
         is GoalDef.BusinessesOwned -> s.businesses.size >= goal.count
+        is GoalDef.MarketTrades -> s.market.trades >= goal.count
+        is GoalDef.BoardSeats -> economy.market.boardSeats(s).size >= goal.count
     }
 
     /** Progress toward a goal in [0, 1] for UI bars. */
@@ -33,6 +35,8 @@ internal class Missions(private val content: ContentPack, private val economy: E
         is GoalDef.HqLevel -> (s.hq.level.toDouble() / goal.level).coerceIn(0.0, 1.0)
         is GoalDef.Conglomerates -> (s.conglomerates.size.toDouble() / goal.count).coerceIn(0.0, 1.0)
         is GoalDef.BusinessesOwned -> (s.businesses.size.toDouble() / goal.count).coerceIn(0.0, 1.0)
+        is GoalDef.MarketTrades -> (s.market.trades.toDouble() / goal.count).coerceIn(0.0, 1.0)
+        is GoalDef.BoardSeats -> (economy.market.boardSeats(s).size.toDouble() / goal.count).coerceIn(0.0, 1.0)
         else -> if (isMet(s, goal)) 1.0 else 0.0
     }
 

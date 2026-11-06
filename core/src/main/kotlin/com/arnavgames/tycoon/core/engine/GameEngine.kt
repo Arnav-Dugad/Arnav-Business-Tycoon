@@ -30,6 +30,8 @@ import com.arnavgames.tycoon.core.time.OfflineCalculator
 class GameEngine(val content: ContentPack) {
     val economy = Economy(content)
     private val missions = Missions(content, economy)
+    val market = com.arnavgames.tycoon.core.market.MarketEngine(content.markets)
+    val trading = com.arnavgames.tycoon.core.market.Trading(market)
 
     fun newGame(worldSeed: Long, contentHash: String, clock: GameClock): GameState {
         val base = GameState(
@@ -42,7 +44,8 @@ class GameEngine(val content: ContentPack) {
         val ledger = if (start.isPositive) {
             (Ledger.post(base.ledger, 0, TxnCategory.Reward, "starting capital", listOf(Posting(Accounts.CASH, start), Posting(Accounts.WORLD, -start))) as Ledger.Result.Ok).state
         } else base.ledger
-        return base.copy(ledger = ledger)
+        // The market opens with the world, so every screen has quotes from the first second.
+        return market.tick(base.copy(ledger = ledger), 0, mutableListOf())
     }
 
     // =====================================================================================
@@ -133,6 +136,7 @@ class GameEngine(val content: ContentPack) {
         }
         // Minute tick: reputation drift, managers act, missions and peak net worth update.
         if (now % MINUTE == 0L) {
+            s = market.tick(s, now / MINUTE, events)
             s = minuteTick(s)
             s = missions.evaluate(s, events)
             val nw = economy.netWorth(s)
@@ -250,6 +254,10 @@ class GameEngine(val content: ContentPack) {
             is Command.MechanicAction -> mechanicAction(state, cmd.businessId, cmd.action, cmd.value)
             is Command.FormConglomerate -> formConglomerate(state, cmd.conglomerateId, events)
             is Command.FormHolding -> formHolding(state, cmd.name, events)
+            is Command.BuyInstrument -> trade(trading.buy(state, cmd.instrumentId, cmd.amount, events))
+            is Command.SellInstrument -> trade(trading.sell(state, cmd.instrumentId, cmd.permille, events))
+            is Command.OpenShort -> trade(trading.openShort(state, cmd.stockId, cmd.amount, events))
+            is Command.CoverShort -> trade(trading.cover(state, cmd.stockId, forced = false, events = events))
         }
         return when (result) {
             is Either.Err -> CommandResult.Rejected(result.error)
@@ -261,6 +269,11 @@ class GameEngine(val content: ContentPack) {
     internal sealed interface Either {
         data class Ok(val state: GameState) : Either
         data class Err(val error: GameError) : Either
+    }
+
+    private fun trade(r: com.arnavgames.tycoon.core.market.Trading.Result): Either = when (r) {
+        is com.arnavgames.tycoon.core.market.Trading.Result.Ok -> Either.Ok(r.state)
+        is com.arnavgames.tycoon.core.market.Trading.Result.Err -> Either.Err(r.error)
     }
 
     private fun spend(s: GameState, amount: Money, category: TxnCategory, memo: String, kind: String): Either {
@@ -285,7 +298,8 @@ class GameEngine(val content: ContentPack) {
         if (id in s.businesses) return Either.Err(GameError.AlreadyDone)
         if (!isUnlocked(s, id)) return Either.Err(GameError.Locked("Unlocks in chapter ${def.chapter}"))
         if (economy.usedSlots(s) >= economy.slots(s)) return Either.Err(GameError.NoFreeSlot)
-        val paid = if (def.unlockCost.isPositive) spend(s, def.unlockCost, TxnCategory.Purchase, "open ${def.name}", "business_open") else Either.Ok(s)
+        val cost = economy.openCost(s, def)
+        val paid = if (cost.isPositive) spend(s, cost, TxnCategory.Purchase, "open ${def.name}", "business_open") else Either.Ok(s)
         if (paid is Either.Err) return paid
         val ps = (paid as Either.Ok).state
         val mech: MechanicState = when (val m = def.mechanic) {

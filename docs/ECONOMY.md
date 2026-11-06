@@ -117,9 +117,19 @@ P_i(τ)       = V_i(τ) · exp(X_i(τ))
 
 (Drift is accelerated relative to real markets on purpose. It matches the game's compressed time.)
 
-- **Slippage**: `price_impact = k · (order_value / market_cap)^0.6`. Market caps scale with the game stage so slippage stays meaningful late.
-- **Fees**: 0.1% per trade. Capital-gains tax applies on realized gains.
-- **Shorting**: initial margin 150%, maintenance 125%, borrow fee 0.2% per day. Forced cover at maintenance.
+- **Slippage**: `price_impact = k · (order_value / depth)^0.6` with k = 0.5, capped at 50 %. Depth = the company's base market cap × the chapter's **depth scale** (1, 1, 1, 10, 10³, 10⁵, 10⁷, 10⁹ for chapters 1–8), so investing stays meaningful in the late game. Funds, bonds and commodities have much deeper markets than single stocks. The order ticket warns when slippage exceeds 2 %.
+- **Orders never move the quoted price.** Quotes are a pure function of world seed and minute index, so the market is identical however time is split (live, offline, simulator) and identical whatever the player trades.
+- **Shares outstanding** grow with the same depth scale (companies issue shares as the economy grows), so stakes are diluted when a chapter deepens the market; a news story announces it. A player may own at most **49 %** of a listed company.
+- **Board seats**: a 5 % stake gives +5 % income to the businesses mapped to the company's sector. A 20 % stake (a "division stake") makes opening a business in that sector 25 % cheaper. (Blocking rival takeovers arrives with rivals in Phase 9.)
+- **Fees**: 0.1% per trade. Capital-gains tax of 10 % on realized gains (the full tax system arrives in Phase 9).
+- **Shorting** (stocks only, Chapter 5+): initial margin 150%, maintenance 125%, borrow fee 0.2% per day charged every 6 h. Forced cover at maintenance. A cover never takes more than the collateral (the broker absorbs any gap), and a short so large that slippage alone would breach maintenance is refused.
+- **Noise and news**: 70 % of a stock's variance is in the fundamental random walk, 30 % in mean-reverting noise (reversion 2 per day). Company stories put half their jump into fundamentals and half into noise, so part of the move fades. Sector stories add drift for 6 hours.
+- **Earnings** every 3 game days: each company gets a surprise ~ N(0, 3.5 %). Predictive stories ("Rumor" 55 %, "Report" 72 %, "Confirmed" 90 % reliable) add their magnitude when right and subtract half of it when wrong.
+- **Payouts** every 6 h: dividends, fund dividends (weighted members minus fee), bond coupons (central-bank rate + spread), crypto staking.
+- **Macro cycle**: Expansion → Boom → Slowdown → Recession phases of 1.5–4 days with drift −1.0 % … +0.5 % a day (× beta) and a central-bank rate of 0.4–1.1 % a day.
+- **Unlocks**: stocks, funds and bonds in Chapter 2; crypto and commodities in Chapter 3; short selling in Chapter 5.
+- **Commodity links**: each commodity scales the revenue or upkeep of linked businesses by (price / anchor)^elasticity (elasticity 0.05–0.30), kept within ×0.75–×1.35. Example: crude oil raises Energy revenue and Airline and Logistics upkeep.
+- **Charts** keep 48 points at 30 minutes (1 day) and 28 points at 6 hours (1 week), stored as exact integer log-prices (0.01 % resolution), so saves stay under 64 KB.
 
 ### 5.2 Other instruments
 | Instrument | Expected/day | Volatility/day | Notes |

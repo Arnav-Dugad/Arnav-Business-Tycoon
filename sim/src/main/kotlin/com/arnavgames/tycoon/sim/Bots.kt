@@ -36,7 +36,7 @@ interface Bot {
     val schedule: PlaySchedule
 
     /** Called every decision step during a session. Returns the new state. */
-    fun act(engine: GameEngine, state: GameState, rng: Pcg32, sessionStart: Boolean): GameState
+    fun act(engine: GameEngine, state: GameState, rng: Pcg32, sessionStart: Boolean, sessionEnd: Boolean = false): GameState
 }
 
 /** Applies a command if accepted; otherwise returns the state unchanged. */
@@ -233,6 +233,49 @@ internal class Planner(private val engine: GameEngine) {
         return st
     }
 
+    // ----- Markets -----
+
+    private val market get() = engine.market.math
+
+    /** Story missions that need a trade or a board seat. */
+    fun marketMissions(s: GameState): GameState {
+        var st = s
+        val ch = engine.content.chapters.firstOrNull { it.number == st.progress.chapter } ?: return st
+        for (mi in ch.missions) {
+            if (mi.id in st.progress.completedMissions) continue
+            when (val g = mi.goal) {
+                is com.arnavgames.tycoon.core.content.GoalDef.MarketTrades -> if (st.market.trades < g.count && market.isUnlocked(st, "funds")) {
+                    val amt = (st.cash * Multiplier.of("0.02")).max(Money.ofDollars(100))
+                    if (amt <= st.cash) st = engine.tryApply(st, Command.BuyInstrument(FUND, amt))
+                }
+                is com.arnavgames.tycoon.core.content.GoalDef.BoardSeats -> if (market.boardSeats(st).size < g.count) {
+                    val best = engine.content.markets.stocks.map { it.id to seatCost(st, it.id) }.minByOrNull { it.second }
+                    if (best != null && best.second <= st.cash * Multiplier.of("0.6")) st = engine.tryApply(st, Command.BuyInstrument(best.first, best.second))
+                }
+                else -> Unit
+            }
+        }
+        return st
+    }
+
+    /** What it costs to own 5.5 % of a company, including fee and slippage headroom. */
+    fun seatCost(s: GameState, stockId: String): Money {
+        val price = market.priceMicros(s, stockId) ?: return Money.ofCents(Long.MAX_VALUE)
+        val target = market.outstanding(s, stockId).fraction(55, 1000).valueAt(price)
+        val slip = market.slippage(s, stockId, target.toDollarsDouble())
+        return target * Multiplier.ofDouble((1 + slip) * 1.02)
+    }
+
+    /** Parks spare cash in the total-market fund when a session ends. Positions that hold board seats are never touched. */
+    fun parkCash(s: GameState, incomePerSec: Money, share: String = "0.9"): GameState {
+        if (!market.isUnlocked(s, "funds")) return s
+        if (s.cash < (incomePerSec * 300).max(Money.ofDollars(1_000))) return s
+        return engine.tryApply(s, Command.BuyInstrument(FUND, s.cash * Multiplier.of(share)))
+    }
+
+    /** Sells the parked fund at the start of a session so the money can go back into businesses. */
+    fun unpark(s: GameState): GameState = if (FUND in s.market.holdings) engine.tryApply(s, Command.SellInstrument(FUND, 1000)) else s
+
     fun claimAll(s: GameState): GameState = s.progress.claimableMissions.sorted().fold(s) { acc, id -> engine.tryApply(acc, Command.ClaimMission(id)) }
 
     fun hqIfUseful(s: GameState, slotsFull: Boolean, incomePerSec: Money, horizonSec: Long): GameState {
@@ -251,12 +294,13 @@ internal class Planner(private val engine: GameEngine) {
 class ActiveBot(override val name: String = "active", private val reserveFraction: Double = 0.0, private val promos: Boolean = true) : Bot {
     override val schedule = PlaySchedule(sessionStarts = listOf(8 * 60, 13 * 60, 20 * 60), sessionMinutes = 15, firstSessionMinutes = 25, tapsPerSecond = 3.0, tapMinutesPerSession = 5, day0ExtraSessions = listOf(90, 210))
 
-    override fun act(engine: GameEngine, state: GameState, rng: Pcg32, sessionStart: Boolean): GameState {
+    override fun act(engine: GameEngine, state: GameState, rng: Pcg32, sessionStart: Boolean, sessionEnd: Boolean): GameState {
         val p = Planner(engine)
         var s = p.claimAll(state)
         if (s.businesses.isEmpty()) s = engine.tryApply(s, Command.OpenBusiness("retail"))
         s = engine.tryApply(s, Command.CollectAll)
-        if (sessionStart) s = engine.tryApply(s, Command.ActivateFrenzy)
+        if (sessionStart) s = p.unpark(engine.tryApply(s, Command.ActivateFrenzy))
+        s = p.marketMissions(s)
         s = p.tuneMechanics(s, skill = 1.0)
         val income = engine.economy.totalNetRate(s).perSecond()
         // Managers keep money flowing offline; an engaged player hires one as soon as it pays back within ~20 minutes.
@@ -284,6 +328,7 @@ class ActiveBot(override val name: String = "active", private val reserveFractio
                 if (cost <= s.cash * Multiplier.of("0.2")) s = engine.tryApply(s, Command.StartRetailPromo("retail"))
             }
         }
+        if (sessionEnd) s = p.parkCash(s, engine.economy.totalNetRate(s).perSecond(), if (reserveFraction > 0) "0.6" else "0.9")
         return s
     }
 }
@@ -293,11 +338,13 @@ class IdleBot : Bot {
     override val name = "idle"
     override val schedule = PlaySchedule(sessionStarts = listOf(9 * 60, 21 * 60), sessionMinutes = 3, firstSessionMinutes = 10, tapsPerSecond = 2.0, tapMinutesPerSession = 2, day0ExtraSessions = listOf(60, 240))
 
-    override fun act(engine: GameEngine, state: GameState, rng: Pcg32, sessionStart: Boolean): GameState {
+    override fun act(engine: GameEngine, state: GameState, rng: Pcg32, sessionStart: Boolean, sessionEnd: Boolean): GameState {
         val p = Planner(engine)
         var s = p.claimAll(state)
         if (s.businesses.isEmpty()) s = engine.tryApply(s, Command.OpenBusiness("retail"))
         s = engine.tryApply(s, Command.CollectAll)
+        if (sessionStart) s = p.unpark(s)
+        s = p.marketMissions(s)
         p.firstManager(s)?.let { (cmd, _) -> s = engine.tryApply(s, cmd) }
         // Idle players use the free auto-plan button rather than fine-tuning.
         for (b in s.businesses.values) if (engine.content.business(b.id).mechanic is MechanicDef.Logistics && b.managerId == null) s = engine.tryApply(s, Command.AutoPlanRoutes(b.id))
@@ -314,6 +361,7 @@ class IdleBot : Bot {
             s = ns
         }
         p.managerOption(s)?.let { (cmd, cost) -> if (cost <= income * 600) s = engine.tryApply(s, cmd) }
+        if (sessionEnd) s = p.parkCash(s, income)
         return s
     }
 }
@@ -323,9 +371,10 @@ class PoorChoicesBot : Bot {
     override val name = "poor_choices"
     override val schedule = PlaySchedule(sessionStarts = listOf(10 * 60, 18 * 60), sessionMinutes = 8, firstSessionMinutes = 12, tapsPerSecond = 1.5, tapMinutesPerSession = 2, day0ExtraSessions = listOf(90, 300))
 
-    override fun act(engine: GameEngine, state: GameState, rng: Pcg32, sessionStart: Boolean): GameState {
+    override fun act(engine: GameEngine, state: GameState, rng: Pcg32, sessionStart: Boolean, sessionEnd: Boolean): GameState {
         var s = state
         if (rng.chance(0.5)) s = Planner(engine).claimAll(s)
+        if (rng.chance(0.3)) s = Planner(engine).marketMissions(s)
         if (s.businesses.isEmpty()) s = engine.tryApply(s, Command.OpenBusiness("retail"))
         if (rng.chance(0.6)) s = engine.tryApply(s, Command.CollectAll)
         repeat(rng.nextInt(1, 6)) {
@@ -345,8 +394,46 @@ class PoorChoicesBot : Bot {
     }
 }
 
+/**
+ * Plays the businesses like the active bot, then speculates: at the end of each session it puts 30 % of its cash into
+ * stocks with fresh good news (and Report/Confirmed earnings hints) and into hyped coins; it sells everything
+ * speculative at the start of the next session. Measures whether markets dominate and how bad the downside is.
+ */
+class RiskyTraderBot : Bot {
+    private val base = ActiveBot(name = "risky_trader")
+    override val name = "risky_trader"
+    override val schedule = base.schedule
+
+    override fun act(engine: GameEngine, state: GameState, rng: Pcg32, sessionStart: Boolean, sessionEnd: Boolean): GameState {
+        val p = Planner(engine)
+        val math = engine.market.math
+        var s = state
+        if (sessionStart) {
+            val seats = math.boardSeats(s).toSet()
+            for (id in s.market.holdings.keys.sorted()) if (id !in seats && id != FUND) s = engine.tryApply(s, Command.SellInstrument(id, 1000))
+            for (id in s.market.shorts.keys.sorted()) s = engine.tryApply(s, Command.CoverShort(id))
+        }
+        s = base.act(engine, s, rng, sessionStart, sessionEnd = false)
+        if (!sessionEnd || !math.isUnlocked(s, "stocks")) return s
+        val budget = s.cash * Multiplier.of("0.3")
+        if (budget < Money.ofDollars(1_000)) return s
+        val since = s.market.tick - 12 * 60
+        val good = s.market.news.filter { it.tick >= since && it.kind == "company" && it.effect > 0 }.map { it.target } +
+            s.market.hints.filter { it.magnitude > 0 && it.reliability != "Rumor" }.map { it.stockId }
+        val bad = s.market.news.filter { it.tick >= since && it.kind == "company" && it.effect < -0.05 }.map { it.target }
+        val coins = if (math.isUnlocked(s, "crypto")) s.market.quotes.filter { (id, q) -> id.startsWith("c_") && q.hypeUntil > s.market.tick }.keys.sorted() else emptyList()
+        val picks = (good.distinct().take(3) + coins.take(1)).ifEmpty { listOf("fund_growth") }
+        val each = budget / picks.size.toLong()
+        for (id in picks) s = engine.tryApply(s, Command.BuyInstrument(id, each))
+        if (math.isUnlocked(s, "shorts")) bad.distinct().take(1).forEach { id -> s = engine.tryApply(s, Command.OpenShort(id, budget / 4L)) }
+        return s
+    }
+}
+
 /** Plays like the active bot but keeps a 30% cash buffer and avoids promotions. */
 fun cautiousBot() = ActiveBot(name = "cautious", reserveFraction = 0.30, promos = false)
+
+internal const val FUND = "fund_total"
 
 /** Timers are serviced by the simulation loop; exposed for reports. */
 internal fun GameState.expansionRunning() = timers.any { it.kind == TimerKind.Expansion }

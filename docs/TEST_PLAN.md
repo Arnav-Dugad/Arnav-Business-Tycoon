@@ -53,7 +53,7 @@
 ## 4. Compose UI flows (instrumented, emulator)
 1. Fresh install → onboarding → first Hustle taps → buy first level → hire first manager.
 2. Expansion: start a timer → advance a fake clock → complete → collect.
-3. Markets: buy stock → sell → portfolio and ledger update; short-selling lock before Chapter 5.
+3. Markets: buy stock → sell → portfolio and ledger update; short-selling lock before Chapter 5. (`MarketsFlowTest`, from the debug `markets` scenario.)
 4. Estates: open map → district → buy property → set rent → renovate.
 5. Collection: auction flow (bid, win or lose) → item appears in showroom.
 6. Decision card resolve; tax filing (auto and self).

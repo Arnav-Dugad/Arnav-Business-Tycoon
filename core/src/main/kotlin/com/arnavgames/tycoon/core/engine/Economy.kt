@@ -20,6 +20,61 @@ import kotlin.math.sqrt
 
 /** Pure economy formulas (docs/ECONOMY.md §3). Everything here is deterministic and side-effect free. */
 class Economy(val content: ContentPack) {
+    val market = com.arnavgames.tycoon.core.market.MarketMath(content.markets)
+
+    // Commodity links (docs/GDD.md §6.4): business id -> (commodity id, elasticity), by mode.
+    private val commodityRevenue: Map<String, List<Pair<String, Double>>> = commodityLinks("revenue")
+    private val commodityUpkeep: Map<String, List<Pair<String, Double>>> = commodityLinks("upkeep")
+    private val sectorsOfBusiness: Map<String, Set<String>> = content.markets.sectors
+        .flatMap { s -> s.businesses.map { it to s.id } }.groupBy({ it.first }, { it.second }).mapValues { it.value.toSet() }
+    private val boardSeatMultiplier = Multiplier.of(content.markets.config.boardSeatIncomeMultiplier)
+
+    private fun commodityLinks(mode: String) = content.markets.commodities
+        .flatMap { c -> c.effects.filter { it.mode == mode }.map { it.business to (c.id to it.elasticity) } }
+        .groupBy({ it.first }, { it.second })
+
+    /** Price factor from linked commodities: product of (price / anchor)^elasticity, kept within [0.75, 1.35]. */
+    private fun commodityFactor(state: GameState, links: List<Pair<String, Double>>?): Double {
+        if (links == null) return 1.0
+        var log = 0.0
+        for ((id, el) in links) log += el * (state.market.quotes[id]?.x ?: 0.0)
+        return kotlin.math.exp(log).coerceIn(0.75, 1.35)
+    }
+
+    fun commodityRevenueFactor(state: GameState, businessId: String) = commodityFactor(state, commodityRevenue[businessId])
+    fun commodityUpkeepFactor(state: GameState, businessId: String) = commodityFactor(state, commodityUpkeep[businessId])
+
+    /** A board seat in a company of this business's sector gives a small income perk. */
+    fun hasBoardSeatPerk(state: GameState, businessId: String): Boolean {
+        if (state.market.holdings.isEmpty()) return false
+        val sectors = sectorsOfBusiness[businessId] ?: return false
+        return seatSectorsCached(state).any { it in sectors }
+    }
+
+    /**
+     * businessRate is the hottest function in the engine, so seat sectors are memoised on the holdings map instance
+     * and chapter (both only change on trades and chapter completions). The memo is one immutable snapshot, so a race
+     * between threads can only cause a recomputation, never a wrong answer.
+     */
+    private class SeatMemo(val holdings: Map<String, *>, val chapter: Int, val sectors: Set<String>)
+
+    @Volatile private var seatMemo: SeatMemo? = null
+
+    private fun seatSectorsCached(state: GameState): Set<String> {
+        val m = seatMemo
+        if (m != null && m.holdings === state.market.holdings && m.chapter == state.progress.chapter) return m.sectors
+        val sectors = market.seatSectors(state)
+        seatMemo = SeatMemo(state.market.holdings, state.progress.chapter, sectors)
+        return sectors
+    }
+
+    /** Opening price, discounted when the player holds a division stake in a company of the business's sector. */
+    fun openCost(state: GameState, def: BusinessDef): Money {
+        val sectors = sectorsOfBusiness[def.id] ?: return def.unlockCost
+        return if (state.market.holdings.isNotEmpty() && market.divisionSectors(state).any { it in sectors }) {
+            def.unlockCost * Multiplier.of(content.markets.config.divisionDiscount)
+        } else def.unlockCost
+    }
 
     // ---------------- Level costs ----------------
 
@@ -115,7 +170,7 @@ class Economy(val content: ContentPack) {
             else -> 1.0
         }
         val cong = conglomerateOf(state, b.id)?.upkeepMultiplier?.toDouble() ?: 1.0
-        return own * MechanicRegistry.crossUpkeep(state.businesses.keys, b.id) * cong
+        return own * MechanicRegistry.crossUpkeep(state.businesses.keys, b.id) * cong * commodityUpkeepFactor(state, b.id)
     }
 
     // ---------------- Merger tree ----------------
@@ -164,10 +219,11 @@ class Economy(val content: ContentPack) {
         var factor = Multiplier.of(b.level.toLong()) *
             tierMultiplier(def, b.level) *
             expansionMultiplier(def, b) *
-            Multiplier.ofDouble(round6(e * crossIncome(state, id, now))) *
+            Multiplier.ofDouble(round6(e * crossIncome(state, id, now) * commodityRevenueFactor(state, id))) *
             globalMultiplier(state, now)
         conglomerateOf(state, id)?.let { factor *= it.incomeMultiplier }
         if (state.holdingName != null) factor *= content.balance.holdingIncomeMultiplier
+        if (hasBoardSeatPerk(state, id)) factor *= boardSeatMultiplier
         val gross = Rate.perSecond(def.baseRevenue, factor)
         val upkeepShare = (def.upkeep * Multiplier.ofDouble(round6(upkeepFactor(state, def, b, now)))).min(Multiplier.of("0.95"))
         val upkeep = gross * upkeepShare
@@ -207,7 +263,7 @@ class Economy(val content: ContentPack) {
 
     /** Net worth = cash + 60% of capital invested in businesses (+ other asset classes in later phases). */
     fun netWorth(state: GameState): Money {
-        var nw = state.cash
+        var nw = state.cash + market.portfolioValue(state) + market.shortEquity(state)
         for (b in state.businesses.values) {
             val def = content.businessById[b.id] ?: continue
             nw += investedIn(def, b.level) * Multiplier.of("0.6") + b.stored

@@ -60,6 +60,8 @@ import kotlinx.serialization.Serializable
 @Serializable data class BusinessRoute(val id: String)
 @Serializable object SettingsRoute
 @Serializable object CreditsRoute
+@Serializable data class InstrumentRoute(val id: String)
+@Serializable object NewsRoute
 
 @Composable
 fun AppRoot(vm: GameViewModel, forcedTheme: ThemeMode?, onDarkChanged: (Boolean) -> Unit) {
@@ -86,7 +88,8 @@ fun AppRoot(vm: GameViewModel, forcedTheme: ThemeMode?, onDarkChanged: (Boolean)
                     is GameEvent.ManagerHired, is GameEvent.BusinessOpened, is GameEvent.MissionClaimed,
                     is GameEvent.TierReached, is GameEvent.ExpansionCompleted, is GameEvent.HqUpgraded,
                     is GameEvent.ChapterCompleted, is GameEvent.FrenzyStarted,
-                    is GameEvent.ConglomerateFormed, is GameEvent.HoldingFormed -> HapticFeedbackType.Confirm
+                    is GameEvent.ConglomerateFormed, is GameEvent.HoldingFormed, is GameEvent.TradeExecuted -> HapticFeedbackType.Confirm
+                    is GameEvent.ShortCovered -> if (e.forced) HapticFeedbackType.Reject else HapticFeedbackType.Confirm
                     else -> null
                 }
                 if (type != null) haptics.performHapticFeedback(type)
@@ -148,7 +151,15 @@ private fun ReadyContent(vm: GameViewModel) {
                         onOpenBusiness = { nav.navigate(BusinessRoute(it)) },
                         onOpenSettings = { nav.navigate(SettingsRoute) },
                         onOpenCredits = { nav.navigate(CreditsRoute) },
+                        onOpenInstrument = { nav.navigate(InstrumentRoute(it)) },
+                        onOpenNews = { nav.navigate(NewsRoute) },
                     )
+                }
+                composable<InstrumentRoute> { entry ->
+                    com.arnavgames.tycoon.ui.markets.InstrumentScreen(vm = vm, instrumentId = entry.toRoute<InstrumentRoute>().id, onBack = { nav.popBackStack() })
+                }
+                composable<NewsRoute> {
+                    com.arnavgames.tycoon.ui.markets.NewsScreen(vm = vm, onBack = { nav.popBackStack() }, onOpenInstrument = { nav.navigate(InstrumentRoute(it)) })
                 }
                 composable<BusinessRoute> { entry ->
                     BusinessDetailScreen(vm = vm, businessId = entry.toRoute<BusinessRoute>().id, onBack = { nav.popBackStack() })

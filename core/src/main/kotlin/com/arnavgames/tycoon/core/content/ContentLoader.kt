@@ -18,7 +18,7 @@ object ContentLoader {
     }
 
     /** Files that make up the pack, relative to the content root. Order matters for the hash. */
-    val FILES = listOf("data/businesses.json", "data/chapters.json", "data/conglomerates.json", "balance/balance.json")
+    val FILES = listOf("data/businesses.json", "data/chapters.json", "data/conglomerates.json", "data/markets.json", "balance/balance.json")
 
     data class Loaded(val pack: ContentPack, val hash: String, val issues: List<ContentIssue>)
 
@@ -27,8 +27,9 @@ object ContentLoader {
         val businesses = json.decodeFromString<List<BusinessDef>>(texts.getValue("data/businesses.json"))
         val chapters = json.decodeFromString<List<ChapterDef>>(texts.getValue("data/chapters.json"))
         val conglomerates = json.decodeFromString<List<ConglomerateDef>>(texts.getValue("data/conglomerates.json"))
+        val markets = json.decodeFromString<MarketContent>(texts.getValue("data/markets.json"))
         val balance = json.decodeFromString<BalanceConfig>(texts.getValue("balance/balance.json"))
-        val pack = ContentPack(businesses, balance, chapters, conglomerates)
+        val pack = ContentPack(businesses, balance, chapters, conglomerates, markets)
         val digest = MessageDigest.getInstance("SHA-256")
         FILES.forEach { digest.update(it.toByteArray()); digest.update(texts.getValue(it).replace("\r\n", "\n").toByteArray()) }
         val hash = digest.digest().joinToString("") { "%02x".format(it) }.take(16)
@@ -57,6 +58,7 @@ object ContentValidator {
         "Chef", "Fleet", "Route", "Tag", "Megaphone", "Wheat", "Hanger", "Pickaxe", "Flame", "Bed", "Bank", "Crane", "Film",
         "Chip", "Antenna", "Plane", "Flask", "Ball", "Rocket", "Buildings",
     )
+    private val TICKER = Regex("^[A-Z][A-Z0-9]{2,4}$")
 
     /** Fragments of real brand/company names that must never appear in content names. Extended as content grows. */
     val BRAND_BLOCKLIST = listOf(
@@ -163,6 +165,69 @@ object ContentValidator {
                 if (ref != null) check(ref in ids, "missions.${mi.id}", "unknown business '$ref'")
             }
         }
+        validateMarkets(pack, ids, ::check)
         return out
+    }
+
+    private fun validateMarkets(pack: ContentPack, businessIds: List<String>, check: (Boolean, String, String) -> Unit) {
+        val m = pack.markets
+        if (m.stocks.isEmpty()) return // markets are optional for tests that build tiny packs
+        val ids = m.instruments.map { it.id }
+        check(ids.size == ids.toSet().size, "markets", "duplicate instrument ids")
+        val tickers = m.instruments.map { it.ticker }
+        check(tickers.size == tickers.toSet().size, "markets", "duplicate tickers")
+        m.instruments.forEach { ins ->
+            val p = "markets.${ins.id}"
+            check(ID.matches(ins.id), p, "bad id format")
+            check(TICKER.matches(ins.ticker), p, "ticker must be 3-5 capitals or digits, starting with a letter")
+            findBlockedBrand(ins.name)?.let { check(false, p, "contains blocked real brand '$it'") }
+        }
+        val sectorIds = m.sectors.map { it.id }.toSet()
+        m.sectors.forEach { s ->
+            check(s.icon in ICONS, "markets.sectors.${s.id}", "unknown icon '${s.icon}'")
+            s.businesses.forEach { b -> check(b in businessIds, "markets.sectors.${s.id}", "unknown business '$b'") }
+        }
+        val bands = setOf("defensive", "core", "growth", "speculative")
+        m.stocks.forEach { s ->
+            val p = "markets.${s.id}"
+            check(s.sector in sectorIds, p, "unknown sector '${s.sector}'")
+            check(s.band in bands, p, "unknown band '${s.band}'")
+            check(s.volPerDay in 0.005..0.12 && s.driftPerDay in -0.01..0.05, p, "drift/vol out of range")
+            check(s.dividendPerDay in 0.0..0.005 && s.beta in 0.0..3.0 && s.baseCapBillions > 0.0, p, "dividend/beta/cap out of range")
+            check(s.startPrice.toDouble() > 0.0, p, "startPrice must be positive")
+        }
+        check(m.stocks.size >= 100, "markets", "at least 100 stocks")
+        m.funds.forEach { f -> check(f.style in setOf("total", "growth", "defensive", "global"), "markets.${f.id}", "unknown fund style") }
+        m.bonds.forEach { b -> check(b.duration in 0.5..30.0 && b.defaultChance in 0.0..0.5, "markets.${b.id}", "bond duration/default out of range") }
+        m.coins.forEach { c ->
+            val p = "markets.${c.id}"
+            check(c.tier in 1..4, p, "tier 1..4")
+            check(c.crashDepthMin <= c.crashDepthMax && c.crashDepthMax < 1.0, p, "crash depth")
+            check(c.risk.isNotBlank() && c.startPrice.toDouble() > 0.0, p, "risk text and price required")
+        }
+        m.commodities.forEach { c ->
+            val p = "markets.${c.id}"
+            check(c.anchorPrice.toDouble() > 0.0 && c.reversionPerDay > 0.0, p, "anchor/reversion")
+            c.effects.forEach { e ->
+                check(e.business in businessIds, p, "unknown business '${e.business}'")
+                check(e.mode in setOf("revenue", "upkeep") && e.elasticity in 0.0..0.5, p, "effect mode/elasticity")
+            }
+        }
+        val kinds = setOf("company", "sector", "hint", "commodity", "crypto")
+        m.news.forEach { n ->
+            check(n.kind in kinds, "markets.news.${n.id}", "unknown news kind")
+            check(n.min <= n.max && n.weight > 0, "markets.news.${n.id}", "min <= max, weight > 0")
+            n.only.forEach { id -> check(id in m.commodityById, "markets.news.${n.id}", "unknown commodity '$id'") }
+        }
+        val macroIds = m.macro.map { it.id }.toSet()
+        m.macro.forEach { ph ->
+            check(ph.minDays in 0.5..ph.maxDays, "markets.macro.${ph.id}", "phase length")
+            ph.next.keys.forEach { n -> check(n in macroIds, "markets.macro.${ph.id}", "unknown next phase '$n'") }
+        }
+        val c = m.config
+        check(c.depthScaleByChapter.size >= pack.chapters.size.coerceAtLeast(1), "markets.config", "depth scale needed for every chapter")
+        check(c.shortMaintenanceMargin > 1.0 && c.shortInitialMargin > c.shortMaintenanceMargin, "markets.config", "short margins")
+        check(c.maxStake in 0.05..0.5 && c.boardSeatStake < c.divisionStake && c.divisionStake <= c.maxStake, "markets.config", "stake thresholds")
+        check(c.capitalGainsTax in 0.0..0.5 && c.feeRate in 0.0..0.02, "markets.config", "tax/fee range")
     }
 }

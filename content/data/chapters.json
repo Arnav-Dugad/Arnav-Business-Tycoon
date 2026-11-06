@@ -91,7 +91,7 @@
   {
     "number": 2,
     "title": "Main Street",
-    "summary": "The city notices you. Bigger deals, bigger risks, and the first rival.",
+    "summary": "The city notices you. Bigger deals, a seat on the stock exchange, and bigger risks.",
     "unlocksBusinesses": [
       "farmland",
       "factory",
@@ -119,6 +119,17 @@
         },
         "rewardCash": "20000.00",
         "rewardBullion": 10
+      },
+      {
+        "id": "c2_first_trade",
+        "title": "Market debut",
+        "description": "Buy shares in any company on the Markets tab.",
+        "goal": {
+          "type": "marketTrades",
+          "count": 1
+        },
+        "rewardCash": "25000.00",
+        "rewardFavor": 10
       },
       {
         "id": "c2_restaurant_25",
@@ -195,7 +206,7 @@
           "businessId": "factory",
           "level": 25
         },
-        "rewardCash": "60000000.00",
+        "rewardCash": "1500000.00",
         "rewardBullion": 10
       },
       {
@@ -210,6 +221,17 @@
         "rewardFavor": 20
       },
       {
+        "id": "c3_board_seat",
+        "title": "A seat at the table",
+        "description": "Own 5% of any listed company to earn a board seat.",
+        "goal": {
+          "type": "boardSeats",
+          "count": 1
+        },
+        "rewardCash": "1500000.00",
+        "rewardBullion": 15
+      },
+      {
         "id": "c3_networth",
         "title": "Billionaire",
         "description": "Reach a net worth of $1 billion.",
@@ -217,7 +239,7 @@
           "type": "netWorth",
           "amount": "1000000000.00"
         },
-        "rewardCash": "500000000.00",
+        "rewardCash": "1500000.00",
         "rewardBullion": 25
       }
     ]
@@ -272,7 +294,7 @@
           "type": "conglomerates",
           "count": 1
         },
-        "rewardCash": "200000000000.00",
+        "rewardCash": "1725000000.00",
         "rewardBullion": 30
       },
       {
@@ -283,7 +305,7 @@
           "type": "netWorth",
           "amount": "1000000000000.00"
         },
-        "rewardCash": "200000000000.00",
+        "rewardCash": "1725000000.00",
         "rewardBullion": 30
       }
     ]
@@ -337,7 +359,7 @@
           "type": "businessesOwned",
           "count": 10
         },
-        "rewardCash": "1000000000000000.00",
+        "rewardCash": "2623509375000.00",
         "rewardBullion": 35
       }
     ]
@@ -380,7 +402,7 @@
           "type": "conglomerates",
           "count": 2
         },
-        "rewardCash": "300000000000000000.00",
+        "rewardCash": "3990029820703125.00",
         "rewardBullion": 40
       }
     ]
@@ -423,7 +445,7 @@
           "type": "conglomerates",
           "count": 3
         },
-        "rewardCash": "20000000000000000000.00",
+        "rewardCash": "527681443787988281.25",
         "rewardBullion": 50
       }
     ]

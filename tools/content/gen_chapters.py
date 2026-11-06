@@ -40,6 +40,7 @@ LATER = [
          m("c3_factory", "The first line", "Open a Factory.", own("factory"), "15000000.00"),
          m("c3_factory_25", "Balanced line", "Grow Factories to level 25.", lvl("factory", 25), "60000000.00", bullion=10),
          m("c3_fashion", "Opening night", "Open a Fashion House.", own("fashion"), "250000000.00", favor=20),
+         m("c3_board_seat", "A seat at the table", "Own 5% of any listed company to earn a board seat.", {"type": "boardSeats", "count": 1}, "100000000.00", bullion=15),
          m("c3_networth", "Billionaire", "Reach a net worth of $1 billion.", nw("1000000000.00"), "500000000.00", bullion=25),
      ]},
     {"number": 4, "title": "Old Money", "summary": "Ore, power and hospitality. The establishment starts returning your calls.",
@@ -91,7 +92,14 @@ def scale_rewards(repo: Path, chapters: list) -> None:
     for c in chapters:
         if c["number"] <= 2:
             continue
+        # Other goals pay the opening price of the chapter's cheapest business. Fixed rewards used to dwarf the
+        # economy (e.g. $1 quadrillion for owning ten businesses when the chapter's business cost $2.6 trillion) and
+        # one reward funded the next chapter outright: the Phase 5 "cascade" (see TUNING_LOG p6c).
+        owned = [unlocks[mi["goal"]["businessId"]] for mi in c["missions"] if mi["goal"]["type"] == "ownBusiness"]
+        base = min(owned) if owned else None
         for mi in c["missions"]:
+            if base is not None and mi["goal"]["type"] != "ownBusiness" and mi["id"] != "c8_networth":
+                mi["rewardCash"] = f"{base.quantize(Decimal('0.01'))}"
             if mi["id"] == "c8_networth":
                 # The final goal tracks the ladder: five times the Space unlock cost.
                 mi["goal"]["amount"] = f"{(unlocks['space'] * 5).quantize(Decimal('0.01'))}"

@@ -29,13 +29,21 @@ import com.arnavgames.tycoon.ui.GameViewModel
 import com.arnavgames.tycoon.ui.dynasty.DynastyScreen
 import com.arnavgames.tycoon.ui.empire.EmpireScreen
 import com.arnavgames.tycoon.ui.locked.ComingSoonScreen
+import com.arnavgames.tycoon.ui.markets.MarketsScreen
 
 /**
  * The five main tabs (GDD §16). Content scrolls edge to edge beneath a floating glass tab bar and a
  * frosted status-bar strip. Markets, Estates and Collection unlock in later chapters.
  */
 @Composable
-fun MainShell(vm: GameViewModel, onOpenBusiness: (String) -> Unit, onOpenSettings: () -> Unit, onOpenCredits: () -> Unit) {
+fun MainShell(
+    vm: GameViewModel,
+    onOpenBusiness: (String) -> Unit,
+    onOpenSettings: () -> Unit,
+    onOpenCredits: () -> Unit,
+    onOpenInstrument: (String) -> Unit = {},
+    onOpenNews: () -> Unit = {},
+) {
     var tab by rememberSaveable { mutableStateOf("empire") }
     val empire by vm.empire.collectAsStateWithLifecycle()
     val claimable = (empire?.claimableCount ?: 0) > 0
@@ -50,10 +58,7 @@ fun MainShell(vm: GameViewModel, onOpenBusiness: (String) -> Unit, onOpenSetting
         AnimatedContent(tab, transitionSpec = { fadeIn(tween(220)) togetherWith fadeOut(tween(160)) }, label = "tab") { t ->
             when (t) {
                 "empire" -> EmpireScreen(vm, onOpenBusiness = onOpenBusiness)
-                "markets" -> ComingSoonScreen(
-                    icon = AbtIcons.Markets, title = "Markets", chapter = 2,
-                    lines = listOf("120 fictional companies across 12 sectors", "News that moves prices, dividends and earnings seasons", "Funds, bonds, commodities and, later, crypto"),
-                )
+                "markets" -> MarketsScreen(vm, onOpenInstrument = onOpenInstrument, onOpenNews = onOpenNews)
                 "estates" -> ComingSoonScreen(
                     icon = AbtIcons.Estates, title = "Estates", chapter = 3,
                     lines = listOf("Six cities and forty districts on a living market cycle", "Rent, renovate and flip properties", "Build your own skyscraper"),

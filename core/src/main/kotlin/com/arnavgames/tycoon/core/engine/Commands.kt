@@ -33,6 +33,12 @@ sealed interface Command {
     // Merger tree
     data class FormConglomerate(val conglomerateId: String) : Command
     data class FormHolding(val name: String) : Command
+    // Markets (docs/GDD.md §6)
+    data class BuyInstrument(val instrumentId: String, val amount: Money) : Command
+    /** Sells [permille]/1000 of a position (1000 = everything). */
+    data class SellInstrument(val instrumentId: String, val permille: Int) : Command
+    data class OpenShort(val stockId: String, val amount: Money) : Command
+    data class CoverShort(val stockId: String) : Command
 }
 
 sealed interface GameError {
@@ -64,6 +70,11 @@ sealed interface GameEvent {
     data class PromoEnded(val businessId: String) : GameEvent
     data class ConglomerateFormed(val conglomerateId: String) : GameEvent
     data class HoldingFormed(val name: String) : GameEvent
+    data class TradeExecuted(val instrumentId: String, val buy: Boolean, val value: Money) : GameEvent
+    data class ShortCovered(val stockId: String, val profit: Money, val forced: Boolean) : GameEvent
+    data class MarketNews(val newsId: Long) : GameEvent
+    data class EarningsSeason(val beats: Int, val misses: Int) : GameEvent
+    data class MarketPayout(val amount: Money) : GameEvent
 }
 
 sealed interface CommandResult {

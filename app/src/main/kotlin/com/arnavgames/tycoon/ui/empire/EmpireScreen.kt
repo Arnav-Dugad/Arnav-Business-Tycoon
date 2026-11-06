@@ -506,6 +506,8 @@ private fun MomentOverlay(vm: GameViewModel, modifier: Modifier) {
                 is GameEvent.ManagerHired -> Moment("Manager hired", "This business now runs itself, even offline.")
                 is GameEvent.ConglomerateFormed -> Moment("Conglomerate formed", "Its members now share a lasting synergy.")
                 is GameEvent.HoldingFormed -> Moment("${ev.name} is born", "Every business you own now earns more.")
+                is GameEvent.ShortCovered -> if (ev.forced) Moment("Short position closed", "The price rose too far, so your broker covered it with your collateral.") else null
+                is GameEvent.EarningsSeason -> Moment("Earnings season", "${ev.beats} companies beat estimates, ${ev.misses} missed. Check the Markets tab.")
                 else -> null
             }
             if (m != null) {

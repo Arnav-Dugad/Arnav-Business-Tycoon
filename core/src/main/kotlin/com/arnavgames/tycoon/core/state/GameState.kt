@@ -31,6 +31,7 @@ data class GameState(
     /** Merger tree: formed conglomerate ids, and the holding company name once formed. */
     val conglomerates: Set<String> = emptySet(),
     val holdingName: String? = null,
+    val market: MarketState = MarketState(),
 ) {
     val cash: Money get() = ledger.cash
 }

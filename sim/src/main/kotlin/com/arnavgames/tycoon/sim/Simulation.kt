@@ -29,7 +29,15 @@ object Milestones {
 }
 
 /** One sample of the economy over real time (for curves and dead-zone analysis). */
-data class Sample(val realMinutes: Long, val netWorthLog10: Double, val incomePerSecLog10: Double, val cashOverNextCost: Double)
+data class Sample(
+    val realMinutes: Long,
+    val netWorthLog10: Double,
+    val incomePerSecLog10: Double,
+    val cashOverNextCost: Double,
+    /** Cumulative income in dollars from businesses (and tapping) and from markets (dividends, coupons, staking, realised gains). */
+    val businessIncome: Double = 0.0,
+    val marketIncome: Double = 0.0,
+)
 
 data class RunResult(
     val bot: String,
@@ -127,7 +135,7 @@ class Simulation(private val engine: GameEngine, private val contentHash: String
                     }
                 }
                 val before = s
-                s = bot.act(engine, s, rng, sessionStart = i == 0)
+                s = bot.act(engine, s, rng, sessionStart = i == 0, sessionEnd = i == steps - 1)
                 if (s.stats.levelsBought != before.stats.levelsBought || s.businesses.size != before.businesses.size ||
                     s.hq.level != before.hq.level || s.timers.size > before.timers.size
                 ) minuteHadOption = true
@@ -148,19 +156,37 @@ class Simulation(private val engine: GameEngine, private val contentHash: String
                 lastGrowthMinute = minuteNow
                 lastNw = nw
             }
-            samples += Sample(minuteNow, nw.log10Dollars(), eco.totalNetRate(s).perSecond().log10Dollars(), cashOverNextCost(s))
+            val (bizIncome, mktIncome) = incomeBySource(s)
+            samples += Sample(minuteNow, nw.log10Dollars(), eco.totalNetRate(s).perSecond().log10Dollars(), cashOverNextCost(s), bizIncome, mktIncome)
             if (trace) {
                 val ch = engine.content.chapters.firstOrNull { it.number == s.progress.chapter }
                 val open = ch?.missions?.filter { it.id !in s.progress.completedMissions }?.joinToString { it.id } ?: ""
                 println("[trace ${bot.name}#$seed] t=${"%.1f".format(minuteNow / 1440.0)}d ch=${s.progress.chapter} hq=${s.hq.level} slots=${eco.usedSlots(s)}/${eco.slots(s)} " +
                     "levels=${s.businesses.values.sortedBy { it.id }.joinToString(",") { it.id.take(4) + it.level + if (it.mothballed) "z" else "" }} " +
                     "blockers=${engine.content.conglomerates.filter { it.id !in s.conglomerates }.joinToString("; ") { it.id + ":" + (eco.conglomerateBlocker(s, it) ?: "ok") }} " +
-                    "biz=${s.businesses.size} cash=${com.arnavgames.tycoon.core.money.MoneyFormat.short(s.cash)} nw=${com.arnavgames.tycoon.core.money.MoneyFormat.short(nw)} congl=${s.conglomerates.size} open=[$open]")
+                    "biz=${s.businesses.size} cash=${com.arnavgames.tycoon.core.money.MoneyFormat.short(s.cash)} nw=${com.arnavgames.tycoon.core.money.MoneyFormat.short(nw)} congl=${s.conglomerates.size} open=[$open] " +
+                    "portfolio=${com.arnavgames.tycoon.core.money.MoneyFormat.short(engine.market.math.portfolioValue(s))} " +
+                    "income=" + s.ledger.balances.filterKeys { it.startsWith("revenue:") }.entries.sortedBy { it.value }.take(4)
+                        .joinToString(",") { it.key.removePrefix("revenue:") + ":" + com.arnavgames.tycoon.core.money.MoneyFormat.short(-it.value) })
             }
             record(minuteNow.toDouble())
         }
         longestStall = maxOf(longestStall, (realMs / 60_000 - lastGrowthMinute) / 60.0)
         return RunResult(bot.name, seed, milestones, samples, deadMinutes, sessionMinutes, longestStall, eco.netWorth(s))
+    }
+
+    private val marketSources = setOf("dividends", "coupons", "staking", "capital_gains")
+
+    /** Lifetime income split from the ledger's revenue accounts (revenue balances are credits, so negated). */
+    private fun incomeBySource(s: GameState): Pair<Double, Double> {
+        var biz = 0.0
+        var mkt = 0.0
+        for ((acc, bal) in s.ledger.balances) {
+            if (!acc.startsWith("revenue:")) continue
+            val v = -bal.toDollarsDouble()
+            if (acc.removePrefix("revenue:") in marketSources) mkt += v else biz += v
+        }
+        return biz to mkt
     }
 
     /** Inflation proxy: cash on hand ÷ cost of the cheapest level-up available. */

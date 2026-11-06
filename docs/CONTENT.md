@@ -21,7 +21,7 @@ Every category lives in `content/data/<category>.json` and is checked by the val
 | Bonds | 6 | 8 | — | |
 | Crypto coins | 15 | 20 | 0 (procedural logos) | 4 risk tiers |
 | Commodities | 10 | 12 | 12 (stock photos of raw materials) | |
-| News templates | 250 | 320 | — | Sector, company, macro, rumor; with reliability levels |
+| News templates | 250 | 320 | — | Sector, company, macro, rumor; with reliability levels. **Phase 6 ships 64** (each fills in one of 120 companies, 12 sectors, 20 coins or 12 commodities, plus macro, earnings, default and dilution stories generated in code); the rest arrive with world events in Phase 9 |
 
 ## 3. Real estate
 | Category | Min | Target | Photos | Notes |

@@ -30,6 +30,7 @@ import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -102,6 +103,18 @@ class GameViewModel @Inject constructor(
     val empire: StateFlow<EmpireUi?> = combine(session.state.filterNotNull(), buyQty, settings) { s, qty, st -> toEmpireUi(s, qty, st) }
         .flowOn(Dispatchers.Default)
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), null)
+
+    private val marketsMapper by lazy { com.arnavgames.tycoon.ui.markets.MarketsMapper(session.engine) }
+
+    val markets: StateFlow<com.arnavgames.tycoon.ui.markets.MarketsUi?> = session.state.filterNotNull()
+        .map { s -> marketsMapper.toUi(s) }
+        .flowOn(Dispatchers.Default)
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), null)
+
+    fun instrument(s: GameState, id: String) = marketsMapper.detail(s, id)
+
+    fun previewOrder(s: GameState, id: String, side: com.arnavgames.tycoon.ui.markets.OrderSide, fraction: Double, fmt: (Money) -> String) =
+        marketsMapper.preview(s, id, side, fraction, fmt)
 
     fun dispatch(cmd: Command, onOk: () -> Unit = {}) {
         viewModelScope.launch {

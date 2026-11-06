@@ -147,7 +147,7 @@ Because members overlap (Telecom appears in two, Tech in two, Farmland in two), 
 - **120 fictional companies** in 12 sectors (10 each), each with an original name, ticker, procedurally generated vector logo, beta, volatility band, dividend policy and a personality trait (for example "serial acquirer" or "meme darling").
 - Prices are driven by fundamentals (sector cycle, macro cycle, quarterly earnings), mean-reverting noise and **news-driven jumps**. Model in ECONOMY §5.
 - **Earnings season** every 3 real days, with guidance, beats and misses.
-- **Board seats**: owning ≥5% of a company gives a sector perk (for example a supply discount for your matching business); ≥20% lets you buy one of its divisions as a business at a discount; holding stock in a rival's flagship blocks that rival's takeover attempts on you.
+- **Board seats**: owning ≥5% of a company gives a sector perk (+5% income for your businesses in that sector); ≥20% (a division stake) makes opening a business in that sector 25% cheaper; holding stock in a rival's flagship blocks that rival's takeover attempts on you (arrives with rivals, Phase 9). You can own at most 49% of a listed company, and stakes are diluted when a new chapter deepens the market.
 - **Market depth**: large orders cause slippage scaled by order size against market cap, so you can't dump trillions into one stock.
 - **Short selling** (Chapter 5+): margin requirement, borrow fee and automatic forced cover at the margin limit. Losses are capped by liquidation, so a short can never create an unbounded debt.
 
