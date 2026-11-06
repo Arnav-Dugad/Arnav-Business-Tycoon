@@ -81,6 +81,23 @@ import com.arnavgames.tycoon.ui.MissionUi
 import com.arnavgames.tycoon.ui.OpenableUi
 import com.arnavgames.tycoon.ui.common.countdownText
 import kotlinx.coroutines.delay
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
+import androidx.compose.foundation.layout.navigationBars
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.ui.draw.drawWithContent
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.layout.onSizeChanged
+import com.arnavgames.tycoon.designsystem.components.BottomBarReserve
+import com.arnavgames.tycoon.designsystem.components.HairlineDivider
+import com.arnavgames.tycoon.designsystem.components.PillAction
+import com.arnavgames.tycoon.designsystem.components.PillStyle
+import com.arnavgames.tycoon.designsystem.theme.GlassLayer
+import com.arnavgames.tycoon.designsystem.theme.GlassWeight
+import com.arnavgames.tycoon.designsystem.theme.glass
+import com.arnavgames.tycoon.designsystem.theme.glassCard
+import com.arnavgames.tycoon.designsystem.theme.glassSource
 
 @Composable
 fun EmpireScreen(vm: GameViewModel, onOpenBusiness: (String) -> Unit) {
@@ -93,51 +110,57 @@ fun EmpireScreen(vm: GameViewModel, onOpenBusiness: (String) -> Unit) {
 
     OnboardingDriver(e, vm)
 
+    var headerPx by remember { mutableIntStateOf(0) }
+    val density = LocalDensity.current
+    val navInset = WindowInsets.navigationBars.asPaddingValues().calculateBottomPadding()
     Box(Modifier.fillMaxSize()) {
-        Column(Modifier.fillMaxSize()) {
-            EmpireHeader(e, fmt)
-            LazyColumn(
-                contentPadding = PaddingValues(start = Space.gutter, end = Space.gutter, top = Space.sm, bottom = Space.xxxl),
-                verticalArrangement = Arrangement.spacedBy(Space.md),
-                modifier = Modifier.fillMaxSize(),
-            ) {
-                guideText(e)?.let { g -> item(key = "guide") { GuideBanner(g) } }
-                e.mission?.let { m -> item(key = "mission") { NextMoveCard(m, onClaim = { vm.dispatch(Command.ClaimMission(m.id)) }) } }
-                item(key = "hustle") {
-                    HustleCard(e.hustle, fmt, onTap = { vm.dispatch(Command.HustleTap(1)) }, onFrenzy = { vm.dispatch(Command.ActivateFrenzy) })
-                }
-                item(key = "biz-header") {
-                    Column {
-                        SectionHeader("Your businesses") {
-                            Text("${e.hq.slotsUsed}/${e.hq.slots} slots", style = Aurum.type.label, color = Aurum.colors.textTertiary)
-                        }
-                        Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-                            Text("Buy amount", style = Aurum.type.bodySmall, color = Aurum.colors.textSecondary, modifier = Modifier.weight(1f))
-                            SegmentedSelector(BuyQty.entries, qty, { it.label }, vm::setBuyQty)
-                        }
+        // Content scrolls beneath the frosted header and tab bar (it is the glass "content" layer).
+        LazyColumn(
+            contentPadding = PaddingValues(
+                start = Space.gutter, end = Space.gutter,
+                top = with(density) { headerPx.toDp() } + Space.md,
+                bottom = BottomBarReserve + navInset + Space.lg,
+            ),
+            verticalArrangement = Arrangement.spacedBy(Space.md),
+            modifier = Modifier.fillMaxSize().glassSource(GlassLayer.Content),
+        ) {
+            guideText(e)?.let { g -> item(key = "guide") { GuideBanner(g) } }
+            e.mission?.let { m -> item(key = "mission") { NextMoveCard(m, onClaim = { vm.dispatch(Command.ClaimMission(m.id)) }) } }
+            item(key = "hustle") {
+                HustleCard(e.hustle, fmt, onTap = { vm.dispatch(Command.HustleTap(1)) }, onFrenzy = { vm.dispatch(Command.ActivateFrenzy) })
+            }
+            item(key = "biz-header") {
+                Column {
+                    SectionHeader("Your businesses") {
+                        Text("${e.hq.slotsUsed}/${e.hq.slots} slots", style = Aurum.type.label, color = Aurum.colors.textTertiary)
+                    }
+                    Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+                        Text("Buy amount", style = Aurum.type.bodySmall, color = Aurum.colors.textSecondary, modifier = Modifier.weight(1f))
+                        SegmentedSelector(BuyQty.entries, qty, { it.label }, vm::setBuyQty)
                     }
                 }
-                items(e.businesses, key = { it.id }) { b ->
-                    BusinessCard(
-                        b, fmt,
-                        onOpen = { onOpenBusiness(b.id) },
-                        onBuy = { vm.dispatch(Command.BuyLevels(b.id, if (qty == BuyQty.Max) -1 else qty.count)) },
-                        onCollect = { vm.dispatch(Command.Collect(b.id)) },
-                    )
-                }
-                val available = e.openable.filter { it.lockedReason == null }
-                val locked = e.openable.filter { it.lockedReason != null }.take(2)
-                if (available.isNotEmpty()) {
-                    item(key = "open-header") { SectionHeader("Open a new business") }
-                    items(available, key = { "open-" + it.id }) { o -> OpenableCard(o, fmt, onOpen = { vm.dispatch(Command.OpenBusiness(o.id)) }) }
-                }
-                if (locked.isNotEmpty()) {
-                    items(locked, key = { "locked-" + it.id }) { o -> OpenableCard(o, fmt, onOpen = {}) }
-                }
-                item(key = "hq-header") { SectionHeader("Headquarters") }
-                item(key = "hq") { HqCard(e.hq, fmt, onUpgrade = { vm.dispatch(Command.UpgradeHq) }) }
             }
+            items(e.businesses, key = { it.id }) { b ->
+                BusinessCard(
+                    b, fmt,
+                    onOpen = { onOpenBusiness(b.id) },
+                    onBuy = { vm.dispatch(Command.BuyLevels(b.id, if (qty == BuyQty.Max) -1 else qty.count)) },
+                    onCollect = { vm.dispatch(Command.Collect(b.id)) },
+                )
+            }
+            val available = e.openable.filter { it.lockedReason == null }
+            val locked = e.openable.filter { it.lockedReason != null }.take(2)
+            if (available.isNotEmpty()) {
+                item(key = "open-header") { SectionHeader("Open a new business") }
+                items(available, key = { "open-" + it.id }) { o -> OpenableCard(o, fmt, onOpen = { vm.dispatch(Command.OpenBusiness(o.id)) }) }
+            }
+            if (locked.isNotEmpty()) {
+                items(locked, key = { "locked-" + it.id }) { o -> OpenableCard(o, fmt, onOpen = {}) }
+            }
+            item(key = "hq-header") { SectionHeader("Headquarters") }
+            item(key = "hq") { HqCard(e.hq, fmt, onUpgrade = { vm.dispatch(Command.UpgradeHq) }) }
         }
+        EmpireHeader(e, fmt, Modifier.align(Alignment.TopCenter).onSizeChanged { headerPx = it.height })
         MomentOverlay(vm, Modifier.align(Alignment.TopCenter))
     }
 }
@@ -145,15 +168,15 @@ fun EmpireScreen(vm: GameViewModel, onOpenBusiness: (String) -> Unit) {
 // ------------------------------------------------------------------ header
 
 @Composable
-private fun EmpireHeader(e: EmpireUi, fmt: (Money) -> String) {
+private fun EmpireHeader(e: EmpireUi, fmt: (Money) -> String, modifier: Modifier = Modifier) {
     val c = Aurum.colors
+    Column(modifier.fillMaxWidth().glass(RectangleShape, GlassWeight.Regular, edge = false)) {
     Column(
         Modifier
             .fillMaxWidth()
-            .background(Brush.verticalGradient(listOf(c.surfaceRaised, c.background)))
             .statusBarsPadding()
             .padding(horizontal = Space.gutter)
-            .padding(top = Space.md, bottom = Space.sm),
+            .padding(top = Space.md, bottom = Space.md),
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             Text("NET WORTH", style = Aurum.type.overline, color = c.textTertiary, modifier = Modifier.weight(1f))
@@ -176,13 +199,15 @@ private fun EmpireHeader(e: EmpireUi, fmt: (Money) -> String) {
             }
         }
     }
+    HairlineDivider()
+    }
 }
 
 @Composable
 private fun CurrencyPill(icon: androidx.compose.ui.graphics.vector.ImageVector, value: String, label: String, tint: androidx.compose.ui.graphics.Color) {
     val c = Aurum.colors
     Row(
-        Modifier.clip(AurumShapes.pill).background(c.surfaceHigh).padding(horizontal = Space.sm + 2.dp, vertical = 3.dp)
+        Modifier.glass(AurumShapes.pill, GlassWeight.Thin, blur = false).padding(horizontal = Space.sm + 2.dp, vertical = 4.dp)
             .semantics(mergeDescendants = true) { contentDescription = "$value $label" },
         verticalAlignment = Alignment.CenterVertically,
     ) {
@@ -221,7 +246,7 @@ private fun OnboardingDriver(e: EmpireUi, vm: GameViewModel) {
 private fun GuideBanner(text: String) {
     val c = Aurum.colors
     Row(
-        Modifier.fillMaxWidth().clip(AurumShapes.medium).background(c.surfaceHigh).border(1.dp, c.gold.copy(alpha = 0.5f), AurumShapes.medium).padding(Space.md),
+        Modifier.fillMaxWidth().glassCard(AurumShapes.medium, highlighted = true).padding(Space.md),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         AbtIcon(AbtIcons.Sparkle, null, tint = c.goldText, size = 20.dp)
@@ -279,8 +304,12 @@ private fun HustleCard(h: HustleUi, fmt: (Money) -> String, onTap: () -> Unit, o
                         .size(96.dp)
                         .scale(if (pressed && !reduced) 0.93f else 1f)
                         .clip(CircleShape)
-                        .background(Brush.radialGradient(listOf(c.goldBright, c.gold, c.goldDeep)))
-                        .border(2.dp, c.goldDeep, CircleShape)
+                        .background(Brush.radialGradient(listOf(c.goldFillTop, c.goldFillBottom, c.goldDeep)))
+                        .border(1.5.dp, Brush.verticalGradient(listOf(c.goldBright, c.goldDeep)), CircleShape)
+                        .drawWithContent {
+                            drawContent()
+                            drawRect(Brush.verticalGradient(listOf(Color.White.copy(alpha = 0.35f), Color.Transparent), endY = size.height * 0.5f))
+                        }
                         .clickable(interactionSource = source, indication = null, role = Role.Button, onClickLabel = "Serve a customer") {
                             onTap()
                             popId++
@@ -407,26 +436,8 @@ fun BusinessCard(b: BusinessUi, fmt: (Money) -> String, onOpen: () -> Unit, onBu
 }
 
 @Composable
-private fun SmallAction(text: String, enabled: Boolean, onClick: () -> Unit, gold: Boolean) {
-    val c = Aurum.colors
-    val bg = when {
-        !enabled -> Brush.horizontalGradient(listOf(c.surfaceHigh, c.surfaceHigh))
-        gold -> Brush.horizontalGradient(listOf(c.goldBright, c.gold))
-        else -> Brush.horizontalGradient(listOf(c.surfaceHigh, c.surfaceRaised))
-    }
-    Box(
-        Modifier
-            .clip(AurumShapes.pill)
-            .background(bg)
-            .then(if (!gold && enabled) Modifier.border(1.dp, c.gain.copy(alpha = 0.6f), AurumShapes.pill) else Modifier)
-            .clickable(enabled = enabled, role = Role.Button, onClick = onClick)
-            .heightIn(min = 44.dp)
-            .padding(horizontal = Space.md, vertical = Space.sm),
-        contentAlignment = Alignment.Center,
-    ) {
-        Text(text, style = Aurum.type.label, color = if (!enabled) c.textTertiary else if (gold) c.textOnGold else c.gain, maxLines = 1)
-    }
-}
+private fun SmallAction(text: String, enabled: Boolean, onClick: () -> Unit, gold: Boolean) =
+    PillAction(text, enabled, onClick, style = if (gold) PillStyle.Gold else PillStyle.Positive)
 
 @Composable
 private fun OpenableCard(o: OpenableUi, fmt: (Money) -> String, onOpen: () -> Unit) {
@@ -504,17 +515,17 @@ private fun MomentOverlay(vm: GameViewModel, modifier: Modifier) {
     ) {
         val m = moment ?: return@AnimatedVisibility
         Row(
-            Modifier.widthIn(max = 480.dp).fillMaxWidth().clip(AurumShapes.medium)
-                .background(Brush.horizontalGradient(listOf(c.goldBright, c.gold)))
+            Modifier.widthIn(max = 480.dp).fillMaxWidth()
+                .glass(AurumShapes.large, GlassWeight.Thick)
                 .padding(Space.md)
                 .semantics(mergeDescendants = true) {},
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            AbtIcon(AbtIcons.Sparkle, null, tint = c.textOnGold, size = 22.dp)
+            IconTile(AbtIcons.Sparkle, size = 40.dp, highlighted = true)
             Spacer(Modifier.width(Space.md))
             Column {
-                Text(m.title, style = Aurum.type.titleSmall, color = c.textOnGold)
-                Text(m.body, style = Aurum.type.bodySmall, color = c.textOnGold)
+                Text(m.title, style = Aurum.type.title, color = c.textPrimary)
+                Text(m.body, style = Aurum.type.bodySmall, color = c.textSecondary)
             }
         }
     }

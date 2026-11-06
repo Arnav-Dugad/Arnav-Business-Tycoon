@@ -89,7 +89,7 @@ Every category lives in `content/data/<category>.json` and is checked by the val
 | Category | Target | Notes |
 |---|---|---|
 | Custom icons | ~140 | Original SVG → Android vector drawables |
-| Fonts | 2 families | Fraunces (display) + Inter (UI, tabular numbers), both SIL OFL; subset |
+| Fonts | 1 family, 5 cuts | Inter Text (400/500/600) + Inter Display (600/700), SIL OFL; Latin subset, 244 KB |
 | Music tracks | 4 | Menu, play ×2, Dynasty theme; CC0/CC-BY; OGG ≈ 1.2 MB each |
 | Sound effects | ~40 | CC0 sources |
 | Illustrated world map | 1 + 6 city maps | Original vector art drawn for this game |

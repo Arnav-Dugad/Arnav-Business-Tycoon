@@ -59,7 +59,11 @@ import com.arnavgames.tycoon.designsystem.theme.Aurum
 import com.arnavgames.tycoon.designsystem.theme.AurumShapes
 import com.arnavgames.tycoon.designsystem.theme.Space
 import com.arnavgames.tycoon.ui.GameViewModel
+import com.arnavgames.tycoon.ui.common.GlassScaffold
 import com.arnavgames.tycoon.ui.common.countdownText
+import com.arnavgames.tycoon.designsystem.components.PillAction
+import com.arnavgames.tycoon.designsystem.theme.GlassWeight
+import com.arnavgames.tycoon.designsystem.theme.glass
 
 @Composable
 fun BusinessDetailScreen(vm: GameViewModel, businessId: String, onBack: () -> Unit) {
@@ -74,12 +78,7 @@ fun BusinessDetailScreen(vm: GameViewModel, businessId: String, onBack: () -> Un
     val rate = eco.businessRate(s, businessId)
     val c = Aurum.colors
 
-    Column(Modifier.fillMaxSize().background(c.background)) {
-        DetailTopBar(def.name, onBack)
-        LazyColumn(
-            contentPadding = PaddingValues(start = Space.gutter, end = Space.gutter, bottom = Space.huge),
-            verticalArrangement = Arrangement.spacedBy(Space.md),
-        ) {
+    GlassScaffold(def.name, onBack) {
             item {
                 AurumCard(Modifier.fillMaxWidth(), highlighted = true) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
@@ -198,7 +197,6 @@ fun BusinessDetailScreen(vm: GameViewModel, businessId: String, onBack: () -> Un
                     leadingIcon = if (b.mothballed) AbtIcons.Play else AbtIcons.Pause,
                 )
             }
-        }
     }
 }
 
@@ -207,23 +205,6 @@ private fun mechanicTitle(def: BusinessDef) = when (def.mechanic) {
     is MechanicDef.Restaurant -> "Reputation & kitchen"
     is MechanicDef.Logistics -> "Fleet & routes"
     MechanicDef.Simple -> "Operations"
-}
-
-@Composable
-private fun DetailTopBar(title: String, onBack: () -> Unit) {
-    val c = Aurum.colors
-    Row(
-        Modifier.fillMaxWidth().background(c.background).statusBarsPadding().padding(horizontal = Space.sm, vertical = Space.xs),
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
-        Box(
-            Modifier.size(Space.touch).clip(AurumShapes.pill).clickable(role = Role.Button, onClickLabel = "Back", onClick = onBack)
-                .semantics { contentDescription = "Back" },
-            contentAlignment = Alignment.Center,
-        ) { AbtIcon(AbtIcons.ChevronLeft, null, tint = c.textPrimary) }
-        Spacer(Modifier.width(Space.xs))
-        Text(title, style = Aurum.type.title, color = c.textPrimary, modifier = Modifier.semantics { heading() })
-    }
 }
 
 @Composable
@@ -248,18 +229,8 @@ private fun StarRow(stars: Double, size: Int = 18) {
 }
 
 @Composable
-private fun SmallButton(text: String, enabled: Boolean, modifier: Modifier = Modifier, onClick: () -> Unit) {
-    val c = Aurum.colors
-    Box(
-        modifier
-            .clip(AurumShapes.pill)
-            .background(if (enabled) Brush.horizontalGradient(listOf(c.goldBright, c.gold)) else Brush.horizontalGradient(listOf(c.surfaceHigh, c.surfaceHigh)))
-            .clickable(enabled = enabled, role = Role.Button, onClick = onClick)
-            .heightIn(min = 44.dp)
-            .padding(horizontal = Space.md, vertical = Space.sm),
-        contentAlignment = Alignment.Center,
-    ) { Text(text, style = Aurum.type.label, color = if (enabled) c.textOnGold else c.textTertiary, maxLines = 1) }
-}
+private fun SmallButton(text: String, enabled: Boolean, modifier: Modifier = Modifier, onClick: () -> Unit) =
+    PillAction(text, enabled, onClick, modifier)
 
 // ------------------------------------------------------------------ mechanic panels
 
@@ -282,7 +253,7 @@ private fun MechanicPanel(vm: GameViewModel, s: GameState, def: BusinessDef, b: 
 @Composable
 private fun ManagerNote(name: String) {
     val c = Aurum.colors
-    Row(Modifier.fillMaxWidth().clip(AurumShapes.small).background(c.surfaceHigh).padding(Space.sm), verticalAlignment = Alignment.CenterVertically) {
+    Row(Modifier.fillMaxWidth().clip(AurumShapes.small).background(c.gold.copy(alpha = if (c.isDark) 0.12f else 0.08f)).padding(Space.sm + Space.xxs), verticalAlignment = Alignment.CenterVertically) {
         AbtIcon(AbtIcons.Manager, null, tint = c.goldText, size = 18.dp)
         Spacer(Modifier.width(Space.sm))
         Text("$name is making these decisions. You can still watch how they play it.", style = Aurum.type.bodySmall, color = c.textSecondary)
@@ -349,9 +320,8 @@ private fun ColumnScope.RestaurantPanel(vm: GameViewModel, def: BusinessDef, m: 
     m.qualityTiers.forEach { t ->
         val sel = t.id == st.qualityTier
         Row(
-            Modifier.fillMaxWidth().padding(vertical = Space.xxs).clip(AurumShapes.small)
-                .background(if (sel) c.surfaceHigh else c.surface)
-                .border(1.dp, if (sel) c.gold else c.outline, AurumShapes.small)
+            Modifier.fillMaxWidth().padding(vertical = Space.xxs)
+                .then(if (sel) Modifier.clip(AurumShapes.small).background(c.gold.copy(alpha = if (c.isDark) 0.16f else 0.10f)).border(1.25.dp, c.gold, AurumShapes.small) else Modifier.glass(AurumShapes.small, GlassWeight.Thin, blur = false))
                 .clickable(enabled = !managed && !sel, role = Role.RadioButton) { vm.dispatch(Command.SetRestaurantQuality(def.id, t.id)) }
                 .heightIn(min = Space.touch).padding(Space.md),
             verticalAlignment = Alignment.CenterVertically,
@@ -422,7 +392,7 @@ private fun ColumnScope.LogisticsPanel(vm: GameViewModel, def: BusinessDef, m: M
 @Composable
 private fun Stepper(value: Int, canMinus: Boolean, canPlus: Boolean, onMinus: () -> Unit, onPlus: () -> Unit, label: String) {
     val c = Aurum.colors
-    Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.clip(AurumShapes.pill).background(c.surfaceHigh)) {
+    Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.glass(AurumShapes.pill, GlassWeight.Thin, blur = false)) {
         Box(
             Modifier.size(Space.touch).clickable(enabled = canMinus, role = Role.Button, onClickLabel = "Remove a vehicle from $label", onClick = onMinus),
             contentAlignment = Alignment.Center,

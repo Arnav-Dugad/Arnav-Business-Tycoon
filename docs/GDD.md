@@ -289,7 +289,13 @@ Headlines are generated from templates naming fictional entities. Some news is *
 
 ## 16. UX, look and feel
 
-- **Design system "Aurum"**: dark (obsidian, champagne gold, ivory text) and light (ivory paper, ink, deep gold) themes inspired by private-banking apps and luxury print. Gains are emerald and losses garnet, *always paired with arrows and signs* for color-blind players.
+- **Design system "Aurum Glass"** (owner request, 2026-11-06): a premium look in the spirit of modern Apple interfaces.
+  - **Continuous ("squircle") corners** everywhere, drawn by an original smoothed-corner shape.
+  - **Frosted glass**: real backdrop blur on Android 12+ for headers, the floating tab bar, dialogs and banners. Cards use a translucent glass material with light-catching edges. Android 9–11 gets a frosted translucent fallback.
+  - **Ambient glow backdrop** (gold, cool and warm light pools) so the glass has colour to refract.
+  - **Large-title navigation** that hands over to a compact frosted bar as you scroll; a segmented control and capsule toggles; glossy gold capsule buttons.
+  - **Type**: Inter in Text and Display optical cuts. Apple's SF Pro cannot be bundled on Android (licence), and Inter is the closest open alternative.
+  - Gains and losses always pair colour with arrows and signs for colour-blind players.
 - **Navigation**: 5 tabs — **Empire** (businesses), **Markets**, **Estates** (map), **Collection** (luxury and showrooms), **Dynasty** (story, rivals, social, store, settings). A persistent header shows a rolling net-worth counter, cash, Bullion and an inbox.
 - **Moments**: rolling counters, purchase flourish, milestone celebration (confetti in gold leaf, subtle), haptic ticks, satisfying chart draws, a "Pass the Crown" cinematic.
 - **Custom icon set** (~140 vector icons on a 24dp grid, 1.75 stroke). No emoji anywhere.

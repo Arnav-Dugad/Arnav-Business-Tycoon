@@ -1,5 +1,8 @@
 package com.arnavgames.tycoon.ui.locked
 
+import com.arnavgames.tycoon.designsystem.components.BottomBarReserve
+import com.arnavgames.tycoon.designsystem.theme.GlassLayer
+import com.arnavgames.tycoon.designsystem.theme.glassSource
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -37,8 +40,8 @@ import com.arnavgames.tycoon.designsystem.theme.Space
 fun ComingSoonScreen(icon: ImageVector, title: String, chapter: Int, lines: List<String>) {
     val c = Aurum.colors
     Column(
-        Modifier.fillMaxSize().background(Brush.verticalGradient(listOf(c.surfaceRaised, c.background)))
-            .statusBarsPadding().verticalScroll(rememberScrollState()).padding(Space.gutter),
+        Modifier.fillMaxSize().glassSource(GlassLayer.Content)
+            .statusBarsPadding().verticalScroll(rememberScrollState()).padding(start = Space.gutter, end = Space.gutter, top = Space.gutter, bottom = BottomBarReserve + Space.xxl),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Spacer(Modifier.height(Space.huge))

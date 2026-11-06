@@ -23,6 +23,7 @@
 | google-services plugin | 4.5.0 | Applied only when `google-services.json` exists |
 | Credential Manager | credentials 1.6.0 + googleid 1.2.1 | Google sign-in |
 | Coil | 3.6.3 | Image loading from assets |
+| Haze | 2.0.1 (Apache-2.0) | Backdrop blur for the glass UI. 2.1.0 was only 4 days old when chosen, so 2.0.1 (2026-09-29) is used |
 | Baseline profile / Macrobenchmark | 1.5.0; profileinstaller 1.4.1 | |
 | Tests | JUnit 6.1.3 (Jupiter), Kotest property 6.2.6, Turbine 1.2.1, Robolectric 4.17, Roborazzi 1.77.0, UI Automator 2.4.1 | |
 | firebase-tools | 15.35.0 (installed: 15.1.0 → upgrade) | Emulator Suite; needs Node ≥ 20 (installed: 24.16) |
@@ -40,8 +41,8 @@
 :sim             JVM application. Bots, batch runner, report generator (Markdown + CSV + PNG charts).
 :data            Android library. Room DB, SaveRepository, SettingsStore (DataStore), CloudSync,
                  AuthRepository, PurchaseProvider impls, UpdateChecker, AssetRepository.
-:designsystem    Android library. Aurum theme, typography, color tokens, icons, components,
-                 charts (Compose Canvas), money counter, haptics/sound facade.
+:designsystem    Android library. Aurum Glass theme: smooth-corner shapes, glass surfaces (Haze),
+                 ambient backdrop, typography, color tokens, icons, components, charts, money counter.
 :app             Android application. Navigation, feature screens (package per feature), DI wiring,
                  GameSession (state holder), onboarding.
 :baselineprofile com.android.test module generating baseline profiles; macrobenchmarks.

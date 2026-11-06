@@ -44,9 +44,10 @@ def main(repo: Path) -> int:
             ok = worst[0] >= minimum
             failures += not ok
             print(f"{theme:10s} {token:14s} min {worst[0]:5.2f} on {worst[1]:13s} need {minimum}  {'OK' if ok else 'FAIL'}")
-        on_gold = ratio(tokens["textOnGold"], tokens["gold"])
-        failures += on_gold < BODY
-        print(f"{theme:10s} textOnGold on gold {on_gold:5.2f}  {'OK' if on_gold >= BODY else 'FAIL'}")
+        for fill in ("gold", "goldFillTop", "goldFillBottom"):
+            on_gold = ratio(tokens["textOnGold"], tokens[fill])
+            failures += on_gold < BODY
+            print(f"{theme:10s} textOnGold on {fill:14s} {on_gold:5.2f}  {'OK' if on_gold >= BODY else 'FAIL'}")
     print("RESULT:", "PASS" if failures == 0 else f"{failures} FAIL")
     return 1 if failures else 0
 

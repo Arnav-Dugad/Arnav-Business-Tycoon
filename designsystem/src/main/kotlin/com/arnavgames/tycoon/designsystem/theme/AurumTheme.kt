@@ -31,11 +31,14 @@ object Space {
     val touch: Dp = 48.dp
 }
 
+/** Continuous-corner shape scale (see [SmoothCornerShape]). Capsules use a true half-height radius. */
 @Immutable
 object AurumShapes {
-    val small = RoundedCornerShape(10.dp)
-    val medium = RoundedCornerShape(16.dp)
-    val large = RoundedCornerShape(24.dp)
+    val tiny = SmoothCornerShape(8.dp)
+    val small = SmoothCornerShape(14.dp)
+    val medium = SmoothCornerShape(22.dp)
+    val large = SmoothCornerShape(30.dp)
+    val sheet = SmoothCornerShape(36.dp)
     val pill = RoundedCornerShape(percent = 50)
 }
 

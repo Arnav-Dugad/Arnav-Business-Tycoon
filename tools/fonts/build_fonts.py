@@ -1,7 +1,6 @@
 """Builds the bundled font files for the Aurum design system.
 
-Input: the variable Google Fonts sources (SIL OFL 1.1, no Reserved Font Name):
-  Inter[opsz,wght].ttf and Fraunces[SOFT,WONK,opsz,wght].ttf
+Input: the variable Google Fonts source (SIL OFL 1.1, no Reserved Font Name): Inter[opsz,wght].ttf
 Output: small static, Latin-only instances in designsystem/src/main/res/font/.
 
 Usage: python -I tools/fonts/build_fonts.py <dir-with-downloaded-ttfs> <repo-root>
@@ -24,19 +23,21 @@ UNICODES = (
 FEATURES = ["kern", "liga", "calt", "tnum", "lnum", "pnum", "case", "ss01", "cv11", "zero"]
 
 INSTANCES = [
-    # (source, output name, axis locations)
+    # (source, output name, axis locations). Inter's optical-size axis gives an SF-like Text cut (opsz 14)
+    # for UI copy and a Display cut (opsz 32) with tighter spacing for large titles and numbers.
     ("Inter.ttf", "inter_regular.ttf", {"wght": 400, "opsz": 14}),
     ("Inter.ttf", "inter_medium.ttf", {"wght": 500, "opsz": 14}),
     ("Inter.ttf", "inter_semibold.ttf", {"wght": 600, "opsz": 14}),
-    ("Inter.ttf", "inter_bold.ttf", {"wght": 700, "opsz": 24}),
-    ("Fraunces.ttf", "fraunces_medium.ttf", {"wght": 500, "opsz": 48, "SOFT": 50, "WONK": 0}),
-    ("Fraunces.ttf", "fraunces_semibold.ttf", {"wght": 600, "opsz": 72, "SOFT": 30, "WONK": 0}),
+    ("Inter.ttf", "inter_display_semibold.ttf", {"wght": 600, "opsz": 32}),
+    ("Inter.ttf", "inter_display_bold.ttf", {"wght": 700, "opsz": 32}),
 ]
 
 
 def build(src_dir: Path, repo: Path) -> None:
     out_dir = repo / "designsystem" / "src" / "main" / "res" / "font"
     out_dir.mkdir(parents=True, exist_ok=True)
+    for old in out_dir.glob("*.ttf"):
+        old.unlink()  # remove instances that are no longer part of the set
     total = 0
     for src, out, axes in INSTANCES:
         font = TTFont(src_dir / src)

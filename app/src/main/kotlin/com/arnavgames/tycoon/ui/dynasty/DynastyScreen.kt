@@ -1,5 +1,8 @@
 package com.arnavgames.tycoon.ui.dynasty
 
+import com.arnavgames.tycoon.designsystem.components.BottomBarReserve
+import com.arnavgames.tycoon.designsystem.theme.GlassLayer
+import com.arnavgames.tycoon.designsystem.theme.glassSource
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -45,8 +48,8 @@ fun DynastyScreen(vm: GameViewModel, onOpenSettings: () -> Unit, onOpenCredits: 
     val c = Aurum.colors
     val content = vm.engine.content
     LazyColumn(
-        Modifier.fillMaxSize().background(Brush.verticalGradient(listOf(c.surfaceRaised, c.background))),
-        contentPadding = PaddingValues(start = Space.gutter, end = Space.gutter, bottom = Space.huge),
+        Modifier.fillMaxSize().glassSource(GlassLayer.Content),
+        contentPadding = PaddingValues(start = Space.gutter, end = Space.gutter, bottom = BottomBarReserve + Space.xxl),
         verticalArrangement = Arrangement.spacedBy(Space.md),
     ) {
         item {
@@ -117,6 +120,7 @@ fun DynastyScreen(vm: GameViewModel, onOpenSettings: () -> Unit, onOpenCredits: 
         item {
             AurumCard(Modifier.fillMaxWidth(), contentPadding = PaddingValues(Space.xs)) {
                 MenuRow("Settings", AbtIcons.Sliders, onOpenSettings, subtitle = "Theme, sound, haptics, save backup")
+                com.arnavgames.tycoon.designsystem.components.HairlineDivider(Modifier.padding(start = 60.dp))
                 MenuRow("Credits & licenses", AbtIcons.Book, onOpenCredits)
             }
         }

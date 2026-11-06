@@ -46,7 +46,7 @@ Licenses accepted by the validator: `Pexels`, `CC0-1.0`, `PDM-1.0`, `PD`, `CC-BY
 - **Company and coin logos**: generated procedurally in code (geometric monograms from a seeded shape grammar) and checked against the brand blocklist, so they cannot resemble real marks.
 - **World and city maps**: original vector illustrations.
 - **Player avatars**: illustrated, not photos.
-- **Fonts**: Fraunces and Inter (SIL Open Font License), subsetted.
+- **Fonts**: Inter (SIL Open Font License) in Text and Display optical cuts, subsetted by `tools/fonts/build_fonts.py`.
 - **Audio**: CC0 sound effects (for example Kenney audio packs) and CC0/CC-BY music, recorded in `credits.json` with the same fields.
 
 ## 5. Budget

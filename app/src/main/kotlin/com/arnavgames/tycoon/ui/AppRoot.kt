@@ -14,11 +14,11 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Snackbar
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
@@ -37,7 +37,12 @@ import com.arnavgames.tycoon.core.engine.GameEvent
 import com.arnavgames.tycoon.data.settings.ThemePref
 import com.arnavgames.tycoon.designsystem.theme.Aurum
 import com.arnavgames.tycoon.designsystem.theme.AurumShapes
+import com.arnavgames.tycoon.designsystem.theme.AmbientBackdrop
 import com.arnavgames.tycoon.designsystem.theme.AurumTheme
+import com.arnavgames.tycoon.designsystem.theme.GlassWeight
+import com.arnavgames.tycoon.designsystem.theme.LocalGlassState
+import com.arnavgames.tycoon.designsystem.theme.glass
+import dev.chrisbanes.haze.rememberHazeState
 import com.arnavgames.tycoon.designsystem.theme.Space
 import com.arnavgames.tycoon.designsystem.theme.ThemeMode
 import com.arnavgames.tycoon.game.GameSession
@@ -87,7 +92,11 @@ fun AppRoot(vm: GameViewModel, forcedTheme: ThemeMode?, onDarkChanged: (Boolean)
             }
         }
 
-        Box(Modifier.fillMaxSize().background(Aurum.colors.background)) {
+        val glassState = rememberHazeState()
+        CompositionLocalProvider(LocalGlassState provides glassState) {
+        Box(Modifier.fillMaxSize()) {
+            // The ambient backdrop sits behind every screen and is what the glass refracts.
+            AmbientBackdrop()
             when (val st = status) {
                 GameSession.Status.Loading -> LoadingScreen()
                 is GameSession.Status.Recovery -> RecoveryScreen(errors = st.errors, onStartOver = vm::startOver)
@@ -99,14 +108,12 @@ fun AppRoot(vm: GameViewModel, forcedTheme: ThemeMode?, onDarkChanged: (Boolean)
                 is GameSession.Status.Failed -> RecoveryScreen(errors = listOf(st.message), title = "Something went wrong", onStartOver = null)
                 GameSession.Status.Ready -> ReadyContent(vm)
             }
-            SnackbarHost(snackbar, Modifier.align(Alignment.BottomCenter).navigationBarsPadding().padding(bottom = 88.dp)) { data ->
-                Snackbar(
-                    shape = AurumShapes.medium,
-                    containerColor = Aurum.colors.surfaceHigh,
-                    contentColor = Aurum.colors.textPrimary,
-                    modifier = Modifier.padding(horizontal = Space.gutter),
-                ) { Text(data.visuals.message, style = Aurum.type.body) }
+            SnackbarHost(snackbar, Modifier.align(Alignment.BottomCenter).navigationBarsPadding().padding(bottom = 96.dp)) { data ->
+                Box(
+                    Modifier.padding(horizontal = Space.gutter).glass(AurumShapes.pill, GlassWeight.Thick).padding(horizontal = Space.xl, vertical = Space.md),
+                ) { Text(data.visuals.message, style = Aurum.type.body, color = Aurum.colors.textPrimary) }
             }
+        }
         }
     }
 }

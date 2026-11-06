@@ -32,7 +32,10 @@ dependencies {
     api(libs.compose.material3)
     api(libs.compose.animation)
     api(libs.compose.ui.tooling.preview)
+    api(libs.haze)
+    api(libs.haze.blur)
     implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.activity.compose)
     debugImplementation(libs.compose.ui.tooling)
 
     testImplementation(libs.junit4)

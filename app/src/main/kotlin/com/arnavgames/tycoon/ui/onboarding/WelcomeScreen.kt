@@ -46,7 +46,7 @@ fun WelcomeScreen(onBegin: () -> Unit) {
     val reveal = remember { Animatable(if (reduced) 1f else 0f) }
     LaunchedEffect(Unit) { reveal.animateTo(1f, tween(900)) }
     Box(
-        Modifier.fillMaxSize().background(Brush.verticalGradient(listOf(c.surfaceRaised, c.background, c.background))),
+        Modifier.fillMaxSize(),
     ) {
         Column(
             Modifier.fillMaxSize().safeDrawingPadding().verticalScroll(rememberScrollState()).padding(horizontal = Space.gutter, vertical = Space.xxxl),

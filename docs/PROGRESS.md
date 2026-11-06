@@ -7,6 +7,7 @@ _Last updated: 2026-11-06._
 - Phase 1 (Project skeleton and tooling): **DONE**. CI green on GitHub.
 - Phase 2 (Core foundations): **DONE**.
 - Phase 3 (First playable, Chapter 1): **DONE**. Details below.
+- **Design refresh "Aurum Glass"**: done (owner request). Details below.
 - Next: **Phase 4: Simulator v1** (bots, seeded batch runs, early-game pacing tuned to ECONOMY.md targets).
 
 ## Decisions
@@ -126,6 +127,24 @@ All in `:core` (pure Kotlin/JVM, enforced by `verifyCorePurity`):
 - No audio or music yet (Phase 15). No photos yet (Phase 8). Markets, Estates and Collection are informative "coming soon" tabs.
 - Chapter 2 only has missions for existing businesses. New Chapter 2 businesses arrive in Phase 5.
 - Not tested on the API 28 AVD yet (planned for the release gates).
+
+## Design refresh: Aurum Glass (owner request, 2026-11-06)
+- **Shapes**: `SmoothCornerShape` is an original continuous-corner implementation (each corner blends Béziers into a shortened arc; smoothing 0.6). Shape scale: tiny 8, small 14, medium 22, large 30, sheet 36; capsules for buttons.
+- **Glass**: `Glass.kt` with Haze 2.0.1.
+  - Ambient backdrop is glass layer z = 0; scrolling content is z = 1.
+  - Chrome (Empire header, `GlassScaffold` navigation bar, floating tab bar, status-bar strip, in-window `AurumDialog`, milestone banner, snackbar) blurs everything beneath it.
+  - Cards use the light-weight `glassCard` material (no per-card blur).
+  - Real blur needs Android 12+; below that a frosted translucent fill is used.
+- **Type**: Inter Text (opsz 14) and Inter Display (opsz 32), 244 KB. Fraunces removed. SF Pro cannot legally ship on Android.
+- **Colours**: Apple-like neutrals plus glass tokens (fills, edge light, sheen, separator, selection) and gold fill tokens. All text tokens pass WCAG AA, including dark text on every gold fill.
+- **Components**: glossy gold capsule `GoldButton`/`PillAction`, glass `GhostButton`, sliding-thumb `SegmentedSelector`, `AurumToggle`, app-icon style `IconTile`, floating glass `AurumBottomBar` with a sliding lens, `GlassScaffold` (large title that hands over to a compact frosted bar), in-window glass `AurumDialog`.
+- **New `benchmark` build type**: R8-optimized, debug-signed, `.bench` suffix. Used for performance measurement and, later, baseline profiles. R8 APK size: 3.1 MB.
+
+### Evidence
+- Screenshots reviewed in dark and light: welcome, Empire (top and scrolled), business detail (large and compact title), Dynasty, Settings, import dialog.
+- Fixed during review: muddy light-mode gold (new fill tokens), invisible light-mode tab lens (selection token), dialog state lost on theme change (`rememberSaveable`).
+- Tests: core 62, data 5, instrumented first-session flow all pass on the redesign.
+- **Performance (emulator, benchmark build, detail-screen scroll)**: blur on gives 90th percentile 22 ms / 99th 32 ms; blur off gives 18 ms / 26 ms. The emulator's baseline frame pacing is about 17 ms even without blur, so this is indicative only. **A physical mid-range phone test is still required** (manual step 12).
 
 ## Environment inventory (verified 2026-11-06)
 | Tool | State |

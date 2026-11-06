@@ -46,7 +46,7 @@ fun LoadingScreen() {
         val t = rememberInfiniteTransition(label = "loading")
         t.animateFloat(0.94f, 1.04f, infiniteRepeatable(tween(1100), RepeatMode.Reverse), label = "pulse").value
     }
-    Box(Modifier.fillMaxSize().background(c.background), contentAlignment = Alignment.Center) {
+    Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             CrownMark(Modifier.scale(pulse), size = 104.dp)
             Spacer(Modifier.height(Space.xl))
@@ -60,7 +60,7 @@ fun LoadingScreen() {
 fun RecoveryScreen(errors: List<String>, onStartOver: (() -> Unit)?, title: String = "We couldn't open your save") {
     val c = Aurum.colors
     Column(
-        Modifier.fillMaxSize().background(c.background).safeDrawingPadding().padding(Space.gutter),
+        Modifier.fillMaxSize().safeDrawingPadding().padding(Space.gutter),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
     ) {
