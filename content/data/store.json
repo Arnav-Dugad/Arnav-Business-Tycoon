@@ -1,0 +1,371 @@
+{
+ "sections": [
+  {
+   "id": "bullion",
+   "name": "Bullion"
+  },
+  {
+   "id": "boosts",
+   "name": "Boosts"
+  },
+  {
+   "id": "upgrades",
+   "name": "Upgrades"
+  },
+  {
+   "id": "passes",
+   "name": "VIP and Season Pass"
+  },
+  {
+   "id": "cosmetics",
+   "name": "Cosmetics"
+  }
+ ],
+ "products": [
+  {
+   "id": "bullion_100",
+   "name": "Pouch of Bullion",
+   "description": "100 Bullion.",
+   "section": "bullion",
+   "demoPrice": "$0.99",
+   "bullionPrice": null,
+   "grants": {
+    "bullion": 100
+   },
+   "limit": 0
+  },
+  {
+   "id": "bullion_550",
+   "name": "Bag of Bullion",
+   "description": "550 Bullion (500 + 10% extra).",
+   "section": "bullion",
+   "demoPrice": "$4.99",
+   "bullionPrice": null,
+   "grants": {
+    "bullion": 550
+   },
+   "limit": 0
+  },
+  {
+   "id": "bullion_1200",
+   "name": "Chest of Bullion",
+   "description": "1,200 Bullion (1,000 + 20% extra).",
+   "section": "bullion",
+   "demoPrice": "$9.99",
+   "bullionPrice": null,
+   "grants": {
+    "bullion": 1200
+   },
+   "limit": 0
+  },
+  {
+   "id": "bullion_2600",
+   "name": "Vault of Bullion",
+   "description": "2,600 Bullion (2,000 + 30% extra).",
+   "section": "bullion",
+   "demoPrice": "$19.99",
+   "bullionPrice": null,
+   "grants": {
+    "bullion": 2600
+   },
+   "limit": 0
+  },
+  {
+   "id": "starter_pack",
+   "name": "Starter pack",
+   "description": "300 Bullion, 50 Favor and a 2-hour ×2 income boost. Once per account.",
+   "section": "bullion",
+   "demoPrice": "$2.99",
+   "bullionPrice": null,
+   "grants": {
+    "bullion": 300,
+    "favor": 50,
+    "boostHours": 2
+   },
+   "limit": 1
+  },
+  {
+   "id": "boost_2h",
+   "name": "Double income · 2 h",
+   "description": "Every business earns ×2 for 2 hours. Stacks by extending the time.",
+   "section": "boosts",
+   "demoPrice": "$0.99",
+   "bullionPrice": 60,
+   "grants": {
+    "boostHours": 2
+   },
+   "limit": 0
+  },
+  {
+   "id": "boost_8h",
+   "name": "Double income · 8 h",
+   "description": "Every business earns ×2 for 8 hours.",
+   "section": "boosts",
+   "demoPrice": null,
+   "bullionPrice": 180,
+   "grants": {
+    "boostHours": 8
+   },
+   "limit": 0
+  },
+  {
+   "id": "boost_24h",
+   "name": "Double income · 24 h",
+   "description": "Every business earns ×2 for a full day.",
+   "section": "boosts",
+   "demoPrice": null,
+   "bullionPrice": 450,
+   "grants": {
+    "boostHours": 24
+   },
+   "limit": 0
+  },
+  {
+   "id": "favor_100",
+   "name": "Favor bundle",
+   "description": "100 Favor to rush timers.",
+   "section": "boosts",
+   "demoPrice": null,
+   "bullionPrice": 100,
+   "grants": {
+    "favor": 100
+   },
+   "limit": 0
+  },
+  {
+   "id": "favor_500",
+   "name": "Favor crate",
+   "description": "500 Favor to rush timers.",
+   "section": "boosts",
+   "demoPrice": "$2.99",
+   "bullionPrice": 450,
+   "grants": {
+    "favor": 500
+   },
+   "limit": 0
+  },
+  {
+   "id": "permanent_10",
+   "name": "Investor's edge",
+   "description": "+10% income from every business, permanently (up to 3).",
+   "section": "upgrades",
+   "demoPrice": "$4.99",
+   "bullionPrice": 1500,
+   "grants": {
+    "permanentPct": 0.1
+   },
+   "limit": 3
+  },
+  {
+   "id": "slot_1",
+   "name": "Extra business slot",
+   "description": "One more business slot, permanently. Every slot can also be earned in play (up to 3 here).",
+   "section": "upgrades",
+   "demoPrice": null,
+   "bullionPrice": 800,
+   "grants": {
+    "slots": 1
+   },
+   "limit": 3
+  },
+  {
+   "id": "offline_4h",
+   "name": "Night shift",
+   "description": "+4 hours of offline earnings, permanently (up to 2).",
+   "section": "upgrades",
+   "demoPrice": null,
+   "bullionPrice": 900,
+   "grants": {
+    "offlineHours": 4
+   },
+   "limit": 2
+  },
+  {
+   "id": "vip_30",
+   "name": "VIP · 30 days",
+   "description": "For 30 game days: +10% income, +2 h offline earnings and 20 extra Bullion with every daily reward.",
+   "section": "passes",
+   "demoPrice": "$9.99",
+   "bullionPrice": 2500,
+   "grants": {
+    "vipDays": 30
+   },
+   "limit": 0
+  },
+  {
+   "id": "season_pass",
+   "name": "Season Pass",
+   "description": "Unlocks the premium track of the current season.",
+   "section": "passes",
+   "demoPrice": "$4.99",
+   "bullionPrice": 1000,
+   "grants": {
+    "seasonPass": 1
+   },
+   "limit": 0
+  },
+  {
+   "id": "title_magnate",
+   "name": "Title: The Magnate",
+   "description": "A title for your profile.",
+   "section": "cosmetics",
+   "demoPrice": null,
+   "bullionPrice": 200,
+   "grants": {
+    "cosmetic": "title_magnate"
+   },
+   "limit": 1
+  },
+  {
+   "id": "title_old_money",
+   "name": "Title: Old Money",
+   "description": "A title for your profile.",
+   "section": "cosmetics",
+   "demoPrice": null,
+   "bullionPrice": 200,
+   "grants": {
+    "cosmetic": "title_old_money"
+   },
+   "limit": 1
+  },
+  {
+   "id": "title_disruptor",
+   "name": "Title: The Disruptor",
+   "description": "A title for your profile.",
+   "section": "cosmetics",
+   "demoPrice": null,
+   "bullionPrice": 200,
+   "grants": {
+    "cosmetic": "title_disruptor"
+   },
+   "limit": 1
+  },
+  {
+   "id": "title_patron",
+   "name": "Title: Patron of the Arts",
+   "description": "A title for your profile.",
+   "section": "cosmetics",
+   "demoPrice": null,
+   "bullionPrice": 300,
+   "grants": {
+    "cosmetic": "title_patron"
+   },
+   "limit": 1
+  },
+  {
+   "id": "title_tycoon",
+   "name": "Title: Tycoon",
+   "description": "A title for your profile.",
+   "section": "cosmetics",
+   "demoPrice": null,
+   "bullionPrice": 400,
+   "grants": {
+    "cosmetic": "title_tycoon"
+   },
+   "limit": 1
+  },
+  {
+   "id": "frame_gold",
+   "name": "Gold frame",
+   "description": "A gold frame for your profile picture.",
+   "section": "cosmetics",
+   "demoPrice": null,
+   "bullionPrice": 250,
+   "grants": {
+    "cosmetic": "frame_gold"
+   },
+   "limit": 1
+  },
+  {
+   "id": "frame_emerald",
+   "name": "Emerald frame",
+   "description": "An emerald frame for your profile picture.",
+   "section": "cosmetics",
+   "demoPrice": null,
+   "bullionPrice": 350,
+   "grants": {
+    "cosmetic": "frame_emerald"
+   },
+   "limit": 1
+  },
+  {
+   "id": "frame_sapphire",
+   "name": "Sapphire frame",
+   "description": "A sapphire frame for your profile picture.",
+   "section": "cosmetics",
+   "demoPrice": null,
+   "bullionPrice": 350,
+   "grants": {
+    "cosmetic": "frame_sapphire"
+   },
+   "limit": 1
+  },
+  {
+   "id": "frame_obsidian",
+   "name": "Obsidian frame",
+   "description": "An obsidian frame for your profile picture.",
+   "section": "cosmetics",
+   "demoPrice": null,
+   "bullionPrice": 500,
+   "grants": {
+    "cosmetic": "frame_obsidian"
+   },
+   "limit": 1
+  }
+ ],
+ "cosmetics": [
+  {
+   "id": "title_magnate",
+   "kind": "title",
+   "name": "The Magnate"
+  },
+  {
+   "id": "title_old_money",
+   "kind": "title",
+   "name": "Old Money"
+  },
+  {
+   "id": "title_disruptor",
+   "kind": "title",
+   "name": "The Disruptor"
+  },
+  {
+   "id": "title_patron",
+   "kind": "title",
+   "name": "Patron of the Arts"
+  },
+  {
+   "id": "title_tycoon",
+   "kind": "title",
+   "name": "Tycoon"
+  },
+  {
+   "id": "frame_gold",
+   "kind": "frame",
+   "name": "Gold"
+  },
+  {
+   "id": "frame_emerald",
+   "kind": "frame",
+   "name": "Emerald"
+  },
+  {
+   "id": "frame_sapphire",
+   "kind": "frame",
+   "name": "Sapphire"
+  },
+  {
+   "id": "frame_obsidian",
+   "kind": "frame",
+   "name": "Obsidian"
+  }
+ ],
+ "config": {
+  "maxPermanentPct": 0.3,
+  "maxSlots": 3,
+  "maxOfflineHours": 8,
+  "vipIncomePct": 0.1,
+  "vipOfflineHours": 2,
+  "vipLadderBullion": 20
+ }
+}

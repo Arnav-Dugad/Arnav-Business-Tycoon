@@ -52,6 +52,9 @@ fun MainShell(
     onOpenFinance: () -> Unit = {},
     onOpenAchievements: () -> Unit = {},
     onOpenCrown: () -> Unit = {},
+    onOpenStore: () -> Unit = {},
+    onOpenAccount: () -> Unit = {},
+    onOpenSocial: () -> Unit = {},
 ) {
     var tab by rememberSaveable { mutableStateOf("empire") }
     val empire by vm.empire.collectAsStateWithLifecycle()
@@ -77,7 +80,7 @@ fun MainShell(
                 "markets" -> MarketsScreen(vm, onOpenInstrument = onOpenInstrument, onOpenNews = onOpenNews)
                 "estates" -> com.arnavgames.tycoon.ui.estates.EstatesScreen(vm, onOpenCity = onOpenCity, onOpenProperty = onOpenProperty)
                 "collection" -> com.arnavgames.tycoon.ui.collection.CollectionScreen(vm, onOpenCategory = onOpenLuxuryCategory, onOpenAuction = onOpenAuction)
-                else -> DynastyScreen(vm, onOpenSettings = onOpenSettings, onOpenCredits = onOpenCredits, onOpenAchievements = onOpenAchievements, onOpenCrown = onOpenCrown)
+                else -> DynastyScreen(vm, onOpenSettings = onOpenSettings, onOpenCredits = onOpenCredits, onOpenAchievements = onOpenAchievements, onOpenCrown = onOpenCrown, onOpenStore = onOpenStore, onOpenAccount = onOpenAccount, onOpenSocial = onOpenSocial)
             }
         }
         // Frosted strip behind the status bar so scrolled content blurs under the clock instead of colliding with it.

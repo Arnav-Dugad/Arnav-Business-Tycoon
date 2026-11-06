@@ -59,5 +59,6 @@ fun botByName(name: String): Bot = when (name) {
     "cautious" -> cautiousBot()
     "poor_choices" -> PoorChoicesBot()
     "risky_trader" -> RiskyTraderBot()
-    else -> error("unknown bot '$name' (available: active, idle, cautious, poor_choices)")
+    "heavy_spender" -> HeavySpenderBot()
+    else -> error("unknown bot '$name' (available: active, idle, cautious, poor_choices, risky_trader, heavy_spender)")
 }

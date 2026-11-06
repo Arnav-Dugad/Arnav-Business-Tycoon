@@ -183,7 +183,8 @@ class ProgressionEngine(private val content: ContentPack, private val economy: E
         if (!ladderAvailable(s)) return Result.Err(GameError.Locked("Come back tomorrow"))
         val step = nextLadderStep(s) ?: return Result.Err(GameError.NotFound("reward"))
         val cash = economy.totalNetRate(s).over(3600) * Multiplier.ofDouble(step.cashHours * rewardScale(s.progress.chapter))
-        val ledger = Grants.grant(s.ledger, s.simTimeMs, "daily reward (day ${step.day})", cash, step.bullion, step.favor)
+        val vipBullion = if (economy.store.vipActive(s)) content.store.config.vipLadderBullion else 0L
+        val ledger = Grants.grant(s.ledger, s.simTimeMs, "daily reward (day ${step.day})", cash, step.bullion + vipBullion, step.favor)
         return Result.Ok(meta(s.copy(ledger = ledger)) { it.copy(ladderClaimed = it.ladderClaimed + 1, ladderLastDay = d.day(s.simTimeMs), counters = it.counters + ("ladder" to ((it.counters["ladder"] ?: 0) + 1))) })
     }
 
@@ -192,12 +193,15 @@ class ProgressionEngine(private val content: ContentPack, private val economy: E
     fun claimSeason(s: GameState, tier: Int, premium: Boolean): Result {
         val t = p.seasonTrack.firstOrNull { it.tier == tier } ?: return Result.Err(GameError.NotFound("tier"))
         if (s.meta.seasonXp < t.xp) return Result.Err(GameError.Locked("Reach ${t.xp} season XP first"))
-        if (premium) return Result.Err(GameError.Locked("The premium track comes with the demo Season Pass in the store"))
-        if (tier in s.meta.seasonClaimedFree) return Result.Err(GameError.AlreadyDone)
-        val r = t.free
+        if (premium && !economy.store.seasonPassActive(s, d.season(s.simTimeMs))) return Result.Err(GameError.Locked("The premium track comes with the demo Season Pass in the store"))
+        if (tier in (if (premium) s.meta.seasonClaimedPremium else s.meta.seasonClaimedFree)) return Result.Err(GameError.AlreadyDone)
+        val r = if (premium) t.premium else t.free
         val cash = economy.totalNetRate(s).over(3600) * Multiplier.ofDouble(r.cashHours * rewardScale(s.progress.chapter))
         val ledger = Grants.grant(s.ledger, s.simTimeMs, "season tier $tier", cash, r.bullion, r.favor)
-        return Result.Ok(meta(s.copy(ledger = ledger)) { it.copy(seasonClaimedFree = it.seasonClaimedFree + tier) })
+        var ns = meta(s.copy(ledger = ledger)) { if (premium) it.copy(seasonClaimedPremium = it.seasonClaimedPremium + tier) else it.copy(seasonClaimedFree = it.seasonClaimedFree + tier) }
+        // Premium cosmetics go straight into the store collection.
+        r.cosmetic?.let { c -> ns = ns.copy(store = ns.store.copy(cosmetics = ns.store.cosmetics + c)) }
+        return Result.Ok(ns)
     }
 
     // ----- Achievements -----

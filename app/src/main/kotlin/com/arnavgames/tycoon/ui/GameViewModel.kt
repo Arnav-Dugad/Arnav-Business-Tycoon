@@ -165,6 +165,25 @@ class GameViewModel @Inject constructor(
         .flowOn(Dispatchers.Default)
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), false)
 
+    /** Accounts, cloud save and (Phase 13) social features. */
+    val cloud by lazy { com.arnavgames.tycoon.cloud.CloudService(session.appContext, session) }
+
+    val social by lazy { com.arnavgames.tycoon.cloud.SocialService(cloud, session, session.appContext) }
+
+    fun say(message: String) { _messages.tryEmit(message) }
+
+    /** The only purchase provider shipped: simulated, labelled DEMO, never charges (docs/ARCHITECTURE.md §8). */
+    val purchases: com.arnavgames.tycoon.store.PurchaseProvider by lazy { com.arnavgames.tycoon.store.SimulatedPurchaseProvider(session) }
+
+    fun demoPurchase(productId: String) {
+        viewModelScope.launch {
+            when (val r = purchases.purchase(productId)) {
+                com.arnavgames.tycoon.store.PurchaseResult.Granted -> _messages.tryEmit("Demo purchase complete. No money was charged.")
+                is com.arnavgames.tycoon.store.PurchaseResult.Refused -> _messages.tryEmit("Not available: ${r.reason}")
+            }
+        }
+    }
+
     fun fortune(s: GameState) = worldMapper.fortune(s)
     fun rival(s: GameState, id: String) = worldMapper.rival(s, id)
     fun finance(s: GameState) = worldMapper.finance(s)

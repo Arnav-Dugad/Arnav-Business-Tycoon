@@ -1,0 +1,13 @@
+{
+  "name": "abt-firestore-rules-tests",
+  "private": true,
+  "type": "module",
+  "description": "Firestore security-rules tests for Arnav Business Tycoon (docs/ARCHITECTURE.md §7.3). Run: npm test",
+  "scripts": {
+    "test": "firebase emulators:exec --only firestore --project demo-arnav-business-tycoon \"node --test test/*.test.mjs\""
+  },
+  "devDependencies": {
+    "@firebase/rules-unit-testing": "6.0.0",
+    "firebase": "13.2.0"
+  }
+}

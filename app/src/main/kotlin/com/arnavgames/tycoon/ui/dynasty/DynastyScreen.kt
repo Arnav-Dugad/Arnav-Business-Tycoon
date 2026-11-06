@@ -70,7 +70,7 @@ private fun fmtMult(x: Double) = "×" + String.format(Locale.US, if (x < 10) "%.
 @Composable
 fun DynastyScreen(
     vm: GameViewModel, onOpenSettings: () -> Unit, onOpenCredits: () -> Unit,
-    onOpenAchievements: () -> Unit = {}, onOpenCrown: () -> Unit = {},
+    onOpenAchievements: () -> Unit = {}, onOpenCrown: () -> Unit = {}, onOpenStore: () -> Unit = {}, onOpenAccount: () -> Unit = {}, onOpenSocial: () -> Unit = {},
 ) {
     val state by vm.state.collectAsStateWithLifecycle()
     val settings by vm.settings.collectAsStateWithLifecycle()
@@ -96,7 +96,9 @@ fun DynastyScreen(
                     CrownMark(size = 84.dp)
                     Spacer(Modifier.height(Space.md))
                     Text("Your Dynasty", style = Aurum.type.display, color = c.textPrimary, modifier = Modifier.semantics { heading() })
-                    Text("Generation ${dy.generation}" + (dy.trait?.let { " · $it" } ?: ""), style = Aurum.type.bodySmall, color = c.textSecondary)
+                    val title = s.store.title?.let { content.store.cosmeticById[it]?.name }
+                    Text("Generation ${dy.generation}" + (dy.trait?.let { " · $it" } ?: "") + (title?.let { " · $it" } ?: ""), style = Aurum.type.bodySmall, color = c.textSecondary)
+                    if (s.store.boosted) { Spacer(Modifier.height(Space.xs)); AurumChip("Boosted (demo purchases)", icon = AbtIcons.Bolt, tint = c.gain) }
                 }
             }
             item(key = "dynasty") {
@@ -222,6 +224,12 @@ fun DynastyScreen(
             item { SectionHeader("More") }
             item {
                 AurumCard(Modifier.fillMaxWidth(), contentPadding = PaddingValues(Space.xs)) {
+                    MenuRow("Friends & leaderboards", AbtIcons.Rivals, onOpenSocial, subtitle = "Friend codes, leagues, gifts and Sealed Lots")
+                    HairlineDivider(Modifier.padding(start = 60.dp))
+                    MenuRow("Account & cloud save", AbtIcons.Cloud, onOpenAccount, subtitle = "Optional: back up, sync and add friends")
+                    HairlineDivider(Modifier.padding(start = 60.dp))
+                    MenuRow("Store (demo)", AbtIcons.Bullion, onOpenStore, subtitle = "Boosts, upgrades and cosmetics. Demo only: nothing is ever charged")
+                    HairlineDivider(Modifier.padding(start = 60.dp))
                     MenuRow("Settings", AbtIcons.Sliders, onOpenSettings, subtitle = "Theme, sound, haptics, save backup")
                     HairlineDivider(Modifier.padding(start = 60.dp))
                     MenuRow("Credits & licenses", AbtIcons.Book, onOpenCredits)

@@ -104,6 +104,12 @@ dependencies {
     implementation(project(":designsystem"))
 
     implementation(libs.coil.compose)
+    // Firebase (Spark plan only): Auth + Firestore. Without google-services.json the app runs offline (release) or
+    // against the local Firebase emulator with a "demo-" project (debug).
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.firestore)
+    implementation(libs.kotlinx.coroutines.play.services)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.lifecycle.runtime.compose)

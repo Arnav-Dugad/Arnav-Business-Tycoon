@@ -92,6 +92,7 @@ class GameEngine(val content: ContentPack) {
         if (s.hustle.frenzyUntil in (now + 1)..<stop) stop = s.hustle.frenzyUntil
         economy.luxury.nextEvent(s, now)?.let { if (it in (now + 1)..<stop) stop = it }
         economy.world.nextExpiry(s, now)?.let { if (it in (now + 1)..<stop) stop = it }
+        economy.store.nextBoundary(s, now)?.let { if (it in (now + 1)..<stop) stop = it }
         for (b in s.businesses.values) {
             val m = b.mechanic
             if (m is MechanicState.Retail && m.promoUntil in (now + 1)..<stop) stop = m.promoUntil
@@ -320,6 +321,12 @@ class GameEngine(val content: ContentPack) {
             is Command.ClaimSeasonTier -> prog(progression.claimSeason(state, cmd.tier, cmd.premium))
             is Command.PassTheCrown -> passTheCrown(state, cmd, events)
             is Command.LaunchIpo -> launchIpo(state, cmd.float, events)
+            is Command.DemoPurchase -> shop(economy.store.demoPurchase(state, cmd.productId, dynasty.season(state.simTimeMs), events))
+            is Command.BuyWithBullion -> shop(economy.store.buyWithBullion(state, cmd.productId, dynasty.season(state.simTimeMs), events))
+            is Command.EquipCosmetic -> shop(economy.store.equip(state, cmd.cosmeticId, cmd.kind))
+            is Command.ReceiveGift -> if (cmd.favor !in 1..50) Either.Err(GameError.Invalid("Gift out of range")) else
+                Either.Ok(state.copy(ledger = Grants.grant(state.ledger, state.simTimeMs, "gift from a friend", Money.ZERO, 0, cmd.favor)))
+            is Command.WinSealedLot -> winSealedLot(state, cmd.itemId, cmd.price, events)
         }
         return when (result) {
             is Either.Err -> CommandResult.Rejected(result.error)
@@ -331,6 +338,11 @@ class GameEngine(val content: ContentPack) {
     internal sealed interface Either {
         data class Ok(val state: GameState) : Either
         data class Err(val error: GameError) : Either
+    }
+
+    private fun shop(r: com.arnavgames.tycoon.core.store.StoreEngine.Result): Either = when (r) {
+        is com.arnavgames.tycoon.core.store.StoreEngine.Result.Ok -> Either.Ok(r.state)
+        is com.arnavgames.tycoon.core.store.StoreEngine.Result.Err -> Either.Err(r.error)
     }
 
     private fun prog(r: com.arnavgames.tycoon.core.progression.ProgressionEngine.Result): Either = when (r) {
@@ -416,6 +428,7 @@ class GameEngine(val content: ContentPack) {
             finance = com.arnavgames.tycoon.core.state.FinanceState(nextLoanId = s.finance.nextLoanId),
             meta = s.meta.copy(dailyDay = -1, weekIndex = -1),
             dynasty = newDynasty,
+            store = s.store,
         )
         // The trust fund: the best of the charter and trait (log10 dollars), plus the usual starting capital.
         val trust = if (dynasty.forbids(n, "noStartCash")) Money.ZERO else {
@@ -426,6 +439,19 @@ class GameEngine(val content: ContentPack) {
         n = n.copy(ledger = Grants.grant(n.ledger, now, "inheritance", content.balance.startingCash + trust, 0, 0))
         events += GameEvent.CrownPassed(gen, pv.legacyGain)
         return Either.Ok(n)
+    }
+
+    private fun winSealedLot(s: GameState, itemId: String, price: Money, events: MutableList<GameEvent>): Either {
+        val item = content.luxury.itemById[itemId] ?: return Either.Err(GameError.NotFound("item"))
+        if (itemId in s.luxury.owned) return Either.Err(GameError.AlreadyDone)
+        if (!price.isPositive) return Either.Err(GameError.Invalid("Bid must be positive"))
+        val r = Ledger.post(s.ledger, s.simTimeMs, TxnCategory.Luxury, "Sealed Lot: ${item.name}", listOf(
+            com.arnavgames.tycoon.core.ledger.Posting(Accounts.CASH, -price),
+            com.arnavgames.tycoon.core.ledger.Posting(com.arnavgames.tycoon.core.luxury.LuxuryEngine.LUXURY, price),
+        ))
+        val ledger = (r as? Ledger.Result.Ok)?.state ?: return Either.Err(GameError.InsufficientFunds(price, s.cash))
+        events += GameEvent.LuxuryBought(itemId, price)
+        return Either.Ok(s.copy(ledger = ledger, luxury = s.luxury.copy(owned = s.luxury.owned + (itemId to com.arnavgames.tycoon.core.state.OwnedItem(price, s.simTimeMs, viaAuction = true)))))
     }
 
     fun ipoValuation(s: GameState): Money = s.businesses.values.fold(Money.ZERO) { a, b ->

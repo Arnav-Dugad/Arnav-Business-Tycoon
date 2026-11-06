@@ -23,6 +23,7 @@ class Economy(val content: ContentPack) {
     val market = com.arnavgames.tycoon.core.market.MarketMath(content.markets)
     private val refRate = content.markets.macro.map { it.ratePerDay }.average().takeIf { !it.isNaN() } ?: 0.0
     val dynasty = com.arnavgames.tycoon.core.progression.DynastyMath(content)
+    val store = com.arnavgames.tycoon.core.store.StoreEngine(content)
     val luxury = com.arnavgames.tycoon.core.luxury.LuxuryEngine(content.luxury) { s, type -> dynasty.bonus(s, type) }
     val world = com.arnavgames.tycoon.core.world.WorldMath(content) { s -> dynasty.bonus(s, "takeoverShield") }
     val credit by lazy { com.arnavgames.tycoon.core.finance.Credit(content, this) }
@@ -243,6 +244,7 @@ class Economy(val content: ContentPack) {
         luxury.incomeBonus(state, id).let { if (it > 0) factor *= Multiplier.ofDouble(1 + it) }
         world.incomeFactor(state, id).let { if (it != 1.0) factor *= Multiplier.ofDouble(it) }
         dynasty.incomeFactor(state, id).let { if (it != 1.0) factor *= Multiplier.ofDouble(it) }
+        store.incomeBonus(state).let { if (it > 0) factor *= Multiplier.ofDouble(1 + it) }
         val gross = Rate.perSecond(def.baseRevenue, factor)
         val upkeepShare = (def.upkeep * Multiplier.ofDouble(round6(upkeepFactor(state, def, b, now)))).min(Multiplier.of("0.95"))
         val upkeep = gross * upkeepShare
@@ -267,13 +269,13 @@ class Economy(val content: ContentPack) {
         content.balance.baseSlots +
             content.balance.hqLevels.filter { it.level <= state.hq.level }.sumOf { it.extraSlots } +
             (state.progress.chapter - 1).coerceIn(0, 6) +
-            dynasty.bonus(state, "slots").toInt()
+            dynasty.bonus(state, "slots").toInt() + state.store.extraSlots
 
     fun usedSlots(state: GameState): Int = state.businesses.values.count { !it.mothballed }
 
     fun offlineCapMs(state: GameState): Long {
         val bonus = content.balance.hqLevels.filter { it.level <= state.hq.level }.sumOf { it.offlineCapBonusSeconds } +
-            (dynasty.bonus(state, "offlineHours") * 3600).toLong()
+            (dynasty.bonus(state, "offlineHours") * 3600).toLong() + store.offlineHours(state) * 3600L
         val cap = (content.balance.offlineCapBaseSeconds + bonus).coerceAtMost(content.balance.offlineCapMaxSeconds) * 1000
         return if (dynasty.forbids(state, "halfOffline")) cap / 2 else cap
     }

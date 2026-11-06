@@ -1,0 +1,132 @@
+rules_version = '2';
+
+// Arnav Business Tycoon — Firestore security rules (docs/ARCHITECTURE.md §7.3). Spark plan: no Cloud Functions, so
+// every invariant is enforced here. Default deny; each path allows only what the client legitimately needs.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() { return request.auth != null; }
+    function isUser(uid) { return signedIn() && request.auth.uid == uid; }
+    // Features that touch other players need a verified email or a Google account (anonymous guests can only save).
+    function verified() {
+      return signedIn() && (request.auth.token.email_verified == true || request.auth.token.firebase.sign_in_provider == 'google.com');
+    }
+    function keys() { return request.resource.data.keys(); }
+
+    // ---------------------------------------------------------------- cloud saves
+    match /saves/{uid} {
+      allow read: if isUser(uid);
+      allow create: if isUser(uid) && validSave() && request.resource.data.rev == 1;
+      // Optimistic concurrency: every write is exactly one revision after the stored one.
+      allow update: if isUser(uid) && validSave() && request.resource.data.rev == resource.data.rev + 1;
+      allow delete: if isUser(uid);
+
+      function validSave() {
+        let d = request.resource.data;
+        return keys().hasOnly(['rev', 'schema', 'contentHash', 'device', 'savedAt', 'summary', 'sha', 'blob'])
+          && d.rev is int && d.schema is int && d.schema >= 1 && d.schema <= 1
+          && d.savedAt == request.time
+          && d.blob is bytes && d.blob.size() <= 900 * 1024
+          && d.sha is string && d.sha.size() == 64
+          && d.device is string && d.device.size() <= 64
+          && d.summary is map;
+      }
+    }
+
+    // ---------------------------------------------------------------- public profiles
+    match /profiles/{uid} {
+      allow read: if signedIn();
+      allow create, update: if isUser(uid) && verified()
+        && keys().hasOnly(['name', 'friendCode', 'avatarId', 'title', 'gen', 'nwLog10', 'fairNwLog10', 'boosted', 'showcase', 'updatedAt'])
+        && request.resource.data.name is string && request.resource.data.name.size() >= 3 && request.resource.data.name.size() <= 24
+        && request.resource.data.updatedAt == request.time
+        && request.resource.data.nwLog10 is number && request.resource.data.nwLog10 >= 0 && request.resource.data.nwLog10 <= 400
+        && request.resource.data.showcase is list && request.resource.data.showcase.size() <= 6
+        // The Boosted flag can never be cleared.
+        && (resource == null || resource.data.boosted == false || request.resource.data.boosted == true);
+      allow delete: if isUser(uid);
+    }
+
+    // ---------------------------------------------------------------- friend codes (unique, create-only)
+    match /friendCodes/{code} {
+      allow read: if signedIn();
+      allow create: if verified() && code.matches('^[A-Z0-9]{8}$') && request.resource.data.keys().hasOnly(['uid']) && request.resource.data.uid == request.auth.uid;
+      allow delete: if signedIn() && resource.data.uid == request.auth.uid;
+    }
+
+    // ---------------------------------------------------------------- friends list (owner only, ≤100)
+    match /social/{uid} {
+      allow read: if isUser(uid);
+      allow create, update: if isUser(uid) && keys().hasOnly(['friends']) && request.resource.data.friends is list && request.resource.data.friends.size() <= 100;
+      allow delete: if isUser(uid);
+    }
+
+    // ---------------------------------------------------------------- friend requests ({to}_{from})
+    match /friendRequests/{id} {
+      allow read, delete: if signedIn() && (resource.data.from == request.auth.uid || resource.data.to == request.auth.uid);
+      allow create: if verified() && id == request.resource.data.to + '_' + request.auth.uid
+        && request.resource.data.from == request.auth.uid && request.resource.data.to != request.auth.uid
+        && keys().hasOnly(['from', 'to', 'createdAt']) && request.resource.data.createdAt == request.time;
+    }
+
+    // ---------------------------------------------------------------- leaderboards: 4 shards of entry maps
+    match /boards/{boardId}/shards/{shard} {
+      allow read: if signedIn();
+      allow create, update: if verified() && shard in ['0', '1', '2', '3'] && validEntry();
+
+      // +0.35 plus 0.25 per hour since the last write, capped at +2.0 log10 per write.
+      function growthBound(old) {
+        let raw = 0.35 + 0.25 * ((request.time.toMillis() - old.t.toMillis()) / 3600000.0);
+        return raw < 2.0 ? raw : 2.0;
+      }
+
+      function validEntry() {
+        let uid = request.auth.uid;
+        let before = resource == null ? {} : resource.data.get('entries', {});
+        let after = request.resource.data.get('entries', {});
+        let diff = after.diff(before);
+        let e = after[uid];
+        let old = before.get(uid, null);
+        return request.resource.data.keys().hasOnly(['entries'])
+          // A player writes only their own key…
+          && diff.affectedKeys().hasOnly([uid])
+          && e.keys().hasOnly(['n', 'lnw', 'flnw', 'b', 'g', 't'])
+          && e.n is string && e.n.size() >= 3 && e.n.size() <= 24
+          && e.lnw is number && e.flnw is number && e.b is bool && e.g is int
+          && e.t == request.time
+          && (old == null || (
+            // …at most once every 10 minutes…
+            request.time > old.t + duration.value(10, 'm')
+            // …plausibly (growth bound from the simulator's max-growth report × 1.5; decreases always allowed: prestige)…
+            && (e.lnw <= old.lnw || e.lnw <= old.lnw + growthBound(old))
+            // …and the Boosted flag never goes from true to false within a board.
+            && (old.b == false || e.b == true)));
+      }
+    }
+
+    // ---------------------------------------------------------------- gifts: one per friend per day
+    match /gifts/{to}/inbox/{giftId} {
+      allow read, delete: if isUser(to);
+      allow create: if verified()
+        && giftId.matches('^' + request.auth.uid + '_[0-9]{8}$')
+        && request.auth.uid in get(/databases/$(database)/documents/social/$(to)).data.friends
+        && keys().hasOnly(['from', 'kind', 'amount', 'createdAt'])
+        && request.resource.data.from == request.auth.uid
+        && request.resource.data.kind in ['favor', 'cash']
+        && request.resource.data.amount is int && request.resource.data.amount >= 1 && request.resource.data.amount <= 50
+        && request.resource.data.createdAt == request.time;
+    }
+
+    // ---------------------------------------------------------------- Sealed Lots: weekly sealed bids
+    match /lots/{weekId}/bids/{uid} {
+      // weekId = "YYYY-MM-DD" of the Monday that starts the week; bidding closes the following Monday 00:00 UTC.
+      function closeAt() { return timestamp.date(int(weekId[0:4]), int(weekId[5:7]), int(weekId[8:10])) + duration.value(7, 'd'); }
+      allow read: if signedIn() && (isUser(uid) || request.time >= closeAt());
+      allow create, update: if isUser(uid) && verified() && weekId.matches('^[0-9]{4}-[0-9]{2}-[0-9]{2}$') && request.time < closeAt()
+        && keys().hasOnly(['lotId', 'amountLog10', 'amount', 'createdAt'])
+        && request.resource.data.amountLog10 is number && request.resource.data.amount is string
+        && request.resource.data.createdAt == request.time;
+      allow delete: if false;
+    }
+  }
+}

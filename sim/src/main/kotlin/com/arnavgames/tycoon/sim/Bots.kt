@@ -594,6 +594,37 @@ class RiskyTraderBot : Bot {
     }
 }
 
+/**
+ * The active policy plus every demo purchase as soon as it is available (docs/ECONOMY.md §10.1): the starter pack,
+ * permanent boosts, extra slots and offline time, VIP, the Season Pass and a 24-hour ×2 boost whenever none is running.
+ * Measures the spender gap (target: 25–40 % faster than active, never more than 2×).
+ */
+class HeavySpenderBot : Bot {
+    private val base = ActiveBot(name = "heavy_spender")
+    override val name = "heavy_spender"
+    override val schedule = base.schedule
+
+    override fun act(engine: GameEngine, state: GameState, rng: Pcg32, sessionStart: Boolean, sessionEnd: Boolean): GameState {
+        var s = state
+        if (sessionStart) {
+            fun demo(id: String) { s = engine.tryApply(s, Command.DemoPurchase(id)) }
+            fun bullion(id: String) {
+                val price = engine.content.store.productById[id]?.bullionPrice ?: return
+                if (s.ledger.bullion.cents.toLong() < price) demo("bullion_2600")
+                s = engine.tryApply(s, Command.BuyWithBullion(id))
+            }
+            demo("starter_pack")
+            repeat(3) { demo("permanent_10") }
+            repeat(3) { bullion("slot_1") }
+            repeat(2) { bullion("offline_4h") }
+            if (!engine.economy.store.vipActive(s)) demo("vip_30")
+            if (!engine.economy.store.seasonPassActive(s, engine.dynasty.season(s.simTimeMs))) demo("season_pass")
+            if (s.world.modifiers.none { it.source == com.arnavgames.tycoon.core.store.StoreEngine.BOOST && it.untilSim > s.simTimeMs }) bullion("boost_24h")
+        }
+        return base.act(engine, s, rng, sessionStart, sessionEnd)
+    }
+}
+
 /** Plays like the active bot but keeps a 30% cash buffer and avoids promotions. */
 fun cautiousBot() = ActiveBot(name = "cautious", reserveFraction = 0.30, promos = false)
 

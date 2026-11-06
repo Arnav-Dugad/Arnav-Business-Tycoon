@@ -127,7 +127,7 @@ object Report {
         sb.appendLine()
         sb.appendLine("Counts dividends, coupons, staking, rent and realised market and property gains (losses reduce it). The target bands are for markets alone; luxury arrives in Phase 8.").appendLine()
         sb.appendLine("![Net worth over time](networth.svg)").appendLine()
-        sb.appendLine("Bots not yet simulated: `heavy_spender` (needs the store, Phase 14).")
+        sb.appendLine("Spender gap: compare `heavy_spender` with `active` in the milestone table (target 25–40 % faster, never more than 2×).")
         File(dir, "summary.md").writeText(sb.toString())
 
         // CSV

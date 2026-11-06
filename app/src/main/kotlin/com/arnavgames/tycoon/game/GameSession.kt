@@ -49,6 +49,9 @@ class GameSession @Inject constructor(
     @ApplicationScope private val scope: CoroutineScope,
     @dagger.hilt.android.qualifiers.ApplicationContext private val app: android.content.Context,
 ) {
+    /** Application context for platform services (cloud). */
+    val appContext: android.content.Context get() = app
+
     sealed interface Status {
         data object Loading : Status
         data object Ready : Status

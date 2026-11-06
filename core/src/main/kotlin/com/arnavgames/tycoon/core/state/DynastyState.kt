@@ -65,5 +65,24 @@ data class DynastyState(
     val founderNames: List<String> = emptyList(),
 )
 
+/** Demo-store entitlements (docs/GDD.md §15). They are permanent: they survive prestige. */
+@Serializable
+data class StoreState(
+    /** The player has used a demo (simulated real-money) purchase: shown on leaderboards. */
+    val boosted: Boolean = false,
+    val demoPurchases: Int = 0,
+    /** Product id -> times bought. */
+    val purchases: Map<String, Int> = emptyMap(),
+    val permanentPct: Double = 0.0,
+    val extraSlots: Int = 0,
+    val offlineHours: Int = 0,
+    val vipUntil: Long = 0,
+    /** Season indices whose premium track is unlocked. */
+    val seasonPasses: Set<Long> = emptySet(),
+    val cosmetics: Set<String> = emptySet(),
+    val title: String? = null,
+    val frame: String? = null,
+)
+
 @Serializable
 data class IpoState(val float: Double, val listedAtSim: Long, val raised: Money)

@@ -18,7 +18,7 @@ object ContentLoader {
     }
 
     /** Files that make up the pack, relative to the content root. Order matters for the hash. */
-    val FILES = listOf("data/businesses.json", "data/chapters.json", "data/conglomerates.json", "data/markets.json", "data/estates.json", "data/luxury.json", "data/world.json", "data/progression.json", "balance/balance.json")
+    val FILES = listOf("data/businesses.json", "data/chapters.json", "data/conglomerates.json", "data/markets.json", "data/estates.json", "data/luxury.json", "data/world.json", "data/progression.json", "data/store.json", "balance/balance.json")
 
     data class Loaded(val pack: ContentPack, val hash: String, val issues: List<ContentIssue>)
 
@@ -32,8 +32,9 @@ object ContentLoader {
         val luxury = json.decodeFromString<LuxuryContent>(texts.getValue("data/luxury.json"))
         val world = json.decodeFromString<WorldContent>(texts.getValue("data/world.json"))
         val progression = json.decodeFromString<ProgressionContent>(texts.getValue("data/progression.json"))
+        val store = json.decodeFromString<StoreContent>(texts.getValue("data/store.json"))
         val balance = json.decodeFromString<BalanceConfig>(texts.getValue("balance/balance.json"))
-        val pack = ContentPack(businesses, balance, chapters, conglomerates, markets, estates, luxury, world, progression)
+        val pack = ContentPack(businesses, balance, chapters, conglomerates, markets, estates, luxury, world, progression, store)
         val digest = MessageDigest.getInstance("SHA-256")
         FILES.forEach { digest.update(it.toByteArray()); digest.update(texts.getValue(it).replace("\r\n", "\n").toByteArray()) }
         val hash = digest.digest().joinToString("") { "%02x".format(it) }.take(16)
@@ -175,7 +176,26 @@ object ContentValidator {
         validateLuxury(pack, ids, ::check)
         validateWorld(pack, ids, ::check)
         validateProgression(pack, ::check)
+        validateStore(pack, ::check)
         return out
+    }
+
+    private fun validateStore(pack: ContentPack, check: (Boolean, String, String) -> Unit) {
+        val st = pack.store
+        if (st.products.isEmpty()) return
+        check(st.products.size >= 20, "store", "at least 20 products")
+        check(st.products.map { it.id }.toSet().size == st.products.size, "store", "duplicate product ids")
+        val sections = st.sections.map { it.id }.toSet()
+        st.products.forEach { p ->
+            val path = "store.${p.id}"
+            check(p.section in sections, path, "unknown section")
+            check(p.demoPrice != null || p.bullionPrice != null, path, "needs a demo or Bullion price")
+            check(p.demoPrice == null || Regex("^\\$\\d+\\.\\d\\d$").matches(p.demoPrice), path, "demo price label")
+            p.grants.cosmetic?.let { check(it in st.cosmeticById, path, "unknown cosmetic") }
+            // No paid random rewards (GDD §15): every grant is fixed.
+            check(listOf(p.grants.bullion > 0, p.grants.favor > 0, p.grants.boostHours > 0, p.grants.permanentPct > 0, p.grants.slots > 0,
+                p.grants.offlineHours > 0, p.grants.vipDays > 0, p.grants.seasonPass > 0, p.grants.cosmetic != null).any { it }, path, "grants nothing")
+        }
     }
 
     private val METRICS = setOf(

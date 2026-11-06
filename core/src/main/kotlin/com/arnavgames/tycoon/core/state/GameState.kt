@@ -38,6 +38,7 @@ data class GameState(
     val finance: FinanceState = FinanceState(),
     val meta: MetaState = MetaState(),
     val dynasty: DynastyState = DynastyState(),
+    val store: StoreState = StoreState(),
 ) {
     val cash: Money get() = ledger.cash
 }

@@ -83,6 +83,14 @@ sealed interface Command {
     /** Retire the founder: the heir starts over with Legacy, the chosen trait, heirlooms, charter and challenge. */
     data class PassTheCrown(val trait: String, val heirlooms: List<String>, val challenge: String?, val charter: Set<String>) : Command
     data class LaunchIpo(val float: Double) : Command
+    // Demo store (docs/GDD.md §15): only SimulatedPurchaseProvider issues DemoPurchase, after its DEMO sheet.
+    data class DemoPurchase(val productId: String) : Command
+    data class BuyWithBullion(val productId: String) : Command
+    data class EquipCosmetic(val cosmeticId: String?, val kind: String) : Command
+    // Social (docs/GDD.md §14): applied by the client after Firestore confirms (rules cap the amounts).
+    data class ReceiveGift(val favor: Long) : Command
+    /** The player won this week's friends' Sealed Lot: pay the winning bid and take the piece. */
+    data class WinSealedLot(val itemId: String, val price: Money) : Command
 }
 
 sealed interface GameError {
@@ -151,6 +159,7 @@ sealed interface GameEvent {
     data object PhoenixReborn : GameEvent
     data class CrownPassed(val generation: Int, val legacyGained: Long) : GameEvent
     data class IpoLaunched(val raised: Money) : GameEvent
+    data class ProductGranted(val productId: String, val demo: Boolean) : GameEvent
 }
 
 sealed interface CommandResult {
