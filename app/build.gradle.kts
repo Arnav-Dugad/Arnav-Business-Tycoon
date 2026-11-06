@@ -14,7 +14,7 @@ if (hasFirebaseConfig) {
 
 // Semantic version. versionCode = major*10000 + minor*100 + patch.
 val versionMajor = 0
-val versionMinor = 1
+val versionMinor = 9
 val versionPatch = 0
 
 android {
