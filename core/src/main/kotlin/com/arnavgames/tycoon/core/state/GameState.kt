@@ -36,6 +36,8 @@ data class GameState(
     val luxury: LuxuryState = LuxuryState(),
     val world: WorldState = WorldState(),
     val finance: FinanceState = FinanceState(),
+    val meta: MetaState = MetaState(),
+    val dynasty: DynastyState = DynastyState(),
 ) {
     val cash: Money get() = ledger.cash
 }

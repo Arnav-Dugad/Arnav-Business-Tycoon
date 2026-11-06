@@ -19,6 +19,7 @@ internal object DebugScenarios {
         "markets" -> marketsOpen(engine, base)
         "auction" -> auctionClosing(engine, base)
         "world" -> worldDesk(engine, base)
+        "crown" -> crownReady(engine, base)
         else -> null
     }
 
@@ -189,6 +190,34 @@ internal object DebugScenarios {
         var guard = 0
         while (s.finance.tax.pending == null && guard++ < 48) s = engine.advance(s, 3 * 3_600_000L).state
         engine.credit.borrowLimit(s).takeIf { it.isPositive }?.let { lim -> s = s.run(Command.TakeLoan(lim / 4L, 3)) }
+        return s
+    }
+
+    /**
+     * The late game played on to the end of chapter 8 (real commands: missions, conglomerates, the last businesses,
+     * levels), so the founder can pass the crown. Used by the Dynasty prestige UI test (TEST_PLAN flow 7).
+     */
+    private fun crownReady(engine: GameEngine, base: GameState): GameState {
+        fun GameState.run(c: Command) = (engine.apply(this, c) as? CommandResult.Ok)?.state ?: this
+        val content = engine.content
+        var s = lateGame(engine, base)
+        var guard = 0
+        while (!engine.dynasty.canPrestige(s) && guard++ < 40) {
+            content.chapters.flatMap { it.missions }.forEach { s = s.run(Command.ClaimMission(it.id)) }
+            content.businesses.forEach { b ->
+                // Slots are full late in the game: mothball the weakest business outside a conglomerate to make room.
+                if (b.id !in s.businesses && engine.economy.usedSlots(s) >= engine.economy.slots(s)) {
+                    s.businesses.values.filter { !it.mothballed && engine.economy.conglomerateOf(s, it.id) == null }
+                        .minByOrNull { engine.economy.businessRate(s, it.id).net.perSecond() }?.let { w -> s = s.run(Command.SetMothballed(w.id, true)) }
+                }
+                s = s.run(Command.OpenBusiness(b.id))
+            }
+            // Levels last, so opening the newest (most expensive) businesses is never starved of cash.
+            content.businesses.forEach { b -> s = s.run(Command.BuyLevels(b.id, -1)) }
+            content.conglomerates.forEach { s = s.run(Command.FormConglomerate(it.id)) }
+            s = engine.advance(s, 30 * 60_000L).state
+        }
+        content.chapters.flatMap { it.missions }.forEach { s = s.run(Command.ClaimMission(it.id)) }
         return s
     }
 }

@@ -41,7 +41,7 @@ class DeskEngine(private val content: ContentPack, private val economy: Economy,
         data class Err(val error: GameError) : Result
     }
 
-    fun cardsUnlocked(s: GameState) = math.isUnlocked(s, "cards") && (s.progress.onboardingStep >= 5 || s.progress.chapter >= 2)
+    fun cardsUnlocked(s: GameState) = math.isUnlocked(s, "cards") && (s.progress.onboardingStep >= 5 || s.progress.chapter >= 2) && !economy.dynasty.forbids(s, "noCards")
 
     // =====================================================================================
     // Tick

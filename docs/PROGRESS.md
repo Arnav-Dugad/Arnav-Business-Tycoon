@@ -17,7 +17,9 @@ _Last updated: 2026-11-06._
 - Phase 8 (Luxury + art pipeline): **DONE**. Museum works have real CC0 photos; all 72 manager portraits are AI caricatures of invented people (owner approved the Figma AI credits). Deferred: photos for other luxury categories and estates, Heirlooms (Phase 10), Chapter 8 and income shares (Phase 11). Details below.
 - Phase 9 (World, rivals, finance pressure): **DONE**. Details below.
 - **Overnight run (owner request, 2026-11-06)**: the owner asked for all remaining phases and a GitHub release by morning, and answered the Phase 12/13 questions before sleeping (Firestore asia-south1; create a new project or fall back to the emulator; Email + Guest sign-in now, Google later; social as designed).
-- Next: **Phase 10: Progression and mini-games**.
+- Phase 10 (Progression): **DONE except the mini-games** (Negotiation, Market Timing), which move to Phase 15. Details below.
+- **Preview release v0.9.0** published on GitHub (signed with the new release key; see Phase 16 notes below).
+- Next: **Phase 14 (Store)**, then Phases 12–13 (Firebase, social), 15 (polish) and 16 (release).
 
 ## Decisions
 | Topic | Decision |
@@ -364,7 +366,7 @@ All in `:core` (pure Kotlin/JVM, enforced by `verifyCorePurity`):
 
 ### Evidence
 - Tests: **core 138** (new `WorldTest` 13 and `FinanceTest` 13), **sim 3**, **data 5**, **instrumented 5** (new `DeskAndTaxFlowTest` = flow 6): all pass.
-- Balance: P9_BALANCE
+- **Balance batch `docs/balance/2026-11-06-phase9/`** (active, idle, poor choices; 3 seeds × 10 days; 0 errors): 14 of 17 targets pass. Fails: Chapter 8 (active and idle, deferred to Phase 11) and idle first auction win at 4.0 days (target 2–3; tax from Chapter 4 slows idle players). Final net worth: active $37.5Qi (Phase 8: $262Qi), idle $44.1Qa (Phase 8: $3.30Qi). Taxes and cards cost about 0.85 (active) and 1.9 (idle) orders of magnitude by day 10; retuning is Phase 11 work. History p9a–p9c in `TUNING_LOG.md`.
 - Emulator screenshots reviewed: Empire world strip, the Desk (cards, effects, recent log), Fortune List with portraits and nemesis, Finance (credit, borrowing, taxes), tax return.
 - Fixed during review:
   1. A possessive bug ("Logistics's").
@@ -378,6 +380,37 @@ All in `:core` (pure Kotlin/JVM, enforced by `verifyCorePurity`):
 - The Negotiate mini-game (Phase 10) is represented by visible-odds options; construction tenders and property bids against rivals are not built; world-event mood photos are deferred.
 - 180 of the 220 rivals use monograms (owner decision).
 - Taxes and cards change late-game pacing; Chapter 8 and income shares remain Phase 11 work.
+
+## Phase 10: what was done and verified
+- **Content** (`content/data/progression.json`, `tools/content/gen_progression.py`):
+  - 60 daily and 30 weekly mission templates over 17 metrics, with targets by chapter band; 150 achievements in 13 categories.
+  - The 7-step daily ladder; 16 weekly events and 12 season themes with a 30-tier track (free track plus a demo-premium track that waits for the store).
+  - A 60-node Family Charter (Industry, Finance, Influence × 10 tiers × 2 choices); 20 heir traits; 12 Dynasty challenges; IPO settings.
+- **Engine** (`core/progression/`):
+  - `DynastyMath`: Legacy gain `floor(4 · (peakNW / 10^18)^0.42)`. The normaliser was moved from 10^9 to 10^18 because Chapter 8 now ends near $4×10^21; this keeps the documented ~130 Legacy and ×2.6 income at the first prestige.
+  - Bonuses from the charter, trait and weekly event feed income, offline cap, Hustle, slots, dividends, rent, tax, credit score, dealer discount, Status and takeover pressure.
+  - Weekly events start in Chapter 3. Challenge rules block the forbidden commands with a clear reason.
+  - `ProgressionEngine`: lifetime counters from game events, daily and weekly missions (one free reroll a day), achievements, the ladder (a missed day pauses it; it never resets), season XP and claims.
+  - Cash rewards are hours of income scaled by chapter (×0.02 in Chapter 1 up to ×1 from Chapter 6), because early chapters last minutes.
+  - Bookkeeping runs at minute ticks, so offline still equals live (tested).
+  - Pass the Crown: the heir keeps Legacy, Bullion, Favor, achievements, counters and up to 1–3 heirlooms; everything else restarts; rivals restart with the generation. The IPO sells 10–30 % of the holding for cash against that share of income.
+- **UI**: Dynasty tab rebuilt (Legacy card and Pass the Crown, daily reward, today's and this week's missions with claim and swap, season card with the weekly event and tier strip, achievements, IPO, story chapters). Achievements screen. Pass the Crown screen (trait, heirlooms, charter tiers, challenge, confirmation). Tab badge for anything claimable.
+- **Simulator**: bots claim the ladder, missions, achievements and season tiers.
+
+### Evidence
+- Tests: **core 150** (new `ProgressionTest`, 12 tests including offline equals live and the full prestige), **sim 3**, **data 5**, **instrumented 6** (new `CrownFlowTest` = flow 7, from the debug `crown` scenario).
+- Emulator screenshots reviewed: Dynasty tab (Legacy, daily reward, missions), Pass the Crown (Legacy preview, traits, heirlooms with museum photos, charter).
+- 2-day pacing check after the reward scaling: active targets unchanged (Chapter 1 at 21 min, Chapter 2 at 3.7 h, first conglomerate 24.6 h).
+- Fixed during review:
+  1. The first reward design gave Chapter 1 players a $173K jackpot (Chapter 1 in 3 minutes); rewards are now scaled by chapter.
+  2. The crown scenario starved the last businesses of cash.
+  3. Test waits matched the wrong text.
+
+### Known gaps (honest)
+- **Mini-games** (Negotiation, Market Timing) are not built; negotiation options keep their visible odds. Moved to Phase 15.
+- Idle Chapter 2 now completes at the 4 h check-in for all three seeds (target 8–16 h; it was 4/12/24 h before), a knife-edge between check-ins. For Phase 11.
+- Chapter 8 (and so prestige) is still out of reach in the 10-day simulator runs (Phase 11). Generation content scaling (each generation 60–80 % of the last) is not built; Legacy is the only speed-up.
+- Daily and weekly missions use game days (sim time), so a player who is away longer than the offline cap sees fewer days.
 
 ## Environment inventory (verified 2026-11-06)
 | Tool | State |

@@ -152,6 +152,19 @@ class GameViewModel @Inject constructor(
         .flowOn(Dispatchers.Default)
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), null)
 
+    val dynastyMapper by lazy { com.arnavgames.tycoon.ui.dynasty.DynastyMapper(session.engine) }
+
+    /** Something to claim on the Dynasty tab (missions, daily reward, achievements, season tiers). */
+    val dynastyBadge: StateFlow<Boolean> = session.state.filterNotNull()
+        .map { s ->
+            val p = session.engine.progression
+            s.progress.claimableMissions.isNotEmpty() || s.meta.achievementsClaimable.isNotEmpty() || p.ladderAvailable(s) ||
+                (s.meta.daily + s.meta.weekly).any { !it.claimed && p.done(s, it) } || session.engine.dynasty.canPrestige(s)
+        }
+        .distinctUntilChanged()
+        .flowOn(Dispatchers.Default)
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), false)
+
     fun fortune(s: GameState) = worldMapper.fortune(s)
     fun rival(s: GameState, id: String) = worldMapper.rival(s, id)
     fun finance(s: GameState) = worldMapper.finance(s)

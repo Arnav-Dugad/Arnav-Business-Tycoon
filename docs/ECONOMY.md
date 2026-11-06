@@ -177,9 +177,10 @@ rent_p/6h    = value_p · yield_d · occupancy(rent_price, tenant_quality) / 4
 - **Loans**: terms of 1, 3 or 7 days at the rate when taken, repaid in equal payments every 6 hours. A missed payment adds interest plus a 2 % penalty to the loan. Credit line limit = 12 h of income × rating factor. **Restructuring** (offered when payments exceed income) doubles every loan's term. **Phoenix protocol** (net worth below zero for 30 minutes while in debt) sells everything, clears debts (the bank writes off any shortfall), keeps managers, expansions and 10 % of levels, resets the score to 600 and grants a ×3 boost for 2 hours.
 
 ## 9. Progression and prestige
-- **Legacy gain** at prestige: `ΔLegacy = floor( 4 · (peak_NW / 1e9)^0.42 ) − Legacy already banked this generation`.
+- **Legacy gain** at prestige: `ΔLegacy = floor( 4 · (peak_NW / 1e18)^0.42 ) × (1 + Legacy bonuses + challenge bonus)`. (The normaliser was 1e9 in planning; Phase 10 moved it to 1e18 because Chapter 8 now ends near $4×10^21, keeping ~130 Legacy at the first prestige.)
 - **Legacy income multiplier**: `1 + 0.02 · Legacy^0.9`.
-  - Example: first prestige at peak NW ≈ $3e12 → ~115 Legacy → ×2.43 income in generation 2.
+  - Example: first prestige at peak NW ≈ $4e21 → ~130 Legacy → ×2.6 income in generation 2.
+- **Mission and reward cash** is hours of current income × a chapter scale (Ch1 0.02, Ch2 0.04, Ch3 0.1, Ch4 0.25, Ch5 0.5, Ch6+ 1.0).
 - **Family Charter** node thresholds: 10, 25, 60, 150, 400, 1,000, 2,500 … Legacy, plus a generation count.
 - **Generation scaling**: each generation's content scales so a typical generation lasts 60–80% of the previous one in real time until generation 6, then it stabilizes. Late-generation goals come from new systems (IPO, Space, collection sets) and challenges.
 

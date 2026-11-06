@@ -22,13 +22,14 @@ import kotlin.math.sqrt
 class Economy(val content: ContentPack) {
     val market = com.arnavgames.tycoon.core.market.MarketMath(content.markets)
     private val refRate = content.markets.macro.map { it.ratePerDay }.average().takeIf { !it.isNaN() } ?: 0.0
-    val luxury = com.arnavgames.tycoon.core.luxury.LuxuryEngine(content.luxury)
-    val world = com.arnavgames.tycoon.core.world.WorldMath(content)
+    val dynasty = com.arnavgames.tycoon.core.progression.DynastyMath(content)
+    val luxury = com.arnavgames.tycoon.core.luxury.LuxuryEngine(content.luxury) { s, type -> dynasty.bonus(s, type) }
+    val world = com.arnavgames.tycoon.core.world.WorldMath(content) { s -> dynasty.bonus(s, "takeoverShield") }
     val credit by lazy { com.arnavgames.tycoon.core.finance.Credit(content, this) }
     val estate = com.arnavgames.tycoon.core.estate.EstateEngine(
         content.estates,
         { s -> centralRate(s) },
-        { s -> luxury.setBonus(s, "rent") },
+        { s -> luxury.setBonus(s, "rent") + dynasty.bonus(s, "rent") },
         { s -> credit.maxLtv(s) },
         { s -> credit.mortgageSpreadAdjustment(s) },
     )
@@ -241,6 +242,7 @@ class Economy(val content: ContentPack) {
         if (hasBoardSeatPerk(state, id)) factor *= boardSeatMultiplier
         luxury.incomeBonus(state, id).let { if (it > 0) factor *= Multiplier.ofDouble(1 + it) }
         world.incomeFactor(state, id).let { if (it != 1.0) factor *= Multiplier.ofDouble(it) }
+        dynasty.incomeFactor(state, id).let { if (it != 1.0) factor *= Multiplier.ofDouble(it) }
         val gross = Rate.perSecond(def.baseRevenue, factor)
         val upkeepShare = (def.upkeep * Multiplier.ofDouble(round6(upkeepFactor(state, def, b, now)))).min(Multiplier.of("0.95"))
         val upkeep = gross * upkeepShare
@@ -264,17 +266,21 @@ class Economy(val content: ContentPack) {
     fun slots(state: GameState): Int =
         content.balance.baseSlots +
             content.balance.hqLevels.filter { it.level <= state.hq.level }.sumOf { it.extraSlots } +
-            (state.progress.chapter - 1).coerceIn(0, 6)
+            (state.progress.chapter - 1).coerceIn(0, 6) +
+            dynasty.bonus(state, "slots").toInt()
 
     fun usedSlots(state: GameState): Int = state.businesses.values.count { !it.mothballed }
 
     fun offlineCapMs(state: GameState): Long {
-        val bonus = content.balance.hqLevels.filter { it.level <= state.hq.level }.sumOf { it.offlineCapBonusSeconds }
-        return (content.balance.offlineCapBaseSeconds + bonus).coerceAtMost(content.balance.offlineCapMaxSeconds) * 1000
+        val bonus = content.balance.hqLevels.filter { it.level <= state.hq.level }.sumOf { it.offlineCapBonusSeconds } +
+            (dynasty.bonus(state, "offlineHours") * 3600).toLong()
+        val cap = (content.balance.offlineCapBaseSeconds + bonus).coerceAtMost(content.balance.offlineCapMaxSeconds) * 1000
+        return if (dynasty.forbids(state, "halfOffline")) cap / 2 else cap
     }
 
     fun hustleMultiplier(state: GameState): Multiplier =
-        Multiplier.product(content.balance.hqLevels.filter { it.level <= state.hq.level }.map { it.hustleMultiplier })
+        Multiplier.product(content.balance.hqLevels.filter { it.level <= state.hq.level }.map { it.hustleMultiplier }) *
+            Multiplier.ofDouble(1.0 + dynasty.bonus(state, "hustle"))
 
     // ---------------- Net worth ----------------
 

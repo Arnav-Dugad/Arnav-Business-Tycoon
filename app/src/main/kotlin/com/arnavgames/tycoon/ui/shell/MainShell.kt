@@ -50,6 +50,8 @@ fun MainShell(
     onOpenDesk: () -> Unit = {},
     onOpenFortune: () -> Unit = {},
     onOpenFinance: () -> Unit = {},
+    onOpenAchievements: () -> Unit = {},
+    onOpenCrown: () -> Unit = {},
 ) {
     var tab by rememberSaveable { mutableStateOf("empire") }
     val empire by vm.empire.collectAsStateWithLifecycle()
@@ -59,13 +61,14 @@ fun MainShell(
     val collectionUi by vm.collection.collectAsStateWithLifecycle()
     val auctionLive = collectionUi?.auction != null
     val deskUi by vm.desk.collectAsStateWithLifecycle()
+    val dynastyBadge by vm.dynastyBadge.collectAsStateWithLifecycle()
     val cardsWaiting = (deskUi?.cards?.size ?: 0) > 0
     val items = listOf(
         NavItem("empire", "Empire", AbtIcons.Empire, badge = cardsWaiting),
         NavItem("markets", "Markets", AbtIcons.Markets),
         NavItem("estates", "Estates", AbtIcons.Estates, badge = decisions),
         NavItem("collection", "Collection", AbtIcons.Collection, badge = auctionLive),
-        NavItem("dynasty", "Dynasty", AbtIcons.Crown, badge = claimable),
+        NavItem("dynasty", "Dynasty", AbtIcons.Crown, badge = claimable || dynastyBadge),
     )
     Box(Modifier.fillMaxSize()) {
         AnimatedContent(tab, transitionSpec = { fadeIn(tween(220)) togetherWith fadeOut(tween(160)) }, label = "tab") { t ->
@@ -74,7 +77,7 @@ fun MainShell(
                 "markets" -> MarketsScreen(vm, onOpenInstrument = onOpenInstrument, onOpenNews = onOpenNews)
                 "estates" -> com.arnavgames.tycoon.ui.estates.EstatesScreen(vm, onOpenCity = onOpenCity, onOpenProperty = onOpenProperty)
                 "collection" -> com.arnavgames.tycoon.ui.collection.CollectionScreen(vm, onOpenCategory = onOpenLuxuryCategory, onOpenAuction = onOpenAuction)
-                else -> DynastyScreen(vm, onOpenSettings = onOpenSettings, onOpenCredits = onOpenCredits)
+                else -> DynastyScreen(vm, onOpenSettings = onOpenSettings, onOpenCredits = onOpenCredits, onOpenAchievements = onOpenAchievements, onOpenCrown = onOpenCrown)
             }
         }
         // Frosted strip behind the status bar so scrolled content blurs under the clock instead of colliding with it.

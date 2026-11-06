@@ -73,6 +73,16 @@ sealed interface Command {
     /** Files the pending tax quarter yourself, claiming earned deductions (optionally an aggressive interpretation). */
     data class FileTaxes(val aggressive: Boolean) : Command
     data class SetAutoFile(val on: Boolean) : Command
+    // Progression and the Dynasty (docs/GDD.md §12)
+    data class ClaimDaily(val index: Int) : Command
+    data class ClaimWeekly(val index: Int) : Command
+    data class RerollDaily(val index: Int) : Command
+    data class ClaimAchievement(val id: String) : Command
+    data object ClaimDailyReward : Command
+    data class ClaimSeasonTier(val tier: Int, val premium: Boolean = false) : Command
+    /** Retire the founder: the heir starts over with Legacy, the chosen trait, heirlooms, charter and challenge. */
+    data class PassTheCrown(val trait: String, val heirlooms: List<String>, val challenge: String?, val charter: Set<String>) : Command
+    data class LaunchIpo(val float: Double) : Command
 }
 
 sealed interface GameError {
@@ -139,6 +149,8 @@ sealed interface GameEvent {
     data class TaxFiled(val refund: Money, val audited: Boolean, val auto: Boolean) : GameEvent
     data object Restructured : GameEvent
     data object PhoenixReborn : GameEvent
+    data class CrownPassed(val generation: Int, val legacyGained: Long) : GameEvent
+    data class IpoLaunched(val raised: Money) : GameEvent
 }
 
 sealed interface CommandResult {

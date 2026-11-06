@@ -57,7 +57,7 @@
 4. Estates: open map → district → buy property → set rent → renovate. (`EstatesFlowTest`, from the debug `markets` scenario.)
 5. Collection: auction flow (bid, win or lose) → item appears in showroom. (`AuctionFlowTest`, from the debug `auction` scenario: proxy bid in, 45 s before the hammer.)
 6. Decision card resolve; tax filing (auto and self). (`DeskAndTaxFlowTest`, from the debug `world` scenario: late game played through a tax quarter.)
-7. Dynasty prestige flow with confirmation.
+7. Dynasty prestige flow with confirmation. (`CrownFlowTest`, from the debug `crown` scenario.)
 8. Store: demo purchase sheet shows the DEMO label → entitlement granted → Boosted flag set.
 9. Settings: theme switch, audio toggles, reduced motion, export save.
 10. Auth (against the Firebase Auth emulator): sign up → verification banner → sign out → sign in; guest → upgrade.

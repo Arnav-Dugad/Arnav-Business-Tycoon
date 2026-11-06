@@ -94,3 +94,22 @@ Runs: active and idle (plus risky_trader in the final batch), 3 seeds × 7–10 
 ### Findings
 - Luxury is a mid-game Status and set-bonus sink: realistic prices (cars from $70K, masterpieces up to $450M) are small next to late-game income, so luxury gains are about 0 % of income, like markets and property (Phase 11).
 - The `first_luxury` milestone arrives as soon as Chapter 3 opens for every bot; it has no separate target.
+
+## 2026-11-06 — Phase 9, world, rivals and finance
+
+| Step | Change | Result | Verdict |
+|---|---|---|---|
+| p9a | Desk, events, rivals, loans, taxes (2 seeds × 7 days) | Early targets unchanged; Fortune milestones far too early (active #1 at real day 2.5) | Game time trails real time (offline cap), so a real-time calibration was wrong |
+| p9b | Trajectory export (real vs game time vs net worth) | Active: 0.72 game days per real day; idle: 0.45. Active $10^17.6 at game day 4.3 | Rival curve recalibrated on game time with a knee (1.36/day to day 4.5, then 0.4/day) so a strong player stays on top late; the active bot also stopped selling businesses it would rebuy |
+| p9c | Final: active, idle, poor choices × 3 seeds × 10 days | **14 of 17 pass**, 0 errors. Active Chapter 7 at 8.5 d (was 7.0), final $37.5Qi (was $262Qi); idle final $44.1Qa (was $3.30Qi); idle first auction win 4.0 d | Accepted for now: income tax (15–35 % from Chapter 4) is the main drag; Phase 11 retunes pacing with taxes in place. Report: `2026-11-06-phase9/summary.md` |
+
+### Findings
+- Taxes slow everything after Chapter 4, idle players most (they can't self-file and buy less). The poor-choices bot stays solvent (no Phase 9 rescue needed in 3 seeds).
+
+## 2026-11-07 — Phase 10, progression
+
+| Step | Change | Result | Verdict |
+|---|---|---|---|
+| p10a | Missions, ladder, achievements, seasons; cash rewards = hours of income | Chapter 1 in 3 minutes in the smoke test | Rewards in "hours of income" are jackpots early, when chapters last minutes |
+| p10b | Rewards scaled by chapter (×0.02 → ×1) | Active pacing back on target; idle Chapter 2 at 4 h on all seeds | — |
+| p10c | Weekly events start in Chapter 3 | Idle Chapter 2 still 4 h | Logged for Phase 11 (knife-edge between the 4 h and 9 h idle check-ins) |

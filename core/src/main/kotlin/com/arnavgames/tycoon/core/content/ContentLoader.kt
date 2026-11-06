@@ -18,7 +18,7 @@ object ContentLoader {
     }
 
     /** Files that make up the pack, relative to the content root. Order matters for the hash. */
-    val FILES = listOf("data/businesses.json", "data/chapters.json", "data/conglomerates.json", "data/markets.json", "data/estates.json", "data/luxury.json", "data/world.json", "balance/balance.json")
+    val FILES = listOf("data/businesses.json", "data/chapters.json", "data/conglomerates.json", "data/markets.json", "data/estates.json", "data/luxury.json", "data/world.json", "data/progression.json", "balance/balance.json")
 
     data class Loaded(val pack: ContentPack, val hash: String, val issues: List<ContentIssue>)
 
@@ -31,8 +31,9 @@ object ContentLoader {
         val estates = json.decodeFromString<EstateContent>(texts.getValue("data/estates.json"))
         val luxury = json.decodeFromString<LuxuryContent>(texts.getValue("data/luxury.json"))
         val world = json.decodeFromString<WorldContent>(texts.getValue("data/world.json"))
+        val progression = json.decodeFromString<ProgressionContent>(texts.getValue("data/progression.json"))
         val balance = json.decodeFromString<BalanceConfig>(texts.getValue("balance/balance.json"))
-        val pack = ContentPack(businesses, balance, chapters, conglomerates, markets, estates, luxury, world)
+        val pack = ContentPack(businesses, balance, chapters, conglomerates, markets, estates, luxury, world, progression)
         val digest = MessageDigest.getInstance("SHA-256")
         FILES.forEach { digest.update(it.toByteArray()); digest.update(texts.getValue(it).replace("\r\n", "\n").toByteArray()) }
         val hash = digest.digest().joinToString("") { "%02x".format(it) }.take(16)
@@ -173,7 +174,37 @@ object ContentValidator {
         validateEstates(pack, ids, ::check)
         validateLuxury(pack, ids, ::check)
         validateWorld(pack, ids, ::check)
+        validateProgression(pack, ::check)
         return out
+    }
+
+    private val METRICS = setOf(
+        "levels", "taps", "earn_hours", "cards", "trades", "frenzies", "managers", "expansions", "properties", "luxury",
+        "renovations", "businesses", "auctions", "returns", "payouts", "loans_repaid", "events", "towers", "phoenix", "sold",
+        "dailies", "weeklies", "ladder",
+    )
+    private val BONUSES = setOf(
+        "incomeAll", "offlineHours", "hustle", "slots", "startCash", "dividends", "rent", "taxCut", "creditScore",
+        "luxuryDiscount", "status", "takeoverShield", "legacyBonus",
+    )
+
+    private fun validateProgression(pack: ContentPack, check: (Boolean, String, String) -> Unit) {
+        val p = pack.progression
+        if (p.daily.isEmpty()) return
+        val sectors = pack.markets.sectors.map { it.id }.toSet()
+        fun bonusOk(e: String) = e in BONUSES || (e.startsWith("incomeSector:") && e.removePrefix("incomeSector:") in sectors) ||
+            (e.startsWith("sector:") && e.removePrefix("sector:") in sectors)
+        check(p.daily.size >= 50 && p.weekly.size >= 25, "progression", "mission template counts")
+        check(p.achievements.size >= 140, "progression", "at least 140 achievements")
+        check(p.charter.size >= 54 && p.traits.size >= 18 && p.challenges.size >= 10, "progression", "dynasty content counts")
+        check(p.ladder.size == 7, "progression", "7 ladder steps")
+        check((p.daily + p.weekly).all { it.metric in METRICS && it.targets.size == 3 && it.targets.all { t -> t > 0 } }, "progression", "mission metric/targets")
+        check(p.achievements.map { it.id }.toSet().size == p.achievements.size, "progression", "duplicate achievement ids")
+        p.achievements.filter { it.goal.type == "metric" }.forEach { check(it.goal.metric in METRICS, "progression.${it.id}", "unknown metric") }
+        p.charter.forEach { check(bonusOk(it.effect), "progression.charter.${it.id}", "unknown effect '${it.effect}'") }
+        p.traits.forEach { check(bonusOk(it.effect), "progression.traits.${it.id}", "unknown effect '${it.effect}'") }
+        p.weeklyEvents.forEach { e -> check(bonusOk(e.effect) && e.goals.all { it in METRICS }, "progression.events.${e.id}", "effect/goals") }
+        check(p.charter.groupBy { it.branch to it.tier }.values.all { it.size in 2..3 }, "progression.charter", "2-3 choices per tier")
     }
 
     /**

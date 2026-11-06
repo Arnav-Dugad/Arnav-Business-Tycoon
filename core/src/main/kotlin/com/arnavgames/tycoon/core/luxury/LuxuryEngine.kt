@@ -25,7 +25,7 @@ import kotlin.math.sin
  * deterministic in the world seed and time; auctions run on the engine's event boundaries, so offline play resolves
  * them exactly as live play would (without the player bidding).
  */
-class LuxuryEngine(val c: LuxuryContent) {
+class LuxuryEngine(val c: LuxuryContent, private val extraBonus: (GameState, String) -> Double = { _, _ -> 0.0 }) {
     private val cfg = c.config
 
     fun isUnlocked(state: GameState, feature: String) = state.progress.chapter >= (cfg.unlocks[feature] ?: 99)
@@ -49,7 +49,7 @@ class LuxuryEngine(val c: LuxuryContent) {
     /** What a dealer asks today (before Status and set discounts). */
     fun marketPrice(item: LuxuryItemDef, simMs: Long): Money = item.price * Multiplier.ofDouble(artCycle(item, simMs))
 
-    fun dealerDiscount(state: GameState): Double = (tier(state).dealerDiscount + setBonus(state, "luxuryDiscount")).coerceAtMost(0.4)
+    fun dealerDiscount(state: GameState): Double = (tier(state).dealerDiscount + setBonus(state, "luxuryDiscount") + extraBonus(state, "luxuryDiscount")).coerceAtMost(0.4)
 
     fun dealerPrice(state: GameState, item: LuxuryItemDef): Money =
         marketPrice(item, state.simTimeMs) * Multiplier.ofDouble(1 - dealerDiscount(state))
@@ -89,7 +89,7 @@ class LuxuryEngine(val c: LuxuryContent) {
     }
 
     fun statusPoints(state: GameState): Double =
-        displayed(state).sumOf { c.itemById.getValue(it).statusPoints } * (1 + setBonus(state, "status"))
+        displayed(state).sumOf { c.itemById.getValue(it).statusPoints } * (1 + setBonus(state, "status") + extraBonus(state, "status"))
 
     fun tierIndex(state: GameState): Int {
         val pts = statusPoints(state)

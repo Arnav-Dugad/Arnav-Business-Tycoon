@@ -15,7 +15,7 @@ import kotlin.math.sin
  * Pure world formulas: rival fortunes and the Fortune List (GDD §10), and the timed income modifiers that world
  * events, decision cards and the Phoenix comeback boost apply to businesses (GDD §9, §11).
  */
-class WorldMath(private val content: ContentPack) {
+class WorldMath(private val content: ContentPack, private val takeoverShield: (GameState) -> Double = { 0.0 }) {
     private val w get() = content.world
     private val sectorsOfBusiness: Map<String, Set<String>> = content.markets.sectors
         .flatMap { s -> s.businesses.map { it to s.id } }.groupBy({ it.first }, { it.second }).mapValues { it.value.toSet() }
@@ -38,7 +38,7 @@ class WorldMath(private val content: ContentPack) {
     }
 
     /** Rival fortunes restart with every generation (Phase 10 sets this at prestige). */
-    fun generationStart(state: GameState): Long = 0L
+    fun generationStart(state: GameState): Long = state.dynasty.generationStartSim
 
     fun rivalNetWorth(state: GameState, r: RivalDef, simMs: Long = state.simTimeMs): Money = fromLog10(rivalLog10(state, r, simMs))
 
@@ -77,7 +77,7 @@ class WorldMath(private val content: ContentPack) {
         for (b in content.businesses) {
             var f = 1.0
             for (mod in ws.modifiers) if (touches(mod, b.id)) f *= (1.0 + mod.pct)
-            if (ws.cards.any { it.business == b.id && it.card in takeoverCards }) f *= (1.0 - w.config.cards.takeoverPenalty)
+            if (ws.cards.any { it.business == b.id && it.card in takeoverCards }) f *= (1.0 - w.config.cards.takeoverPenalty * (1.0 - takeoverShield(state)).coerceIn(0.0, 1.0))
             if (f != 1.0) factors[b.id] = round6(f.coerceAtLeast(0.05))
         }
         memo = Memo(ws.modifiers, ws.cards, factors)

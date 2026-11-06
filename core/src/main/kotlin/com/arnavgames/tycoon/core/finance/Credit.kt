@@ -34,7 +34,7 @@ class Credit(private val content: ContentPack, private val economy: Economy) {
         return cfg.dti.firstOrNull { days <= it.days }?.points ?: (cfg.dti.lastOrNull()?.points ?: 0)
     }
 
-    fun score(state: GameState): Int = (state.finance.scoreHistory + dtiPoints(state)).coerceIn(cfg.scoreMin, cfg.scoreMax)
+    fun score(state: GameState): Int = (state.finance.scoreHistory + dtiPoints(state) + economy.dynasty.bonus(state, "creditScore").toInt()).coerceIn(cfg.scoreMin, cfg.scoreMax)
 
     fun rating(state: GameState): RatingDef = ratingFor(score(state))
 

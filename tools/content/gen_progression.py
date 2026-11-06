@@ -157,6 +157,7 @@ def achievements():
         add(f"rating_{r.lower()}", "Finance", f"Rated {r}", f"Earn a credit rating of {r}.", {"type": "rating", "value": r}, 15 + 15 * i)
     for i, n in enumerate([1, 5, 10]):
         add(f"returns_{n}", "Finance", f"{n} return" + ("s" if n > 1 else ""), f"Self-file {n} tax return" + ("s." if n > 1 else "."), {"type": "metric", "metric": "returns", "value": n}, 10 + 10 * i)
+    add("sold_business", "Rivals", "Cashing out", "Sell a business to a rival.", {"type": "metric", "metric": "sold", "value": 1}, 15)
     add("phoenix", "Finance", "Phoenix", "Rise again with the Phoenix protocol.", {"type": "metric", "metric": "phoenix", "value": 1}, 25)
     add("ipo", "Finance", "Ring the bell", "Take your holding company public.", {"type": "ipo"}, 80)
     for i, g in enumerate([2, 3, 5, 10]):
@@ -199,15 +200,15 @@ CHARTER = {
         (("slots", 1, "Third campus", "+1 business slot"), ("incomeSector:frontier", 0.50, "Star-bound", "+50% space income")),
     ]),
     "finance": ("Finance", [
-        (("startCash", 5, "Trust fund", "Heirs start with 5 minutes of the founder's peak income"), ("creditScore", 30, "Good name", "+30 credit score")),
+        (("startCash", 6, "Trust fund", "Heirs start with $1M"), ("creditScore", 30, "Good name", "+30 credit score")),
         (("dividends", 0.20, "Dividend habit", "+20% dividends and coupons"), ("rent", 0.15, "Landed family", "+15% rent")),
-        (("taxCut", 0.02, "Family office", "−2 points on every tax bracket"), ("startCash", 10, "Bigger trust", "Heirs start with 10 minutes of peak income")),
+        (("taxCut", 0.02, "Family office", "−2 points on every tax bracket"), ("startCash", 9, "Bigger trust", "Heirs start with $1B")),
         (("creditScore", 40, "Banker's friend", "+40 credit score"), ("dividends", 0.30, "Patient capital", "+30% dividends and coupons")),
         (("rent", 0.25, "Prime addresses", "+25% rent"), ("taxCut", 0.03, "Clever structures", "−3 points on every tax bracket")),
-        (("startCash", 20, "Inheritance", "Heirs start with 20 minutes of peak income"), ("incomeSector:financials", 0.35, "Merchant bank", "+35% financial income")),
+        (("startCash", 12, "Inheritance", "Heirs start with $1T"), ("incomeSector:financials", 0.35, "Merchant bank", "+35% financial income")),
         (("dividends", 0.40, "Compounders", "+40% dividends and coupons"), ("creditScore", 50, "AAA family", "+50 credit score")),
         (("taxCut", 0.04, "Offshore wisdom", "−4 points on every tax bracket"), ("rent", 0.35, "Real-estate dynasty", "+35% rent")),
-        (("legacyBonus", 0.10, "Long view", "+10% Legacy at every prestige"), ("startCash", 40, "Old fortune", "Heirs start with 40 minutes of peak income")),
+        (("legacyBonus", 0.10, "Long view", "+10% Legacy at every prestige"), ("startCash", 15, "Old fortune", "Heirs start with $1Qa")),
         (("legacyBonus", 0.20, "Generational wealth", "+20% Legacy at every prestige"), ("incomeAll", 0.30, "Money makes money", "+30% income from every business")),
     ]),
     "influence": ("Influence", [
@@ -225,7 +226,7 @@ CHARTER = {
 }
 
 TRAITS = [
-    ("frugal", "Frugal", "Watches every penny.", "startCash", 5), ("charming", "Charming", "Dealers love them.", "luxuryDiscount", 0.03),
+    ("frugal", "Frugal", "Watches every penny. Starts with $1M.", "startCash", 6), ("charming", "Charming", "Dealers love them.", "luxuryDiscount", 0.03),
     ("workaholic", "Workaholic", "Never stops.", "offlineHours", 2), ("salesman", "Natural salesman", "Can sell anything.", "hustle", 1.0),
     ("visionary", "Visionary", "Sees what others miss.", "incomeAll", 0.08), ("cautious", "Cautious", "Pays every bill on time.", "creditScore", 25),
     ("landlord", "Born landlord", "Loves property.", "rent", 0.15), ("investor", "Investor", "Lives on dividends.", "dividends", 0.20),
@@ -318,7 +319,6 @@ def main(repo: Path) -> None:
             "legacyScale": 4.0, "legacyExponent": 0.42, "legacyIncomeFactor": 0.02, "legacyIncomeExponent": 0.9,
             "heirlooms": [1, 1, 2, 2, 3], "traitChoices": 3,
             "ipo": {"floats": [0.10, 0.20, 0.30], "valuationMultiple": 2.0, "minChapter": 7},
-            "eventGoal": {"easy": 0.5, "xp": 60},
         },
     }
     path = repo / "content/data/progression.json"

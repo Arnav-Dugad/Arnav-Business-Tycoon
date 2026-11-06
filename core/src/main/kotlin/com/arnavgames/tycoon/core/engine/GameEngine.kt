@@ -30,7 +30,7 @@ import com.arnavgames.tycoon.core.time.OfflineCalculator
 class GameEngine(val content: ContentPack) {
     val economy = Economy(content)
     private val missions = Missions(content, economy)
-    val market = com.arnavgames.tycoon.core.market.MarketEngine(content.markets) { s -> economy.luxury.setBonus(s, "dividends") }
+    val market = com.arnavgames.tycoon.core.market.MarketEngine(content.markets) { s -> economy.luxury.setBonus(s, "dividends") + economy.dynasty.bonus(s, "dividends") }
     val trading = com.arnavgames.tycoon.core.market.Trading(market)
     val estate get() = economy.estate
     val luxury get() = economy.luxury
@@ -39,10 +39,12 @@ class GameEngine(val content: ContentPack) {
     val desk = com.arnavgames.tycoon.core.world.DeskEngine(content, economy, finance, market)
     val world get() = economy.world
     val credit get() = economy.credit
+    val dynasty get() = economy.dynasty
+    val progression = com.arnavgames.tycoon.core.progression.ProgressionEngine(content, economy)
 
     /** Tax withheld from [amount] of business income at the current quarter's rate. */
     private fun withheld(s: GameState, amount: Money): Money =
-        if (s.finance.tax.rate <= 0.0 || !amount.isPositive) Money.ZERO else amount * Multiplier.ofDouble(s.finance.tax.rate)
+        dynasty.adjustTax(s, s.finance.tax.rate).let { r -> if (r <= 0.0 || !amount.isPositive) Money.ZERO else amount * Multiplier.ofDouble(r) }
 
     fun newGame(worldSeed: Long, contentHash: String, clock: GameClock): GameState {
         val base = GameState(
@@ -72,10 +74,14 @@ class GameEngine(val content: ContentPack) {
         while (s.simTimeMs < end) {
             val now = s.simTimeMs
             val stop = nextBoundary(s, now, end)
+            val mark = events.size
             val seg = integrate(s, stop - now, events)
             s = seg.first.copy(simTimeMs = stop)
             earned += seg.second
             s = onBoundary(s, stop, events)
+            // Progress counters and missions update at the same game moments however time is split (offline ≡ live).
+            if (events.size > mark) s = progression.count(s, events.subList(mark, events.size))
+            if (stop % MINUTE == 0L) s = progression.refresh(s, checkAchievements = (stop / MINUTE) % 10 == 0L)
         }
         return AdvanceResult(s, events, earned)
     }
@@ -113,7 +119,7 @@ class GameEngine(val content: ContentPack) {
             val rate = economy.businessRate(s, id, now).net
             if (b.managerId != null) {
                 val (amount, acc) = b.accrual.accrue(rate, dt)
-                val taxRate = s.finance.tax.rate
+                val taxRate = dynasty.adjustTax(s, s.finance.tax.rate)
                 val (tax, taxAcc) = if (taxRate > 0.0) b.taxAccrual.accrue(rate * Multiplier.ofDouble(taxRate), dt) else (Money.ZERO to b.taxAccrual)
                 // Stamp at segment start: segments never cross a minute boundary, so this is always the right minute.
                 ledger = Ledger.earn(ledger, now, id, amount, tax.min(amount).max(Money.ZERO))
@@ -253,6 +259,7 @@ class GameEngine(val content: ContentPack) {
 
     fun apply(state: GameState, cmd: Command): CommandResult {
         val events = mutableListOf<GameEvent>()
+        challengeBlock(state, cmd)?.let { return CommandResult.Rejected(GameError.Locked(it)) }
         val result: Either = when (cmd) {
             is Command.OpenBusiness -> openBusiness(state, cmd.businessId, events)
             is Command.BuyLevels -> buyLevels(state, cmd.businessId, cmd.count, events)
@@ -305,17 +312,138 @@ class GameEngine(val content: ContentPack) {
             Command.AcceptPhoenix -> fin(finance.acceptPhoenix(state, events))
             is Command.FileTaxes -> fin(finance.fileTaxes(state, cmd.aggressive, events))
             is Command.SetAutoFile -> fin(finance.setAutoFile(state, cmd.on))
+            is Command.ClaimDaily -> prog(progression.claimMission(state, weekly = false, index = cmd.index, events = events))
+            is Command.ClaimWeekly -> prog(progression.claimMission(state, weekly = true, index = cmd.index, events = events))
+            is Command.RerollDaily -> prog(progression.reroll(state, cmd.index))
+            is Command.ClaimAchievement -> prog(progression.claimAchievement(state, cmd.id))
+            Command.ClaimDailyReward -> prog(progression.claimLadder(state))
+            is Command.ClaimSeasonTier -> prog(progression.claimSeason(state, cmd.tier, cmd.premium))
+            is Command.PassTheCrown -> passTheCrown(state, cmd, events)
+            is Command.LaunchIpo -> launchIpo(state, cmd.float, events)
         }
         return when (result) {
             is Either.Err -> CommandResult.Rejected(result.error)
             // Peak net worth is tracked on minute ticks (cheap enough there, and commands stay fast).
-            is Either.Ok -> CommandResult.Ok(missions.evaluate(result.state, events), events)
+            is Either.Ok -> CommandResult.Ok(progression.refresh(progression.count(missions.evaluate(result.state, events), events, cmd)), events)
         }
     }
 
     internal sealed interface Either {
         data class Ok(val state: GameState) : Either
         data class Err(val error: GameError) : Either
+    }
+
+    private fun prog(r: com.arnavgames.tycoon.core.progression.ProgressionEngine.Result): Either = when (r) {
+        is com.arnavgames.tycoon.core.progression.ProgressionEngine.Result.Ok -> Either.Ok(r.state)
+        is com.arnavgames.tycoon.core.progression.ProgressionEngine.Result.Err -> Either.Err(r.error)
+    }
+
+    /** Commands a Dynasty challenge forbids this generation (docs/GDD.md §12), with the reason shown to the player. */
+    private fun challengeBlock(s: GameState, cmd: Command): String? {
+        val rule = dynasty.rule(s) ?: return null
+        val name = s.dynasty.challenge?.let { content.progression.challengeById[it]?.name } ?: "Challenge"
+        val blocked = when (rule) {
+            "noLoans" -> cmd is Command.TakeLoan || cmd is Command.DrawCredit
+            "noCrypto" -> cmd is Command.BuyInstrument && cmd.instrumentId.startsWith("c_")
+            "noMarkets" -> cmd is Command.BuyInstrument || cmd is Command.OpenShort
+            "noProperty" -> cmd is Command.BuyProperty
+            "noLuxury" -> cmd is Command.BuyLuxury || cmd is Command.BidAuction || cmd is Command.SetMaxBid
+            "noFrenzy" -> cmd is Command.ActivateFrenzy
+            "noHq" -> cmd is Command.UpgradeHq
+            "noRescue" -> cmd is Command.Restructure || cmd is Command.AcceptPhoenix
+            else -> false
+        }
+        return if (blocked) "$name challenge: not allowed this generation" else null
+    }
+
+    // ----- Dynasty -----
+
+    /** What the heir would inherit right now (for the UI). */
+    data class CrownPreview(val legacyGain: Long, val newLegacy: Long, val multiplier: Double, val heirlooms: Int, val traits: List<String>, val charter: List<String>)
+
+    fun crownPreview(s: GameState): CrownPreview {
+        val gain = dynasty.legacyGain(s)
+        val legacy = s.dynasty.legacy + gain
+        val gen = s.dynasty.generation + 1
+        return CrownPreview(gain, legacy, dynasty.legacyMultiplier(legacy), dynasty.heirloomsAllowed(s.dynasty.generation),
+            s.dynasty.traitOffer.ifEmpty { dynasty.traitOffer(s) }, dynasty.charterUnlocked(legacy, gen).map { it.id })
+    }
+
+    private fun passTheCrown(s: GameState, c: Command.PassTheCrown, events: MutableList<GameEvent>): Either {
+        if (!dynasty.canPrestige(s)) return Either.Err(GameError.Locked("Finish chapter 8 to pass the crown"))
+        val pv = crownPreview(s)
+        if (c.trait !in pv.traits) return Either.Err(GameError.Invalid("Choose one of the offered heir traits"))
+        if (c.heirlooms.size > pv.heirlooms || c.heirlooms.toSet().size != c.heirlooms.size || c.heirlooms.any { it !in s.luxury.owned }) {
+            return Either.Err(GameError.Invalid("You can pass on up to ${pv.heirlooms} pieces you own"))
+        }
+        if (c.challenge != null && c.challenge !in content.progression.challengeById) return Either.Err(GameError.NotFound("challenge"))
+        if (!pv.charter.containsAll(c.charter)) return Either.Err(GameError.Locked("That charter node needs more Legacy or a later generation"))
+        val nodes = c.charter.mapNotNull { content.progression.charterById[it] }
+        if (nodes.groupBy { it.branch to it.tier }.values.any { it.size > 1 }) return Either.Err(GameError.Invalid("One choice per charter tier"))
+        val gen = s.dynasty.generation + 1
+        val now = s.simTimeMs
+        // Premium currencies and heirlooms carry over; everything else starts again.
+        val bullion = s.ledger.bullion
+        val favor = s.ledger.favor
+        var ledger = com.arnavgames.tycoon.core.ledger.LedgerState(
+            balances = mapOf(
+                com.arnavgames.tycoon.core.ledger.Accounts.BULLION to bullion,
+                com.arnavgames.tycoon.core.ledger.Accounts.FAVOR to favor,
+                com.arnavgames.tycoon.core.ledger.Accounts.WORLD_PREMIUM to -(bullion + favor),
+            ).filterValues { !it.isZero },
+        )
+        val heirlooms = c.heirlooms.associateWith { s.luxury.owned.getValue(it) }
+        val inherited = heirlooms.values.fold(Money.ZERO) { a, o -> a + o.paid }
+        if (inherited.isPositive) {
+            ledger = (Ledger.post(ledger, now, TxnCategory.Prestige, "heirlooms", listOf(
+                com.arnavgames.tycoon.core.ledger.Posting(com.arnavgames.tycoon.core.luxury.LuxuryEngine.LUXURY, inherited),
+                com.arnavgames.tycoon.core.ledger.Posting(Accounts.WORLD, -inherited),
+            )) as Ledger.Result.Ok).state
+        }
+        val newDynasty = s.dynasty.copy(
+            generation = gen, legacy = pv.newLegacy, charter = c.charter, trait = c.trait, challenge = c.challenge,
+            challengesDone = s.dynasty.challengesDone + listOfNotNull(s.dynasty.challenge),
+            heirloomsPassed = s.dynasty.heirloomsPassed + heirlooms.size, generationStartSim = now, traitOffer = emptyList(), ipo = null,
+        )
+        var n = GameState(
+            worldSeed = s.worldSeed, contentHash = s.contentHash, createdAtWall = s.createdAtWall, simTimeMs = now, clock = s.clock,
+            ledger = ledger, progress = com.arnavgames.tycoon.core.state.ProgressState(onboardingStep = maxOf(5, s.progress.onboardingStep)),
+            stats = com.arnavgames.tycoon.core.state.StatsState(playSessions = s.stats.playSessions), nextTimerId = s.nextTimerId,
+            market = s.market.copy(holdings = emptyMap(), shorts = emptyMap(), trades = 0, depthChapter = 1),
+            estate = com.arnavgames.tycoon.core.state.EstateState(districtBoost = s.estate.districtBoost, nextPropertyId = s.estate.nextPropertyId, nextEventId = s.estate.nextEventId),
+            luxury = com.arnavgames.tycoon.core.state.LuxuryState(owned = heirlooms, heirlooms = heirlooms.keys, lastAuctionSlot = s.luxury.lastAuctionSlot),
+            world = com.arnavgames.tycoon.core.state.WorldState(nextCardId = s.world.nextCardId, cardDraws = s.world.cardDraws, eventDraws = s.world.eventDraws, log = s.world.log),
+            finance = com.arnavgames.tycoon.core.state.FinanceState(nextLoanId = s.finance.nextLoanId),
+            meta = s.meta.copy(dailyDay = -1, weekIndex = -1),
+            dynasty = newDynasty,
+        )
+        // The trust fund: the best of the charter and trait (log10 dollars), plus the usual starting capital.
+        val trust = if (dynasty.forbids(n, "noStartCash")) Money.ZERO else {
+            val log10 = (newDynasty.charter.mapNotNull { content.progression.charterById[it] }.filter { it.effect == "startCash" }.map { it.value } +
+                listOfNotNull(content.progression.traitById[c.trait]?.takeIf { it.effect == "startCash" }?.value)).maxOrNull()
+            log10?.let { com.arnavgames.tycoon.core.world.WorldMath.fromLog10(it) } ?: Money.ZERO
+        }
+        n = n.copy(ledger = Grants.grant(n.ledger, now, "inheritance", content.balance.startingCash + trust, 0, 0))
+        events += GameEvent.CrownPassed(gen, pv.legacyGain)
+        return Either.Ok(n)
+    }
+
+    fun ipoValuation(s: GameState): Money = s.businesses.values.fold(Money.ZERO) { a, b ->
+        a + economy.investedIn(content.business(b.id), b.level) * Multiplier.of("0.6")
+    } * Multiplier.ofDouble(content.progression.config.ipo.valuationMultiple)
+
+    private fun launchIpo(s: GameState, float: Double, events: MutableList<GameEvent>): Either {
+        val cfg = content.progression.config.ipo
+        if (s.holdingName == null) return Either.Err(GameError.Locked("Form your holding company first"))
+        if (s.progress.chapter < cfg.minChapter) return Either.Err(GameError.Locked("The IPO opens in chapter ${cfg.minChapter}"))
+        if (s.dynasty.ipo != null) return Either.Err(GameError.AlreadyDone)
+        if (cfg.floats.none { kotlin.math.abs(it - float) < 1e-9 }) return Either.Err(GameError.Invalid("Unsupported float"))
+        val raised = ipoValuation(s) * Multiplier.ofDouble(float)
+        val ledger = (Ledger.post(s.ledger, s.simTimeMs, TxnCategory.Investment, "IPO of ${s.holdingName}", listOf(
+            com.arnavgames.tycoon.core.ledger.Posting(Accounts.CASH, raised), com.arnavgames.tycoon.core.ledger.Posting(Accounts.revenue("ipo"), -raised),
+        )) as Ledger.Result.Ok).state
+        events += GameEvent.IpoLaunched(raised)
+        return Either.Ok(s.copy(ledger = ledger, dynasty = s.dynasty.copy(ipo = com.arnavgames.tycoon.core.state.IpoState(float, s.simTimeMs, raised))))
     }
 
     private fun desk(r: com.arnavgames.tycoon.core.world.DeskEngine.Result): Either = when (r) {

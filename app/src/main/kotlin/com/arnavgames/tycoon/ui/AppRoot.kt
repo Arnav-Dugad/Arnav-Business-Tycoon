@@ -73,6 +73,8 @@ import kotlinx.serialization.Serializable
 @Serializable data class RivalRoute(val id: String)
 @Serializable object FinanceRoute
 @Serializable object TaxRoute
+@Serializable object AchievementsRoute
+@Serializable object CrownRoute
 
 @Composable
 fun AppRoot(vm: GameViewModel, forcedTheme: ThemeMode?, onDarkChanged: (Boolean) -> Unit) {
@@ -174,8 +176,12 @@ private fun ReadyContent(vm: GameViewModel) {
                         onOpenDesk = { nav.navigate(DeskRoute) },
                         onOpenFortune = { nav.navigate(FortuneRoute) },
                         onOpenFinance = { nav.navigate(FinanceRoute) },
+                        onOpenAchievements = { nav.navigate(AchievementsRoute) },
+                        onOpenCrown = { nav.navigate(CrownRoute) },
                     )
                 }
+                composable<AchievementsRoute> { com.arnavgames.tycoon.ui.dynasty.AchievementsScreen(vm, onBack = { nav.popBackStack() }) }
+                composable<CrownRoute> { com.arnavgames.tycoon.ui.dynasty.CrownScreen(vm, onBack = { nav.popBackStack() }) }
                 composable<DeskRoute> { com.arnavgames.tycoon.ui.world.DeskScreen(vm, onBack = { nav.popBackStack() }, onOpenRival = { nav.navigate(RivalRoute(it)) }) }
                 composable<FortuneRoute> { com.arnavgames.tycoon.ui.world.FortuneScreen(vm, onBack = { nav.popBackStack() }, onOpenRival = { nav.navigate(RivalRoute(it)) }) }
                 composable<RivalRoute> { entry -> com.arnavgames.tycoon.ui.world.RivalScreen(vm, entry.toRoute<RivalRoute>().id, onBack = { nav.popBackStack() }) }

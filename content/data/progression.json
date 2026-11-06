@@ -2650,6 +2650,18 @@
    "bullion": 30
   },
   {
+   "id": "sold_business",
+   "category": "Rivals",
+   "title": "Cashing out",
+   "description": "Sell a business to a rival.",
+   "goal": {
+    "type": "metric",
+    "metric": "sold",
+    "value": 1
+   },
+   "bullion": 15
+  },
+  {
    "id": "phoenix",
    "category": "Finance",
    "title": "Phoenix",
@@ -3801,9 +3813,9 @@
    "legacy": 10,
    "generation": 2,
    "name": "Trust fund",
-   "description": "Heirs start with 5 minutes of the founder's peak income",
+   "description": "Heirs start with $1M",
    "effect": "startCash",
-   "value": 5
+   "value": 6
   },
   {
    "id": "finance_1_b",
@@ -3861,9 +3873,9 @@
    "legacy": 60,
    "generation": 2,
    "name": "Bigger trust",
-   "description": "Heirs start with 10 minutes of peak income",
+   "description": "Heirs start with $1B",
    "effect": "startCash",
-   "value": 10
+   "value": 9
   },
   {
    "id": "finance_4_a",
@@ -3921,9 +3933,9 @@
    "legacy": 1000,
    "generation": 4,
    "name": "Inheritance",
-   "description": "Heirs start with 20 minutes of peak income",
+   "description": "Heirs start with $1T",
    "effect": "startCash",
-   "value": 20
+   "value": 12
   },
   {
    "id": "finance_6_b",
@@ -4005,9 +4017,9 @@
    "legacy": 15000,
    "generation": 6,
    "name": "Old fortune",
-   "description": "Heirs start with 40 minutes of peak income",
+   "description": "Heirs start with $1Qa",
    "effect": "startCash",
-   "value": 40
+   "value": 15
   },
   {
    "id": "finance_10_a",
@@ -4278,9 +4290,9 @@
   {
    "id": "frugal",
    "name": "Frugal",
-   "description": "Watches every penny.",
+   "description": "Watches every penny. Starts with $1M.",
    "effect": "startCash",
-   "value": 5
+   "value": 6
   },
   {
    "id": "charming",
@@ -4527,10 +4539,6 @@
    ],
    "valuationMultiple": 2.0,
    "minChapter": 7
-  },
-  "eventGoal": {
-   "easy": 0.5,
-   "xp": 60
   }
  }
 }

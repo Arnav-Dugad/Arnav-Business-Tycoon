@@ -98,6 +98,8 @@ class Simulation(private val engine: GameEngine, private val contentHash: String
         var lastGrowthMinute = 0L
         var longestStall = 0.0
 
+        var lastFortuneCheck = -1L
+
         fun record(minute: Double) {
             val nw = eco.netWorth(s)
             if (s.stats.levelsBought > 0) milestones.putIfAbsent(Milestones.FIRST_LEVEL, minute)
@@ -122,7 +124,8 @@ class Simulation(private val engine: GameEngine, private val contentHash: String
             if (s.estate.properties.isNotEmpty()) milestones.putIfAbsent(Milestones.FIRST_PROPERTY, minute)
             if (s.luxury.owned.isNotEmpty()) milestones.putIfAbsent(Milestones.FIRST_LUXURY, minute)
             if (s.luxury.auctionsWon > 0) milestones.putIfAbsent(Milestones.FIRST_AUCTION_WIN, minute)
-            if (Milestones.FORTUNE_TOP !in milestones && (minute.toLong() % 30L == 0L)) {
+            if (Milestones.FORTUNE_TOP !in milestones && minute.toLong() / 30L != lastFortuneCheck) {
+                lastFortuneCheck = minute.toLong() / 30L
                 val rank = engine.world.playerRank(s, nw)
                 if (rank <= engine.content.world.rivals.size) milestones.putIfAbsent(Milestones.FORTUNE_ENTRY, minute)
                 if (rank <= 10) milestones.putIfAbsent(Milestones.FORTUNE_TOP10, minute)

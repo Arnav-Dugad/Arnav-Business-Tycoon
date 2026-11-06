@@ -414,7 +414,18 @@ internal class Planner(private val engine: GameEngine) {
     /** Sells the parked fund at the start of a session so the money can go back into businesses. */
     fun unpark(s: GameState): GameState = if (FUND in s.market.holdings) engine.tryApply(s, Command.SellInstrument(FUND, 1000)) else s
 
-    fun claimAll(s: GameState): GameState = s.progress.claimableMissions.sorted().fold(s) { acc, id -> engine.tryApply(acc, Command.ClaimMission(id)) }
+    fun claimAll(s: GameState): GameState {
+        var st = s.progress.claimableMissions.sorted().fold(s) { acc, id -> engine.tryApply(acc, Command.ClaimMission(id)) }
+        // Phase 10: the daily reward, finished daily/weekly missions, achievements and season tiers.
+        val prog = engine.progression
+        if (prog.ladderAvailable(st)) st = engine.tryApply(st, Command.ClaimDailyReward)
+        st.meta.daily.forEachIndexed { i, m -> if (!m.claimed && prog.done(st, m)) st = engine.tryApply(st, Command.ClaimDaily(i)) }
+        st.meta.weekly.forEachIndexed { i, m -> if (!m.claimed && prog.done(st, m)) st = engine.tryApply(st, Command.ClaimWeekly(i)) }
+        st.meta.achievementsClaimable.sorted().forEach { st = engine.tryApply(st, Command.ClaimAchievement(it)) }
+        engine.content.progression.seasonTrack.filter { it.xp <= st.meta.seasonXp && it.tier !in st.meta.seasonClaimedFree }
+            .forEach { st = engine.tryApply(st, Command.ClaimSeasonTier(it.tier)) }
+        return st
+    }
 
     fun hqIfUseful(s: GameState, slotsFull: Boolean, incomePerSec: Money, horizonSec: Long): GameState {
         val next = engine.content.balance.hqLevels.firstOrNull { it.level == s.hq.level + 1 } ?: return s
