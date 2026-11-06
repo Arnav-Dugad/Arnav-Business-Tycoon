@@ -28,6 +28,9 @@ data class GameState(
     val progress: ProgressState = ProgressState(),
     val stats: StatsState = StatsState(),
     val nextTimerId: Long = 1,
+    /** Merger tree: formed conglomerate ids, and the holding company name once formed. */
+    val conglomerates: Set<String> = emptySet(),
+    val holdingName: String? = null,
 ) {
     val cash: Money get() = ledger.cash
 }
@@ -71,6 +74,22 @@ sealed interface MechanicState {
         /** Vehicles assigned per route id. Unassigned vehicles sit in the depot. */
         val assignments: Map<String, Int> = emptyMap(),
     ) : MechanicState
+
+    /**
+     * State for module mechanics (core.engine.mechanics). Numbers are Longs (minute indices, counters, milli-units)
+     * so the state stays exact and serializes cleanly; each module wraps it in typed accessors.
+     */
+    @Serializable @SerialName("module")
+    data class Module(
+        val kind: String,
+        val nums: Map<String, Long> = emptyMap(),
+        val strs: Map<String, String> = emptyMap(),
+    ) : MechanicState {
+        fun n(key: String, default: Long = 0): Long = nums[key] ?: default
+        fun s(key: String, default: String = ""): String = strs[key] ?: default
+        fun with(vararg pairs: Pair<String, Long>) = copy(nums = nums + pairs)
+        fun withS(vararg pairs: Pair<String, String>) = copy(strs = strs + pairs)
+    }
 }
 
 @Serializable

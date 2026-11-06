@@ -75,7 +75,7 @@ When most marginal paybacks pass ~2 h *and* the projected Legacy gain is ≥ 1.5
 
 **Managers**: hire cost = 25 × the cost of the business's level-10 purchase × tier factor. Skill 1–5 stars; efficiency achieved by a manager = 0.70 + 0.07 × stars of the best possible E. Active manual play can reach E_max.
 
-**Slots**: 3 at start; +1 at chapters 2–7 (6 more); +1 from HQ levels 5/10/15/20/25 (5 more); +1 from Charter nodes (4 more) = **18 free**. Store slots: max +3.
+**Slots**: 3 at start; +1 at chapters 2–7 (6 more); +1 every 3 HQ levels (3, 6, … 24: 8 more); +1 from Charter nodes (4 more) = **21 free** for 18 businesses, so every business can run by the late game but choosing which to run matters before then. Store slots: max +3. (Changed in Phase 5 from "HQ 5/10/15/20/25" after the simulator showed slots blocking Chapter 5.)
 
 ---
 
@@ -173,7 +173,7 @@ rent_p/6h    = value_p · yield_d · occupancy(rent_price, tenant_quality) / 4
 | First luxury item | 1–2 h | 3–6 h |
 | Crypto unlock (Chapter 2 end) | 3–6 h | 8–16 h |
 | First auction win | day 1–2 | day 2–3 |
-| First conglomerate | day 3–4 | day 5–7 |
+| First conglomerate | 18 h–day 2 (Chapter 4 goal; revised in Phase 5, see TUNING_LOG) | day 2–4 |
 | First prestige available | day 5–6 | day 8–10 |
 | Generation 2 reaches Gen 1 peak | 40–55% of Gen 1 time | 45–60% |
 | IPO | Gen 2–3 | Gen 3–4 |

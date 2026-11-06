@@ -9,7 +9,9 @@ _Last updated: 2026-11-06._
 - Phase 3 (First playable, Chapter 1): **DONE**. Details below.
 - **Design refresh "Aurum Glass"**: done (owner request). Details below.
 - Phase 4 (Simulator v1): **DONE**. Details below.
-- Next: **Phase 5: All businesses + merger tree** (15 more business mechanics, conglomerates, Holding Co).
+- Phase 5 (All businesses + merger tree): **DONE**, with one known balance miss (Chapter 8, deferred to Phase 11). Details below.
+- **Laptop resource caps** (owner request): Gradle uses at most 4 workers and a 2 GB heap, and its daemon stops after 10 idle minutes. The simulator uses a quarter of the cores (max 6) unless `--threads` is given. Gradle daemons and the emulator are stopped after every work session.
+- Next: **Phase 6: Markets**.
 
 ## Decisions
 | Topic | Decision |
@@ -175,6 +177,37 @@ All in `:core` (pure Kotlin/JVM, enforced by `verifyCorePurity`):
 - Batch speed is about 1.3 s per 2-day run per thread; the planned full batch would take about 17 minutes. Engine profiling is planned before Phase 11.
 - Two active-bot values sit on band edges (first manager 8.0 m, Chapter 1 20.0 m). Re-check after Phase 5.
 - `risky_trader` and `heavy_spender` wait for markets (Phase 6) and the store (Phase 14).
+
+## Phase 5: what was done and verified
+- **Module mechanics framework** (`core/engine/mechanics/`): each of the 15 new businesses is a `MechanicModule` with generic state (`MechanicState.Module`: numbers and strings) and content-defined parameters.
+  - The engine updates modules only at minute boundaries and on player actions, with seeded per-business randomness, so `advance` split invariance and offline == live still hold.
+  - Each module describes its own UI (`MechanicView`: stats, choices, actions, progress), so one generic `ModulePanel` renders all 15. No per-business screen code.
+  - Managers play the module for the player. They spend from a capped budget, min(5% of cash, 30 minutes of income), through the ledger.
+- **15 business mechanics**: Farmland (crop seasons and weather), Factories (lines and defects), Fashion House (trends), Mining (ore depletion and redrills), Energy (spot price and hedging), Hotels & Resorts (tourism seasons and pricing), Banking (lending standard, reserve ratio and bank-run risk), Construction (projects), Media (content slate), Technology (R&D sprints), Telecom & Data, Airline (fares, load factor and maintenance incidents), Pharmaceuticals (three-phase trials, patents and generics), Sports Franchise, Space.
+  - Cross-business synergies: tourism feeds Hotels, Airline and Sports; some businesses cut others' upkeep.
+- **Merger tree**: 9 conglomerates (`content/data/conglomerates.json`). Each needs its members at Scale Tier 3 and is unlocked in Chapter 4. Members earn ×1.4–1.5, some also pay less upkeep, and a business can join only one conglomerate.
+  - **Holding company**: three conglomerates under a player-chosen name makes every business earn ×1.25. The IPO comes with Dynasty in Phase 10.
+- **Content**: 18 businesses and 8 chapters, all prices derived from one ladder by `tools/content/gen_businesses.py` and `gen_chapters.py`. Each chapter adds a business slot, giving 17 free slots before Dynasty perks. 15 new custom icons.
+- **UI**: business detail renders module panels. Long option scales (fares, hedging) show as a compact 3-column grid. Merger tree and holding company cards on Empire. Manager chips shorten "Dr. Imogen Fairweather" to "Dr. Fairweather".
+- **Simulator**: the planner values tier jumps, module investments, mergers, and opening or mothballing businesses. New milestones run through Chapter 8, first conglomerate and holding company. Report targets added.
+- **Debug scenario `lategame`** (debug builds only): plays the story through Chapter 7 with real engine commands, starting from a fresh game, and leaves Fashion, Energy, Banking and Airline unmanaged so their controls are visible. Launch with `adb shell am start -S -n com.arnavgames.tycoon.debug/com.arnavgames.tycoon.MainActivity --es abt.scenario lategame`.
+
+### Evidence
+- Tests: **core 72** (new `ModulesTest`: per-module fuzz, determinism, split invariance and offline == live with 14 businesses, conglomerate rules, slots, synergies), **sim 3**, **data 5**, **instrumented first-session flow 1**: all pass. `verifyCorePurity` passes.
+- **Balance batch `docs/balance/2026-11-06-phase5/`** (2 bots × 3 seeds × 10 days, 0 errors): **10 of 12 targets pass**. All early targets still pass. Active: Ch4 35 h, Ch7 2.0 d, first conglomerate 24.7 h, holding 2.0 d. Idle: Ch7 5.5 d, first conglomerate 2.5 d. History p5a–p5f in `TUNING_LOG.md`.
+- Emulator screenshots reviewed (dark and light): Empire at Chapter 7, merger tree, holding card, and the Pharmaceuticals, Airline, Banking, Energy and Fashion panels, both managed and hands-on.
+- Fixed during review:
+  1. Merger members past the required tier showed "tier 5/3".
+  2. The "Auto · Dr." manager chip.
+  3. A ten-row fare list (now a grid).
+  4. The debug scenario was layered onto the existing save.
+
+### Known gaps (honest)
+- **Chapter 8 misses its bands** (active 8.2 d in 1 of 3 seeds, target 5–6 d; idle not reached in 10 d, target 8–10 d). Once all businesses are bought, growth slows to about 0.3 decades per day, and the sinks and sources that fix this are markets, real estate, luxury and Dynasty (Phases 6–10). Re-tune in Phase 11. Dead session minutes stay high (active 62%) for the same reason.
+- `first_conglomerate` target moved from day 3–4 / 5–7 to 18 h–2 d / 2–4 d, because the merger tree is now Chapter 4's story goal (reason in TUNING_LOG).
+- The holding fee ($1 quintillion) is small next to late-game income; review it in Phase 11.
+- The balance batch was 3 seeds, not 100, to respect the laptop caps (a 10-day run takes about 4 minutes per thread). Bots have little randomness yet, so p10 ≈ p90.
+- Save schema is still v1. The new state fields have defaults, so old saves load. Bump the schema at the first public release.
 
 ## Environment inventory (verified 2026-11-06)
 | Tool | State |

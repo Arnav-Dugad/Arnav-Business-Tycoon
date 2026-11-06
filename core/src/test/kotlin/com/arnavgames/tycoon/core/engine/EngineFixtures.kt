@@ -14,6 +14,10 @@ object EngineFixtures {
     fun GameState.withCash(dollars: Long): GameState =
         copy(ledger = Grants.grant(ledger, simTimeMs, "test grant", Money.ofDollars(dollars), 0, 0))
 
+    /** Effectively unlimited cash for late-game tests ($1e38). */
+    fun GameState.withHugeCash(): GameState =
+        copy(ledger = Grants.grant(ledger, simTimeMs, "test grant", Money.ofCents(java.math.BigInteger.TEN.pow(40)), 0, 0))
+
     fun GameState.withFavor(units: Long): GameState =
         copy(ledger = Grants.grant(ledger, simTimeMs, "test favor", Money.ZERO, 0, units))
 

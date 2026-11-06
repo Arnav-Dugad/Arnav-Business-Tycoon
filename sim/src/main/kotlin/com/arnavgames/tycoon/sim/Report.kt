@@ -16,6 +16,11 @@ object Targets {
         Target("idle", Milestones.CHAPTER1_DONE, 45.0, 90.0),
         Target("active", Milestones.CHAPTER2_DONE, 180.0, 360.0),
         Target("idle", Milestones.CHAPTER2_DONE, 480.0, 960.0),
+        // Revised in Phase 5: the merger tree is Chapter 4's story goal, which begins on day 1 (see TUNING_LOG p5e).
+        Target("active", Milestones.FIRST_CONGLOMERATE, 18 * 60.0, 48 * 60.0),
+        Target("idle", Milestones.FIRST_CONGLOMERATE, 48 * 60.0, 96 * 60.0),
+        Target("active", Milestones.chapterDone(8), 120 * 60.0, 144 * 60.0),
+        Target("idle", Milestones.chapterDone(8), 192 * 60.0, 240 * 60.0),
         // Poor choices must never soft-lock: Chapter 1 within a day of play.
         Target("poor_choices", Milestones.CHAPTER1_DONE, 0.0, 1440.0),
     )

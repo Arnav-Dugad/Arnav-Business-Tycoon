@@ -1,5 +1,6 @@
 package com.arnavgames.tycoon.ui.empire
 
+import com.arnavgames.tycoon.ui.common.shortPersonName
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.tween
@@ -156,6 +157,11 @@ fun EmpireScreen(vm: GameViewModel, onOpenBusiness: (String) -> Unit) {
             }
             if (locked.isNotEmpty()) {
                 items(locked, key = { "locked-" + it.id }) { o -> OpenableCard(o, fmt, onOpen = {}) }
+            }
+            if (e.mergers.isNotEmpty()) {
+                item(key = "merger-header") { SectionHeader("Merger tree") }
+                items(e.mergers, key = { "merger-" + it.id }) { m -> MergerCard(m, fmt, onForm = { vm.dispatch(Command.FormConglomerate(m.id)) }) }
+                e.holding?.let { h -> item(key = "holding") { HoldingCard(h, fmt, onForm = { name -> vm.dispatch(Command.FormHolding(name)) }) } }
             }
             item(key = "hq-header") { SectionHeader("Headquarters") }
             item(key = "hq") { HqCard(e.hq, fmt, onUpgrade = { vm.dispatch(Command.UpgradeHq) }) }
@@ -427,7 +433,7 @@ fun BusinessCard(b: BusinessUi, fmt: (Money) -> String, onOpen: () -> Unit, onBu
                 }
                 SmallAction("Collect", enabled = b.stored.isPositive, onClick = onCollect, gold = false)
             } else {
-                AurumChip("Auto · ${b.managerName.substringBefore(' ')}", icon = AbtIcons.Manager, tint = c.goldText)
+                AurumChip("Auto · ${shortPersonName(b.managerName)}", icon = AbtIcons.Manager, tint = c.goldText)
                 Spacer(Modifier.weight(1f))
             }
             SmallAction("Buy ×${b.buyCount} · ${fmt(b.buyCost)}", enabled = b.canAfford, onClick = onBuy, gold = true)
@@ -498,6 +504,8 @@ private fun MomentOverlay(vm: GameViewModel, modifier: Modifier) {
                 is GameEvent.ChapterCompleted -> Moment("Chapter ${ev.chapter} complete", "A new chapter of your story begins.")
                 is GameEvent.ExpansionCompleted -> Moment("Expansion complete", "Your business just got bigger.")
                 is GameEvent.ManagerHired -> Moment("Manager hired", "This business now runs itself, even offline.")
+                is GameEvent.ConglomerateFormed -> Moment("Conglomerate formed", "Its members now share a lasting synergy.")
+                is GameEvent.HoldingFormed -> Moment("${ev.name} is born", "Every business you own now earns more.")
                 else -> null
             }
             if (m != null) {

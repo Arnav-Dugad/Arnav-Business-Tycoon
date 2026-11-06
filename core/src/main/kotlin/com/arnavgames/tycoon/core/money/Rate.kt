@@ -19,6 +19,7 @@ class Rate private constructor(val microCentsPerSecond: BigInteger) : Comparable
 
     val isZero get() = microCentsPerSecond.signum() == 0
     val isNegative get() = microCentsPerSecond.signum() < 0
+    val isPositive get() = microCentsPerSecond.signum() > 0
 
     operator fun plus(o: Rate) = Rate(microCentsPerSecond.add(o.microCentsPerSecond))
     operator fun minus(o: Rate) = Rate(microCentsPerSecond.subtract(o.microCentsPerSecond))

@@ -1,5 +1,6 @@
 package com.arnavgames.tycoon.ui.business
 
+import com.arnavgames.tycoon.ui.common.shortPersonName
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -41,7 +42,9 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.arnavgames.tycoon.core.content.BusinessDef
 import com.arnavgames.tycoon.core.content.MechanicDef
 import com.arnavgames.tycoon.core.engine.Command
+import com.arnavgames.tycoon.core.engine.GameEngine
 import com.arnavgames.tycoon.core.engine.Mechanics
+import com.arnavgames.tycoon.core.engine.mechanics.MechanicRegistry
 import com.arnavgames.tycoon.core.money.Money
 import com.arnavgames.tycoon.core.money.MoneyFormat
 import com.arnavgames.tycoon.core.state.BusinessState
@@ -98,7 +101,7 @@ fun BusinessDetailScreen(vm: GameViewModel, businessId: String, onBack: () -> Un
                     }
                 }
             }
-            item { SectionHeader(mechanicTitle(def)) }
+            item { SectionHeader(mechanicTitle(vm, s, def, b)) }
             item { MechanicPanel(vm, s, def, b, fmt) }
             item { SectionHeader("Managers") }
             def.managers.forEach { m ->
@@ -123,7 +126,7 @@ fun BusinessDetailScreen(vm: GameViewModel, businessId: String, onBack: () -> Un
                         if (!hired) {
                             Spacer(Modifier.height(Space.md))
                             SmallButton(
-                                if (b.managerId != null) "Replace with ${m.name.substringBefore(' ')} · ${fmt(m.cost)}" else "Hire · ${fmt(m.cost)}",
+                                if (b.managerId != null) "Replace with ${shortPersonName(m.name)} · ${fmt(m.cost)}" else "Hire · ${fmt(m.cost)}",
                                 enabled = s.cash >= m.cost, modifier = Modifier.fillMaxWidth(),
                             ) { vm.dispatch(Command.HireManager(def.id, m.id)) }
                         }
@@ -200,12 +203,16 @@ fun BusinessDetailScreen(vm: GameViewModel, businessId: String, onBack: () -> Un
     }
 }
 
-private fun mechanicTitle(def: BusinessDef) = when (def.mechanic) {
+private fun mechanicTitle(vm: GameViewModel, s: GameState, def: BusinessDef, b: BusinessState) = when (val m = def.mechanic) {
     is MechanicDef.Retail -> "Pricing & promotions"
     is MechanicDef.Restaurant -> "Reputation & kitchen"
     is MechanicDef.Logistics -> "Fleet & routes"
+    is MechanicDef.Module -> moduleView(vm, s, def, b, m).title
     MechanicDef.Simple -> "Operations"
 }
+
+private fun moduleView(vm: GameViewModel, s: GameState, def: BusinessDef, b: BusinessState, m: MechanicDef.Module) =
+    MechanicRegistry.of(m.kind).view(m, vm.engine.economy.moduleState(s, def, b, m), vm.engine.economy.mechCtx(s, def, b))
 
 @Composable
 private fun Stat(label: String, value: String, modifier: Modifier = Modifier) {
@@ -245,6 +252,14 @@ private fun MechanicPanel(vm: GameViewModel, s: GameState, def: BusinessDef, b: 
             is MechanicDef.Retail -> RetailPanel(vm, s, def, m, b.mechanic as? MechanicState.Retail ?: MechanicState.Retail(), b.managerId != null, fmt)
             is MechanicDef.Restaurant -> RestaurantPanel(vm, def, m, b.mechanic as? MechanicState.Restaurant ?: Mechanics.restaurantInitial(m), b.managerId != null)
             is MechanicDef.Logistics -> LogisticsPanel(vm, def, m, b, b.mechanic as? MechanicState.Logistics ?: MechanicState.Logistics(), b.managerId != null)
+            is MechanicDef.Module -> ModulePanel(
+                view = moduleView(vm, s, def, b, m),
+                cash = s.cash,
+                managed = b.managerId != null,
+                freeActions = GameEngine.MANAGER_FREE_ACTIONS,
+                fmt = fmt,
+                onAction = { action, value -> vm.dispatch(Command.MechanicAction(def.id, action, value)) },
+            )
             MechanicDef.Simple -> Text("This business runs on autopilot.", style = Aurum.type.body, color = Aurum.colors.textSecondary)
         }
     }

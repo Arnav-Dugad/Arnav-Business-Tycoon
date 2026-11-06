@@ -1,0 +1,133 @@
+[
+  {
+    "id": "main_street",
+    "name": "Main Street Group",
+    "description": "Farm to table to storefront.",
+    "members": [
+      "retail",
+      "restaurants",
+      "farmland"
+    ],
+    "requiredTier": 3,
+    "fee": "37500000.00",
+    "incomeMultiplier": "1.3",
+    "upkeepMultiplier": "0.85",
+    "synergyText": "Members earn ×1.3 and pay 15% less upkeep."
+  },
+  {
+    "id": "industrial_chain",
+    "name": "Industrial Chain",
+    "description": "Ore in one end, products out the other.",
+    "members": [
+      "mining",
+      "factory",
+      "logistics"
+    ],
+    "requiredTier": 3,
+    "fee": "43125000000.00",
+    "incomeMultiplier": "1.35",
+    "upkeepMultiplier": "0.8",
+    "synergyText": "Members earn ×1.35 and buy inputs at cost (−20% upkeep)."
+  },
+  {
+    "id": "power_data",
+    "name": "Power & Data",
+    "description": "The grid and the network under one roof.",
+    "members": [
+      "energy",
+      "telecom"
+    ],
+    "requiredTier": 3,
+    "fee": "1147133573452148437.50",
+    "incomeMultiplier": "1.4",
+    "upkeepMultiplier": "0.8",
+    "synergyText": "Members earn ×1.4; energy at cost (−20% upkeep)."
+  },
+  {
+    "id": "leisure_empire",
+    "name": "Leisure Empire",
+    "description": "Fly them in, house them, entertain them.",
+    "members": [
+      "airline",
+      "hotels",
+      "sports"
+    ],
+    "requiredTier": 3,
+    "fee": "1744646773524036254882.75",
+    "incomeMultiplier": "1.45",
+    "upkeepMultiplier": "0.9",
+    "synergyText": "Members earn ×1.45."
+  },
+  {
+    "id": "capital_developments",
+    "name": "Capital Developments",
+    "description": "Finance it and build it yourself.",
+    "members": [
+      "bank",
+      "construction"
+    ],
+    "requiredTier": 3,
+    "fee": "754258945312500.00",
+    "incomeMultiplier": "1.4",
+    "upkeepMultiplier": "0.85",
+    "synergyText": "Members earn ×1.4 and pay 15% less upkeep."
+  },
+  {
+    "id": "style_story",
+    "name": "Style & Story",
+    "description": "Fashion with a megaphone.",
+    "members": [
+      "fashion",
+      "media"
+    ],
+    "requiredTier": 3,
+    "fee": "8673977871093750.00",
+    "incomeMultiplier": "1.35",
+    "upkeepMultiplier": "0.9",
+    "synergyText": "Members earn ×1.35."
+  },
+  {
+    "id": "life_sciences",
+    "name": "Life Sciences",
+    "description": "Computing power meets the lab bench.",
+    "members": [
+      "pharma",
+      "tech"
+    ],
+    "requiredTier": 3,
+    "fee": "151708415089046630859.50",
+    "incomeMultiplier": "1.45",
+    "upkeepMultiplier": "0.85",
+    "synergyText": "Members earn ×1.45 and pay 15% less upkeep."
+  },
+  {
+    "id": "orbital_ventures",
+    "name": "Orbital Ventures",
+    "description": "Rockets, satellites and the networks they serve.",
+    "members": [
+      "space",
+      "telecom",
+      "tech"
+    ],
+    "requiredTier": 3,
+    "fee": "20063437895526416931152.25",
+    "incomeMultiplier": "1.5",
+    "upkeepMultiplier": "0.85",
+    "synergyText": "Members earn ×1.5."
+  },
+  {
+    "id": "heartland",
+    "name": "Heartland Commodities",
+    "description": "Grain, ore and energy: the raw stuff of empire.",
+    "members": [
+      "farmland",
+      "energy",
+      "mining"
+    ],
+    "requiredTier": 3,
+    "fee": "495937500000.00",
+    "incomeMultiplier": "1.35",
+    "upkeepMultiplier": "0.85",
+    "synergyText": "Members earn ×1.35 and pay 15% less upkeep."
+  }
+]

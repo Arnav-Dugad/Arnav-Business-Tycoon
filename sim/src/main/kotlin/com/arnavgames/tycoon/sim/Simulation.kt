@@ -20,8 +20,12 @@ object Milestones {
     const val NW_100M = "networth_100m"
     const val NW_10B = "networth_10b"
     const val HQ_5 = "hq_level_5"
+    const val FIRST_CONGLOMERATE = "first_conglomerate"
+    const val HOLDING = "holding_formed"
+    fun chapterDone(n: Int) = "chapter${n}_done"
 
-    val ALL = listOf(FIRST_LEVEL, FIRST_MANAGER, RESTAURANT_OPEN, CHAPTER1_DONE, LOGISTICS_OPEN, NW_10K, NW_1M, HQ_5, CHAPTER2_DONE, NW_100M, NW_10B)
+    val ALL = listOf(FIRST_LEVEL, FIRST_MANAGER, RESTAURANT_OPEN, CHAPTER1_DONE, LOGISTICS_OPEN, NW_10K, NW_1M, HQ_5, CHAPTER2_DONE, NW_100M, NW_10B) +
+        (3..8).map { chapterDone(it) } + listOf(FIRST_CONGLOMERATE, HOLDING)
 }
 
 /** One sample of the economy over real time (for curves and dead-zone analysis). */
@@ -47,7 +51,7 @@ data class RunResult(
  * the bot acting each step; gaps between sessions are credited exactly like the app does (offline cap applies,
  * uncredited time is lost).
  */
-class Simulation(private val engine: GameEngine, private val contentHash: String, private val stepSeconds: Int = 5) {
+class Simulation(private val engine: GameEngine, private val contentHash: String, private val stepSeconds: Int = 15, private val trace: Boolean = false) {
 
     fun run(bot: Bot, seed: Long, days: Int): RunResult = try {
         runInner(bot, seed, days)
@@ -93,6 +97,12 @@ class Simulation(private val engine: GameEngine, private val contentHash: String
             if (nw >= Money.ofDollars(100_000_000)) milestones.putIfAbsent(Milestones.NW_100M, minute)
             if (nw >= Money.ofDollars(10_000_000_000)) milestones.putIfAbsent(Milestones.NW_10B, minute)
             if (s.hq.level >= 5) milestones.putIfAbsent(Milestones.HQ_5, minute)
+            for (n in 3..8) {
+                val done = s.progress.chapter > n || (s.progress.chapter == n && engine.content.chapters.firstOrNull { it.number == n }?.missions?.all { it.id in s.progress.completedMissions } == true)
+                if (done) milestones.putIfAbsent(Milestones.chapterDone(n), minute)
+            }
+            if (s.conglomerates.isNotEmpty()) milestones.putIfAbsent(Milestones.FIRST_CONGLOMERATE, minute)
+            if (s.holdingName != null) milestones.putIfAbsent(Milestones.HOLDING, minute)
         }
 
         for ((startMin, lengthMin) in sessions) {
@@ -139,6 +149,14 @@ class Simulation(private val engine: GameEngine, private val contentHash: String
                 lastNw = nw
             }
             samples += Sample(minuteNow, nw.log10Dollars(), eco.totalNetRate(s).perSecond().log10Dollars(), cashOverNextCost(s))
+            if (trace) {
+                val ch = engine.content.chapters.firstOrNull { it.number == s.progress.chapter }
+                val open = ch?.missions?.filter { it.id !in s.progress.completedMissions }?.joinToString { it.id } ?: ""
+                println("[trace ${bot.name}#$seed] t=${"%.1f".format(minuteNow / 1440.0)}d ch=${s.progress.chapter} hq=${s.hq.level} slots=${eco.usedSlots(s)}/${eco.slots(s)} " +
+                    "levels=${s.businesses.values.sortedBy { it.id }.joinToString(",") { it.id.take(4) + it.level + if (it.mothballed) "z" else "" }} " +
+                    "blockers=${engine.content.conglomerates.filter { it.id !in s.conglomerates }.joinToString("; ") { it.id + ":" + (eco.conglomerateBlocker(s, it) ?: "ok") }} " +
+                    "biz=${s.businesses.size} cash=${com.arnavgames.tycoon.core.money.MoneyFormat.short(s.cash)} nw=${com.arnavgames.tycoon.core.money.MoneyFormat.short(nw)} congl=${s.conglomerates.size} open=[$open]")
+            }
             record(minuteNow.toDouble())
         }
         longestStall = maxOf(longestStall, (realMs / 60_000 - lastGrowthMinute) / 60.0)

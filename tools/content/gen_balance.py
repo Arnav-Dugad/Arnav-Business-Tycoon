@@ -1,7 +1,7 @@
 """Generates content/balance/balance.json from formulas so the numbers are reproducible and tunable.
 
 Usage: python -I tools/content/gen_balance.py <repo-root>
-Formulas (docs/ECONOMY.md): HQ cost = 500 * 6^(L-2) for L >= 2; +1 slot at levels 5/10/15/20/25;
+Formulas (docs/ECONOMY.md): HQ cost = 500 * 5^(L-2) for L >= 2; +1 slot every 3 levels (3, 6, … 24);
 +30 min offline cap at every even level (8 h total at L24); Hustle x1.6 per level.
 """
 import json
@@ -24,11 +24,11 @@ def money(d: Decimal) -> str:
 def main(repo: Path) -> None:
     levels = []
     for lvl in range(1, 26):
-        cost = Decimal(0) if lvl == 1 else Decimal(500) * (Decimal(6) ** (lvl - 2))
+        cost = Decimal(0) if lvl == 1 else Decimal(500) * (Decimal(5) ** (lvl - 2))
         levels.append({
             "level": lvl,
             "cost": money(cost),
-            "extraSlots": 1 if lvl % 5 == 0 else 0,
+            "extraSlots": 1 if lvl % 3 == 0 else 0,
             "offlineCapBonusSeconds": 1800 if lvl % 2 == 0 else 0,
             "hustleMultiplier": "1" if lvl == 1 else "1.6",
             "name": HQ_NAMES[lvl - 1],
@@ -52,6 +52,10 @@ def main(repo: Path) -> None:
         "managerSkillFloor": 0.70,
         "managerSkillPerStar": 0.06,
         "favorPerRushMinute": 1.0,
+        "holdingFee": "1000000000000000000.00",
+        "holdingIncomeMultiplier": "1.25",
+        "managerBudgetCashShare": 0.05,
+        "managerBudgetIncomeSeconds": 1800,
     }
     out = repo / "content" / "balance" / "balance.json"
     out.parent.mkdir(parents=True, exist_ok=True)

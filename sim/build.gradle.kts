@@ -27,7 +27,7 @@ application {
 tasks.named<JavaExec>("run") {
     workingDir = rootProject.projectDir
     systemProperty("abt.contentDir", rootProject.layout.projectDirectory.dir("content").asFile.absolutePath)
-    maxHeapSize = "6g"
+    maxHeapSize = "2g"
     jvmArgs("-Dstdout.encoding=UTF-8", "-Dfile.encoding=UTF-8")
 }
 

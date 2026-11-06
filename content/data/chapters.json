@@ -92,7 +92,11 @@
     "number": 2,
     "title": "Main Street",
     "summary": "The city notices you. Bigger deals, bigger risks, and the first rival.",
-    "unlocksBusinesses": [],
+    "unlocksBusinesses": [
+      "farmland",
+      "factory",
+      "fashion"
+    ],
     "missions": [
       {
         "id": "c2_logistics",
@@ -148,6 +152,319 @@
         },
         "rewardCash": "1000000.00",
         "rewardBullion": 20
+      }
+    ]
+  },
+  {
+    "number": 3,
+    "title": "Raw Power",
+    "summary": "Land, factories and fashion. You start making the things other people sell.",
+    "unlocksBusinesses": [
+      "mining",
+      "energy",
+      "hotels"
+    ],
+    "missions": [
+      {
+        "id": "c3_farmland",
+        "title": "Breaking ground",
+        "description": "Open Farmland and plant your first season.",
+        "goal": {
+          "type": "ownBusiness",
+          "businessId": "farmland"
+        },
+        "rewardCash": "750000.00",
+        "rewardFavor": 15
+      },
+      {
+        "id": "c3_factory",
+        "title": "The first line",
+        "description": "Open a Factory.",
+        "goal": {
+          "type": "ownBusiness",
+          "businessId": "factory"
+        },
+        "rewardCash": "7500000.00"
+      },
+      {
+        "id": "c3_factory_25",
+        "title": "Balanced line",
+        "description": "Grow Factories to level 25.",
+        "goal": {
+          "type": "businessLevel",
+          "businessId": "factory",
+          "level": 25
+        },
+        "rewardCash": "60000000.00",
+        "rewardBullion": 10
+      },
+      {
+        "id": "c3_fashion",
+        "title": "Opening night",
+        "description": "Open a Fashion House.",
+        "goal": {
+          "type": "ownBusiness",
+          "businessId": "fashion"
+        },
+        "rewardCash": "75000000.00",
+        "rewardFavor": 20
+      },
+      {
+        "id": "c3_networth",
+        "title": "Billionaire",
+        "description": "Reach a net worth of $1 billion.",
+        "goal": {
+          "type": "netWorth",
+          "amount": "1000000000.00"
+        },
+        "rewardCash": "500000000.00",
+        "rewardBullion": 25
+      }
+    ]
+  },
+  {
+    "number": 4,
+    "title": "Old Money",
+    "summary": "Ore, power and hospitality. The establishment starts returning your calls.",
+    "unlocksBusinesses": [
+      "bank",
+      "construction",
+      "media"
+    ],
+    "missions": [
+      {
+        "id": "c4_mining",
+        "title": "Below the surface",
+        "description": "Open Mining.",
+        "goal": {
+          "type": "ownBusiness",
+          "businessId": "mining"
+        },
+        "rewardCash": "862500000.00",
+        "rewardFavor": 20
+      },
+      {
+        "id": "c4_energy",
+        "title": "Power play",
+        "description": "Open Energy.",
+        "goal": {
+          "type": "ownBusiness",
+          "businessId": "energy"
+        },
+        "rewardCash": "9918750000.00"
+      },
+      {
+        "id": "c4_hotels",
+        "title": "Check-in",
+        "description": "Open Hotels & Resorts.",
+        "goal": {
+          "type": "ownBusiness",
+          "businessId": "hotels"
+        },
+        "rewardCash": "114065625000.00",
+        "rewardFavor": 25
+      },
+      {
+        "id": "c4_first_conglomerate",
+        "title": "Synergy",
+        "description": "Form your first conglomerate.",
+        "goal": {
+          "type": "conglomerates",
+          "count": 1
+        },
+        "rewardCash": "200000000000.00",
+        "rewardBullion": 30
+      },
+      {
+        "id": "c4_networth",
+        "title": "Trillionaire",
+        "description": "Reach a net worth of $1 trillion.",
+        "goal": {
+          "type": "netWorth",
+          "amount": "1000000000000.00"
+        },
+        "rewardCash": "200000000000.00",
+        "rewardBullion": 30
+      }
+    ]
+  },
+  {
+    "number": 5,
+    "title": "Disruption",
+    "summary": "Banks, builders and broadcasters. Then the technologists arrive.",
+    "unlocksBusinesses": [
+      "tech",
+      "telecom"
+    ],
+    "missions": [
+      {
+        "id": "c5_bank",
+        "title": "Lender of first resort",
+        "description": "Open Banking.",
+        "goal": {
+          "type": "ownBusiness",
+          "businessId": "bank"
+        },
+        "rewardCash": "1311754687500.00",
+        "rewardFavor": 25
+      },
+      {
+        "id": "c5_construction",
+        "title": "Skyline",
+        "description": "Open Construction.",
+        "goal": {
+          "type": "ownBusiness",
+          "businessId": "construction"
+        },
+        "rewardCash": "15085178906250.00"
+      },
+      {
+        "id": "c5_media",
+        "title": "On air",
+        "description": "Open Media.",
+        "goal": {
+          "type": "ownBusiness",
+          "businessId": "media"
+        },
+        "rewardCash": "173479557421875.00",
+        "rewardFavor": 25
+      },
+      {
+        "id": "c5_ten_businesses",
+        "title": "Diversified",
+        "description": "Own ten businesses.",
+        "goal": {
+          "type": "businessesOwned",
+          "count": 10
+        },
+        "rewardCash": "1000000000000000.00",
+        "rewardBullion": 35
+      }
+    ]
+  },
+  {
+    "number": 6,
+    "title": "Altitude",
+    "summary": "Silicon and signal. Your empire learns to think and to talk.",
+    "unlocksBusinesses": [
+      "airline",
+      "pharma"
+    ],
+    "missions": [
+      {
+        "id": "c6_tech",
+        "title": "Ship it",
+        "description": "Open Technology.",
+        "goal": {
+          "type": "ownBusiness",
+          "businessId": "tech"
+        },
+        "rewardCash": "1995014910351562.50",
+        "rewardFavor": 30
+      },
+      {
+        "id": "c6_telecom",
+        "title": "Signal",
+        "description": "Open Telecom & Data.",
+        "goal": {
+          "type": "ownBusiness",
+          "businessId": "telecom"
+        },
+        "rewardCash": "22942671469042968.75"
+      },
+      {
+        "id": "c6_two_conglomerates",
+        "title": "Group structure",
+        "description": "Form two conglomerates.",
+        "goal": {
+          "type": "conglomerates",
+          "count": 2
+        },
+        "rewardCash": "300000000000000000.00",
+        "rewardBullion": 40
+      }
+    ]
+  },
+  {
+    "number": 7,
+    "title": "Escape Velocity",
+    "summary": "Airlines and cures. Then the stadium, and the stars.",
+    "unlocksBusinesses": [
+      "sports",
+      "space"
+    ],
+    "missions": [
+      {
+        "id": "c7_airline",
+        "title": "Wheels up",
+        "description": "Open an Airline.",
+        "goal": {
+          "type": "ownBusiness",
+          "businessId": "airline"
+        },
+        "rewardCash": "263840721893994140.62",
+        "rewardFavor": 35
+      },
+      {
+        "id": "c7_pharma",
+        "title": "Breakthrough",
+        "description": "Open Pharmaceuticals.",
+        "goal": {
+          "type": "ownBusiness",
+          "businessId": "pharma"
+        },
+        "rewardCash": "3034168301780932617.19"
+      },
+      {
+        "id": "c7_three_conglomerates",
+        "title": "Three pillars",
+        "description": "Form three conglomerates.",
+        "goal": {
+          "type": "conglomerates",
+          "count": 3
+        },
+        "rewardCash": "20000000000000000000.00",
+        "rewardBullion": 50
+      }
+    ]
+  },
+  {
+    "number": 8,
+    "title": "The Crown",
+    "summary": "Every pillar of the economy bears your name. Build the holding company that crowns it all.",
+    "unlocksBusinesses": [],
+    "missions": [
+      {
+        "id": "c8_sports",
+        "title": "Home ground",
+        "description": "Open a Sports Franchise.",
+        "goal": {
+          "type": "ownBusiness",
+          "businessId": "sports"
+        },
+        "rewardCash": "34892935470480725097.66",
+        "rewardFavor": 40
+      },
+      {
+        "id": "c8_space",
+        "title": "Liftoff",
+        "description": "Open Space.",
+        "goal": {
+          "type": "ownBusiness",
+          "businessId": "space"
+        },
+        "rewardCash": "401268757910528338623.04"
+      },
+      {
+        "id": "c8_networth",
+        "title": "Sovereign wealth",
+        "description": "Reach a net worth worthy of a dynasty.",
+        "goal": {
+          "type": "netWorth",
+          "amount": "4012687579105283386230.45"
+        },
+        "rewardCash": "0.00",
+        "rewardBullion": 100
       }
     ]
   }

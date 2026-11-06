@@ -36,7 +36,7 @@ tasks.test {
     // Only set when deliberately creating the golden save fixture for a new schema version.
     systemProperty("abt.writeFixtures", providers.gradleProperty("abt.writeFixtures").orElse("false").get())
     inputs.dir(rootProject.layout.projectDirectory.dir("content"))
-    maxHeapSize = "2g"
+    maxHeapSize = "1g"
     testLogging {
         events("failed")
         exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL

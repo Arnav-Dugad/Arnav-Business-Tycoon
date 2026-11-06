@@ -2,7 +2,10 @@ package com.arnavgames.tycoon.core.engine
 
 import com.arnavgames.tycoon.core.content.BusinessDef
 import com.arnavgames.tycoon.core.content.ContentPack
+import com.arnavgames.tycoon.core.content.ConglomerateDef
 import com.arnavgames.tycoon.core.content.MechanicDef
+import com.arnavgames.tycoon.core.engine.mechanics.MechCtx
+import com.arnavgames.tycoon.core.engine.mechanics.MechanicRegistry
 import com.arnavgames.tycoon.core.money.Money
 import com.arnavgames.tycoon.core.money.Multiplier
 import com.arnavgames.tycoon.core.money.Rate
@@ -24,10 +27,19 @@ class Economy(val content: ContentPack) {
     fun levelCost(def: BusinessDef, level: Int, count: Int): Money {
         require(count >= 1)
         val g = def.costGrowth.value
-        val first = g.pow(level - 1, MC)
-        val series = g.pow(count, MC).subtract(BigDecimal.ONE).divide(g.subtract(BigDecimal.ONE), MC)
+        val first = growthPow(def, level - 1)
+        val series = growthPow(def, count).subtract(BigDecimal.ONE).divide(g.subtract(BigDecimal.ONE), MC)
         val cents = BigDecimal(def.baseCost.cents).multiply(first, MC).multiply(series, MC)
         return Money.ofCents(cents.setScale(0, RoundingMode.CEILING).toBigIntegerExact())
+    }
+
+    /** g^n for a business's cost growth, memoised (content is immutable; pow on DECIMAL128 is the hottest path). */
+    private val powCache = java.util.concurrent.ConcurrentHashMap<Long, BigDecimal>()
+    private val bizIndex: Map<String, Int> = content.businesses.withIndex().associate { it.value.id to it.index }
+
+    private fun growthPow(def: BusinessDef, n: Int): BigDecimal {
+        val key = (bizIndex.getValue(def.id).toLong() shl 32) or n.toLong()
+        return powCache.getOrPut(key) { def.costGrowth.value.pow(n, MC) }
     }
 
     /** Largest n (≤ cap) such that levelCost(level, n) ≤ budget. 0 if not even one is affordable. */
@@ -66,24 +78,71 @@ class Economy(val content: ContentPack) {
 
     // ---------------- Efficiency (mechanics) ----------------
 
+    /** Context handed to module mechanics (time, seeded randomness, owned businesses, cost scale). */
+    fun mechCtx(state: GameState, def: BusinessDef, b: BusinessState, now: Long = state.simTimeMs): MechCtx = MechCtx(
+        businessId = b.id,
+        level = b.level,
+        simTime = now,
+        worldSeed = state.worldSeed,
+        owned = state.businesses.keys,
+        incomeSecond = Rate.perSecond(def.baseRevenue, Multiplier.of(b.level.toLong()) * tierMultiplier(def, b.level)).perSecond(),
+    )
+
+    /** Module state for a business, created on the fly if missing (e.g. a save from before the module existed). */
+    fun moduleState(state: GameState, def: BusinessDef, b: BusinessState, m: MechanicDef.Module): MechanicState.Module =
+        b.mechanic as? MechanicState.Module ?: MechanicRegistry.of(m.kind).initial(m, mechCtx(state, def, b))
+
     /** Efficiency E ∈ [0.25, 2.5] from the business's own mechanic at sim time [now]. */
-    fun efficiency(def: BusinessDef, b: BusinessState, now: Long): Double {
+    fun efficiency(state: GameState, def: BusinessDef, b: BusinessState, now: Long): Double {
         val e = when (val m = def.mechanic) {
             MechanicDef.Simple -> 1.0
             is MechanicDef.Retail -> Mechanics.retailEfficiency(m, b.mechanic as? MechanicState.Retail ?: MechanicState.Retail(), now)
             is MechanicDef.Restaurant -> Mechanics.restaurantEfficiency(m, b.mechanic as? MechanicState.Restaurant ?: Mechanics.restaurantInitial(m))
             is MechanicDef.Logistics -> Mechanics.logisticsEfficiency(m, b.level, b.mechanic as? MechanicState.Logistics ?: MechanicState.Logistics())
+            is MechanicDef.Module -> MechanicRegistry.of(m.kind).efficiency(m, moduleState(state, def, b, m), mechCtx(state, def, b, now))
         }
         return e.coerceIn(E_MIN, E_MAX)
     }
 
-    /** Extra upkeep factor from the mechanic (restaurant quality tier). */
-    fun upkeepFactor(def: BusinessDef, b: BusinessState): Double = when (val m = def.mechanic) {
-        is MechanicDef.Restaurant -> {
-            val st = b.mechanic as? MechanicState.Restaurant
-            m.qualityTiers.firstOrNull { it.id == st?.qualityTier }?.upkeepMultiplier ?: 1.0
+    /** Extra upkeep factor from the mechanic, cross-business synergies and the business's conglomerate. */
+    fun upkeepFactor(state: GameState, def: BusinessDef, b: BusinessState, now: Long = state.simTimeMs): Double {
+        val own = when (val m = def.mechanic) {
+            is MechanicDef.Restaurant -> {
+                val st = b.mechanic as? MechanicState.Restaurant
+                m.qualityTiers.firstOrNull { it.id == st?.qualityTier }?.upkeepMultiplier ?: 1.0
+            }
+            is MechanicDef.Module -> MechanicRegistry.of(m.kind).upkeepFactor(m, moduleState(state, def, b, m), mechCtx(state, def, b, now))
+            else -> 1.0
         }
-        else -> 1.0
+        val cong = conglomerateOf(state, b.id)?.upkeepMultiplier?.toDouble() ?: 1.0
+        return own * MechanicRegistry.crossUpkeep(state.businesses.keys, b.id) * cong
+    }
+
+    // ---------------- Merger tree ----------------
+
+    /** The formed conglomerate this business belongs to, if any. */
+    fun conglomerateOf(state: GameState, businessId: String): ConglomerateDef? =
+        content.conglomerates.firstOrNull { it.id in state.conglomerates && businessId in it.members }
+
+    /** Number of Scale Tiers a business has reached. */
+    fun tiersReached(def: BusinessDef, level: Int): Int = def.tiers.count { level >= it.level }
+
+    /** Why a conglomerate can't be formed yet, or null if it can (ignoring the fee). */
+    fun conglomerateBlocker(state: GameState, c: ConglomerateDef): String? {
+        if (c.id in state.conglomerates) return "Already formed"
+        if (state.progress.chapter < c.requiredChapter) return "Mergers open in chapter ${c.requiredChapter}"
+        for (id in c.members) {
+            val b = state.businesses[id] ?: return "Requires ${content.businessById[id]?.name ?: id}"
+            if (b.mothballed) return "${content.business(id).name} is mothballed"
+            if (tiersReached(content.business(id), b.level) < c.requiredTier) return "${content.business(id).name} needs Scale Tier ${c.requiredTier}"
+            conglomerateOf(state, id)?.let { return "${content.business(id).name} already belongs to ${it.name}" }
+        }
+        return null
+    }
+
+    private fun crossIncome(state: GameState, id: String, now: Long): Double {
+        val media = state.businesses["media"]?.mechanic as? MechanicState.Module
+        return MechanicRegistry.crossIncome(state.businesses.keys, id, media, now / 60_000)
     }
 
     // ---------------- Rates ----------------
@@ -101,14 +160,16 @@ class Economy(val content: ContentPack) {
         val b = state.businesses[id] ?: return ZERO_RATE
         if (b.mothballed) return ZERO_RATE
         val def = content.business(id)
-        val e = efficiency(def, b, now)
-        val factor = Multiplier.of(b.level.toLong()) *
+        val e = efficiency(state, def, b, now)
+        var factor = Multiplier.of(b.level.toLong()) *
             tierMultiplier(def, b.level) *
             expansionMultiplier(def, b) *
-            Multiplier.ofDouble(round6(e)) *
+            Multiplier.ofDouble(round6(e * crossIncome(state, id, now))) *
             globalMultiplier(state, now)
+        conglomerateOf(state, id)?.let { factor *= it.incomeMultiplier }
+        if (state.holdingName != null) factor *= content.balance.holdingIncomeMultiplier
         val gross = Rate.perSecond(def.baseRevenue, factor)
-        val upkeepShare = (def.upkeep * Multiplier.ofDouble(round6(upkeepFactor(def, b)))).min(Multiplier.of("0.95"))
+        val upkeepShare = (def.upkeep * Multiplier.ofDouble(round6(upkeepFactor(state, def, b, now)))).min(Multiplier.of("0.95"))
         val upkeep = gross * upkeepShare
         return BusinessRate(gross, upkeep, gross - upkeep, e)
     }
@@ -126,8 +187,11 @@ class Economy(val content: ContentPack) {
 
     // ---------------- Slots, HQ, offline ----------------
 
+    /** Business slots: base + HQ levels + one per story chapter reached beyond the first (docs/ECONOMY.md §3). */
     fun slots(state: GameState): Int =
-        content.balance.baseSlots + content.balance.hqLevels.filter { it.level <= state.hq.level }.sumOf { it.extraSlots }
+        content.balance.baseSlots +
+            content.balance.hqLevels.filter { it.level <= state.hq.level }.sumOf { it.extraSlots } +
+            (state.progress.chapter - 1).coerceIn(0, 6)
 
     fun usedSlots(state: GameState): Int = state.businesses.values.count { !it.mothballed }
 

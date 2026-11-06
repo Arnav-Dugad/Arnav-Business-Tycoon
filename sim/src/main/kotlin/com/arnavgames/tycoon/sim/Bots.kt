@@ -5,6 +5,8 @@ import com.arnavgames.tycoon.core.engine.Command
 import com.arnavgames.tycoon.core.engine.CommandResult
 import com.arnavgames.tycoon.core.engine.GameEngine
 import com.arnavgames.tycoon.core.engine.Mechanics
+import com.arnavgames.tycoon.core.engine.mechanics.MechanicRegistry
+import com.arnavgames.tycoon.core.engine.mechanics.ViewControl
 import com.arnavgames.tycoon.core.money.Money
 import com.arnavgames.tycoon.core.money.Multiplier
 import com.arnavgames.tycoon.core.money.Rate
@@ -66,6 +68,14 @@ internal class Planner(private val engine: GameEngine) {
             val def = content.business(b.id)
             val cost = eco.levelCost(def, b.level, 1)
             if (cost <= s.cash) gainOf(s, Command.BuyLevels(b.id, 1), managedOnly)?.let { (_, g) -> out += Option(Command.BuyLevels(b.id, 1), cost, g, "level ${b.id}") }
+            // Buying straight to the next Scale Tier captures its multiplier, often a far better deal than one level.
+            eco.nextTier(def, b.level)?.let { tier ->
+                val n = tier.level - b.level
+                if (n > 1) {
+                    val tierCost = eco.levelCost(def, b.level, n)
+                    if (tierCost <= s.cash) gainOf(s, Command.BuyLevels(b.id, n), managedOnly)?.let { (_, g) -> out += Option(Command.BuyLevels(b.id, n), tierCost, g, "tier ${b.id}") }
+                }
+            }
             for (e in def.expansions) {
                 if (e.id in b.expansionsDone || s.timers.any { it.targetId == b.id } || b.level < e.requiresLevel || e.cost > s.cash) continue
                 // Value an expansion by the income it adds once complete.
@@ -80,6 +90,22 @@ internal class Planner(private val engine: GameEngine) {
             gainOf(s, Command.OpenBusiness(def.id), managedOnly)?.let { (_, g) -> out += Option(Command.OpenBusiness(def.id), def.unlockCost, g, "open ${def.id}") }
         }
         return out
+    }
+
+    /** Opens newly unlocked businesses as soon as they are affordable: new content is its own reward for players. */
+    fun openNewBusinesses(s: GameState, maxShareOfCash: Double): GameState {
+        var st = s
+        for (def in engine.content.businesses) {
+            if (def.id in st.businesses || !engine.isUnlocked(st, def.id)) continue
+            if (def.unlockCost > st.cash * Multiplier.ofDouble(maxShareOfCash)) continue
+            if (eco.usedSlots(st) >= eco.slots(st)) {
+                // Slots full: mothball the weakest running business to make room (a sensible player's move).
+                val weakest = st.businesses.values.filter { !it.mothballed }.minByOrNull { eco.businessRate(st, it.id).net } ?: continue
+                st = engine.tryApply(st, Command.SetMothballed(weakest.id, true))
+            }
+            st = engine.tryApply(st, Command.OpenBusiness(def.id))
+        }
+        return st
     }
 
     /** Cheapest manager that is an upgrade over the current one, if affordable. */
@@ -128,8 +154,81 @@ internal class Planner(private val engine: GameEngine) {
                         for ((route, n) in plan) st = engine.tryApply(st, Command.AssignVehicles(b.id, route, n))
                     }
                 }
+                is MechanicDef.Module -> st = tuneModule(st, b.id, m, skill)
                 MechanicDef.Simple -> Unit
             }
+        }
+        return st
+    }
+
+    /**
+     * Generic optimizer for module mechanics, driven by the module's own view: for every choice, try each option on
+     * a copy of the state and keep whichever earns the most right now. A player with [skill] < 1 sometimes skips this.
+     */
+    private fun tuneModule(s: GameState, id: String, m: MechanicDef.Module, skill: Double): GameState {
+        val def = engine.content.business(id)
+        val b = s.businesses.getValue(id)
+        val view = MechanicRegistry.of(m.kind).view(m, engine.economy.moduleState(s, def, b, m), engine.economy.mechCtx(s, def, b))
+        var st = s
+        for (choice in view.controls.filterIsInstance<ViewControl.Choice>()) {
+            if (!choice.enabled || choice.actionId == "campaign") continue
+            if (skill < 1.0 && (st.simTimeMs / 60_000) % 10 >= (skill * 10).toLong()) continue
+            var best = st
+            var bestRate = eco.businessRate(st, id).net
+            for (o in choice.options) {
+                val r = engine.apply(st, Command.MechanicAction(id, choice.actionId, o.id)) as? CommandResult.Ok ?: continue
+                val rate = eco.businessRate(r.state, id).net
+                if (rate > bestRate) { best = r.state; bestRate = rate }
+            }
+            st = best
+        }
+        return st
+    }
+
+    /** Paid module actions that raise income immediately (e.g. a factory stage), ranked like any other investment. */
+    fun moduleInvestments(s: GameState): List<Option> {
+        val out = mutableListOf<Option>()
+        for (b in s.businesses.values) {
+            val def = engine.content.business(b.id)
+            val m = def.mechanic as? MechanicDef.Module ?: continue
+            val view = MechanicRegistry.of(m.kind).view(m, eco.moduleState(s, def, b, m), eco.mechCtx(s, def, b))
+            for (a in view.controls.filterIsInstance<ViewControl.Action>()) {
+                val cost = a.cost ?: continue
+                if (!a.enabled || cost > s.cash) continue
+                val cmd = Command.MechanicAction(b.id, a.actionId, a.value)
+                gainOf(s, cmd, managedOnly = false)?.let { (_, g) -> if (g.isPositive) out += Option(cmd, cost, g, "${b.id}:${a.actionId}") }
+            }
+        }
+        return out
+    }
+
+    /** Delayed-payoff module actions (trials, missions, surveys): an engaged player funds cheap ones now and then. */
+    fun cheapDelayedActions(s: GameState, maxShareOfCash: Double): GameState {
+        var st = s
+        for (b in s.businesses.values.sortedBy { it.id }) {
+            if (b.managerId != null) continue
+            val def = engine.content.business(b.id)
+            val m = def.mechanic as? MechanicDef.Module ?: continue
+            val view = MechanicRegistry.of(m.kind).view(m, eco.moduleState(st, def, b, m), eco.mechCtx(st, def, b))
+            val action = view.controls.filterIsInstance<ViewControl.Action>().firstOrNull { a ->
+                a.enabled && a.actionId in setOf("fund", "launch", "survey", "greenlight", "roster", "redrill") &&
+                    (a.cost == null || a.cost!! <= st.cash * Multiplier.ofDouble(maxShareOfCash))
+            } ?: continue
+            st = engine.tryApply(st, Command.MechanicAction(b.id, action.actionId, action.value))
+        }
+        return st
+    }
+
+    /** Forms any conglomerate whose requirements are met and whose fee is a modest share of cash. */
+    fun formConglomerates(s: GameState, maxShareOfCash: Double): GameState {
+        var st = s
+        for (c in engine.content.conglomerates) {
+            if (eco.conglomerateBlocker(st, c) == null && c.fee <= st.cash * Multiplier.ofDouble(maxShareOfCash)) {
+                st = engine.tryApply(st, Command.FormConglomerate(c.id))
+            }
+        }
+        if (st.conglomerates.size >= 3 && st.holdingName == null && engine.content.balance.holdingFee <= st.cash * Multiplier.ofDouble(maxShareOfCash)) {
+            st = engine.tryApply(st, Command.FormHolding("Bot Holdings"))
         }
         return st
     }
@@ -163,11 +262,15 @@ class ActiveBot(override val name: String = "active", private val reserveFractio
         // Managers keep money flowing offline; an engaged player hires one as soon as it pays back within ~20 minutes.
         p.firstManager(s)?.let { (cmd, cost) -> if (cost <= income * 1200 || cost <= s.cash * Multiplier.of("0.5")) s = engine.tryApply(s, cmd) }
         s = p.hqIfUseful(s, slotsFull = engine.economy.usedSlots(s) >= engine.economy.slots(s), incomePerSec = income, horizonSec = 600)
+        s = p.openNewBusinesses(s, 0.7)
+        s = p.formConglomerates(s, 0.5)
+        if (sessionStart) s = p.cheapDelayedActions(s, 0.05)
         // Greedy: keep buying the fastest payback until money runs out (respecting any reserve).
         repeat(400) {
             val reserve = s.cash * Multiplier.ofDouble(reserveFraction)
-            val best = p.options(s, managedOnly = false).filter { s.cash - it.cost >= reserve }.minByOrNull { it.paybackSeconds } ?: return@repeat
-            if (best.paybackSeconds > 6 * 3600) return@repeat
+            val best = (p.options(s, managedOnly = false) + p.moduleInvestments(s)).filter { s.cash - it.cost >= reserve }.minByOrNull { it.paybackSeconds } ?: return@repeat
+            // Normally only fast paybacks; but an engaged player sitting on a pile of cash puts it to work.
+            if (best.paybackSeconds > 12 * 3600 && best.cost > s.cash * Multiplier.of("0.25")) return@repeat
             val ns = engine.tryApply(s, best.cmd)
             if (ns === s) return@repeat
             s = ns
@@ -200,6 +303,8 @@ class IdleBot : Bot {
         for (b in s.businesses.values) if (engine.content.business(b.id).mechanic is MechanicDef.Logistics && b.managerId == null) s = engine.tryApply(s, Command.AutoPlanRoutes(b.id))
         val income = engine.economy.totalNetRate(s, managedOnly = true).perSecond()
         s = p.hqIfUseful(s, slotsFull = engine.economy.usedSlots(s) >= engine.economy.slots(s), incomePerSec = income, horizonSec = 1800)
+        s = p.openNewBusinesses(s, 0.7)
+        s = p.formConglomerates(s, 0.5)
         repeat(400) {
             // Idle players buy the obvious best-value upgrade (they hire managers above, so most income keeps flowing).
             val best = p.options(s, managedOnly = false).minByOrNull { it.paybackSeconds } ?: return@repeat

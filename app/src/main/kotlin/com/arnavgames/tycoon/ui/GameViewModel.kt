@@ -56,6 +56,15 @@ data class BusinessUi(
 
 data class OpenableUi(val id: String, val name: String, val tagline: String, val icon: String, val cost: Money, val canAfford: Boolean, val lockedReason: String?)
 
+data class MemberUi(val name: String, val ready: Boolean, val note: String)
+
+data class MergerUi(
+    val id: String, val name: String, val description: String, val synergy: String, val members: List<MemberUi>,
+    val fee: Money, val formed: Boolean, val blocker: String?, val canAfford: Boolean,
+)
+
+data class HoldingUi(val name: String?, val unlocked: Boolean, val fee: Money, val canAfford: Boolean, val conglomerates: Int)
+
 data class HqUi(val level: Int, val name: String, val nextName: String?, val nextCost: Money?, val canAfford: Boolean, val slotsUsed: Int, val slots: Int, val offlineCapHours: Double)
 
 data class EmpireUi(
@@ -68,6 +77,8 @@ data class EmpireUi(
     val onboardingStep: Int,
     val chapter: Int,
     val claimableCount: Int,
+    val mergers: List<MergerUi> = emptyList(),
+    val holding: HoldingUi? = null,
 )
 
 @HiltViewModel
@@ -179,7 +190,23 @@ class GameViewModel @Inject constructor(
             canAfford = hqNext != null && s.cash >= hqNext.cost, slotsUsed = eco.usedSlots(s), slots = eco.slots(s),
             offlineCapHours = eco.offlineCapMs(s) / 3_600_000.0,
         )
-        return EmpireUi(header, hustle, mission, businesses, openable, hq, s.progress.onboardingStep, s.progress.chapter, s.progress.claimableMissions.size)
+        // Merger tree: show conglomerates where the player owns at least one member (formed ones first).
+        val mergers = content.conglomerates.filter { c -> c.members.any { it in s.businesses } }.map { c ->
+            val blocker = eco.conglomerateBlocker(s, c)
+            MergerUi(
+                id = c.id, name = c.name, description = c.description, synergy = c.synergyText,
+                members = c.members.map { id ->
+                    val d = content.business(id)
+                    val b = s.businesses[id]
+                    val tiers = b?.let { eco.tiersReached(d, it.level) } ?: 0
+                    MemberUi(d.name, b != null && tiers >= c.requiredTier && !b.mothballed, when { b == null -> "not owned"; b.mothballed -> "mothballed"; else -> "tier ${minOf(tiers, c.requiredTier)}/${c.requiredTier}" })
+                },
+                fee = c.fee, formed = c.id in s.conglomerates, blocker = blocker?.takeIf { c.id !in s.conglomerates },
+                canAfford = s.cash >= c.fee,
+            )
+        }.sortedWith(compareByDescending<MergerUi> { it.formed }.thenBy { it.blocker != null }.thenBy { it.fee })
+        val holding = if (s.conglomerates.isNotEmpty()) HoldingUi(s.holdingName, s.conglomerates.size >= 3, content.balance.holdingFee, s.cash >= content.balance.holdingFee, s.conglomerates.size) else null
+        return EmpireUi(header, hustle, mission, businesses, openable, hq, s.progress.onboardingStep, s.progress.chapter, s.progress.claimableMissions.size, mergers, holding)
     }
 
     fun businessUi(s: GameState, def: BusinessDef, qty: BuyQty): BusinessUi {

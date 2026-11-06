@@ -2,6 +2,7 @@ package com.arnavgames.tycoon.core.engine
 
 import com.arnavgames.tycoon.core.content.ContentPack
 import com.arnavgames.tycoon.core.content.MechanicDef
+import com.arnavgames.tycoon.core.engine.mechanics.MechanicRegistry
 import com.arnavgames.tycoon.core.ledger.Accounts
 import com.arnavgames.tycoon.core.ledger.Ledger
 import com.arnavgames.tycoon.core.ledger.LedgerError
@@ -141,18 +142,42 @@ class GameEngine(val content: ContentPack) {
     }
 
     private fun minuteTick(state: GameState): GameState {
-        val updated = state.businesses.mapValues { (id, b) ->
+        var s = state
+        for (id in state.businesses.keys.sorted()) {
+            val b = s.businesses.getValue(id)
             val def = content.business(id)
             var nb = b
-            val m = def.mechanic
-            if (m is MechanicDef.Restaurant) {
-                val st = nb.mechanic as? MechanicState.Restaurant ?: Mechanics.restaurantInitial(m)
-                nb = nb.copy(mechanic = Mechanics.restaurantMinute(m, st))
+            when (val m = def.mechanic) {
+                is MechanicDef.Restaurant -> {
+                    val st = nb.mechanic as? MechanicState.Restaurant ?: Mechanics.restaurantInitial(m)
+                    nb = nb.copy(mechanic = Mechanics.restaurantMinute(m, st))
+                }
+                is MechanicDef.Module -> {
+                    val module = MechanicRegistry.of(m.kind)
+                    val ctx = economy.mechCtx(s, def, nb)
+                    var ms = module.minute(m, economy.moduleState(s, def, nb, m), ctx)
+                    if (nb.managerId != null && !nb.mothballed) {
+                        // Managers run the mechanic and may spend a small budget on upkeep-style decisions.
+                        val skill = economy.managerSkill(def, nb) ?: 0.0
+                        val policy = def.managers.first { it.id == nb.managerId }.policy
+                        val budget = (s.cash * Multiplier.ofDouble(content.balance.managerBudgetCashShare))
+                            .min(ctx.incomeSecond * content.balance.managerBudgetIncomeSeconds.toLong())
+                        val r = module.manage(m, ms, ctx, skill, policy, budget.max(Money.ZERO))
+                        if (r.cost.isPositive && r.cost <= budget) {
+                            val paid = Ledger.spend(s.ledger, s.simTimeMs, TxnCategory.Purchase, "${def.name}: manager decision", "manager_ops", r.cost)
+                            if (paid is Ledger.Result.Ok) { s = s.copy(ledger = paid.state); ms = r.state }
+                        } else if (!r.cost.isPositive) {
+                            ms = r.state
+                        }
+                    }
+                    nb = nb.copy(mechanic = ms)
+                }
+                else -> Unit
             }
-            if (nb.managerId != null) nb = managerAct(nb)
-            nb
+            if (nb.managerId != null && def.mechanic !is MechanicDef.Module) nb = managerAct(nb)
+            if (nb != b) s = s.copy(businesses = s.businesses + (id to nb))
         }
-        return state.copy(businesses = updated)
+        return s
     }
 
     /** Managers run the business's mechanic at their skill level (active players can beat them). */
@@ -181,7 +206,7 @@ class GameEngine(val content: ContentPack) {
                 val st = b.mechanic as? MechanicState.Logistics ?: MechanicState.Logistics()
                 if (st.assignments == plan) b else b.copy(mechanic = MechanicState.Logistics(plan))
             }
-            MechanicDef.Simple -> b
+            MechanicDef.Simple, is MechanicDef.Module -> b
         }
     }
 
@@ -222,15 +247,14 @@ class GameEngine(val content: ContentPack) {
             is Command.SetRestaurantQuality -> setQuality(state, cmd.businessId, cmd.tierId)
             is Command.AssignVehicles -> assignVehicles(state, cmd.businessId, cmd.routeId, cmd.count)
             is Command.AutoPlanRoutes -> autoPlan(state, cmd.businessId)
+            is Command.MechanicAction -> mechanicAction(state, cmd.businessId, cmd.action, cmd.value)
+            is Command.FormConglomerate -> formConglomerate(state, cmd.conglomerateId, events)
+            is Command.FormHolding -> formHolding(state, cmd.name, events)
         }
         return when (result) {
             is Either.Err -> CommandResult.Rejected(result.error)
-            is Either.Ok -> {
-                val s = missions.evaluate(result.state, events)
-                val nw = economy.netWorth(s)
-                val s2 = if (nw > s.stats.peakNetWorth) s.copy(stats = s.stats.copy(peakNetWorth = nw)) else s
-                CommandResult.Ok(s2, events)
-            }
+            // Peak net worth is tracked on minute ticks (cheap enough there, and commands stay fast).
+            is Either.Ok -> CommandResult.Ok(missions.evaluate(result.state, events), events)
         }
     }
 
@@ -268,6 +292,7 @@ class GameEngine(val content: ContentPack) {
             is MechanicDef.Retail -> MechanicState.Retail()
             is MechanicDef.Restaurant -> Mechanics.restaurantInitial(m)
             is MechanicDef.Logistics -> MechanicState.Logistics(mapOf(m.routes.first().id to Mechanics.vehicles(m, 1)))
+            is MechanicDef.Module -> MechanicRegistry.of(m.kind).initial(m, economy.mechCtx(ps, def, BusinessState(id = id)))
             MechanicDef.Simple -> MechanicState.None
         }
         events += GameEvent.BusinessOpened(id)
@@ -478,7 +503,46 @@ class GameEngine(val content: ContentPack) {
         Either.Ok(s.copy(businesses = s.businesses + (id to b.copy(mechanic = MechanicState.Logistics(plan)))))
     }
 
+    // ----- Module mechanics and the merger tree -----
+
+    private fun mechanicAction(s: GameState, id: String, action: String, value: String): Either {
+        val b = s.businesses[id] ?: return Either.Err(GameError.NotFound("business $id"))
+        val def = content.business(id)
+        val m = def.mechanic as? MechanicDef.Module ?: return Either.Err(GameError.Invalid("not a module business"))
+        if (b.managerId != null && action !in MANAGER_FREE_ACTIONS) return Either.Err(GameError.Locked("Your manager is running this. Investments are still yours to make."))
+        val module = MechanicRegistry.of(m.kind)
+        val r = module.act(m, economy.moduleState(s, def, b, m), action, value, economy.mechCtx(s, def, b))
+            .getOrElse { return Either.Err(GameError.Invalid(it.message ?: "not allowed")) }
+        val paid = if (r.cost.isPositive) spend(s, r.cost, TxnCategory.Purchase, "${def.name}: $action", "operations") else Either.Ok(s)
+        if (paid is Either.Err) return paid
+        val ps = (paid as Either.Ok).state
+        return Either.Ok(ps.copy(businesses = ps.businesses + (id to ps.businesses.getValue(id).copy(mechanic = r.state))))
+    }
+
+    private fun formConglomerate(s: GameState, cid: String, events: MutableList<GameEvent>): Either {
+        val c = content.conglomerates.firstOrNull { it.id == cid } ?: return Either.Err(GameError.NotFound("conglomerate $cid"))
+        economy.conglomerateBlocker(s, c)?.let { return Either.Err(if (it == "Already formed") GameError.AlreadyDone else GameError.Locked(it)) }
+        val paid = spend(s, c.fee, TxnCategory.Purchase, "form ${c.name}", "mergers")
+        if (paid is Either.Err) return paid
+        events += GameEvent.ConglomerateFormed(cid)
+        val ps = (paid as Either.Ok).state
+        return Either.Ok(ps.copy(conglomerates = ps.conglomerates + cid))
+    }
+
+    private fun formHolding(s: GameState, name: String, events: MutableList<GameEvent>): Either {
+        if (s.holdingName != null) return Either.Err(GameError.AlreadyDone)
+        val clean = name.trim()
+        if (clean.length !in 3..32) return Either.Err(GameError.Invalid("Name must be 3–32 characters"))
+        if (s.conglomerates.size < 3) return Either.Err(GameError.Locked("Form three conglomerates first"))
+        val paid = spend(s, content.balance.holdingFee, TxnCategory.Purchase, "form $clean", "mergers")
+        if (paid is Either.Err) return paid
+        events += GameEvent.HoldingFormed(clean)
+        return Either.Ok((paid as Either.Ok).state.copy(holdingName = clean))
+    }
+
     companion object {
+        /** Investments a player may still make while a manager runs the routine decisions of a module business. */
+        val MANAGER_FREE_ACTIONS = setOf("upgrade", "stars", "build", "roster", "reliability", "redrill", "campaign", "greenlight", "fund", "launch")
         const val MINUTE = 60_000L
         const val DAY = 86_400_000L
     }

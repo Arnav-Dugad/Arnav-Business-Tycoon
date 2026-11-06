@@ -18,7 +18,7 @@ object ContentLoader {
     }
 
     /** Files that make up the pack, relative to the content root. Order matters for the hash. */
-    val FILES = listOf("data/businesses.json", "data/chapters.json", "balance/balance.json")
+    val FILES = listOf("data/businesses.json", "data/chapters.json", "data/conglomerates.json", "balance/balance.json")
 
     data class Loaded(val pack: ContentPack, val hash: String, val issues: List<ContentIssue>)
 
@@ -26,8 +26,9 @@ object ContentLoader {
         val texts = FILES.associateWith(read)
         val businesses = json.decodeFromString<List<BusinessDef>>(texts.getValue("data/businesses.json"))
         val chapters = json.decodeFromString<List<ChapterDef>>(texts.getValue("data/chapters.json"))
+        val conglomerates = json.decodeFromString<List<ConglomerateDef>>(texts.getValue("data/conglomerates.json"))
         val balance = json.decodeFromString<BalanceConfig>(texts.getValue("balance/balance.json"))
-        val pack = ContentPack(businesses, balance, chapters)
+        val pack = ContentPack(businesses, balance, chapters, conglomerates)
         val digest = MessageDigest.getInstance("SHA-256")
         FILES.forEach { digest.update(it.toByteArray()); digest.update(texts.getValue(it).replace("\r\n", "\n").toByteArray()) }
         val hash = digest.digest().joinToString("") { "%02x".format(it) }.take(16)
@@ -53,7 +54,8 @@ object ContentValidator {
     private val ICONS = setOf(
         "Empire", "Markets", "Estates", "Collection", "Crown", "Cash", "Bullion", "Coin", "Favor", "Briefcase", "Store",
         "Factory", "Map", "Expand", "Timer", "Manager", "Chart", "News", "Shield", "Rivals", "Trophy", "Star", "Bolt",
-        "Chef", "Fleet", "Route", "Tag", "Megaphone",
+        "Chef", "Fleet", "Route", "Tag", "Megaphone", "Wheat", "Hanger", "Pickaxe", "Flame", "Bed", "Bank", "Crane", "Film",
+        "Chip", "Antenna", "Plane", "Flask", "Ball", "Rocket", "Buildings",
     )
 
     /** Fragments of real brand/company names that must never appear in content names. Extended as content grows. */
@@ -114,8 +116,28 @@ object ContentValidator {
                     check(m.routes.map { it.id }.toSet().size == m.routes.size, p, "duplicate route ids")
                     check(m.routes.any { it.unlockLevel <= 1 }, p, "at least one route at level 1")
                 }
+                is MechanicDef.Module -> {
+                    val module = com.arnavgames.tycoon.core.engine.mechanics.MechanicRegistry.modules[m.kind]
+                    check(module != null, p, "unknown mechanic module '${m.kind}'")
+                    if (module != null) m.params.keys.filterNot { it in module.paramKeys }.forEach { check(false, p, "unknown param '$it' for ${m.kind}") }
+                }
                 MechanicDef.Simple -> Unit
             }
+        }
+        // Module kinds are used by exactly one business each (cross-business synergies refer to business ids).
+        val kinds = pack.businesses.mapNotNull { (it.mechanic as? MechanicDef.Module)?.kind }
+        check(kinds.size == kinds.toSet().size, "businesses", "a module kind is used twice")
+        // Merger tree
+        val congIds = pack.conglomerates.map { it.id }
+        check(congIds.size == congIds.toSet().size, "conglomerates", "duplicate conglomerate ids")
+        pack.conglomerates.forEach { c ->
+            val p = "conglomerates.${c.id}"
+            check(c.members.size >= 2 && c.members.toSet().size == c.members.size, p, "needs two or more distinct members")
+            c.members.forEach { id -> check(id in ids, p, "unknown member '$id'") }
+            check(c.requiredTier in 1..7, p, "requiredTier 1..7")
+            check(c.incomeMultiplier > Multiplier.ONE, p, "income multiplier must be > 1")
+            check(c.upkeepMultiplier <= Multiplier.ONE, p, "upkeep multiplier must be <= 1")
+            findBlockedBrand(c.name)?.let { check(false, p, "contains blocked real brand '$it'") }
         }
         // Balance
         val bal = pack.balance

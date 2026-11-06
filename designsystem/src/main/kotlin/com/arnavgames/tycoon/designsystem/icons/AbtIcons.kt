@@ -108,6 +108,35 @@ object AbtIcons {
     val Pause = icon("Pause", "M8.5 5v14M15.5 5v14")
     val Play = icon("Play", "M7 4.5v15l12-7.5Z")
 
+    // ---- Business glyphs (Chapters 2–7) ----
+    val Wheat = icon(
+        "Wheat", "M12 21V7",
+        "M12 9c-2.5 0-4-1.5-4-4 2.5 0 4 1.5 4 4Z", "M12 9c2.5 0 4-1.5 4-4-2.5 0-4 1.5-4 4Z",
+        "M12 14c-2.5 0-4-1.5-4-4 2.5 0 4 1.5 4 4Z", "M12 14c2.5 0 4-1.5 4-4-2.5 0-4 1.5-4 4Z",
+        "M12 19c-2.5 0-4-1.5-4-4 2.5 0 4 1.5 4 4Z", "M12 19c2.5 0 4-1.5 4-4-2.5 0-4 1.5-4 4Z",
+    )
+    val Hanger = icon("Hanger", "M10 5.5a2 2 0 1 1 2 2v1.5", "M12 9 3.6 15.4a1.2 1.2 0 0 0 .7 2.1h15.4a1.2 1.2 0 0 0 .7-2.1Z")
+    val Pickaxe = icon("Pickaxe", "M4 8.5c3.5-3.5 9.5-4 14.5-1.5", "M11.5 6.8 18 20.5", "M17.2 5.5l1.8 2.2")
+    val Flame = icon(
+        "Flame",
+        "M12 21c-4 0-6.5-2.7-6.5-6.2 0-3.6 3.2-5.6 3.8-9.3 2.3 1.4 3.4 3.3 3.7 5 .9-.8 1.5-2 1.6-3.2 2.4 2 3.9 4.6 3.9 7.5 0 3.5-2.5 6.2-6.5 6.2Z",
+        "M12 21c-1.7 0-2.8-1.2-2.8-2.8 0-1.8 1.6-2.7 2.8-4.2 1.2 1.5 2.8 2.4 2.8 4.2 0 1.6-1.1 2.8-2.8 2.8Z",
+    )
+    val Bed = icon("Bed", "M3 19V6.5", "M3 14.5h18V19", "M21 14.5V12a2.5 2.5 0 0 0-2.5-2.5H11v5", circle(7f, 11.8f, 1.8f))
+    val Bank = icon("Bank", "M3.5 9.5 12 4l8.5 5.5Z", "M5.5 9.5V17M9.8 9.5V17M14.2 9.5V17M18.5 9.5V17", "M4 17h16", "M3 20h18")
+    val Crane = icon("Crane", "M6 21V4.5", "M3 21h6", "M6 4.5h14.5", "M6 8.5 10 4.5", "M17.5 4.5v6", "M17.5 10.5v2.3a1.6 1.6 0 1 1-3.2 0")
+    val Film = icon("Film", "M3.5 5.5h17v13h-17Z", "M7.5 5.5v13M16.5 5.5v13", "M3.5 9.5h4M3.5 14.5h4M16.5 9.5h4M16.5 14.5h4")
+    val Chip = icon("Chip", "M7 7h10v10H7Z", "M10 10h4v4h-4Z", "M9.5 3.5V7M14.5 3.5V7M9.5 17v3.5M14.5 17v3.5M3.5 9.5H7M3.5 14.5H7M17 9.5h3.5M17 14.5h3.5")
+    val Antenna = icon("Antenna", "M12 10.5 7.5 21M12 10.5 16.5 21M9 17.5h6", circle(12f, 8.8f, 1.6f), "M8.3 4.8a5.4 5.4 0 0 0 0 8M15.7 4.8a5.4 5.4 0 0 1 0 8")
+    val Plane = icon("Plane", "M10.5 13.5 3.5 11l1.5-1.5 7.5 1L17 6a2 2 0 0 1 2.8 2.8L15.3 13.3l1 7.5-1.5 1.5-2.5-7", "M7 17.5l-3 .5.5-3 2.5-.5")
+    val Flask = icon("Flask", "M9.5 3.5h5", "M10.5 3.5v6L5 18.5a1.5 1.5 0 0 0 1.3 2.2h11.4a1.5 1.5 0 0 0 1.3-2.2L13.5 9.5v-6", "M7.4 14.5h9.2")
+    val Ball = icon("Ball", circle(12f, 12f, 8.5f), "M3.5 12h17M12 3.5v17", "M6 6a11.5 11.5 0 0 1 0 12M18 6a11.5 11.5 0 0 0 0 12")
+    val Rocket = icon(
+        "Rocket", "M12 2.5c3 2.5 4.5 6 4.5 10v3h-9v-3c0-4 1.5-7.5 4.5-10Z", circle(12f, 9.5f, 1.6f),
+        "M7.5 12.5 4.5 16v3l3-1.5M16.5 12.5l3 3.5v3l-3-1.5", "M10 18.5l2 3 2-3",
+    )
+    val Buildings = icon("Buildings", "M4 21V8h7v13", "M11 21V3.5h9V21", "M2.5 21h19", "M6.5 11.5h2M6.5 15h2M14 7h3M14 10.5h3M14 14h3")
+
     private val byName: Map<String, ImageVector> by lazy {
         listOf(
             Empire, Markets, Estates, Collection, Crown, Cash, Bullion, Coin, Favor, ChevronRight, ChevronLeft, ChevronDown,
@@ -115,6 +144,7 @@ object AbtIcons {
             Mail, Bell, User, Rivals, Clock, Bolt, Sparkle, Star, Trophy, Briefcase, Store, Gift, Shield, Factory, News, Map,
             Hand, Sun, Moon, Timer, Manager, Expand, Inbox, Chart, Volume, Music, Vibrate, Logout, Trash, Download, Cloud,
             Upload, Book, Fleet, Route, Tag, Megaphone, Chef, Pause, Play, StarFilled,
+            Wheat, Hanger, Pickaxe, Flame, Bed, Bank, Crane, Film, Chip, Antenna, Plane, Flask, Ball, Rocket, Buildings,
         ).associateBy { it.name }
     }
 

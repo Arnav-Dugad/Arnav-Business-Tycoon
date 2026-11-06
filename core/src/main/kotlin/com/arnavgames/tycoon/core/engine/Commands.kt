@@ -26,6 +26,13 @@ sealed interface Command {
     data class SetRestaurantQuality(val businessId: String, val tierId: String) : Command
     data class AssignVehicles(val businessId: String, val routeId: String, val count: Int) : Command
     data class AutoPlanRoutes(val businessId: String) : Command
+
+    /** A decision or investment in a module mechanic (see core.engine.mechanics). */
+    data class MechanicAction(val businessId: String, val action: String, val value: String = "") : Command
+
+    // Merger tree
+    data class FormConglomerate(val conglomerateId: String) : Command
+    data class FormHolding(val name: String) : Command
 }
 
 sealed interface GameError {
@@ -55,6 +62,8 @@ sealed interface GameEvent {
     data class ChapterCompleted(val chapter: Int) : GameEvent
     data class StorageFull(val businessId: String) : GameEvent
     data class PromoEnded(val businessId: String) : GameEvent
+    data class ConglomerateFormed(val conglomerateId: String) : GameEvent
+    data class HoldingFormed(val name: String) : GameEvent
 }
 
 sealed interface CommandResult {

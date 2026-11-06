@@ -17,7 +17,8 @@ fun main(args: Array<String>) {
     val opts = args.toList().chunked(2).filter { it.size == 2 }.associate { it[0].removePrefix("--") to it[1] }
     val seeds = opts["seeds"]?.toInt() ?: 100
     val days = opts["days"]?.toInt() ?: 2
-    val threads = opts["threads"]?.toInt() ?: Runtime.getRuntime().availableProcessors()
+    // Default to a quarter of the cores so a batch never makes the laptop unusable; raise with --threads when idle.
+    val threads = opts["threads"]?.toInt() ?: (Runtime.getRuntime().availableProcessors() / 4).coerceIn(1, 6)
     val botNames = (opts["bots"] ?: "active,idle,cautious,poor_choices").split(",").map { it.trim() }
     val outDir = File(opts["out"] ?: "docs/balance/${LocalDate.now()}")
     val gitSha = opts["sha"] ?: "local"
@@ -25,7 +26,7 @@ fun main(args: Array<String>) {
     val loaded = ContentLoader.loadFromRepo()
     require(loaded.issues.isEmpty()) { "content has issues: ${loaded.issues}" }
     val engine = GameEngine(loaded.pack)
-    val sim = Simulation(engine, loaded.hash)
+    val sim = Simulation(engine, loaded.hash, trace = opts["trace"] == "1")
     val bots = botNames.map { botByName(it) }
 
     println("Simulating ${bots.size} bots × $seeds seeds × $days days on $threads threads…")

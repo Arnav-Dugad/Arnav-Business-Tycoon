@@ -454,5 +454,1970 @@
       "vehiclesPerLevel": 0.5,
       "vehicleCapacity": 2.0
     }
+  },
+  {
+    "id": "farmland",
+    "starterName": "Market Garden",
+    "name": "Farmland",
+    "tagline": "Plant smart, sell smarter.",
+    "chapter": 2,
+    "sector": "agriculture",
+    "icon": "Wheat",
+    "unlockCost": "1500000.00",
+    "baseCost": "171000.00",
+    "costGrowth": "1.152",
+    "baseRevenue": "765.00",
+    "upkeep": "0.20",
+    "storageSeconds": 60,
+    "tiers": [
+      {
+        "level": 10,
+        "multiplier": "1.5",
+        "name": "Family Farm",
+        "description": "Family Farm. Output ×1.5."
+      },
+      {
+        "level": 25,
+        "multiplier": "2",
+        "name": "Estate Orchards",
+        "description": "Estate Orchards. Output ×2."
+      },
+      {
+        "level": 50,
+        "multiplier": "2",
+        "name": "Valley Holdings",
+        "description": "Valley Holdings. Output ×2."
+      },
+      {
+        "level": 100,
+        "multiplier": "2.5",
+        "name": "Agri Cooperative",
+        "description": "Agri Cooperative. Output ×2.5."
+      },
+      {
+        "level": 150,
+        "multiplier": "2.5",
+        "name": "Harvest Group",
+        "description": "Harvest Group. Output ×2.5."
+      },
+      {
+        "level": 250,
+        "multiplier": "3",
+        "name": "Breadbasket Co.",
+        "description": "Breadbasket Co.. Output ×3."
+      },
+      {
+        "level": 400,
+        "multiplier": "3",
+        "name": "Farmland Empire",
+        "description": "Farmland Empire. Output ×3."
+      }
+    ],
+    "managers": [
+      {
+        "id": "farmland_m1",
+        "name": "Hollis Ferraro",
+        "title": "Farm Manager",
+        "stars": 2,
+        "cost": "19500000.00",
+        "policy": "Safe",
+        "trait": "Never bets the harvest."
+      },
+      {
+        "id": "farmland_m2",
+        "name": "Priya Nandakumar",
+        "title": "Agronomist",
+        "stars": 3,
+        "cost": "3000000000.00",
+        "policy": "Balanced",
+        "trait": "Reads soil like a ledger."
+      },
+      {
+        "id": "farmland_m3",
+        "name": "Joaquín Ellery",
+        "title": "Commodities Lead",
+        "stars": 4,
+        "cost": "1050000000000.00",
+        "policy": "Aggressive",
+        "trait": "Plants for the price spike."
+      },
+      {
+        "id": "farmland_m4",
+        "name": "Annika Thorsby",
+        "title": "Head of Agriculture",
+        "stars": 5,
+        "cost": "405000000000000.00",
+        "policy": "Balanced",
+        "trait": "Turns weather into profit."
+      }
+    ],
+    "expansions": [
+      {
+        "id": "irrigation",
+        "name": "Irrigation Network",
+        "description": "Steady water, steadier yields.",
+        "requiresLevel": 5,
+        "cost": "15000000.00",
+        "durationSeconds": 600,
+        "multiplier": "1.25"
+      },
+      {
+        "id": "grain_silos",
+        "name": "Grain Silos",
+        "description": "Store the harvest, sell at the peak.",
+        "requiresLevel": 20,
+        "cost": "1950000000.00",
+        "durationSeconds": 2400,
+        "multiplier": "1.5"
+      },
+      {
+        "id": "agri_lab",
+        "name": "Agri-Science Lab",
+        "description": "Seeds bred for your fields.",
+        "requiresLevel": 45,
+        "cost": "240000000000.00",
+        "durationSeconds": 9000,
+        "multiplier": "2"
+      }
+    ],
+    "mechanic": {
+      "type": "module",
+      "kind": "farmland",
+      "params": {}
+    }
+  },
+  {
+    "id": "factory",
+    "starterName": "Workshop",
+    "name": "Factories",
+    "tagline": "Turn raw materials into everything.",
+    "chapter": 2,
+    "sector": "industrial",
+    "icon": "Factory",
+    "unlockCost": "15000000.00",
+    "baseCost": "1624500.00",
+    "costGrowth": "1.154",
+    "baseRevenue": "6502.50",
+    "upkeep": "0.20",
+    "storageSeconds": 60,
+    "tiers": [
+      {
+        "level": 10,
+        "multiplier": "1.5",
+        "name": "Machine Shop",
+        "description": "Machine Shop. Output ×1.5."
+      },
+      {
+        "level": 25,
+        "multiplier": "2",
+        "name": "Assembly Plant",
+        "description": "Assembly Plant. Output ×2."
+      },
+      {
+        "level": 50,
+        "multiplier": "2",
+        "name": "Industrial Park",
+        "description": "Industrial Park. Output ×2."
+      },
+      {
+        "level": 100,
+        "multiplier": "2.5",
+        "name": "Manufacturing Group",
+        "description": "Manufacturing Group. Output ×2.5."
+      },
+      {
+        "level": 150,
+        "multiplier": "2.5",
+        "name": "Advanced Fabrication",
+        "description": "Advanced Fabrication. Output ×2.5."
+      },
+      {
+        "level": 250,
+        "multiplier": "3",
+        "name": "Industrial Giant",
+        "description": "Industrial Giant. Output ×3."
+      },
+      {
+        "level": 400,
+        "multiplier": "3",
+        "name": "Manufacturing Empire",
+        "description": "Manufacturing Empire. Output ×3."
+      }
+    ],
+    "managers": [
+      {
+        "id": "factory_m1",
+        "name": "Dmitri Halvorsen",
+        "title": "Shift Supervisor",
+        "stars": 2,
+        "cost": "195000000.00",
+        "policy": "Safe",
+        "trait": "Keeps the line moving."
+      },
+      {
+        "id": "factory_m2",
+        "name": "Grace Achterberg",
+        "title": "Plant Manager",
+        "stars": 3,
+        "cost": "30000000000.00",
+        "policy": "Balanced",
+        "trait": "Finds the bottleneck first."
+      },
+      {
+        "id": "factory_m3",
+        "name": "Rohan Castellanos",
+        "title": "Operations Director",
+        "stars": 4,
+        "cost": "10500000000000.00",
+        "policy": "Aggressive",
+        "trait": "Runs every line flat out."
+      },
+      {
+        "id": "factory_m4",
+        "name": "Mei-Lin Ostrova",
+        "title": "Chief Manufacturing Officer",
+        "stars": 5,
+        "cost": "4050000000000000.00",
+        "policy": "Balanced",
+        "trait": "Lean to the last bolt."
+      }
+    ],
+    "expansions": [
+      {
+        "id": "robotics_cell",
+        "name": "Robotics Cell",
+        "description": "Arms that never tire.",
+        "requiresLevel": 5,
+        "cost": "150000000.00",
+        "durationSeconds": 600,
+        "multiplier": "1.25"
+      },
+      {
+        "id": "supplier_park",
+        "name": "Supplier Park",
+        "description": "Your suppliers move in next door.",
+        "requiresLevel": 20,
+        "cost": "19500000000.00",
+        "durationSeconds": 2400,
+        "multiplier": "1.5"
+      },
+      {
+        "id": "smart_foundry",
+        "name": "Smart Foundry",
+        "description": "Self-tuning production.",
+        "requiresLevel": 45,
+        "cost": "2400000000000.00",
+        "durationSeconds": 9000,
+        "multiplier": "2"
+      }
+    ],
+    "mechanic": {
+      "type": "module",
+      "kind": "factory",
+      "params": {}
+    }
+  },
+  {
+    "id": "fashion",
+    "starterName": "Atelier",
+    "name": "Fashion House",
+    "tagline": "Call the trend before it calls you.",
+    "chapter": 2,
+    "sector": "consumer",
+    "icon": "Hanger",
+    "unlockCost": "150000000.00",
+    "baseCost": "15432750.00",
+    "costGrowth": "1.156",
+    "baseRevenue": "55271.25",
+    "upkeep": "0.20",
+    "storageSeconds": 60,
+    "tiers": [
+      {
+        "level": 10,
+        "multiplier": "1.5",
+        "name": "Boutique Label",
+        "description": "Boutique Label. Output ×1.5."
+      },
+      {
+        "level": 25,
+        "multiplier": "2",
+        "name": "Runway Label",
+        "description": "Runway Label. Output ×2."
+      },
+      {
+        "level": 50,
+        "multiplier": "2",
+        "name": "Design House",
+        "description": "Design House. Output ×2."
+      },
+      {
+        "level": 100,
+        "multiplier": "2.5",
+        "name": "Fashion Group",
+        "description": "Fashion Group. Output ×2.5."
+      },
+      {
+        "level": 150,
+        "multiplier": "2.5",
+        "name": "Luxury Maison",
+        "description": "Luxury Maison. Output ×2.5."
+      },
+      {
+        "level": 250,
+        "multiplier": "3",
+        "name": "Style Conglomerate",
+        "description": "Style Conglomerate. Output ×3."
+      },
+      {
+        "level": 400,
+        "multiplier": "3",
+        "name": "Fashion Empire",
+        "description": "Fashion Empire. Output ×3."
+      }
+    ],
+    "managers": [
+      {
+        "id": "fashion_m1",
+        "name": "Céleste Moreau-Vance",
+        "title": "Creative Lead",
+        "stars": 2,
+        "cost": "1950000000.00",
+        "policy": "Safe",
+        "trait": "Classics that always sell."
+      },
+      {
+        "id": "fashion_m2",
+        "name": "Tariq Bellamy",
+        "title": "Merchandiser",
+        "stars": 3,
+        "cost": "300000000000.00",
+        "policy": "Balanced",
+        "trait": "Follows the hints, hedges the rest."
+      },
+      {
+        "id": "fashion_m3",
+        "name": "Ines Varga",
+        "title": "Trend Director",
+        "stars": 4,
+        "cost": "105000000000000.00",
+        "policy": "Aggressive",
+        "trait": "All in on the next big thing."
+      },
+      {
+        "id": "fashion_m4",
+        "name": "Lucian Abara",
+        "title": "Creative Director",
+        "stars": 5,
+        "cost": "40500000000000000.00",
+        "policy": "Balanced",
+        "trait": "Sees seasons coming."
+      }
+    ],
+    "expansions": [
+      {
+        "id": "flagship_salon",
+        "name": "Flagship Salon",
+        "description": "A showroom on the grand boulevard.",
+        "requiresLevel": 5,
+        "cost": "1500000000.00",
+        "durationSeconds": 600,
+        "multiplier": "1.25"
+      },
+      {
+        "id": "runway_week",
+        "name": "Runway Week Show",
+        "description": "Your collection, the city's attention.",
+        "requiresLevel": 20,
+        "cost": "195000000000.00",
+        "durationSeconds": 2400,
+        "multiplier": "1.5"
+      },
+      {
+        "id": "couture_atelier",
+        "name": "Couture Atelier",
+        "description": "Made-to-measure for the few.",
+        "requiresLevel": 45,
+        "cost": "24000000000000.00",
+        "durationSeconds": 9000,
+        "multiplier": "2"
+      }
+    ],
+    "mechanic": {
+      "type": "module",
+      "kind": "fashion",
+      "params": {}
+    }
+  },
+  {
+    "id": "mining",
+    "starterName": "Prospecting Claim",
+    "name": "Mining",
+    "tagline": "Fortunes lie below.",
+    "chapter": 3,
+    "sector": "materials",
+    "icon": "Pickaxe",
+    "unlockCost": "1725000000.00",
+    "baseCost": "162043875.00",
+    "costGrowth": "1.158",
+    "baseRevenue": "469805.62",
+    "upkeep": "0.20",
+    "storageSeconds": 60,
+    "tiers": [
+      {
+        "level": 10,
+        "multiplier": "1.5",
+        "name": "Open Pit",
+        "description": "Open Pit. Output ×1.5."
+      },
+      {
+        "level": 25,
+        "multiplier": "2",
+        "name": "Shaft Mine",
+        "description": "Shaft Mine. Output ×2."
+      },
+      {
+        "level": 50,
+        "multiplier": "2",
+        "name": "Mining District",
+        "description": "Mining District. Output ×2."
+      },
+      {
+        "level": 100,
+        "multiplier": "2.5",
+        "name": "Ore Consortium",
+        "description": "Ore Consortium. Output ×2.5."
+      },
+      {
+        "level": 150,
+        "multiplier": "2.5",
+        "name": "Deep Works",
+        "description": "Deep Works. Output ×2.5."
+      },
+      {
+        "level": 250,
+        "multiplier": "3",
+        "name": "Minerals Group",
+        "description": "Minerals Group. Output ×3."
+      },
+      {
+        "level": 400,
+        "multiplier": "3",
+        "name": "Mining Empire",
+        "description": "Mining Empire. Output ×3."
+      }
+    ],
+    "managers": [
+      {
+        "id": "mining_m1",
+        "name": "Bram Oyelaran",
+        "title": "Pit Boss",
+        "stars": 2,
+        "cost": "22425000000.00",
+        "policy": "Safe",
+        "trait": "Safety first, ore second."
+      },
+      {
+        "id": "mining_m2",
+        "name": "Saskia Lindqvist-Rao",
+        "title": "Geologist",
+        "stars": 3,
+        "cost": "3450000000000.00",
+        "policy": "Balanced",
+        "trait": "Surveys before every claim."
+      },
+      {
+        "id": "mining_m3",
+        "name": "Hector Nakamura",
+        "title": "Mine Director",
+        "stars": 4,
+        "cost": "1207500000000000.00",
+        "policy": "Aggressive",
+        "trait": "Digs deeper than anyone."
+      },
+      {
+        "id": "mining_m4",
+        "name": "Olufemi Carrow",
+        "title": "Chief Mining Officer",
+        "stars": 5,
+        "cost": "465750000000000000.00",
+        "policy": "Balanced",
+        "trait": "Grade over gamble."
+      }
+    ],
+    "expansions": [
+      {
+        "id": "ore_crusher",
+        "name": "Ore Crusher",
+        "description": "More ore from every tonne.",
+        "requiresLevel": 5,
+        "cost": "17250000000.00",
+        "durationSeconds": 600,
+        "multiplier": "1.25"
+      },
+      {
+        "id": "rail_spur",
+        "name": "Rail Spur",
+        "description": "Straight from pit to port.",
+        "requiresLevel": 20,
+        "cost": "2242500000000.00",
+        "durationSeconds": 2400,
+        "multiplier": "1.5"
+      },
+      {
+        "id": "autonomous_haul",
+        "name": "Autonomous Haul Fleet",
+        "description": "Trucks that drive themselves.",
+        "requiresLevel": 45,
+        "cost": "276000000000000.00",
+        "durationSeconds": 9000,
+        "multiplier": "2"
+      }
+    ],
+    "mechanic": {
+      "type": "module",
+      "kind": "mining",
+      "params": {}
+    }
+  },
+  {
+    "id": "energy",
+    "starterName": "Single Well",
+    "name": "Energy",
+    "tagline": "Power the city, hedge the price.",
+    "chapter": 3,
+    "sector": "energy",
+    "icon": "Flame",
+    "unlockCost": "19837500000.00",
+    "baseCost": "1701460687.50",
+    "costGrowth": "1.160",
+    "baseRevenue": "3993347.81",
+    "upkeep": "0.20",
+    "storageSeconds": 60,
+    "tiers": [
+      {
+        "level": 10,
+        "multiplier": "1.5",
+        "name": "Well Field",
+        "description": "Well Field. Output ×1.5."
+      },
+      {
+        "level": 25,
+        "multiplier": "2",
+        "name": "Power Station",
+        "description": "Power Station. Output ×2."
+      },
+      {
+        "level": 50,
+        "multiplier": "2",
+        "name": "Regional Utility",
+        "description": "Regional Utility. Output ×2."
+      },
+      {
+        "level": 100,
+        "multiplier": "2.5",
+        "name": "Energy Group",
+        "description": "Energy Group. Output ×2.5."
+      },
+      {
+        "level": 150,
+        "multiplier": "2.5",
+        "name": "Grid Operator",
+        "description": "Grid Operator. Output ×2.5."
+      },
+      {
+        "level": 250,
+        "multiplier": "3",
+        "name": "Energy Major",
+        "description": "Energy Major. Output ×3."
+      },
+      {
+        "level": 400,
+        "multiplier": "3",
+        "name": "Energy Empire",
+        "description": "Energy Empire. Output ×3."
+      }
+    ],
+    "managers": [
+      {
+        "id": "energy_m1",
+        "name": "Wendell Asante",
+        "title": "Field Operator",
+        "stars": 2,
+        "cost": "257887500000.00",
+        "policy": "Safe",
+        "trait": "Locks in the price."
+      },
+      {
+        "id": "energy_m2",
+        "name": "Freya Kowalczyk",
+        "title": "Trading Desk Lead",
+        "stars": 3,
+        "cost": "39675000000000.00",
+        "policy": "Balanced",
+        "trait": "Half hedged, half nerve."
+      },
+      {
+        "id": "energy_m3",
+        "name": "Nikolai Brennan",
+        "title": "Spot Trader",
+        "stars": 4,
+        "cost": "13886250000000000.00",
+        "policy": "Aggressive",
+        "trait": "Lives on the spot price."
+      },
+      {
+        "id": "energy_m4",
+        "name": "Amaya Sorensen",
+        "title": "Chief Energy Officer",
+        "stars": 5,
+        "cost": "5356125000000000000.00",
+        "policy": "Balanced",
+        "trait": "Keeps the lights and margins on."
+      }
+    ],
+    "expansions": [
+      {
+        "id": "solar_farm",
+        "name": "Solar Farm",
+        "description": "Free fuel, every sunny day.",
+        "requiresLevel": 5,
+        "cost": "198375000000.00",
+        "durationSeconds": 600,
+        "multiplier": "1.25"
+      },
+      {
+        "id": "storage_banks",
+        "name": "Grid Storage Banks",
+        "description": "Sell power when it is scarce.",
+        "requiresLevel": 20,
+        "cost": "25788750000000.00",
+        "durationSeconds": 2400,
+        "multiplier": "1.5"
+      },
+      {
+        "id": "fusion_pilot",
+        "name": "Fusion Pilot Plant",
+        "description": "The future, plugged in.",
+        "requiresLevel": 45,
+        "cost": "3174000000000000.00",
+        "durationSeconds": 9000,
+        "multiplier": "2"
+      }
+    ],
+    "mechanic": {
+      "type": "module",
+      "kind": "energy",
+      "params": {}
+    }
+  },
+  {
+    "id": "hotels",
+    "starterName": "Guest House",
+    "name": "Hotels & Resorts",
+    "tagline": "Every room a little kingdom.",
+    "chapter": 3,
+    "sector": "hospitality",
+    "icon": "Bed",
+    "unlockCost": "228131250000.00",
+    "baseCost": "17865337218.75",
+    "costGrowth": "1.162",
+    "baseRevenue": "33943456.41",
+    "upkeep": "0.20",
+    "storageSeconds": 60,
+    "tiers": [
+      {
+        "level": 10,
+        "multiplier": "1.5",
+        "name": "Boutique Hotel",
+        "description": "Boutique Hotel. Output ×1.5."
+      },
+      {
+        "level": 25,
+        "multiplier": "2",
+        "name": "City Hotel",
+        "description": "City Hotel. Output ×2."
+      },
+      {
+        "level": 50,
+        "multiplier": "2",
+        "name": "Resort",
+        "description": "Resort. Output ×2."
+      },
+      {
+        "level": 100,
+        "multiplier": "2.5",
+        "name": "Hotel Group",
+        "description": "Hotel Group. Output ×2.5."
+      },
+      {
+        "level": 150,
+        "multiplier": "2.5",
+        "name": "Luxury Collection",
+        "description": "Luxury Collection. Output ×2.5."
+      },
+      {
+        "level": 250,
+        "multiplier": "3",
+        "name": "Resorts Worldwide",
+        "description": "Resorts Worldwide. Output ×3."
+      },
+      {
+        "level": 400,
+        "multiplier": "3",
+        "name": "Hospitality Empire",
+        "description": "Hospitality Empire. Output ×3."
+      }
+    ],
+    "managers": [
+      {
+        "id": "hotels_m1",
+        "name": "Marguerite Osei",
+        "title": "Front Office Manager",
+        "stars": 2,
+        "cost": "2965706250000.00",
+        "policy": "Safe",
+        "trait": "A full house beats a high rate."
+      },
+      {
+        "id": "hotels_m2",
+        "name": "Callum Ferreira",
+        "title": "Revenue Manager",
+        "stars": 3,
+        "cost": "456262500000000.00",
+        "policy": "Balanced",
+        "trait": "Prices to the season."
+      },
+      {
+        "id": "hotels_m3",
+        "name": "Yasmin Delacroix",
+        "title": "Director of Sales",
+        "stars": 4,
+        "cost": "159691875000000000.00",
+        "policy": "Aggressive",
+        "trait": "Premium or nothing."
+      },
+      {
+        "id": "hotels_m4",
+        "name": "Takeshi Abernathy",
+        "title": "Chief Hospitality Officer",
+        "stars": 5,
+        "cost": "61595437500000000000.00",
+        "policy": "Balanced",
+        "trait": "Every guest, every night."
+      }
+    ],
+    "expansions": [
+      {
+        "id": "rooftop_pool",
+        "name": "Rooftop Pool",
+        "description": "The best view in town.",
+        "requiresLevel": 5,
+        "cost": "2281312500000.00",
+        "durationSeconds": 600,
+        "multiplier": "1.25"
+      },
+      {
+        "id": "convention_centre",
+        "name": "Convention Centre",
+        "description": "Fill rooms with every conference.",
+        "requiresLevel": 20,
+        "cost": "296570625000000.00",
+        "durationSeconds": 2400,
+        "multiplier": "1.5"
+      },
+      {
+        "id": "private_island_resort",
+        "name": "Private Island Resort",
+        "description": "Where the wealthy go to vanish.",
+        "requiresLevel": 45,
+        "cost": "36501000000000000.00",
+        "durationSeconds": 9000,
+        "multiplier": "2"
+      }
+    ],
+    "mechanic": {
+      "type": "module",
+      "kind": "hotels",
+      "params": {}
+    }
+  },
+  {
+    "id": "bank",
+    "starterName": "Credit Union",
+    "name": "Banking",
+    "tagline": "Money that makes money.",
+    "chapter": 4,
+    "sector": "finance",
+    "icon": "Bank",
+    "unlockCost": "2623509375000.00",
+    "baseCost": "187586040796.88",
+    "costGrowth": "1.164",
+    "baseRevenue": "288519379.45",
+    "upkeep": "0.20",
+    "storageSeconds": 60,
+    "tiers": [
+      {
+        "level": 10,
+        "multiplier": "1.5",
+        "name": "Savings Bank",
+        "description": "Savings Bank. Output ×1.5."
+      },
+      {
+        "level": 25,
+        "multiplier": "2",
+        "name": "Commercial Bank",
+        "description": "Commercial Bank. Output ×2."
+      },
+      {
+        "level": 50,
+        "multiplier": "2",
+        "name": "Regional Bank",
+        "description": "Regional Bank. Output ×2."
+      },
+      {
+        "level": 100,
+        "multiplier": "2.5",
+        "name": "Banking Group",
+        "description": "Banking Group. Output ×2.5."
+      },
+      {
+        "level": 150,
+        "multiplier": "2.5",
+        "name": "Investment Bank",
+        "description": "Investment Bank. Output ×2.5."
+      },
+      {
+        "level": 250,
+        "multiplier": "3",
+        "name": "Global Bank",
+        "description": "Global Bank. Output ×3."
+      },
+      {
+        "level": 400,
+        "multiplier": "3",
+        "name": "Banking Empire",
+        "description": "Banking Empire. Output ×3."
+      }
+    ],
+    "managers": [
+      {
+        "id": "bank_m1",
+        "name": "Harriet Vandermeer",
+        "title": "Branch Manager",
+        "stars": 2,
+        "cost": "34105621875000.00",
+        "policy": "Safe",
+        "trait": "Lends to the reliable."
+      },
+      {
+        "id": "bank_m2",
+        "name": "Kwame Lindberg",
+        "title": "Credit Officer",
+        "stars": 3,
+        "cost": "5247018750000000.00",
+        "policy": "Balanced",
+        "trait": "Risk priced right."
+      },
+      {
+        "id": "bank_m3",
+        "name": "Sebastian Okoro",
+        "title": "Head of Lending",
+        "stars": 4,
+        "cost": "1836456562500000000.00",
+        "policy": "Aggressive",
+        "trait": "Every applicant is an opportunity."
+      },
+      {
+        "id": "bank_m4",
+        "name": "Ingrid Mbeki-Shaw",
+        "title": "Chief Risk Officer",
+        "stars": 5,
+        "cost": "708347531250000000000.00",
+        "policy": "Balanced",
+        "trait": "Calm in every cycle."
+      }
+    ],
+    "expansions": [
+      {
+        "id": "private_banking",
+        "name": "Private Banking Desk",
+        "description": "Serve the very wealthy.",
+        "requiresLevel": 5,
+        "cost": "26235093750000.00",
+        "durationSeconds": 600,
+        "multiplier": "1.25"
+      },
+      {
+        "id": "trading_floor",
+        "name": "Trading Floor",
+        "description": "Markets, all day long.",
+        "requiresLevel": 20,
+        "cost": "3410562187500000.00",
+        "durationSeconds": 2400,
+        "multiplier": "1.5"
+      },
+      {
+        "id": "clearing_house",
+        "name": "Clearing House",
+        "description": "Every payment passes through you.",
+        "requiresLevel": 45,
+        "cost": "419761500000000000.00",
+        "durationSeconds": 9000,
+        "multiplier": "2"
+      }
+    ],
+    "mechanic": {
+      "type": "module",
+      "kind": "bank",
+      "params": {}
+    }
+  },
+  {
+    "id": "construction",
+    "starterName": "Builders' Yard",
+    "name": "Construction",
+    "tagline": "Build the skyline.",
+    "chapter": 4,
+    "sector": "industrial",
+    "icon": "Crane",
+    "unlockCost": "30170357812500.00",
+    "baseCost": "1969653428367.19",
+    "costGrowth": "1.166",
+    "baseRevenue": "2452414725.35",
+    "upkeep": "0.20",
+    "storageSeconds": 60,
+    "tiers": [
+      {
+        "level": 10,
+        "multiplier": "1.5",
+        "name": "General Contractor",
+        "description": "General Contractor. Output ×1.5."
+      },
+      {
+        "level": 25,
+        "multiplier": "2",
+        "name": "Civil Engineering",
+        "description": "Civil Engineering. Output ×2."
+      },
+      {
+        "level": 50,
+        "multiplier": "2",
+        "name": "Developer",
+        "description": "Developer. Output ×2."
+      },
+      {
+        "level": 100,
+        "multiplier": "2.5",
+        "name": "Construction Group",
+        "description": "Construction Group. Output ×2.5."
+      },
+      {
+        "level": 150,
+        "multiplier": "2.5",
+        "name": "Infrastructure Builder",
+        "description": "Infrastructure Builder. Output ×2.5."
+      },
+      {
+        "level": 250,
+        "multiplier": "3",
+        "name": "Megaproject Group",
+        "description": "Megaproject Group. Output ×3."
+      },
+      {
+        "level": 400,
+        "multiplier": "3",
+        "name": "Construction Empire",
+        "description": "Construction Empire. Output ×3."
+      }
+    ],
+    "managers": [
+      {
+        "id": "construction_m1",
+        "name": "Doyle Mancini",
+        "title": "Site Foreman",
+        "stars": 2,
+        "cost": "392214651562500.00",
+        "policy": "Safe",
+        "trait": "Wins the safe bids."
+      },
+      {
+        "id": "construction_m2",
+        "name": "Leilani Hart",
+        "title": "Estimator",
+        "stars": 3,
+        "cost": "60340715625000000.00",
+        "policy": "Balanced",
+        "trait": "Bids what it is worth."
+      },
+      {
+        "id": "construction_m3",
+        "name": "Viktor Asamoah",
+        "title": "Bid Director",
+        "stars": 4,
+        "cost": "21119250468750000000.00",
+        "policy": "Aggressive",
+        "trait": "Holds out for the rich contracts."
+      },
+      {
+        "id": "construction_m4",
+        "name": "Paloma Strand",
+        "title": "Chief Construction Officer",
+        "stars": 5,
+        "cost": "8145996609375000000000.00",
+        "policy": "Balanced",
+        "trait": "On time, on budget."
+      }
+    ],
+    "expansions": [
+      {
+        "id": "tower_cranes",
+        "name": "Tower Crane Fleet",
+        "description": "Build taller, faster.",
+        "requiresLevel": 5,
+        "cost": "301703578125000.00",
+        "durationSeconds": 600,
+        "multiplier": "1.25"
+      },
+      {
+        "id": "precast_plant",
+        "name": "Precast Plant",
+        "description": "Buildings made in sections.",
+        "requiresLevel": 20,
+        "cost": "39221465156250000.00",
+        "durationSeconds": 2400,
+        "multiplier": "1.5"
+      },
+      {
+        "id": "design_studio",
+        "name": "Architecture Studio",
+        "description": "Landmarks people pay to see.",
+        "requiresLevel": 45,
+        "cost": "4827257250000000000.00",
+        "durationSeconds": 9000,
+        "multiplier": "2"
+      }
+    ],
+    "mechanic": {
+      "type": "module",
+      "kind": "construction",
+      "params": {}
+    }
+  },
+  {
+    "id": "media",
+    "starterName": "Local Radio",
+    "name": "Media",
+    "tagline": "Own the conversation.",
+    "chapter": 4,
+    "sector": "media",
+    "icon": "Film",
+    "unlockCost": "346959114843750.00",
+    "baseCost": "20681360997855.47",
+    "costGrowth": "1.168",
+    "baseRevenue": "20845525165.49",
+    "upkeep": "0.20",
+    "storageSeconds": 60,
+    "tiers": [
+      {
+        "level": 10,
+        "multiplier": "1.5",
+        "name": "Regional Network",
+        "description": "Regional Network. Output ×1.5."
+      },
+      {
+        "level": 25,
+        "multiplier": "2",
+        "name": "Broadcast Network",
+        "description": "Broadcast Network. Output ×2."
+      },
+      {
+        "level": 50,
+        "multiplier": "2",
+        "name": "Streaming Service",
+        "description": "Streaming Service. Output ×2."
+      },
+      {
+        "level": 100,
+        "multiplier": "2.5",
+        "name": "Media Group",
+        "description": "Media Group. Output ×2.5."
+      },
+      {
+        "level": 150,
+        "multiplier": "2.5",
+        "name": "Studio Empire",
+        "description": "Studio Empire. Output ×2.5."
+      },
+      {
+        "level": 250,
+        "multiplier": "3",
+        "name": "Global Network",
+        "description": "Global Network. Output ×3."
+      },
+      {
+        "level": 400,
+        "multiplier": "3",
+        "name": "Media Empire",
+        "description": "Media Empire. Output ×3."
+      }
+    ],
+    "managers": [
+      {
+        "id": "media_m1",
+        "name": "Corinne Adeyemi",
+        "title": "Programme Manager",
+        "stars": 2,
+        "cost": "4510468492968750.00",
+        "policy": "Safe",
+        "trait": "Reliable hits, every season."
+      },
+      {
+        "id": "media_m2",
+        "name": "Felix Marchetti-Wu",
+        "title": "Commissioning Editor",
+        "stars": 3,
+        "cost": "693918229687500000.00",
+        "policy": "Balanced",
+        "trait": "Backs quality."
+      },
+      {
+        "id": "media_m3",
+        "name": "Rana Holloway",
+        "title": "Head of Content",
+        "stars": 4,
+        "cost": "242871380390625000000.00",
+        "policy": "Aggressive",
+        "trait": "Swings for the blockbuster."
+      },
+      {
+        "id": "media_m4",
+        "name": "Anders Okafor",
+        "title": "Chief Content Officer",
+        "stars": 5,
+        "cost": "93678961007812500000000.00",
+        "policy": "Balanced",
+        "trait": "Knows what audiences want."
+      }
+    ],
+    "expansions": [
+      {
+        "id": "sound_stages",
+        "name": "Sound Stages",
+        "description": "Film everything in-house.",
+        "requiresLevel": 5,
+        "cost": "3469591148437500.00",
+        "durationSeconds": 600,
+        "multiplier": "1.25"
+      },
+      {
+        "id": "streaming_app",
+        "name": "Streaming App",
+        "description": "Your channels in every pocket.",
+        "requiresLevel": 20,
+        "cost": "451046849296875000.00",
+        "durationSeconds": 2400,
+        "multiplier": "1.5"
+      },
+      {
+        "id": "film_studio_lot",
+        "name": "Studio Lot",
+        "description": "Blockbusters on your back lot.",
+        "requiresLevel": 45,
+        "cost": "55513458375000000000.00",
+        "durationSeconds": 9000,
+        "multiplier": "2"
+      }
+    ],
+    "mechanic": {
+      "type": "module",
+      "kind": "media",
+      "params": {}
+    }
+  },
+  {
+    "id": "tech",
+    "starterName": "Garage Start-up",
+    "name": "Technology",
+    "tagline": "Ship the future.",
+    "chapter": 5,
+    "sector": "technology",
+    "icon": "Chip",
+    "unlockCost": "3990029820703125.00",
+    "baseCost": "217154290477482.42",
+    "costGrowth": "1.170",
+    "baseRevenue": "177186963906.65",
+    "upkeep": "0.20",
+    "storageSeconds": 60,
+    "tiers": [
+      {
+        "level": 10,
+        "multiplier": "1.5",
+        "name": "Software House",
+        "description": "Software House. Output ×1.5."
+      },
+      {
+        "level": 25,
+        "multiplier": "2",
+        "name": "Product Company",
+        "description": "Product Company. Output ×2."
+      },
+      {
+        "level": 50,
+        "multiplier": "2",
+        "name": "Platform Company",
+        "description": "Platform Company. Output ×2."
+      },
+      {
+        "level": 100,
+        "multiplier": "2.5",
+        "name": "Tech Group",
+        "description": "Tech Group. Output ×2.5."
+      },
+      {
+        "level": 150,
+        "multiplier": "2.5",
+        "name": "Innovation Leader",
+        "description": "Innovation Leader. Output ×2.5."
+      },
+      {
+        "level": 250,
+        "multiplier": "3",
+        "name": "Tech Giant",
+        "description": "Tech Giant. Output ×3."
+      },
+      {
+        "level": 400,
+        "multiplier": "3",
+        "name": "Technology Empire",
+        "description": "Technology Empire. Output ×3."
+      }
+    ],
+    "managers": [
+      {
+        "id": "tech_m1",
+        "name": "Zoe Kallinikos",
+        "title": "Engineering Manager",
+        "stars": 2,
+        "cost": "51870387669140625.00",
+        "policy": "Safe",
+        "trait": "Ships when it is ready."
+      },
+      {
+        "id": "tech_m2",
+        "name": "Arjun Whitlock",
+        "title": "Product Lead",
+        "stars": 3,
+        "cost": "7980059641406250000.00",
+        "policy": "Balanced",
+        "trait": "Launches on the hype curve."
+      },
+      {
+        "id": "tech_m3",
+        "name": "Lena Szabo-Grant",
+        "title": "VP of Product",
+        "stars": 4,
+        "cost": "2793020874492187500000.00",
+        "policy": "Aggressive",
+        "trait": "Ship early, ship often."
+      },
+      {
+        "id": "tech_m4",
+        "name": "Mateus Obi",
+        "title": "Chief Technology Officer",
+        "stars": 5,
+        "cost": "1077308051589843750000000.00",
+        "policy": "Balanced",
+        "trait": "Builds what lasts."
+      }
+    ],
+    "expansions": [
+      {
+        "id": "research_campus",
+        "name": "Research Campus",
+        "description": "Bright minds, one address.",
+        "requiresLevel": 5,
+        "cost": "39900298207031250.00",
+        "durationSeconds": 600,
+        "multiplier": "1.25"
+      },
+      {
+        "id": "chip_fab",
+        "name": "Chip Fabrication Plant",
+        "description": "Make your own silicon.",
+        "requiresLevel": 20,
+        "cost": "5187038766914062500.00",
+        "durationSeconds": 2400,
+        "multiplier": "1.5"
+      },
+      {
+        "id": "ai_lab",
+        "name": "Advanced Computing Lab",
+        "description": "Problems solved before they exist.",
+        "requiresLevel": 45,
+        "cost": "638404771312500000000.00",
+        "durationSeconds": 9000,
+        "multiplier": "2"
+      }
+    ],
+    "mechanic": {
+      "type": "module",
+      "kind": "tech",
+      "params": {}
+    }
+  },
+  {
+    "id": "telecom",
+    "starterName": "Relay Tower",
+    "name": "Telecom & Data",
+    "tagline": "Every signal runs through you.",
+    "chapter": 5,
+    "sector": "technology",
+    "icon": "Antenna",
+    "unlockCost": "45885342938085937.50",
+    "baseCost": "2280120050013565.43",
+    "costGrowth": "1.172",
+    "baseRevenue": "1506089193206.53",
+    "upkeep": "0.20",
+    "storageSeconds": 60,
+    "tiers": [
+      {
+        "level": 10,
+        "multiplier": "1.5",
+        "name": "Cell Network",
+        "description": "Cell Network. Output ×1.5."
+      },
+      {
+        "level": 25,
+        "multiplier": "2",
+        "name": "Carrier",
+        "description": "Carrier. Output ×2."
+      },
+      {
+        "level": 50,
+        "multiplier": "2",
+        "name": "Data Centre Group",
+        "description": "Data Centre Group. Output ×2."
+      },
+      {
+        "level": 100,
+        "multiplier": "2.5",
+        "name": "National Network",
+        "description": "National Network. Output ×2.5."
+      },
+      {
+        "level": 150,
+        "multiplier": "2.5",
+        "name": "Cloud Provider",
+        "description": "Cloud Provider. Output ×2.5."
+      },
+      {
+        "level": 250,
+        "multiplier": "3",
+        "name": "Global Carrier",
+        "description": "Global Carrier. Output ×3."
+      },
+      {
+        "level": 400,
+        "multiplier": "3",
+        "name": "Telecom Empire",
+        "description": "Telecom Empire. Output ×3."
+      }
+    ],
+    "managers": [
+      {
+        "id": "telecom_m1",
+        "name": "Reuben Castellane",
+        "title": "Network Engineer",
+        "stars": 2,
+        "cost": "596509458195117187.50",
+        "policy": "Safe",
+        "trait": "Builds before it is needed."
+      },
+      {
+        "id": "telecom_m2",
+        "name": "Aiko Brannigan",
+        "title": "Capacity Planner",
+        "stars": 3,
+        "cost": "91770685876171875000.00",
+        "policy": "Balanced",
+        "trait": "Utilization just right."
+      },
+      {
+        "id": "telecom_m3",
+        "name": "Emeka Vossberg",
+        "title": "Growth Director",
+        "stars": 4,
+        "cost": "32119740056660156250000.00",
+        "policy": "Aggressive",
+        "trait": "Runs the network hot."
+      },
+      {
+        "id": "telecom_m4",
+        "name": "Helena Marsh-Idowu",
+        "title": "Chief Network Officer",
+        "stars": 5,
+        "cost": "12389042593283203125000000.00",
+        "policy": "Balanced",
+        "trait": "Five nines, always."
+      }
+    ],
+    "expansions": [
+      {
+        "id": "fibre_backbone",
+        "name": "Fibre Backbone",
+        "description": "Light-speed between every city.",
+        "requiresLevel": 5,
+        "cost": "458853429380859375.00",
+        "durationSeconds": 600,
+        "multiplier": "1.25"
+      },
+      {
+        "id": "hyperscale_dc",
+        "name": "Hyperscale Data Centre",
+        "description": "Rent compute to the world.",
+        "requiresLevel": 20,
+        "cost": "59650945819511718750.00",
+        "durationSeconds": 2400,
+        "multiplier": "1.5"
+      },
+      {
+        "id": "subsea_cable",
+        "name": "Subsea Cable",
+        "description": "Connect continents.",
+        "requiresLevel": 45,
+        "cost": "7341654870093750000000.00",
+        "durationSeconds": 9000,
+        "multiplier": "2"
+      }
+    ],
+    "mechanic": {
+      "type": "module",
+      "kind": "telecom",
+      "params": {}
+    }
+  },
+  {
+    "id": "airline",
+    "starterName": "Charter Service",
+    "name": "Airline",
+    "tagline": "The world, one route at a time.",
+    "chapter": 6,
+    "sector": "travel",
+    "icon": "Plane",
+    "unlockCost": "527681443787988281.25",
+    "baseCost": "23941260525142437.01",
+    "costGrowth": "1.174",
+    "baseRevenue": "12801758142255.49",
+    "upkeep": "0.20",
+    "storageSeconds": 60,
+    "tiers": [
+      {
+        "level": 10,
+        "multiplier": "1.5",
+        "name": "Regional Airline",
+        "description": "Regional Airline. Output ×1.5."
+      },
+      {
+        "level": 25,
+        "multiplier": "2",
+        "name": "National Carrier",
+        "description": "National Carrier. Output ×2."
+      },
+      {
+        "level": 50,
+        "multiplier": "2",
+        "name": "International Airline",
+        "description": "International Airline. Output ×2."
+      },
+      {
+        "level": 100,
+        "multiplier": "2.5",
+        "name": "Airline Group",
+        "description": "Airline Group. Output ×2.5."
+      },
+      {
+        "level": 150,
+        "multiplier": "2.5",
+        "name": "Flag Carrier",
+        "description": "Flag Carrier. Output ×2.5."
+      },
+      {
+        "level": 250,
+        "multiplier": "3",
+        "name": "Global Alliance",
+        "description": "Global Alliance. Output ×3."
+      },
+      {
+        "level": 400,
+        "multiplier": "3",
+        "name": "Aviation Empire",
+        "description": "Aviation Empire. Output ×3."
+      }
+    ],
+    "managers": [
+      {
+        "id": "airline_m1",
+        "name": "Rosalind Achebe",
+        "title": "Duty Manager",
+        "stars": 2,
+        "cost": "6859858769243847656.25",
+        "policy": "Safe",
+        "trait": "Maintenance on the dot."
+      },
+      {
+        "id": "airline_m2",
+        "name": "Gustavo Lindgren",
+        "title": "Network Planner",
+        "stars": 3,
+        "cost": "1055362887575976562500.00",
+        "policy": "Balanced",
+        "trait": "Fares for every season."
+      },
+      {
+        "id": "airline_m3",
+        "name": "Simone Okwuosa",
+        "title": "Commercial Director",
+        "stars": 4,
+        "cost": "369377010651591796875000.00",
+        "policy": "Aggressive",
+        "trait": "Pushes the schedule."
+      },
+      {
+        "id": "airline_m4",
+        "name": "Henrik Adebayo",
+        "title": "Chief Airline Officer",
+        "stars": 5,
+        "cost": "142473989822756835937500000.00",
+        "policy": "Balanced",
+        "trait": "Safe skies, full cabins."
+      }
+    ],
+    "expansions": [
+      {
+        "id": "lounge_network",
+        "name": "Premium Lounges",
+        "description": "Comfort worth paying for.",
+        "requiresLevel": 5,
+        "cost": "5276814437879882812.50",
+        "durationSeconds": 600,
+        "multiplier": "1.25"
+      },
+      {
+        "id": "maintenance_hangar",
+        "name": "Maintenance Hangar",
+        "description": "Fix planes on your own schedule.",
+        "requiresLevel": 20,
+        "cost": "685985876924384765625.00",
+        "durationSeconds": 2400,
+        "multiplier": "1.5"
+      },
+      {
+        "id": "long_haul_fleet",
+        "name": "Long-Haul Fleet",
+        "description": "Non-stop to everywhere.",
+        "requiresLevel": 45,
+        "cost": "84429031006078125000000.00",
+        "durationSeconds": 9000,
+        "multiplier": "2"
+      }
+    ],
+    "mechanic": {
+      "type": "module",
+      "kind": "airline",
+      "params": {}
+    }
+  },
+  {
+    "id": "pharma",
+    "starterName": "Research Lab",
+    "name": "Pharmaceuticals",
+    "tagline": "Cures, patents and patience.",
+    "chapter": 6,
+    "sector": "health",
+    "icon": "Flask",
+    "unlockCost": "6068336603561865234.38",
+    "baseCost": "251383235513995588.62",
+    "costGrowth": "1.176",
+    "baseRevenue": "108814944209171.67",
+    "upkeep": "0.20",
+    "storageSeconds": 60,
+    "tiers": [
+      {
+        "level": 10,
+        "multiplier": "1.5",
+        "name": "Biotech",
+        "description": "Biotech. Output ×1.5."
+      },
+      {
+        "level": 25,
+        "multiplier": "2",
+        "name": "Drug Developer",
+        "description": "Drug Developer. Output ×2."
+      },
+      {
+        "level": 50,
+        "multiplier": "2",
+        "name": "Pharma Company",
+        "description": "Pharma Company. Output ×2."
+      },
+      {
+        "level": 100,
+        "multiplier": "2.5",
+        "name": "Life Sciences Group",
+        "description": "Life Sciences Group. Output ×2.5."
+      },
+      {
+        "level": 150,
+        "multiplier": "2.5",
+        "name": "Global Pharma",
+        "description": "Global Pharma. Output ×2.5."
+      },
+      {
+        "level": 250,
+        "multiplier": "3",
+        "name": "Health Giant",
+        "description": "Health Giant. Output ×3."
+      },
+      {
+        "level": 400,
+        "multiplier": "3",
+        "name": "Pharma Empire",
+        "description": "Pharma Empire. Output ×3."
+      }
+    ],
+    "managers": [
+      {
+        "id": "pharma_m1",
+        "name": "Dr. Imogen Fairweather",
+        "title": "Lab Director",
+        "stars": 2,
+        "cost": "78888375846304248046.88",
+        "policy": "Safe",
+        "trait": "One careful trial at a time."
+      },
+      {
+        "id": "pharma_m2",
+        "name": "Dr. Kofi Lindqvist",
+        "title": "Head of Trials",
+        "stars": 3,
+        "cost": "12136673207123730468750.00",
+        "policy": "Balanced",
+        "trait": "A steady pipeline."
+      },
+      {
+        "id": "pharma_m3",
+        "name": "Dr. Ayasha Moreno",
+        "title": "R&D Director",
+        "stars": 4,
+        "cost": "4247835622493305664062500.00",
+        "policy": "Aggressive",
+        "trait": "Funds everything promising."
+      },
+      {
+        "id": "pharma_m4",
+        "name": "Dr. Viktor Hallam",
+        "title": "Chief Scientific Officer",
+        "stars": 5,
+        "cost": "1638450882961703613281250000.00",
+        "policy": "Balanced",
+        "trait": "Science first, sales follow."
+      }
+    ],
+    "expansions": [
+      {
+        "id": "trial_network",
+        "name": "Clinical Trial Network",
+        "description": "Recruit patients worldwide.",
+        "requiresLevel": 5,
+        "cost": "60683366035618652343.75",
+        "durationSeconds": 600,
+        "multiplier": "1.25"
+      },
+      {
+        "id": "api_plant",
+        "name": "Active Ingredient Plant",
+        "description": "Make your own compounds.",
+        "requiresLevel": 20,
+        "cost": "7888837584630424804687.50",
+        "durationSeconds": 2400,
+        "multiplier": "1.5"
+      },
+      {
+        "id": "genomics_centre",
+        "name": "Genomics Centre",
+        "description": "Medicine tailored to the patient.",
+        "requiresLevel": 45,
+        "cost": "970933856569898437500000.00",
+        "durationSeconds": 9000,
+        "multiplier": "2"
+      }
+    ],
+    "mechanic": {
+      "type": "module",
+      "kind": "pharma",
+      "params": {}
+    }
+  },
+  {
+    "id": "sports",
+    "starterName": "Amateur Club",
+    "name": "Sports Franchise",
+    "tagline": "Win on the field, win at the box office.",
+    "chapter": 7,
+    "sector": "entertainment",
+    "icon": "Ball",
+    "unlockCost": "69785870940961450195.31",
+    "baseCost": "2639523972896953680.54",
+    "costGrowth": "1.178",
+    "baseRevenue": "924927025777959.20",
+    "upkeep": "0.20",
+    "storageSeconds": 60,
+    "tiers": [
+      {
+        "level": 10,
+        "multiplier": "1.5",
+        "name": "Semi-Pro Club",
+        "description": "Semi-Pro Club. Output ×1.5."
+      },
+      {
+        "level": 25,
+        "multiplier": "2",
+        "name": "Professional Club",
+        "description": "Professional Club. Output ×2."
+      },
+      {
+        "level": 50,
+        "multiplier": "2",
+        "name": "League Contender",
+        "description": "League Contender. Output ×2."
+      },
+      {
+        "level": 100,
+        "multiplier": "2.5",
+        "name": "Champions",
+        "description": "Champions. Output ×2.5."
+      },
+      {
+        "level": 150,
+        "multiplier": "2.5",
+        "name": "Dynasty Club",
+        "description": "Dynasty Club. Output ×2.5."
+      },
+      {
+        "level": 250,
+        "multiplier": "3",
+        "name": "Global Franchise",
+        "description": "Global Franchise. Output ×3."
+      },
+      {
+        "level": 400,
+        "multiplier": "3",
+        "name": "Sporting Empire",
+        "description": "Sporting Empire. Output ×3."
+      }
+    ],
+    "managers": [
+      {
+        "id": "sports_m1",
+        "name": "Brady Okonkwo",
+        "title": "Team Manager",
+        "stars": 2,
+        "cost": "907216322232498852539.06",
+        "policy": "Safe",
+        "trait": "Keeps the squad steady."
+      },
+      {
+        "id": "sports_m2",
+        "name": "Lucia Ferrante",
+        "title": "Director of Football",
+        "stars": 3,
+        "cost": "139571741881922900390625.00",
+        "policy": "Balanced",
+        "trait": "Signs smart."
+      },
+      {
+        "id": "sports_m3",
+        "name": "Kenji Albrecht",
+        "title": "Head Coach",
+        "stars": 4,
+        "cost": "48850109658673015136718750.00",
+        "policy": "Aggressive",
+        "trait": "Trophies at any cost."
+      },
+      {
+        "id": "sports_m4",
+        "name": "Aurelia Mensah",
+        "title": "Club President",
+        "stars": 5,
+        "cost": "18842185154059591552734375000.00",
+        "policy": "Balanced",
+        "trait": "Builds dynasties."
+      }
+    ],
+    "expansions": [
+      {
+        "id": "training_ground",
+        "name": "Training Ground",
+        "description": "Champions are built here.",
+        "requiresLevel": 5,
+        "cost": "697858709409614501953.12",
+        "durationSeconds": 600,
+        "multiplier": "1.25"
+      },
+      {
+        "id": "new_stadium",
+        "name": "New Stadium",
+        "description": "Sixty thousand seats, sold out.",
+        "requiresLevel": 20,
+        "cost": "90721632223249885253906.25",
+        "durationSeconds": 2400,
+        "multiplier": "1.5"
+      },
+      {
+        "id": "global_academy",
+        "name": "Global Academy",
+        "description": "Tomorrow's stars, today.",
+        "requiresLevel": 45,
+        "cost": "11165739350553832031250000.00",
+        "durationSeconds": 9000,
+        "multiplier": "2"
+      }
+    ],
+    "mechanic": {
+      "type": "module",
+      "kind": "sports",
+      "params": {}
+    }
+  },
+  {
+    "id": "space",
+    "starterName": "Rocket Lab",
+    "name": "Space",
+    "tagline": "The last frontier pays best.",
+    "chapter": 7,
+    "sector": "aerospace",
+    "icon": "Rocket",
+    "unlockCost": "802537515821056677246.09",
+    "baseCost": "27715001715418013645.69",
+    "costGrowth": "1.180",
+    "baseRevenue": "7861879719112653.24",
+    "upkeep": "0.20",
+    "storageSeconds": 60,
+    "tiers": [
+      {
+        "level": 10,
+        "multiplier": "1.5",
+        "name": "Launch Provider",
+        "description": "Launch Provider. Output ×1.5."
+      },
+      {
+        "level": 25,
+        "multiplier": "2",
+        "name": "Satellite Operator",
+        "description": "Satellite Operator. Output ×2."
+      },
+      {
+        "level": 50,
+        "multiplier": "2",
+        "name": "Orbital Company",
+        "description": "Orbital Company. Output ×2."
+      },
+      {
+        "level": 100,
+        "multiplier": "2.5",
+        "name": "Space Group",
+        "description": "Space Group. Output ×2.5."
+      },
+      {
+        "level": 150,
+        "multiplier": "2.5",
+        "name": "Lunar Ventures",
+        "description": "Lunar Ventures. Output ×2.5."
+      },
+      {
+        "level": 250,
+        "multiplier": "3",
+        "name": "Interplanetary Co.",
+        "description": "Interplanetary Co.. Output ×3."
+      },
+      {
+        "level": 400,
+        "multiplier": "3",
+        "name": "Space Empire",
+        "description": "Space Empire. Output ×3."
+      }
+    ],
+    "managers": [
+      {
+        "id": "space_m1",
+        "name": "Commander Ilse Varga",
+        "title": "Flight Director",
+        "stars": 2,
+        "cost": "10432987705673736804199.22",
+        "policy": "Safe",
+        "trait": "Launch only when certain."
+      },
+      {
+        "id": "space_m2",
+        "name": "Dr. Tobias Achterberg",
+        "title": "Mission Planner",
+        "stars": 3,
+        "cost": "1605075031642113354492187.50",
+        "policy": "Balanced",
+        "trait": "Satellites first."
+      },
+      {
+        "id": "space_m3",
+        "name": "Rhiannon Okeke",
+        "title": "Head of Missions",
+        "stars": 4,
+        "cost": "561776261074739674072265625.00",
+        "policy": "Aggressive",
+        "trait": "Shoots for the asteroid."
+      },
+      {
+        "id": "space_m4",
+        "name": "Dr. Malik Fontaine",
+        "title": "Chief Space Officer",
+        "stars": 5,
+        "cost": "216685129271685302856445312500.00",
+        "policy": "Balanced",
+        "trait": "Reaches for the stars, carefully."
+      }
+    ],
+    "expansions": [
+      {
+        "id": "launch_complex",
+        "name": "Launch Complex",
+        "description": "Your own pad on the coast.",
+        "requiresLevel": 5,
+        "cost": "8025375158210566772460.94",
+        "durationSeconds": 600,
+        "multiplier": "1.25"
+      },
+      {
+        "id": "reusable_boosters",
+        "name": "Reusable Boosters",
+        "description": "Rockets that land and fly again.",
+        "requiresLevel": 20,
+        "cost": "1043298770567373680419921.88",
+        "durationSeconds": 2400,
+        "multiplier": "1.5"
+      },
+      {
+        "id": "orbital_station",
+        "name": "Orbital Station",
+        "description": "A home above the clouds.",
+        "requiresLevel": 45,
+        "cost": "128406002531369068359375000.00",
+        "durationSeconds": 9000,
+        "multiplier": "2"
+      }
+    ],
+    "mechanic": {
+      "type": "module",
+      "kind": "space",
+      "params": {}
+    }
   }
 ]

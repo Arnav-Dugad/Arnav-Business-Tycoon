@@ -85,7 +85,8 @@ fun AppRoot(vm: GameViewModel, forcedTheme: ThemeMode?, onDarkChanged: (Boolean)
                     is GameEvent.LevelsBought, is GameEvent.Collected -> HapticFeedbackType.ContextClick
                     is GameEvent.ManagerHired, is GameEvent.BusinessOpened, is GameEvent.MissionClaimed,
                     is GameEvent.TierReached, is GameEvent.ExpansionCompleted, is GameEvent.HqUpgraded,
-                    is GameEvent.ChapterCompleted, is GameEvent.FrenzyStarted -> HapticFeedbackType.Confirm
+                    is GameEvent.ChapterCompleted, is GameEvent.FrenzyStarted,
+                    is GameEvent.ConglomerateFormed, is GameEvent.HoldingFormed -> HapticFeedbackType.Confirm
                     else -> null
                 }
                 if (type != null) haptics.performHapticFeedback(type)

@@ -208,7 +208,9 @@ class GameSession @Inject constructor(
         scope.launch(Dispatchers.Default) {
             _status.first { it == Status.Ready }
             mutex.withLock {
-                val base = _state.value ?: return@withLock
+                // Always start from a fresh game, so a scenario looks the same however often it is loaded.
+                _state.value ?: return@withLock
+                val base = engine.newGame(GameRandom.newWorldSeed(SecureRandom().nextLong()), contentLazy.get().hash, clock)
                 _state.value = DebugScenarios.build(engine, base, name) ?: return@withLock
             }
             saveNow()

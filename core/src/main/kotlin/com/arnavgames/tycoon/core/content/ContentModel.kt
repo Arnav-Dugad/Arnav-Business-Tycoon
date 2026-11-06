@@ -30,6 +30,7 @@ data class ContentPack(
     val businesses: List<BusinessDef>,
     val balance: BalanceConfig,
     val chapters: List<ChapterDef> = emptyList(),
+    val conglomerates: List<ConglomerateDef> = emptyList(),
 ) {
     @kotlinx.serialization.Transient
     val businessById: Map<String, BusinessDef> = businesses.associateBy { it.id }
@@ -144,7 +145,40 @@ sealed interface MechanicDef {
         /** Capacity units each vehicle moves. */
         val vehicleCapacity: Double,
     ) : MechanicDef
+
+    /**
+     * A business mechanic implemented by a module in core.engine.mechanics (farmland, factory, fashion, …).
+     * [kind] selects the module; [params] are its tunable numbers (each module documents its keys and defaults).
+     */
+    @Serializable @SerialName("module")
+    data class Module(
+        val kind: String,
+        val params: Map<String, Double> = emptyMap(),
+    ) : MechanicDef {
+        fun p(key: String, default: Double): Double = params[key] ?: default
+    }
 }
+
+/** Merger tree node: businesses that combine into a conglomerate for a shared synergy (GDD §5.3). */
+@Serializable
+data class ConglomerateDef(
+    val id: String,
+    val name: String,
+    val description: String,
+    val members: List<String>,
+    /** Every member must have reached at least this Scale Tier (1 = first tier). */
+    val requiredTier: Int,
+    /** The merger tree opens in this story chapter. */
+    val requiredChapter: Int = 4,
+    /** Fee to form, paid from cash. */
+    val fee: Dollars,
+    /** Income multiplier applied to every member. */
+    val incomeMultiplier: Multiplier,
+    /** Upkeep multiplier applied to every member (e.g. inputs at cost). */
+    val upkeepMultiplier: Multiplier = Multiplier.ONE,
+    /** Optional extra requirement: number of other businesses owned (e.g. a property portfolio later). */
+    val synergyText: String,
+)
 
 @Serializable
 data class QualityTier(val id: String, val name: String, val targetStars: Double, val upkeepMultiplier: Double)
@@ -172,6 +206,13 @@ data class BalanceConfig(
     val managerSkillPerStar: Double,
     /** Cost of rushing a timer: Favor per remaining minute. */
     val favorPerRushMinute: Double,
+    /** Merging three conglomerates into a holding company: fee and income multiplier for every business. */
+    val holdingFee: Dollars,
+    val holdingIncomeMultiplier: Multiplier,
+    /** Managers may spend at most this share of cash per minute on their business's upkeep decisions… */
+    val managerBudgetCashShare: Double,
+    /** …and never more than this many seconds of the business's base income. */
+    val managerBudgetIncomeSeconds: Double,
 )
 
 @Serializable
@@ -231,4 +272,6 @@ sealed interface GoalDef {
     @Serializable @SerialName("hustleTaps") data class HustleTaps(val count: Long) : GoalDef
     @Serializable @SerialName("expansionDone") data class ExpansionDone(val businessId: String, val expansionId: String) : GoalDef
     @Serializable @SerialName("hqLevel") data class HqLevel(val level: Int) : GoalDef
+    @Serializable @SerialName("conglomerates") data class Conglomerates(val count: Int) : GoalDef
+    @Serializable @SerialName("businessesOwned") data class BusinessesOwned(val count: Int) : GoalDef
 }
