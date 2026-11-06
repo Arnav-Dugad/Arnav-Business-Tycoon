@@ -318,6 +318,38 @@ internal class Planner(private val engine: GameEngine) {
         return st
     }
 
+    // ----- Luxury -----
+
+    /** Collection missions, and proxy bids on auctions (for the mission, or when a lot is cheap relative to cash). */
+    fun luxury(s: GameState, opportunisticShare: String?): GameState {
+        val lux = engine.luxury
+        if (!lux.isUnlocked(s, "collection")) return s
+        var st = s
+        val ch = engine.content.chapters.firstOrNull { it.number == st.progress.chapter }
+        var wantAuction = false
+        ch?.missions?.forEach { mi ->
+            if (mi.id in st.progress.completedMissions) return@forEach
+            when (val g = mi.goal) {
+                is com.arnavgames.tycoon.core.content.GoalDef.LuxuryOwned -> repeat(g.count - st.luxury.owned.size) {
+                    val item = engine.content.luxury.items.filter { it.id !in st.luxury.owned && lux.categoryUnlocked(st, it.category) }
+                        .minByOrNull { lux.buyCost(st, it) } ?: return@repeat
+                    if (lux.buyCost(st, item) <= st.cash * Multiplier.of("0.3")) st = engine.tryApply(st, Command.BuyLuxury(item.id))
+                }
+                is com.arnavgames.tycoon.core.content.GoalDef.AuctionsWon -> wantAuction = true
+                else -> Unit
+            }
+        }
+        val a = st.luxury.auction
+        if (a != null && a.leader != com.arnavgames.tycoon.core.luxury.LuxuryEngine.PLAYER && lux.isUnlocked(st, "auctions")) {
+            val estimate = lux.marketPrice(engine.content.luxury.itemById.getValue(a.item), st.simTimeMs)
+            // For the story mission, bid above any rival's ceiling (up to 1.84× estimate); otherwise stay disciplined.
+            val max = estimate * Multiplier.of(if (wantAuction) "2.0" else "1.4")
+            val affordable = max <= st.cash * Multiplier.of(if (wantAuction) "0.6" else (opportunisticShare ?: "0"))
+            if ((wantAuction || opportunisticShare != null) && affordable && max > a.playerMax) st = engine.tryApply(st, Command.SetMaxBid(max))
+        }
+        return st
+    }
+
     /** Parks spare cash in the total-market fund when a session ends. Positions that hold board seats are never touched. */
     fun parkCash(s: GameState, incomePerSec: Money, share: String = "0.9"): GameState {
         if (!market.isUnlocked(s, "funds")) return s
@@ -354,6 +386,7 @@ class ActiveBot(override val name: String = "active", private val reserveFractio
         if (sessionStart) s = p.unpark(engine.tryApply(s, Command.ActivateFrenzy))
         s = p.marketMissions(s)
         s = p.estates(s, "0.02")
+        s = p.luxury(s, "0.01")
         s = p.tuneMechanics(s, skill = 1.0)
         val income = engine.economy.totalNetRate(s).perSecond()
         // Managers keep money flowing offline; an engaged player hires one as soon as it pays back within ~20 minutes.
@@ -399,6 +432,7 @@ class IdleBot : Bot {
         if (sessionStart) s = p.unpark(s)
         s = p.marketMissions(s)
         s = p.estates(s, "0.0")
+        s = p.luxury(s, null)
         p.firstManager(s)?.let { (cmd, _) -> s = engine.tryApply(s, cmd) }
         // Idle players use the free auto-plan button rather than fine-tuning.
         for (b in s.businesses.values) if (engine.content.business(b.id).mechanic is MechanicDef.Logistics && b.managerId == null) s = engine.tryApply(s, Command.AutoPlanRoutes(b.id))

@@ -109,7 +109,15 @@ fun BusinessDetailScreen(vm: GameViewModel, businessId: String, onBack: () -> Un
                     val hired = b.managerId == m.id
                     AurumCard(Modifier.fillMaxWidth(), highlighted = hired) {
                         Row(verticalAlignment = Alignment.CenterVertically) {
-                            IconTile(AbtIcons.Manager, highlighted = hired)
+                            val portrait = vm.portraitPath(m.id)
+                            if (portrait != null) {
+                                coil3.compose.AsyncImage(
+                                    model = "file:///android_asset/$portrait", contentDescription = "Portrait of ${m.name}",
+                                    contentScale = androidx.compose.ui.layout.ContentScale.Crop,
+                                    modifier = Modifier.size(56.dp).clip(com.arnavgames.tycoon.designsystem.theme.AurumShapes.small)
+                                        .then(if (hired) Modifier.border(1.5.dp, Aurum.colors.gold, com.arnavgames.tycoon.designsystem.theme.AurumShapes.small) else Modifier),
+                                )
+                            } else IconTile(AbtIcons.Manager, highlighted = hired)
                             Spacer(Modifier.width(Space.md))
                             Column(Modifier.weight(1f)) {
                                 Text(m.name, style = Aurum.type.titleSmall, color = c.textPrimary)

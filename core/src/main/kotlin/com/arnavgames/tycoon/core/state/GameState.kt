@@ -33,6 +33,7 @@ data class GameState(
     val holdingName: String? = null,
     val market: MarketState = MarketState(),
     val estate: EstateState = EstateState(),
+    val luxury: LuxuryState = LuxuryState(),
 ) {
     val cash: Money get() = ledger.cash
 }

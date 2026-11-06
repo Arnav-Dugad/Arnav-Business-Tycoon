@@ -47,9 +47,9 @@ Every category lives in `content/data/<category>.json` and is checked by the val
 | Wine | 15 | 20 | 20 | Fictional estates |
 | Sculptures and antiques | 15 | 20 | 20 | Public-domain museum objects where possible |
 | Jewelry and gems | 12 | 15 | 15 | |
-| **Luxury total** | **246** | **299** | **299** | |
+| **Luxury total** | **246** | **299** | **299** | **Phase 8 ships 296 items** (60 cars, 28 watches, 20 wines, 15 jewels, 16 jets, 8 helicopters, 20 yachts, 10 islands, 20 mansions, 80 paintings, 19 sculptures). Photos: the 99 museum works have real CC0 photos; the other categories use illustrated cards until the photo pipeline covers them |
 | Collection sets | 25 | 30 | — | Cross-system bonuses |
-| Showroom types | 5 | 5 | 5 backgrounds | Garage, Hangar, Marina, Gallery, Vault |
+| Showroom types | 5 | 6 | — | Garage, Vault, Hangar, Marina, Gallery, Residences |
 | Trophies (sports championships) | 8 | 12 | vector | |
 
 ## 5. World and rivals

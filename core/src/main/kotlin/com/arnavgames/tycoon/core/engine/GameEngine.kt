@@ -30,9 +30,10 @@ import com.arnavgames.tycoon.core.time.OfflineCalculator
 class GameEngine(val content: ContentPack) {
     val economy = Economy(content)
     private val missions = Missions(content, economy)
-    val market = com.arnavgames.tycoon.core.market.MarketEngine(content.markets)
+    val market = com.arnavgames.tycoon.core.market.MarketEngine(content.markets) { s -> economy.luxury.setBonus(s, "dividends") }
     val trading = com.arnavgames.tycoon.core.market.Trading(market)
     val estate get() = economy.estate
+    val luxury get() = economy.luxury
     private val cgt get() = content.markets.config.capitalGainsTax
 
     fun newGame(worldSeed: Long, contentHash: String, clock: GameClock): GameState {
@@ -75,6 +76,7 @@ class GameEngine(val content: ContentPack) {
         var stop = minOf(end, (now / MINUTE + 1) * MINUTE)
         for (t in s.timers) if (t.endSim in (now + 1)..<stop) stop = t.endSim
         if (s.hustle.frenzyUntil in (now + 1)..<stop) stop = s.hustle.frenzyUntil
+        economy.luxury.nextEvent(s, now)?.let { if (it in (now + 1)..<stop) stop = it }
         for (b in s.businesses.values) {
             val m = b.mechanic
             if (m is MechanicState.Retail && m.promoUntil in (now + 1)..<stop) stop = m.promoUntil
@@ -132,6 +134,7 @@ class GameEngine(val content: ContentPack) {
             for (t in due) s = completeTimer(s, t, events)
         }
         if (s.hustle.frenzyUntil == now) s = s.copy(hustle = s.hustle.copy(combo = 0))
+        if (s.luxury.auction != null) s = economy.luxury.onBoundary(s, now, events)
         for (b in s.businesses.values) {
             val m = b.mechanic
             if (m is MechanicState.Retail && m.promoUntil == now) events += GameEvent.PromoEnded(b.id)
@@ -140,6 +143,7 @@ class GameEngine(val content: ContentPack) {
         if (now % MINUTE == 0L) {
             s = market.tick(s, now / MINUTE, events)
             s = economy.estate.tick(s, now / MINUTE, cgt, events)
+            s = economy.luxury.tick(s, now / MINUTE, events)
             s = minuteTick(s)
             s = missions.evaluate(s, events)
             val nw = economy.netWorth(s)
@@ -272,6 +276,11 @@ class GameEngine(val content: ContentPack) {
             is Command.HostBusiness -> est(economy.estate.host(state, cmd.propertyId, cmd.businessId))
             is Command.BuildTower -> est(economy.estate.buildTower(state, cmd.propertyId, cmd.designId, events))
             is Command.ResolveTenantEvent -> est(economy.estate.resolveEvent(state, cmd.eventId, cmd.choice, events))
+            is Command.BuyLuxury -> lux(economy.luxury.buy(state, cmd.itemId, events))
+            is Command.SellLuxury -> lux(economy.luxury.sell(state, cmd.itemId, events))
+            is Command.UpgradeShowroom -> lux(economy.luxury.upgradeShowroom(state, cmd.showroomId))
+            Command.BidAuction -> lux(economy.luxury.bid(state, events))
+            is Command.SetMaxBid -> lux(economy.luxury.setMaxBid(state, cmd.max, events))
         }
         return when (result) {
             is Either.Err -> CommandResult.Rejected(result.error)
@@ -283,6 +292,11 @@ class GameEngine(val content: ContentPack) {
     internal sealed interface Either {
         data class Ok(val state: GameState) : Either
         data class Err(val error: GameError) : Either
+    }
+
+    private fun lux(r: com.arnavgames.tycoon.core.luxury.LuxuryEngine.Result): Either = when (r) {
+        is com.arnavgames.tycoon.core.luxury.LuxuryEngine.Result.Ok -> Either.Ok(r.state)
+        is com.arnavgames.tycoon.core.luxury.LuxuryEngine.Result.Err -> Either.Err(r.error)
     }
 
     private fun est(r: com.arnavgames.tycoon.core.estate.EstateEngine.Result): Either = when (r) {

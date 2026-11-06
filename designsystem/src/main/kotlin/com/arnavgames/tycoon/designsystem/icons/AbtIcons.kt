@@ -147,13 +147,25 @@ object AbtIcons {
     val Wrench = icon("Wrench", "M14.5 4.2a4.5 4.5 0 0 0-5.3 6L3.8 15.6a2 2 0 0 0 2.8 2.8L12 13a4.5 4.5 0 0 0 6-5.3l-2.8 2.8-2.5-.4-.4-2.5Z")
     val Umbrella = icon("Umbrella", "M3 12a9 9 0 0 1 18 0Z", "M12 12v6.5a2 2 0 0 1-4 0", "M12 3v-.5")
 
+    // ---- Luxury ----
+    val Car = icon("Car", "M3.5 15.5V12l2-4.5h13l2 4.5v3.5Z", "M3.5 12h17", circle(7.5f, 15.8f, 1.8f), circle(16.5f, 15.8f, 1.8f), "M8 9.8h8")
+    val Watch = icon("Watch", circle(12f, 12f, 5.5f), "M9 6.8 9.6 3h4.8l.6 3.8M9 17.2l.6 3.8h4.8l.6-3.8", "M12 9.5V12l1.8 1.2")
+    val Wine = icon("Wine", "M8 3h8l-.6 6a3.4 3.4 0 0 1-6.8 0Z", "M12 12.4V20", "M8.5 20.5h7", "M8.4 7h7.2")
+    val Gem = icon("Gem", "M7 4h10l4 5-9 11L3 9Z", "M3 9h18", "M10 4 8.5 9 12 20l3.5-11L14 4")
+    val Heli = icon("Heli", "M3 5.5h18", "M12 5.5V8", "M6 12.5a5 4.5 0 0 1 5-4.5h3a3.5 3.5 0 0 1 3.5 3.5v2.5H7.5", "M17.5 11h4M21.5 9v4", "M8 16.5v2M13.5 16.5v2M6 18.5h9.5")
+    val Yacht = icon("Yacht", "M2.5 15.5h19l-2.5 4h-14Z", "M6 15.5 8 11h9l2 4.5", "M10 11V8h5.5l1.5 3", "M12 8V5")
+    val Frame = icon("Frame", "M4 4h16v16H4Z", "M7 7h10v10H7Z", "M7 15l3-3 2 2 2-2.5 3 3.5")
+    val Bust = icon("Bust", circle(12f, 7.5f, 3.5f), "M7.5 20.5c0-3.5 1.8-6 4.5-6s4.5 2.5 4.5 6", "M6 20.5h12", "M9.5 11.5l-1 2.5M14.5 11.5l1 2.5")
+    val Island = icon("Island", "M2.5 19c3-2 6-2 9.5-2s6.5 0 9.5 2", "M12 17V9", "M12 9c-1.5-2.5-4-3-6-2M12 9c1.5-2.5 4-3 6-2M12 9c-.5-2.5.5-4.5 2.5-5.5", "M12 9c-2 0-3.5 1.5-4 3.5")
+    val Mansion = icon("Mansion", "M2.5 20.5h19", "M4 20.5V11l8-5.5 8 5.5v9.5", "M9.5 20.5v-5h5v5", "M7 12.5h2M15 12.5h2", "M12 9.5h.01")
+
     private val byName: Map<String, ImageVector> by lazy {
         listOf(
             Empire, Markets, Estates, Collection, Crown, Cash, Bullion, Coin, Favor, ChevronRight, ChevronLeft, ChevronDown,
             ChevronUp, Close, Plus, Minus, Check, ArrowUp, ArrowDown, Refresh, Sliders, Info, Warning, Lock, Eye, EyeOff,
             Mail, Bell, User, Rivals, Clock, Bolt, Sparkle, Star, Trophy, Briefcase, Store, Gift, Shield, Factory, News, Map,
             Hand, Sun, Moon, Timer, Manager, Expand, Inbox, Chart, Volume, Music, Vibrate, Logout, Trash, Download, Cloud,
-            Upload, Book, Fleet, Route, Tag, Megaphone, Chef, Pause, Play, StarFilled, House, Villa, Warehouse, Plot, Tower, Key, Wrench, Umbrella,
+            Upload, Book, Fleet, Route, Tag, Megaphone, Chef, Pause, Play, StarFilled, House, Villa, Warehouse, Plot, Tower, Key, Wrench, Umbrella, Car, Watch, Wine, Gem, Heli, Yacht, Frame, Bust, Island, Mansion,
             Wheat, Hanger, Pickaxe, Flame, Bed, Bank, Crane, Film, Chip, Antenna, Plane, Flask, Ball, Rocket, Buildings,
         ).associateBy { it.name }
     }

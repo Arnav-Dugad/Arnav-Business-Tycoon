@@ -31,7 +31,7 @@ import kotlin.math.sin
  * world seed and time; rent, tax, insurance, mortgage interest, disasters and tenant decisions are settled every 6 hours
  * on the same boundaries as market payouts, so offline catch-up equals live play.
  */
-class EstateEngine(val c: EstateContent, private val ratePerDay: (GameState) -> Double) {
+class EstateEngine(val c: EstateContent, private val ratePerDay: (GameState) -> Double, private val rentBonus: (GameState) -> Double = { 0.0 }) {
     private val cfg = c.config
     private val cityScale: Map<String, BigDecimal> = c.cities.associate { it.id to BigDecimal(it.priceScale) }
 
@@ -139,6 +139,7 @@ class EstateEngine(val c: EstateContent, private val ratePerDay: (GameState) -> 
         var f = rentFactor(p.rentPct)
         if (p.boostUntil > simMs) f *= if (p.boostSign >= 0) 1.1 else 0.9
         if (state.estate.events.any { it.propertyId == p.id }) f *= cfg.unresolvedRentFactor
+        f *= 1 + rentBonus(state)
         return marketRent6h(state, p, simMs) * Multiplier.ofDouble(f)
     }
 

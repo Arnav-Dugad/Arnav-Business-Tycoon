@@ -77,3 +77,20 @@ Runs: active, idle and risky_trader, 3 seeds × 10 days. Bots now buy the proper
 ### Findings
 - Property income is about 0 % of all income, like markets: rent yields 2–4 % a day gross while businesses pay back in hours. Real estate's value today is the hosting interlock, the missions and net worth. The income-share bands are revisited in Phase 11.
 - Chapter 8 still out of reach in 10 days (same cause as before).
+
+## 2026-11-06 — Phase 8, luxury and auctions
+
+Runs: active and idle (plus risky_trader in the final batch), 3 seeds × 7–10 days. Bots buy the pieces the story asks for (three in Chapter 3), set a proxy maximum on live auctions while the Chapter 4 "first auction win" mission is open, and (active only) bid opportunistically on lots worth ≤1 % of cash.
+
+| Step | Change | Result | Verdict |
+|---|---|---|---|
+| p8a | Luxury, Status, sets, showrooms and auctions added; auctions every 2 h, open 3 min | Nobody could catch an auction: the window was shorter than the gap between bot actions, and a real player would miss nearly all of them | Auctions now stay open 45 min with proxy bidding (works offline). Active bot also won cheap wine lots early, so lots must be worth ≥ $250K and the opportunistic share dropped from 5 % to 1 % of cash. Active `first_auction_win` band revised from 24–48 h to 12 h–2 d (active players are online for several auctions a day) |
+| p8c | 45-min auctions + proxy bidding | 13 of 16 pass. Active first win 24.8 h; **idle first win 5.5 d** (target 2–3 d) | Idle sessions (twice a day, 3 min each) almost never overlap a live auction |
+| p8d | Bot proxy maximum 2.0× estimate while the mission is open (was 1.4×) | Idle first win unchanged (5.5 d) | Not a bidding-power problem: the idle bot is never online while an auction is live |
+| p8e | Lots matched to the player's league (≤20 % of peak net worth) | Unchanged idle (5.5 d); active 24.8 h | Kept: avoids $100M lots for a $5M player |
+| p8f | Each auction starts at a seeded minute 0–75 into its 2-hour slot instead of on the hour | **14 of 16 pass** (7 days, idle + active). Idle first win **3.0 d** (2.5–3.0), idle Chapter 4 back to 4.0 d; active 36.6 h | Accepted: a player with a fixed routine now meets an auction on some days rather than never. Only Chapter 8 still fails |
+| p8g | Final batch: active, idle, risky_trader, 3 seeds × 10 days | **14 of 16 pass**, 0 errors; all early targets unchanged; first auction win 36.6 h active / 3.0 d idle. Final net worth active $262Qi (+16 % vs Phase 7, set bonuses), risky_trader $253Qi, idle $3.30Qi (unchanged). 3,415 s on 3 threads | Accepted. Report: `2026-11-06-phase8/summary.md` |
+
+### Findings
+- Luxury is a mid-game Status and set-bonus sink: realistic prices (cars from $70K, masterpieces up to $450M) are small next to late-game income, so luxury gains are about 0 % of income, like markets and property (Phase 11).
+- The `first_luxury` milestone arrives as soon as Chapter 3 opens for every bot; it has no separate target.

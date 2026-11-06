@@ -1,0 +1,725 @@
+{
+  "note": "Caricature portraits of invented people, generated with Figma AI. They do not depict, and are not meant to resemble, any real person.",
+  "items": [
+    {
+      "id": "retail_mira",
+      "title": "Mira Castellane (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "retail_tobias",
+      "title": "Tobias Wren (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "retail_leena",
+      "title": "Leena Okafor-Hale (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "retail_dario",
+      "title": "Dario Vance (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "rest_amara",
+      "title": "Amara Lindqvist (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "rest_rafael",
+      "title": "Rafael Duarte (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "rest_sunhee",
+      "title": "Sun-Hee Park (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "rest_odette",
+      "title": "Odette Marchetti (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "log_kofi",
+      "title": "Kofi Mensah-Clarke (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "log_ingrid",
+      "title": "Ingrid Solberg (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "log_vikram",
+      "title": "Vikram Rao-Bennett (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "log_marisol",
+      "title": "Marisol Quintero (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "farmland_m1",
+      "title": "Hollis Ferraro (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "farmland_m2",
+      "title": "Priya Nandakumar (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "farmland_m3",
+      "title": "Joaquín Ellery (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "farmland_m4",
+      "title": "Annika Thorsby (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "factory_m1",
+      "title": "Dmitri Halvorsen (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "factory_m2",
+      "title": "Grace Achterberg (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "factory_m3",
+      "title": "Rohan Castellanos (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "factory_m4",
+      "title": "Mei-Lin Ostrova (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "fashion_m1",
+      "title": "Céleste Moreau-Vance (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "fashion_m2",
+      "title": "Tariq Bellamy (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "fashion_m3",
+      "title": "Ines Varga (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "fashion_m4",
+      "title": "Lucian Abara (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "mining_m1",
+      "title": "Bram Oyelaran (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "mining_m2",
+      "title": "Saskia Lindqvist-Rao (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "mining_m3",
+      "title": "Hector Nakamura (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "mining_m4",
+      "title": "Olufemi Carrow (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "energy_m1",
+      "title": "Wendell Asante (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "energy_m2",
+      "title": "Freya Kowalczyk (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "energy_m3",
+      "title": "Nikolai Brennan (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "energy_m4",
+      "title": "Amaya Sorensen (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "hotels_m1",
+      "title": "Marguerite Osei (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "hotels_m2",
+      "title": "Callum Ferreira (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "hotels_m3",
+      "title": "Yasmin Delacroix (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "hotels_m4",
+      "title": "Takeshi Abernathy (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "bank_m1",
+      "title": "Harriet Vandermeer (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "bank_m2",
+      "title": "Kwame Lindberg (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "bank_m3",
+      "title": "Sebastian Okoro (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "bank_m4",
+      "title": "Ingrid Mbeki-Shaw (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "construction_m1",
+      "title": "Doyle Mancini (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "construction_m2",
+      "title": "Leilani Hart (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "construction_m3",
+      "title": "Viktor Asamoah (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "construction_m4",
+      "title": "Paloma Strand (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "media_m1",
+      "title": "Corinne Adeyemi (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "media_m2",
+      "title": "Felix Marchetti-Wu (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "media_m3",
+      "title": "Rana Holloway (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "media_m4",
+      "title": "Anders Okafor (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "tech_m1",
+      "title": "Zoe Kallinikos (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "tech_m2",
+      "title": "Arjun Whitlock (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "tech_m3",
+      "title": "Lena Szabo-Grant (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "tech_m4",
+      "title": "Mateus Obi (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "telecom_m1",
+      "title": "Reuben Castellane (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "telecom_m2",
+      "title": "Aiko Brannigan (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "telecom_m3",
+      "title": "Emeka Vossberg (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "telecom_m4",
+      "title": "Helena Marsh-Idowu (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "airline_m1",
+      "title": "Rosalind Achebe (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "airline_m2",
+      "title": "Gustavo Lindgren (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "airline_m3",
+      "title": "Simone Okwuosa (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "airline_m4",
+      "title": "Henrik Adebayo (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "pharma_m1",
+      "title": "Dr. Imogen Fairweather (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "pharma_m2",
+      "title": "Dr. Kofi Lindqvist (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "pharma_m3",
+      "title": "Dr. Ayasha Moreno (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "pharma_m4",
+      "title": "Dr. Viktor Hallam (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "sports_m1",
+      "title": "Brady Okonkwo (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "sports_m2",
+      "title": "Lucia Ferrante (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "sports_m3",
+      "title": "Kenji Albrecht (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "sports_m4",
+      "title": "Aurelia Mensah (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "space_m1",
+      "title": "Commander Ilse Varga (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "space_m2",
+      "title": "Dr. Tobias Achterberg (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "space_m3",
+      "title": "Rhiannon Okeke (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "space_m4",
+      "title": "Dr. Malik Fontaine (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    }
+  ]
+}

@@ -507,6 +507,8 @@ private fun MomentOverlay(vm: GameViewModel, modifier: Modifier) {
                 is GameEvent.ConglomerateFormed -> Moment("Conglomerate formed", "Its members now share a lasting synergy.")
                 is GameEvent.HoldingFormed -> Moment("${ev.name} is born", "Every business you own now earns more.")
                 is GameEvent.ShortCovered -> if (ev.forced) Moment("Short position closed", "The price rose too far, so your broker covered it with your collateral.") else null
+                is GameEvent.AuctionWon -> Moment("Sold to you!", "The hammer fell in your favour. Find it in your showroom.")
+                is GameEvent.AuctionLost -> Moment("Outbid", if (ev.winner.isNotEmpty()) "${ev.winner} took the lot this time." else "The lot went to another bidder.")
                 is GameEvent.Foreclosure -> Moment("Property repossessed", "The mortgage outgrew the property's value, so the bank sold it.")
                 is GameEvent.TowerCompleted -> Moment("Skyscraper complete", "Floors lease one an hour, and the district's prices just rose.")
                 is GameEvent.Disaster -> if (!ev.insured) Moment("Disaster damage", "One of your properties was damaged. Repair it on the Estates tab.") else null

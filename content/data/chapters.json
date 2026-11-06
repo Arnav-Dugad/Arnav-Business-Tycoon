@@ -232,6 +232,17 @@
         "rewardFavor": 20
       },
       {
+        "id": "c3_collector",
+        "title": "Collector",
+        "description": "Own three luxury items from the Collection tab.",
+        "goal": {
+          "type": "luxuryOwned",
+          "count": 3
+        },
+        "rewardCash": "1500000.00",
+        "rewardBullion": 10
+      },
+      {
         "id": "c3_board_seat",
         "title": "A seat at the table",
         "description": "Own 5% of any listed company to earn a board seat.",
@@ -307,6 +318,17 @@
         },
         "rewardCash": "1725000000.00",
         "rewardBullion": 30
+      },
+      {
+        "id": "c4_auction",
+        "title": "Going once",
+        "description": "Win a live auction on the Collection tab.",
+        "goal": {
+          "type": "auctionsWon",
+          "count": 1
+        },
+        "rewardCash": "1725000000.00",
+        "rewardBullion": 20
       },
       {
         "id": "c4_landlord",

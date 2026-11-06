@@ -22,9 +22,12 @@ import kotlin.math.sqrt
 class Economy(val content: ContentPack) {
     val market = com.arnavgames.tycoon.core.market.MarketMath(content.markets)
     private val refRate = content.markets.macro.map { it.ratePerDay }.average().takeIf { !it.isNaN() } ?: 0.0
-    val estate = com.arnavgames.tycoon.core.estate.EstateEngine(content.estates) { s ->
-        content.markets.macro.firstOrNull { it.id == s.market.macro.phase }?.ratePerDay ?: refRate
-    }
+    val luxury = com.arnavgames.tycoon.core.luxury.LuxuryEngine(content.luxury)
+    val estate = com.arnavgames.tycoon.core.estate.EstateEngine(
+        content.estates,
+        { s -> content.markets.macro.firstOrNull { it.id == s.market.macro.phase }?.ratePerDay ?: refRate },
+        { s -> luxury.setBonus(s, "rent") },
+    )
 
     // Commodity links (docs/GDD.md §6.4): business id -> (commodity id, elasticity), by mode.
     private val commodityRevenue: Map<String, List<Pair<String, Double>>> = commodityLinks("revenue")
@@ -229,6 +232,7 @@ class Economy(val content: ContentPack) {
         conglomerateOf(state, id)?.let { factor *= it.incomeMultiplier }
         if (state.holdingName != null) factor *= content.balance.holdingIncomeMultiplier
         if (hasBoardSeatPerk(state, id)) factor *= boardSeatMultiplier
+        luxury.incomeBonus(state, id).let { if (it > 0) factor *= Multiplier.ofDouble(1 + it) }
         val gross = Rate.perSecond(def.baseRevenue, factor)
         val upkeepShare = (def.upkeep * Multiplier.ofDouble(round6(upkeepFactor(state, def, b, now)))).min(Multiplier.of("0.95"))
         val upkeep = gross * upkeepShare
@@ -270,6 +274,7 @@ class Economy(val content: ContentPack) {
     fun netWorth(state: GameState): Money {
         var nw = state.cash + market.portfolioValue(state) + market.shortEquity(state)
         if (state.estate.properties.isNotEmpty()) nw += estate.portfolioValue(state) - estate.debt(state)
+        if (state.luxury.owned.isNotEmpty()) nw += luxury.collectionValue(state)
         for (b in state.businesses.values) {
             val def = content.businessById[b.id] ?: continue
             nw += investedIn(def, b.level) * Multiplier.of("0.6") + b.stored

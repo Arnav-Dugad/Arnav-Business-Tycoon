@@ -133,7 +133,7 @@ private fun ToggleRow(title: String, subtitle: String, checked: Boolean, onChang
 }
 
 @Composable
-fun CreditsScreen(onBack: () -> Unit) {
+fun CreditsScreen(onBack: () -> Unit, artCredits: List<String> = emptyList(), portraitCount: Int = 0) {
     val c = Aurum.colors
     GlassScaffold("Credits", onBack) {
         item {
@@ -164,9 +164,23 @@ fun CreditsScreen(onBack: () -> Unit) {
         item { SectionHeader("Icons & art") }
         item {
             AurumCard(Modifier.fillMaxWidth()) {
-                Text("All icons and the crest are original artwork made for this game.", style = Aurum.type.body, color = c.textSecondary)
-                Spacer(Modifier.height(Space.xs))
-                Text("Photo credits will be listed here as licensed images are added.", style = Aurum.type.bodySmall, color = c.textTertiary)
+                Text("All icons, the crest, logos and the world map are original artwork drawn in code for this game.", style = Aurum.type.body, color = c.textSecondary)
+                if (portraitCount > 0) {
+                    Spacer(Modifier.height(Space.xs))
+                    Text("$portraitCount manager portraits are AI-generated caricatures of invented people (Figma AI). They do not depict real people.", style = Aurum.type.bodySmall, color = c.textTertiary)
+                }
+            }
+        }
+        if (artCredits.isNotEmpty()) {
+            item { SectionHeader("Museum works (${artCredits.size})") }
+            item {
+                AurumCard(Modifier.fillMaxWidth()) {
+                    Text("Public-domain images from the Art Institute of Chicago, released under CC0. Titles and artists are shown as credited by the museum.", style = Aurum.type.bodySmall, color = c.textSecondary)
+                    artCredits.forEach { line ->
+                        Spacer(Modifier.height(Space.xs))
+                        Text(line, style = Aurum.type.bodySmall, color = c.textTertiary)
+                    }
+                }
             }
         }
     }

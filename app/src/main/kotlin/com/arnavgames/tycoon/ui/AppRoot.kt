@@ -65,6 +65,9 @@ import kotlinx.serialization.Serializable
 @Serializable data class CityRoute(val id: String)
 @Serializable data class DistrictRoute(val id: String)
 @Serializable data class PropertyRoute(val id: Long)
+@Serializable data class LuxuryCategoryRoute(val id: String)
+@Serializable data class LuxuryItemRoute(val id: String)
+@Serializable object AuctionRoute
 
 @Composable
 fun AppRoot(vm: GameViewModel, forcedTheme: ThemeMode?, onDarkChanged: (Boolean) -> Unit) {
@@ -92,7 +95,9 @@ fun AppRoot(vm: GameViewModel, forcedTheme: ThemeMode?, onDarkChanged: (Boolean)
                     is GameEvent.TierReached, is GameEvent.ExpansionCompleted, is GameEvent.HqUpgraded,
                     is GameEvent.ChapterCompleted, is GameEvent.FrenzyStarted,
                     is GameEvent.ConglomerateFormed, is GameEvent.HoldingFormed, is GameEvent.TradeExecuted,
-                    is GameEvent.PropertyBought, is GameEvent.PropertySold, is GameEvent.TowerCompleted -> HapticFeedbackType.Confirm
+                    is GameEvent.PropertyBought, is GameEvent.PropertySold, is GameEvent.TowerCompleted,
+                    is GameEvent.LuxuryBought, is GameEvent.AuctionWon -> HapticFeedbackType.Confirm
+                    is GameEvent.AuctionBid -> HapticFeedbackType.ContextClick
                     is GameEvent.ShortCovered -> if (e.forced) HapticFeedbackType.Reject else HapticFeedbackType.Confirm
                     else -> null
                 }
@@ -159,8 +164,17 @@ private fun ReadyContent(vm: GameViewModel) {
                         onOpenNews = { nav.navigate(NewsRoute) },
                         onOpenCity = { nav.navigate(CityRoute(it)) },
                         onOpenProperty = { nav.navigate(PropertyRoute(it)) },
+                        onOpenLuxuryCategory = { nav.navigate(LuxuryCategoryRoute(it)) },
+                        onOpenAuction = { nav.navigate(AuctionRoute) },
                     )
                 }
+                composable<LuxuryCategoryRoute> { entry ->
+                    com.arnavgames.tycoon.ui.collection.CategoryScreen(vm, entry.toRoute<LuxuryCategoryRoute>().id, onBack = { nav.popBackStack() }, onOpenItem = { nav.navigate(LuxuryItemRoute(it)) })
+                }
+                composable<LuxuryItemRoute> { entry ->
+                    com.arnavgames.tycoon.ui.collection.ItemScreen(vm, entry.toRoute<LuxuryItemRoute>().id, onBack = { nav.popBackStack() })
+                }
+                composable<AuctionRoute> { com.arnavgames.tycoon.ui.collection.AuctionScreen(vm, onBack = { nav.popBackStack() }) }
                 composable<CityRoute> { entry ->
                     com.arnavgames.tycoon.ui.estates.CityScreen(vm, entry.toRoute<CityRoute>().id, onBack = { nav.popBackStack() }, onOpenDistrict = { nav.navigate(DistrictRoute(it)) })
                 }
@@ -180,7 +194,7 @@ private fun ReadyContent(vm: GameViewModel) {
                     BusinessDetailScreen(vm = vm, businessId = entry.toRoute<BusinessRoute>().id, onBack = { nav.popBackStack() })
                 }
                 composable<SettingsRoute> { SettingsScreen(vm = vm, onBack = { nav.popBackStack() }, onCredits = { nav.navigate(CreditsRoute) }) }
-                composable<CreditsRoute> { CreditsScreen(onBack = { nav.popBackStack() }) }
+                composable<CreditsRoute> { CreditsScreen(onBack = { nav.popBackStack() }, artCredits = vm.artCreditLines(), portraitCount = vm.portraitCount()) }
             }
         }
     }

@@ -52,6 +52,14 @@ sealed interface Command {
     /** Starts the next construction stage of a skyscraper (the design is fixed by the first stage). */
     data class BuildTower(val propertyId: Long, val designId: String) : Command
     data class ResolveTenantEvent(val eventId: Long, val choice: Int) : Command
+    // Luxury (docs/GDD.md §8)
+    data class BuyLuxury(val itemId: String) : Command
+    data class SellLuxury(val itemId: String) : Command
+    data class UpgradeShowroom(val showroomId: String) : Command
+    /** Bids the next increment in the live auction. */
+    data object BidAuction : Command
+    /** Leaves a proxy maximum: the game bids for you up to this amount, even while you are away. */
+    data class SetMaxBid(val max: Money) : Command
 }
 
 sealed interface GameError {
@@ -100,6 +108,12 @@ sealed interface GameEvent {
     data class Foreclosure(val propertyId: Long) : GameEvent
     data class TenantEventRaised(val propertyId: Long) : GameEvent
     data class TenantDecision(val eventId: Long) : GameEvent
+    data class LuxuryBought(val itemId: String, val price: Money) : GameEvent
+    data class LuxurySold(val itemId: String, val proceeds: Money) : GameEvent
+    data class AuctionStarted(val itemId: String) : GameEvent
+    data class AuctionBid(val itemId: String, val amount: Money) : GameEvent
+    data class AuctionWon(val itemId: String, val price: Money) : GameEvent
+    data class AuctionLost(val itemId: String, val winner: String) : GameEvent
 }
 
 sealed interface CommandResult {

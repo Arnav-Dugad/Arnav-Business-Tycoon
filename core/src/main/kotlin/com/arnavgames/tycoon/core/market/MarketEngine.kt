@@ -31,7 +31,7 @@ import kotlin.math.sqrt
  * cycle are drawn from seeded streams keyed by the minute index, so they never depend on the player's actions or on
  * how time was split. Payouts and margin calls do read the player's positions and post through the Ledger.
  */
-class MarketEngine(private val m: MarketContent) {
+class MarketEngine(private val m: MarketContent, private val dividendBonus: (GameState) -> Double = { 0.0 }) {
     val math = MarketMath(m)
     private val cfg = m.config
     private val dt = 1.0 / MINUTES_PER_DAY
@@ -285,7 +285,8 @@ class MarketEngine(private val m: MarketContent) {
                 else -> 0.0
             }
             if (perDay <= 0) continue
-            val amount = value * Multiplier.ofDouble(perDay * share)
+            val boost = if (math.assetClass(id) == AssetClass.Stock || math.assetClass(id) == AssetClass.Fund) 1 + dividendBonus(s) else 1.0
+            val amount = value * Multiplier.ofDouble(perDay * share * boost)
             when (math.assetClass(id)) {
                 AssetClass.Bond -> coupons += amount
                 AssetClass.Crypto -> staking += amount

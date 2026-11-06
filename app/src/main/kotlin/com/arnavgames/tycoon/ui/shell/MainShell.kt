@@ -45,17 +45,21 @@ fun MainShell(
     onOpenNews: () -> Unit = {},
     onOpenCity: (String) -> Unit = {},
     onOpenProperty: (Long) -> Unit = {},
+    onOpenLuxuryCategory: (String) -> Unit = {},
+    onOpenAuction: () -> Unit = {},
 ) {
     var tab by rememberSaveable { mutableStateOf("empire") }
     val empire by vm.empire.collectAsStateWithLifecycle()
     val claimable = (empire?.claimableCount ?: 0) > 0
     val estatesUi by vm.estates.collectAsStateWithLifecycle()
     val decisions = (estatesUi?.decisions?.size ?: 0) > 0
+    val collectionUi by vm.collection.collectAsStateWithLifecycle()
+    val auctionLive = collectionUi?.auction != null
     val items = listOf(
         NavItem("empire", "Empire", AbtIcons.Empire),
         NavItem("markets", "Markets", AbtIcons.Markets),
         NavItem("estates", "Estates", AbtIcons.Estates, badge = decisions),
-        NavItem("collection", "Collection", AbtIcons.Collection),
+        NavItem("collection", "Collection", AbtIcons.Collection, badge = auctionLive),
         NavItem("dynasty", "Dynasty", AbtIcons.Crown, badge = claimable),
     )
     Box(Modifier.fillMaxSize()) {
@@ -64,10 +68,7 @@ fun MainShell(
                 "empire" -> EmpireScreen(vm, onOpenBusiness = onOpenBusiness)
                 "markets" -> MarketsScreen(vm, onOpenInstrument = onOpenInstrument, onOpenNews = onOpenNews)
                 "estates" -> com.arnavgames.tycoon.ui.estates.EstatesScreen(vm, onOpenCity = onOpenCity, onOpenProperty = onOpenProperty)
-                "collection" -> ComingSoonScreen(
-                    icon = AbtIcons.Collection, title = "Collection", chapter = 3,
-                    lines = listOf("Cars, jets, yachts, islands and masterpieces", "Live auctions against rival billionaires", "Showrooms and set bonuses"),
-                )
+                "collection" -> com.arnavgames.tycoon.ui.collection.CollectionScreen(vm, onOpenCategory = onOpenLuxuryCategory, onOpenAuction = onOpenAuction)
                 else -> DynastyScreen(vm, onOpenSettings = onOpenSettings, onOpenCredits = onOpenCredits)
             }
         }

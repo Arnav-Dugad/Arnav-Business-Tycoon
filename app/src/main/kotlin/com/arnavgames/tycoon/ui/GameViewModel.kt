@@ -121,6 +121,26 @@ class GameViewModel @Inject constructor(
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), null)
 
     fun city(s: GameState, id: String) = estatesMapper.city(s, id)
+
+    private val collectionMapper by lazy { com.arnavgames.tycoon.ui.collection.CollectionMapper(session.engine) }
+
+    val collection: StateFlow<com.arnavgames.tycoon.ui.collection.CollectionUi?> = session.state.filterNotNull()
+        .map { s -> collectionMapper.toUi(s) }
+        .flowOn(Dispatchers.Default)
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), null)
+
+    fun luxuryCategory(s: GameState, id: String) = collectionMapper.category(s, id)
+    fun luxuryCategoryName(id: String) = collectionMapper.categoryName(id)
+    fun luxuryItem(s: GameState, id: String) = collectionMapper.item(s, id, artCredits[id])
+    fun auction(s: GameState) = collectionMapper.auction(s)
+
+    /** Museum credit lines from the bundled art credits (assets/img/art/credits.json). */
+    private val artCredits: Map<String, String> by lazy { session.readArtCredits() }
+
+    fun artCreditLines(): List<String> = artCredits.values.sorted()
+    fun portraitCount(): Int = session.portraitIds().size
+    fun portraitPath(managerId: String): String? = if (managerId in portraitSet) "img/portraits/$managerId.webp" else null
+    private val portraitSet: Set<String> by lazy { session.portraitIds() }
     fun district(s: GameState, id: String) = estatesMapper.district(s, id)
     fun property(s: GameState, id: Long) = estatesMapper.property(s, id)
 

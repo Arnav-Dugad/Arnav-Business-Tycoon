@@ -41,6 +41,14 @@ Licenses accepted by the validator: `CC0-1.0`, `PDM-1.0`, `PD`, `CC-BY-2.0`, `CC
 - Re-running the pipeline is deterministic (same manifest → byte-identical WebP output with pinned Pillow settings).
 - Processed WebP files are committed (they are the game's assets). Original downloads stay in the git-ignored cache.
 
+## 3a. AI-generated portraits (owner decision, 2026-11-06)
+- Manager portraits are **caricature-style AI images of invented people**, generated with Figma AI (paid credits on the owner's plan, approved by the owner). Every prompt says the person is invented and must not resemble any real or famous person; thumbnails are checked and regenerated if they show text, logos or a famous likeness.
+- Pipeline: prompts and Figma node ids in `tools/art/portraits/managers.json` → full-resolution PNGs cached in `tools/art/cache/portraits/` (git-ignored) → `tools/art/process_portraits.py` → 320×320 WebP in `app/src/main/assets/img/portraits/` + `credits.json` (license `AI-GENERATED`).
+- Rivals (Phase 9) follow the same pipeline. Parody-named public figures get caricatures that hint at a *type* (tech founder, oil baron) without copying any real person's face.
+
+## 3b. Museum works (built in Phase 8)
+- `tools/art/fetch_aic.py` queries the Art Institute of Chicago API for highlighted works with `is_public_domain = true` (CC0), downloads 600-px IIIF images into the cache, writes 480-px WebP to `app/src/main/assets/img/art/` and `credits.json` (title, artist, date, credit line, source URL, CC0). Contact sheets are reviewed before use. 99 works (80 paintings, 19 sculptures), 2.1 MB.
+
 ## 4. Non-photo art (made for this game)
 - **Icons**: ~140 original glyphs (24-unit grid, 1.75 stroke, round caps and joins), hand-authored as path data in `designsystem/.../icons/AbtIcons.kt` and built into Compose `ImageVector`s at runtime. No emoji and no third-party icon packs anywhere in the game.
 - **Company and coin logos**: generated procedurally in code (geometric monograms from a seeded shape grammar) and checked against the brand blocklist, so they cannot resemble real marks.

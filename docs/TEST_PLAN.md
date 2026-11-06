@@ -55,7 +55,7 @@
 2. Expansion: start a timer → advance a fake clock → complete → collect.
 3. Markets: buy stock → sell → portfolio and ledger update; short-selling lock before Chapter 5. (`MarketsFlowTest`, from the debug `markets` scenario.)
 4. Estates: open map → district → buy property → set rent → renovate. (`EstatesFlowTest`, from the debug `markets` scenario.)
-5. Collection: auction flow (bid, win or lose) → item appears in showroom.
+5. Collection: auction flow (bid, win or lose) → item appears in showroom. (`AuctionFlowTest`, from the debug `auction` scenario: proxy bid in, 45 s before the hammer.)
 6. Decision card resolve; tax filing (auto and self).
 7. Dynasty prestige flow with confirmation.
 8. Store: demo purchase sheet shows the DEMO label → entitlement granted → Boosted flag set.

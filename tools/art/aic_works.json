@@ -1,0 +1,1883 @@
+[
+ {
+  "_score": 3398157.8,
+  "id": 28560,
+  "title": "The Bedroom",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhBgAFAPQAAHp3ZJttAJdwL5Z6MYt4Sod7V3uDdXmIc3qCe4uATIeCUoWDY4eGZZmOapiObICGdoeEdYqGe42EeIqNeZGOeXyFkHmIoIOIiJSMgZWMgouQhIeNmoCQpZSeqAAAAAAAACH5BAAAAAAAIf8LSW1hZ2VNYWdpY2sOZ2FtbWE9MC40NTQ1NDUALAAAAAAGAAUAAAUYoHUYW8dVyOM01wIwQkAolJYMBYRhUySFADs=",
+   "width": 12614,
+   "height": 9875,
+   "alt_text": "Painting of bedroom, blue walls, green window, tan bed, red bedding."
+  },
+  "date_display": "1889",
+  "artist_display": "Vincent van Gogh (Dutch, 1853–1890)",
+  "credit_line": "Helen Birch Bartlett Memorial Collection",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Vincent van Gogh",
+  "image_id": "6644829f-f292-c5c4-a73c-0356a6fdbf0d",
+  "kind": "painting"
+ },
+ {
+  "_score": 566359.6,
+  "id": 20684,
+  "title": "Paris Street; Rainy Day",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhBwAFAPUAACYtLiQwNDs9Pjw/QEFFSUVJTlFGRlhPT11iYmdgZ2xjaGpra2xqcWlvdmtzeHp6dH5+e4GDfXh+hJKLhZWTi4aMlZKVk5OWk5eXkpSanJ6emqSglbOrn6Glpq+spbe0q8G7sMTAtMjFuQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAHAAUAAAYhQA7oIwpNFBrLpVNhJBoZiaNwMEA8GARhEHhQNpGFABAEADs=",
+   "width": 9987,
+   "height": 7755,
+   "alt_text": "Life-size painting of an urban scene in Paris. A man in a top hat holding an umbrella and a woman in a long fashionable dark dress walk arm in arm toward the viewer as other city dwellers with umbrellas walk in various directions across cobblestone roads and sidewalks."
+  },
+  "date_display": "1877",
+  "artist_display": "Gustave Caillebotte (French, 1848–1894)",
+  "credit_line": "Charles H. and Mary F. S. Worcester Collection",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Gustave Caillebotte",
+  "image_id": "f8fd76e9-c396-5678-36ed-6a348c904d27",
+  "kind": "painting"
+ },
+ {
+  "_score": 485451.1,
+  "id": 27992,
+  "title": "A Sunday on La Grande Jatte — 1884",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhCAAFAPUAAE1WUFVTU1NWUFZYVllbVlpaW1tcWF1cXVxiWl1jWl9mX2NmVWVnXF9eZlxdaGZkYmpmZWRtYGZuY2htZGpsanBsZXVwZXB5Znp+ZXJwaYSAaYiBaYqIbIeAdI2DcYqFcI+FcoiCd5iRcouJgIyKhoyNi4mMjo2RkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAIAAUAAAYlwBLmMmEkCAHTaRTqfB4QEmgj8mgaGY6lsohIHAXKwQBQIAaCIAA7",
+   "width": 9310,
+   "height": 6237,
+   "alt_text": "Large painting of people in a crowded park, brushstrokes are dots."
+  },
+  "date_display": "1884–86, border added 1888–89",
+  "artist_display": "Georges Seurat (French, 1859–1891)",
+  "credit_line": "Helen Birch Bartlett Memorial Collection",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Georges Seurat",
+  "image_id": "2d484387-2509-5e8e-2c43-22f9981972eb",
+  "kind": "painting"
+ },
+ {
+  "_score": 67963.16,
+  "id": 87479,
+  "title": "The Assumption of the Virgin",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhAgAFAPMAAEQ8Mk5DOGBLRmRQR2FYT29jUGxpX3dqWGReZmBmZwAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAACAAUAAAQIsJyEDBlAhAgAOw==",
+   "width": 3990,
+   "height": 7631,
+   "alt_text": "Painting of the Virgin Mary ascending to heaven amongst multitude of angels."
+  },
+  "date_display": "1577–79",
+  "artist_display": "El Greco (Doménikos Theotokópoulos; Greek, active in Spain, 1541–1614)",
+  "credit_line": "Gift of Nancy Atwood Sprague in memory of Albert Arnold Sprague",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Domenico Theotokópoulos, called El Greco",
+  "image_id": "47fd1564-93f5-f30b-7786-013421133b4a",
+  "kind": "painting"
+ },
+ {
+  "_score": 53939.01,
+  "id": 64818,
+  "title": "Stacks of Wheat (End of Summer)",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhCAAFAPUAAF5eVW1bVm9eVmpjW3RoXXxyV39yXmdsZmhmaXZtbG11eH57eYl5bYR7dHuAf4mDfo6HfpePdpCFeZSOfJ+VdnZ+g4ODgoCHg4iHgo+GgY2MgpmThJeTipaSjaCcmbWnh6qrpKmopqqtrKusrbGxobq4pLu5qq2zsQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAIAAUAAAYlwJNoFAKRSiZPh7OZRCgfBWJwAAQEBU2D8VgkCAYI5uKoWDKSIAA7",
+   "width": 6884,
+   "height": 4068,
+   "alt_text": "Painting composed of short, dense brushstrokes depicts two domed stacks of wheat that cast long shadows on a field. The angled light indicates either a rising or setting sun."
+  },
+  "date_display": "1890–91",
+  "artist_display": "Claude Monet (French, 1840–1926)",
+  "credit_line": "Gift of Arthur M. Wood, Sr. in memory of Pauline Palmer Wood",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Claude Monet",
+  "image_id": "a38e2828-ec6f-ece1-a30f-70243449197b",
+  "kind": "painting"
+ },
+ {
+  "_score": 17962.982,
+  "id": 16568,
+  "title": "Water Lilies",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhBQAFAPQAAEZcaFFfdVtqbk9ldFBlcVFocllrcFlrd11rdl9sdFZtf15wcWV0d2R2eGByfmd6eGl6e2t9elZxiGF4kWB4kmJ9kGJ8lWeCkWSAnQAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAFAAUAAAUVoJBADXI4TLRMWHU9hmRRCjAURBACADs=",
+   "width": 8808,
+   "height": 8460,
+   "alt_text": "Painting of a pond seen up close spotted with thickly painted pink and white water lilies and a shadow across the top third of the picture."
+  },
+  "date_display": "1906",
+  "artist_display": "Claude Monet (French, 1840–1926)",
+  "credit_line": "Mr. and Mrs. Martin A. Ryerson Collection",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Claude Monet",
+  "image_id": "3c27b499-af56-f0d5-93b5-a7f2f1ad5813",
+  "kind": "painting"
+ },
+ {
+  "_score": 17533.336,
+  "id": 14655,
+  "title": "Two Sisters (On the Terrace)",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAAENVWmNjWVFWZmRcYWJfZmZdZXtqZ3JxZXZ5aXl4b4J2cot2cHuCf4CDbYGIeH6EgX+Og5qbjY+Sl5yhlQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAUR4AQxSbQoD1IQjSMMwWFIQAgAOw==",
+   "width": 19848,
+   "height": 24629,
+   "alt_text": "Impressionist painting of two girls on balcony, bright flower hat, knitting basket."
+  },
+  "date_display": "1881",
+  "artist_display": "Pierre-Auguste Renoir (French, 1841–1919)",
+  "credit_line": "Mr. and Mrs. Lewis Larned Coburn Memorial Collection",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Pierre-Auguste Renoir",
+  "image_id": "3a608f55-d76e-fa96-d0b1-0789fbc48f1e",
+  "kind": "painting"
+ },
+ {
+  "_score": 17364.693,
+  "id": 80607,
+  "title": "Self-Portrait",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAAD49PEA3NEA6OUY/OEw+OzpAO09EPFZFO1dGPDxGQEBIQ0ZMRU9PRVFNRV9MQmxUQmJZSnttWIdfSaGHaQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAURoMJAQBFNQ/JIwoI4QUMYRwgAOw==",
+   "width": 6116,
+   "height": 7794,
+   "alt_text": "Painting of a red-haired, bearded man with light skin, painted in short brushstrokes and multicolored dots. The background is likewise a mass of small, closely spaced colored dots, these in green, blue, and red-orange."
+  },
+  "date_display": "1887",
+  "artist_display": "Vincent van Gogh (Dutch, 1853–1890)",
+  "credit_line": "Joseph Winterbotham Collection",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Vincent van Gogh",
+  "image_id": "47c5bcb8-62ef-e5d7-55e7-f5121f409a30",
+  "kind": "painting"
+ },
+ {
+  "_score": 17326.303,
+  "id": 111442,
+  "title": "The Child's Bath",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhAwAFAPMAAE5NSWBSSmRbVmJkVmpbYWdmYm9oZmxrcmxtd2pueIJ3eXN9iouFj4eJkKGanQAAACH5BAAAAAAAIf8LSW1hZ2VNYWdpY2sOZ2FtbWE9MC40NTQ1NDUALAAAAAADAAUAAAQLsICRlEDuELaCaREAOw==",
+   "width": 8470,
+   "height": 12853,
+   "alt_text": "Painting of mother in blue, purple, and green-stripped dress washing child's feet."
+  },
+  "date_display": "1893",
+  "artist_display": "Mary Cassatt (American, 1844–1926)",
+  "credit_line": "Robert A. Waller Fund",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Mary Cassatt",
+  "image_id": "3b885ae0-4d46-5fe4-d70a-00474827f02c",
+  "kind": "painting"
+ },
+ {
+  "_score": 16831.57,
+  "id": 61128,
+  "title": "At the Moulin Rouge",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhBgAFAPQAAC4qHjInHDwpGjYwIDcwIzgzKVg5Cks3HF4/EVg6FkE2Jkk3IUs2JkI7K0Q6KEs7Kko5LFtBFmNDFV5EIVBLLU9NM0hINFhFNk1SOlRQMVdTO1ZTP1hVO2ZOKQAAAAAAACH5BAAAAAAALAAAAAAGAAUAAAUYIIVZnFYdj1M0WXIxQrAhHbQQQGRIkzKEADs=",
+   "width": 7788,
+   "height": 6807,
+   "alt_text": "Painting, heavy in tones of blue-green and burnt orange, depicting a bar scene at night. The men wear top hats and many are bearded; the women are dressed in voluminous gowns and decorative hats. Five people converse in the center of the composition and a woman with a green face dominates the right foreground."
+  },
+  "date_display": "1892–95",
+  "artist_display": "Henri de Toulouse-Lautrec (French, 1864–1901)",
+  "credit_line": "Helen Birch Bartlett Memorial Collection",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Henri de Toulouse-Lautrec",
+  "image_id": "defb4004-b500-218d-3d9b-9a02423f097d",
+  "kind": "painting"
+ },
+ {
+  "_score": 16642.762,
+  "id": 16571,
+  "title": "Arrival of the Normandy Train, Gare Saint-Lazare",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhBwAFAPUAADU8QkROS0ZPU0hSVk1YXVFWUlBXXlFaWVNcWFFkV1plVVtjWmBnWmFqXmRrX05ZYFFaYlljbF5qbGNsY2ZydmlzdWRxeGdze2l1fWx3fG16enJ4fH+KioWOkZeam5yjqZ2lqrG1ubS6vwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAHAAUAAAYhQIKmYslQDoONp8ORBECi0OfyKEAMmAhAgFhMHA2GIhEEADs=",
+   "width": 6786,
+   "height": 5092,
+   "alt_text": "Loosely painted image of an open-air train station. On the right, a parked train gives off an enormous plumb of white smoke, making the scene look as though it were full of clouds. A huddled mass of barely discernible people crowd around the train on both sides of the tracks. Blue, green, and gray tones dominate."
+  },
+  "date_display": "1877",
+  "artist_display": "Claude Monet (French, 1840–1926)",
+  "credit_line": "Mr. and Mrs. Martin A. Ryerson Collection",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Claude Monet",
+  "image_id": "0f1cc0e0-e42e-be16-3f71-2022da38cb93",
+  "kind": "painting"
+ },
+ {
+  "_score": 16518.918,
+  "id": 111436,
+  "title": "The Basket of Apples",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhBgAFAPQAAGdYO1hSRFVUSWFYRGtdRGFcSl9jW2xgS25iTnNlR3FlS2loXGxqY3V0Z3R0anl5aHN6cINuTIJzUHWAc3uGfYeFeYWOfYSOhIuLgIyMhJWVh52ci5majZ6ekQAAAAAAACH5BAAAAAAALAAAAAAGAAUAAAUYIONA1GUJQGA800AsB1IoVYZpSdRw3SaFADs=",
+   "width": 12640,
+   "height": 10094,
+   "alt_text": "Painting of a basket of green and red-yellow apples spilling over into a white cloth placed on a wooden table, with a dark green bottle and a plate of pale biscuits behind."
+  },
+  "date_display": "c. 1893",
+  "artist_display": "Paul Cezanne (French, 1839–1906)",
+  "credit_line": "Helen Birch Bartlett Memorial Collection",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Paul Cezanne",
+  "image_id": "52ac8996-3460-cf71-cb42-5c4d0aa29b74",
+  "kind": "painting"
+ },
+ {
+  "_score": 16274.968,
+  "id": 11723,
+  "title": "Woman at Her Toilette",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhBwAFAPUAAE9MQV1XRl5YRmNdT2JgVGplV3RtW3JsX35wXW9rYHl3cX17eYJ4a4+Hd4GBfoaDf4iEfY6JgYmKhZuXjZWSkJaSkJydlpqZmZqamp+dmpqbnamelqCemqShk6Cgm6ujnK6nn7m0rbSzsgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAHAAUAAAYhwABDYnBYOgTFAvHAcA6JyIZyyQwAFZHGMykIPiEQpBEEADs=",
+   "width": 4946,
+   "height": 3703,
+   "alt_text": "Painted portrait dominated by loose, large brushstrokes of a woman, seen from the back, wearing a gauzy white off-the-shoulder dress and black choker, blond hair swept up, examining herself in a mirror at left. The background is a feathered swirl suggesting floral pattern in cool pale tones of gray, purple, pink, and blue."
+  },
+  "date_display": "1875–80",
+  "artist_display": "Berthe Morisot (French, 1841–1895)",
+  "credit_line": "Stickney Fund",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Berthe Morisot",
+  "image_id": "78c80988-6524-cec7-c661-a4c0a706d06f",
+  "kind": "painting"
+ },
+ {
+  "_score": 16204.502,
+  "id": 15468,
+  "title": "Saint George and the Dragon",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhAwAFAPMAAF5LJm1ZN25aN21bO3dgQ3VlS35tUHtqWIJuUIl0VZB/ZZaAXJ2IaKyNaqWUfAAAACH5BAAAAAAALAAAAAADAAUAAAQLsJxhSGNqORSSABEAOw==",
+   "width": 6524,
+   "height": 10455,
+   "alt_text": "St. George on white horse, piercing green, gold dragon"
+  },
+  "date_display": "1434–35",
+  "artist_display": "Bernat Martorell (Spanish, active from 1427–died 1452)",
+  "credit_line": "Gift of Mrs. Richard E. Danielson and Mrs. Chauncey McCormick",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Bernat Martorell",
+  "image_id": "8a0e4ac9-43ea-bc3e-884b-ee27f8a10501",
+  "kind": "painting"
+ },
+ {
+  "_score": 16117.292,
+  "id": 90048,
+  "title": "Distant View of Niagara Falls",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhBgAFAPQAACMQBS0dEC8cETMeFTkiDSkiGDYlFz8uGzsuHTw1KT03KU0kEEU5JUQ8MUA+NVhHLXJIJFJNQ1VUTWJcUnJgTIltV4R9ZpOAYZmKbY6Bd5ONccG3msOyo8K6tQAAAAAAACH5BAAAAAAALAAAAAAGAAUAAAUYoCNNGddFidJQ1XFt2kMsEGYxwhAABlKEADs=",
+   "width": 10490,
+   "height": 8127,
+   "alt_text": "Painting of a vast autumn scene with two very small figures in Indigenous clothing standing on a cliff overlooking a massive waterfall in the distance."
+  },
+  "date_display": "1830",
+  "artist_display": "Thomas Cole (American, born England, 1801–1848)",
+  "credit_line": "Friends of American Art Collection",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Thomas Cole",
+  "image_id": "18092196-50ae-3ff1-9205-1b3110e966c3",
+  "kind": "painting"
+ },
+ {
+  "_score": 15878.834,
+  "id": 14598,
+  "title": "The Beach at Sainte-Adresse",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhBwAFAPUAAF5iZnRzb3d0c3x5cXR5fH1/eneGh36QkYaEgoGIjoaLjYmMjIuPj4mPkIuQkoyRlI6UmI6UmZKWk5SWkJKWlpKXm5KYnZaanJacn5idn5menpycnZyenKCko6enpaeqqK+tqKuurLGzsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAHAAUAAAYhQIXj0vmERBZMpJKBaAoLBqWReAwCEwLAcBAgQJ4NRxIEADs=",
+   "width": 6793,
+   "height": 5021,
+   "alt_text": "Painting of a beach on a cloudy day with several sailboats on the water, a few rowboats on the shore, and two groupings of people on the sand."
+  },
+  "date_display": "1867",
+  "artist_display": "Claude Monet (French, 1840–1926)",
+  "credit_line": "Mr. and Mrs. Lewis Larned Coburn Memorial Collection",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Claude Monet",
+  "image_id": "95be2572-b53d-8e7b-abc9-10eb48d4fa5d",
+  "kind": "painting"
+ },
+ {
+  "_score": 15707.322,
+  "id": 80084,
+  "title": "The Crucifixion",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhAwAFAPMAABIODxQREBURERUSERYSERgTEhkVExwXFR4ZFRwYFh4ZFiQfGiokHjQsIzs1LAAAACH5BAAAAAAALAAAAAADAAUAAAQL8DBUGgIOjTWGGREAOw==",
+   "width": 9583,
+   "height": 16906,
+   "alt_text": "A work made of oil on canvas."
+  },
+  "date_display": "1627",
+  "artist_display": "Francisco de Zurbarán (Spanish, 1598–1664)",
+  "credit_line": "Robert A. Waller Memorial Fund",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Francisco de Zurbarán",
+  "image_id": "c8ee825f-bc8c-c76b-1f05-5d692d9a6b47",
+  "kind": "painting"
+ },
+ {
+  "_score": 15690.313,
+  "id": 8991,
+  "title": "Improvisation No. 30 (Cannons)",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhBQAFAPQAAE1TUl1cb2tubW1ub3loYX1wYnNzfIpxWI95YIRxbYR7a41/aZF+YZOCbISAeZSIeZ2RfKOHaqWMdqWMeqmTe3JtgoyPioaRiJSQhwAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAAIf8LSW1hZ2VNYWdpY2sOZ2FtbWE9MC40NTQ1NDUALAAAAAAFAAUAAAUV4AAgiYQRijMVQRVRjGA0B/RY1xICADs=",
+   "width": 10199,
+   "height": 10244,
+   "alt_text": "Abstract painting in various bright colors—yellow, blue, red, green, orange, pink—with lines indicating building-like structures as well as canons in the lower right corner."
+  },
+  "date_display": "1913",
+  "artist_display": "Vasily Kandinsky\nBorn Moscow (formerly Russian Empire, now Russia), 1866; died Neuilly-sur-Seine, France, 1944",
+  "credit_line": "Arthur Jerome Eddy Memorial Collection",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Vasily Kandinsky",
+  "image_id": "b5bc6b66-9e6e-fe57-dcec-fc49e820e904",
+  "kind": "painting"
+ },
+ {
+  "_score": 15681.163,
+  "id": 25865,
+  "title": "The Herring Net",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhCAAFAPUAACkcEzYsGz00JkJCM0BHPVJFM1hGMllJNkVOQFVVQ1JVRVVaTWxeSGBfUGlhT2lkUmhmVmJoVmZnWW9qWWttXXppUYBqUIVuU4VwVot1Vox1VIdxWIp1WI52XI14XI15X5B5XJB6XZV+XouDaJiCZIOIcI+VfpuQdAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAIAAUAAAYlQMsF4yGFQJlN51M5cESah8NQADBOowZEEBhQTKWJhIBIRBaKIAA7",
+   "width": 9953,
+   "height": 6124,
+   "alt_text": "Painting of two fishermen in small wooden boat on rocky seas."
+  },
+  "date_display": "1885",
+  "artist_display": "Winslow Homer (American, 1836–1910)",
+  "credit_line": "Mr. and Mrs. Martin A. Ryerson Collection",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Winslow Homer",
+  "image_id": "5dca7347-c6dc-24dd-d073-d705b9cdc575",
+  "kind": "painting"
+ },
+ {
+  "_score": 15617.306,
+  "id": 154235,
+  "title": "The Girl by the Window",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhAwAFAPMAAEg8Pko/Pz8/Q0tHRUZFUEpHUUxPVVdUX2NfaGJqfG1zh3Z/k3F9lX+FmYSJmQAAACH5BAAAAAAALAAAAAADAAUAAAQLsCnDFkmuHCQCGBEAOw==",
+   "width": 4801,
+   "height": 7097,
+   "alt_text": "Loosely painted scene of a brown-haired girl in her nightgown standing in a dark room, gazing out a window into a brighter night, her face unseen and her hand drawing back the pale curtain. Light blues and pink whites dominate the girl and the window, while deep browns, blues, and greens color the darkened portions of her room."
+  },
+  "date_display": "1893",
+  "artist_display": "Edvard Munch (Norwegian, 1863–1944)",
+  "credit_line": "Searle Family Trust and Goldabelle McComb Finn endowments; Charles H. and Mary F. S. Worcester Collection",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Edvard Munch",
+  "image_id": "d7df2633-3b40-f570-c906-211503a37cde",
+  "kind": "painting"
+ },
+ {
+  "_score": 15463.257,
+  "id": 16487,
+  "title": "The Bay of Marseille, Seen from L'Estaque",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhBgAFAPQAAHx2X15rbk1le1dsfV1wdm9xaWpybnd1YX58ZmRscWJwdIJ1XoJ5Yox/ZZSJb5mIa1NqgVpxiXWDiXeDiHqGjX+Mk4OSmoWTmIqeoo2fpIyeppekoJSlqJmnqAAAAAAAACH5BAAAAAAALAAAAAAGAAUAAAUYINdlGrZdVkVJk6EMAhQ1QJEEhPMcC4OEADs=",
+   "width": 12821,
+   "height": 10275,
+   "alt_text": "Impressionist sea landscape, tan houses, blue ocean, distant mountains."
+  },
+  "date_display": "c. 1885",
+  "artist_display": "Paul Cezanne (French, 1839–1906)",
+  "credit_line": "Mr. and Mrs. Martin A. Ryerson Collection",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Paul Cezanne",
+  "image_id": "d4ca6321-8656-3d3f-a362-2ee297b2b813",
+  "kind": "painting"
+ },
+ {
+  "_score": 15457.376,
+  "id": 59847,
+  "title": "Cupid Chastised",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAABobGCUcEy4fFSYfGCkhGjMiGiclJDQtIzYtIz4vJTcxK0ExIUM6L0c9LFkyIlM6KVNJO3xpTXtyYYZoUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAURIDAQxqEUQfM4whJNCcJIUAgAOw==",
+   "width": 7445,
+   "height": 10426,
+   "alt_text": "Large painting of cupid being whipped, a woman tries to hold back the a man in red dress."
+  },
+  "date_display": "1613",
+  "artist_display": "Bartolomeo Manfredi (Italian, 1582–1622)",
+  "credit_line": "Charles H. and Mary F. S. Worcester Collection",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Bartolomeo Manfredi",
+  "image_id": "0f951635-312c-0829-451b-553f461c5518",
+  "kind": "painting"
+ },
+ {
+  "_score": 15428.228,
+  "id": 869,
+  "title": "The Watermill with the Great Red Roof",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhBwAFAPUAACIbEyIbFCIfFSkiGC8lGSwmGjUrHz0yIzozJz44Jzg1KDs4KUI8K0Y9LUBAL0VCMUpEMU1IM1JRRFZVSWZfR21rW25sY21xanx5Z398cX+CfImDc46LfZqUf4KGgYOIgouNhYyPiZeVigAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAHAAUAAAYhwM9FE/JwLJ2FZAISZSgKgQOzqUQgiUfjwCgEAAOEgRAEADs=",
+   "width": 9443,
+   "height": 6967,
+   "alt_text": "Landscape painting featuring a wavy tree tree in the foreground and a watermill with a red roof adjacent to a river at right. Colors are subdued earth tones, the foliage a dark green and the river a muddy brown. Water flows through the mill wheel under a cloudy sky of gray and blue. Three individuals can be seen in the distance at left."
+  },
+  "date_display": "c. 1665",
+  "artist_display": "Meindert Hobbema (Dutch, 1638–1709)",
+  "credit_line": "Gift of Mr. and Mrs. Frank G. Logan",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Meindert Hobbema",
+  "image_id": "237c25a2-6051-a8e7-1610-a01938d4deab",
+  "kind": "painting"
+ },
+ {
+  "_score": 15185.832,
+  "id": 69780,
+  "title": "The Fountain, Villa Torlonia, Frascati, Italy",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAAC0wJi81KkA0KUJGNFNBNlRIOllJOVlOQmRXRWJcT2ptX3JjUnFtZGtzbYJ8c5CCdZGMfpicmKGckKKgnQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAURYBMNATMpwCNByeEshUAYSAgAOw==",
+   "width": 4414,
+   "height": 5659,
+   "alt_text": "Portrait of a woman in white with a bonnet perched on an architectural feature painting something to her right, a spouting water fountain, greenery, and a an ornate, low white fence behind her. Beside her, a man leans back, eying the canvas."
+  },
+  "date_display": "1907",
+  "artist_display": "John Singer Sargent (American, 1856–1925)",
+  "credit_line": "Friends of American Art Collection",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "John Singer Sargent",
+  "image_id": "3f9aa9db-61e1-7060-fdb0-bfd7e41ddd08",
+  "kind": "painting"
+ },
+ {
+  "_score": 15155.121,
+  "id": 109819,
+  "title": "Lozenge Composition with Yellow, Black, Blue, Red, and Gray",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhBQAFAPQAAFlUMJeYn4WQrKeuveDWks3Lt8bJy8nKys3OzsXJ0s3Q2NXW0Nna1+ro3uLk5eTl5unp5+Xm6enq6urq6u3s6e3t7e/u7PLx7+zs8AAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAFAAUAAAUVIPYw0tQQi0MVwDEIUWAkSmUh0BUCADs=",
+   "width": 6578,
+   "height": 6578,
+   "alt_text": "A square white tile, rotated 90 degrees, crossed by black lines intersecting at 90-degree angles. A few of the shapes thus formed—some partial squares, some rectangles—are colored in a single shade of yellow, blue, black, or red."
+  },
+  "date_display": "1921",
+  "artist_display": "Piet Mondrian\nDutch, 1872–1944",
+  "credit_line": "Gift of Edgar Kaufmann, Jr.",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Piet Mondrian",
+  "image_id": "25f660ee-f1db-d13b-42a5-56df97c98ba7",
+  "kind": "painting"
+ },
+ {
+  "_score": 15151.224,
+  "id": 56905,
+  "title": "Nocturne: Blue and Gold—Southampton Water",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhCAAFAPUAAEpORE9SRVFTR1FSSVJTSlJVS1VWSVJUTFJWTFVXTVRXT1VXT1VYTFdZT1dbUVdaUlhaUVhbUVlcU11fUltdVFteVV1gV19iWV5iWmJlXGhsXmRnYGdqYGdqYWhrY2hsYGxuYnBzZnN1a3V4bQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAIAAUAAAYlwNBI5OFwPhrMBtTJUBoTh+VSgSwGBoSk8lgsEgxAIaI4EASBIAA7",
+   "width": 6442,
+   "height": 4256,
+   "alt_text": "A sparsely painted waterside scene in dark tones with minimal ghostly shapes suggesting ships, yellow glitches of paint for light reflections, and the orb of an orange moon overhead."
+  },
+  "date_display": "1872",
+  "artist_display": "James McNeill Whistler (American, 1834–1903)",
+  "credit_line": "Stickney Fund",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "James McNeill Whistler",
+  "image_id": "50034c7f-ce51-00f1-430e-a6f7efc233fc",
+  "kind": "painting"
+ },
+ {
+  "_score": 15134.722,
+  "id": 81558,
+  "title": "Acrobats at the Cirque Fernando (Francisca and Angelina Wartenberg)",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAAH57b6aXXKyWWq2bX4+Fda+UYcOrfcCxf5GOh52Vh7KggLqvi7ivkse5j8i2lsa9lMi5nszBodDFo9HGqQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAURIEAkiDI5zBNJzWJARyAUQwgAOw==",
+   "width": 24170,
+   "height": 32315,
+   "alt_text": "Two girls in acrobatic uniforms stand in an arena, one holds oranges."
+  },
+  "date_display": "1879",
+  "artist_display": "Pierre-Auguste Renoir (French, 1841–1919)",
+  "credit_line": "Potter Palmer Collection",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Pierre-Auguste Renoir",
+  "image_id": "321c45f5-22a3-84a2-44cc-cf66642d4cf2",
+  "kind": "painting"
+ },
+ {
+  "_score": 15000.964,
+  "id": 5848,
+  "title": "Landscape with Saint John on Patmos",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhBwAFAPUAAB4eDyYhCzctHzk7LEkxH0kyHkE0IUE0JUc6IkI4JEc8JEw9K1Q9LVU/LVY/LldCLFlBKVlBLUVGPEtLO15FNFJINFNMPHhVOEBKRFlVRndYRWliVl9qaIOAemuKmnWRnYqLhpCMhY230wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAHAAUAAAYhQM7gI/JgJKBMJzQJADaWigKxOAgYhgQk4qBoGo9LgRAEADs=",
+   "width": 6092,
+   "height": 4508,
+   "alt_text": "Painting of Greek landscape, classical architecture, yellow, red robed man reading."
+  },
+  "date_display": "1640",
+  "artist_display": "Nicolas Poussin (French, 1594–1665)",
+  "credit_line": "A. A. Munger Collection",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Nicolas Poussin",
+  "image_id": "aa870b0d-5a1b-660a-6dc6-56c12109cf6e",
+  "kind": "painting"
+ },
+ {
+  "_score": 14984.801,
+  "id": 4796,
+  "title": "Fishing Boats with Hucksters Bargaining for Fish",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhBgAFAPQAADguGk4/KkxMR1pPQWFURW9hTmlkWnpvW39yX4RwUINyWY57WYp4ZJN8YZmAYZuBZaiRbamPc7Kac7ygfKGWgaybgqKekbSghZOip6Koo8u0lcGymuHEndLDqQAAAAAAACH5BAAAAAAALAAAAAAGAAUAAAUY4EFlmHUZFddtmtBMzBMhjlIQwwJJSQCEADs=",
+   "width": 8912,
+   "height": 6887,
+   "alt_text": "Large marine landscape of boats on rough waves, storm clouds."
+  },
+  "date_display": "1837–38",
+  "artist_display": "Joseph Mallord William Turner (English, 1775–1851)",
+  "credit_line": "Mr. and Mrs. W. W. Kimball Collection",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Joseph Mallord William Turner",
+  "image_id": "8641479e-c93e-f1a8-9925-19be061706da",
+  "kind": "painting"
+ },
+ {
+  "_score": 14973.783,
+  "id": 109780,
+  "title": "Love of Winter",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhBgAFAPQAAB1CTzpHSyRIUyFHWCNJWi1NWCNTaDpfbUJTXEtpbkBkdk1vdUNsf1RvcVVzd2B4cWd8fW56eHOBbpeZfjx1jzlzkVl9hUN7mHiCg2qMkIqej46imo2jnKywoAAAAAAAACH5BAAAAAAALAAAAAAGAAUAAAUY4DIY1FUBQkEwipNZRwJFmNQ8wdZNGoeEADs=",
+   "width": 5767,
+   "height": 4577,
+   "alt_text": "Painting of a crowd of well-dressed light-skinned people in an open, snowy field surrounded by large rolling hills. At center a woman in a bright-yellow coat and skirt holds the hand of a child in red, who pulls to turn her toward the others."
+  },
+  "date_display": "1914",
+  "artist_display": "George Wesley Bellows (American, 1882–1925)",
+  "credit_line": "Friends of American Art Collection",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "George Wesley Bellows",
+  "image_id": "18ab0c35-e35c-0216-9afd-f93357920db1",
+  "kind": "painting"
+ },
+ {
+  "_score": 14965.089,
+  "id": 14572,
+  "title": "The Millinery Shop",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhBgAFAPQAAEMtIk40KE83KlhHLVxELlNPN1hLMVJOP19UN1dYM1lUOVpUP2dAIWlKKHZKKXZLKWRNPGpbMGpaNGtaOkxUTF9dRlJaS15YSV5kUnZpRH12W4ZkM49uRI52VQAAAAAAACH5BAAAAAAALAAAAAAGAAUAAAUY4AUtFWZxHZIdExFEybAJQGE00sNQmqOEADs=",
+   "width": 5003,
+   "height": 4543,
+   "alt_text": "Impressionist painting of woman wearing green dress trying on hats."
+  },
+  "date_display": "1879-86",
+  "artist_display": "Edgar Degas (French, 1834–1917)",
+  "credit_line": "Mr. and Mrs. Lewis Larned Coburn Memorial Collection",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Hilaire Germain Edgar Degas",
+  "image_id": "6f513908-03cc-b974-633b-adfce56b7936",
+  "kind": "painting"
+ },
+ {
+  "_score": 14961.071,
+  "id": 95998,
+  "title": "Old Man with a Gold Chain",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhBQAFAPQAABQSEhcVFRkWFRoZFxoYGR4bGiglISsmIC0oIi4pIjApIjIsJDYwJzgwJzYxKjgxKDkzKj81Kj42K0A0Jko/MUlBM0pCNk5FOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAAIf8LSW1hZ2VNYWdpY2sOZ2FtbWE9MC40NTQ1NDUALAAAAAAFAAUAAAUVIIIMh9JI0/JQlfRY1xEAjEMIQBECADs=",
+   "width": 9859,
+   "height": 10740,
+   "alt_text": "Portrait of man wearing voluminous black cloak, feathered hat, and gold medallion."
+  },
+  "date_display": "1631",
+  "artist_display": "Rembrandt van Rijn (Dutch, 1606–1669)",
+  "credit_line": "Mr. and Mrs. W. W. Kimball Collection",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Rembrandt van Rijn",
+  "image_id": "3eaab3a3-2b47-9fdd-121c-050f6b8d9ccb",
+  "kind": "painting"
+ },
+ {
+  "_score": 14881.219,
+  "id": 20579,
+  "title": "Hercules and the Lernaean Hydra",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAACcdDCoeDikfECogECshEy8iFC8lFDEnFjEnFzorFDQrGkQ2IUU4JEY5KFJGNVlPO25aRGleSIF0WpmLbgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAUR4CM5BTJFQgA1RLIcA6AwRggAOw==",
+   "width": 7262,
+   "height": 8384,
+   "alt_text": "Painting depicting the god Hercules confronting the Hydra, a mythical creature. Amidst towering, rocky cliffs, Hercules stands on the left of the painting, dressed in clothing that exposes his figure. He looks to the right, where the seven-headed hydra rears up, bearing its teeth. A nude figure of a woman is on the ground in front of the Hydra, and an orange sun peeks from behind red clouds in the background."
+  },
+  "date_display": "1875–76",
+  "artist_display": "Gustave Moreau (French, 1826-1898)",
+  "credit_line": "Gift of Mrs. Eugene A. Davidson",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Gustave Moreau",
+  "image_id": "2ae64c8a-266d-470a-a25a-c83127564636",
+  "kind": "painting"
+ },
+ {
+  "_score": 14674.647,
+  "id": 27984,
+  "title": "Woman before an Aquarium",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhBgAFAPQAAFo9L14+LmE/L15GLmFFLGFDNVlfWGtUR2RfT29cTHhVRHhaQWBbVWleUnZiSmhhXUhcYUlfaFRjZk5ue1ZreI5vV4tvZINyZIF3Z2iEjGqIkXGFknCgkaOahAAAAAAAACH5BAAAAAAALAAAAAAGAAUAAAUYYJdNnLZhUoQYVMNcVQItxOBYjyIUQHCEADs=",
+   "width": 16613,
+   "height": 13264,
+   "alt_text": "Painting of woman, arms crossed on brown desk, staring at goldfish."
+  },
+  "date_display": "1921–23",
+  "artist_display": "Henri Matisse\nFrench, 1869–1954",
+  "credit_line": "Helen Birch Bartlett Memorial Collection",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Henri Matisse",
+  "image_id": "d0e36029-27fc-bf4e-357a-55cfbaf7bdfd",
+  "kind": "painting"
+ },
+ {
+  "_score": 14616.694,
+  "id": 16146,
+  "title": "Equestrienne (At the Cirque Fernando)",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhCAAFAPUAAG1pXG5oaXxza350bn53b3RxcYpzaIJ4c4p+coJ+e5p+co2EaYyCeJWCc5iKeoSEgoyIg42Lg4qKiJGMhZCMiZ6QgJiXiZiTjp+XkaKdkaSckaOel6WfmKGfnKujk6uhm7Gqn6uopLmupsW/s8bAuMfBuc7JwdTQyQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAIAAUAAAYlQAeiQgAsGAIPR/Q5WBqGSKFzkjwwik2AYgolIBrQYEQqXSaZIAA7",
+   "width": 4984,
+   "height": 3139,
+   "alt_text": "Painting of a performance inside a circus ring. A man wearing a suit holds a whip in his hand and looks towards a woman with red hair riding a gray horse and wearing a green dress. Audience members wearing suits and top hats watch from red and white benches on the side."
+  },
+  "date_display": "1887–88",
+  "artist_display": "Henri de Toulouse-Lautrec (French, 1864–1901)",
+  "credit_line": "Joseph Winterbotham Collection",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Henri de Toulouse-Lautrec",
+  "image_id": "65db9e21-83c3-1cc6-7240-1e1996d87f52",
+  "kind": "painting"
+ },
+ {
+  "_score": 14494.773,
+  "id": 16499,
+  "title": "Jesus Mocked by the Soldiers",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAAAACBgYGBgUIChUSDiMdFTEqIT0xIjw4NkM3KlA+L0A7ME9IQVpZVm1ZQXNgTnRoW3ZtZ4t5W6aYib2ojQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAURoAAEA2EkTeFMSPRIh7JATAgAOw==",
+   "width": 12580,
+   "height": 16162,
+   "alt_text": "Large, dark painting of Jesus sitting with three standing soldiers."
+  },
+  "date_display": "1865",
+  "artist_display": "Édouard Manet (French, 1832–1883)",
+  "credit_line": "Gift of James Deering",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Édouard Manet",
+  "image_id": "4d03ba14-a01a-d003-404a-cf3f9fb40ede",
+  "kind": "painting"
+ },
+ {
+  "_score": 14488.83,
+  "id": 146701,
+  "title": "Mountain Brook",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAACwmHCwmHTQrHzMsHTQsHjUsHzUtHy0oIDYxIDkyITk0Iz80I0E3JkE2J0I6JUg5J0E2KEY6KUI6LEo+LQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAURIIAMBOMYwjNFSwBJSVMcSggAOw==",
+   "width": 1832,
+   "height": 2250,
+   "alt_text": "Painting of a small stream in the middle of the woods. In the center of the painting, there is a small waterfall over a large boulder. Radiant beams of sunlight penetrate the thick forest of birch and other trees, and a small bird sings from a broken branch over the waterfall."
+  },
+  "date_display": "1863",
+  "artist_display": "Albert Bierstadt (American, born Solingen, Prussia, now Germany, 1830–1902)",
+  "credit_line": "Purchased with funds provided by Mrs. Herbert A. Vance; fund of an anonymous donor; Wesley M. Dixon Jr. Fund and Endowment; Henry Horner Straus and Mr. and Mrs. Frederick G. Wacker Jr. endowment funds; through prior acquisitions of various donors, including Samuel P. Avery Endowment, Mrs. George A. Carpenter, Frederick S. Colburn, Mr. and Mrs. Stanley Feinberg, Field Museum of Natural History, Mr. and Mrs. Frank Harding, International Minerals and Chemicals Corp., Mr. and Mrs. Ralph Loeff, Mrs. Frank C. Miller, Mahlan D. Moulds, Mrs. Clive Runnells, Mr. and Mrs. Stanley Stone, and the Charles H. and Mary F.S. Worcester Collection",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Albert Bierstadt",
+  "image_id": "d55b0cfc-0716-d6cd-3b38-5742903ce046",
+  "kind": "painting"
+ },
+ {
+  "_score": 14434.516,
+  "id": 84709,
+  "title": "Still Life with Game Fowl",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhBwAFAPUAABcUEx0bFx4cGB8fGCUhGyciGyUiHigkHysmIDIrIDAsIjMuJDQvJDUwJTUxJjg0Iz03Jzw3KTw2LEY6KUY9LUc+Lkg+LkdGL0tEM0hCNEtCNFFHNVNKNFFJOFVLOFRMOFpQO2BWPnRqUgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAHAAUAAAYhwEVDYDgEOgxIATEheByXAcCioSgeEZEkk8BwQJ9NqBIEADs=",
+   "width": 11148,
+   "height": 8546,
+   "alt_text": "Still life painting of dead waterfowl and vegetables in windowsill."
+  },
+  "date_display": "c. 1600–3",
+  "artist_display": "Juan Sánchez Cotán (Spanish, 1560–1627)",
+  "credit_line": "Gift of Mr. and Mrs. Leigh B. Block",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Juan Sánchez Cotán",
+  "image_id": "f2021182-1302-f76f-97f1-4e7850030e3b",
+  "kind": "painting"
+ },
+ {
+  "_score": 14398.032,
+  "id": 19339,
+  "title": "Arlésiennes (Mistral)",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhBgAFAPQAACAqMzhKLUxbKmtfLn1TImBJNGZYMnhZOVRsN1lsNltwNyxIRzdFTDxVSV5nSVdxVnJ0S3x4T390YHl+YXp6a5hSP5B6KrFXRpV2R2iEPo6Na5uUirKjiMWxlQAAAAAAACH5BAAAAAAALAAAAAAGAAUAAAUYIPc00SR11AJp2MYAQ2Y5QlAYhJIgx1WFADs=",
+   "width": 21953,
+   "height": 17361,
+   "alt_text": "Painting of four women with blue shawls walking near red fence."
+  },
+  "date_display": "1888",
+  "artist_display": "Paul Gauguin (French, 1848–1903)",
+  "credit_line": "Mr. and Mrs. Lewis Larned Coburn Memorial Collection",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Paul Gauguin",
+  "image_id": "ae6ac285-6887-dd76-4570-d379c786dfae",
+  "kind": "painting"
+ },
+ {
+  "_score": 14374.048,
+  "id": 28849,
+  "title": "A City Park",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhBwAFAPUAAEdhPFZmP0ZbQkplQm14U3R8X2eAWXaGVXGTXYyrQJGvVpi0XoieZ4+OdpKReKSVeLGnZretd6CqjKCmlMC3j8+3kc65l866lse6mdS9kdq9k9S8mtG+otO/pc3AoNXCptnY1NrY1d/d2gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAHAAUAAAYhQIBBIgqBJoIBwdEoBBiIw8ODoSgWkQ2n80lANJmK5RIEADs=",
+   "width": 8555,
+   "height": 5932,
+   "alt_text": "Small painting of woman in pink and black sitting on park bench."
+  },
+  "date_display": "c. 1887",
+  "artist_display": "William Merritt Chase (American, 1849–1916)",
+  "credit_line": "Bequest of Dr. John J. Ireland",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "William Merritt Chase",
+  "image_id": "72a76270-d6f4-e744-d47b-307873a8e8ff",
+  "kind": "painting"
+ },
+ {
+  "_score": 14330.673,
+  "id": 15401,
+  "title": "At Mouquin's",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAADs6Nzk7OT49OV1eWWNeV3NnWF5wc29wZnVwYn94Z316aH58bGl3dnd7coCGfG+DhXSGhYCOjIuRiJiekwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAUR4AIUiXIgRBBNjvE0EsQIQwgAOw==",
+   "width": 4400,
+   "height": 5835,
+   "alt_text": "Opulently dressed light-skinned man and woman drink at a small table. A mirror behind them reflects a crowd. Her blue dress and dark hat dominate."
+  },
+  "date_display": "1905",
+  "artist_display": "William Glackens (American, 1870–1938)",
+  "credit_line": "Friends of American Art Collection",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "William James Glackens",
+  "image_id": "b146368d-a855-63ac-6115-04b835c60bb0",
+  "kind": "painting"
+ },
+ {
+  "_score": 14327.763,
+  "id": 193664,
+  "title": "The Captive Slave (Ira Aldridge)",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAABwYFxwaGCchHSklHSslHSwnHTArHzcmIDQuIjQuIzUuIzctJEAqI0MqIkktJE4tJVEuJlAzKl46MGE1KwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAURIGEgSLEgRCM5ATQ9wBE1QggAOw==",
+   "width": 9791,
+   "height": 12331,
+   "alt_text": "Painting of a dark-skinned man seated and wearing a red open-necked tunic. He looks up to the right. His wrists are shackled and a large chain rests at his right, running down the bench he sits upon."
+  },
+  "date_display": "1827",
+  "artist_display": "John Philip Simpson (English, 1782–1847)",
+  "credit_line": "Purchased with funds provided by Mary Winton Green, Dan and Sara Green Cohan, Howard and Lisa Green and Jonathan and Brenda Green, in memory of David Green",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "John Philip Simpson",
+  "image_id": "5490fd49-dd52-4fd7-7d41-d871dcffae55",
+  "kind": "painting"
+ },
+ {
+  "_score": 14263.497,
+  "id": 64724,
+  "title": "The Home of the Heron",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhCAAFAPUAAD0rDUQsCkIwDkMwDkszC0kzD1I4Dlk6DF87DFw9D0k1EUs2EUg1E0k1E004EFA5EVI6EVA4E18+EWE/EV1AE1tAFV1BFl9FGWBBD2FBEGJBE2dCEGZGEWVHE2ZHE2hEEW1NEm9NEmxJF21OF2lLGHFOEnBJFndSGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAIAAUAAAYlwIqFpBA8HKMI49JYQAaAAuUkMmkkAQMBMflgEodOZuMBlUKcIAA7",
+   "width": 9100,
+   "height": 5957,
+   "alt_text": "A heronǳ silhouette sits amongst the brush in a golden hued forest."
+  },
+  "date_display": "1893",
+  "artist_display": "George Inness (American, 1825–1894)",
+  "credit_line": "Edward B. Butler Collection",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "George Inness",
+  "image_id": "0f2d999d-0173-2935-a6d0-0175bb97b2a9",
+  "kind": "painting"
+ },
+ {
+  "_score": 14252.224,
+  "id": 81512,
+  "title": "Interrupted Reading",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAAE1BNk5DNlxGO1tPPl5SQmlcSnVeUGthVXZkVH1qVn1pWH5tW35xYIV1XYJ1Y4t7YpKBaZqHb5mIdKmbiAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAURIAEEg7NIjIFMh5BAhRI9TQgAOw==",
+   "width": 5197,
+   "height": 7384,
+   "alt_text": "A  pensive faced woman sits, slightly hunched, holding a book."
+  },
+  "date_display": "c. 1870",
+  "artist_display": "Jean-Baptiste-Camille Corot (French, 1796–1875)",
+  "credit_line": "Potter Palmer Collection",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Jean Baptiste Camille Corot",
+  "image_id": "1c2d32a7-790c-501a-e124-00f28cf5052d",
+  "kind": "painting"
+ },
+ {
+  "_score": 14225.215,
+  "id": 44892,
+  "title": "Fish (Still Life)",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhBgAFAPQAAB4ZGC8oHi0pJC0qJDMqIzUsIzQtJDsrITcxKUlCNkhBO1RCMlhPP1ZQQmphUHltWHt3aYFoV4Z0YY2IZpeOfpqNfJuWfKGdiKqghq2ljKmllbankrCqlQAAAAAAAAAAACH5BAAAAAAALAAAAAAGAAUAAAUYYFAgwmAkTQMchBNt1cI8EqVZE5ZxF6SEADs=",
+   "width": 16704,
+   "height": 13234,
+   "alt_text": "Still-life painting, fish, open oysters, eel, lemon on tablecloth."
+  },
+  "date_display": "1864",
+  "artist_display": "Édouard Manet (French, 1832–1883)",
+  "credit_line": "Mr. and Mrs. Lewis Larned Coburn Memorial Collection",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Édouard Manet",
+  "image_id": "0cbe27e8-2fec-3445-bc48-ce40a8f2dc25",
+  "kind": "painting"
+ },
+ {
+  "_score": 14222.889,
+  "id": 4575,
+  "title": "Judith",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAAA4MDBENChQPDCAWDjQcDjQeDyweFEEwJFQ3JVQ4JV09Jlc8KlE9Ll9BK2VDKm5KMYthRIVjS5xzWLuEXQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAURIJM0wvEgARA5QyFBCzEpRggAOw==",
+   "width": 3775,
+   "height": 4880,
+   "alt_text": "Painting of Judith, naked, holding sword, with head of Holophernes."
+  },
+  "date_display": "c. 1540",
+  "artist_display": "Jan Sanders van Hemessen (Netherlandish, active c. 1519–1556)",
+  "credit_line": "Wirt D. Walker Fund",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Jan Sanders van Hemessen",
+  "image_id": "5b9758c9-24ef-8661-fac0-c9a4229eefd4",
+  "kind": "painting"
+ },
+ {
+  "_score": 14185.9795,
+  "id": 144969,
+  "title": "The Interior of the Palm House on the Pfaueninsel Near Potsdam",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhBQAFAPQAACUnCzAwCyouEzg5EDEwGDU4HD5AGU5IJElLLFFJLlJQKU5QOF5eNl9TOVlXOGNVOmdjPFtgQm1sTHluTIp7TpN+UpR9V4SCZIqNcAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAFAAUAAAUVYHUMAXBJjCJgS4QQTvMkBTRZlBECADs=",
+   "width": 6050,
+   "height": 6497,
+   "alt_text": "Four women with musical instruments lounge in a massive garden courtyard."
+  },
+  "date_display": "1834",
+  "artist_display": "Carl Blechen (German, 1798–1840)",
+  "credit_line": "Through prior acquisitions of the George F. Harding Collection; L.L. and A.S. Coburn and Alexander A. McKay endowments; through prior gift of William Wood Prince; through prior acquisitions of the Charles H. and Mary F. S. Worcester Endowment",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Carl Blechen",
+  "image_id": "38bb6be4-223e-af7a-7e18-f9ad0c388d3c",
+  "kind": "painting"
+ },
+ {
+  "_score": 14181.011,
+  "id": 44018,
+  "title": "Croquet Scene",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhCAAFAPUAACskDzQpDjkqDz8wBT40CT4yDi8oEzcrFD4wEz02G0AsEEksEEM3FkI3F0o+EkQ0GEY+GkU9H0c+IUc7JUk6IktCFU5AGEtEG1JMHGVNGkxHJE1HKUxMK0JINVpUMXFQNnJTPzZLQidhbkJlXmllT3p7XXl9Z5E/MAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAIAAUAAAYlwI1AEQAkGI3HhHQwfBaIjGcUoZxAGEtI1JGYShWIhnNxEAaFIAA7",
+   "width": 6246,
+   "height": 3808,
+   "alt_text": "Painting of four figures in blue, red, brown dresses playing croquet."
+  },
+  "date_display": "1866",
+  "artist_display": "Winslow Homer (American, 1836–1910)",
+  "credit_line": "Friends of American Art Collection; Goodman Fund",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Winslow Homer",
+  "image_id": "f7b2db45-f393-653c-07ef-84319b0cdb92",
+  "kind": "painting"
+ },
+ {
+  "_score": 14169.443,
+  "id": 76571,
+  "title": "View of Cotopaxi",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhCAAFAPUAAC0rIjIvIjMwJD85I0I4KUQ+K0A9MUE+ME1DKk1ELUhCM01INFFGMFxON1NKOF1QPmFRPFNNQVVPQFVQR11SQHBjTXJrW3ZwXHhzYn54ZoKAdYaAdYWFd4iFfImHfI6LgoiNhI+TiIySio2WjY6Vjo+XkJCYkJKakwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAIAAUAAAYlwFHpZCKJQCGOZtP5eDAZhQPyiEwkiwCDYjEACAVBo3I5DBCJIAA7",
+   "width": 8511,
+   "height": 5650,
+   "alt_text": "Ecuadorian landscape with people, palm trees, waterfall, and volcano in background."
+  },
+  "date_display": "1857",
+  "artist_display": "Frederic Edwin Church (American, 1826–1900)",
+  "credit_line": "Gift of Jennette Hamlin in memory of Mr. and Mrs. Louis Dana Webster",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Frederic Edwin Church",
+  "image_id": "33fc29fc-097b-576b-c9e6-c3352d9d3f15",
+  "kind": "painting"
+ },
+ {
+  "_score": 14159.653,
+  "id": 110507,
+  "title": "In the Sea",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhBwAFAPUAACknHgU0MiEtKzo7MTc/Pzk8OiNIRV9bTFlVUFVZUmFjXFBoYltsY3FsYXRtYm53cXF7eWGCfoSBboGBdIWEdImHdpiTfZuTfICdi5iYioydlqKdh5mgla2nka2rl6+znqy3qcrHrMLJuQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAHAAUAAAYhwFDHIblYPJvGBHCgZCqFxEDBgTwICMFCBPowMAFDRBMEADs=",
+   "width": 9162,
+   "height": 6905,
+   "alt_text": "Painting of centaur with harp, in water, surrounded by mermaids and mermen."
+  },
+  "date_display": "1883",
+  "artist_display": "Arnold Böcklin (Swiss, 1827–1901)",
+  "credit_line": "Joseph Winterbotham Collection",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Arnold Böcklin",
+  "image_id": "fa81bfb9-5a07-5e3c-33b4-4efde68981c8",
+  "kind": "painting"
+ },
+ {
+  "_score": 14151.397,
+  "id": 16551,
+  "title": "Beata Beatrix",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhAwAFAPMAAD4tF188G1o8HX5iPXJhQIBoP4RqQ4prQo5uRY1sR4VtTodwT5Z2SZyGWaGGWgAAACH5BAAAAAAALAAAAAADAAUAAAQL0LF2RCEgmYDUWBEAOw==",
+   "width": 5001,
+   "height": 7319,
+   "alt_text": "Serene red-haired woman, framed with allegorical symbols of red bird, sundial."
+  },
+  "date_display": "1871–72",
+  "artist_display": "Dante Gabriel Rossetti (English, 1828–1882)",
+  "credit_line": "Charles L. Hutchinson Collection",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Dante Gabriel Rossetti",
+  "image_id": "194674a2-f451-65f7-ba46-6aac4d894f0b",
+  "kind": "painting"
+ },
+ {
+  "_score": 14150.551,
+  "id": 62042,
+  "title": "Still Life with Dead Game, Fruits, and Vegetables in a Market",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhCAAFAPUAABwYHB0aHyUeHSQeHycjJCoiISgjJCwnKTImITUqJzUtKTAyMDYwMTw3ND43OUYtJkkuKEc4LlM6K0U6NWY8MUpBO09BOlBEPVNGPVhLPkRBQk1ISVVKRF5SRVtdWGlVQ2FUSWRUSGlbTnlVTYZ9aoF7eZaEcq6rqQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAIAAUAAAYlQM9ioAAEDAwIRRJJFBCZx8j06VgwJM2pxAFdRI2N4xCaECqCIAA7",
+   "width": 9235,
+   "height": 6043,
+   "alt_text": "An older man at left in red raises his hat toward a central table chaotically overflowing with dead game, fruits, and vegetables. The wings of dead birds and limbs of animals are splayed out at dramatic angles; a deer at center is suspended by his back legs. Live birds and a cat animate the scene."
+  },
+  "date_display": "1614",
+  "artist_display": "Frans Snyders (Flemish, 1579-1657)",
+  "credit_line": "Charles H. and Mary F. S. Worcester Collection",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Frans Snyders",
+  "image_id": "d9bde524-38b2-4262-3338-e4d06a50746d",
+  "kind": "painting"
+ },
+ {
+  "_score": 14065.129,
+  "id": 97910,
+  "title": "The Advance-Guard, or The Military Sacrifice (The Ambush)",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhBwAFAPUAAFZHQnxpXXlqYnl6fIpvYJaFeZaKfKGLe6yUc7KVcbWffnV9goSNj4yMjISPmYiQk4iTm6+ch6OYjqKZj6eZjaaajaibibmdgLOejKOck7qhjKWgl7Glk7ilkZ2lqpGispSqvpipuZWswgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAHAAUAAAYhwAfkAxKFPIzBwtHgWCoBgMCgQGgOhMImksBUMpNJ5xIEADs=",
+   "width": 13192,
+   "height": 9306,
+   "alt_text": "Three cavalry scouts—light-skinned men mounted on gleaming brown horses—among light-beige, arid mountains. The figure in the foreground has begun to to slump and seems poised to fall, his rifle on the ground, his horse agitated and alarmed. The others ride off in pursuit."
+  },
+  "date_display": "1890",
+  "artist_display": "Frederic Remington (American, 1861–1909)",
+  "credit_line": "George F. Harding Collection",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Frederic Remington",
+  "image_id": "f1e03813-f9c7-f4f8-fbe8-a5eeae84fda4",
+  "kind": "painting"
+ },
+ {
+  "_score": 14022.037,
+  "id": 105466,
+  "title": "The Battle between the Gods and the Giants",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhBwAFAPUAADEqJDcsJDUxLj4xKDkzLj85MkEwJEU3K0Y6LUs6LEk7Lko8L048LU08LlI+LUY5MEI7NUY7NUM9NUw+MkA7PkZBPE1FPE9HPVJBN1BENVBEOVBHPllFOFxOOVpNP01KRE9NRVNORmBSQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAAIf8LSW1hZ2VNYWdpY2sOZ2FtbWE9MC40NTQ1NDUALAAAAAAHAAUAAAYhwIBCxPFUBABJ6AKJFAibD4jy0EwumQZmoTA4GocOYhAEADs=",
+   "width": 6028,
+   "height": 4667,
+   "alt_text": "Animated scene of many mostly nude figures in close combat, on earth and aloft in low-hanging clouds, reaching toward one another with long spears."
+  },
+  "date_display": "c. 1608",
+  "artist_display": "Joachim Antonisz. Wtewael (Dutch, c. 1566–1638)",
+  "credit_line": "Through prior acquisition of the George F. Harding Fund",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Joachim Antonisz. Wtewael",
+  "image_id": "8111acce-c8ce-2ef3-5f32-61cd63905c7d",
+  "kind": "painting"
+ },
+ {
+  "_score": 13987.561,
+  "id": 62371,
+  "title": "Madame Cezanne in a Yellow Chair",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAAEk4OVFBQlxAQFtEQltUUlpeU1JZWmhORGtcRmVlX3NhXnFlXXtyXF9lZFNlaFlxc2tzb314YmV8f3F/fQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAUR4ANNUrEkDiIABjMETXQoRAgAOw==",
+   "width": 9801,
+   "height": 12413,
+   "alt_text": "Painting of a placid-looking, light-skinned woman in a maroon dress, seated in a chair with yellow upholstery, hands folded."
+  },
+  "date_display": "1888–90",
+  "artist_display": "Paul Cezanne (French, 1839–1906)",
+  "credit_line": "Wilson L. Mead Fund",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Paul Cezanne",
+  "image_id": "4822cd01-44ac-041a-36b8-c0542377b750",
+  "kind": "painting"
+ },
+ {
+  "_score": 13940.852,
+  "id": 57051,
+  "title": "The Fountains",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAADEkGkIvHkc3J0o2JUY5LEc6Lk45KE46KlI9KlJBLFpAKUtANFFDMVFIPGFRPHNYO15ZTGJaSmxpXnR5cgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAUR4CQ10BBEyyEwhIE4hfIkQAgAOw==",
+   "width": 1957,
+   "height": 2250,
+   "alt_text": "Large painting of ancient arch ruins, statues, humans are small in comparison."
+  },
+  "date_display": "1787–88",
+  "artist_display": "Hubert Robert (French, 1733-1808)",
+  "credit_line": "Gift of William G. Hibbard",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Hubert Robert",
+  "image_id": "62fd0e14-d7fe-0d01-ab00-1eed84b4f294",
+  "kind": "painting"
+ },
+ {
+  "_score": 13870.108,
+  "id": 111317,
+  "title": "Amédée-David, the Comte de Pastoret",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAAAwICBUYDhEXEBcdEiEZFCQdFw8nFRQlExMmFhQsGRopGiEjEzAlHDUnHD0vHzUwJDo4Ijg3KD45KD86KgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAURIDJFiiE9RyIAA8QQgVM0SwgAOw==",
+   "width": 5360,
+   "height": 6633,
+   "alt_text": "Portrait of white man dressed in all black with medallion and sword."
+  },
+  "date_display": "1823–26",
+  "artist_display": "Jean-Auguste-Dominique Ingres (French, 1780-1867)",
+  "credit_line": "Estate of Dorothy Eckhart Williams; Robert Allerton, Bertha E. Brown, and Major Acquisitions funds",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Jean Auguste Dominique Ingres",
+  "image_id": "8d119fd0-2f57-f20e-a3f5-a573904001e9",
+  "kind": "painting"
+ },
+ {
+  "_score": 13855.857,
+  "id": 14591,
+  "title": "Woman Reading",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAAB8bHCAdHjQwLTgyLEQ+N0dORUVJSFtRSlRbTE5UWmFbTWVvWXBrX21saH15a35/c4qGe4WIfoqKfYiOfQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAUR4LQUiPQcRhNBCeMQgTIIQAgAOw==",
+   "width": 12091,
+   "height": 14939,
+   "alt_text": "A young woman in a dark hat and coat with light ruffled collar sits reading a large periodical held up in her gloved hands. Flowers and foliage are suggested behind her."
+  },
+  "date_display": "1880–82",
+  "artist_display": "Édouard Manet (French, 1832–1883)",
+  "credit_line": "Mr. and Mrs. Lewis Larned Coburn Memorial Collection",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Édouard Manet",
+  "image_id": "fd991fea-0c13-8444-7879-aba467f1d9db",
+  "kind": "painting"
+ },
+ {
+  "_score": 13853.545,
+  "id": 23972,
+  "title": "Virgin and Child with the Young Saint John the Baptist",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAACYPCko7HG8pEUMtIkU4IzxEGiBQNkZGGXBCM25hOGNfTn5ZU0RmWnNlU3t7XYdLP4hiS4J6YImtqq/HzAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAUR4BE4U9EkkrFATIQ8hDIIQAgAOw==",
+   "width": 3968,
+   "height": 5096,
+   "alt_text": "Vividly colored painting of Virgin Mary with baby Jesus and baby John the Baptist."
+  },
+  "date_display": "c. 1515",
+  "artist_display": "Correggio (Antonio Allegri; Italian, 1489–1534)",
+  "credit_line": "Clyde M. Carr Fund",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Antonio da Correggio",
+  "image_id": "d63b9402-c42b-cce3-aa63-6d213ad621cd",
+  "kind": "painting"
+ },
+ {
+  "_score": 13848.91,
+  "id": 16327,
+  "title": "The Annunciation",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhAwAFAPMAACsiGDowJjk3L0EyIk41KEE5MEs/OkZCH0FENUpGNEdNOU1IPlJROFpZPVtgSQAAACH5BAAAAAAALAAAAAADAAUAAAQLMAnQVDjIsFUcGREAOw==",
+   "width": 5816,
+   "height": 8501,
+   "alt_text": "Painting of the Annunciation, dove flying above Mary with angel."
+  },
+  "date_display": "1490–95",
+  "artist_display": "Jean Hey (Master of Moulins; Netherlandish, c. 1480-c.1504)",
+  "credit_line": "Mr. and Mrs. Martin A. Ryerson Collection",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Jean Hey, (the Master of Moulins)",
+  "image_id": "77951d0c-d781-eac6-f4ff-f13cc5cfc0cf",
+  "kind": "painting"
+ },
+ {
+  "_score": 13762.95,
+  "id": 60812,
+  "title": "Merahi metua no Tehamana (Tehamana Has Many Parents or The Ancestors of Tehamana)",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAAFZEMVNMPVZUP2hcPmxjP01MQFxaRVxgUGFgTnFoQHhvRHhzT2diUnRoVldhYntyYnV5cnB4eaeQd3V/ggAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAURYKIQi3EMSOBMkfBIENAwRQgAOw==",
+   "width": 4678,
+   "height": 6655,
+   "alt_text": "A young girl with medium skin wears a striking dress of black and white stripes with a short lace collar. Behind her is backdrop featuring symbols and native figures. Mangos sit beside her."
+  },
+  "date_display": "1893",
+  "artist_display": "Paul Gauguin (French, 1848–1903)",
+  "credit_line": "Gift of Mr. and Mrs. Charles Deering McCormick",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Paul Gauguin",
+  "image_id": "48268fc7-2eb4-ded6-1293-e91f27b66478",
+  "kind": "painting"
+ },
+ {
+  "_score": 13677.822,
+  "id": 27307,
+  "title": "Madame de Pastoret and Her Son",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAAHRPKodoTZl9ZpSAb5qCbpCAcJSDcJiFcZqIdZqJd5uLe6OOeq+UcbGfi7KhjrikibWmkcrCrNDMvN/ezQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAURoIEMRbIQytE4AiQ9QTQxQAgAOw==",
+   "width": 1646,
+   "height": 2250,
+   "alt_text": "Large painting of young woman in white dress sitting next to crib."
+  },
+  "date_display": "1791–92",
+  "artist_display": "Jacques-Louis David (French, 1748–1825)",
+  "credit_line": "Clyde M. Carr Fund and Major Acquisitions Endowment",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Jacques Louis David",
+  "image_id": "72227c9e-413c-8930-477d-5a90e0a2123c",
+  "kind": "painting"
+ },
+ {
+  "_score": 13664.957,
+  "id": 100829,
+  "title": "Magnolias on Light Blue Velvet Cloth",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhCAAFAPUAACAbFSUdFiAcGCQgGTIrHDkxHiEmICQrJyQuJDkvIC4xICwxJCYwKikwKjg8LS86M0E3JEY8JElNJ0pFLUhJKFBDK1dMLlxPMUxTPFdSMVtTNmZYNUBKQkNQQF1XQ2RhQHl/X4F/W4CAU4mKYJSScaCfd7KuitTQpwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAIAAUAAAYlwM2lAkkEBICJJZKheAgDhsRUGp00hUcHJAqRPpgGB+FQGBaHIAA7",
+   "width": 10004,
+   "height": 6148,
+   "alt_text": "Still life of sensuously detailed painting of four white magnolias lying on blue velvet cloth."
+  },
+  "date_display": "1885–95",
+  "artist_display": "Martin Johnson Heade (American, 1819–1904)",
+  "credit_line": "Purchased with funds provided by Gloria and Richard Manney; Harold L. Stuart Endowment Fund",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Martin Johnson Heade",
+  "image_id": "0729fbba-51e3-a2d7-6d4d-61c2be62af3f",
+  "kind": "painting"
+ },
+ {
+  "_score": 13634.845,
+  "id": 111559,
+  "title": "Boy on a Ram",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAACkiEDY0HzRNMUZZPW9ZPnJgPVpiTm9oQm5jSnhoU1d8bY54UYR/bJ+FXHOamnmfn5yikaCqirO3oPjkwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAURoKA8zsBAkpEQUwAgUbE0RwgAOw==",
+   "width": 1995,
+   "height": 2250,
+   "alt_text": "A young, smiling boy in a ruffled collar, hat, and cumberbun rides outdoors on a brown ram, a small whip held aloft in his hand."
+  },
+  "date_display": "1786–87",
+  "artist_display": "Francisco José de Goya y Lucientes (Spanish, 1746–1828)",
+  "credit_line": "Gift of Mr. and Mrs. Brooks McCormick",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Francisco José de Goya y Lucientes",
+  "image_id": "e54a695c-16df-cf45-9dd4-b517e8c32cc3",
+  "kind": "painting"
+ },
+ {
+  "_score": 13602.575,
+  "id": 184371,
+  "title": "The Nativity",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAAEwlHE0oIUI4KVFBKyw0Qz9ASFFMRGZXWn9gSHxvWn11b6ydg7ilhbaji5yaoLOooLispMzGs9vWydrZzwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAURoAI9TiNNEcIsCTAYRyAURAgAOw==",
+   "width": 3669,
+   "height": 5112,
+   "alt_text": "A light-skinned man in red and woman in blue sit with an infant between them, angels beside and above them, a small town in the background."
+  },
+  "date_display": "1504–7",
+  "artist_display": "Fra Bartolommeo (Baccio della Porta; Italian, 1472-1517)",
+  "credit_line": "Ethel T. Scarborough Fund; John G. Searle Family Trust, L. L. and A. S. Coburn, Mr. and Mrs. Lester King, John and Josephine Louis, Samuel A. Marx, Alexander McKay, Chester D. Tripp, and Murray Vale endowment funds; purchased with funds provided by Marilynn Alsdorf, Anne Searle Bent, David and Celia Hilliard, Alexandra and John Nichols, Mrs. Harold T. Martin, Mrs. George B. Young in memory of her husband, and the Rhoades Foundation; gift of John Bross and members of the Old Masters Society in memory of Louise Smith Bross; through prior gift of the George F. Harding, Mr. and Mrs. W. W. Kimball, Mr. and Mrs. Martin A. Ryerson, and Charles H. and Mary F. S. Worcester collections",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Fra Bartolommeo",
+  "image_id": "40fdb1d6-93fe-2916-78fb-f56a1ac261f1",
+  "kind": "painting"
+ },
+ {
+  "_score": 13573.506,
+  "id": 127644,
+  "title": "Autumn Maples with Poem Slips",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhCgAFAPUAAH1yW4tlQI5nQoRyTJdwSJ50T41yUJx2UJx2U5J9Vp57U5F7WKJ3VqN9UaJ9U5KAXZqEXqWGVaCCWaGDX6uCXKyHXaaJWq2IXriSWr+XXoeAY5OCYpmCZJuFZZ+EaZyMaKeLYKaNYayLZKuKarONZa6VbbSUZLuaZ7KWbbCWb7eba7Kab7OacLabcLacdrmfdcCgbNCsfAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAKAAUAAAYuQASjECAcBIqGZOThGCiiCcmViqEWjksF1HqVNg8AZKWKnGCszkczSIQsmIwpCAA7",
+   "width": 10760,
+   "height": 5337,
+   "alt_text": "Papers with Japanese text hang from a tree bearing red and gold leaves."
+  },
+  "date_display": "c. 1675",
+  "artist_display": "Tosa Mitsuoki\nJapanese, 1617-1691",
+  "credit_line": "Kate S. Buckingham Endowment",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Tosa Mitsuoki",
+  "image_id": "86e919b9-d366-b3ca-d26f-4c16880474a3",
+  "kind": "painting"
+ },
+ {
+  "_score": 13554.2705,
+  "id": 88793,
+  "title": "Retable and Frontal of the Life of Christ and the Virgin",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhCQAFAPUoAJh2YZx7ZZx8aZeAa56BaJ6CbZ+Ecp+IeqGAbKSGb6KFcaGHcqOHcqSGcKSHcaWHcqSHc6GGdKWIcaOJdKmJcqmNd6KLeqqQeLCVf7SWfKWUhqyWg7CRgbGdjrmfjL2ij7umm8e5sNfKwdrQy9nRzd3W0tzX1Orj3v///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAJAAUAAAYpwM/DUcEcLJEOh5JJXAoShGdDmCwaEMZAUxqFAgIAiGRCoU4Sg0JkDgIAOw==",
+   "width": 29099,
+   "height": 16756,
+   "alt_text": "A work made of tempera and gold on panel."
+  },
+  "date_display": "1396",
+  "artist_display": "Spanish",
+  "credit_line": "Gift of Charles Deering",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Spanish",
+  "image_id": "97908967-4d35-cde9-6d90-7e90d3fa1dd6",
+  "kind": "painting"
+ },
+ {
+  "_score": 13532.175,
+  "id": 72801,
+  "title": "Icebound",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhBgAFAPQAAHyNh3yVk36bl5Gjn5Smo5qrqJquq6WyrqS3tb3FubnFvMXEvbbGwLrHwsDJw8jLwMjMxc3Px8POzMnSyszSydHWy9XVytfYzc/b2NbZ09Xa0tfd1Obl2+Xk3QAAAAAAACH5BAAAAAAALAAAAAAGAAUAAAUY4KYwGJRMlSMtj0YYSGEBQnA010BFXJeFADs=",
+   "width": 4707,
+   "height": 3938,
+   "alt_text": "Winter landscape painting with rocky stream lined by orange leafed trees."
+  },
+  "date_display": "c. 1889",
+  "artist_display": "John Henry Twachtman (American, 1853–1902)",
+  "credit_line": "Friends of American Art Collection",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "John Henry Twachtman",
+  "image_id": "3ae75415-0551-ae17-c478-3b8687a6f246",
+  "kind": "painting"
+ },
+ {
+  "_score": 13508.853,
+  "id": 14574,
+  "title": "Henri Degas and His Niece Lucie Degas (The Artist's Uncle and Cousin)",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhBgAFAPQAAA0OCxIPCR4bFR8eGjEhDyckGy4nHDcsHTUyKk89J048KUxDLktCMV5IM1JKOmFQO1NPQGNWQG5fRnheQ3t1YYxwR5Z/UpV+VoB7YJKCUquQVqOccaudd9vGfgAAAAAAACH5BAAAAAAALAAAAAAGAAUAAAUYICdp1tVtS/UgGQYJxhAxlEMAhdJMSXCEADs=",
+   "width": 7182,
+   "height": 6008,
+   "alt_text": "Impressionist painting of seated man, girl with brown, black hues."
+  },
+  "date_display": "1875–76",
+  "artist_display": "Edgar Degas (French, 1834–1917)",
+  "credit_line": "Mr. and Mrs. Lewis Larned Coburn Memorial Collection",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Hilaire Germain Edgar Degas",
+  "image_id": "ba4d7ead-bd10-e02d-6f5f-613050d7062e",
+  "kind": "painting"
+ },
+ {
+  "_score": 13487.536,
+  "id": 120154,
+  "title": "Still Life—Strawberries, Nuts, &c.",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhBwAFAPUAABQTEhETFR8aEhkYFxoYFhsZGBwaGR0bGh4cGx8dHDcdFSskGz4kETYrGjYsHDksGVUqF0w+KUo9LUw/L2ZQBE5ALExCLVREOFBKPlpOPV1QOV1SPXRZJFZQRFtUQ1tURGpfRmxkU3NqVQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAHAAUAAAYhwAMiQRgYFgEFpAAQODoXBgUjeoQ+E44k09BsQB5LpBIEADs=",
+   "width": 5617,
+   "height": 4024,
+   "alt_text": "Still life painting of strawberries, nuts, lemon, and porcelain vessels."
+  },
+  "date_display": "1822",
+  "artist_display": "Raphaelle Peale (American, 1774–1825)",
+  "credit_line": "Gift of Jamee J. and Marshall Field",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Raphaelle Peale",
+  "image_id": "1cddae1c-99d5-462f-4aa6-128c0732ac11",
+  "kind": "painting"
+ },
+ {
+  "_score": 13475.706,
+  "id": 111617,
+  "title": "Cabin in the Cotton",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhCQAFAPUAABIPERcVFxscGx4cHCQmIScoJCksIigrJCgrJSorKistKi0vKjEzKTAxKjAxLDM0LjM1LjU0MDQ1MDU2MSRAWiRBXSZCXChGZS5LZTNNZDNPazZSbzlUbUpHQ0xNREBFSERISUNKTVdVUlBVWFxbWWZjXlFjdImFfG14gHF9hoSKjpCYnbaxpwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAJAAUAAAYqwMtGU6lkOBjKChQyoT4jVYo06LBEAUDpJEhMPI6JYsIoLBAGxuNxIAQBADs=",
+   "width": 8964,
+   "height": 5305,
+   "alt_text": "Painting of a cabin set below a dark blue sky and fluffy white clouds. Behind it is a field of many small white dots. In front, a dark-skinned woman sits and a dark-skinned child plays among roaming chickens and dogs in a fenced-in yard."
+  },
+  "date_display": "c. 1931–37",
+  "artist_display": "Horace Pippin (American, 1888–1946)",
+  "credit_line": "Purchased with funds provided by Thomas F. Pick and Mary P. Hines in memory of their mother Frances W. Pick",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Horace Pippin",
+  "image_id": "18dd28cc-ae57-b852-cbc4-d184c6f0555d",
+  "kind": "painting"
+ },
+ {
+  "_score": 13474.653,
+  "id": 16488,
+  "title": "Armida Encounters the Sleeping Rinaldo",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhBgAFAPQAADEsKDMvKEM1KFg9L1FFNHlIM3NhUpVPOYNkT4VnV4x1ZI56ZZB7a6F+ZJ6QfaaMcr6gftShfJegmpejna6jjrKikKW7vaa6vbK3tbO8u7bAv9nBq62/xLXAxAAAAAAAACH5BAAAAAAALAAAAAAGAAUAAAUYIHd12GRpVfRI2dZAi0IZA+MkCBAIRHGEADs=",
+   "width": 13706,
+   "height": 11863,
+   "alt_text": "Large painting of soldier asleep outdoors surrounded by two women and a cupid."
+  },
+  "date_display": "c. 1742–45",
+  "artist_display": "Giovanni Battista Tiepolo (Italian, 1696–1770)",
+  "credit_line": "Bequest of James Deering",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Giovanni Battista Tiepolo",
+  "image_id": "633f464c-203f-f7b9-a251-7a2073f4b05d",
+  "kind": "painting"
+ },
+ {
+  "_score": 13445.929,
+  "id": 16169,
+  "title": "The Beheading of Saint John the Baptist",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhAwAFAPMAAFlTRW5jV2pmVnp4aYd+a4R+bpOAaoqGdpWGeJiSepyPgJeTgpCSiqWbg6ObhAAAACH5BAAAAAAAIf8LSW1hZ2VNYWdpY2sOZ2FtbWE9MC40NTQ1NDUALAAAAAADAAUAAAQLkK3j0ihANBKMQhEAOw==",
+   "width": 4744,
+   "height": 9683,
+   "alt_text": "A headless figure leans out of the first-floor window of a light-colored stone building from which two iron bars have been detatched, his blood spurting to the ground. A figure bends to collect the head while another looks away to sheath a long sword. From right, a robed man beholds the guesome scene."
+  },
+  "date_display": "1455–60",
+  "artist_display": "Giovanni di Paolo (Italian, 1398–1482)",
+  "credit_line": "Mr. and Mrs. Martin A. Ryerson Collection",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Giovanni di Paolo",
+  "image_id": "af91bb7d-0af4-ef10-5b4d-052da0b6e21a",
+  "kind": "painting"
+ },
+ {
+  "_score": 13419.751,
+  "id": 27987,
+  "title": "Jacques and Berthe Lipchitz",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhAwAFAPMAADAmJDEpJjYsKjcyMUg1KE5FPVxDNlNGPllDOFJORldNRVNRSkxTU2hPQWpkWQAAACH5BAAAAAAALAAAAAADAAUAAAQLsDlWVhqBAIPEUREAOw==",
+   "width": 9289,
+   "height": 13930,
+   "alt_text": "Large painting, standing man blue turtleneck, sitting woman with white collar."
+  },
+  "date_display": "1916",
+  "artist_display": "Amedeo Modigliani\nItalian, 1884–1920",
+  "credit_line": "Helen Birch Bartlett Memorial Collection",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Amedeo Modigliani",
+  "image_id": "7e649536-b186-c3f5-3e6d-0d22d5d798ef",
+  "kind": "painting"
+ },
+ {
+  "_score": 13390.06,
+  "id": 27310,
+  "title": "The Holy Family with Saints Elizabeth and John the Baptist",
+  "thumbnail": {
+   "alt_text": "Large painting of Holy Family: Mary in red, holding baby Jesus.",
+   "width": 11804,
+   "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAADUrIzgoIT87Ojo/P0Q4LVoyLUE5MXotIWQ/L3AzJFFAL1VEMF5OOWFCLGZOOmNURn5ZRXBeSHJaTJFmUwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAAIf8LSW1hZ2VNYWdpY2sOZ2FtbWE9MC40NTQ1NDUALAAAAAAEAAUAAAUR4GAQivBIQDQVAXQgTJM4SwgAOw==",
+   "height": 14808
+  },
+  "date_display": "c. 1615",
+  "artist_display": "Peter Paul Rubens (Flemish, 1577–1640)",
+  "credit_line": "Major Acquisitions Fund",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Peter Paul Rubens",
+  "image_id": "caac7478-b78f-a94d-a36c-fc5dde17e7c9",
+  "kind": "painting"
+ },
+ {
+  "_score": 13362.349,
+  "id": 64729,
+  "title": "Early Morning, Tarpon Springs",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAADUuJDsvIlc/JVY7KGI/I05CMUxNO1tOPGNBJmJaUGNkTnBgT2hsVXNjVXZlW25xZJOBb6CGb4iKho2MiQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAURoMJAkfFIk9MkC4EMQgAURwgAOw==",
+   "width": 4658,
+   "height": 6097,
+   "alt_text": "A work made of oil on canvas."
+  },
+  "date_display": "1892",
+  "artist_display": "George Inness (American, 1825–1894)",
+  "credit_line": "Edward B. Butler Collection",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "George Inness",
+  "image_id": "ef96e79b-f481-8114-0804-4bd39c101983",
+  "kind": "painting"
+ },
+ {
+  "_score": 13343.3545,
+  "id": 11434,
+  "title": "Salome with the Head of Saint John the Baptist",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhAwAFAPMAAC0oITUvJjYyKjYzLDs2LTk4LT46MEY5L0E8L0Q9MlNHOFZIP1lKQFhRQGVXRgAAACH5BAAAAAAALAAAAAADAAUAAAQLMIihGlkOHVZAMhEAOw==",
+   "width": 14192,
+   "height": 20485,
+   "alt_text": "Large painting of woman, in gold and pink dress, placing severed head on platter."
+  },
+  "date_display": "c. 1639–42",
+  "artist_display": "Guido Reni (Italian, 1575–1642)",
+  "credit_line": "Louise B. and Frank H. Woods Purchase Fund",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Guido Reni",
+  "image_id": "8eccb189-92f3-353a-3337-c0778c2680d9",
+  "kind": "painting"
+ },
+ {
+  "_score": 13330.773,
+  "id": 109926,
+  "title": "Landscape: Window Overlooking the Woods",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhCAAFAPUAAFpKLGhNKWNXKmdZL2xcKHNfImdXN2dbMWZaM2hZMG5eOndjIHRhJXZmLW5iNG5jPW5kPHBjMXpgMXFkOXNjP3hnP3xqOnVoRnhqQHJnSndrS31yTIpyH4BtPoJsP4BrQYJxSIV4ToJ5U4h+VJ2LTaCKVbqsYQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAIAAUAAAYlQIVotLloMgYL5IEYOBKCEugQIXAWBU+HZMJMGoyA5BOqUBSAIAA7",
+   "width": 4000,
+   "height": 2564,
+   "alt_text": "Dense and varied landscape with open fields, groves of bushy trees, and a row of thin conifers. A light-blue river tranverses the canvas, and a church steeple emerges from the trees at left of center. At far left is a side view of a white house with open shutters, a woman working inside."
+  },
+  "date_display": "1899",
+  "artist_display": "Édouard Vuillard (French, 1868-1940)",
+  "credit_line": "L.L. and A.S. Coburn Fund, Martha E. Leverone, Charles Norton Owen funds, and purchased with funds provided by an anonymous donor",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Édouard Jean Vuillard",
+  "image_id": "a1dc6109-6e0c-7801-ebe8-8c95fec2c4e4",
+  "kind": "painting"
+ },
+ {
+  "_score": 13266.337,
+  "id": 16362,
+  "title": "Friar Pedro Shoots El Maragato as His Horse Runs Off",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhBwAFAPUAADYlEjcrHEw4IE05IU8+Iko5JVI8I1A+JlxDHllFKlhILFtJLl5KMlpKNl9RO2dMLWpTO3RWMnJYN3BZPHdfPGVYQ3NfSHRnTnNmUYBlSIl4X5aEZ5+NbZ2McaKRcqiZea6ce7ajgL2ohQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAHAAUAAAYhQAcnBPp4NpVJRtTBaBiAgAVCuTQEg4UCQZBEHolDwRAEADs=",
+   "width": 5623,
+   "height": 4243,
+   "alt_text": "Small painting, friar shoots man with yellow pants as horse runs off."
+  },
+  "date_display": "c. 1806",
+  "artist_display": "Francisco José de Goya y Lucientes (Spanish, 1746–1828)",
+  "credit_line": "Mr. and Mrs. Martin A. Ryerson Collection",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "Francisco José de Goya y Lucientes",
+  "image_id": "622998f1-73f9-4c96-08cf-60bda7c9ce4b",
+  "kind": "painting"
+ },
+ {
+  "_score": 13237.713,
+  "id": 111377,
+  "title": "For Sunday's Dinner",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhAwAFAPMAABoYGR0bGywnIiglJCwoJS4oJC8qKDEsKDMuKDoxKTsyKTw1L01CNFRJPHBgSAAAACH5BAAAAAAALAAAAAADAAUAAAQLkIij0mgOLBZMQREAOw==",
+   "width": 1269,
+   "height": 2250,
+   "alt_text": "A plucked chicken, a few stray feathers remaining, hangs upside-down by one foot, illuminated. Behind it the metal hinges and wood panels of a door are visible."
+  },
+  "date_display": "1888",
+  "artist_display": "William Michael Harnett (American, born Ireland, 1848–1892)",
+  "credit_line": "Wilson L. Mead Fund",
+  "is_public_domain": true,
+  "artwork_type_title": "Painting",
+  "artist_title": "William Michael Harnett",
+  "image_id": "3cea045a-92d6-36cf-1508-2c99ea740218",
+  "kind": "painting"
+ },
+ {
+  "_score": 231145.92,
+  "id": 75644,
+  "title": "Coronation Stone of Moctezuma Xocoyotzin",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAACgiHzIrJDMvLDw1L01IQFZUTmZjWm5nXWVpaHFvaH54boF8bYeBcouEdoKEgYGFhIOMj52UhaOdjrSunwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAUR4BAAwhE1hDJJRsIsBfQ4SAgAOw==",
+   "width": 1743,
+   "height": 2250,
+   "alt_text": "Large plaque of stone carved with animal and geometric hieroglyphs."
+  },
+  "date_display": "c. 1503",
+  "artist_display": "Maker unknown (Mexica, Aztec)\nProbably Tenochtitlan (now Mexico City), Mexico",
+  "credit_line": "Major Acquisitions Fund",
+  "is_public_domain": true,
+  "artwork_type_title": "Sculpture",
+  "artist_title": "Mexica (Aztec)",
+  "image_id": "ea8c5d62-6ce8-88e8-feb1-e0053cf534c5",
+  "kind": "sculpture"
+ },
+ {
+  "_score": 123828.17,
+  "id": 102611,
+  "title": "Veranda Post (Òpó Ògògá)",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhAwAFAPMAAGhdU25lW2xoZXl1b3JycnV1dXh3d3l5eX18e359fH5+foCAf4GAgIKCgoODgwAAACH5BAAAAAAAIf8LSW1hZ2VNYWdpY2sOZ2FtbWE9MC40NTQ1NDUALAAAAAADAAUAAAQKsKW2hgzoAENEiQA7",
+   "width": 5792,
+   "height": 8688,
+   "alt_text": "Wooden sculpture of seated king surrounded by family."
+  },
+  "date_display": "1910-14",
+  "artist_display": "Made by Olówè of Ìsè (Yoruba, born 1873–77; died 1938)\nNigeria",
+  "credit_line": "Major Acquisitions Centennial Fund",
+  "is_public_domain": true,
+  "artwork_type_title": "Sculpture",
+  "artist_title": "Olowe of Ise",
+  "image_id": "fec5d023-0b46-45df-eb57-cbf64e24121d",
+  "kind": "sculpture"
+ },
+ {
+  "_score": 14975.687,
+  "id": 151358,
+  "title": "Male Figure (Nkisi Nkondi)",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhAwAFAPMAAEs+NFhLQFxPQWhgWIeDfYuFgI2Jg4mIhJGPipKQi5WUkpmWkZiYlKGhn6eopgAAACH5BAAAAAAALAAAAAADAAUAAAQL0JW2gkmAMIHUOBEAOw==",
+   "width": 3476,
+   "height": 6179,
+   "alt_text": "A wooden carving of a male figure. The figure has a distinctive face, with oval-shaped eyes and mouth, and wears a cap on his head. His body is covered in various shells, bones, feathers, fabric, and metal nails, and he holds a mirror-sealed resin packet over his stomach."
+  },
+  "date_display": "Possibly early to mid-19th century",
+  "artist_display": "Vili\nRepublic of the Congo",
+  "credit_line": "Ada Turnbull Hertle Endowment",
+  "is_public_domain": true,
+  "artwork_type_title": "Sculpture",
+  "artist_title": "Vili",
+  "image_id": "c3f36398-eee0-77a9-17f4-204f3252f6f9",
+  "kind": "sculpture"
+ },
+ {
+  "_score": 14525.817,
+  "id": 73413,
+  "title": "Bust of a Youth (Saint John the Baptist)",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAADQ0Mzg4N0ZFREtKSn9/foeHh4mHg4yLiY2MjJiRhp+Zj5KSkJeWlZ2dnKaYhKefk6qjmKKio6mpqAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAAIf8LSW1hZ2VNYWdpY2sOZ2FtbWE9MC40NTQ1NDUALAAAAAAEAAUAAAURIPMYROMkRQQpiCQAizQERwgAOw==",
+   "width": 9501,
+   "height": 11876,
+   "alt_text": "Bust of young boy with large eyes and long curly hair, looking to his side."
+  },
+  "date_display": "1630-40",
+  "artist_display": "Francesco Mochi (Italian, 1580–1654)",
+  "credit_line": "From the collection of the estate of Federico Gentili di Giuseppe; purchased with funds provided by Mrs. Harold T. Martin through the Antiquarian Society; Major Acquisitions Centennial Endowment; through prior gift of Arthur Rubloff; European Decorative Arts Purchase Fund",
+  "is_public_domain": true,
+  "artwork_type_title": "Sculpture",
+  "artist_title": "Francesco Mochi",
+  "image_id": "4e37b182-cc1e-ef86-3eb2-de7d5b9db717",
+  "kind": "sculpture"
+ },
+ {
+  "_score": 13844.216,
+  "id": 159136,
+  "title": "Portrait Bust of a Woman",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAAAoLCwsLCwgJDAoLDjIwLTs5NURBPkdEP1ZTTlhUTmFdVXx3bXR1dop9aZaFa4eEf42JgoeJiq2fiaigkgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAURYGAQgLAoAzI1RSI5RwQ9TAgAOw==",
+   "width": 5412,
+   "height": 7216,
+   "alt_text": "White marble bust of woman wearing headband and tunic."
+  },
+  "date_display": "Mid–2nd century",
+  "artist_display": "Roman",
+  "credit_line": "Purchased with funds provided by The Antiquarian Society in honor of Ian Wardropper, the Classical Art Society, Mr. and Mrs. Isak V. Gerson, James and Bonnie Pritchard, and Mrs. Hugo Sonnenschein; Mr. and Mrs. Kenneth Bro Fund; Katherine K. Adler, Mr. and Mrs. Walter Alexander in honor of Ian Wardropper, David Earle III, William A. and Renda H. Lederer Family, Chester D. Tripp, and Jane B. Tripp endowments",
+  "is_public_domain": true,
+  "artwork_type_title": "Sculpture",
+  "artist_title": "Ancient Roman",
+  "image_id": "34133244-99a5-246f-c72f-76f32e55d253",
+  "kind": "sculpture"
+ },
+ {
+  "_score": 13581.766,
+  "id": 11320,
+  "title": "Adam",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAAGFfXXBub3NxcIOBgYmIiZCPkJOSkpmYmJybmrCwr8TExMbGxtHR0dLS0tbW1tnZ2dvb29zc3N/f3+Pj4wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAUR4JIcCgMIzYMMkFQYkxMQUQgAOw==",
+   "width": 5687,
+   "height": 7962,
+   "alt_text": "Dark colored sculpture of muscular man standing in a contorted pose."
+  },
+  "date_display": "Modeled 1881, cast c. 1924",
+  "artist_display": "Auguste Rodin (French, 1840–1917)",
+  "credit_line": "Gift of Robert Allerton",
+  "is_public_domain": true,
+  "artwork_type_title": "Sculpture",
+  "artist_title": "Auguste Rodin",
+  "image_id": "c5dbb973-a2fd-755a-c1be-cd2660ccf5af",
+  "kind": "sculpture"
+ },
+ {
+  "_score": 13431.828,
+  "id": 52560,
+  "title": "Corpus of Christ, from the Altarpiece of the Crucifixion",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAAExCNz9AQEVDQEZEQU9LREhISElJSExKSFFLQlhSSk1OUE1OUU9SVlRWWFVWWFlbX2BRQGFVRWVZRmBWSQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAUR4JEQgyNFyjNBTIMAS2EIQQgAOw==",
+   "width": 1800,
+   "height": 2250,
+   "alt_text": "Brown and gold sculpture of crucified Jesus without the cross."
+  },
+  "date_display": "1391–99",
+  "artist_display": "Jacques de Baerze (Netherlandish, active before 1384–1399)\nMelchior Broederlam (Netherlandish, about 1355–about 1411)",
+  "credit_line": "Gift of Honoré Palmer",
+  "is_public_domain": true,
+  "artwork_type_title": "Sculpture",
+  "artist_title": "Jacques de Baerze",
+  "image_id": "d1666499-6fde-bb14-1b47-7e86209d3b58",
+  "kind": "sculpture"
+ },
+ {
+  "_score": 13225.505,
+  "id": 102591,
+  "title": "Bust of Paris",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAAElJSk5PUGhpanBwcnl4dHh4eIOBfIKCgoSFhIqKi4qKjJKPiZeRgpmZmqSflKahk6qklqWhm6ulma+qngAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAURYEAYwCBBgvIwRzI5RRMtSAgAOw==",
+   "width": 6723,
+   "height": 8964,
+   "alt_text": "Life-sized white marble bust of man with curly hair and strong features."
+  },
+  "date_display": "1809",
+  "artist_display": "Antonio Canova (Italian, 1757–1822)",
+  "credit_line": "Harold Stuart Endowment; purchased with funds provided by Mrs. Harold T. Martin",
+  "is_public_domain": true,
+  "artwork_type_title": "Sculpture",
+  "artist_title": "Antonio Canova",
+  "image_id": "3e41420d-2bae-5863-1980-fd39a78e1ffe",
+  "kind": "sculpture"
+ },
+ {
+  "_score": 13217.597,
+  "id": 50909,
+  "title": "Head of an Apostle",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhAwAFAPMAACUjHy8tKkU+Mk9JP0RCQUxNTVpZVmdhVGtkWHZtX3duX4F7cpaFZrmmhcGxkwAAACH5BAAAAAAALAAAAAADAAUAAAQLEKggXBoNEXbKMhEAOw==",
+   "width": 4891,
+   "height": 7826,
+   "alt_text": "Sculpture in light stone of the head of a bearded man with wavy hair and wide eyes, missing a nose."
+  },
+  "date_display": "c. 1210",
+  "artist_display": "French; Paris",
+  "credit_line": "Kate S. Buckingham Endowment",
+  "is_public_domain": true,
+  "artwork_type_title": "Sculpture",
+  "artist_title": "French",
+  "image_id": "73eb91ee-cde0-2f6d-843f-4f263d5c409f",
+  "kind": "sculpture"
+ },
+ {
+  "_score": 13213.405,
+  "id": 149776,
+  "title": "The Freedman",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAAC4xNjM1ODU3PH5+gH+BhIWFhpGTlZmam5qamqSkpaanqKipqq+vsMTExcfHx8rKytDQ0NfX19va2t/e3gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAUR4LMwkRIcEwIYUiIQDVQMTggAOw==",
+   "width": 1762,
+   "height": 2250,
+   "alt_text": "Black bronze statue of African American man, shackles broken, sitting on tree stump."
+  },
+  "date_display": "Modeled 1862–63",
+  "artist_display": "John Quincy Adams Ward (American, 1830–1910)",
+  "credit_line": "Roger McCormick Endowment",
+  "is_public_domain": true,
+  "artwork_type_title": "Sculpture",
+  "artist_title": "John Quincy Adams Ward",
+  "image_id": "44506581-ba5e-57bf-713d-8dd3b3b80310",
+  "kind": "sculpture"
+ },
+ {
+  "_score": 13146.752,
+  "id": 97916,
+  "title": "The Bronco Buster",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAACwoJFFOTVlXWGlmZmpoamxqanBucJuZnZ6doqCgpqChpqqqsLS0urq6wLy8wr28wry9w8bGzcrK0cvL0QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAURYMNIkVMMjhQAxyIkTmIQSAgAOw==",
+   "width": 6674,
+   "height": 8601,
+   "alt_text": "Brown bronze statue of man with riding crop atop a rearing horse."
+  },
+  "date_display": "Modeled 1895, cast 1899",
+  "artist_display": "Frederic Remington (American, 1861–1909)\nCast by Henry-Bonnard Bronze Company (American, 1872–1926)",
+  "credit_line": "George F. Harding Collection",
+  "is_public_domain": true,
+  "artwork_type_title": "Sculpture",
+  "artist_title": "Frederic Remington",
+  "image_id": "9c28758d-90d1-0794-87db-ddf2b20a0a3d",
+  "kind": "sculpture"
+ },
+ {
+  "_score": 13014.549,
+  "id": 44741,
+  "title": "The Annunciation",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhAwAFAPMAAGdlXW9uZm5vaGlsbnFwaHZ0bXl4b3t4b3d2cnx7eH1+fYJ9cpKMf4uIhZ+emgAAACH5BAAAAAAALAAAAAADAAUAAAQLMA1VUAvHEbCMYBEAOw==",
+   "width": 4700,
+   "height": 5832,
+   "alt_text": "Relief sculpture of angel confronting Virgin Mary. Cherubs and dove in sky."
+  },
+  "date_display": "c. 1583",
+  "artist_display": "Alessandro Vittoria (Italian, 1525–1608)",
+  "credit_line": "Edward E. Ayer Endowment in memory of Charles L. Hutchinson",
+  "is_public_domain": true,
+  "artwork_type_title": "Sculpture",
+  "artist_title": "Alessandro Vittoria",
+  "image_id": "6e6d0abe-9881-627d-86af-98b183500b77",
+  "kind": "sculpture"
+ },
+ {
+  "_score": 12949.928,
+  "id": 25332,
+  "title": "Triptych with Scenes from the Life of Christ",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAAAAAAAAAAQEBAgMDAyIhHCMiHS0rJC8tJDg1LDo5NEVEQVZWVWRgTmhlU3t5cISCe6GYeaiggqmhhamhiAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAURoAAEA8E0xRFJBgJNieI8SwgAOw==",
+   "width": 1754,
+   "height": 2250,
+   "alt_text": "Three connected ivory panels carved with scenes from the life of Jesus."
+  },
+  "date_display": "1350–75",
+  "artist_display": "German; Cologne",
+  "credit_line": "Mr. and Mrs. Martin A. Ryerson Collection",
+  "is_public_domain": true,
+  "artwork_type_title": "Sculpture",
+  "artist_title": "German",
+  "image_id": "c5409bc2-35dc-342a-e506-41259963bce0",
+  "kind": "sculpture"
+ },
+ {
+  "_score": 12586.012,
+  "id": 184324,
+  "title": "Saint Michael and the Devil",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhAwAFAPMAABwcHC4pJjQuKzQwLjw3NUA3Mkg5MUo8NU0/NUE8OU5DPGtTRoZhSZNoTppuUwAAACH5BAAAAAAALAAAAAADAAUAAAQLMCBg2jhOCVbIShEAOw==",
+   "width": 2779,
+   "height": 4062,
+   "alt_text": "Light wood sculpture of angel with shield looking towards devil at feet."
+  },
+  "date_display": "1475–1500",
+  "artist_display": "Spanish",
+  "credit_line": "Chester D. Tripp Endowment",
+  "is_public_domain": true,
+  "artwork_type_title": "Sculpture",
+  "artist_title": "Spanish",
+  "image_id": "b82fd3da-48ef-ca2d-4ab2-13342c765c12",
+  "kind": "sculpture"
+ },
+ {
+  "_score": 12448.457,
+  "id": 187528,
+  "title": "Head",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAAD47OkE+PUI/PUlFRFxbW19dXV5fYF9fYGFhYWJiYmRlZWVlZWVmZm5ubnNzc5aSj6OgnKyrqbq5uAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAURYFIQyDIIChMAjAE9RyNFTggAOw==",
+   "width": 5136,
+   "height": 7192,
+   "alt_text": "A dark-brown painted sculpture with hints of orange showing through of a slim face with a long neck. The lips are drawn in a pout, the cheeks sunken, the hair pulled back in a swirl pattern and falling down in a slim column."
+  },
+  "date_display": "Mid–late 19th century",
+  "artist_display": "Fang\nGabon\nCentral Africa",
+  "credit_line": "Frederick W. Renshaw Acquisition Fund; Robert Allerton and Ada Turnbull Hertle endowments; Robert Allerton Income Fund; Gladys N. Anderson Endowment",
+  "is_public_domain": true,
+  "artwork_type_title": "Sculpture",
+  "artist_title": "Fang",
+  "image_id": "73e4f1d9-97a2-1742-5235-72bfcaef9473",
+  "kind": "sculpture"
+ },
+ {
+  "_score": 11294.158,
+  "id": 104094,
+  "title": "General Andrew Jackson",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAAFNTVFRUVGJgXmtsbmttb3p2b313b4N1ZIWAe4+GeZ+Sf46MiZuRgp2albCfjKKblKKfmrq1rrm7vMHBwQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAURYFAIwMAYRKMkS+Qc0PQgUggAOw==",
+   "width": 1904,
+   "height": 2250,
+   "alt_text": "Cream-colored bust of General Andrew Jackson in his military uniform."
+  },
+  "date_display": "1819",
+  "artist_display": "William Rush\nAmerican, 1756–1833",
+  "credit_line": "Purchased with funds provided by Jamee J. and Marshall Field, the Brooks and Hope B. McCormick Foundation, and the Bessie Bennett, W. G. Field, Ada Turnbull Hertle, Laura T. Magnuson, and Major Acquisitions funds",
+  "is_public_domain": true,
+  "artwork_type_title": "Sculpture",
+  "artist_title": "William Rush",
+  "image_id": "6088ab1b-930d-a3fa-6cba-bcff70e7bb37",
+  "kind": "sculpture"
+ },
+ {
+  "_score": 10008.393,
+  "id": 86340,
+  "title": "Head of a Male Deity (Deva)",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhBAAFAPQAADkyK0Y7MUI/PUtCOU5JRVhMQGpkYG5nYIyMjo6Oj5WVmJmYmJqYmJqZmZuZmp+en56eoKOkp6SkpqurrgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAURoMQw0HQY0VMMChMACEMISAgAOw==",
+   "width": 7216,
+   "height": 8502,
+   "alt_text": "Tan stone carving of a head, features weathered darker, headwear with geometric pattern."
+  },
+  "date_display": "Angkor period, late 12th–early 13th century",
+  "artist_display": "Cambodia, probably Angkor Thom",
+  "credit_line": "Samuel M. Nickerson Fund",
+  "is_public_domain": true,
+  "artwork_type_title": "Sculpture",
+  "artist_title": "Khmer",
+  "image_id": "951da7dc-85c7-ae1f-3164-16fd52d59de0",
+  "kind": "sculpture"
+ },
+ {
+  "_score": 9913.598,
+  "id": 154238,
+  "title": "Machinist's Apprentice",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhAwAFAPMAAI6OjpWUj5KSkpOTkpSUlJaWlpeXlpmZmJubmZ2dm6aln6inosC/uwAAAAAAAAAAACH5BAAAAAAAIf8LSW1hZ2VNYWdpY2sOZ2FtbWE9MC40NTQ1NDUALAAAAAADAAUAAAQKUAiQGDjLmKDViQA7",
+   "width": 6166,
+   "height": 10962,
+   "alt_text": "White marble statue of machinist assistant with sketchbook and cogs."
+  },
+  "date_display": "c. 1859",
+  "artist_display": "Emma Stebbins (American, 1815–1882)",
+  "credit_line": "Purchased with funds provided by the Antiquarian Society",
+  "is_public_domain": true,
+  "artwork_type_title": "Sculpture",
+  "artist_title": "Emma Stebbins",
+  "image_id": "9a50bfb5-f590-e734-901c-627991598172",
+  "kind": "sculpture"
+ },
+ {
+  "_score": 9898.942,
+  "id": 154237,
+  "title": "Machinist",
+  "thumbnail": {
+   "lqip": "data:image/gif;base64,R0lGODlhAwAFAPMAAI6OjpGRkZKSkpOTkpaWlZiYmJmZmJqZmJybmp6enKGgnqSinKaknr27tr68tgAAACH5BAAAAAAAIf8LSW1hZ2VNYWdpY2sOZ2FtbWE9MC40NTQ1NDUALAAAAAADAAUAAAQLUBCQmlCuiFUKQxEAOw==",
+   "width": 6166,
+   "height": 10962,
+   "alt_text": "White marble statue of machinist with hammer, anvil, and cogs."
+  },
+  "date_display": "c. 1859",
+  "artist_display": "Emma Stebbins (American, 1815–1882)",
+  "credit_line": "Purchased with funds provided by the Antiquarian Society",
+  "is_public_domain": true,
+  "artwork_type_title": "Sculpture",
+  "artist_title": "Emma Stebbins",
+  "image_id": "d892d2dd-8497-27d1-23d1-64e8702ee58b",
+  "kind": "sculpture"
+ }
+]

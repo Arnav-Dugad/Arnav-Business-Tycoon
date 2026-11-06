@@ -47,6 +47,7 @@ class GameSession @Inject constructor(
     private val saves: SaveRepository,
     private val clock: GameClock,
     @ApplicationScope private val scope: CoroutineScope,
+    @dagger.hilt.android.qualifiers.ApplicationContext private val app: android.content.Context,
 ) {
     sealed interface Status {
         data object Loading : Status
@@ -216,6 +217,23 @@ class GameSession @Inject constructor(
             saveNow()
         }
     }
+
+    /** Museum credit lines keyed by item id, read once from assets/img/art/credits.json. */
+    fun readArtCredits(): Map<String, String> = runCatching {
+        val text = app.assets.open("img/art/credits.json").bufferedReader().use { it.readText() }
+        kotlinx.serialization.json.Json.parseToJsonElement(text).let { el ->
+            (el as kotlinx.serialization.json.JsonArray).associate { e ->
+                val o = e as kotlinx.serialization.json.JsonObject
+                fun f(k: String) = (o[k] as? kotlinx.serialization.json.JsonPrimitive)?.content ?: ""
+                f("id") to "${f("title")}, ${f("author")}${if (f("date").isNotBlank()) " (" + f("date") + ")" else ""}. ${f("source")}, ${f("license")}. ${f("creditLine")}".trim()
+            }
+        }
+    }.getOrDefault(emptyMap())
+
+    /** Manager ids that have a bundled portrait (assets/img/portraits/<id>.webp). */
+    fun portraitIds(): Set<String> = runCatching {
+        (app.assets.list("img/portraits") ?: emptyArray()).filter { it.endsWith(".webp") }.map { it.removeSuffix(".webp") }.toSet()
+    }.getOrDefault(emptySet())
 
     /** Newest save bytes for "Export save" (saves first so the export is current). */
     suspend fun exportBytes(): ByteArray? {

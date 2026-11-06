@@ -33,6 +33,7 @@ data class ContentPack(
     val conglomerates: List<ConglomerateDef> = emptyList(),
     val markets: MarketContent = MarketContent.EMPTY,
     val estates: EstateContent = EstateContent.EMPTY,
+    val luxury: LuxuryContent = LuxuryContent.EMPTY,
 ) {
     @kotlinx.serialization.Transient
     val businessById: Map<String, BusinessDef> = businesses.associateBy { it.id }
@@ -279,4 +280,6 @@ sealed interface GoalDef {
     @Serializable @SerialName("marketTrades") data class MarketTrades(val count: Int) : GoalDef
     @Serializable @SerialName("boardSeats") data class BoardSeats(val count: Int) : GoalDef
     @Serializable @SerialName("propertiesOwned") data class PropertiesOwned(val count: Int) : GoalDef
+    @Serializable @SerialName("luxuryOwned") data class LuxuryOwned(val count: Int) : GoalDef
+    @Serializable @SerialName("auctionsWon") data class AuctionsWon(val count: Int) : GoalDef
 }

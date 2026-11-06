@@ -14,7 +14,7 @@ Optional friend previews: alpha APKs (`v0.x.0-alpha`) can be published after Pha
 | **5** | All businesses + merger tree ✅ DONE (Chapter 8 pacing deferred to Phase 11) | The remaining 15 business mechanics, conglomerates, Holding Co; per-mechanic tests; Empire UI for each |
 | **6** | Markets ✅ DONE (income-share bands and Chapter 8 deferred to Phase 11) | 120 stocks, sectors, news, earnings, board seats, slippage, funds and bonds desk, commodities, crypto, short selling; Compose Canvas charts; Markets tab; flow 3 passes |
 | **7** | Real estate ✅ DONE (real cities; income-share bands and Chapter 8 deferred to Phase 11) | Map, cities, districts, cycles, properties, rent, renovation, flips, mortgages, insurance, tenant events, skyscrapers; Estates tab; flow 4 passes |
-| **8** | Luxury and collections + art pipeline | Art pipeline built; all photos sourced, licensed and credited; luxury items, Status, live auctions, showrooms, collection sets, Heirlooms; Credits screen; flow 5 passes |
+| **8** | Luxury and collections + art pipeline ✅ DONE (museum photos and AI manager portraits; other luxury photos, estate photos and Heirlooms deferred) | Art pipeline built; all photos sourced, licensed and credited; luxury items, Status, live auctions, showrooms, collection sets, Heirlooms; Credits screen; flow 5 passes |
 | **9** | World, rivals, finance pressure | Cycle, events, decision cards, disasters; 220 rivals, Fortune List, takeovers, nemesis; credit rating, loans, taxes (auto and self-file), restructuring, Phoenix protocol; flow 6 passes |
 | **10** | Progression and mini-games | Story chapters 1–8, missions, achievements, daily ladder, weekly events, seasons, Dynasty prestige with Family Charter, heir traits, challenges, IPO; Negotiation, Auction, Market Timing, Frenzy polish; flow 7 passes |
 | **11** | Full balance pass | Full simulator batch (thousands of seeded runs) meets every ECONOMY §10.3 target; tuning log; reports in `docs/balance/` |
@@ -36,7 +36,7 @@ Later: v1.x seasons and content drops, each a minor version, with upgrade-instal
 
 ### Before Phase 8 (art)
 5. ~~Pexels API key~~ — no longer needed: Pexels paused new keys (2026-11-06), so photos come from Wikimedia Commons and museum open-access APIs, which need no key.
-6. **Portraits decision**: licensed stock photos of real (non-famous) people for the 220 rivals, as requested, *or* original illustrated avatars (zero likeness risk, smaller APK). The default is stock portraits under the respect rules in ART_PIPELINE.md.
+6. ~~Portraits decision~~ — decided 2026-11-06: caricature-style AI portraits of invented people, generated with Figma AI on the owner's plan (owner approved the credits). Managers done in Phase 8; rivals follow in Phase 9.
 
 ### Phase 12 (Firebase)
 7. Your Firebase CLI is already logged in with the owner account. **Note**: that account already has **24 Firebase projects**. Spark accounts have a project quota, so creating a new one may fail. If it does, delete an unused project in the console (Project settings → General → Delete project) or request a quota increase.

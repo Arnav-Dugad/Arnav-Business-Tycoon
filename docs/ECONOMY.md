@@ -159,8 +159,11 @@ rent_p/6h    = value_p · yield_d · occupancy(rent_price, tenant_quality) / 4
 
 ## 7. Luxury and Status
 - Value drift per day: cars −0.5% (classics +0.3%), jets −0.4%, yachts −0.3% with upkeep 0.3% per day, art cycle ±(0.2–1.5%), watches ±0.2%, wine +0.2%.
-- Status points per item: `S = 10 · log10(price / $1,000)²`. Status tiers (8) unlock elite deals (−3% to −15% acquisition cost), exclusive auctions, rival alliances, and are a requirement for the IPO (tier 6).
-- Auction rival AI: each rival has a budget (sampled from their NW band), a valuation of the item (noisy around market value × category affinity), and a style (aggressive, sniper, steady).
+- Status points per item: `S = 10 · max(0, log10(price / $1,000))²`; only items on display (within showroom capacity) count. Status tiers (8: Newcomer, Bronze 50, Silver 250, Gold 800, Platinum 2,000, Diamond 4,500, Royal 9,000, Imperial 16,000) give dealer discounts of 0–15 % and will gate exclusive auctions, rival alliances and the IPO (tier 6).
+- Dealers charge a 2 % fee and buy back at 85 % of value. Prices are realistic (cars $70K–$18M, jets up to $250M, yachts up to $600M, masterpieces up to $450M), so luxury is a mid-game Status and set-bonus sink rather than a late-game money sink.
+- Collection sets (30) give permanent bonuses: business income (+3–5 % to a named business), Status (+3–10 %), dividend yield, rent, or extra dealer discount.
+- Auction rival AI: each rival's maximum is the estimate × N(1, 0.15) (clamped 0.6–1.6) × a style factor (aggressive ×1.05, collector ×1.15 on art, steady ×0.95). Rivals bid on a minutes-scale rhythm while the auction is open and every few seconds in its final minute; snipers wait for the last 12 seconds. Bid step 5 %, opening bid 60 % of estimate.
+- Auction schedule: one auction per 2-hour slot, starting at a seeded minute 0–75 into the slot and open 45 minutes. Lots are rare or legendary, worth at least $250K, and chosen from pieces costing ≤20 % of the player's peak net worth (the five cheapest eligible lots if none qualify). Proxy bidding (`SetMaxBid`) answers rivals one step at a time, live or offline.
 
 ## 8. Finance pressure
 - **Credit score** 300–850 → rating bands: 800+ AAA, 760 AA, 720 A, 680 BBB, 640 BB, 600 B, 550 CCC, below 550 D.

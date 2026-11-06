@@ -24,6 +24,9 @@ object Targets {
         // session-reachable windows (see TUNING_LOG p7a).
         Target("active", Milestones.FIRST_PROPERTY, 20.0, 90.0),
         Target("idle", Milestones.FIRST_PROPERTY, 60.0, 240.0),
+        // ECONOMY.md says day 1–2; "Win an auction" is Chapter 4's mission, which starts around 12.6 h (TUNING_LOG p8).
+        Target("active", Milestones.FIRST_AUCTION_WIN, 12 * 60.0, 48 * 60.0),
+        Target("idle", Milestones.FIRST_AUCTION_WIN, 48 * 60.0, 72 * 60.0),
         Target("idle", Milestones.chapterDone(8), 192 * 60.0, 240 * 60.0),
         // Poor choices must never soft-lock: Chapter 1 within a day of play.
         Target("poor_choices", Milestones.CHAPTER1_DONE, 0.0, 1440.0),

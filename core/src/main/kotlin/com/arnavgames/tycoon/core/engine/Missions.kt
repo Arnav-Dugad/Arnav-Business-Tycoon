@@ -25,6 +25,8 @@ internal class Missions(private val content: ContentPack, private val economy: E
         is GoalDef.MarketTrades -> s.market.trades >= goal.count
         is GoalDef.BoardSeats -> economy.market.boardSeats(s).size >= goal.count
         is GoalDef.PropertiesOwned -> s.estate.properties.size >= goal.count
+        is GoalDef.LuxuryOwned -> s.luxury.owned.size >= goal.count
+        is GoalDef.AuctionsWon -> s.luxury.auctionsWon >= goal.count
     }
 
     /** Progress toward a goal in [0, 1] for UI bars. */
@@ -39,6 +41,8 @@ internal class Missions(private val content: ContentPack, private val economy: E
         is GoalDef.MarketTrades -> (s.market.trades.toDouble() / goal.count).coerceIn(0.0, 1.0)
         is GoalDef.BoardSeats -> (economy.market.boardSeats(s).size.toDouble() / goal.count).coerceIn(0.0, 1.0)
         is GoalDef.PropertiesOwned -> (s.estate.properties.size.toDouble() / goal.count).coerceIn(0.0, 1.0)
+        is GoalDef.LuxuryOwned -> (s.luxury.owned.size.toDouble() / goal.count).coerceIn(0.0, 1.0)
+        is GoalDef.AuctionsWon -> (s.luxury.auctionsWon.toDouble() / goal.count).coerceIn(0.0, 1.0)
         else -> if (isMet(s, goal)) 1.0 else 0.0
     }
 

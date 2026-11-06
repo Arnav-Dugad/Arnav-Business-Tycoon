@@ -17,6 +17,7 @@ internal object DebugScenarios {
         "midgame" -> midGame(engine, base)
         "lategame" -> lateGame(engine, base)
         "markets" -> marketsOpen(engine, base)
+        "auction" -> auctionClosing(engine, base)
         else -> null
     }
 
@@ -47,6 +48,14 @@ internal object DebugScenarios {
             s = s.run(Command.HustleTap(20))
             // The story asks for a first trade (chapter 2) and a board seat (chapter 3).
             if (s.market.trades == 0L) s = s.run(Command.BuyInstrument("fund_total", Money.ofDollars(1_000)))
+            // ...luxury (three pieces in chapter 3) and an auction win in chapter 4 (by proxy)...
+            if (s.progress.chapter >= 3 && s.luxury.owned.size < 3) {
+                content.luxury.items.filter { engine.luxury.categoryUnlocked(s, it.category) && it.id !in s.luxury.owned }.sortedBy { it.price }.take(3 - s.luxury.owned.size)
+                    .forEach { s = s.run(Command.BuyLuxury(it.id)) }
+            }
+            s.luxury.auction?.let { a ->
+                if (s.progress.chapter >= 4 && s.luxury.auctionsWon == 0) s = s.run(Command.SetMaxBid(engine.luxury.marketPrice(content.luxury.itemById.getValue(a.item), s.simTimeMs) * 5L))
+            }
             // ...and properties (one in chapter 2, five in chapter 4).
             val wantProps = if (s.progress.chapter >= 4) 5 else if (s.progress.chapter >= 2) 1 else 0
             while (s.estate.properties.size < wantProps) {
@@ -97,6 +106,10 @@ internal object DebugScenarios {
             val id = s.estate.nextPropertyId - 1
             repeat(2) { s = s.run(Command.BuildTower(id, content.estates.towers.first().id)); s = engine.advance(s, 9 * 3_600_000L).state }
         }
+        // Luxury: a few pieces in every showroom.
+        for (cat in content.luxury.categories) {
+            content.luxury.items.filter { it.category == cat.id }.sortedByDescending { it.statusPoints }.take(3).forEach { s = s.run(Command.BuyLuxury(it.id)) }
+        }
         content.estates.districts.firstOrNull { "retail_unit" in it.types && it.city == "london" }?.let { d ->
             est.listings(s, d.id).firstOrNull { it.type == "retail_unit" }?.let { l ->
                 s = s.run(Command.BuyProperty(l.id))
@@ -126,5 +139,39 @@ internal object DebugScenarios {
             s = engine.advance(s, 10 * 60_000L).state
         }
         return engine.advance(s, 60_000).state
+    }
+
+    /**
+     * Chapter 3 reached with real commands, an auction live with the player's proxy maximum set well above the
+     * estimate, and the clock moved to 45 seconds before the hammer. Used by the auction UI test (TEST_PLAN flow 5).
+     */
+    private fun auctionClosing(engine: GameEngine, base: GameState): GameState {
+        fun GameState.run(c: Command) = (engine.apply(this, c) as? CommandResult.Ok)?.state ?: this
+        val content = engine.content
+        var s = base.copy(ledger = Grants.grant(base.ledger, base.simTimeMs, "debug scenario", Money.ofDollars(5_000_000_000), 100, 100))
+        s = s.run(Command.AdvanceOnboarding(5))
+        repeat(40) {
+            if (s.progress.chapter >= 3) return@repeat
+            s = s.run(Command.HustleTap(20))
+            if (s.market.trades == 0L) s = s.run(Command.BuyInstrument("fund_total", Money.ofDollars(1_000)))
+            if (s.progress.chapter >= 2 && s.estate.properties.isEmpty()) {
+                content.estates.districts.filter { it.city == "lisbon" }.flatMap { engine.estate.listings(s, it.id) }.minByOrNull { it.price }?.let { l -> s = s.run(Command.BuyProperty(l.id)) }
+            }
+            content.chapters.flatMap { it.missions }.forEach { s = s.run(Command.ClaimMission(it.id)) }
+            repeat(4) { s = s.run(Command.UpgradeHq) }
+            content.businesses.forEach { b ->
+                s = s.run(Command.OpenBusiness(b.id)).run(Command.BuyLevels(b.id, 10))
+                b.managers.firstOrNull()?.let { m -> s = s.run(Command.HireManager(b.id, m.id)) }
+                b.expansions.forEach { e -> s = s.run(Command.StartExpansion(b.id, e.id)) }
+            }
+            s = engine.advance(s, 30 * 60_000L).state
+        }
+        var guard = 0
+        while (s.luxury.auction == null && guard++ < 300) s = engine.advance(s, 60_000).state
+        val a = s.luxury.auction ?: return s
+        s = s.run(Command.SetMaxBid(engine.luxury.marketPrice(content.luxury.itemById.getValue(a.item), s.simTimeMs) * 10L))
+        val target = (s.luxury.auction?.closeSim ?: s.simTimeMs) - 45_000
+        if (target > s.simTimeMs) s = engine.advance(s, target - s.simTimeMs).state
+        return s
     }
 }

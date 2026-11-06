@@ -18,7 +18,7 @@ object ContentLoader {
     }
 
     /** Files that make up the pack, relative to the content root. Order matters for the hash. */
-    val FILES = listOf("data/businesses.json", "data/chapters.json", "data/conglomerates.json", "data/markets.json", "data/estates.json", "balance/balance.json")
+    val FILES = listOf("data/businesses.json", "data/chapters.json", "data/conglomerates.json", "data/markets.json", "data/estates.json", "data/luxury.json", "balance/balance.json")
 
     data class Loaded(val pack: ContentPack, val hash: String, val issues: List<ContentIssue>)
 
@@ -29,8 +29,9 @@ object ContentLoader {
         val conglomerates = json.decodeFromString<List<ConglomerateDef>>(texts.getValue("data/conglomerates.json"))
         val markets = json.decodeFromString<MarketContent>(texts.getValue("data/markets.json"))
         val estates = json.decodeFromString<EstateContent>(texts.getValue("data/estates.json"))
+        val luxury = json.decodeFromString<LuxuryContent>(texts.getValue("data/luxury.json"))
         val balance = json.decodeFromString<BalanceConfig>(texts.getValue("balance/balance.json"))
-        val pack = ContentPack(businesses, balance, chapters, conglomerates, markets, estates)
+        val pack = ContentPack(businesses, balance, chapters, conglomerates, markets, estates, luxury)
         val digest = MessageDigest.getInstance("SHA-256")
         FILES.forEach { digest.update(it.toByteArray()); digest.update(texts.getValue(it).replace("\r\n", "\n").toByteArray()) }
         val hash = digest.digest().joinToString("") { "%02x".format(it) }.take(16)
@@ -58,6 +59,7 @@ object ContentValidator {
         "Factory", "Map", "Expand", "Timer", "Manager", "Chart", "News", "Shield", "Rivals", "Trophy", "Star", "Bolt",
         "Chef", "Fleet", "Route", "Tag", "Megaphone", "Wheat", "Hanger", "Pickaxe", "Flame", "Bed", "Bank", "Crane", "Film",
         "Chip", "Antenna", "Plane", "Flask", "Ball", "Rocket", "Buildings", "House", "Villa", "Warehouse", "Plot", "Tower",
+        "Car", "Watch", "Wine", "Gem", "Heli", "Yacht", "Frame", "Bust", "Island", "Mansion",
     )
     private val TICKER = Regex("^[A-Z][A-Z0-9]{2,4}$")
 
@@ -168,7 +170,36 @@ object ContentValidator {
         }
         validateMarkets(pack, ids, ::check)
         validateEstates(pack, ids, ::check)
+        validateLuxury(pack, ids, ::check)
         return out
+    }
+
+    private fun validateLuxury(pack: ContentPack, businessIds: List<String>, check: (Boolean, String, String) -> Unit) {
+        val l = pack.luxury
+        if (l.items.isEmpty()) return
+        check(l.items.map { it.id }.toSet().size == l.items.size, "luxury", "duplicate item ids")
+        check(l.items.size >= 246, "luxury", "at least 246 luxury items")
+        check(l.sets.size >= 25, "luxury", "at least 25 collection sets")
+        l.categories.forEach { c ->
+            check(c.icon in ICONS, "luxury.${c.id}", "unknown icon '${c.icon}'")
+            check(c.showroom in l.showroomById, "luxury.${c.id}", "unknown showroom")
+        }
+        l.showrooms.forEach { s -> check(s.icon in ICONS && s.baseCapacity > 0, "luxury.${s.id}", "icon/capacity") }
+        l.items.forEach { i ->
+            val p = "luxury.${i.id}"
+            check(ID.matches(i.id), p, "bad id format")
+            check(i.category in l.categoryById, p, "unknown category")
+            check(i.price.isPositive && i.rarity in setOf("common", "rare", "legendary"), p, "price/rarity")
+            if (i.category !in setOf("painting", "sculpture", "island", "mansion")) findBlockedBrand(i.maker + " " + i.name)?.let { check(false, p, "exact real brand '$it' (use a parody)") }
+        }
+        l.sets.forEach { s ->
+            val p = "luxury.sets.${s.id}"
+            check(s.items.size >= 3 && s.items.all { it in l.itemById }, p, "at least 3 known items")
+            check(s.bonusType in setOf("status", "income", "dividends", "rent", "luxuryDiscount"), p, "unknown bonus type")
+            if (s.bonusType == "income") check(s.bonusTarget in businessIds, p, "unknown business '${s.bonusTarget}'")
+        }
+        check(l.tiers.map { it.points } == l.tiers.map { it.points }.sorted(), "luxury.tiers", "tier thresholds must increase")
+        check(l.bidders.size >= 6 && l.bidders.all { it.style in setOf("aggressive", "sniper", "steady", "collector") }, "luxury.bidders", "bidders/styles")
     }
 
     private fun validateEstates(pack: ContentPack, businessIds: List<String>, check: (Boolean, String, String) -> Unit) {
