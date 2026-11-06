@@ -121,9 +121,11 @@ class ProgressionEngine(private val content: ContentPack, private val economy: E
         }
         if (s.meta.weekIndex != week && ready) {
             val ms = pick(s, p.weekly, p.config.weeklyCount, "weekly", week).map { assign(s, it) }
-            val ev = d.weeklyEvent(s)
-            val goals = ev?.goals?.mapNotNull { metric -> (p.daily.firstOrNull { it.metric == metric && it.id.endsWith("_normal") })?.let { assign(s, it, 3.0).copy(template = "${ev.id}:$metric", bullion = 0, seasonXp = 60, rewardCash = Money.ZERO) } } ?: emptyList()
-            s = meta(s) { it.copy(weekly = ms, weekIndex = week, eventGoals = goals) }
+            s = meta(s) { it.copy(weekly = ms, weekIndex = week, eventGoals = eventGoals(s)) }
+        } else if (ready && s.meta.eventGoals.isEmpty()) {
+            // The weekly event can begin mid-week (it starts with chapter 3): give it its goals then.
+            val goals = eventGoals(s)
+            if (goals.isNotEmpty()) s = meta(s) { it.copy(eventGoals = goals) }
         }
         if (s.meta.seasonIndex != season) s = meta(s) { it.copy(seasonIndex = season, seasonXp = 0, seasonClaimedFree = emptySet(), seasonClaimedPremium = emptySet()) }
         // Weekly event goals pay season XP as soon as they are done.
@@ -134,6 +136,14 @@ class ProgressionEngine(private val content: ContentPack, private val economy: E
             s = meta(s) { it.copy(eventGoals = updated, seasonXp = it.seasonXp + xp) }
         }
         return if (checkAchievements) checkAchievements(s) else s
+    }
+
+    private fun eventGoals(s: GameState): List<MissionState> {
+        val ev = d.weeklyEvent(s) ?: return emptyList()
+        return ev.goals.mapNotNull { metric ->
+            p.daily.firstOrNull { it.metric == metric && it.id.endsWith("_normal") }
+                ?.let { assign(s, it, 3.0).copy(template = "${ev.id}:$metric", bullion = 0, seasonXp = 60, rewardCash = Money.ZERO) }
+        }
     }
 
     fun claimMission(s: GameState, weekly: Boolean, index: Int, events: MutableList<GameEvent>): Result {

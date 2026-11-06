@@ -177,7 +177,9 @@ class ProgressionTest {
 
     @Test
     fun weeklyEventsAndBonusesApply() {
-        val s = busyState().adv(60_000)
+        assertTrue(dyn.weeklyEvent(busyState()) == null, "no weekly events before chapter 3")
+        val b = busyState()
+        val s = b.copy(progress = b.progress.copy(chapter = 3)).adv(60_000)
         assertNotNull(dyn.weeklyEvent(s))
         assertTrue(s.meta.weekly.size == p.config.weeklyCount)
         assertFalse(s.meta.eventGoals.isEmpty())
