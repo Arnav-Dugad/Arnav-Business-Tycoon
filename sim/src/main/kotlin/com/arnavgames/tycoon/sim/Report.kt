@@ -131,6 +131,11 @@ object Report {
         File(dir, "summary.md").writeText(sb.toString())
 
         // CSV
+        // Real time, game time and net worth at every session end: input for calibrating time-based content (rivals).
+        File(dir, "trajectory.csv").bufferedWriter().use { w ->
+            w.write("bot,seed,real_minutes,sim_minutes,networth_log10\n")
+            results.forEach { r -> r.samples.forEach { p -> w.write("${r.bot},${r.seed},${p.realMinutes},${p.simMinutes},${"%.3f".format(java.util.Locale.US, p.netWorthLog10)}\n") } }
+        }
         File(dir, "results.csv").bufferedWriter().use { w ->
             w.write("bot,seed," + Milestones.ALL.joinToString(",") + ",dead_minutes,session_minutes,longest_stall_h,final_networth_log10,error\n")
             for (r in results) {

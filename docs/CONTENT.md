@@ -55,10 +55,10 @@ Every category lives in `content/data/<category>.json` and is checked by the val
 ## 5. World and rivals
 | Category | Min | Target | Photos | Notes |
 |---|---|---|---|---|
-| Economic cycle phases | 5 | 5 | — | |
-| World and sector events | 50 | 60 | 20 mood photos | |
-| Decision cards | 150 | 160 | — | 2–3 options with explicit trade-offs |
-| Rivals | 200 | 220 | 220 portraits | Parody names; 8 archetypes; illustrated portraits, never photos of real people (GDD §1.1, §10) |
+| Economic cycle phases | 5 | 5 | — | Phase 6 shipped 4 (no separate Recovery phase) |
+| World and sector events | 50 | 60 | 20 mood photos | Phase 9 ships 60 (42 sector, 10 global, 8 city disasters); mood photos deferred |
+| Decision cards | 150 | 160 | — | Phase 9 ships 163: 54 business-specific, 40 generic business, 25 world, 16 personal, 21 rival/offer/takeover, 7 nemesis |
+| Rivals | 200 | 220 | 220 portraits | Phase 9 ships 220 (24 auction bidders, 64 parodies, 1 story rival, 131 invented); 40 AI caricature portraits (owner decision), monograms for the rest |
 | Rival archetypes | 8 | 8 | — | |
 | Negotiation personalities | 8 | 8 | — | |
 

@@ -350,6 +350,60 @@ internal class Planner(private val engine: GameEngine) {
         return st
     }
 
+    // ----- Desk and finance (Phase 9) -----
+
+    /** Expected value of a card option in hours of total income (a bot's rough judgement). */
+    fun optionValue(s: GameState, card: com.arnavgames.tycoon.core.state.CardState, o: com.arnavgames.tycoon.core.content.CardOptionDef): Double {
+        val total = eco.totalNetRate(s).perSecond().toDollarsDouble().coerceAtLeast(1e-9)
+        val share = card.business?.let { eco.businessRate(s, it).net.perSecond().toDollarsDouble() / total } ?: 0.0
+        val hourly = total * 3600
+        return o.outcomes.sumOf { oc ->
+            oc.p * oc.effects.sumOf { e ->
+                when (e.type) {
+                    "cash" -> e.hours
+                    "donation", "rd" -> -e.hours * 0.9
+                    "income" -> e.pct * e.hours * (if (e.target == "all") 1.0 else share)
+                    "credit" -> e.points * 0.01
+                    // Selling means rebuying later: count the rebuild cost and a day of lost income.
+                    "sell" -> card.business?.let { b ->
+                        val invested = eco.investedIn(engine.content.business(b), s.businesses[b]?.level ?: 1).toDollarsDouble()
+                        (engine.desk.valuation(s, b).toDollarsDouble() * e.multiple - invested) / hourly - 24 * share
+                    } ?: 0.0
+                    else -> 0.0
+                }
+            }
+        }
+    }
+
+    /** Resolves pending decision cards: "best" (expected value), "safe" (cheapest worst case) or "random". */
+    fun desk(s0: GameState, style: String, rng: Pcg32? = null): GameState {
+        var s = s0
+        for (card in s0.world.cards.sortedBy { it.id }) {
+            val def = engine.content.world.cardById[card.card] ?: continue
+            val usable = def.options.indices.filter { i ->
+                val o = def.options[i]
+                engine.desk.optionAvailable(s, card, o) && engine.desk.maxCost(s, o) <= s.cash
+            }
+            if (usable.isEmpty()) continue
+            val pick = when (style) {
+                "random" -> usable[rng!!.nextInt(usable.size)]
+                "safe" -> usable.minWith(compareBy<Int> { engine.desk.maxCost(s, def.options[it]) }.thenByDescending { optionValue(s, card, def.options[it]) })
+                else -> usable.maxBy { optionValue(s, card, def.options[it]) }
+            }
+            s = engine.tryApply(s, Command.ResolveCard(card.id, pick))
+        }
+        return s
+    }
+
+    /** Taxes and the never-stuck guarantees. filing: "legit", "aggressive" or null (let the window auto-file). */
+    fun finance(s0: GameState, filing: String?): GameState {
+        var s = s0
+        if (s.finance.tax.pending != null && filing != null) s = engine.tryApply(s, Command.FileTaxes(aggressive = filing == "aggressive"))
+        if (engine.credit.canRestructure(s)) s = engine.tryApply(s, Command.Restructure)
+        if (engine.credit.phoenixAvailable(s)) s = engine.tryApply(s, Command.AcceptPhoenix)
+        return s
+    }
+
     /** Parks spare cash in the total-market fund when a session ends. Positions that hold board seats are never touched. */
     fun parkCash(s: GameState, incomePerSec: Money, share: String = "0.9"): GameState {
         if (!market.isUnlocked(s, "funds")) return s
@@ -387,6 +441,8 @@ class ActiveBot(override val name: String = "active", private val reserveFractio
         s = p.marketMissions(s)
         s = p.estates(s, "0.02")
         s = p.luxury(s, "0.01")
+        s = p.desk(s, "best")
+        s = p.finance(s, if (name == "risky_trader") "aggressive" else "legit")
         s = p.tuneMechanics(s, skill = 1.0)
         val income = engine.economy.totalNetRate(s).perSecond()
         // Managers keep money flowing offline; an engaged player hires one as soon as it pays back within ~20 minutes.
@@ -433,6 +489,8 @@ class IdleBot : Bot {
         s = p.marketMissions(s)
         s = p.estates(s, "0.0")
         s = p.luxury(s, null)
+        s = p.desk(s, "safe")
+        s = p.finance(s, null)
         p.firstManager(s)?.let { (cmd, _) -> s = engine.tryApply(s, cmd) }
         // Idle players use the free auto-plan button rather than fine-tuning.
         for (b in s.businesses.values) if (engine.content.business(b.id).mechanic is MechanicDef.Logistics && b.managerId == null) s = engine.tryApply(s, Command.AutoPlanRoutes(b.id))
@@ -465,6 +523,11 @@ class PoorChoicesBot : Bot {
         if (rng.chance(0.3)) s = Planner(engine).marketMissions(s)
         if (s.businesses.isEmpty()) s = engine.tryApply(s, Command.OpenBusiness("retail"))
         if (rng.chance(0.6)) s = engine.tryApply(s, Command.CollectAll)
+        val p = Planner(engine)
+        if (rng.chance(0.7)) s = p.desk(s, "random", rng)
+        // Poor choices with money: borrows the maximum, files aggressively, but still takes the never-stuck offers.
+        if (rng.chance(0.3)) engine.credit.borrowLimit(s).let { lim -> if (lim.isPositive) s = engine.tryApply(s, Command.TakeLoan(lim, 7)) }
+        s = p.finance(s, "aggressive")
         repeat(rng.nextInt(1, 6)) {
             val ids = s.businesses.keys.sorted()
             val cmd: Command = when (rng.nextInt(6)) {
@@ -503,6 +566,8 @@ class RiskyTraderBot : Bot {
         }
         s = base.act(engine, s, rng, sessionStart, sessionEnd = false)
         if (!sessionEnd || !math.isUnlocked(s, "stocks")) return s
+        // Borrows to the limit for three days to speculate (GDD bots: "borrows to the limit").
+        engine.credit.borrowLimit(s).let { lim -> if (lim.isPositive) s = engine.tryApply(s, Command.TakeLoan(lim, 3)) }
         val budget = s.cash * Multiplier.of("0.3")
         if (budget < Money.ofDollars(1_000)) return s
         val since = s.market.tick - 12 * 60

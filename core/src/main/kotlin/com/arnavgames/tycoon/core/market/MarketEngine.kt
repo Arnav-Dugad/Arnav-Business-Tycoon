@@ -230,6 +230,13 @@ class MarketEngine(private val m: MarketContent, private val dividendBonus: (Gam
 
     private fun addNews(list: List<NewsItem>, item: NewsItem): List<NewsItem> = (list + item).takeLast(cfg.newsKept)
 
+    /** Adds a story from another system (world events, rivals) to the news feed. */
+    fun postNews(state: GameState, headline: String, kind: String, target: String = ""): GameState {
+        val mk = state.market
+        val item = NewsItem(mk.nextNewsId, state.simTimeMs / 60_000, headline, kind, target)
+        return state.copy(market = mk.copy(news = addNews(mk.news, item), nextNewsId = mk.nextNewsId + 1))
+    }
+
     // ----- Earnings -----
 
     private fun earnings(state: GameState, mk: MarketState, t: Long, events: MutableList<GameEvent>): MarketState {

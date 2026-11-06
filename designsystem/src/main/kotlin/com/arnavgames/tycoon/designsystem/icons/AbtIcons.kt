@@ -159,13 +159,20 @@ object AbtIcons {
     val Island = icon("Island", "M2.5 19c3-2 6-2 9.5-2s6.5 0 9.5 2", "M12 17V9", "M12 9c-1.5-2.5-4-3-6-2M12 9c1.5-2.5 4-3 6-2M12 9c-.5-2.5.5-4.5 2.5-5.5", "M12 9c-2 0-3.5 1.5-4 3.5")
     val Mansion = icon("Mansion", "M2.5 20.5h19", "M4 20.5V11l8-5.5 8 5.5v9.5", "M9.5 20.5v-5h5v5", "M7 12.5h2M15 12.5h2", "M12 9.5h.01")
 
+    // ---- World and finance ----
+    val Cards = icon("Cards", "M5 7.5h10.5v13H5Z", "M8.5 4h10.5v13h-3.5", "M8 12h4.5M8 15h3")
+    val Globe = icon("Globe", circle(12f, 12f, 8.5f), "M3.5 12h17", "M12 3.5c2.4 2.4 3.4 5.3 3.4 8.5s-1 6.1-3.4 8.5c-2.4-2.4-3.4-5.3-3.4-8.5s1-6.1 3.4-8.5Z")
+    val Receipt = icon("Receipt", "M6 3h12v18l-2-1.4-2 1.4-2-1.4-2 1.4-2-1.4-2 1.4Z", "M9 8h6M9 11.5h6M9 15h3.5")
+    val Gauge = icon("Gauge", "M3.8 16.5a8.2 8.2 0 1 1 16.4 0", "M12 16.5l4-5", circle(12f, 16.5f, 1.3f), "M6.3 10.8l1.2 1M17.7 10.8l-1.2 1M12 8.3v1.5")
+    val Handshake = icon("Handshake", "M2.5 10.5 6 7l4 1.8 2.5-1.8 4 .8 5 3.2", "M6 14.5l3.2 3.2 1.8-1 1.8 1.3 1.6-1.2 1.6 1 2.5-3.3", "M2.5 10.5l3.5 4M21.5 11l-4.5 3.5", "M10 8.8l-2 2.2 2 1.2 3-2")
+
     private val byName: Map<String, ImageVector> by lazy {
         listOf(
             Empire, Markets, Estates, Collection, Crown, Cash, Bullion, Coin, Favor, ChevronRight, ChevronLeft, ChevronDown,
             ChevronUp, Close, Plus, Minus, Check, ArrowUp, ArrowDown, Refresh, Sliders, Info, Warning, Lock, Eye, EyeOff,
             Mail, Bell, User, Rivals, Clock, Bolt, Sparkle, Star, Trophy, Briefcase, Store, Gift, Shield, Factory, News, Map,
             Hand, Sun, Moon, Timer, Manager, Expand, Inbox, Chart, Volume, Music, Vibrate, Logout, Trash, Download, Cloud,
-            Upload, Book, Fleet, Route, Tag, Megaphone, Chef, Pause, Play, StarFilled, House, Villa, Warehouse, Plot, Tower, Key, Wrench, Umbrella, Car, Watch, Wine, Gem, Heli, Yacht, Frame, Bust, Island, Mansion,
+            Upload, Book, Fleet, Route, Tag, Megaphone, Chef, Pause, Play, StarFilled, House, Villa, Warehouse, Plot, Tower, Key, Wrench, Umbrella, Car, Watch, Wine, Gem, Heli, Yacht, Frame, Bust, Island, Mansion, Cards, Globe, Receipt, Gauge, Handshake,
             Wheat, Hanger, Pickaxe, Flame, Bed, Bank, Crane, Film, Chip, Antenna, Plane, Flask, Ball, Rocket, Buildings,
         ).associateBy { it.name }
     }

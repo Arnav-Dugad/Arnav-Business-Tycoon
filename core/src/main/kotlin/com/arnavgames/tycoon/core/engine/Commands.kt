@@ -60,6 +60,19 @@ sealed interface Command {
     data object BidAuction : Command
     /** Leaves a proxy maximum: the game bids for you up to this amount, even while you are away. */
     data class SetMaxBid(val max: Money) : Command
+    // World, rivals and finance (docs/GDD.md §9–11)
+    data class ResolveCard(val cardId: Long, val option: Int) : Command
+    data class TakeLoan(val amount: Money, val days: Int) : Command
+    data class RepayLoan(val loanId: Long) : Command
+    data class DrawCredit(val amount: Money) : Command
+    data class RepayCredit(val amount: Money) : Command
+    /** Longer loan terms when debt service exceeds income (the rating drops). */
+    data object Restructure : Command
+    /** Orderly liquidation when net worth has been negative for a while (GDD §11). */
+    data object AcceptPhoenix : Command
+    /** Files the pending tax quarter yourself, claiming earned deductions (optionally an aggressive interpretation). */
+    data class FileTaxes(val aggressive: Boolean) : Command
+    data class SetAutoFile(val on: Boolean) : Command
 }
 
 sealed interface GameError {
@@ -114,6 +127,18 @@ sealed interface GameEvent {
     data class AuctionBid(val itemId: String, val amount: Money) : GameEvent
     data class AuctionWon(val itemId: String, val price: Money) : GameEvent
     data class AuctionLost(val itemId: String, val winner: String) : GameEvent
+    data class CardDrawn(val cardId: Long) : GameEvent
+    data class CardResolved(val cardId: Long, val title: String, val result: String) : GameEvent
+    data class WorldEventStarted(val eventId: String) : GameEvent
+    data class BusinessSold(val businessId: String, val price: Money) : GameEvent
+    data class NemesisBeat(val chapter: Int, val beat: Int) : GameEvent
+    data class PaymentMissed(val source: String, val amount: Money) : GameEvent
+    data class LoanTaken(val loanId: Long, val amount: Money) : GameEvent
+    data class LoanRepaid(val loanId: Long) : GameEvent
+    data class QuarterEnded(val quarter: Long) : GameEvent
+    data class TaxFiled(val refund: Money, val audited: Boolean, val auto: Boolean) : GameEvent
+    data object Restructured : GameEvent
+    data object PhoenixReborn : GameEvent
 }
 
 sealed interface CommandResult {

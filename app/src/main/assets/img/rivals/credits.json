@@ -1,0 +1,405 @@
+{
+  "note": "Caricature portraits of invented people, generated with Figma AI. They do not depict, and are not meant to resemble, any real person.",
+  "items": [
+    {
+      "id": "melon_tusk",
+      "title": "Melon Tusk (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "jeff_bozos",
+      "title": "Jeff Bozos (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "larry_ellisun",
+      "title": "Larry Ellisun (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "mark_zuckerbird",
+      "title": "Mark Zuckerbird (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "bernard_arnot",
+      "title": "Bernard Arnot (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "larry_pagely",
+      "title": "Larry Pagely (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "sergey_brinn",
+      "title": "Sergey Brinn (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "steve_ballmore",
+      "title": "Steve Ballmore (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "warren_buffit",
+      "title": "Warren Buffit (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "jensen_huangg",
+      "title": "Jensen Huangg (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "mukesh_ambanee",
+      "title": "Mukesh Ambanee (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "bill_gatesworth",
+      "title": "Bill Gatesworth (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "michael_dellvin",
+      "title": "Michael Dellvin (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "rob_waltonne",
+      "title": "Rob Waltonne (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "amancio_orteguez",
+      "title": "Amancio Orteguez (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "francoise_bettencorte",
+      "title": "Françoise Bettencorte (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "alice_waltz",
+      "title": "Alice Waltz (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "gautam_adanni",
+      "title": "Gautam Adanni (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "carlos_slimm",
+      "title": "Carlos Slimm (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "zhong_shanshine",
+      "title": "Zhong Shanshine (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "pony_mah",
+      "title": "Pony Mah (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "ken_griffon",
+      "title": "Ken Griffon (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "phil_nightly",
+      "title": "Phil Nightly (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "opra_windfrey",
+      "title": "Opra Windfrey (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "richard_bransun",
+      "title": "Richard Bransun (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "lee_ka_shine",
+      "title": "Lee Ka-shine (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "dieter_schwartz",
+      "title": "Dieter Schwartz (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "klaus_michael_kuehnly",
+      "title": "Klaus-Michael Kuehnly (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "gianluigi_aponti",
+      "title": "Gianluigi Aponti (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "giovanni_ferrera",
+      "title": "Giovanni Ferrera (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "alain_wertheimar",
+      "title": "Alain Wertheimar (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "tadashi_yanaii",
+      "title": "Tadashi Yanaii (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "zhang_yiminng",
+      "title": "Zhang Yiminng (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "colin_hwang",
+      "title": "Colin Hwang (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "jacqueline_marz",
+      "title": "Jacqueline Marz (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "abigail_johnsun",
+      "title": "Abigail Johnsun (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "thomas_peterfee",
+      "title": "Thomas Peterfee (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "stephen_schwartzmann",
+      "title": "Stephen Schwartzmann (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "gina_rhinehart",
+      "title": "Gina Rhinehart (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    },
+    {
+      "id": "vivienne_strand",
+      "title": "Vivienne Strand (portrait)",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 320×320, WebP"
+    }
+  ]
+}

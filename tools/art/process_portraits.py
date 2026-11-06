@@ -1,10 +1,11 @@
 """Processes AI-generated manager portraits for the app (docs/ART_PIPELINE.md).
 
-Reads tools/art/portraits/managers.json and the cached originals in tools/art/cache/portraits/<id>.png (git-ignored),
-writes 320x320 WebP files to app/src/main/assets/img/portraits/<id>.webp and a credits.json next to them.
+Reads tools/art/portraits/<set>.json and the cached originals in tools/art/cache/<cache>/<id>.png (git-ignored),
+writes 320x320 WebP files to app/src/main/assets/img/<out>/<id>.webp and a credits.json next to them.
+Sets: "managers" (cache portraits, out portraits) and "rivals" (cache rivals, out rivals).
 Deterministic: same inputs give byte-identical outputs with the pinned Pillow settings.
 
-Usage: python -I tools/art/process_portraits.py <repo-root>
+Usage: python -I tools/art/process_portraits.py <repo-root> [managers|rivals]
 """
 import json
 import sys
@@ -15,10 +16,14 @@ from PIL import Image
 SIZE = 320
 
 
-def main(repo: Path) -> None:
-    manifest = json.loads((repo / "tools/art/portraits/managers.json").read_text(encoding="utf-8"))
-    cache = repo / "tools/art/cache/portraits"
-    out_dir = repo / "app/src/main/assets/img/portraits"
+SETS = {"managers": ("portraits", "portraits"), "rivals": ("rivals", "rivals")}
+
+
+def main(repo: Path, which: str = "managers") -> None:
+    manifest = json.loads((repo / f"tools/art/portraits/{which}.json").read_text(encoding="utf-8"))
+    cache_name, out_name = SETS[which]
+    cache = repo / "tools/art/cache" / cache_name
+    out_dir = repo / "app/src/main/assets/img" / out_name
     out_dir.mkdir(parents=True, exist_ok=True)
     credits, missing, total = [], [], 0
     for e in manifest:
@@ -38,7 +43,7 @@ def main(repo: Path) -> None:
         credits.append({
             "id": e["id"],
             "title": f"{e['name']} (portrait)",
-            "author": f"AI-generated with Figma AI ({e['model']})",
+            "author": f"AI-generated with Figma AI ({e.get('model') or 'Figma AI'})",
             "source": "Figma AI image generation",
             "sourceUrl": "",
             "license": "AI-GENERATED",
@@ -55,4 +60,4 @@ def main(repo: Path) -> None:
 
 
 if __name__ == "__main__":
-    main(Path(sys.argv[1]))
+    main(Path(sys.argv[1]), sys.argv[2] if len(sys.argv) > 2 else "managers")

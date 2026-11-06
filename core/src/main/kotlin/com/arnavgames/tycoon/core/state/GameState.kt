@@ -34,6 +34,8 @@ data class GameState(
     val market: MarketState = MarketState(),
     val estate: EstateState = EstateState(),
     val luxury: LuxuryState = LuxuryState(),
+    val world: WorldState = WorldState(),
+    val finance: FinanceState = FinanceState(),
 ) {
     val cash: Money get() = ledger.cash
 }
@@ -46,6 +48,8 @@ data class BusinessState(
     /** Output waiting to be collected (unmanaged businesses only). */
     val stored: Money = Money.ZERO,
     val accrual: Accrual = Accrual(),
+    /** Exact accrual of income tax withheld (Phase 9), so offline and live withholding match to the cent. */
+    val taxAccrual: Accrual = Accrual(),
     val expansionsDone: Set<String> = emptySet(),
     val mothballed: Boolean = false,
     val mechanic: MechanicState = MechanicState.None,

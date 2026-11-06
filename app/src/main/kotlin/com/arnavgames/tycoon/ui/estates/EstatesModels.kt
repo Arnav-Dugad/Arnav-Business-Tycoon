@@ -135,7 +135,7 @@ class EstatesMapper(private val engine: GameEngine) {
                 val probe = PropertyState(0, id, l.type, l.size, l.condition, costBasis = l.price)
                 ListingUi(l.id, t.name, t.icon, l.size, l.condition, l.distressed, l.discount, l.price,
                     est.marketRent6h(s, probe) * Multiplier.ofDouble(est.rentFactor(100) * 4),
-                    c.config.mortgageLtvOptions.associateWith { est.buyCost(l, it).first })
+                    est.ltvOptions(s).associateWith { est.buyCost(l, it).first })
             },
             owned = s.estate.properties.values.filter { it.district == id }.sortedBy { it.id }.map { row(s, it) },
             unlocked = unlocked,
@@ -144,7 +144,7 @@ class EstatesMapper(private val engine: GameEngine) {
                 !unlocked -> "${city.name} opens in chapter ${city.chapter}"
                 else -> null
             },
-            ltvOptions = c.config.mortgageLtvOptions, mortgagesUnlocked = est.isUnlocked(s, "mortgages"), cash = s.cash,
+            ltvOptions = est.ltvOptions(s), mortgagesUnlocked = est.isUnlocked(s, "mortgages"), cash = s.cash,
             refreshInMinutes = ((est.epoch(s.simTimeMs) + 1) * c.config.listingRefreshHours * 3_600_000L - s.simTimeMs) / 60_000,
         )
     }

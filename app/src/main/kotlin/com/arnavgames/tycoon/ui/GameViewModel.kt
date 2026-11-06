@@ -28,6 +28,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
@@ -129,6 +130,38 @@ class GameViewModel @Inject constructor(
         .flowOn(Dispatchers.Default)
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), null)
 
+    private val worldMapper by lazy { com.arnavgames.tycoon.ui.world.WorldMapper(session.engine, session.rivalPortraitIds()) }
+
+    val desk: StateFlow<com.arnavgames.tycoon.ui.world.DeskUi?> = session.state.filterNotNull()
+        .map { s -> worldMapper.desk(s) }
+        .flowOn(Dispatchers.Default)
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), null)
+
+    /** (unlocked, player rank) for the Empire strip; recomputed at most once a game minute. */
+    val fortuneRank: StateFlow<Pair<Boolean, Int>?> = session.state.filterNotNull()
+        .map { s -> s.simTimeMs / 60_000 to s }
+        .distinctUntilChanged { a, b -> a.first == b.first }
+        .map { (_, s) -> session.engine.world.isUnlocked(s, "fortune") to session.engine.world.playerRank(s, session.engine.economy.netWorth(s)) }
+        .flowOn(Dispatchers.Default)
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), null)
+
+    /** (loans unlocked, rating name) for the Empire strip. */
+    val financeSummary: StateFlow<Pair<Boolean, String>?> = session.state.filterNotNull()
+        .map { s -> session.engine.world.isUnlocked(s, "loans") to session.engine.credit.rating(s).name }
+        .distinctUntilChanged()
+        .flowOn(Dispatchers.Default)
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), null)
+
+    fun fortune(s: GameState) = worldMapper.fortune(s)
+    fun rival(s: GameState, id: String) = worldMapper.rival(s, id)
+    fun finance(s: GameState) = worldMapper.finance(s)
+    fun rivalPortrait(id: String) = worldMapper.portrait(id)
+
+    /** Resolves a decision card and shows its outcome. */
+    fun resolveCard(cardId: Long, option: Int) = dispatch(Command.ResolveCard(cardId, option)) {
+        session.state.value?.world?.log?.lastOrNull()?.let { _messages.tryEmit(it.text) }
+    }
+
     fun luxuryCategory(s: GameState, id: String) = collectionMapper.category(s, id)
     fun luxuryCategoryName(id: String) = collectionMapper.categoryName(id)
     fun luxuryItem(s: GameState, id: String) = collectionMapper.item(s, id, artCredits[id])
@@ -139,6 +172,7 @@ class GameViewModel @Inject constructor(
 
     fun artCreditLines(): List<String> = artCredits.values.sorted()
     fun portraitCount(): Int = session.portraitIds().size
+    fun rivalPortraitCount(): Int = session.rivalPortraitIds().size
     fun portraitPath(managerId: String): String? = if (managerId in portraitSet) "img/portraits/$managerId.webp" else null
     private val portraitSet: Set<String> by lazy { session.portraitIds() }
     fun district(s: GameState, id: String) = estatesMapper.district(s, id)

@@ -35,6 +35,14 @@ class GameEngine(val content: ContentPack) {
     val estate get() = economy.estate
     val luxury get() = economy.luxury
     private val cgt get() = content.markets.config.capitalGainsTax
+    val finance = com.arnavgames.tycoon.core.finance.FinanceEngine(content, economy, trading, content.markets.config.capitalGainsTax)
+    val desk = com.arnavgames.tycoon.core.world.DeskEngine(content, economy, finance, market)
+    val world get() = economy.world
+    val credit get() = economy.credit
+
+    /** Tax withheld from [amount] of business income at the current quarter's rate. */
+    private fun withheld(s: GameState, amount: Money): Money =
+        if (s.finance.tax.rate <= 0.0 || !amount.isPositive) Money.ZERO else amount * Multiplier.ofDouble(s.finance.tax.rate)
 
     fun newGame(worldSeed: Long, contentHash: String, clock: GameClock): GameState {
         val base = GameState(
@@ -77,6 +85,7 @@ class GameEngine(val content: ContentPack) {
         for (t in s.timers) if (t.endSim in (now + 1)..<stop) stop = t.endSim
         if (s.hustle.frenzyUntil in (now + 1)..<stop) stop = s.hustle.frenzyUntil
         economy.luxury.nextEvent(s, now)?.let { if (it in (now + 1)..<stop) stop = it }
+        economy.world.nextExpiry(s, now)?.let { if (it in (now + 1)..<stop) stop = it }
         for (b in s.businesses.values) {
             val m = b.mechanic
             if (m is MechanicState.Retail && m.promoUntil in (now + 1)..<stop) stop = m.promoUntil
@@ -104,10 +113,12 @@ class GameEngine(val content: ContentPack) {
             val rate = economy.businessRate(s, id, now).net
             if (b.managerId != null) {
                 val (amount, acc) = b.accrual.accrue(rate, dt)
+                val taxRate = s.finance.tax.rate
+                val (tax, taxAcc) = if (taxRate > 0.0) b.taxAccrual.accrue(rate * Multiplier.ofDouble(taxRate), dt) else (Money.ZERO to b.taxAccrual)
                 // Stamp at segment start: segments never cross a minute boundary, so this is always the right minute.
-                ledger = Ledger.earn(ledger, now, id, amount)
+                ledger = Ledger.earn(ledger, now, id, amount, tax.min(amount).max(Money.ZERO))
                 earned += amount
-                newBusinesses[id] = b.copy(accrual = acc)
+                newBusinesses[id] = b.copy(accrual = acc, taxAccrual = taxAcc)
             } else {
                 val cap = economy.storageCap(s, id, now)
                 if (b.stored >= cap) continue
@@ -134,6 +145,7 @@ class GameEngine(val content: ContentPack) {
             for (t in due) s = completeTimer(s, t, events)
         }
         if (s.hustle.frenzyUntil == now) s = s.copy(hustle = s.hustle.copy(combo = 0))
+        s = economy.world.expire(s, now)
         if (s.luxury.auction != null) s = economy.luxury.onBoundary(s, now, events)
         for (b in s.businesses.values) {
             val m = b.mechanic
@@ -141,11 +153,14 @@ class GameEngine(val content: ContentPack) {
         }
         // Minute tick: reputation drift, managers act, missions and peak net worth update.
         if (now % MINUTE == 0L) {
+            val mark = events.size
             s = market.tick(s, now / MINUTE, events)
             s = economy.estate.tick(s, now / MINUTE, cgt, events)
             s = economy.luxury.tick(s, now / MINUTE, events)
+            s = desk.tick(s, now / MINUTE, events)
             s = minuteTick(s)
             s = missions.evaluate(s, events)
+            s = finance.tick(s, now / MINUTE, events.subList(mark, events.size).toList(), events)
             val nw = economy.netWorth(s)
             if (nw > s.stats.peakNetWorth) s = s.copy(stats = s.stats.copy(peakNetWorth = nw))
         }
@@ -281,6 +296,15 @@ class GameEngine(val content: ContentPack) {
             is Command.UpgradeShowroom -> lux(economy.luxury.upgradeShowroom(state, cmd.showroomId))
             Command.BidAuction -> lux(economy.luxury.bid(state, events))
             is Command.SetMaxBid -> lux(economy.luxury.setMaxBid(state, cmd.max, events))
+            is Command.ResolveCard -> desk(desk.resolve(state, cmd.cardId, cmd.option, events))
+            is Command.TakeLoan -> fin(finance.takeLoan(state, cmd.amount, cmd.days, events))
+            is Command.RepayLoan -> fin(finance.repayLoan(state, cmd.loanId, events))
+            is Command.DrawCredit -> fin(finance.drawCredit(state, cmd.amount))
+            is Command.RepayCredit -> fin(finance.repayCredit(state, cmd.amount))
+            Command.Restructure -> fin(finance.restructure(state, events))
+            Command.AcceptPhoenix -> fin(finance.acceptPhoenix(state, events))
+            is Command.FileTaxes -> fin(finance.fileTaxes(state, cmd.aggressive, events))
+            is Command.SetAutoFile -> fin(finance.setAutoFile(state, cmd.on))
         }
         return when (result) {
             is Either.Err -> CommandResult.Rejected(result.error)
@@ -292,6 +316,16 @@ class GameEngine(val content: ContentPack) {
     internal sealed interface Either {
         data class Ok(val state: GameState) : Either
         data class Err(val error: GameError) : Either
+    }
+
+    private fun desk(r: com.arnavgames.tycoon.core.world.DeskEngine.Result): Either = when (r) {
+        is com.arnavgames.tycoon.core.world.DeskEngine.Result.Ok -> Either.Ok(r.state)
+        is com.arnavgames.tycoon.core.world.DeskEngine.Result.Err -> Either.Err(r.error)
+    }
+
+    private fun fin(r: com.arnavgames.tycoon.core.finance.FinanceEngine.Result): Either = when (r) {
+        is com.arnavgames.tycoon.core.finance.FinanceEngine.Result.Ok -> Either.Ok(r.state)
+        is com.arnavgames.tycoon.core.finance.FinanceEngine.Result.Err -> Either.Err(r.error)
     }
 
     private fun lux(r: com.arnavgames.tycoon.core.luxury.LuxuryEngine.Result): Either = when (r) {
@@ -376,7 +410,7 @@ class GameEngine(val content: ContentPack) {
     private fun collect(s: GameState, id: String, events: MutableList<GameEvent>): Either {
         val b = s.businesses[id] ?: return Either.Err(GameError.NotFound("business $id"))
         if (!b.stored.isPositive) return Either.Ok(s)
-        val ledger = Ledger.earn(s.ledger, s.simTimeMs, id, b.stored)
+        val ledger = Ledger.earn(s.ledger, s.simTimeMs, id, b.stored, withheld(s, b.stored))
         events += GameEvent.Collected(id, b.stored)
         return Either.Ok(
             s.copy(

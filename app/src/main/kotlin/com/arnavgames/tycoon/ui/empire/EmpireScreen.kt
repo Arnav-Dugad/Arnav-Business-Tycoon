@@ -101,7 +101,7 @@ import com.arnavgames.tycoon.designsystem.theme.glassCard
 import com.arnavgames.tycoon.designsystem.theme.glassSource
 
 @Composable
-fun EmpireScreen(vm: GameViewModel, onOpenBusiness: (String) -> Unit) {
+fun EmpireScreen(vm: GameViewModel, onOpenBusiness: (String) -> Unit, onOpenDesk: () -> Unit = {}, onOpenFortune: () -> Unit = {}, onOpenFinance: () -> Unit = {}) {
     val ui by vm.empire.collectAsStateWithLifecycle()
     val qty by vm.buyQty.collectAsStateWithLifecycle()
     val settings by vm.settings.collectAsStateWithLifecycle()
@@ -127,6 +127,7 @@ fun EmpireScreen(vm: GameViewModel, onOpenBusiness: (String) -> Unit) {
         ) {
             guideText(e)?.let { g -> item(key = "guide") { GuideBanner(g) } }
             e.mission?.let { m -> item(key = "mission") { NextMoveCard(m, onClaim = { vm.dispatch(Command.ClaimMission(m.id)) }) } }
+            item(key = "world") { com.arnavgames.tycoon.ui.world.WorldStrip(vm, onOpenDesk, onOpenFortune, onOpenFinance) }
             item(key = "hustle") {
                 HustleCard(e.hustle, fmt, onTap = { vm.dispatch(Command.HustleTap(1)) }, onFrenzy = { vm.dispatch(Command.ActivateFrenzy) })
             }

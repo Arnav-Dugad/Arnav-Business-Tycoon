@@ -68,6 +68,11 @@ import kotlinx.serialization.Serializable
 @Serializable data class LuxuryCategoryRoute(val id: String)
 @Serializable data class LuxuryItemRoute(val id: String)
 @Serializable object AuctionRoute
+@Serializable object DeskRoute
+@Serializable object FortuneRoute
+@Serializable data class RivalRoute(val id: String)
+@Serializable object FinanceRoute
+@Serializable object TaxRoute
 
 @Composable
 fun AppRoot(vm: GameViewModel, forcedTheme: ThemeMode?, onDarkChanged: (Boolean) -> Unit) {
@@ -166,8 +171,16 @@ private fun ReadyContent(vm: GameViewModel) {
                         onOpenProperty = { nav.navigate(PropertyRoute(it)) },
                         onOpenLuxuryCategory = { nav.navigate(LuxuryCategoryRoute(it)) },
                         onOpenAuction = { nav.navigate(AuctionRoute) },
+                        onOpenDesk = { nav.navigate(DeskRoute) },
+                        onOpenFortune = { nav.navigate(FortuneRoute) },
+                        onOpenFinance = { nav.navigate(FinanceRoute) },
                     )
                 }
+                composable<DeskRoute> { com.arnavgames.tycoon.ui.world.DeskScreen(vm, onBack = { nav.popBackStack() }, onOpenRival = { nav.navigate(RivalRoute(it)) }) }
+                composable<FortuneRoute> { com.arnavgames.tycoon.ui.world.FortuneScreen(vm, onBack = { nav.popBackStack() }, onOpenRival = { nav.navigate(RivalRoute(it)) }) }
+                composable<RivalRoute> { entry -> com.arnavgames.tycoon.ui.world.RivalScreen(vm, entry.toRoute<RivalRoute>().id, onBack = { nav.popBackStack() }) }
+                composable<FinanceRoute> { com.arnavgames.tycoon.ui.world.FinanceScreen(vm, onBack = { nav.popBackStack() }, onOpenTaxes = { nav.navigate(TaxRoute) }) }
+                composable<TaxRoute> { com.arnavgames.tycoon.ui.world.TaxFilingScreen(vm, onBack = { nav.popBackStack() }) }
                 composable<LuxuryCategoryRoute> { entry ->
                     com.arnavgames.tycoon.ui.collection.CategoryScreen(vm, entry.toRoute<LuxuryCategoryRoute>().id, onBack = { nav.popBackStack() }, onOpenItem = { nav.navigate(LuxuryItemRoute(it)) })
                 }
@@ -194,7 +207,7 @@ private fun ReadyContent(vm: GameViewModel) {
                     BusinessDetailScreen(vm = vm, businessId = entry.toRoute<BusinessRoute>().id, onBack = { nav.popBackStack() })
                 }
                 composable<SettingsRoute> { SettingsScreen(vm = vm, onBack = { nav.popBackStack() }, onCredits = { nav.navigate(CreditsRoute) }) }
-                composable<CreditsRoute> { CreditsScreen(onBack = { nav.popBackStack() }, artCredits = vm.artCreditLines(), portraitCount = vm.portraitCount()) }
+                composable<CreditsRoute> { CreditsScreen(onBack = { nav.popBackStack() }, artCredits = vm.artCreditLines(), portraitCount = vm.portraitCount() + vm.rivalPortraitCount()) }
             }
         }
     }

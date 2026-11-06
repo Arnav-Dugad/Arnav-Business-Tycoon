@@ -18,7 +18,7 @@ object ContentLoader {
     }
 
     /** Files that make up the pack, relative to the content root. Order matters for the hash. */
-    val FILES = listOf("data/businesses.json", "data/chapters.json", "data/conglomerates.json", "data/markets.json", "data/estates.json", "data/luxury.json", "balance/balance.json")
+    val FILES = listOf("data/businesses.json", "data/chapters.json", "data/conglomerates.json", "data/markets.json", "data/estates.json", "data/luxury.json", "data/world.json", "balance/balance.json")
 
     data class Loaded(val pack: ContentPack, val hash: String, val issues: List<ContentIssue>)
 
@@ -30,8 +30,9 @@ object ContentLoader {
         val markets = json.decodeFromString<MarketContent>(texts.getValue("data/markets.json"))
         val estates = json.decodeFromString<EstateContent>(texts.getValue("data/estates.json"))
         val luxury = json.decodeFromString<LuxuryContent>(texts.getValue("data/luxury.json"))
+        val world = json.decodeFromString<WorldContent>(texts.getValue("data/world.json"))
         val balance = json.decodeFromString<BalanceConfig>(texts.getValue("balance/balance.json"))
-        val pack = ContentPack(businesses, balance, chapters, conglomerates, markets, estates, luxury)
+        val pack = ContentPack(businesses, balance, chapters, conglomerates, markets, estates, luxury, world)
         val digest = MessageDigest.getInstance("SHA-256")
         FILES.forEach { digest.update(it.toByteArray()); digest.update(texts.getValue(it).replace("\r\n", "\n").toByteArray()) }
         val hash = digest.digest().joinToString("") { "%02x".format(it) }.take(16)
@@ -171,7 +172,89 @@ object ContentValidator {
         validateMarkets(pack, ids, ::check)
         validateEstates(pack, ids, ::check)
         validateLuxury(pack, ids, ::check)
+        validateWorld(pack, ids, ::check)
         return out
+    }
+
+    /**
+     * Exact names of the real people the parody rivals are based on: a rival may pun on them but never use them
+     * (GDD §1.1). Lower case, compared after trimming.
+     */
+    val REAL_PEOPLE_BLOCKLIST = setOf(
+        "elon musk", "jeff bezos", "larry ellison", "mark zuckerberg", "bernard arnault", "larry page", "sergey brin",
+        "steve ballmer", "warren buffett", "jensen huang", "mukesh ambani", "bill gates", "michael dell", "rob walton",
+        "amancio ortega", "francoise bettencourt meyers", "françoise bettencourt meyers", "alice walton", "gautam adani",
+        "carlos slim", "zhong shanshan", "ma huateng", "pony ma", "ken griffin", "phil knight", "oprah winfrey",
+        "rupert murdoch", "richard branson", "jack ma", "masayoshi son", "li ka-shing", "lakshmi mittal", "ratan tata",
+        "azim premji", "shiv nadar", "savitri jindal", "cyrus poonawalla", "dilip shanghvi", "kumar birla", "uday kotak",
+        "radhakishan damani", "mark cuban", "steve cohen", "ray dalio", "mackenzie scott", "jack dorsey", "brian chesky",
+        "travis kalanick", "reed hastings", "daniel ek", "dieter schwarz", "klaus-michael kühne", "klaus-michael kuhne",
+        "gianluigi aponte", "giovanni ferrero", "alain wertheimer", "françois pinault", "francois pinault",
+        "emmanuel besnier", "stefan persson", "susanne klatten", "tadashi yanai", "zhang yiming", "colin huang",
+        "robin zeng", "lei jun", "he xiangjian", "jacqueline mars", "abigail johnson", "thomas peterffy",
+        "stephen schwarzman", "len blavatnik", "dan gilbert", "aliko dangote", "johann rupert", "nassef sawiris",
+        "strive masiyiwa", "iris fontbona", "jorge paulo lemann", "germán larrea", "german larrea", "gina rinehart",
+        "andrew forrest", "anthony pratt", "lee jae-yong", "robert kuok", "hiroshi mikitani", "david geffen",
+        "harold hamm", "kelcy warren", "jerry jones", "stan kroenke", "diane hendricks",
+    )
+
+    private fun validateWorld(pack: ContentPack, businessIds: List<String>, check: (Boolean, String, String) -> Unit) {
+        val w = pack.world
+        if (w.rivals.isEmpty()) return
+        check(w.rivals.size >= 200, "world", "at least 200 rivals")
+        check(w.cards.size >= 150, "world", "at least 150 decision cards")
+        check(w.events.size >= 50, "world", "at least 50 world events")
+        check(w.archetypes.size == 8, "world", "8 rival archetypes")
+        check(w.rivals.map { it.id }.toSet().size == w.rivals.size, "world", "duplicate rival ids")
+        check(w.rivals.map { it.name }.toSet().size == w.rivals.size, "world", "duplicate rival names")
+        check(w.cards.map { it.id }.toSet().size == w.cards.size, "world", "duplicate card ids")
+        check(w.events.map { it.id }.toSet().size == w.events.size, "world", "duplicate event ids")
+        val sectors = pack.markets.sectors.map { it.id }.toSet()
+        val cities = pack.estates.cities.map { it.id }.toSet()
+        w.rivals.forEach { r ->
+            val p = "world.rivals.${r.id}"
+            check(ID.matches(r.id), p, "bad id")
+            check(r.archetype in w.archetypeById, p, "unknown archetype '${r.archetype}'")
+            check(r.sectors.isNotEmpty() && r.sectors.all { it in sectors }, p, "unknown sector")
+            check(r.name.trim().lowercase() !in REAL_PEOPLE_BLOCKLIST, p, "uses a real person's exact name")
+            findBlockedBrand(r.name)?.let { check(false, p, "contains blocked real brand '$it'") }
+            check(r.base in 8.5..13.0 && r.growth in 0.2..1.5 && r.wobble in 0.0..0.6 && r.periodDays > 0.5, p, "net-worth curve out of range")
+        }
+        w.nemeses.forEach { n ->
+            check(n.rival in w.rivalById, "world.nemeses.${n.chapter}", "unknown rival")
+            check(n.beats.size == 3, "world.nemeses.${n.chapter}", "three beats")
+        }
+        val types = setOf("cash", "income", "credit", "relation", "donation", "rd", "sell")
+        w.cards.forEach { c ->
+            val p = "world.cards.${c.id}"
+            check(c.kind in setOf("business", "world", "personal", "acquisition", "jv", "takeover", "rival", "nemesis"), p, "unknown kind")
+            check(c.requires == "none" || c.requires == "biz:any" || c.requires.removePrefix("biz:") in businessIds, p, "bad requirement '${c.requires}'")
+            check(c.options.size in 1..5, p, "1-5 options")
+            val needsBusiness = c.requires.startsWith("biz:")
+            check(!c.text.contains("{business}") || needsBusiness, p, "{business} without a business requirement")
+            c.options.forEach { o ->
+                check(kotlin.math.abs(o.outcomes.sumOf { it.p } - 1.0) < 1e-9, p, "outcome odds must sum to 1 ('${o.label}')")
+                check(o.requires == null || o.requires == "ally", p, "unknown option requirement")
+                o.outcomes.flatMap { it.effects }.forEach { e ->
+                    check(e.type in types, p, "unknown effect '${e.type}'")
+                    if (e.type == "income") check(e.target in setOf("business", "all", "sector") && e.hours in 1.0..96.0 && e.pct in -0.6..0.6, p, "income effect range")
+                    if (e.type == "income" && e.target != "all") check(needsBusiness, p, "business income effect without a business")
+                    if (e.type == "sell") check(needsBusiness && e.multiple in 1.0..4.0, p, "sell effect")
+                    if (e.type == "cash" || e.type == "donation" || e.type == "rd") check(e.hours in -6.0..6.0, p, "cash hours range")
+                }
+            }
+        }
+        w.events.forEach { e ->
+            val p = "world.events.${e.id}"
+            check(e.scope in setOf("sector", "all", "city"), p, "unknown scope")
+            if (e.scope == "sector") check(e.target in sectors, p, "unknown sector '${e.target}'")
+            if (e.scope == "city") check(e.target in cities, p, "unknown city '${e.target}'")
+            if (e.scope != "city") check(e.hours in 1..96 && e.pct in -0.5..0.5 && e.pct != 0.0, p, "event effect range")
+        }
+        val f = w.config.finance
+        check(f.ratings.isNotEmpty() && f.ratings.map { it.min } == f.ratings.map { it.min }.sortedDescending(), "world.finance", "ratings must be ordered best first")
+        check(f.taxBrackets.isNotEmpty() && f.taxBrackets.last().upToPerHour == null, "world.finance", "last tax bracket must be open-ended")
+        check(f.rdBusinesses.all { it in businessIds } && f.greenBusinesses.all { it in businessIds }, "world.finance", "unknown deduction business")
     }
 
     private fun validateLuxury(pack: ContentPack, businessIds: List<String>, check: (Boolean, String, String) -> Unit) {

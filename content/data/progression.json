@@ -1,0 +1,4536 @@
+{
+ "daily": [
+  {
+   "id": "d_levels_easy",
+   "metric": "levels",
+   "minChapter": 1,
+   "title": "Shopfitter",
+   "targets": [
+    15,
+    40,
+    80
+   ],
+   "rewardHours": 1.0,
+   "bullion": 6,
+   "seasonXp": 15
+  },
+  {
+   "id": "d_levels_normal",
+   "metric": "levels",
+   "minChapter": 1,
+   "title": "Busy builder",
+   "targets": [
+    30,
+    80,
+    160
+   ],
+   "rewardHours": 2.0,
+   "bullion": 10,
+   "seasonXp": 25
+  },
+  {
+   "id": "d_levels_hard",
+   "metric": "levels",
+   "minChapter": 1,
+   "title": "Expansion drive",
+   "targets": [
+    60,
+    150,
+    300
+   ],
+   "rewardHours": 3.5,
+   "bullion": 16,
+   "seasonXp": 40
+  },
+  {
+   "id": "d_levels_focus",
+   "metric": "levels",
+   "minChapter": 1,
+   "title": "Level rush",
+   "targets": [
+    30,
+    80,
+    160
+   ],
+   "rewardHours": 1.5,
+   "bullion": 8,
+   "seasonXp": 50
+  },
+  {
+   "id": "d_taps_easy",
+   "metric": "taps",
+   "minChapter": 1,
+   "title": "Front of house",
+   "targets": [
+    60,
+    60,
+    60
+   ],
+   "rewardHours": 1.0,
+   "bullion": 6,
+   "seasonXp": 15
+  },
+  {
+   "id": "d_taps_normal",
+   "metric": "taps",
+   "minChapter": 1,
+   "title": "Rush hour",
+   "targets": [
+    150,
+    150,
+    150
+   ],
+   "rewardHours": 2.0,
+   "bullion": 10,
+   "seasonXp": 25
+  },
+  {
+   "id": "d_taps_hard",
+   "metric": "taps",
+   "minChapter": 1,
+   "title": "Counter champion",
+   "targets": [
+    300,
+    300,
+    300
+   ],
+   "rewardHours": 3.5,
+   "bullion": 16,
+   "seasonXp": 40
+  },
+  {
+   "id": "d_taps_focus",
+   "metric": "taps",
+   "minChapter": 1,
+   "title": "Elbow grease",
+   "targets": [
+    150,
+    150,
+    150
+   ],
+   "rewardHours": 1.5,
+   "bullion": 8,
+   "seasonXp": 50
+  },
+  {
+   "id": "d_earn_hours_easy",
+   "metric": "earn_hours",
+   "minChapter": 1,
+   "title": "Good day's work",
+   "targets": [
+    2,
+    2,
+    2
+   ],
+   "rewardHours": 1.0,
+   "bullion": 6,
+   "seasonXp": 15
+  },
+  {
+   "id": "d_earn_hours_normal",
+   "metric": "earn_hours",
+   "minChapter": 1,
+   "title": "Steady earner",
+   "targets": [
+    4,
+    4,
+    4
+   ],
+   "rewardHours": 2.0,
+   "bullion": 10,
+   "seasonXp": 25
+  },
+  {
+   "id": "d_earn_hours_hard",
+   "metric": "earn_hours",
+   "minChapter": 1,
+   "title": "Money machine",
+   "targets": [
+    8,
+    8,
+    8
+   ],
+   "rewardHours": 3.5,
+   "bullion": 16,
+   "seasonXp": 40
+  },
+  {
+   "id": "d_earn_hours_focus",
+   "metric": "earn_hours",
+   "minChapter": 1,
+   "title": "Cash flow",
+   "targets": [
+    4,
+    4,
+    4
+   ],
+   "rewardHours": 1.5,
+   "bullion": 8,
+   "seasonXp": 50
+  },
+  {
+   "id": "d_cards_easy",
+   "metric": "cards",
+   "minChapter": 1,
+   "title": "Decision maker",
+   "targets": [
+    1,
+    1,
+    1
+   ],
+   "rewardHours": 1.0,
+   "bullion": 6,
+   "seasonXp": 15
+  },
+  {
+   "id": "d_cards_normal",
+   "metric": "cards",
+   "minChapter": 1,
+   "title": "Desk duty",
+   "targets": [
+    2,
+    2,
+    2
+   ],
+   "rewardHours": 2.0,
+   "bullion": 10,
+   "seasonXp": 25
+  },
+  {
+   "id": "d_cards_hard",
+   "metric": "cards",
+   "minChapter": 1,
+   "title": "Chief executive",
+   "targets": [
+    3,
+    3,
+    3
+   ],
+   "rewardHours": 3.5,
+   "bullion": 16,
+   "seasonXp": 40
+  },
+  {
+   "id": "d_cards_focus",
+   "metric": "cards",
+   "minChapter": 1,
+   "title": "The buck stops here",
+   "targets": [
+    2,
+    2,
+    2
+   ],
+   "rewardHours": 1.5,
+   "bullion": 8,
+   "seasonXp": 50
+  },
+  {
+   "id": "d_frenzies_easy",
+   "metric": "frenzies",
+   "minChapter": 1,
+   "title": "Frenzy",
+   "targets": [
+    1,
+    1,
+    1
+   ],
+   "rewardHours": 1.0,
+   "bullion": 6,
+   "seasonXp": 15
+  },
+  {
+   "id": "d_frenzies_normal",
+   "metric": "frenzies",
+   "minChapter": 1,
+   "title": "Double rush",
+   "targets": [
+    2,
+    2,
+    2
+   ],
+   "rewardHours": 2.0,
+   "bullion": 10,
+   "seasonXp": 25
+  },
+  {
+   "id": "d_frenzies_hard",
+   "metric": "frenzies",
+   "minChapter": 1,
+   "title": "Triple threat",
+   "targets": [
+    3,
+    3,
+    3
+   ],
+   "rewardHours": 3.5,
+   "bullion": 16,
+   "seasonXp": 40
+  },
+  {
+   "id": "d_frenzies_focus",
+   "metric": "frenzies",
+   "minChapter": 1,
+   "title": "All-out",
+   "targets": [
+    2,
+    2,
+    2
+   ],
+   "rewardHours": 1.5,
+   "bullion": 8,
+   "seasonXp": 50
+  },
+  {
+   "id": "d_managers_easy",
+   "metric": "managers",
+   "minChapter": 1,
+   "title": "New hire",
+   "targets": [
+    1,
+    1,
+    1
+   ],
+   "rewardHours": 1.0,
+   "bullion": 6,
+   "seasonXp": 15
+  },
+  {
+   "id": "d_managers_normal",
+   "metric": "managers",
+   "minChapter": 1,
+   "title": "Talent scout",
+   "targets": [
+    1,
+    2,
+    2
+   ],
+   "rewardHours": 2.0,
+   "bullion": 10,
+   "seasonXp": 25
+  },
+  {
+   "id": "d_managers_hard",
+   "metric": "managers",
+   "minChapter": 1,
+   "title": "Head-hunter",
+   "targets": [
+    2,
+    3,
+    3
+   ],
+   "rewardHours": 3.5,
+   "bullion": 16,
+   "seasonXp": 40
+  },
+  {
+   "id": "d_managers_focus",
+   "metric": "managers",
+   "minChapter": 1,
+   "title": "Dream team",
+   "targets": [
+    1,
+    2,
+    2
+   ],
+   "rewardHours": 1.5,
+   "bullion": 8,
+   "seasonXp": 50
+  },
+  {
+   "id": "d_expansions_easy",
+   "metric": "expansions",
+   "minChapter": 1,
+   "title": "Ribbon cutting",
+   "targets": [
+    1,
+    1,
+    1
+   ],
+   "rewardHours": 1.0,
+   "bullion": 6,
+   "seasonXp": 15
+  },
+  {
+   "id": "d_expansions_normal",
+   "metric": "expansions",
+   "minChapter": 1,
+   "title": "Grand opening",
+   "targets": [
+    1,
+    2,
+    2
+   ],
+   "rewardHours": 2.0,
+   "bullion": 10,
+   "seasonXp": 25
+  },
+  {
+   "id": "d_expansions_hard",
+   "metric": "expansions",
+   "minChapter": 1,
+   "title": "Expansion spree",
+   "targets": [
+    2,
+    3,
+    3
+   ],
+   "rewardHours": 3.5,
+   "bullion": 16,
+   "seasonXp": 40
+  },
+  {
+   "id": "d_expansions_focus",
+   "metric": "expansions",
+   "minChapter": 1,
+   "title": "Bigger and better",
+   "targets": [
+    1,
+    2,
+    2
+   ],
+   "rewardHours": 1.5,
+   "bullion": 8,
+   "seasonXp": 50
+  },
+  {
+   "id": "d_businesses_easy",
+   "metric": "businesses",
+   "minChapter": 1,
+   "title": "New venture",
+   "targets": [
+    1,
+    1,
+    1
+   ],
+   "rewardHours": 1.0,
+   "bullion": 6,
+   "seasonXp": 15
+  },
+  {
+   "id": "d_businesses_normal",
+   "metric": "businesses",
+   "minChapter": 1,
+   "title": "Diversify",
+   "targets": [
+    1,
+    1,
+    1
+   ],
+   "rewardHours": 2.0,
+   "bullion": 10,
+   "seasonXp": 25
+  },
+  {
+   "id": "d_businesses_hard",
+   "metric": "businesses",
+   "minChapter": 1,
+   "title": "Empire builder",
+   "targets": [
+    1,
+    2,
+    2
+   ],
+   "rewardHours": 3.5,
+   "bullion": 16,
+   "seasonXp": 40
+  },
+  {
+   "id": "d_businesses_focus",
+   "metric": "businesses",
+   "minChapter": 1,
+   "title": "Fresh start",
+   "targets": [
+    1,
+    1,
+    1
+   ],
+   "rewardHours": 1.5,
+   "bullion": 8,
+   "seasonXp": 50
+  },
+  {
+   "id": "d_trades_easy",
+   "metric": "trades",
+   "minChapter": 2,
+   "title": "Market debut",
+   "targets": [
+    1,
+    2,
+    3
+   ],
+   "rewardHours": 1.0,
+   "bullion": 6,
+   "seasonXp": 15
+  },
+  {
+   "id": "d_trades_normal",
+   "metric": "trades",
+   "minChapter": 2,
+   "title": "Day trader",
+   "targets": [
+    3,
+    5,
+    8
+   ],
+   "rewardHours": 2.0,
+   "bullion": 10,
+   "seasonXp": 25
+  },
+  {
+   "id": "d_trades_hard",
+   "metric": "trades",
+   "minChapter": 2,
+   "title": "Floor regular",
+   "targets": [
+    6,
+    10,
+    15
+   ],
+   "rewardHours": 3.5,
+   "bullion": 16,
+   "seasonXp": 40
+  },
+  {
+   "id": "d_trades_focus",
+   "metric": "trades",
+   "minChapter": 2,
+   "title": "Bulls and bears",
+   "targets": [
+    3,
+    5,
+    8
+   ],
+   "rewardHours": 1.5,
+   "bullion": 8,
+   "seasonXp": 50
+  },
+  {
+   "id": "d_properties_easy",
+   "metric": "properties",
+   "minChapter": 2,
+   "title": "House hunter",
+   "targets": [
+    1,
+    1,
+    1
+   ],
+   "rewardHours": 1.0,
+   "bullion": 6,
+   "seasonXp": 15
+  },
+  {
+   "id": "d_properties_normal",
+   "metric": "properties",
+   "minChapter": 2,
+   "title": "Landlord",
+   "targets": [
+    1,
+    2,
+    2
+   ],
+   "rewardHours": 2.0,
+   "bullion": 10,
+   "seasonXp": 25
+  },
+  {
+   "id": "d_properties_hard",
+   "metric": "properties",
+   "minChapter": 2,
+   "title": "Property tycoon",
+   "targets": [
+    2,
+    3,
+    3
+   ],
+   "rewardHours": 3.5,
+   "bullion": 16,
+   "seasonXp": 40
+  },
+  {
+   "id": "d_properties_focus",
+   "metric": "properties",
+   "minChapter": 2,
+   "title": "Bricks and mortar",
+   "targets": [
+    1,
+    2,
+    2
+   ],
+   "rewardHours": 1.5,
+   "bullion": 8,
+   "seasonXp": 50
+  },
+  {
+   "id": "d_luxury_easy",
+   "metric": "luxury",
+   "minChapter": 2,
+   "title": "Treat yourself",
+   "targets": [
+    1,
+    1,
+    1
+   ],
+   "rewardHours": 1.0,
+   "bullion": 6,
+   "seasonXp": 15
+  },
+  {
+   "id": "d_luxury_normal",
+   "metric": "luxury",
+   "minChapter": 2,
+   "title": "Collector",
+   "targets": [
+    1,
+    2,
+    2
+   ],
+   "rewardHours": 2.0,
+   "bullion": 10,
+   "seasonXp": 25
+  },
+  {
+   "id": "d_luxury_hard",
+   "metric": "luxury",
+   "minChapter": 2,
+   "title": "Connoisseur",
+   "targets": [
+    2,
+    3,
+    3
+   ],
+   "rewardHours": 3.5,
+   "bullion": 16,
+   "seasonXp": 40
+  },
+  {
+   "id": "d_luxury_focus",
+   "metric": "luxury",
+   "minChapter": 2,
+   "title": "Showroom stocker",
+   "targets": [
+    1,
+    2,
+    2
+   ],
+   "rewardHours": 1.5,
+   "bullion": 8,
+   "seasonXp": 50
+  },
+  {
+   "id": "d_renovations_easy",
+   "metric": "renovations",
+   "minChapter": 2,
+   "title": "Fixer-upper",
+   "targets": [
+    1,
+    1,
+    1
+   ],
+   "rewardHours": 1.0,
+   "bullion": 6,
+   "seasonXp": 15
+  },
+  {
+   "id": "d_renovations_normal",
+   "metric": "renovations",
+   "minChapter": 2,
+   "title": "Renovator",
+   "targets": [
+    1,
+    1,
+    2
+   ],
+   "rewardHours": 2.0,
+   "bullion": 10,
+   "seasonXp": 25
+  },
+  {
+   "id": "d_renovations_hard",
+   "metric": "renovations",
+   "minChapter": 2,
+   "title": "Makeover",
+   "targets": [
+    2,
+    2,
+    3
+   ],
+   "rewardHours": 3.5,
+   "bullion": 16,
+   "seasonXp": 40
+  },
+  {
+   "id": "d_renovations_focus",
+   "metric": "renovations",
+   "minChapter": 2,
+   "title": "Builder's dust",
+   "targets": [
+    1,
+    1,
+    2
+   ],
+   "rewardHours": 1.5,
+   "bullion": 8,
+   "seasonXp": 50
+  },
+  {
+   "id": "d_payouts_easy",
+   "metric": "payouts",
+   "minChapter": 3,
+   "title": "Dividend day",
+   "targets": [
+    1,
+    1,
+    1
+   ],
+   "rewardHours": 1.0,
+   "bullion": 6,
+   "seasonXp": 15
+  },
+  {
+   "id": "d_payouts_normal",
+   "metric": "payouts",
+   "minChapter": 3,
+   "title": "Coupon clipper",
+   "targets": [
+    2,
+    2,
+    2
+   ],
+   "rewardHours": 2.0,
+   "bullion": 10,
+   "seasonXp": 25
+  },
+  {
+   "id": "d_payouts_hard",
+   "metric": "payouts",
+   "minChapter": 3,
+   "title": "Passive income",
+   "targets": [
+    3,
+    4,
+    4
+   ],
+   "rewardHours": 3.5,
+   "bullion": 16,
+   "seasonXp": 40
+  },
+  {
+   "id": "d_payouts_focus",
+   "metric": "payouts",
+   "minChapter": 3,
+   "title": "Yield hunter",
+   "targets": [
+    2,
+    2,
+    2
+   ],
+   "rewardHours": 1.5,
+   "bullion": 8,
+   "seasonXp": 50
+  },
+  {
+   "id": "d_auctions_easy",
+   "metric": "auctions",
+   "minChapter": 3,
+   "title": "Going once",
+   "targets": [
+    1,
+    1,
+    1
+   ],
+   "rewardHours": 1.0,
+   "bullion": 6,
+   "seasonXp": 15
+  },
+  {
+   "id": "d_auctions_normal",
+   "metric": "auctions",
+   "minChapter": 3,
+   "title": "Hammer time",
+   "targets": [
+    1,
+    1,
+    1
+   ],
+   "rewardHours": 2.0,
+   "bullion": 10,
+   "seasonXp": 25
+  },
+  {
+   "id": "d_auctions_hard",
+   "metric": "auctions",
+   "minChapter": 3,
+   "title": "Sold!",
+   "targets": [
+    1,
+    2,
+    2
+   ],
+   "rewardHours": 3.5,
+   "bullion": 16,
+   "seasonXp": 40
+  },
+  {
+   "id": "d_auctions_focus",
+   "metric": "auctions",
+   "minChapter": 3,
+   "title": "Paddle up",
+   "targets": [
+    1,
+    1,
+    1
+   ],
+   "rewardHours": 1.5,
+   "bullion": 8,
+   "seasonXp": 50
+  },
+  {
+   "id": "d_events_easy",
+   "metric": "events",
+   "minChapter": 2,
+   "title": "Weather the storm",
+   "targets": [
+    1,
+    1,
+    1
+   ],
+   "rewardHours": 1.0,
+   "bullion": 6,
+   "seasonXp": 15
+  },
+  {
+   "id": "d_events_normal",
+   "metric": "events",
+   "minChapter": 2,
+   "title": "Read the news",
+   "targets": [
+    1,
+    1,
+    2
+   ],
+   "rewardHours": 2.0,
+   "bullion": 10,
+   "seasonXp": 25
+  },
+  {
+   "id": "d_events_hard",
+   "metric": "events",
+   "minChapter": 2,
+   "title": "Ride the cycle",
+   "targets": [
+    2,
+    2,
+    2
+   ],
+   "rewardHours": 3.5,
+   "bullion": 16,
+   "seasonXp": 40
+  },
+  {
+   "id": "d_events_focus",
+   "metric": "events",
+   "minChapter": 2,
+   "title": "Headline act",
+   "targets": [
+    1,
+    1,
+    2
+   ],
+   "rewardHours": 1.5,
+   "bullion": 8,
+   "seasonXp": 50
+  }
+ ],
+ "weekly": [
+  {
+   "id": "w_levels_0",
+   "metric": "levels",
+   "minChapter": 1,
+   "title": "Week of growth",
+   "targets": [
+    300,
+    800,
+    2000
+   ],
+   "rewardHours": 8.0,
+   "bullion": 40,
+   "seasonXp": 150
+  },
+  {
+   "id": "w_levels_1",
+   "metric": "levels",
+   "minChapter": 1,
+   "title": "Construction boom",
+   "targets": [
+    450,
+    1200,
+    3000
+   ],
+   "rewardHours": 12.0,
+   "bullion": 60,
+   "seasonXp": 225
+  },
+  {
+   "id": "w_taps_0",
+   "metric": "taps",
+   "minChapter": 1,
+   "title": "Counter marathon",
+   "targets": [
+    1500,
+    1500,
+    1500
+   ],
+   "rewardHours": 8.0,
+   "bullion": 40,
+   "seasonXp": 150
+  },
+  {
+   "id": "w_taps_1",
+   "metric": "taps",
+   "minChapter": 1,
+   "title": "Rush week",
+   "targets": [
+    2250,
+    2250,
+    2250
+   ],
+   "rewardHours": 12.0,
+   "bullion": 60,
+   "seasonXp": 225
+  },
+  {
+   "id": "w_earn_hours_0",
+   "metric": "earn_hours",
+   "minChapter": 1,
+   "title": "Week's wages",
+   "targets": [
+    40,
+    40,
+    40
+   ],
+   "rewardHours": 8.0,
+   "bullion": 40,
+   "seasonXp": 150
+  },
+  {
+   "id": "w_earn_hours_1",
+   "metric": "earn_hours",
+   "minChapter": 1,
+   "title": "Profit week",
+   "targets": [
+    60,
+    60,
+    60
+   ],
+   "rewardHours": 12.0,
+   "bullion": 60,
+   "seasonXp": 225
+  },
+  {
+   "id": "w_cards_0",
+   "metric": "cards",
+   "minChapter": 1,
+   "title": "Executive week",
+   "targets": [
+    8,
+    10,
+    12
+   ],
+   "rewardHours": 8.0,
+   "bullion": 40,
+   "seasonXp": 150
+  },
+  {
+   "id": "w_cards_1",
+   "metric": "cards",
+   "minChapter": 1,
+   "title": "Desk marathon",
+   "targets": [
+    12,
+    15,
+    18
+   ],
+   "rewardHours": 12.0,
+   "bullion": 60,
+   "seasonXp": 225
+  },
+  {
+   "id": "w_frenzies_0",
+   "metric": "frenzies",
+   "minChapter": 1,
+   "title": "Frenzy week",
+   "targets": [
+    10,
+    12,
+    14
+   ],
+   "rewardHours": 8.0,
+   "bullion": 40,
+   "seasonXp": 150
+  },
+  {
+   "id": "w_frenzies_1",
+   "metric": "frenzies",
+   "minChapter": 1,
+   "title": "Non-stop",
+   "targets": [
+    15,
+    18,
+    21
+   ],
+   "rewardHours": 12.0,
+   "bullion": 60,
+   "seasonXp": 225
+  },
+  {
+   "id": "w_managers_0",
+   "metric": "managers",
+   "minChapter": 1,
+   "title": "Hiring week",
+   "targets": [
+    3,
+    5,
+    6
+   ],
+   "rewardHours": 8.0,
+   "bullion": 40,
+   "seasonXp": 150
+  },
+  {
+   "id": "w_managers_1",
+   "metric": "managers",
+   "minChapter": 1,
+   "title": "Talent drive",
+   "targets": [
+    4,
+    8,
+    9
+   ],
+   "rewardHours": 12.0,
+   "bullion": 60,
+   "seasonXp": 225
+  },
+  {
+   "id": "w_expansions_0",
+   "metric": "expansions",
+   "minChapter": 1,
+   "title": "Ribbon week",
+   "targets": [
+    3,
+    5,
+    6
+   ],
+   "rewardHours": 8.0,
+   "bullion": 40,
+   "seasonXp": 150
+  },
+  {
+   "id": "w_expansions_1",
+   "metric": "expansions",
+   "minChapter": 1,
+   "title": "Expansion week",
+   "targets": [
+    4,
+    8,
+    9
+   ],
+   "rewardHours": 12.0,
+   "bullion": 60,
+   "seasonXp": 225
+  },
+  {
+   "id": "w_trades_0",
+   "metric": "trades",
+   "minChapter": 2,
+   "title": "Trading week",
+   "targets": [
+    10,
+    20,
+    30
+   ],
+   "rewardHours": 8.0,
+   "bullion": 40,
+   "seasonXp": 150
+  },
+  {
+   "id": "w_trades_1",
+   "metric": "trades",
+   "minChapter": 2,
+   "title": "Market mover",
+   "targets": [
+    15,
+    30,
+    45
+   ],
+   "rewardHours": 12.0,
+   "bullion": 60,
+   "seasonXp": 225
+  },
+  {
+   "id": "w_properties_0",
+   "metric": "properties",
+   "minChapter": 2,
+   "title": "Property week",
+   "targets": [
+    3,
+    5,
+    6
+   ],
+   "rewardHours": 8.0,
+   "bullion": 40,
+   "seasonXp": 150
+  },
+  {
+   "id": "w_properties_1",
+   "metric": "properties",
+   "minChapter": 2,
+   "title": "Portfolio builder",
+   "targets": [
+    4,
+    8,
+    9
+   ],
+   "rewardHours": 12.0,
+   "bullion": 60,
+   "seasonXp": 225
+  },
+  {
+   "id": "w_luxury_0",
+   "metric": "luxury",
+   "minChapter": 2,
+   "title": "Shopping week",
+   "targets": [
+    3,
+    5,
+    8
+   ],
+   "rewardHours": 8.0,
+   "bullion": 40,
+   "seasonXp": 150
+  },
+  {
+   "id": "w_luxury_1",
+   "metric": "luxury",
+   "minChapter": 2,
+   "title": "Collector's week",
+   "targets": [
+    4,
+    8,
+    12
+   ],
+   "rewardHours": 12.0,
+   "bullion": 60,
+   "seasonXp": 225
+  },
+  {
+   "id": "w_payouts_0",
+   "metric": "payouts",
+   "minChapter": 3,
+   "title": "Income week",
+   "targets": [
+    8,
+    12,
+    16
+   ],
+   "rewardHours": 8.0,
+   "bullion": 40,
+   "seasonXp": 150
+  },
+  {
+   "id": "w_payouts_1",
+   "metric": "payouts",
+   "minChapter": 3,
+   "title": "Yield week",
+   "targets": [
+    12,
+    18,
+    24
+   ],
+   "rewardHours": 12.0,
+   "bullion": 60,
+   "seasonXp": 225
+  },
+  {
+   "id": "w_auctions_0",
+   "metric": "auctions",
+   "minChapter": 3,
+   "title": "Auction week",
+   "targets": [
+    1,
+    2,
+    3
+   ],
+   "rewardHours": 8.0,
+   "bullion": 40,
+   "seasonXp": 150
+  },
+  {
+   "id": "w_auctions_1",
+   "metric": "auctions",
+   "minChapter": 3,
+   "title": "Hammer week",
+   "targets": [
+    2,
+    3,
+    4
+   ],
+   "rewardHours": 12.0,
+   "bullion": 60,
+   "seasonXp": 225
+  },
+  {
+   "id": "w_returns_0",
+   "metric": "returns",
+   "minChapter": 4,
+   "title": "Tax season",
+   "targets": [
+    1,
+    1,
+    1
+   ],
+   "rewardHours": 8.0,
+   "bullion": 40,
+   "seasonXp": 150
+  },
+  {
+   "id": "w_returns_1",
+   "metric": "returns",
+   "minChapter": 4,
+   "title": "Filing week",
+   "targets": [
+    2,
+    2,
+    2
+   ],
+   "rewardHours": 12.0,
+   "bullion": 60,
+   "seasonXp": 225
+  },
+  {
+   "id": "w_renovations_0",
+   "metric": "renovations",
+   "minChapter": 2,
+   "title": "Makeover week",
+   "targets": [
+    3,
+    4,
+    6
+   ],
+   "rewardHours": 8.0,
+   "bullion": 40,
+   "seasonXp": 150
+  },
+  {
+   "id": "w_renovations_1",
+   "metric": "renovations",
+   "minChapter": 2,
+   "title": "Renovation week",
+   "targets": [
+    4,
+    6,
+    9
+   ],
+   "rewardHours": 12.0,
+   "bullion": 60,
+   "seasonXp": 225
+  },
+  {
+   "id": "w_events_0",
+   "metric": "events",
+   "minChapter": 2,
+   "title": "Turbulent week",
+   "targets": [
+    4,
+    5,
+    6
+   ],
+   "rewardHours": 8.0,
+   "bullion": 40,
+   "seasonXp": 150
+  },
+  {
+   "id": "w_events_1",
+   "metric": "events",
+   "minChapter": 2,
+   "title": "Newsmaker",
+   "targets": [
+    6,
+    8,
+    9
+   ],
+   "rewardHours": 12.0,
+   "bullion": 60,
+   "seasonXp": 225
+  }
+ ],
+ "achievements": [
+  {
+   "id": "nw_3",
+   "category": "Wealth",
+   "title": "First thousand",
+   "description": "Reach a net worth of $1K.",
+   "goal": {
+    "type": "netWorth",
+    "log10": 3
+   },
+   "bullion": 5
+  },
+  {
+   "id": "nw_5",
+   "category": "Wealth",
+   "title": "Six figures",
+   "description": "Reach a net worth of $100K.",
+   "goal": {
+    "type": "netWorth",
+    "log10": 5
+   },
+   "bullion": 10
+  },
+  {
+   "id": "nw_7",
+   "category": "Wealth",
+   "title": "Millionaire",
+   "description": "Reach a net worth of $10M.",
+   "goal": {
+    "type": "netWorth",
+    "log10": 7
+   },
+   "bullion": 15
+  },
+  {
+   "id": "nw_9",
+   "category": "Wealth",
+   "title": "Eight figures",
+   "description": "Reach a net worth of $1B.",
+   "goal": {
+    "type": "netWorth",
+    "log10": 9
+   },
+   "bullion": 20
+  },
+  {
+   "id": "nw_11",
+   "category": "Wealth",
+   "title": "Billionaire",
+   "description": "Reach a net worth of $100B.",
+   "goal": {
+    "type": "netWorth",
+    "log10": 11
+   },
+   "bullion": 25
+  },
+  {
+   "id": "nw_13",
+   "category": "Wealth",
+   "title": "Ten billion",
+   "description": "Reach a net worth of $10T.",
+   "goal": {
+    "type": "netWorth",
+    "log10": 13
+   },
+   "bullion": 30
+  },
+  {
+   "id": "nw_15",
+   "category": "Wealth",
+   "title": "Trillionaire",
+   "description": "Reach a net worth of $1Qa.",
+   "goal": {
+    "type": "netWorth",
+    "log10": 15
+   },
+   "bullion": 35
+  },
+  {
+   "id": "nw_17",
+   "category": "Wealth",
+   "title": "Hundred trillion",
+   "description": "Reach a net worth of $100Qa.",
+   "goal": {
+    "type": "netWorth",
+    "log10": 17
+   },
+   "bullion": 40
+  },
+  {
+   "id": "nw_19",
+   "category": "Wealth",
+   "title": "Quadrillionaire",
+   "description": "Reach a net worth of $10Qi.",
+   "goal": {
+    "type": "netWorth",
+    "log10": 19
+   },
+   "bullion": 45
+  },
+  {
+   "id": "nw_21",
+   "category": "Wealth",
+   "title": "Hundred quadrillion",
+   "description": "Reach a net worth of $1Sx.",
+   "goal": {
+    "type": "netWorth",
+    "log10": 21
+   },
+   "bullion": 50
+  },
+  {
+   "id": "nw_23",
+   "category": "Wealth",
+   "title": "Quintillionaire",
+   "description": "Reach a net worth of $100Sx.",
+   "goal": {
+    "type": "netWorth",
+    "log10": 23
+   },
+   "bullion": 55
+  },
+  {
+   "id": "levels_100",
+   "category": "Builder",
+   "title": "100 levels",
+   "description": "Buy 100 business levels.",
+   "goal": {
+    "type": "metric",
+    "metric": "levels",
+    "value": 100
+   },
+   "bullion": 5
+  },
+  {
+   "id": "levels_500",
+   "category": "Builder",
+   "title": "500 levels",
+   "description": "Buy 500 business levels.",
+   "goal": {
+    "type": "metric",
+    "metric": "levels",
+    "value": 500
+   },
+   "bullion": 10
+  },
+  {
+   "id": "levels_1000",
+   "category": "Builder",
+   "title": "1,000 levels",
+   "description": "Buy 1,000 business levels.",
+   "goal": {
+    "type": "metric",
+    "metric": "levels",
+    "value": 1000
+   },
+   "bullion": 15
+  },
+  {
+   "id": "levels_5000",
+   "category": "Builder",
+   "title": "5,000 levels",
+   "description": "Buy 5,000 business levels.",
+   "goal": {
+    "type": "metric",
+    "metric": "levels",
+    "value": 5000
+   },
+   "bullion": 20
+  },
+  {
+   "id": "levels_10000",
+   "category": "Builder",
+   "title": "10,000 levels",
+   "description": "Buy 10,000 business levels.",
+   "goal": {
+    "type": "metric",
+    "metric": "levels",
+    "value": 10000
+   },
+   "bullion": 25
+  },
+  {
+   "id": "levels_50000",
+   "category": "Builder",
+   "title": "50,000 levels",
+   "description": "Buy 50,000 business levels.",
+   "goal": {
+    "type": "metric",
+    "metric": "levels",
+    "value": 50000
+   },
+   "bullion": 30
+  },
+  {
+   "id": "levels_100000",
+   "category": "Builder",
+   "title": "100,000 levels",
+   "description": "Buy 100,000 business levels.",
+   "goal": {
+    "type": "metric",
+    "metric": "levels",
+    "value": 100000
+   },
+   "bullion": 35
+  },
+  {
+   "id": "taps_100",
+   "category": "Hustle",
+   "title": "100 customers",
+   "description": "Tap the counter 100 times.",
+   "goal": {
+    "type": "metric",
+    "metric": "taps",
+    "value": 100
+   },
+   "bullion": 5
+  },
+  {
+   "id": "taps_1000",
+   "category": "Hustle",
+   "title": "1,000 customers",
+   "description": "Tap the counter 1,000 times.",
+   "goal": {
+    "type": "metric",
+    "metric": "taps",
+    "value": 1000
+   },
+   "bullion": 10
+  },
+  {
+   "id": "taps_10000",
+   "category": "Hustle",
+   "title": "10,000 customers",
+   "description": "Tap the counter 10,000 times.",
+   "goal": {
+    "type": "metric",
+    "metric": "taps",
+    "value": 10000
+   },
+   "bullion": 15
+  },
+  {
+   "id": "taps_50000",
+   "category": "Hustle",
+   "title": "50,000 customers",
+   "description": "Tap the counter 50,000 times.",
+   "goal": {
+    "type": "metric",
+    "metric": "taps",
+    "value": 50000
+   },
+   "bullion": 20
+  },
+  {
+   "id": "taps_100000",
+   "category": "Hustle",
+   "title": "100,000 customers",
+   "description": "Tap the counter 100,000 times.",
+   "goal": {
+    "type": "metric",
+    "metric": "taps",
+    "value": 100000
+   },
+   "bullion": 25
+  },
+  {
+   "id": "open_retail",
+   "category": "Empire",
+   "title": "Retail Stores",
+   "description": "Open Retail Stores.",
+   "goal": {
+    "type": "business",
+    "id": "retail"
+   },
+   "bullion": 5
+  },
+  {
+   "id": "open_restaurants",
+   "category": "Empire",
+   "title": "Restaurants",
+   "description": "Open Restaurants.",
+   "goal": {
+    "type": "business",
+    "id": "restaurants"
+   },
+   "bullion": 8
+  },
+  {
+   "id": "open_logistics",
+   "category": "Empire",
+   "title": "Logistics",
+   "description": "Open Logistics.",
+   "goal": {
+    "type": "business",
+    "id": "logistics"
+   },
+   "bullion": 11
+  },
+  {
+   "id": "open_farmland",
+   "category": "Empire",
+   "title": "Farmland",
+   "description": "Open Farmland.",
+   "goal": {
+    "type": "business",
+    "id": "farmland"
+   },
+   "bullion": 14
+  },
+  {
+   "id": "open_factory",
+   "category": "Empire",
+   "title": "Factories",
+   "description": "Open Factories.",
+   "goal": {
+    "type": "business",
+    "id": "factory"
+   },
+   "bullion": 17
+  },
+  {
+   "id": "open_fashion",
+   "category": "Empire",
+   "title": "Fashion House",
+   "description": "Open Fashion House.",
+   "goal": {
+    "type": "business",
+    "id": "fashion"
+   },
+   "bullion": 20
+  },
+  {
+   "id": "open_mining",
+   "category": "Empire",
+   "title": "Mining",
+   "description": "Open Mining.",
+   "goal": {
+    "type": "business",
+    "id": "mining"
+   },
+   "bullion": 23
+  },
+  {
+   "id": "open_energy",
+   "category": "Empire",
+   "title": "Energy",
+   "description": "Open Energy.",
+   "goal": {
+    "type": "business",
+    "id": "energy"
+   },
+   "bullion": 26
+  },
+  {
+   "id": "open_hotels",
+   "category": "Empire",
+   "title": "Hotels & Resorts",
+   "description": "Open Hotels & Resorts.",
+   "goal": {
+    "type": "business",
+    "id": "hotels"
+   },
+   "bullion": 29
+  },
+  {
+   "id": "open_bank",
+   "category": "Empire",
+   "title": "Banking",
+   "description": "Open Banking.",
+   "goal": {
+    "type": "business",
+    "id": "bank"
+   },
+   "bullion": 32
+  },
+  {
+   "id": "open_construction",
+   "category": "Empire",
+   "title": "Construction",
+   "description": "Open Construction.",
+   "goal": {
+    "type": "business",
+    "id": "construction"
+   },
+   "bullion": 35
+  },
+  {
+   "id": "open_media",
+   "category": "Empire",
+   "title": "Media",
+   "description": "Open Media.",
+   "goal": {
+    "type": "business",
+    "id": "media"
+   },
+   "bullion": 38
+  },
+  {
+   "id": "open_tech",
+   "category": "Empire",
+   "title": "Technology",
+   "description": "Open Technology.",
+   "goal": {
+    "type": "business",
+    "id": "tech"
+   },
+   "bullion": 41
+  },
+  {
+   "id": "open_telecom",
+   "category": "Empire",
+   "title": "Telecom & Data",
+   "description": "Open Telecom & Data.",
+   "goal": {
+    "type": "business",
+    "id": "telecom"
+   },
+   "bullion": 44
+  },
+  {
+   "id": "open_airline",
+   "category": "Empire",
+   "title": "Airline",
+   "description": "Open Airline.",
+   "goal": {
+    "type": "business",
+    "id": "airline"
+   },
+   "bullion": 47
+  },
+  {
+   "id": "open_pharma",
+   "category": "Empire",
+   "title": "Pharmaceuticals",
+   "description": "Open Pharmaceuticals.",
+   "goal": {
+    "type": "business",
+    "id": "pharma"
+   },
+   "bullion": 50
+  },
+  {
+   "id": "open_sports",
+   "category": "Empire",
+   "title": "Sports Franchise",
+   "description": "Open Sports Franchise.",
+   "goal": {
+    "type": "business",
+    "id": "sports"
+   },
+   "bullion": 53
+  },
+  {
+   "id": "open_space",
+   "category": "Empire",
+   "title": "Space",
+   "description": "Open Space.",
+   "goal": {
+    "type": "business",
+    "id": "space"
+   },
+   "bullion": 56
+  },
+  {
+   "id": "chapter_1",
+   "category": "Story",
+   "title": "Chapter 1 complete",
+   "description": "Finish chapter 1 of the story.",
+   "goal": {
+    "type": "chapter",
+    "value": 1
+   },
+   "bullion": 10
+  },
+  {
+   "id": "chapter_2",
+   "category": "Story",
+   "title": "Chapter 2 complete",
+   "description": "Finish chapter 2 of the story.",
+   "goal": {
+    "type": "chapter",
+    "value": 2
+   },
+   "bullion": 20
+  },
+  {
+   "id": "chapter_3",
+   "category": "Story",
+   "title": "Chapter 3 complete",
+   "description": "Finish chapter 3 of the story.",
+   "goal": {
+    "type": "chapter",
+    "value": 3
+   },
+   "bullion": 30
+  },
+  {
+   "id": "chapter_4",
+   "category": "Story",
+   "title": "Chapter 4 complete",
+   "description": "Finish chapter 4 of the story.",
+   "goal": {
+    "type": "chapter",
+    "value": 4
+   },
+   "bullion": 40
+  },
+  {
+   "id": "chapter_5",
+   "category": "Story",
+   "title": "Chapter 5 complete",
+   "description": "Finish chapter 5 of the story.",
+   "goal": {
+    "type": "chapter",
+    "value": 5
+   },
+   "bullion": 50
+  },
+  {
+   "id": "chapter_6",
+   "category": "Story",
+   "title": "Chapter 6 complete",
+   "description": "Finish chapter 6 of the story.",
+   "goal": {
+    "type": "chapter",
+    "value": 6
+   },
+   "bullion": 60
+  },
+  {
+   "id": "chapter_7",
+   "category": "Story",
+   "title": "Chapter 7 complete",
+   "description": "Finish chapter 7 of the story.",
+   "goal": {
+    "type": "chapter",
+    "value": 7
+   },
+   "bullion": 70
+  },
+  {
+   "id": "chapter_8",
+   "category": "Story",
+   "title": "Chapter 8 complete",
+   "description": "Finish chapter 8 of the story.",
+   "goal": {
+    "type": "chapter",
+    "value": 8
+   },
+   "bullion": 80
+  },
+  {
+   "id": "congl_1",
+   "category": "Empire",
+   "title": "1 conglomerate",
+   "description": "Form 1 conglomerate.",
+   "goal": {
+    "type": "conglomerates",
+    "value": 1
+   },
+   "bullion": 20
+  },
+  {
+   "id": "congl_3",
+   "category": "Empire",
+   "title": "3 conglomerates",
+   "description": "Form 3 conglomerates.",
+   "goal": {
+    "type": "conglomerates",
+    "value": 3
+   },
+   "bullion": 40
+  },
+  {
+   "id": "congl_5",
+   "category": "Empire",
+   "title": "5 conglomerates",
+   "description": "Form 5 conglomerates.",
+   "goal": {
+    "type": "conglomerates",
+    "value": 5
+   },
+   "bullion": 60
+  },
+  {
+   "id": "holding",
+   "category": "Empire",
+   "title": "Holding company",
+   "description": "Form your holding company.",
+   "goal": {
+    "type": "holding"
+   },
+   "bullion": 60
+  },
+  {
+   "id": "managers_1",
+   "category": "People",
+   "title": "1 manager",
+   "description": "Hire 1 manager.",
+   "goal": {
+    "type": "metric",
+    "metric": "managers",
+    "value": 1
+   },
+   "bullion": 5
+  },
+  {
+   "id": "managers_10",
+   "category": "People",
+   "title": "10 managers",
+   "description": "Hire 10 managers.",
+   "goal": {
+    "type": "metric",
+    "metric": "managers",
+    "value": 10
+   },
+   "bullion": 15
+  },
+  {
+   "id": "managers_25",
+   "category": "People",
+   "title": "25 managers",
+   "description": "Hire 25 managers.",
+   "goal": {
+    "type": "metric",
+    "metric": "managers",
+    "value": 25
+   },
+   "bullion": 25
+  },
+  {
+   "id": "managers_50",
+   "category": "People",
+   "title": "50 managers",
+   "description": "Hire 50 managers.",
+   "goal": {
+    "type": "metric",
+    "metric": "managers",
+    "value": 50
+   },
+   "bullion": 35
+  },
+  {
+   "id": "exp_1",
+   "category": "People",
+   "title": "1 expansion",
+   "description": "Finish 1 expansion.",
+   "goal": {
+    "type": "metric",
+    "metric": "expansions",
+    "value": 1
+   },
+   "bullion": 5
+  },
+  {
+   "id": "exp_10",
+   "category": "People",
+   "title": "10 expansions",
+   "description": "Finish 10 expansions.",
+   "goal": {
+    "type": "metric",
+    "metric": "expansions",
+    "value": 10
+   },
+   "bullion": 15
+  },
+  {
+   "id": "exp_25",
+   "category": "People",
+   "title": "25 expansions",
+   "description": "Finish 25 expansions.",
+   "goal": {
+    "type": "metric",
+    "metric": "expansions",
+    "value": 25
+   },
+   "bullion": 25
+  },
+  {
+   "id": "exp_50",
+   "category": "People",
+   "title": "50 expansions",
+   "description": "Finish 50 expansions.",
+   "goal": {
+    "type": "metric",
+    "metric": "expansions",
+    "value": 50
+   },
+   "bullion": 35
+  },
+  {
+   "id": "trades_1",
+   "category": "Markets",
+   "title": "1 trade",
+   "description": "Make 1 market trade.",
+   "goal": {
+    "type": "metric",
+    "metric": "trades",
+    "value": 1
+   },
+   "bullion": 5
+  },
+  {
+   "id": "trades_10",
+   "category": "Markets",
+   "title": "10 trades",
+   "description": "Make 10 market trades.",
+   "goal": {
+    "type": "metric",
+    "metric": "trades",
+    "value": 10
+   },
+   "bullion": 13
+  },
+  {
+   "id": "trades_100",
+   "category": "Markets",
+   "title": "100 trades",
+   "description": "Make 100 market trades.",
+   "goal": {
+    "type": "metric",
+    "metric": "trades",
+    "value": 100
+   },
+   "bullion": 21
+  },
+  {
+   "id": "trades_500",
+   "category": "Markets",
+   "title": "500 trades",
+   "description": "Make 500 market trades.",
+   "goal": {
+    "type": "metric",
+    "metric": "trades",
+    "value": 500
+   },
+   "bullion": 29
+  },
+  {
+   "id": "trades_1000",
+   "category": "Markets",
+   "title": "1,000 trades",
+   "description": "Make 1,000 market trades.",
+   "goal": {
+    "type": "metric",
+    "metric": "trades",
+    "value": 1000
+   },
+   "bullion": 37
+  },
+  {
+   "id": "seats_1",
+   "category": "Markets",
+   "title": "1 board seat",
+   "description": "Hold 1 board seat at once.",
+   "goal": {
+    "type": "boardSeats",
+    "value": 1
+   },
+   "bullion": 15
+  },
+  {
+   "id": "seats_3",
+   "category": "Markets",
+   "title": "3 board seats",
+   "description": "Hold 3 board seats at once.",
+   "goal": {
+    "type": "boardSeats",
+    "value": 3
+   },
+   "bullion": 30
+  },
+  {
+   "id": "seats_5",
+   "category": "Markets",
+   "title": "5 board seats",
+   "description": "Hold 5 board seats at once.",
+   "goal": {
+    "type": "boardSeats",
+    "value": 5
+   },
+   "bullion": 45
+  },
+  {
+   "id": "props_1",
+   "category": "Estates",
+   "title": "1 property",
+   "description": "Own 1 property at once.",
+   "goal": {
+    "type": "properties",
+    "value": 1
+   },
+   "bullion": 5
+  },
+  {
+   "id": "props_5",
+   "category": "Estates",
+   "title": "5 properties",
+   "description": "Own 5 properties at once.",
+   "goal": {
+    "type": "properties",
+    "value": 5
+   },
+   "bullion": 15
+  },
+  {
+   "id": "props_10",
+   "category": "Estates",
+   "title": "10 properties",
+   "description": "Own 10 properties at once.",
+   "goal": {
+    "type": "properties",
+    "value": 10
+   },
+   "bullion": 25
+  },
+  {
+   "id": "props_20",
+   "category": "Estates",
+   "title": "20 properties",
+   "description": "Own 20 properties at once.",
+   "goal": {
+    "type": "properties",
+    "value": 20
+   },
+   "bullion": 35
+  },
+  {
+   "id": "reno_1",
+   "category": "Estates",
+   "title": "1 renovation",
+   "description": "Finish 1 renovation.",
+   "goal": {
+    "type": "metric",
+    "metric": "renovations",
+    "value": 1
+   },
+   "bullion": 5
+  },
+  {
+   "id": "reno_10",
+   "category": "Estates",
+   "title": "10 renovations",
+   "description": "Finish 10 renovations.",
+   "goal": {
+    "type": "metric",
+    "metric": "renovations",
+    "value": 10
+   },
+   "bullion": 15
+  },
+  {
+   "id": "reno_25",
+   "category": "Estates",
+   "title": "25 renovations",
+   "description": "Finish 25 renovations.",
+   "goal": {
+    "type": "metric",
+    "metric": "renovations",
+    "value": 25
+   },
+   "bullion": 25
+  },
+  {
+   "id": "tower_1",
+   "category": "Estates",
+   "title": "Skyline",
+   "description": "Complete 1 skyscraper.",
+   "goal": {
+    "type": "metric",
+    "metric": "towers",
+    "value": 1
+   },
+   "bullion": 40
+  },
+  {
+   "id": "tower_3",
+   "category": "Estates",
+   "title": "Skyline king",
+   "description": "Complete 3 skyscrapers.",
+   "goal": {
+    "type": "metric",
+    "metric": "towers",
+    "value": 3
+   },
+   "bullion": 80
+  },
+  {
+   "id": "lux_1",
+   "category": "Collection",
+   "title": "1 piece",
+   "description": "Own 1 luxury piece at once.",
+   "goal": {
+    "type": "luxuryOwned",
+    "value": 1
+   },
+   "bullion": 5
+  },
+  {
+   "id": "lux_10",
+   "category": "Collection",
+   "title": "10 pieces",
+   "description": "Own 10 luxury pieces at once.",
+   "goal": {
+    "type": "luxuryOwned",
+    "value": 10
+   },
+   "bullion": 13
+  },
+  {
+   "id": "lux_25",
+   "category": "Collection",
+   "title": "25 pieces",
+   "description": "Own 25 luxury pieces at once.",
+   "goal": {
+    "type": "luxuryOwned",
+    "value": 25
+   },
+   "bullion": 21
+  },
+  {
+   "id": "lux_50",
+   "category": "Collection",
+   "title": "50 pieces",
+   "description": "Own 50 luxury pieces at once.",
+   "goal": {
+    "type": "luxuryOwned",
+    "value": 50
+   },
+   "bullion": 29
+  },
+  {
+   "id": "lux_100",
+   "category": "Collection",
+   "title": "100 pieces",
+   "description": "Own 100 luxury pieces at once.",
+   "goal": {
+    "type": "luxuryOwned",
+    "value": 100
+   },
+   "bullion": 37
+  },
+  {
+   "id": "sets_1",
+   "category": "Collection",
+   "title": "1 set",
+   "description": "Complete 1 collection set.",
+   "goal": {
+    "type": "sets",
+    "value": 1
+   },
+   "bullion": 20
+  },
+  {
+   "id": "sets_5",
+   "category": "Collection",
+   "title": "5 sets",
+   "description": "Complete 5 collection sets.",
+   "goal": {
+    "type": "sets",
+    "value": 5
+   },
+   "bullion": 40
+  },
+  {
+   "id": "sets_10",
+   "category": "Collection",
+   "title": "10 sets",
+   "description": "Complete 10 collection sets.",
+   "goal": {
+    "type": "sets",
+    "value": 10
+   },
+   "bullion": 60
+  },
+  {
+   "id": "auction_1",
+   "category": "Collection",
+   "title": "1 hammer",
+   "description": "Win 1 auction.",
+   "goal": {
+    "type": "metric",
+    "metric": "auctions",
+    "value": 1
+   },
+   "bullion": 10
+  },
+  {
+   "id": "auction_5",
+   "category": "Collection",
+   "title": "5 hammers",
+   "description": "Win 5 auctions.",
+   "goal": {
+    "type": "metric",
+    "metric": "auctions",
+    "value": 5
+   },
+   "bullion": 20
+  },
+  {
+   "id": "auction_10",
+   "category": "Collection",
+   "title": "10 hammers",
+   "description": "Win 10 auctions.",
+   "goal": {
+    "type": "metric",
+    "metric": "auctions",
+    "value": 10
+   },
+   "bullion": 30
+  },
+  {
+   "id": "auction_25",
+   "category": "Collection",
+   "title": "25 hammers",
+   "description": "Win 25 auctions.",
+   "goal": {
+    "type": "metric",
+    "metric": "auctions",
+    "value": 25
+   },
+   "bullion": 40
+  },
+  {
+   "id": "status_bronze",
+   "category": "Collection",
+   "title": "Bronze status",
+   "description": "Reach Bronze Status.",
+   "goal": {
+    "type": "statusTier",
+    "value": 1
+   },
+   "bullion": 10
+  },
+  {
+   "id": "status_silver",
+   "category": "Collection",
+   "title": "Silver status",
+   "description": "Reach Silver Status.",
+   "goal": {
+    "type": "statusTier",
+    "value": 2
+   },
+   "bullion": 20
+  },
+  {
+   "id": "status_gold",
+   "category": "Collection",
+   "title": "Gold status",
+   "description": "Reach Gold Status.",
+   "goal": {
+    "type": "statusTier",
+    "value": 3
+   },
+   "bullion": 30
+  },
+  {
+   "id": "status_platinum",
+   "category": "Collection",
+   "title": "Platinum status",
+   "description": "Reach Platinum Status.",
+   "goal": {
+    "type": "statusTier",
+    "value": 4
+   },
+   "bullion": 40
+  },
+  {
+   "id": "status_diamond",
+   "category": "Collection",
+   "title": "Diamond status",
+   "description": "Reach Diamond Status.",
+   "goal": {
+    "type": "statusTier",
+    "value": 5
+   },
+   "bullion": 50
+  },
+  {
+   "id": "status_royal",
+   "category": "Collection",
+   "title": "Royal status",
+   "description": "Reach Royal Status.",
+   "goal": {
+    "type": "statusTier",
+    "value": 6
+   },
+   "bullion": 60
+  },
+  {
+   "id": "status_imperial",
+   "category": "Collection",
+   "title": "Imperial status",
+   "description": "Reach Imperial Status.",
+   "goal": {
+    "type": "statusTier",
+    "value": 7
+   },
+   "bullion": 70
+  },
+  {
+   "id": "cards_1",
+   "category": "Rivals",
+   "title": "1 decision",
+   "description": "Decide 1 matter on the Desk.",
+   "goal": {
+    "type": "metric",
+    "metric": "cards",
+    "value": 1
+   },
+   "bullion": 5
+  },
+  {
+   "id": "cards_10",
+   "category": "Rivals",
+   "title": "10 decisions",
+   "description": "Decide 10 matters on the Desk.",
+   "goal": {
+    "type": "metric",
+    "metric": "cards",
+    "value": 10
+   },
+   "bullion": 13
+  },
+  {
+   "id": "cards_50",
+   "category": "Rivals",
+   "title": "50 decisions",
+   "description": "Decide 50 matters on the Desk.",
+   "goal": {
+    "type": "metric",
+    "metric": "cards",
+    "value": 50
+   },
+   "bullion": 21
+  },
+  {
+   "id": "cards_100",
+   "category": "Rivals",
+   "title": "100 decisions",
+   "description": "Decide 100 matters on the Desk.",
+   "goal": {
+    "type": "metric",
+    "metric": "cards",
+    "value": 100
+   },
+   "bullion": 29
+  },
+  {
+   "id": "cards_250",
+   "category": "Rivals",
+   "title": "250 decisions",
+   "description": "Decide 250 matters on the Desk.",
+   "goal": {
+    "type": "metric",
+    "metric": "cards",
+    "value": 250
+   },
+   "bullion": 37
+  },
+  {
+   "id": "fortune_220",
+   "category": "Rivals",
+   "title": "On the list",
+   "description": "Enter the Fortune List.",
+   "goal": {
+    "type": "fortuneRank",
+    "value": 220
+   },
+   "bullion": 10
+  },
+  {
+   "id": "fortune_100",
+   "category": "Rivals",
+   "title": "Top 100",
+   "description": "Reach the top 100 of the Fortune List.",
+   "goal": {
+    "type": "fortuneRank",
+    "value": 100
+   },
+   "bullion": 30
+  },
+  {
+   "id": "fortune_50",
+   "category": "Rivals",
+   "title": "Top 50",
+   "description": "Reach the top 50 of the Fortune List.",
+   "goal": {
+    "type": "fortuneRank",
+    "value": 50
+   },
+   "bullion": 50
+  },
+  {
+   "id": "fortune_10",
+   "category": "Rivals",
+   "title": "Top 10",
+   "description": "Reach the top 10 of the Fortune List.",
+   "goal": {
+    "type": "fortuneRank",
+    "value": 10
+   },
+   "bullion": 70
+  },
+  {
+   "id": "fortune_1",
+   "category": "Rivals",
+   "title": "Richest in the world",
+   "description": "Reach #1 on the Fortune List.",
+   "goal": {
+    "type": "fortuneRank",
+    "value": 1
+   },
+   "bullion": 90
+  },
+  {
+   "id": "nemesis_2",
+   "category": "Rivals",
+   "title": "Nemesis 1",
+   "description": "Defeat chapter 2's nemesis.",
+   "goal": {
+    "type": "chapter",
+    "value": 2
+   },
+   "bullion": 15
+  },
+  {
+   "id": "nemesis_3",
+   "category": "Rivals",
+   "title": "Nemesis 2",
+   "description": "Defeat chapter 3's nemesis.",
+   "goal": {
+    "type": "chapter",
+    "value": 3
+   },
+   "bullion": 15
+  },
+  {
+   "id": "nemesis_4",
+   "category": "Rivals",
+   "title": "Nemesis 3",
+   "description": "Defeat chapter 4's nemesis.",
+   "goal": {
+    "type": "chapter",
+    "value": 4
+   },
+   "bullion": 15
+  },
+  {
+   "id": "nemesis_5",
+   "category": "Rivals",
+   "title": "Nemesis 4",
+   "description": "Defeat chapter 5's nemesis.",
+   "goal": {
+    "type": "chapter",
+    "value": 5
+   },
+   "bullion": 15
+  },
+  {
+   "id": "nemesis_6",
+   "category": "Rivals",
+   "title": "Nemesis 5",
+   "description": "Defeat chapter 6's nemesis.",
+   "goal": {
+    "type": "chapter",
+    "value": 6
+   },
+   "bullion": 15
+  },
+  {
+   "id": "nemesis_7",
+   "category": "Rivals",
+   "title": "Nemesis 6",
+   "description": "Defeat chapter 7's nemesis.",
+   "goal": {
+    "type": "chapter",
+    "value": 7
+   },
+   "bullion": 15
+  },
+  {
+   "id": "nemesis_8",
+   "category": "Rivals",
+   "title": "Nemesis 7",
+   "description": "Defeat chapter 8's nemesis.",
+   "goal": {
+    "type": "chapter",
+    "value": 8
+   },
+   "bullion": 15
+  },
+  {
+   "id": "repaid_1",
+   "category": "Finance",
+   "title": "1 loan repaid",
+   "description": "Repay 1 loan.",
+   "goal": {
+    "type": "metric",
+    "metric": "loans_repaid",
+    "value": 1
+   },
+   "bullion": 10
+  },
+  {
+   "id": "repaid_10",
+   "category": "Finance",
+   "title": "10 loans repaid",
+   "description": "Repay 10 loans.",
+   "goal": {
+    "type": "metric",
+    "metric": "loans_repaid",
+    "value": 10
+   },
+   "bullion": 25
+  },
+  {
+   "id": "rating_a",
+   "category": "Finance",
+   "title": "Rated A",
+   "description": "Earn a credit rating of A.",
+   "goal": {
+    "type": "rating",
+    "value": "A"
+   },
+   "bullion": 15
+  },
+  {
+   "id": "rating_aa",
+   "category": "Finance",
+   "title": "Rated AA",
+   "description": "Earn a credit rating of AA.",
+   "goal": {
+    "type": "rating",
+    "value": "AA"
+   },
+   "bullion": 30
+  },
+  {
+   "id": "rating_aaa",
+   "category": "Finance",
+   "title": "Rated AAA",
+   "description": "Earn a credit rating of AAA.",
+   "goal": {
+    "type": "rating",
+    "value": "AAA"
+   },
+   "bullion": 45
+  },
+  {
+   "id": "returns_1",
+   "category": "Finance",
+   "title": "1 return",
+   "description": "Self-file 1 tax return.",
+   "goal": {
+    "type": "metric",
+    "metric": "returns",
+    "value": 1
+   },
+   "bullion": 10
+  },
+  {
+   "id": "returns_5",
+   "category": "Finance",
+   "title": "5 returns",
+   "description": "Self-file 5 tax returns.",
+   "goal": {
+    "type": "metric",
+    "metric": "returns",
+    "value": 5
+   },
+   "bullion": 20
+  },
+  {
+   "id": "returns_10",
+   "category": "Finance",
+   "title": "10 returns",
+   "description": "Self-file 10 tax returns.",
+   "goal": {
+    "type": "metric",
+    "metric": "returns",
+    "value": 10
+   },
+   "bullion": 30
+  },
+  {
+   "id": "phoenix",
+   "category": "Finance",
+   "title": "Phoenix",
+   "description": "Rise again with the Phoenix protocol.",
+   "goal": {
+    "type": "metric",
+    "metric": "phoenix",
+    "value": 1
+   },
+   "bullion": 25
+  },
+  {
+   "id": "ipo",
+   "category": "Finance",
+   "title": "Ring the bell",
+   "description": "Take your holding company public.",
+   "goal": {
+    "type": "ipo"
+   },
+   "bullion": 80
+  },
+  {
+   "id": "gen_2",
+   "category": "Dynasty",
+   "title": "Generation 2",
+   "description": "Reach generation 2.",
+   "goal": {
+    "type": "generation",
+    "value": 2
+   },
+   "bullion": 50
+  },
+  {
+   "id": "gen_3",
+   "category": "Dynasty",
+   "title": "Generation 3",
+   "description": "Reach generation 3.",
+   "goal": {
+    "type": "generation",
+    "value": 3
+   },
+   "bullion": 100
+  },
+  {
+   "id": "gen_5",
+   "category": "Dynasty",
+   "title": "Generation 5",
+   "description": "Reach generation 5.",
+   "goal": {
+    "type": "generation",
+    "value": 5
+   },
+   "bullion": 150
+  },
+  {
+   "id": "gen_10",
+   "category": "Dynasty",
+   "title": "Generation 10",
+   "description": "Reach generation 10.",
+   "goal": {
+    "type": "generation",
+    "value": 10
+   },
+   "bullion": 200
+  },
+  {
+   "id": "legacy_100",
+   "category": "Dynasty",
+   "title": "100 Legacy",
+   "description": "Bank 100 Legacy.",
+   "goal": {
+    "type": "legacy",
+    "value": 100
+   },
+   "bullion": 40
+  },
+  {
+   "id": "legacy_1000",
+   "category": "Dynasty",
+   "title": "1,000 Legacy",
+   "description": "Bank 1,000 Legacy.",
+   "goal": {
+    "type": "legacy",
+    "value": 1000
+   },
+   "bullion": 80
+  },
+  {
+   "id": "legacy_10000",
+   "category": "Dynasty",
+   "title": "10,000 Legacy",
+   "description": "Bank 10,000 Legacy.",
+   "goal": {
+    "type": "legacy",
+    "value": 10000
+   },
+   "bullion": 120
+  },
+  {
+   "id": "heirloom_1",
+   "category": "Dynasty",
+   "title": "1 heirloom",
+   "description": "Pass 1 heirloom to an heir.",
+   "goal": {
+    "type": "heirlooms",
+    "value": 1
+   },
+   "bullion": 20
+  },
+  {
+   "id": "heirloom_3",
+   "category": "Dynasty",
+   "title": "3 heirlooms",
+   "description": "Pass 3 heirlooms to an heir.",
+   "goal": {
+    "type": "heirlooms",
+    "value": 3
+   },
+   "bullion": 40
+  },
+  {
+   "id": "challenge_1",
+   "category": "Dynasty",
+   "title": "1 challenge",
+   "description": "Complete 1 Dynasty challenge.",
+   "goal": {
+    "type": "challenges",
+    "value": 1
+   },
+   "bullion": 40
+  },
+  {
+   "id": "challenge_5",
+   "category": "Dynasty",
+   "title": "5 challenges",
+   "description": "Complete 5 Dynasty challenges.",
+   "goal": {
+    "type": "challenges",
+    "value": 5
+   },
+   "bullion": 100
+  },
+  {
+   "id": "daily_10",
+   "category": "Habits",
+   "title": "10 dailies",
+   "description": "Complete 10 daily missions.",
+   "goal": {
+    "type": "metric",
+    "metric": "dailies",
+    "value": 10
+   },
+   "bullion": 10
+  },
+  {
+   "id": "daily_50",
+   "category": "Habits",
+   "title": "50 dailies",
+   "description": "Complete 50 daily missions.",
+   "goal": {
+    "type": "metric",
+    "metric": "dailies",
+    "value": 50
+   },
+   "bullion": 20
+  },
+  {
+   "id": "daily_100",
+   "category": "Habits",
+   "title": "100 dailies",
+   "description": "Complete 100 daily missions.",
+   "goal": {
+    "type": "metric",
+    "metric": "dailies",
+    "value": 100
+   },
+   "bullion": 30
+  },
+  {
+   "id": "daily_250",
+   "category": "Habits",
+   "title": "250 dailies",
+   "description": "Complete 250 daily missions.",
+   "goal": {
+    "type": "metric",
+    "metric": "dailies",
+    "value": 250
+   },
+   "bullion": 40
+  },
+  {
+   "id": "weekly_5",
+   "category": "Habits",
+   "title": "5 weeklies",
+   "description": "Complete 5 weekly missions.",
+   "goal": {
+    "type": "metric",
+    "metric": "weeklies",
+    "value": 5
+   },
+   "bullion": 20
+  },
+  {
+   "id": "weekly_25",
+   "category": "Habits",
+   "title": "25 weeklies",
+   "description": "Complete 25 weekly missions.",
+   "goal": {
+    "type": "metric",
+    "metric": "weeklies",
+    "value": 25
+   },
+   "bullion": 40
+  },
+  {
+   "id": "weekly_50",
+   "category": "Habits",
+   "title": "50 weeklies",
+   "description": "Complete 50 weekly missions.",
+   "goal": {
+    "type": "metric",
+    "metric": "weeklies",
+    "value": 50
+   },
+   "bullion": 60
+  },
+  {
+   "id": "ladder_7",
+   "category": "Habits",
+   "title": "Week in",
+   "description": "Claim 7 daily rewards.",
+   "goal": {
+    "type": "metric",
+    "metric": "ladder",
+    "value": 7
+   },
+   "bullion": 15
+  },
+  {
+   "id": "ladder_28",
+   "category": "Habits",
+   "title": "Month in",
+   "description": "Claim 28 daily rewards.",
+   "goal": {
+    "type": "metric",
+    "metric": "ladder",
+    "value": 28
+   },
+   "bullion": 40
+  },
+  {
+   "id": "hq_3",
+   "category": "Builder",
+   "title": "HQ level 3",
+   "description": "Upgrade your headquarters to level 3.",
+   "goal": {
+    "type": "hq",
+    "value": 3
+   },
+   "bullion": 10
+  },
+  {
+   "id": "hq_5",
+   "category": "Builder",
+   "title": "HQ level 5",
+   "description": "Upgrade your headquarters to level 5.",
+   "goal": {
+    "type": "hq",
+    "value": 5
+   },
+   "bullion": 20
+  },
+  {
+   "id": "hq_8",
+   "category": "Builder",
+   "title": "HQ level 8",
+   "description": "Upgrade your headquarters to level 8.",
+   "goal": {
+    "type": "hq",
+    "value": 8
+   },
+   "bullion": 30
+  },
+  {
+   "id": "hq_10",
+   "category": "Builder",
+   "title": "HQ level 10",
+   "description": "Upgrade your headquarters to level 10.",
+   "goal": {
+    "type": "hq",
+    "value": 10
+   },
+   "bullion": 40
+  },
+  {
+   "id": "hq_12",
+   "category": "Builder",
+   "title": "HQ level 12",
+   "description": "Upgrade your headquarters to level 12.",
+   "goal": {
+    "type": "hq",
+    "value": 12
+   },
+   "bullion": 50
+  }
+ ],
+ "ladder": [
+  {
+   "day": 1,
+   "cashHours": 1.0,
+   "bullion": 0,
+   "favor": 0
+  },
+  {
+   "day": 2,
+   "cashHours": 0.0,
+   "bullion": 10,
+   "favor": 0
+  },
+  {
+   "day": 3,
+   "cashHours": 0.0,
+   "bullion": 0,
+   "favor": 5
+  },
+  {
+   "day": 4,
+   "cashHours": 2.0,
+   "bullion": 0,
+   "favor": 0
+  },
+  {
+   "day": 5,
+   "cashHours": 0.0,
+   "bullion": 20,
+   "favor": 0
+  },
+  {
+   "day": 6,
+   "cashHours": 0.0,
+   "bullion": 0,
+   "favor": 10
+  },
+  {
+   "day": 7,
+   "cashHours": 4.0,
+   "bullion": 50,
+   "favor": 0
+  }
+ ],
+ "weeklyEvents": [
+  {
+   "id": "oil_shock_week",
+   "name": "Oil Shock",
+   "description": "Energy prices spike all week.",
+   "effect": "sector:energy",
+   "value": 0.2,
+   "goals": [
+    "frenzies",
+    "levels",
+    "events"
+   ]
+  },
+  {
+   "id": "art_fair",
+   "name": "Art Fair",
+   "description": "Collectors flood the city.",
+   "effect": "status",
+   "value": 0.15,
+   "goals": [
+    "luxury",
+    "auctions",
+    "cards"
+   ]
+  },
+  {
+   "id": "startup_week",
+   "name": "Startup Week",
+   "description": "Founders everywhere.",
+   "effect": "sector:technology",
+   "value": 0.2,
+   "goals": [
+    "businesses",
+    "managers",
+    "levels"
+   ]
+  },
+  {
+   "id": "harvest_festival",
+   "name": "Harvest Festival",
+   "description": "Farms and restaurants boom.",
+   "effect": "sector:food",
+   "value": 0.2,
+   "goals": [
+    "taps",
+    "levels",
+    "expansions"
+   ]
+  },
+  {
+   "id": "fashion_month",
+   "name": "Fashion Month",
+   "description": "The runways are full.",
+   "effect": "sector:consumer",
+   "value": 0.2,
+   "goals": [
+    "luxury",
+    "levels",
+    "cards"
+   ]
+  },
+  {
+   "id": "property_expo",
+   "name": "Property Expo",
+   "description": "Everyone is buying.",
+   "effect": "rent",
+   "value": 0.2,
+   "goals": [
+    "properties",
+    "renovations",
+    "levels"
+   ]
+  },
+  {
+   "id": "bull_run",
+   "name": "Bull Run",
+   "description": "Markets only go up.",
+   "effect": "dividends",
+   "value": 0.25,
+   "goals": [
+    "trades",
+    "payouts",
+    "levels"
+   ]
+  },
+  {
+   "id": "travel_season",
+   "name": "Travel Season",
+   "description": "Planes and hotels are full.",
+   "effect": "sector:transport",
+   "value": 0.2,
+   "goals": [
+    "levels",
+    "expansions",
+    "cards"
+   ]
+  },
+  {
+   "id": "media_week",
+   "name": "Awards Season",
+   "description": "Every screen is on.",
+   "effect": "sector:media",
+   "value": 0.2,
+   "goals": [
+    "levels",
+    "cards",
+    "managers"
+   ]
+  },
+  {
+   "id": "health_week",
+   "name": "Health Week",
+   "description": "Wellness is in.",
+   "effect": "sector:healthcare",
+   "value": 0.2,
+   "goals": [
+    "levels",
+    "cards",
+    "expansions"
+   ]
+  },
+  {
+   "id": "build_week",
+   "name": "Build Week",
+   "description": "Cranes on every corner.",
+   "effect": "sector:property",
+   "value": 0.2,
+   "goals": [
+    "properties",
+    "levels",
+    "renovations"
+   ]
+  },
+  {
+   "id": "mining_boom",
+   "name": "Metals Boom",
+   "description": "Copper hits records.",
+   "effect": "sector:materials",
+   "value": 0.2,
+   "goals": [
+    "levels",
+    "frenzies",
+    "events"
+   ]
+  },
+  {
+   "id": "factory_week",
+   "name": "Factory Week",
+   "description": "Order books overflow.",
+   "effect": "sector:industrials",
+   "value": 0.2,
+   "goals": [
+    "levels",
+    "managers",
+    "expansions"
+   ]
+  },
+  {
+   "id": "bank_week",
+   "name": "Banking Week",
+   "description": "Rates are up.",
+   "effect": "sector:financials",
+   "value": 0.2,
+   "goals": [
+    "trades",
+    "levels",
+    "cards"
+   ]
+  },
+  {
+   "id": "space_week",
+   "name": "Launch Week",
+   "description": "Rockets every day.",
+   "effect": "sector:frontier",
+   "value": 0.25,
+   "goals": [
+    "levels",
+    "expansions",
+    "cards"
+   ]
+  },
+  {
+   "id": "hustle_week",
+   "name": "Hustle Week",
+   "description": "Every tap counts double.",
+   "effect": "hustle",
+   "value": 1.0,
+   "goals": [
+    "taps",
+    "frenzies",
+    "levels"
+   ]
+  }
+ ],
+ "seasons": [
+  {
+   "id": "golden_age",
+   "name": "Golden Age"
+  },
+  {
+   "id": "silk_road",
+   "name": "Silk Road"
+  },
+  {
+   "id": "iron_and_steam",
+   "name": "Iron and Steam"
+  },
+  {
+   "id": "boom_town",
+   "name": "Boom Town"
+  },
+  {
+   "id": "neon_nights",
+   "name": "Neon Nights"
+  },
+  {
+   "id": "high_society",
+   "name": "High Society"
+  },
+  {
+   "id": "blue_chip",
+   "name": "Blue Chip"
+  },
+  {
+   "id": "frontier",
+   "name": "Frontier"
+  },
+  {
+   "id": "riviera",
+   "name": "Riviera"
+  },
+  {
+   "id": "skyline",
+   "name": "Skyline"
+  },
+  {
+   "id": "tycoon_cup",
+   "name": "Tycoon Cup"
+  },
+  {
+   "id": "starfall",
+   "name": "Starfall"
+  }
+ ],
+ "seasonTrack": [
+  {
+   "tier": 1,
+   "xp": 100,
+   "free": {
+    "bullion": 12
+   },
+   "premium": {
+    "bullion": 17
+   }
+  },
+  {
+   "tier": 2,
+   "xp": 200,
+   "free": {
+    "bullion": 14
+   },
+   "premium": {
+    "bullion": 19
+   }
+  },
+  {
+   "tier": 3,
+   "xp": 300,
+   "free": {
+    "favor": 6
+   },
+   "premium": {
+    "bullion": 21
+   }
+  },
+  {
+   "tier": 4,
+   "xp": 400,
+   "free": {
+    "bullion": 18
+   },
+   "premium": {
+    "bullion": 23
+   }
+  },
+  {
+   "tier": 5,
+   "xp": 500,
+   "free": {
+    "cashHours": 2.5,
+    "bullion": 25
+   },
+   "premium": {
+    "cosmetic": "season_title_5"
+   }
+  },
+  {
+   "tier": 6,
+   "xp": 600,
+   "free": {
+    "favor": 7
+   },
+   "premium": {
+    "bullion": 27
+   }
+  },
+  {
+   "tier": 7,
+   "xp": 700,
+   "free": {
+    "bullion": 24
+   },
+   "premium": {
+    "bullion": 29
+   }
+  },
+  {
+   "tier": 8,
+   "xp": 800,
+   "free": {
+    "bullion": 26
+   },
+   "premium": {
+    "bullion": 31
+   }
+  },
+  {
+   "tier": 9,
+   "xp": 900,
+   "free": {
+    "favor": 8
+   },
+   "premium": {
+    "bullion": 33
+   }
+  },
+  {
+   "tier": 10,
+   "xp": 1000,
+   "free": {
+    "cashHours": 3.0,
+    "bullion": 30
+   },
+   "premium": {
+    "cosmetic": "season_title_10"
+   }
+  },
+  {
+   "tier": 11,
+   "xp": 1100,
+   "free": {
+    "bullion": 32
+   },
+   "premium": {
+    "bullion": 37
+   }
+  },
+  {
+   "tier": 12,
+   "xp": 1200,
+   "free": {
+    "favor": 9
+   },
+   "premium": {
+    "bullion": 39
+   }
+  },
+  {
+   "tier": 13,
+   "xp": 1300,
+   "free": {
+    "bullion": 36
+   },
+   "premium": {
+    "bullion": 41
+   }
+  },
+  {
+   "tier": 14,
+   "xp": 1400,
+   "free": {
+    "bullion": 38
+   },
+   "premium": {
+    "bullion": 43
+   }
+  },
+  {
+   "tier": 15,
+   "xp": 1500,
+   "free": {
+    "cashHours": 3.5,
+    "bullion": 35
+   },
+   "premium": {
+    "cosmetic": "season_title_15"
+   }
+  },
+  {
+   "tier": 16,
+   "xp": 1600,
+   "free": {
+    "bullion": 42
+   },
+   "premium": {
+    "bullion": 47
+   }
+  },
+  {
+   "tier": 17,
+   "xp": 1700,
+   "free": {
+    "bullion": 44
+   },
+   "premium": {
+    "bullion": 49
+   }
+  },
+  {
+   "tier": 18,
+   "xp": 1800,
+   "free": {
+    "favor": 11
+   },
+   "premium": {
+    "bullion": 51
+   }
+  },
+  {
+   "tier": 19,
+   "xp": 1900,
+   "free": {
+    "bullion": 48
+   },
+   "premium": {
+    "bullion": 53
+   }
+  },
+  {
+   "tier": 20,
+   "xp": 2000,
+   "free": {
+    "cashHours": 4.0,
+    "bullion": 40
+   },
+   "premium": {
+    "cosmetic": "season_title_20"
+   }
+  },
+  {
+   "tier": 21,
+   "xp": 2100,
+   "free": {
+    "favor": 12
+   },
+   "premium": {
+    "bullion": 57
+   }
+  },
+  {
+   "tier": 22,
+   "xp": 2200,
+   "free": {
+    "bullion": 54
+   },
+   "premium": {
+    "bullion": 59
+   }
+  },
+  {
+   "tier": 23,
+   "xp": 2300,
+   "free": {
+    "bullion": 56
+   },
+   "premium": {
+    "bullion": 61
+   }
+  },
+  {
+   "tier": 24,
+   "xp": 2400,
+   "free": {
+    "favor": 13
+   },
+   "premium": {
+    "bullion": 63
+   }
+  },
+  {
+   "tier": 25,
+   "xp": 2500,
+   "free": {
+    "cashHours": 4.5,
+    "bullion": 45
+   },
+   "premium": {
+    "cosmetic": "season_title_25"
+   }
+  },
+  {
+   "tier": 26,
+   "xp": 2600,
+   "free": {
+    "bullion": 62
+   },
+   "premium": {
+    "bullion": 67
+   }
+  },
+  {
+   "tier": 27,
+   "xp": 2700,
+   "free": {
+    "favor": 14
+   },
+   "premium": {
+    "bullion": 69
+   }
+  },
+  {
+   "tier": 28,
+   "xp": 2800,
+   "free": {
+    "bullion": 66
+   },
+   "premium": {
+    "bullion": 71
+   }
+  },
+  {
+   "tier": 29,
+   "xp": 2900,
+   "free": {
+    "bullion": 68
+   },
+   "premium": {
+    "bullion": 73
+   }
+  },
+  {
+   "tier": 30,
+   "xp": 3000,
+   "free": {
+    "cashHours": 5.0,
+    "bullion": 50
+   },
+   "premium": {
+    "cosmetic": "season_title_30"
+   }
+  }
+ ],
+ "charter": [
+  {
+   "id": "industry_1_a",
+   "branch": "industry",
+   "branchName": "Industry",
+   "tier": 1,
+   "legacy": 10,
+   "generation": 2,
+   "name": "Family firm",
+   "description": "+10% income from every business",
+   "effect": "incomeAll",
+   "value": 0.1
+  },
+  {
+   "id": "industry_1_b",
+   "branch": "industry",
+   "branchName": "Industry",
+   "tier": 1,
+   "legacy": 10,
+   "generation": 2,
+   "name": "Shopkeeper's touch",
+   "description": "Hustle taps earn ×2",
+   "effect": "hustle",
+   "value": 1.0
+  },
+  {
+   "id": "industry_2_a",
+   "branch": "industry",
+   "branchName": "Industry",
+   "tier": 2,
+   "legacy": 25,
+   "generation": 2,
+   "name": "Night managers",
+   "description": "+2 h offline earnings cap",
+   "effect": "offlineHours",
+   "value": 2
+  },
+  {
+   "id": "industry_2_b",
+   "branch": "industry",
+   "branchName": "Industry",
+   "tier": 2,
+   "legacy": 25,
+   "generation": 2,
+   "name": "High-street empire",
+   "description": "+25% consumer income",
+   "effect": "incomeSector:consumer",
+   "value": 0.25
+  },
+  {
+   "id": "industry_3_a",
+   "branch": "industry",
+   "branchName": "Industry",
+   "tier": 3,
+   "legacy": 60,
+   "generation": 2,
+   "name": "Extra site",
+   "description": "+1 business slot",
+   "effect": "slots",
+   "value": 1
+  },
+  {
+   "id": "industry_3_b",
+   "branch": "industry",
+   "branchName": "Industry",
+   "tier": 3,
+   "legacy": 60,
+   "generation": 2,
+   "name": "Farm to table",
+   "description": "+25% food income",
+   "effect": "incomeSector:food",
+   "value": 0.25
+  },
+  {
+   "id": "industry_4_a",
+   "branch": "industry",
+   "branchName": "Industry",
+   "tier": 4,
+   "legacy": 150,
+   "generation": 3,
+   "name": "Industrial might",
+   "description": "+15% income from every business",
+   "effect": "incomeAll",
+   "value": 0.15
+  },
+  {
+   "id": "industry_4_b",
+   "branch": "industry",
+   "branchName": "Industry",
+   "tier": 4,
+   "legacy": 150,
+   "generation": 3,
+   "name": "Assembly lines",
+   "description": "+30% industrial income",
+   "effect": "incomeSector:industrials",
+   "value": 0.3
+  },
+  {
+   "id": "industry_5_a",
+   "branch": "industry",
+   "branchName": "Industry",
+   "tier": 5,
+   "legacy": 400,
+   "generation": 3,
+   "name": "Round the clock",
+   "description": "+3 h offline earnings cap",
+   "effect": "offlineHours",
+   "value": 3
+  },
+  {
+   "id": "industry_5_b",
+   "branch": "industry",
+   "branchName": "Industry",
+   "tier": 5,
+   "legacy": 400,
+   "generation": 3,
+   "name": "Power grid",
+   "description": "+30% energy income",
+   "effect": "incomeSector:energy",
+   "value": 0.3
+  },
+  {
+   "id": "industry_6_a",
+   "branch": "industry",
+   "branchName": "Industry",
+   "tier": 6,
+   "legacy": 1000,
+   "generation": 4,
+   "name": "Second campus",
+   "description": "+1 business slot",
+   "effect": "slots",
+   "value": 1
+  },
+  {
+   "id": "industry_6_b",
+   "branch": "industry",
+   "branchName": "Industry",
+   "tier": 6,
+   "legacy": 1000,
+   "generation": 4,
+   "name": "Deep mines",
+   "description": "+30% materials income",
+   "effect": "incomeSector:materials",
+   "value": 0.3
+  },
+  {
+   "id": "industry_7_a",
+   "branch": "industry",
+   "branchName": "Industry",
+   "tier": 7,
+   "legacy": 2500,
+   "generation": 4,
+   "name": "Conglomerate DNA",
+   "description": "+20% income from every business",
+   "effect": "incomeAll",
+   "value": 0.2
+  },
+  {
+   "id": "industry_7_b",
+   "branch": "industry",
+   "branchName": "Industry",
+   "tier": 7,
+   "legacy": 2500,
+   "generation": 4,
+   "name": "Silicon heritage",
+   "description": "+35% technology income",
+   "effect": "incomeSector:technology",
+   "value": 0.35
+  },
+  {
+   "id": "industry_8_a",
+   "branch": "industry",
+   "branchName": "Industry",
+   "tier": 8,
+   "legacy": 6000,
+   "generation": 5,
+   "name": "Born salesman",
+   "description": "Hustle taps earn ×3",
+   "effect": "hustle",
+   "value": 2.0
+  },
+  {
+   "id": "industry_8_b",
+   "branch": "industry",
+   "branchName": "Industry",
+   "tier": 8,
+   "legacy": 6000,
+   "generation": 5,
+   "name": "Logistics dynasty",
+   "description": "+35% transport income",
+   "effect": "incomeSector:transport",
+   "value": 0.35
+  },
+  {
+   "id": "industry_9_a",
+   "branch": "industry",
+   "branchName": "Industry",
+   "tier": 9,
+   "legacy": 15000,
+   "generation": 6,
+   "name": "Titans of industry",
+   "description": "+25% income from every business",
+   "effect": "incomeAll",
+   "value": 0.25
+  },
+  {
+   "id": "industry_9_b",
+   "branch": "industry",
+   "branchName": "Industry",
+   "tier": 9,
+   "legacy": 15000,
+   "generation": 6,
+   "name": "Media barons",
+   "description": "+40% media income",
+   "effect": "incomeSector:media",
+   "value": 0.4
+  },
+  {
+   "id": "industry_10_a",
+   "branch": "industry",
+   "branchName": "Industry",
+   "tier": 10,
+   "legacy": 40000,
+   "generation": 7,
+   "name": "Third campus",
+   "description": "+1 business slot",
+   "effect": "slots",
+   "value": 1
+  },
+  {
+   "id": "industry_10_b",
+   "branch": "industry",
+   "branchName": "Industry",
+   "tier": 10,
+   "legacy": 40000,
+   "generation": 7,
+   "name": "Star-bound",
+   "description": "+50% space income",
+   "effect": "incomeSector:frontier",
+   "value": 0.5
+  },
+  {
+   "id": "finance_1_a",
+   "branch": "finance",
+   "branchName": "Finance",
+   "tier": 1,
+   "legacy": 10,
+   "generation": 2,
+   "name": "Trust fund",
+   "description": "Heirs start with 5 minutes of the founder's peak income",
+   "effect": "startCash",
+   "value": 5
+  },
+  {
+   "id": "finance_1_b",
+   "branch": "finance",
+   "branchName": "Finance",
+   "tier": 1,
+   "legacy": 10,
+   "generation": 2,
+   "name": "Good name",
+   "description": "+30 credit score",
+   "effect": "creditScore",
+   "value": 30
+  },
+  {
+   "id": "finance_2_a",
+   "branch": "finance",
+   "branchName": "Finance",
+   "tier": 2,
+   "legacy": 25,
+   "generation": 2,
+   "name": "Dividend habit",
+   "description": "+20% dividends and coupons",
+   "effect": "dividends",
+   "value": 0.2
+  },
+  {
+   "id": "finance_2_b",
+   "branch": "finance",
+   "branchName": "Finance",
+   "tier": 2,
+   "legacy": 25,
+   "generation": 2,
+   "name": "Landed family",
+   "description": "+15% rent",
+   "effect": "rent",
+   "value": 0.15
+  },
+  {
+   "id": "finance_3_a",
+   "branch": "finance",
+   "branchName": "Finance",
+   "tier": 3,
+   "legacy": 60,
+   "generation": 2,
+   "name": "Family office",
+   "description": "−2 points on every tax bracket",
+   "effect": "taxCut",
+   "value": 0.02
+  },
+  {
+   "id": "finance_3_b",
+   "branch": "finance",
+   "branchName": "Finance",
+   "tier": 3,
+   "legacy": 60,
+   "generation": 2,
+   "name": "Bigger trust",
+   "description": "Heirs start with 10 minutes of peak income",
+   "effect": "startCash",
+   "value": 10
+  },
+  {
+   "id": "finance_4_a",
+   "branch": "finance",
+   "branchName": "Finance",
+   "tier": 4,
+   "legacy": 150,
+   "generation": 3,
+   "name": "Banker's friend",
+   "description": "+40 credit score",
+   "effect": "creditScore",
+   "value": 40
+  },
+  {
+   "id": "finance_4_b",
+   "branch": "finance",
+   "branchName": "Finance",
+   "tier": 4,
+   "legacy": 150,
+   "generation": 3,
+   "name": "Patient capital",
+   "description": "+30% dividends and coupons",
+   "effect": "dividends",
+   "value": 0.3
+  },
+  {
+   "id": "finance_5_a",
+   "branch": "finance",
+   "branchName": "Finance",
+   "tier": 5,
+   "legacy": 400,
+   "generation": 3,
+   "name": "Prime addresses",
+   "description": "+25% rent",
+   "effect": "rent",
+   "value": 0.25
+  },
+  {
+   "id": "finance_5_b",
+   "branch": "finance",
+   "branchName": "Finance",
+   "tier": 5,
+   "legacy": 400,
+   "generation": 3,
+   "name": "Clever structures",
+   "description": "−3 points on every tax bracket",
+   "effect": "taxCut",
+   "value": 0.03
+  },
+  {
+   "id": "finance_6_a",
+   "branch": "finance",
+   "branchName": "Finance",
+   "tier": 6,
+   "legacy": 1000,
+   "generation": 4,
+   "name": "Inheritance",
+   "description": "Heirs start with 20 minutes of peak income",
+   "effect": "startCash",
+   "value": 20
+  },
+  {
+   "id": "finance_6_b",
+   "branch": "finance",
+   "branchName": "Finance",
+   "tier": 6,
+   "legacy": 1000,
+   "generation": 4,
+   "name": "Merchant bank",
+   "description": "+35% financial income",
+   "effect": "incomeSector:financials",
+   "value": 0.35
+  },
+  {
+   "id": "finance_7_a",
+   "branch": "finance",
+   "branchName": "Finance",
+   "tier": 7,
+   "legacy": 2500,
+   "generation": 4,
+   "name": "Compounders",
+   "description": "+40% dividends and coupons",
+   "effect": "dividends",
+   "value": 0.4
+  },
+  {
+   "id": "finance_7_b",
+   "branch": "finance",
+   "branchName": "Finance",
+   "tier": 7,
+   "legacy": 2500,
+   "generation": 4,
+   "name": "AAA family",
+   "description": "+50 credit score",
+   "effect": "creditScore",
+   "value": 50
+  },
+  {
+   "id": "finance_8_a",
+   "branch": "finance",
+   "branchName": "Finance",
+   "tier": 8,
+   "legacy": 6000,
+   "generation": 5,
+   "name": "Offshore wisdom",
+   "description": "−4 points on every tax bracket",
+   "effect": "taxCut",
+   "value": 0.04
+  },
+  {
+   "id": "finance_8_b",
+   "branch": "finance",
+   "branchName": "Finance",
+   "tier": 8,
+   "legacy": 6000,
+   "generation": 5,
+   "name": "Real-estate dynasty",
+   "description": "+35% rent",
+   "effect": "rent",
+   "value": 0.35
+  },
+  {
+   "id": "finance_9_a",
+   "branch": "finance",
+   "branchName": "Finance",
+   "tier": 9,
+   "legacy": 15000,
+   "generation": 6,
+   "name": "Long view",
+   "description": "+10% Legacy at every prestige",
+   "effect": "legacyBonus",
+   "value": 0.1
+  },
+  {
+   "id": "finance_9_b",
+   "branch": "finance",
+   "branchName": "Finance",
+   "tier": 9,
+   "legacy": 15000,
+   "generation": 6,
+   "name": "Old fortune",
+   "description": "Heirs start with 40 minutes of peak income",
+   "effect": "startCash",
+   "value": 40
+  },
+  {
+   "id": "finance_10_a",
+   "branch": "finance",
+   "branchName": "Finance",
+   "tier": 10,
+   "legacy": 40000,
+   "generation": 7,
+   "name": "Generational wealth",
+   "description": "+20% Legacy at every prestige",
+   "effect": "legacyBonus",
+   "value": 0.2
+  },
+  {
+   "id": "finance_10_b",
+   "branch": "finance",
+   "branchName": "Finance",
+   "tier": 10,
+   "legacy": 40000,
+   "generation": 7,
+   "name": "Money makes money",
+   "description": "+30% income from every business",
+   "effect": "incomeAll",
+   "value": 0.3
+  },
+  {
+   "id": "influence_1_a",
+   "branch": "influence",
+   "branchName": "Influence",
+   "tier": 1,
+   "legacy": 10,
+   "generation": 2,
+   "name": "Dealer's friend",
+   "description": "3% off at dealers",
+   "effect": "luxuryDiscount",
+   "value": 0.03
+  },
+  {
+   "id": "influence_1_b",
+   "branch": "influence",
+   "branchName": "Influence",
+   "tier": 1,
+   "legacy": 10,
+   "generation": 2,
+   "name": "Good taste",
+   "description": "+10% Status",
+   "effect": "status",
+   "value": 0.1
+  },
+  {
+   "id": "influence_2_a",
+   "branch": "influence",
+   "branchName": "Influence",
+   "tier": 2,
+   "legacy": 25,
+   "generation": 2,
+   "name": "Loyal shareholders",
+   "description": "Takeover pressure halved",
+   "effect": "takeoverShield",
+   "value": 0.5
+  },
+  {
+   "id": "influence_2_b",
+   "branch": "influence",
+   "branchName": "Influence",
+   "tier": 2,
+   "legacy": 25,
+   "generation": 2,
+   "name": "VIP client",
+   "description": "5% off at dealers",
+   "effect": "luxuryDiscount",
+   "value": 0.05
+  },
+  {
+   "id": "influence_3_a",
+   "branch": "influence",
+   "branchName": "Influence",
+   "tier": 3,
+   "legacy": 60,
+   "generation": 2,
+   "name": "Society pages",
+   "description": "+15% Status",
+   "effect": "status",
+   "value": 0.15
+  },
+  {
+   "id": "influence_3_b",
+   "branch": "influence",
+   "branchName": "Influence",
+   "tier": 3,
+   "legacy": 60,
+   "generation": 2,
+   "name": "City builders",
+   "description": "+30% property income",
+   "effect": "incomeSector:property",
+   "value": 0.3
+  },
+  {
+   "id": "influence_4_a",
+   "branch": "influence",
+   "branchName": "Influence",
+   "tier": 4,
+   "legacy": 150,
+   "generation": 3,
+   "name": "Private sales",
+   "description": "5% off at dealers",
+   "effect": "luxuryDiscount",
+   "value": 0.05
+  },
+  {
+   "id": "influence_4_b",
+   "branch": "influence",
+   "branchName": "Influence",
+   "tier": 4,
+   "legacy": 150,
+   "generation": 3,
+   "name": "Poison-pill charter",
+   "description": "Takeover pressure halved",
+   "effect": "takeoverShield",
+   "value": 0.5
+  },
+  {
+   "id": "influence_5_a",
+   "branch": "influence",
+   "branchName": "Influence",
+   "tier": 5,
+   "legacy": 400,
+   "generation": 3,
+   "name": "Old-world glamour",
+   "description": "+20% Status",
+   "effect": "status",
+   "value": 0.2
+  },
+  {
+   "id": "influence_5_b",
+   "branch": "influence",
+   "branchName": "Influence",
+   "tier": 5,
+   "legacy": 400,
+   "generation": 3,
+   "name": "Hospital wings",
+   "description": "+35% healthcare income",
+   "effect": "incomeSector:healthcare",
+   "value": 0.35
+  },
+  {
+   "id": "influence_6_a",
+   "branch": "influence",
+   "branchName": "Influence",
+   "tier": 6,
+   "legacy": 1000,
+   "generation": 4,
+   "name": "Family legend",
+   "description": "+5% Legacy at every prestige",
+   "effect": "legacyBonus",
+   "value": 0.05
+  },
+  {
+   "id": "influence_6_b",
+   "branch": "influence",
+   "branchName": "Influence",
+   "tier": 6,
+   "legacy": 1000,
+   "generation": 4,
+   "name": "Collector's eye",
+   "description": "5% off at dealers",
+   "effect": "luxuryDiscount",
+   "value": 0.05
+  },
+  {
+   "id": "influence_7_a",
+   "branch": "influence",
+   "branchName": "Influence",
+   "tier": 7,
+   "legacy": 2500,
+   "generation": 4,
+   "name": "Royal patronage",
+   "description": "+25% Status",
+   "effect": "status",
+   "value": 0.25
+  },
+  {
+   "id": "influence_7_b",
+   "branch": "influence",
+   "branchName": "Influence",
+   "tier": 7,
+   "legacy": 2500,
+   "generation": 4,
+   "name": "Untouchable",
+   "description": "No takeover pressure",
+   "effect": "takeoverShield",
+   "value": 1.0
+  },
+  {
+   "id": "influence_8_a",
+   "branch": "influence",
+   "branchName": "Influence",
+   "tier": 8,
+   "legacy": 6000,
+   "generation": 5,
+   "name": "Kingmakers",
+   "description": "+15% income from every business",
+   "effect": "incomeAll",
+   "value": 0.15
+  },
+  {
+   "id": "influence_8_b",
+   "branch": "influence",
+   "branchName": "Influence",
+   "tier": 8,
+   "legacy": 6000,
+   "generation": 5,
+   "name": "Statesmen",
+   "description": "+10% Legacy at every prestige",
+   "effect": "legacyBonus",
+   "value": 0.1
+  },
+  {
+   "id": "influence_9_a",
+   "branch": "influence",
+   "branchName": "Influence",
+   "tier": 9,
+   "legacy": 15000,
+   "generation": 6,
+   "name": "Icons",
+   "description": "+30% Status",
+   "effect": "status",
+   "value": 0.3
+  },
+  {
+   "id": "influence_9_b",
+   "branch": "influence",
+   "branchName": "Influence",
+   "tier": 9,
+   "legacy": 15000,
+   "generation": 6,
+   "name": "First call",
+   "description": "8% off at dealers",
+   "effect": "luxuryDiscount",
+   "value": 0.08
+  },
+  {
+   "id": "influence_10_a",
+   "branch": "influence",
+   "branchName": "Influence",
+   "tier": 10,
+   "legacy": 40000,
+   "generation": 7,
+   "name": "Immortal name",
+   "description": "+15% Legacy at every prestige",
+   "effect": "legacyBonus",
+   "value": 0.15
+  },
+  {
+   "id": "influence_10_b",
+   "branch": "influence",
+   "branchName": "Influence",
+   "tier": 10,
+   "legacy": 40000,
+   "generation": 7,
+   "name": "Soft power",
+   "description": "+25% income from every business",
+   "effect": "incomeAll",
+   "value": 0.25
+  }
+ ],
+ "traits": [
+  {
+   "id": "frugal",
+   "name": "Frugal",
+   "description": "Watches every penny.",
+   "effect": "startCash",
+   "value": 5
+  },
+  {
+   "id": "charming",
+   "name": "Charming",
+   "description": "Dealers love them.",
+   "effect": "luxuryDiscount",
+   "value": 0.03
+  },
+  {
+   "id": "workaholic",
+   "name": "Workaholic",
+   "description": "Never stops.",
+   "effect": "offlineHours",
+   "value": 2
+  },
+  {
+   "id": "salesman",
+   "name": "Natural salesman",
+   "description": "Can sell anything.",
+   "effect": "hustle",
+   "value": 1.0
+  },
+  {
+   "id": "visionary",
+   "name": "Visionary",
+   "description": "Sees what others miss.",
+   "effect": "incomeAll",
+   "value": 0.08
+  },
+  {
+   "id": "cautious",
+   "name": "Cautious",
+   "description": "Pays every bill on time.",
+   "effect": "creditScore",
+   "value": 25
+  },
+  {
+   "id": "landlord",
+   "name": "Born landlord",
+   "description": "Loves property.",
+   "effect": "rent",
+   "value": 0.15
+  },
+  {
+   "id": "investor",
+   "name": "Investor",
+   "description": "Lives on dividends.",
+   "effect": "dividends",
+   "value": 0.2
+  },
+  {
+   "id": "glamorous",
+   "name": "Glamorous",
+   "description": "Always in the society pages.",
+   "effect": "status",
+   "value": 0.15
+  },
+  {
+   "id": "tough",
+   "name": "Tough",
+   "description": "Cannot be pushed around.",
+   "effect": "takeoverShield",
+   "value": 0.5
+  },
+  {
+   "id": "accountant",
+   "name": "Accountant's child",
+   "description": "Knows the tax code.",
+   "effect": "taxCut",
+   "value": 0.02
+  },
+  {
+   "id": "builder",
+   "name": "Builder",
+   "description": "Opens an extra site.",
+   "effect": "slots",
+   "value": 1
+  },
+  {
+   "id": "techie",
+   "name": "Techie",
+   "description": "Grew up coding.",
+   "effect": "incomeSector:technology",
+   "value": 0.25
+  },
+  {
+   "id": "foodie",
+   "name": "Foodie",
+   "description": "Lives for great food.",
+   "effect": "incomeSector:food",
+   "value": 0.25
+  },
+  {
+   "id": "fashionista",
+   "name": "Fashionista",
+   "description": "Sets trends.",
+   "effect": "incomeSector:consumer",
+   "value": 0.25
+  },
+  {
+   "id": "engineer",
+   "name": "Engineer",
+   "description": "Loves machines.",
+   "effect": "incomeSector:industrials",
+   "value": 0.25
+  },
+  {
+   "id": "rocket",
+   "name": "Rocket kid",
+   "description": "Dreams of space.",
+   "effect": "incomeSector:frontier",
+   "value": 0.3
+  },
+  {
+   "id": "banker",
+   "name": "Banker",
+   "description": "Thinks in interest rates.",
+   "effect": "incomeSector:financials",
+   "value": 0.25
+  },
+  {
+   "id": "ambitious",
+   "name": "Ambitious",
+   "description": "Wants a bigger legacy.",
+   "effect": "legacyBonus",
+   "value": 0.08
+  },
+  {
+   "id": "traveller",
+   "name": "Traveller",
+   "description": "Knows every route.",
+   "effect": "incomeSector:transport",
+   "value": 0.25
+  }
+ ],
+ "challenges": [
+  {
+   "id": "self_made",
+   "name": "Self-made",
+   "description": "No loans or credit line this generation.",
+   "rule": "noLoans",
+   "legacyBonus": 0.15
+  },
+  {
+   "id": "purist",
+   "name": "Purist",
+   "description": "No crypto this generation.",
+   "rule": "noCrypto",
+   "legacyBonus": 0.05
+  },
+  {
+   "id": "no_markets",
+   "name": "Main Street only",
+   "description": "No stocks, funds, bonds, commodities or crypto.",
+   "rule": "noMarkets",
+   "legacyBonus": 0.2
+  },
+  {
+   "id": "renter",
+   "name": "Forever renter",
+   "description": "No property this generation.",
+   "rule": "noProperty",
+   "legacyBonus": 0.2
+  },
+  {
+   "id": "spartan",
+   "name": "Spartan",
+   "description": "No luxury purchases or auctions.",
+   "rule": "noLuxury",
+   "legacyBonus": 0.1
+  },
+  {
+   "id": "no_frenzy",
+   "name": "Steady hands",
+   "description": "No Frenzies this generation.",
+   "rule": "noFrenzy",
+   "legacyBonus": 0.08
+  },
+  {
+   "id": "tax_hawk",
+   "name": "Tax hawk",
+   "description": "Every tax bracket is 5 points higher.",
+   "rule": "taxPlus",
+   "legacyBonus": 0.1
+  },
+  {
+   "id": "short_nights",
+   "name": "Short nights",
+   "description": "Offline earnings cap halved.",
+   "rule": "halfOffline",
+   "legacyBonus": 0.15
+  },
+  {
+   "id": "lean_hq",
+   "name": "Lean HQ",
+   "description": "No headquarters upgrades.",
+   "rule": "noHq",
+   "legacyBonus": 0.25
+  },
+  {
+   "id": "hands_off",
+   "name": "Hands off the Desk",
+   "description": "No decision cards this generation.",
+   "rule": "noCards",
+   "legacyBonus": 0.05
+  },
+  {
+   "id": "from_zero",
+   "name": "From zero",
+   "description": "Start with no inheritance (trust funds ignored).",
+   "rule": "noStartCash",
+   "legacyBonus": 0.05
+  },
+  {
+   "id": "iron_will",
+   "name": "Iron will",
+   "description": "No Phoenix protocol and no restructuring.",
+   "rule": "noRescue",
+   "legacyBonus": 0.12
+  }
+ ],
+ "config": {
+  "dailyCount": 3,
+  "weeklyCount": 5,
+  "seasonDays": 28,
+  "weekDays": 7,
+  "legacyScale": 4.0,
+  "legacyExponent": 0.42,
+  "legacyIncomeFactor": 0.02,
+  "legacyIncomeExponent": 0.9,
+  "heirlooms": [
+   1,
+   1,
+   2,
+   2,
+   3
+  ],
+  "traitChoices": 3,
+  "ipo": {
+   "floats": [
+    0.1,
+    0.2,
+    0.3
+   ],
+   "valuationMultiple": 2.0,
+   "minChapter": 7
+  },
+  "eventGoal": {
+   "easy": 0.5,
+   "xp": 60
+  }
+ }
+}

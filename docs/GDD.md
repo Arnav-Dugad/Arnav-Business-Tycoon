@@ -215,7 +215,8 @@ Headlines are generated from templates naming the game's parody companies, coins
 - **Economic cycle** state machine: Expansion → Boom → Slowdown → Recession → Recovery. Phase lengths are seeded and random (roughly 1.5–4 real days each) and announced with leading indicators in the news.
 - **Sector events**: tech bubble, oil shock, housing boom, supply-chain crunch, crop blight, fictional "fever season" (a travel slump), and more.
 - **Disasters** strike a city (storm, quake, flood). Insured assets recover; uninsured ones take damage. Disasters are never fatal to the save.
-- **Decision cards** (160+): 2–3 options with explicit trade-offs and visible odds. For example, a union demands raises: *Accept* (+wages, +productivity), *Negotiate* (mini-game), *Refuse* (strike risk 40%). Up to 3 cards queue while you are away; they never auto-resolve against you.
+- **Decision cards** (163 in Phase 9): 2–5 options with explicit trade-offs and visible odds. For example, a union demands raises: *Accept* (+wages, +productivity), *Negotiate* (70 % deal), *Refuse* (strike risk 40 %). Costs are in hours of your income, so cards stay relevant at every stage, and you can only pick what you can afford in the worst case. Up to 3 cards queue on **the Desk** while you are away; they never resolve themselves. The Negotiate mini-game arrives in Phase 10; until then negotiation options show their odds.
+- **Phase 9 notes**: the economic cycle has 4 phases (Expansion, Boom, Slowdown, Recession; built in Phase 6). World events (60) change the income of a sector or of every business for 6–48 hours; 8 disaster events strike a real city and damage uninsured properties there.
 
 ---
 
@@ -227,7 +228,8 @@ Headlines are generated from templates naming the game's parody companies, coins
 - **Takeover defense**: white knight (an allied rival), buyback, poison pill (costly), negotiate, or accept the premium.
 - **Nemesis**: each story chapter promotes one rival to nemesis, with story beats and a finale.
 - Rivals are simulated cheaply with a net-worth model plus scheduled actions, not a full simulation.
-- **Respect rule**: rivals use licensed stock portraits, so negative story beats (scandals, failures) attach to *companies*, never to a pictured person.
+- **Respect rule**: rival portraits are caricatures of invented people (40 AI portraits for the rivals seen most; monograms for the rest), and negative story beats attach to *companies*, never to a person.
+- **Phase 9 notes**: rival fortunes are a pure function of game time (calibrated to the simulator's net-worth curve). Acquisition offers, joint ventures, takeovers, poaching and friendly gestures arrive as decision cards with a named rival. A pending takeover cuts that business's income 10 % until you answer; defences are a share buyback, a poison pill (rating hit), a white knight (needs an ally at relationship 40+), negotiation, or accepting the premium. Construction tenders and property bids against rivals are deferred.
 
 ---
 

@@ -114,14 +114,16 @@ object Ledger {
      * Records continuous income. To keep the journal compact, income from the same source within the same
      * game minute is merged into one transaction (the open minute's Txn is replaced, balances stay exact).
      */
-    fun earn(state: LedgerState, time: Long, source: String, amount: Money): LedgerState {
-        require(!amount.isNegative)
+    fun earn(state: LedgerState, time: Long, source: String, amount: Money, tax: Money = Money.ZERO): LedgerState {
+        require(!amount.isNegative && !tax.isNegative && tax <= amount)
         if (amount.isZero) return state
         val revenueAcc = Accounts.revenue(source)
+        val taxAcc = Accounts.expense(INCOME_TAX)
         val minute = time / 60_000
         val newBalances = state.balances.toMutableMap()
-        newBalances[Accounts.CASH] = state.cash + amount
+        newBalances[Accounts.CASH] = state.cash + (amount - tax)
         newBalances[revenueAcc] = state.balance(revenueAcc) - amount
+        if (tax.isPositive) newBalances[taxAcc] = state.balance(taxAcc) + tax
         // Find this source's open income Txn within the current minute (scan back only through this minute).
         var idx = -1
         for (i in state.recent.indices.reversed()) {
@@ -129,20 +131,25 @@ object Ledger {
             if (t.time / 60_000 != minute) break
             if (t.category == TxnCategory.Income && t.memo == source) { idx = i; break }
         }
+        fun postings(gross: Money, withheld: Money): List<Posting> =
+            if (withheld.isPositive) listOf(Posting(Accounts.CASH, gross - withheld), Posting(revenueAcc, -gross), Posting(taxAcc, withheld))
+            else listOf(Posting(Accounts.CASH, gross), Posting(revenueAcc, -gross))
         if (idx >= 0) {
             val open = state.recent[idx]
-            val prevAmount = open.postings.first { it.account == Accounts.CASH }.amount
-            val updated = open.copy(
-                postings = listOf(Posting(Accounts.CASH, prevAmount + amount), Posting(revenueAcc, -(prevAmount + amount))),
-            )
+            val prevGross = -(open.postings.first { it.account == revenueAcc }.amount)
+            val prevTax = open.postings.firstOrNull { it.account == taxAcc }?.amount ?: Money.ZERO
+            val updated = open.copy(postings = postings(prevGross + amount, prevTax + tax))
             val recent = state.recent.toMutableList().also { it[idx] = updated }
             return state.copy(balances = newBalances, recent = recent)
         }
         // Income Txns are stamped with the minute start so split and unsplit advances produce identical journals.
-        val txn = Txn(state.nextTxnId, minute * 60_000, TxnCategory.Income, source, listOf(Posting(Accounts.CASH, amount), Posting(revenueAcc, -amount)))
+        val txn = Txn(state.nextTxnId, minute * 60_000, TxnCategory.Income, source, postings(amount, tax))
         val recent = (state.recent + txn).let { if (it.size > RECENT_LIMIT) it.takeLast(RECENT_LIMIT) else it }
         return LedgerState(newBalances, state.nextTxnId + 1, recent)
     }
+
+    /** Expense account that collects income tax withheld from business income (Phase 9). */
+    const val INCOME_TAX = "income_tax"
 
     /** Sum of every balance; must always be zero. */
     fun trialBalance(state: LedgerState): Money = state.balances.values.fold(Money.ZERO) { a, b -> a + b }

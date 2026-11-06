@@ -18,6 +18,7 @@ internal object DebugScenarios {
         "lategame" -> lateGame(engine, base)
         "markets" -> marketsOpen(engine, base)
         "auction" -> auctionClosing(engine, base)
+        "world" -> worldDesk(engine, base)
         else -> null
     }
 
@@ -172,6 +173,22 @@ internal object DebugScenarios {
         s = s.run(Command.SetMaxBid(engine.luxury.marketPrice(content.luxury.itemById.getValue(a.item), s.simTimeMs) * 10L))
         val target = (s.luxury.auction?.closeSim ?: s.simTimeMs) - 45_000
         if (target > s.simTimeMs) s = engine.advance(s, target - s.simTimeMs).state
+        return s
+    }
+
+    /**
+     * The late game played forward through a full tax quarter (72 game hours, real engine time): decision cards are
+     * waiting on the Desk, a tax return is due, world events have happened and a loan is running. Used by the Desk
+     * and tax UI test (TEST_PLAN flow 6).
+     */
+    private fun worldDesk(engine: GameEngine, base: GameState): GameState {
+        fun GameState.run(c: Command) = (engine.apply(this, c) as? CommandResult.Ok)?.state ?: this
+        var s = lateGame(engine, base)
+        s = engine.advance(s, 60_000).state
+        // Play on in 3-hour steps until a tax return is open (at most two quarters).
+        var guard = 0
+        while (s.finance.tax.pending == null && guard++ < 48) s = engine.advance(s, 3 * 3_600_000L).state
+        engine.credit.borrowLimit(s).takeIf { it.isPositive }?.let { lim -> s = s.run(Command.TakeLoan(lim / 4L, 3)) }
         return s
     }
 }

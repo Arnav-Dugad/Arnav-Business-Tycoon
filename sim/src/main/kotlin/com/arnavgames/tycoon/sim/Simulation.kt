@@ -25,10 +25,13 @@ object Milestones {
     const val FIRST_PROPERTY = "first_property"
     const val FIRST_LUXURY = "first_luxury"
     const val FIRST_AUCTION_WIN = "first_auction_win"
+    const val FORTUNE_ENTRY = "fortune_entry"
+    const val FORTUNE_TOP10 = "fortune_top10"
+    const val FORTUNE_TOP = "fortune_top"
     fun chapterDone(n: Int) = "chapter${n}_done"
 
     val ALL = listOf(FIRST_LEVEL, FIRST_MANAGER, RESTAURANT_OPEN, CHAPTER1_DONE, LOGISTICS_OPEN, NW_10K, NW_1M, HQ_5, CHAPTER2_DONE, NW_100M, NW_10B) +
-        (3..8).map { chapterDone(it) } + listOf(FIRST_CONGLOMERATE, HOLDING, FIRST_PROPERTY, FIRST_LUXURY, FIRST_AUCTION_WIN)
+        (3..8).map { chapterDone(it) } + listOf(FIRST_CONGLOMERATE, HOLDING, FIRST_PROPERTY, FIRST_LUXURY, FIRST_AUCTION_WIN, FORTUNE_ENTRY, FORTUNE_TOP10, FORTUNE_TOP)
 }
 
 /** One sample of the economy over real time (for curves and dead-zone analysis). */
@@ -40,6 +43,8 @@ data class Sample(
     /** Cumulative income in dollars from businesses (and tapping) and from markets (dividends, coupons, staking, realised gains). */
     val businessIncome: Double = 0.0,
     val marketIncome: Double = 0.0,
+    /** Game time credited so far (offline earnings are capped, so it trails real time). */
+    val simMinutes: Long = 0,
 )
 
 data class RunResult(
@@ -117,6 +122,12 @@ class Simulation(private val engine: GameEngine, private val contentHash: String
             if (s.estate.properties.isNotEmpty()) milestones.putIfAbsent(Milestones.FIRST_PROPERTY, minute)
             if (s.luxury.owned.isNotEmpty()) milestones.putIfAbsent(Milestones.FIRST_LUXURY, minute)
             if (s.luxury.auctionsWon > 0) milestones.putIfAbsent(Milestones.FIRST_AUCTION_WIN, minute)
+            if (Milestones.FORTUNE_TOP !in milestones && (minute.toLong() % 30L == 0L)) {
+                val rank = engine.world.playerRank(s, nw)
+                if (rank <= engine.content.world.rivals.size) milestones.putIfAbsent(Milestones.FORTUNE_ENTRY, minute)
+                if (rank <= 10) milestones.putIfAbsent(Milestones.FORTUNE_TOP10, minute)
+                if (rank == 1) milestones.putIfAbsent(Milestones.FORTUNE_TOP, minute)
+            }
         }
 
         for ((startMin, lengthMin) in sessions) {
@@ -163,7 +174,7 @@ class Simulation(private val engine: GameEngine, private val contentHash: String
                 lastNw = nw
             }
             val (bizIncome, mktIncome) = incomeBySource(s)
-            samples += Sample(minuteNow, nw.log10Dollars(), eco.totalNetRate(s).perSecond().log10Dollars(), cashOverNextCost(s), bizIncome, mktIncome)
+            samples += Sample(minuteNow, nw.log10Dollars(), eco.totalNetRate(s).perSecond().log10Dollars(), cashOverNextCost(s), bizIncome, mktIncome, s.simTimeMs / 60_000)
             if (trace) {
                 val ch = engine.content.chapters.firstOrNull { it.number == s.progress.chapter }
                 val open = ch?.missions?.filter { it.id !in s.progress.completedMissions }?.joinToString { it.id } ?: ""

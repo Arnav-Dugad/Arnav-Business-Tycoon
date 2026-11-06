@@ -246,7 +246,7 @@ def main(repo: Path) -> None:
         "propertyTaxPerDay": 0.002,
         "insurancePerDay": 0.0005,
         "mortgageSpreadPerDay": 0.003,
-        "mortgageLtvOptions": [0.0, 0.5, 0.6],
+        "mortgageLtvOptions": [0.0, 0.25, 0.5, 0.6, 0.75],
         "foreclosureLtv": 0.95,
         "listingRefreshHours": 6,
         "listingsMin": 3,

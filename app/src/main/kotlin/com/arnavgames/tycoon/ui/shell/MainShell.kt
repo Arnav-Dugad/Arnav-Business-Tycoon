@@ -47,6 +47,9 @@ fun MainShell(
     onOpenProperty: (Long) -> Unit = {},
     onOpenLuxuryCategory: (String) -> Unit = {},
     onOpenAuction: () -> Unit = {},
+    onOpenDesk: () -> Unit = {},
+    onOpenFortune: () -> Unit = {},
+    onOpenFinance: () -> Unit = {},
 ) {
     var tab by rememberSaveable { mutableStateOf("empire") }
     val empire by vm.empire.collectAsStateWithLifecycle()
@@ -55,8 +58,10 @@ fun MainShell(
     val decisions = (estatesUi?.decisions?.size ?: 0) > 0
     val collectionUi by vm.collection.collectAsStateWithLifecycle()
     val auctionLive = collectionUi?.auction != null
+    val deskUi by vm.desk.collectAsStateWithLifecycle()
+    val cardsWaiting = (deskUi?.cards?.size ?: 0) > 0
     val items = listOf(
-        NavItem("empire", "Empire", AbtIcons.Empire),
+        NavItem("empire", "Empire", AbtIcons.Empire, badge = cardsWaiting),
         NavItem("markets", "Markets", AbtIcons.Markets),
         NavItem("estates", "Estates", AbtIcons.Estates, badge = decisions),
         NavItem("collection", "Collection", AbtIcons.Collection, badge = auctionLive),
@@ -65,7 +70,7 @@ fun MainShell(
     Box(Modifier.fillMaxSize()) {
         AnimatedContent(tab, transitionSpec = { fadeIn(tween(220)) togetherWith fadeOut(tween(160)) }, label = "tab") { t ->
             when (t) {
-                "empire" -> EmpireScreen(vm, onOpenBusiness = onOpenBusiness)
+                "empire" -> EmpireScreen(vm, onOpenBusiness = onOpenBusiness, onOpenDesk = onOpenDesk, onOpenFortune = onOpenFortune, onOpenFinance = onOpenFinance)
                 "markets" -> MarketsScreen(vm, onOpenInstrument = onOpenInstrument, onOpenNews = onOpenNews)
                 "estates" -> com.arnavgames.tycoon.ui.estates.EstatesScreen(vm, onOpenCity = onOpenCity, onOpenProperty = onOpenProperty)
                 "collection" -> com.arnavgames.tycoon.ui.collection.CollectionScreen(vm, onOpenCategory = onOpenLuxuryCategory, onOpenAuction = onOpenAuction)

@@ -231,8 +231,13 @@ class GameSession @Inject constructor(
     }.getOrDefault(emptyMap())
 
     /** Manager ids that have a bundled portrait (assets/img/portraits/<id>.webp). */
-    fun portraitIds(): Set<String> = runCatching {
-        (app.assets.list("img/portraits") ?: emptyArray()).filter { it.endsWith(".webp") }.map { it.removeSuffix(".webp") }.toSet()
+    fun portraitIds(): Set<String> = assetIds("img/portraits")
+
+    /** Rival caricature portraits bundled in assets/img/rivals (Phase 9). */
+    fun rivalPortraitIds(): Set<String> = assetIds("img/rivals")
+
+    private fun assetIds(dir: String): Set<String> = runCatching {
+        (app.assets.list(dir) ?: emptyArray()).filter { it.endsWith(".webp") }.map { it.removeSuffix(".webp") }.toSet()
     }.getOrDefault(emptySet())
 
     /** Newest save bytes for "Export save" (saves first so the export is current). */

@@ -31,7 +31,18 @@ import kotlin.math.sin
  * world seed and time; rent, tax, insurance, mortgage interest, disasters and tenant decisions are settled every 6 hours
  * on the same boundaries as market payouts, so offline catch-up equals live play.
  */
-class EstateEngine(val c: EstateContent, private val ratePerDay: (GameState) -> Double, private val rentBonus: (GameState) -> Double = { 0.0 }) {
+class EstateEngine(
+    val c: EstateContent,
+    private val ratePerDay: (GameState) -> Double,
+    private val rentBonus: (GameState) -> Double = { 0.0 },
+    /** Highest loan-to-value the player's credit rating allows (Phase 9). */
+    val maxLtv: (GameState) -> Double = { 1.0 },
+    /** Mortgage spread adjustment for the player's credit rating, per day. */
+    private val spreadAdjustment: (GameState) -> Double = { 0.0 },
+) {
+    /** Loan-to-value choices the player's rating allows right now. */
+    fun ltvOptions(state: GameState): List<Double> = cfg.mortgageLtvOptions.filter { it <= maxLtv(state) + 1e-9 }
+
     private val cfg = c.config
     private val cityScale: Map<String, BigDecimal> = c.cities.associate { it.id to BigDecimal(it.priceScale) }
 
@@ -212,6 +223,7 @@ class EstateEngine(val c: EstateContent, private val ratePerDay: (GameState) -> 
         val listing = listings(state, districtId).firstOrNull { it.id == listingId } ?: return err(GameError.NotFound("That listing has gone"))
         if (ltv !in cfg.mortgageLtvOptions) return err(GameError.Invalid("Unsupported loan-to-value"))
         if (ltv > 0 && !isUnlocked(state, "mortgages")) return err(GameError.Locked("Mortgages open in chapter ${unlockChapter("mortgages")}"))
+        if (ltv > maxLtv(state) + 1e-9) return err(GameError.Locked("Your credit rating allows at most ${(maxLtv(state) * 100).toInt()}% loan-to-value"))
         if (state.estate.properties.size >= cfg.maxProperties) return err(GameError.Invalid("You can own at most ${cfg.maxProperties} properties"))
         val (cash, loan) = buyCost(listing, ltv)
         val fee = listing.price * Multiplier.ofDouble(cfg.transactionCost)
@@ -300,6 +312,10 @@ class EstateEngine(val c: EstateContent, private val ratePerDay: (GameState) -> 
         val net = (gross - fee - tax - p.mortgage).max(Money.ZERO)
         return SaleQuote(gross, fee, p.mortgage, tax, net, gain)
     }
+
+    /** Sells every property at once (Phoenix protocol): the bank is repaid first and absorbs any shortfall. */
+    fun liquidateAll(state: GameState, taxRate: Double, events: MutableList<GameEvent>): GameState =
+        state.estate.properties.values.sortedBy { it.id }.fold(state) { s, p -> completeSale(s, p, taxRate, "orderly liquidation", events) }
 
     private fun completeSale(state: GameState, p: PropertyState, taxRate: Double, memo: String, events: MutableList<GameEvent>): GameState {
         val q = saleQuote(state, p, taxRate)
@@ -472,7 +488,7 @@ class EstateEngine(val c: EstateContent, private val ratePerDay: (GameState) -> 
         var s = state
         val time = minute * 60_000
         val r = GameRandom.stream(state.worldSeed, "estate_settle", minute)
-        val rate = ratePerDay(state) + cfg.mortgageSpreadPerDay
+        val rate = (ratePerDay(state) + cfg.mortgageSpreadPerDay + spreadAdjustment(state)).coerceAtLeast(0.0)
         var rent = Money.ZERO
         var tax = Money.ZERO
         var insurance = Money.ZERO
@@ -527,6 +543,7 @@ class EstateEngine(val c: EstateContent, private val ratePerDay: (GameState) -> 
             ), emptyMap()) as Ledger.Result.Ok).state
             s = s.copy(ledger = ledger)
             if (capitalised.isPositive) {
+                events += GameEvent.PaymentMissed("mortgage", capitalised)
                 // Spread the capitalised interest over the mortgaged properties in proportion to their loans.
                 val mortgaged = s.estate.properties.values.filter { it.mortgage.isPositive }.sortedBy { it.id }
                 val total = mortgaged.fold(Money.ZERO) { a, p -> a + p.mortgage }
