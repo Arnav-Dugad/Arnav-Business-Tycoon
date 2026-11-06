@@ -1,0 +1,247 @@
+package com.arnavgames.tycoon.ui
+
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.arnavgames.tycoon.core.content.BusinessDef
+import com.arnavgames.tycoon.core.content.GoalDef
+import com.arnavgames.tycoon.core.content.MechanicDef
+import com.arnavgames.tycoon.core.engine.Command
+import com.arnavgames.tycoon.core.engine.CommandResult
+import com.arnavgames.tycoon.core.engine.GameError
+import com.arnavgames.tycoon.core.engine.GameEvent
+import com.arnavgames.tycoon.core.engine.Mechanics
+import com.arnavgames.tycoon.core.money.Money
+import com.arnavgames.tycoon.core.money.MoneyFormat
+import com.arnavgames.tycoon.core.money.Rate
+import com.arnavgames.tycoon.core.state.GameState
+import com.arnavgames.tycoon.core.state.MechanicState
+import com.arnavgames.tycoon.core.state.TimerKind
+import com.arnavgames.tycoon.data.settings.Settings
+import com.arnavgames.tycoon.data.settings.SettingsStore
+import com.arnavgames.tycoon.game.GameSession
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
+import javax.inject.Inject
+
+enum class BuyQty(val label: String, val count: Int) { One("×1", 1), Ten("×10", 10), TwentyFive("×25", 25), Max("Max", -1) }
+
+data class HeaderUi(val netWorth: Money, val cash: Money, val income: Rate, val bullion: Long, val favor: Long)
+
+data class HustleUi(val perTap: Money, val combo: Int, val maxCombo: Int, val comboMultiplier: Double, val frenzyActive: Boolean, val frenzyEndsAtSim: Long, val simNow: Long, val frenzyCharges: Int, val totalTaps: Long)
+
+data class MissionUi(
+    val id: String, val title: String, val description: String, val progress: Float, val claimable: Boolean,
+    val reward: String, val chapterNumber: Int, val chapterTitle: String, val done: Int, val total: Int,
+)
+
+data class TimerUi(val id: Long, val label: String, val startSim: Long, val endSim: Long, val rushFavor: Long)
+
+data class BusinessUi(
+    val id: String, val name: String, val icon: String, val level: Int, val tierName: String, val nextTierLevel: Int?,
+    val tierProgress: Float, val netRate: Rate, val managerName: String?, val stored: Money, val storageCap: Money,
+    val buyCount: Int, val buyCost: Money, val canAfford: Boolean, val efficiency: Double, val timer: TimerUi?, val mothballed: Boolean,
+    val hint: String?,
+)
+
+data class OpenableUi(val id: String, val name: String, val tagline: String, val icon: String, val cost: Money, val canAfford: Boolean, val lockedReason: String?)
+
+data class HqUi(val level: Int, val name: String, val nextName: String?, val nextCost: Money?, val canAfford: Boolean, val slotsUsed: Int, val slots: Int, val offlineCapHours: Double)
+
+data class EmpireUi(
+    val header: HeaderUi,
+    val hustle: HustleUi,
+    val mission: MissionUi?,
+    val businesses: List<BusinessUi>,
+    val openable: List<OpenableUi>,
+    val hq: HqUi,
+    val onboardingStep: Int,
+    val chapter: Int,
+    val claimableCount: Int,
+)
+
+@HiltViewModel
+class GameViewModel @Inject constructor(
+    private val session: GameSession,
+    private val settingsStore: SettingsStore,
+) : ViewModel() {
+
+    val status = session.status
+    val offline = session.offline
+    val events: SharedFlow<GameEvent> = session.events
+    val settings: StateFlow<Settings> = settingsStore.settings.stateIn(viewModelScope, SharingStarted.Eagerly, Settings())
+
+    val buyQty = MutableStateFlow(BuyQty.One)
+
+    private val _messages = MutableSharedFlow<String>(extraBufferCapacity = 8)
+    val messages: SharedFlow<String> = _messages.asSharedFlow()
+
+    val state: StateFlow<GameState?> = session.state
+
+    val empire: StateFlow<EmpireUi?> = combine(session.state.filterNotNull(), buyQty, settings) { s, qty, st -> toEmpireUi(s, qty, st) }
+        .flowOn(Dispatchers.Default)
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), null)
+
+    fun dispatch(cmd: Command, onOk: () -> Unit = {}) {
+        viewModelScope.launch {
+            when (val r = session.dispatch(cmd)) {
+                is CommandResult.Ok -> onOk()
+                is CommandResult.Rejected -> _messages.tryEmit(errorText(r.error))
+            }
+        }
+    }
+
+    fun setBuyQty(q: BuyQty) { buyQty.value = q }
+
+    suspend fun exportSave(ctx: android.content.Context, uri: android.net.Uri) {
+        val result = runCatching {
+            val bytes = session.exportBytes() ?: error("No save yet")
+            kotlinx.coroutines.withContext(Dispatchers.IO) {
+                ctx.contentResolver.openOutputStream(uri)?.use { it.write(bytes) } ?: error("Could not open file")
+            }
+        }
+        _messages.tryEmit(if (result.isSuccess) "Save exported." else "Export failed: ${result.exceptionOrNull()?.message}")
+    }
+
+    suspend fun importSave(ctx: android.content.Context, uri: android.net.Uri) {
+        val result = runCatching {
+            val bytes = kotlinx.coroutines.withContext(Dispatchers.IO) {
+                ctx.contentResolver.openInputStream(uri)?.use { it.readBytes() } ?: error("Could not open file")
+            }
+            session.importBytes(bytes)
+        }
+        _messages.tryEmit(if (result.isSuccess) "Save imported." else "That file isn't a valid save: ${result.exceptionOrNull()?.message}")
+    }
+    fun dismissOffline() = session.dismissOffline()
+    fun debugScenario(name: String) = session.debugLoadScenario(name)
+    fun startOver() = session.startNewGameAfterRecovery()
+    fun updateSettings(f: (Settings) -> Settings) { viewModelScope.launch { settingsStore.update(f) } }
+
+    val engine get() = session.engine
+
+    fun notation(st: Settings) = if (st.notation == com.arnavgames.tycoon.data.settings.NotationPref.Scientific) MoneyFormat.Notation.Scientific else MoneyFormat.Notation.Suffix
+
+    // ------------------------------------------------------------------ mapping
+
+    private fun toEmpireUi(s: GameState, qty: BuyQty, st: Settings): EmpireUi {
+        val eng = session.engine
+        val eco = eng.economy
+        val content = eng.content
+        val header = HeaderUi(
+            netWorth = eco.netWorth(s),
+            cash = s.cash,
+            income = eco.totalNetRate(s, managedOnly = true),
+            bullion = s.ledger.bullion.centsOrNull ?: 0,
+            favor = s.ledger.favor.centsOrNull ?: 0,
+        )
+        val cfg = content.balance.hustle
+        val perTap = cfg.basePerTap * eco.hustleMultiplier(s) + eco.totalNetRate(s, managedOnly = true).over(1) * com.arnavgames.tycoon.core.money.Multiplier.ofDouble(cfg.incomeSecondsPerTap)
+        val combo = if (s.simTimeMs - s.hustle.lastTapSim <= cfg.comboWindowMs) s.hustle.combo else 0
+        val hustle = HustleUi(
+            perTap = perTap, combo = combo, maxCombo = cfg.maxCombo, comboMultiplier = 1.0 + combo * cfg.comboStep,
+            frenzyActive = s.hustle.frenzyUntil > s.simTimeMs, frenzyEndsAtSim = s.hustle.frenzyUntil, simNow = s.simTimeMs,
+            frenzyCharges = eng.frenzyChargesLeft(s), totalTaps = s.hustle.totalTaps,
+        )
+        val chapter = content.chapters.firstOrNull { it.number == s.progress.chapter }
+        val mission = chapter?.let { ch ->
+            val claimable = ch.missions.firstOrNull { it.id in s.progress.claimableMissions }
+            val next = claimable ?: ch.missions.firstOrNull { it.id !in s.progress.completedMissions }
+            next?.let { m ->
+                MissionUi(
+                    id = m.id, title = m.title, description = m.description,
+                    progress = if (m.id in s.progress.completedMissions) 1f else goalProgress(s, m.goal).toFloat(),
+                    claimable = m.id in s.progress.claimableMissions,
+                    reward = rewardText(m.rewardCash, m.rewardBullion, m.rewardFavor),
+                    chapterNumber = ch.number, chapterTitle = ch.title,
+                    done = ch.missions.count { it.id in s.progress.completedMissions }, total = ch.missions.size,
+                )
+            }
+        }
+        val businesses = content.businesses.filter { it.id in s.businesses }.map { def -> businessUi(s, def, qty) }
+        val openable = content.businesses.filter { it.id !in s.businesses }.map { def ->
+            val locked = !eng.isUnlocked(s, def.id)
+            OpenableUi(def.id, def.name, def.tagline, def.icon, def.unlockCost, s.cash >= def.unlockCost && !locked, if (locked) "Unlocks in chapter ${def.chapter}" else null)
+        }
+        val hqDef = content.balance.hqLevels.first { it.level == s.hq.level }
+        val hqNext = content.balance.hqLevels.firstOrNull { it.level == s.hq.level + 1 }
+        val hq = HqUi(
+            level = s.hq.level, name = hqDef.name, nextName = hqNext?.name, nextCost = hqNext?.cost,
+            canAfford = hqNext != null && s.cash >= hqNext.cost, slotsUsed = eco.usedSlots(s), slots = eco.slots(s),
+            offlineCapHours = eco.offlineCapMs(s) / 3_600_000.0,
+        )
+        return EmpireUi(header, hustle, mission, businesses, openable, hq, s.progress.onboardingStep, s.progress.chapter, s.progress.claimableMissions.size)
+    }
+
+    fun businessUi(s: GameState, def: BusinessDef, qty: BuyQty): BusinessUi {
+        val eco = session.engine.economy
+        val b = s.businesses.getValue(def.id)
+        val rate = eco.businessRate(s, def.id)
+        val count = if (qty == BuyQty.Max) eco.maxAffordable(def, b.level, s.cash).coerceAtLeast(1) else qty.count
+        val cost = eco.levelCost(def, b.level, count)
+        val tier = def.tiers.lastOrNull { b.level >= it.level }
+        val next = eco.nextTier(def, b.level)
+        val prevLevel = tier?.level ?: 1
+        val tierProgress = if (next == null) 1f else ((b.level - prevLevel).toFloat() / (next.level - prevLevel)).coerceIn(0f, 1f)
+        val timer = s.timers.firstOrNull { it.kind == TimerKind.Expansion && it.targetId == def.id }?.let { t ->
+            TimerUi(t.id, def.expansions.first { it.id == t.detailId }.name, t.startSim, t.endSim, session.engine.rushCostFavor(s, t))
+        }
+        return BusinessUi(
+            id = def.id, name = def.name, icon = def.icon, level = b.level,
+            tierName = tier?.name ?: def.starterName, nextTierLevel = next?.level, tierProgress = tierProgress,
+            netRate = rate.net, managerName = def.managers.firstOrNull { it.id == b.managerId }?.name,
+            stored = b.stored, storageCap = if (b.managerId == null) eco.storageCap(s, def.id) else Money.ZERO,
+            buyCount = count, buyCost = cost, canAfford = s.cash >= cost, efficiency = rate.efficiency,
+            timer = timer, mothballed = b.mothballed, hint = hintFor(s, def),
+        )
+    }
+
+    /** A short, actionable hint when the player is leaving money on the table. */
+    private fun hintFor(s: GameState, def: BusinessDef): String? {
+        val b = s.businesses.getValue(def.id)
+        if (b.managerId != null) return null
+        return when (val m = def.mechanic) {
+            is MechanicDef.Logistics -> {
+                val st = b.mechanic as? MechanicState.Logistics ?: return null
+                val plan = Mechanics.logisticsPlan(m, b.level, 1.0)
+                val now = Mechanics.logisticsEfficiency(m, b.level, st)
+                val best = Mechanics.logisticsEfficiency(m, b.level, MechanicState.Logistics(plan))
+                if (best > now * 1.08) "Routes could earn ${"%.0f".format((best / now - 1) * 100)}% more — open to re-plan" else null
+            }
+            is MechanicDef.Retail -> {
+                val st = b.mechanic as? MechanicState.Retail ?: return null
+                if (st.pricePct == 100 && b.level >= 5) "Try adjusting your prices" else null
+            }
+            else -> null
+        }
+    }
+
+    fun goalProgress(s: GameState, goal: GoalDef): Double = session.engine.goalProgress(s, goal)
+
+    companion object {
+        fun rewardText(cash: Money, bullion: Long, favor: Long): String = buildList {
+            if (cash.isPositive) add(MoneyFormat.short(cash))
+            if (bullion > 0) add("$bullion Bullion")
+            if (favor > 0) add("$favor Favor")
+        }.joinToString(" · ")
+
+        fun errorText(e: GameError): String = when (e) {
+            is GameError.InsufficientFunds -> "You need ${MoneyFormat.short(e.needed - e.available)} more."
+            is GameError.InsufficientFavor -> "You need ${e.needed - e.available} more Favor. Earn it from missions."
+            GameError.NoFreeSlot -> "All business slots are in use. Upgrade your HQ or mothball a business."
+            is GameError.Locked -> e.reason
+            is GameError.NotFound -> "That isn't available."
+            is GameError.Invalid -> e.reason.replaceFirstChar { it.uppercase() }
+            GameError.AlreadyDone -> "Already done."
+        }
+    }
+}

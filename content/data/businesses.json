@@ -1,6 +1,7 @@
 [
   {
     "id": "retail",
+    "starterName": "Corner Kiosk",
     "name": "Retail Stores",
     "tagline": "From a corner kiosk to a chain of boutiques.",
     "chapter": 1,
@@ -44,11 +45,12 @@
   },
   {
     "id": "restaurants",
+    "starterName": "Family Diner",
     "name": "Restaurants",
     "tagline": "Win the critics, fill the tables.",
     "chapter": 1,
     "sector": "consumer",
-    "icon": "Star",
+    "icon": "Chef",
     "unlockCost": "300.00",
     "baseCost": "60.00",
     "costGrowth": "1.09",
@@ -90,11 +92,12 @@
   },
   {
     "id": "logistics",
+    "starterName": "Single Van",
     "name": "Logistics",
     "tagline": "Move the goods that move the city.",
     "chapter": 1,
     "sector": "industrial",
-    "icon": "Map",
+    "icon": "Fleet",
     "unlockCost": "6000.00",
     "baseCost": "720.00",
     "costGrowth": "1.095",

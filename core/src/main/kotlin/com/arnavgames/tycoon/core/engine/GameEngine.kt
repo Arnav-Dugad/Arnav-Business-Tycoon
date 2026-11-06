@@ -248,6 +248,9 @@ class GameEngine(val content: ContentPack) {
         }
     }
 
+    /** Progress toward a mission goal in [0, 1] (for UI bars). */
+    fun goalProgress(state: GameState, goal: com.arnavgames.tycoon.core.content.GoalDef): Double = missions.progress(state, goal)
+
     fun isUnlocked(state: GameState, businessId: String): Boolean {
         val def = content.businessById[businessId] ?: return false
         return def.chapter <= state.progress.chapter

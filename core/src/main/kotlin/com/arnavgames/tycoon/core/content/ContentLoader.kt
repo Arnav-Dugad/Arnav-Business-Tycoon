@@ -53,6 +53,7 @@ object ContentValidator {
     private val ICONS = setOf(
         "Empire", "Markets", "Estates", "Collection", "Crown", "Cash", "Bullion", "Coin", "Favor", "Briefcase", "Store",
         "Factory", "Map", "Expand", "Timer", "Manager", "Chart", "News", "Shield", "Rivals", "Trophy", "Star", "Bolt",
+        "Chef", "Fleet", "Route", "Tag", "Megaphone",
     )
 
     /** Fragments of real brand/company names that must never appear in content names. Extended as content grows. */
@@ -77,7 +78,7 @@ object ContentValidator {
         pack.businesses.forEach { b ->
             val p = "businesses.${b.id}"
             check(ID.matches(b.id), p, "bad id format")
-            check(b.name.isNotBlank() && b.tagline.isNotBlank(), p, "name/tagline required")
+            check(b.name.isNotBlank() && b.tagline.isNotBlank() && b.starterName.isNotBlank(), p, "name/tagline/starterName required")
             check(b.icon in ICONS, p, "unknown icon '${b.icon}'")
             check(b.chapter in 1..8, p, "chapter out of range")
             check(b.unlockCost >= Money.ZERO && b.baseCost > Money.ZERO && b.baseRevenue > Money.ZERO, p, "costs/revenue must be positive")

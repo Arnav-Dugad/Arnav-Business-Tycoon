@@ -42,6 +42,8 @@ data class BusinessDef(
     val id: String,
     val name: String,
     val tagline: String,
+    /** Name of the business before its first Scale Tier, e.g. "Corner Kiosk". */
+    val starterName: String,
     val chapter: Int,
     val sector: String,
     val icon: String,

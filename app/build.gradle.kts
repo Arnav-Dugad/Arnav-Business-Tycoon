@@ -28,6 +28,8 @@ android {
         versionCode = versionMajor * 10000 + versionMinor * 100 + versionPatch
         versionName = "$versionMajor.$versionMinor.$versionPatch"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        // Every instrumented test starts from a fresh install state (no leftover save).
+        testInstrumentationRunnerArguments["clearPackageData"] = "true"
         buildConfigField("boolean", "HAS_FIREBASE", hasFirebaseConfig.toString())
         buildConfigField("String", "GITHUB_REPO", "\"Arnav-Dugad/Arnav-Business-Tycoon\"")
     }
@@ -80,7 +82,10 @@ android {
     }
 
     testOptions {
+        execution = "ANDROIDX_TEST_ORCHESTRATOR"
         unitTests.isIncludeAndroidResources = true
+        // Robolectric's Android 36+ runtime needs these on modern JDKs.
+        unitTests.all { it.jvmArgs("--add-exports=java.base/jdk.internal.access=ALL-UNNAMED", "--add-opens=java.base/java.io=ALL-UNNAMED") }
     }
 }
 
@@ -93,6 +98,7 @@ dependencies {
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.androidx.lifecycle.process)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.core.splashscreen)
     implementation(libs.androidx.profileinstaller)
@@ -108,4 +114,9 @@ dependencies {
     androidTestImplementation(libs.compose.ui.test.junit4)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.androidx.test.runner)
+    // Compose UI test pulls an old Espresso that calls APIs removed in Android 17; pin a current one.
+    androidTestImplementation(libs.androidx.test.espresso)
+    androidTestImplementation(libs.androidx.test.core)
+    androidTestUtil(libs.androidx.test.orchestrator)
+    androidTestUtil(libs.androidx.test.services)
 }

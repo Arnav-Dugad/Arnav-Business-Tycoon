@@ -97,4 +97,27 @@ object AbtIcons {
     val Trash = icon("Trash", "M4 6.5h16", "M9 6.5V4h6v2.5", "M6 6.5l1 14h10l1-14", "M10 10.5v6M14 10.5v6")
     val Download = icon("Download", "M12 4v11M7 10.5l5 5 5-5", "M4.5 19.5h15")
     val Cloud = icon("Cloud", "M7 18.5a4.5 4.5 0 0 1-.6-9 6 6 0 0 1 11.4 1.5A3.8 3.8 0 0 1 17.5 18.5Z")
+    val Upload = icon("Upload", "M12 15V4M7 8.5l5-5 5 5", "M4.5 19.5h15")
+    val Book = icon("Book", "M4 5.5A1.5 1.5 0 0 1 5.5 4H11v15.5H5.5A1.5 1.5 0 0 0 4 21Z", "M20 5.5A1.5 1.5 0 0 0 18.5 4H13v15.5h5.5A1.5 1.5 0 0 1 20 21Z")
+    val Fleet = icon("Fleet", "M2.5 7h11v9h-11Z", "M13.5 10h4l3 3v3h-7", circle(6f, 17.5f, 1.7f), circle(17f, 17.5f, 1.7f))
+    val Route = icon("Route", circle(6f, 6f, 2.5f), circle(18f, 18f, 2.5f), "M8.5 6H15a3 3 0 0 1 0 6H9a3 3 0 0 0 0 6h6.5")
+    val Tag = icon("Tag", "M3.5 12.5V4h8.5l8.5 8.5-8.5 8.5Z", circle(8f, 8.5f, 1.4f))
+    val Megaphone = icon("Megaphone", "M3.5 10v4h3l9 4.5V5.5l-9 4.5Z", "M6.5 14l1.5 5.5h2.5L9.5 15", "M19 9.5a3.5 3.5 0 0 1 0 5")
+    val Chef = icon("Chef", "M7 13.5V20h10v-6.5", "M7 13.5a4 4 0 0 1-.5-7.9 5 5 0 0 1 11 0 4 4 0 0 1-.5 7.9Z", "M7 17h10")
+    val StarFilled = icon("StarFilled", "M12 3l2.7 5.6 6.1.7-4.5 4.2 1.2 6.1-5.5-3-5.5 3 1.2-6.1-4.5-4.2 6.1-.7Z", filled = listOf("M12 3l2.7 5.6 6.1.7-4.5 4.2 1.2 6.1-5.5-3-5.5 3 1.2-6.1-4.5-4.2 6.1-.7Z"))
+    val Pause = icon("Pause", "M8.5 5v14M15.5 5v14")
+    val Play = icon("Play", "M7 4.5v15l12-7.5Z")
+
+    private val byName: Map<String, ImageVector> by lazy {
+        listOf(
+            Empire, Markets, Estates, Collection, Crown, Cash, Bullion, Coin, Favor, ChevronRight, ChevronLeft, ChevronDown,
+            ChevronUp, Close, Plus, Minus, Check, ArrowUp, ArrowDown, Refresh, Sliders, Info, Warning, Lock, Eye, EyeOff,
+            Mail, Bell, User, Rivals, Clock, Bolt, Sparkle, Star, Trophy, Briefcase, Store, Gift, Shield, Factory, News, Map,
+            Hand, Sun, Moon, Timer, Manager, Expand, Inbox, Chart, Volume, Music, Vibrate, Logout, Trash, Download, Cloud,
+            Upload, Book, Fleet, Route, Tag, Megaphone, Chef, Pause, Play, StarFilled,
+        ).associateBy { it.name }
+    }
+
+    /** Looks up an icon by the name used in content JSON (falls back to Briefcase). */
+    fun named(name: String): ImageVector = byName[name] ?: Briefcase
 }

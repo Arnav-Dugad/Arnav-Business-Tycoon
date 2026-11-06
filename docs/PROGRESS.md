@@ -5,8 +5,9 @@ _Last updated: 2026-11-06._
 ## Current status
 - Phase 0 (Planning): **DONE**. The user approved the plan on 2026-11-06.
 - Phase 1 (Project skeleton and tooling): **DONE**. CI green on GitHub.
-- Phase 2 (Core foundations): **DONE**. Details below.
-- Next: **Phase 3: First playable (Chapter 1)**: Room saves, GameSession, onboarding, Empire UI.
+- Phase 2 (Core foundations): **DONE**.
+- Phase 3 (First playable, Chapter 1): **DONE**. Details below.
+- Next: **Phase 4: Simulator v1** (bots, seeded batch runs, early-game pacing tuned to ECONOMY.md targets).
 
 ## Decisions
 | Topic | Decision |
@@ -19,6 +20,7 @@ _Last updated: 2026-11-06._
 | Icons | Custom only. Hand-authored path data in `AbtIcons.kt`, no emoji, no icon packs |
 | Fonts | Inter (UI and numbers, tabular figures) + Fraunces (display), OFL, subset to 265 KB |
 | Portraits | Pending the user's choice (needed before Phase 8) |
+| UI tests | Android Test Orchestrator with clearPackageData; failure screenshots saved to the app's external files dir |
 
 ## Phase 1: what was done and verified
 - **Tools**: firebase-tools upgraded 15.1.0 → 15.35.0. Installed build-tools 37.0.0 and the API 37 Google APIs x86_64 image. Created AVD `abt_api37` (Pixel 7, 4 GB RAM, host GPU).
@@ -78,6 +80,52 @@ All in `:core` (pure Kotlin/JVM, enforced by `verifyCorePurity`):
   1. Income was stamped into the wrong minute.
   2. The logistics greedy plan was suboptimal.
   3. **Property tests were silently skipped by JUnit** because they returned non-Unit values. Fixed, and guarded by `TestHygieneTest`.
+
+## Phase 3: what was done and verified
+- `:data`:
+  - Room `TycoonDatabase` v1 (exported schema `data/schemas/`): `save_snapshots`, with `quarantine` for corrupted saves.
+  - `SaveRepository`: atomic insert-and-prune keeping 5 snapshots; fallback to older snapshots; quarantine; import validation; export.
+  - `SettingsStore` (DataStore) and `SystemGameClock` (boot id from `Settings.Global.BOOT_COUNT`).
+  - Hilt `DataModule`.
+- `:app`:
+  - `GameSession`: one mutex; 1 Hz foreground ticks; offline credit on every resume; autosave every 30 s, on background and after important commands; export/import; debug-only `DebugScenarios`.
+  - `GameViewModel` maps state to UI models off the main thread.
+  - Screens: Welcome, Empire (rolling counters, guide, Next Move, Hustle with combo/Frenzy and floating pops, business cards with collect/buy, open-business cards, HQ, milestone banner), Business detail (retail price slider + promo, restaurant stars + kitchen tiers, logistics route steppers + auto-plan, managers, expansions with countdown + Favor rush, tiers, mothball), Dynasty (story/missions/menu), Coming-soon tabs, Settings, Credits, offline-earnings dialog, recovery and loading screens.
+  - Haptics are mapped to game events.
+- `:designsystem`: RollingMoney (frame-rate extrapolation that stops when idle), GoldProgress, SegmentedSelector, AurumChip, IconTile, AurumBottomBar (label scale capped at 130%, full semantics), MenuRow, AurumDialog; 66 custom icons.
+- Content: `starterName` field; dedicated business icons.
+
+### Evidence
+- `:core:test` 62 passed. `:data:testDebugUnitTest` 5 passed (Robolectric + in-memory Room: round trip, prune, corrupted newest → previous + quarantine, unrecoverable reported, import validation).
+- **Compose UI test `FirstSessionFlowTest` passed on `abt_api37`**: welcome → open kiosk → claim → 60 taps → claim Favor → buy to Lv 5 → detail → build expansion → rush with Favor → back. It runs with the Test Orchestrator and `clearPackageData`, so every run starts from a fresh install state.
+- Manually verified on the emulator:
+  - The first-session loop.
+  - The mid-game debug scenario.
+  - **Offline earnings on a cold start**: killed for 76 s → +$75,286 at about $983/s, which matches.
+  - Both themes (dark via `cmd uimode night yes`).
+  - 200% font scale.
+- Screenshot review found and fixed:
+  1. The business header wrapped.
+  2. Floating pops were unreadable over the coin.
+  3. Manager chip truncation.
+  4. "Till full" wrapping.
+  5. Stars had no filled state.
+  6. Manager cards wrapped awkwardly.
+  7. Scrolled content collided with the status bar (scrim added).
+  8. Bottom-tab labels truncated at 200%.
+  9. Business names broke mid-word at 200% (adaptive stacking).
+  10. A redundant "per second".
+- Framework fixes:
+  - Robolectric on Android 36+ needs `--add-exports java.base/jdk.internal.access`.
+  - Compose UI test pulled in Espresso 3.5.0, which crashes on Android 17. Pinned to 3.7.0.
+  - Debug theme extras are unreliable when Android restores a task. Theme screenshots now use `adb shell cmd uimode night yes|no`.
+
+### Not done yet / known gaps (honest list)
+- Pacing is **not tuned**. The 30–60 minute first-session targets are verified by the simulator in Phase 4. Manual play only covered about the first 10 minutes.
+- Light-theme screenshots were reviewed for welcome, Empire, details, Dynasty and Markets. Settings and Credits were only reviewed in dark theme.
+- No audio or music yet (Phase 15). No photos yet (Phase 8). Markets, Estates and Collection are informative "coming soon" tabs.
+- Chapter 2 only has missions for existing businesses. New Chapter 2 businesses arrive in Phase 5.
+- Not tested on the API 28 AVD yet (planned for the release gates).
 
 ## Environment inventory (verified 2026-11-06)
 | Tool | State |

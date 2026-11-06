@@ -5,54 +5,38 @@ import androidx.activity.ComponentActivity
 import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import com.arnavgames.tycoon.designsystem.theme.Aurum
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
+import androidx.activity.viewModels
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import com.arnavgames.tycoon.designsystem.theme.AurumTheme
 import com.arnavgames.tycoon.designsystem.theme.ThemeMode
-import com.arnavgames.tycoon.ui.foundation.FoundationScreen
+import com.arnavgames.tycoon.game.GameSession
+import com.arnavgames.tycoon.ui.AppRoot
+import com.arnavgames.tycoon.ui.GameViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    private val vm: GameViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
-        installSplashScreen()
+        val splash = installSplashScreen()
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge(
-            statusBarStyle = SystemBarStyle.auto(android.graphics.Color.TRANSPARENT, android.graphics.Color.TRANSPARENT),
-            navigationBarStyle = SystemBarStyle.auto(android.graphics.Color.TRANSPARENT, android.graphics.Color.TRANSPARENT),
-        )
-        // Debug/test hook so screenshots of both themes can be captured deterministically.
-        val forced = intent?.getStringExtra(EXTRA_THEME)?.let { runCatching { ThemeMode.valueOf(it) }.getOrNull() }
+        // Keep the system splash until the save has loaded (usually a few hundred milliseconds).
+        splash.setKeepOnScreenCondition { vm.status.value == GameSession.Status.Loading }
+        enableEdgeToEdge()
+        // Test hook so screenshots of both themes can be captured deterministically (debug and tests only).
+        val forced = if (BuildConfig.DEBUG) intent?.getStringExtra(EXTRA_THEME)?.let { runCatching { ThemeMode.valueOf(it) }.getOrNull() } else null
+        if (BuildConfig.DEBUG && savedInstanceState == null) intent?.getStringExtra(EXTRA_SCENARIO)?.let { vm.debugScenario(it) }
         setContent {
-            var mode by rememberSaveable { mutableStateOf(forced ?: ThemeMode.System) }
-            AurumTheme(mode = mode) {
-                // System bar icons follow the in-game theme, not the phone's setting.
-                val dark = Aurum.colors.isDark
-                LaunchedEffect(dark) {
-                    val t = android.graphics.Color.TRANSPARENT
-                    val style = if (dark) SystemBarStyle.dark(t) else SystemBarStyle.light(t, t)
-                    enableEdgeToEdge(statusBarStyle = style, navigationBarStyle = style)
-                }
-                FoundationScreen(
-                    themeMode = mode,
-                    onToggleTheme = {
-                        mode = when (mode) {
-                            ThemeMode.Light -> ThemeMode.Dark
-                            ThemeMode.Dark -> ThemeMode.Light
-                            ThemeMode.System -> if (resources.configuration.isNightModeActive) ThemeMode.Light else ThemeMode.Dark
-                        }
-                    },
-                )
-            }
+            AppRoot(vm, forcedTheme = forced, onDarkChanged = { dark ->
+                val t = android.graphics.Color.TRANSPARENT
+                val style = if (dark) SystemBarStyle.dark(t) else SystemBarStyle.light(t, t)
+                enableEdgeToEdge(statusBarStyle = style, navigationBarStyle = style)
+            })
         }
     }
 
     companion object {
         const val EXTRA_THEME = "abt.theme"
+        const val EXTRA_SCENARIO = "abt.scenario"
     }
 }
