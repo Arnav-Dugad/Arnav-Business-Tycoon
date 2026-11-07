@@ -91,7 +91,7 @@ fun CityScreen(vm: GameViewModel, cityId: String, onBack: () -> Unit, onOpenDist
                         Column(Modifier.weight(1f)) {
                             Text(d.name, style = Aurum.type.titleSmall, color = c.textPrimary)
                             Text("${d.tier} · yield ${pct(d.yieldPerDay)}/day" + if (d.cbd) " · CBD" else "", style = Aurum.type.bodySmall, color = c.textTertiary)
-                            Text(d.cycle, style = Aurum.type.bodySmall, color = cycleColor(d.cycle))
+                            Text(d.cycle + cycleHint(d.cycle), style = Aurum.type.bodySmall, color = cycleColor(d.cycle))
                         }
                         Sparkline(d.spark, up = d.change24h >= 0, modifier = Modifier.size(width = 52.dp, height = 26.dp))
                         Spacer(Modifier.width(Space.sm))
@@ -101,6 +101,15 @@ fun CityScreen(vm: GameViewModel, cityId: String, onBack: () -> Unit, onOpenDist
             }
         }
     }
+}
+
+/** What a district's market phase means for the player, in a few words. */
+private fun cycleHint(cycle: String) = when (cycle) {
+    "Peak" -> " · prices high: a good time to sell"
+    "Bottom" -> " · prices low: a good time to buy"
+    "Rising" -> " · prices climbing"
+    "Falling" -> " · prices dropping"
+    else -> ""
 }
 
 @Composable
