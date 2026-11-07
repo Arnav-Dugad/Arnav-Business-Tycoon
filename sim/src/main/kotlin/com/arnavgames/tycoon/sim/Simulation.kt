@@ -62,6 +62,9 @@ data class RunResult(
     val longestStallHours: Double,
     val finalNetWorth: Money,
     val error: String? = null,
+    /** Idle and session minutes before Chapter 8 is done: the story, before the crown (bots never pass it). */
+    val storyIdleMinutes: Int = 0,
+    val storySessionMinutes: Int = 0,
 )
 
 /**
@@ -84,6 +87,8 @@ class Simulation(private val engine: GameEngine, private val contentHash: String
         val samples = mutableListOf<Sample>()
         var deadMinutes = 0
         var idleMinutes = 0
+        var storyIdle = 0
+        var storyMinutes = 0
         Decisions.count.get()[0] = 0
         var sessionMinutes = 0
         val eco = engine.economy
@@ -172,6 +177,10 @@ class Simulation(private val engine: GameEngine, private val contentHash: String
                     sessionMinutes++
                     if (!minuteHadOption) deadMinutes++
                     if (!minuteHadOption && !minuteHadDecision) idleMinutes++
+                    if ("chapter8_done" !in milestones) {
+                        storyMinutes++
+                        if (!minuteHadOption && !minuteHadDecision) storyIdle++
+                    }
                     minuteHadOption = false
                     minuteHadDecision = false
                     record(realMs / 60_000.0)
@@ -201,7 +210,8 @@ class Simulation(private val engine: GameEngine, private val contentHash: String
             record(minuteNow.toDouble())
         }
         longestStall = maxOf(longestStall, (realMs / 60_000 - lastGrowthMinute) / 60.0)
-        return RunResult(bot.name, seed, milestones, samples, deadMinutes, idleMinutes, sessionMinutes, longestStall, eco.netWorth(s))
+        return RunResult(bot.name, seed, milestones, samples, deadMinutes, idleMinutes, sessionMinutes, longestStall, eco.netWorth(s),
+            storyIdleMinutes = storyIdle, storySessionMinutes = storyMinutes)
     }
 
     private val marketSources = setOf("dividends", "coupons", "staking", "capital_gains", "rent", "property_gains", "luxury_gains")

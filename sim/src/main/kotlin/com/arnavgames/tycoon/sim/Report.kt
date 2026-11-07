@@ -96,18 +96,19 @@ object Report {
 
         // Health metrics
         sb.appendLine("## Health").appendLine()
-        sb.appendLine("| Bot | Idle minutes | No-purchase minutes | Longest stall (p90) | Final net worth (p50) | Cash ÷ next cost (median sample) |")
-        sb.appendLine("|---|---|---|---|---|---|")
+        sb.appendLine("| Bot | Idle minutes | Idle before Chapter 8 | No-purchase minutes | Longest stall (p90) | Final net worth (p50) | Cash ÷ next cost (median sample) |")
+        sb.appendLine("|---|---|---|---|---|---|---|")
         for ((bot, rs) in byBot.toSortedMap()) {
             val dead = rs.sumOf { it.deadMinutes }.toDouble() / rs.sumOf { it.sessionMinutes }.coerceAtLeast(1)
             val idle = rs.sumOf { it.idleMinutes }.toDouble() / rs.sumOf { it.sessionMinutes }.coerceAtLeast(1)
+            val storyIdle = rs.sumOf { it.storyIdleMinutes }.toDouble() / rs.sumOf { it.storySessionMinutes }.coerceAtLeast(1)
             val stall = percentile(rs.map { it.longestStallHours }.sorted(), 0.9) ?: 0.0
             val nw = rs.map { it.finalNetWorth }.sorted()[rs.size / 2]
             val infl = rs.flatMap { r -> r.samples.map { it.cashOverNextCost } }.sorted().let { percentile(it, 0.5) ?: 0.0 }
-            sb.appendLine("| $bot | ${String.format(Locale.US, "%.1f%%", idle * 100)} | ${String.format(Locale.US, "%.1f%%", dead * 100)} | ${String.format(Locale.US, "%.1f h", stall)} | ${com.arnavgames.tycoon.core.money.MoneyFormat.short(nw)} | ${String.format(Locale.US, "%.2f", infl)} |")
+            sb.appendLine("| $bot | ${String.format(Locale.US, "%.1f%%", idle * 100)} | ${String.format(Locale.US, "%.1f%%", storyIdle * 100)} | ${String.format(Locale.US, "%.1f%%", dead * 100)} | ${String.format(Locale.US, "%.1f h", stall)} | ${com.arnavgames.tycoon.core.money.MoneyFormat.short(nw)} | ${String.format(Locale.US, "%.2f", infl)} |")
         }
         sb.appendLine()
-        sb.appendLine("Idle minute = a session minute with neither a purchase nor a meaningful decision (a card, trade, property or luxury move, auction bid, mechanic setting, merger, loan or tax choice; tapping, collecting, claiming rewards and automatic cash parking don't count). No-purchase minute = no level, business, HQ or expansion bought (the metric used before 1.2). Stall = time without 1% net-worth growth.").appendLine()
+        sb.appendLine("Idle minute = a session minute with neither a purchase nor a meaningful decision (a card, trade, property or luxury move, auction bid, mechanic setting, merger, loan or tax choice; tapping, collecting, claiming rewards and automatic cash parking don't count). Idle before Chapter 8 counts only the story (bots never pass the crown, so later minutes measure a finished generation). No-purchase minute = no level, business, HQ or expansion bought (the metric used before 1.2). Stall = time without 1% net-worth growth.").appendLine()
         // Income share by source over each day window (docs/ECONOMY.md income-share bands).
         sb.appendLine("## Income share from markets and property (median over seeds, income earned during that day)").appendLine()
         sb.appendLine("| Bot | Day 1 | Day 3 | Day 7 | Target day 1 / 3 / 7 |")
