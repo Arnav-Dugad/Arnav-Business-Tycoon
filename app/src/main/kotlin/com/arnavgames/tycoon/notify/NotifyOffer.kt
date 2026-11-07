@@ -70,7 +70,7 @@ fun NotifyOfferDialog(wait: String, onYes: () -> Unit, onNo: () -> Unit) {
             "That takes $wait. The game can tell you when it's done, even when it's closed. Never more than 3 a day, and nothing at night.",
             style = Aurum.type.body, color = Aurum.colors.textSecondary,
         )
-        GoldButton("Notify me", onClick = onYes, modifier = Modifier.fillMaxWidth().testTag("notify-yes"), leadingIcon = AbtIcons.Clock)
+        GoldButton("Notify me", onClick = onYes, modifier = Modifier.fillMaxWidth().testTag("notify-yes"), leadingIcon = AbtIcons.Bell)
         GhostButton("Not now", onClick = onNo, modifier = Modifier.fillMaxWidth())
         Text("You can change this any time in Settings.", style = Aurum.type.bodySmall, color = Aurum.colors.textTertiary)
     }
