@@ -394,13 +394,13 @@ class GameViewModel @Inject constructor(
 
     companion object {
         fun rewardText(cash: Money, bullion: Long, favor: Long): String = buildList {
-            if (cash.isPositive) add(MoneyFormat.short(cash))
+            if (cash.isPositive) add(MoneyFormat.compact(cash))
             if (bullion > 0) add("$bullion Bullion")
             if (favor > 0) add("$favor Favor")
         }.joinToString(" · ")
 
         fun errorText(e: GameError): String = when (e) {
-            is GameError.InsufficientFunds -> "You need ${MoneyFormat.short(e.needed - e.available)} more."
+            is GameError.InsufficientFunds -> "You need ${MoneyFormat.compact(e.needed - e.available)} more."
             is GameError.InsufficientFavor -> "You need ${e.needed - e.available} more Favor. Earn it from missions."
             GameError.NoFreeSlot -> "All business slots are in use. Upgrade your HQ or mothball a business."
             is GameError.Locked -> e.reason

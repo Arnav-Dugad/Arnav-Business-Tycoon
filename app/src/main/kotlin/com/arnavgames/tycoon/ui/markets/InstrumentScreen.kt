@@ -54,7 +54,7 @@ fun InstrumentScreen(vm: GameViewModel, instrumentId: String, onBack: () -> Unit
     val state by vm.state.collectAsStateWithLifecycle()
     val settings by vm.settings.collectAsStateWithLifecycle()
     val notation = vm.notation(settings)
-    val fmt: (Money) -> String = { MoneyFormat.short(it, notation) }
+    val fmt: (Money) -> String = { MoneyFormat.compact(it, notation) }
     val s = state ?: return
     val ui = remember(s.market.tick, s.market.holdings, s.market.shorts, s.cash, s.progress.chapter) { vm.instrument(s, instrumentId) } ?: return
     var range by rememberSaveable { mutableStateOf(Range.Day) }

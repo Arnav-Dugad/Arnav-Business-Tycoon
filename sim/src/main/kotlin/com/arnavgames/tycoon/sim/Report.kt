@@ -96,17 +96,18 @@ object Report {
 
         // Health metrics
         sb.appendLine("## Health").appendLine()
-        sb.appendLine("| Bot | Dead session minutes | Longest stall (p90) | Final net worth (p50) | Cash ÷ next cost (median sample) |")
-        sb.appendLine("|---|---|---|---|---|")
+        sb.appendLine("| Bot | Idle minutes | No-purchase minutes | Longest stall (p90) | Final net worth (p50) | Cash ÷ next cost (median sample) |")
+        sb.appendLine("|---|---|---|---|---|---|")
         for ((bot, rs) in byBot.toSortedMap()) {
             val dead = rs.sumOf { it.deadMinutes }.toDouble() / rs.sumOf { it.sessionMinutes }.coerceAtLeast(1)
+            val idle = rs.sumOf { it.idleMinutes }.toDouble() / rs.sumOf { it.sessionMinutes }.coerceAtLeast(1)
             val stall = percentile(rs.map { it.longestStallHours }.sorted(), 0.9) ?: 0.0
             val nw = rs.map { it.finalNetWorth }.sorted()[rs.size / 2]
             val infl = rs.flatMap { r -> r.samples.map { it.cashOverNextCost } }.sorted().let { percentile(it, 0.5) ?: 0.0 }
-            sb.appendLine("| $bot | ${String.format(Locale.US, "%.1f%%", dead * 100)} | ${String.format(Locale.US, "%.1f h", stall)} | ${com.arnavgames.tycoon.core.money.MoneyFormat.short(nw)} | ${String.format(Locale.US, "%.2f", infl)} |")
+            sb.appendLine("| $bot | ${String.format(Locale.US, "%.1f%%", idle * 100)} | ${String.format(Locale.US, "%.1f%%", dead * 100)} | ${String.format(Locale.US, "%.1f h", stall)} | ${com.arnavgames.tycoon.core.money.MoneyFormat.short(nw)} | ${String.format(Locale.US, "%.2f", infl)} |")
         }
         sb.appendLine()
-        sb.appendLine("Dead session minute = an active-session minute in which the bot found nothing worth buying. Stall = time without 1% net-worth growth.").appendLine()
+        sb.appendLine("Idle minute = a session minute with neither a purchase nor a meaningful decision (a card, trade, property or luxury move, auction bid, mechanic setting, merger, loan or tax choice; tapping, collecting, claiming rewards and automatic cash parking don't count). No-purchase minute = no level, business, HQ or expansion bought (the metric used before 1.2). Stall = time without 1% net-worth growth.").appendLine()
         // Income share by source over each day window (docs/ECONOMY.md income-share bands).
         sb.appendLine("## Income share from markets and property (median over seeds, income earned during that day)").appendLine()
         sb.appendLine("| Bot | Day 1 | Day 3 | Day 7 | Target day 1 / 3 / 7 |")
@@ -137,10 +138,10 @@ object Report {
             results.forEach { r -> r.samples.forEach { p -> w.write("${r.bot},${r.seed},${p.realMinutes},${p.simMinutes},${"%.3f".format(java.util.Locale.US, p.netWorthLog10)}\n") } }
         }
         File(dir, "results.csv").bufferedWriter().use { w ->
-            w.write("bot,seed," + Milestones.ALL.joinToString(",") + ",dead_minutes,session_minutes,longest_stall_h,final_networth_log10,error\n")
+            w.write("bot,seed," + Milestones.ALL.joinToString(",") + ",dead_minutes,idle_minutes,session_minutes,longest_stall_h,final_networth_log10,error\n")
             for (r in results) {
                 w.write("${r.bot},${r.seed}," + Milestones.ALL.joinToString(",") { r.milestones[it]?.let { v -> String.format(Locale.US, "%.2f", v) } ?: "" })
-                w.write(",${r.deadMinutes},${r.sessionMinutes},${String.format(Locale.US, "%.2f", r.longestStallHours)},${String.format(Locale.US, "%.3f", r.finalNetWorth.log10Dollars())},${r.error ?: ""}\n")
+                w.write(",${r.deadMinutes},${r.idleMinutes},${r.sessionMinutes},${String.format(Locale.US, "%.2f", r.longestStallHours)},${String.format(Locale.US, "%.3f", r.finalNetWorth.log10Dollars())},${r.error ?: ""}\n")
             }
         }
         File(dir, "networth.svg").writeText(svg(byBot))

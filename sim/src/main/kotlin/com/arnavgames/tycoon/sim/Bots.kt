@@ -39,9 +39,37 @@ interface Bot {
     fun act(engine: GameEngine, state: GameState, rng: Pcg32, sessionStart: Boolean, sessionEnd: Boolean = false): GameState
 }
 
-/** Applies a command if accepted; otherwise returns the state unchanged. */
-internal fun GameEngine.tryApply(s: GameState, cmd: Command): GameState =
-    (apply(s, cmd) as? CommandResult.Ok)?.state ?: s
+/** Applies a command if accepted; otherwise returns the state unchanged. Counts meaningful decisions (see [Decisions]). */
+internal fun GameEngine.tryApply(s: GameState, cmd: Command): GameState {
+    val ns = (apply(s, cmd) as? CommandResult.Ok)?.state ?: return s
+    if (Decisions.isDecision(cmd) && Decisions.changedSomething(s, ns)) Decisions.count.get()[0]++
+    return ns
+}
+
+/**
+ * Meaningful decisions for the "idle minutes" health metric (docs/PLAN_2.0.md A0): choices with alternatives that
+ * change the game. Routine actions (tapping, collecting, claiming rewards) and the bots' automatic cash parking in
+ * the index fund are not decisions; purchases of levels, businesses, HQ and expansions are counted separately.
+ */
+internal object Decisions {
+    /** Per simulation thread: [0] = decisions made so far. */
+    val count: ThreadLocal<IntArray> = ThreadLocal.withInitial { IntArray(1) }
+
+    fun isDecision(cmd: Command): Boolean = when (cmd) {
+        is Command.HustleTap, Command.CollectAll, is Command.Collect, is Command.BuyLevels, is Command.OpenBusiness,
+        Command.UpgradeHq, is Command.StartExpansion, is Command.ClaimMission, Command.ClaimDailyReward,
+        is Command.ClaimDaily, is Command.ClaimWeekly, is Command.ClaimAchievement, is Command.ClaimSeasonTier,
+        is Command.AdvanceOnboarding -> false
+        is Command.BuyInstrument -> cmd.instrumentId != FUND
+        is Command.SellInstrument -> cmd.instrumentId != FUND
+        else -> true
+    }
+
+    /** Re-applying an identical setting (e.g. the same price every step) is not a new decision. */
+    fun changedSomething(a: GameState, b: GameState): Boolean =
+        a.businesses != b.businesses || a.market != b.market || a.estate != b.estate || a.luxury != b.luxury ||
+            a.world != b.world || a.finance != b.finance || a.conglomerates != b.conglomerates || a.timers != b.timers
+}
 
 /** Shared decision helpers: candidate investments ranked by payback (cost ÷ income gained). */
 internal class Planner(private val engine: GameEngine) {

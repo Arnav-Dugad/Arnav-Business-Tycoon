@@ -108,7 +108,7 @@ fun EmpireScreen(vm: GameViewModel, onOpenBusiness: (String) -> Unit, onOpenDesk
     val settings by vm.settings.collectAsStateWithLifecycle()
     val notation = vm.notation(settings)
     val e = ui ?: return
-    val fmt: (Money) -> String = { MoneyFormat.short(it, notation) }
+    val fmt: (Money) -> String = { MoneyFormat.compact(it, notation) }
 
     OnboardingDriver(e, vm)
     val mentorLine by vm.mentor.line.collectAsStateWithLifecycle()
@@ -137,7 +137,9 @@ fun EmpireScreen(vm: GameViewModel, onOpenBusiness: (String) -> Unit, onOpenDesk
             if (!guiding) mentorLine?.let { l -> item(key = "mentor") { MentorCard(vm.mentor.name, l.text, onDismiss = { vm.mentor.dismiss() }) } }
             e.mission?.let { m -> item(key = "mission") { NextMoveCard(m, onClaim = { vm.dispatch(Command.ClaimMission(m.id)) }) } }
             item(key = "world") { com.arnavgames.tycoon.ui.world.WorldStrip(vm, onOpenDesk, onOpenFortune, onOpenFinance) }
-            item(key = "hustle") {
+            // Tapping leads in Chapter 1; after that the businesses do, and the counter moves below them.
+            val hustleFirst = (e.mission?.chapterNumber ?: 1) <= 1
+            if (hustleFirst) item(key = "hustle") {
                 HustleCard(e.hustle, fmt, onTap = { vm.dispatch(Command.HustleTap(1)) }, onFrenzy = { vm.dispatch(Command.ActivateFrenzy) })
             }
             item(key = "biz-header") {
@@ -158,6 +160,9 @@ fun EmpireScreen(vm: GameViewModel, onOpenBusiness: (String) -> Unit, onOpenDesk
                     onBuy = { vm.dispatch(Command.BuyLevels(b.id, if (qty == BuyQty.Max) -1 else qty.count)) },
                     onCollect = { vm.dispatch(Command.Collect(b.id)) },
                 )
+            }
+            if (!hustleFirst) item(key = "hustle") {
+                HustleCard(e.hustle, fmt, onTap = { vm.dispatch(Command.HustleTap(1)) }, onFrenzy = { vm.dispatch(Command.ActivateFrenzy) })
             }
             val available = e.openable.filter { it.lockedReason == null }
             val locked = e.openable.filter { it.lockedReason != null }.take(2)
@@ -194,11 +199,14 @@ private fun EmpireHeader(e: EmpireUi, fmt: (Money) -> String, modifier: Modifier
             .padding(horizontal = Space.gutter)
             .padding(top = Space.md, bottom = Space.md),
     ) {
+        var explain by remember { mutableStateOf<com.arnavgames.tycoon.ui.common.Term?>(null) }
+        explain?.let { com.arnavgames.tycoon.ui.common.GlossarySheet(it) { explain = null } }
         Row(verticalAlignment = Alignment.CenterVertically) {
-            Text("NET WORTH", style = Aurum.type.overline, color = c.textTertiary, modifier = Modifier.weight(1f))
+            Text("NET WORTH", style = Aurum.type.overline, color = c.textTertiary,
+                modifier = Modifier.weight(1f).clickable(onClickLabel = "What is net worth?") { explain = com.arnavgames.tycoon.ui.common.Term.NetWorth })
             Row(horizontalArrangement = Arrangement.spacedBy(Space.sm)) {
-                CurrencyPill(AbtIcons.Bullion, e.header.bullion.toString(), "Bullion", c.bullion)
-                CurrencyPill(AbtIcons.Favor, e.header.favor.toString(), "Favor", c.goldText)
+                CurrencyPill(AbtIcons.Bullion, e.header.bullion.toString(), "Bullion", c.bullion) { explain = com.arnavgames.tycoon.ui.common.Term.Bullion }
+                CurrencyPill(AbtIcons.Favor, e.header.favor.toString(), "Favor", c.goldText) { explain = com.arnavgames.tycoon.ui.common.Term.Favor }
             }
         }
         RollingMoney(e.header.netWorth, e.header.income, format = fmt)
@@ -207,7 +215,8 @@ private fun EmpireHeader(e: EmpireUi, fmt: (Money) -> String, modifier: Modifier
             Spacer(Modifier.width(Space.xs))
             RollingMoney(e.header.cash, e.header.income, style = Aurum.type.number, color = c.textPrimary, format = fmt)
             Spacer(Modifier.width(Space.xs))
-            Text("cash", style = Aurum.type.bodySmall, color = c.textTertiary)
+            Text("cash", style = Aurum.type.bodySmall, color = c.textTertiary,
+                modifier = Modifier.clickable(onClickLabel = "What is cash?") { explain = com.arnavgames.tycoon.ui.common.Term.Cash })
             Spacer(Modifier.weight(1f))
             if (!e.header.income.isZero) {
                 AbtIcon(AbtIcons.ArrowUp, null, tint = c.gain, size = 14.dp)
@@ -220,10 +229,11 @@ private fun EmpireHeader(e: EmpireUi, fmt: (Money) -> String, modifier: Modifier
 }
 
 @Composable
-private fun CurrencyPill(icon: androidx.compose.ui.graphics.vector.ImageVector, value: String, label: String, tint: androidx.compose.ui.graphics.Color) {
+private fun CurrencyPill(icon: androidx.compose.ui.graphics.vector.ImageVector, value: String, label: String, tint: androidx.compose.ui.graphics.Color, onClick: () -> Unit) {
     val c = Aurum.colors
     Row(
-        Modifier.glass(AurumShapes.pill, GlassWeight.Thin, blur = false).padding(horizontal = Space.sm + 2.dp, vertical = 4.dp)
+        Modifier.clip(AurumShapes.pill).clickable(onClickLabel = "What is $label?", onClick = onClick)
+            .glass(AurumShapes.pill, GlassWeight.Thin, blur = false).padding(horizontal = Space.sm + 2.dp, vertical = 4.dp)
             .semantics(mergeDescendants = true) { contentDescription = "$value $label" },
         verticalAlignment = Alignment.CenterVertically,
     ) {
@@ -485,7 +495,8 @@ private fun OpenableCard(o: OpenableUi, fmt: (Money) -> String, onOpen: () -> Un
             Spacer(Modifier.width(Space.md))
             Column(Modifier.weight(1f)) {
                 Text(o.name, style = Aurum.type.title, color = c.textPrimary)
-                Text(o.lockedReason ?: o.tagline, style = Aurum.type.bodySmall, color = c.textSecondary)
+                Text(o.tagline, style = Aurum.type.bodySmall, color = c.textSecondary)
+                o.lockedReason?.let { Text(it, style = Aurum.type.label, color = c.textTertiary) }
             }
             if (!locked) {
                 Spacer(Modifier.width(Space.sm))

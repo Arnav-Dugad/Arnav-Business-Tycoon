@@ -77,7 +77,7 @@ fun BusinessDetailScreen(vm: GameViewModel, businessId: String, onBack: () -> Un
     val def = vm.engine.content.business(businessId)
     val eco = vm.engine.economy
     val notation = vm.notation(settings)
-    val fmt: (Money) -> String = { MoneyFormat.short(it, notation) }
+    val fmt: (Money) -> String = { MoneyFormat.compact(it, notation) }
     val rate = eco.businessRate(s, businessId)
     val c = Aurum.colors
 

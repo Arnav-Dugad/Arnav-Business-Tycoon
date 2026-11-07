@@ -99,7 +99,7 @@ private fun pts(x: Double) = String.format(Locale.US, "%,.0f", x)
 fun CollectionScreen(vm: GameViewModel, onOpenCategory: (String) -> Unit, onOpenAuction: () -> Unit) {
     val ui by vm.collection.collectAsStateWithLifecycle()
     val settings by vm.settings.collectAsStateWithLifecycle()
-    val fmt: (Money) -> String = { MoneyFormat.short(it, vm.notation(settings)) }
+    val fmt: (Money) -> String = { MoneyFormat.compact(it, vm.notation(settings)) }
     val col = ui ?: return
     if (!col.unlocked) {
         ComingSoonScreen(icon = AbtIcons.Collection, title = "Collection", chapter = col.unlockChapter,
@@ -240,7 +240,7 @@ private fun CollectionHeader(col: CollectionUi, fmt: (Money) -> String, modifier
 fun CategoryScreen(vm: GameViewModel, categoryId: String, onBack: () -> Unit, onOpenItem: (String) -> Unit) {
     val state by vm.state.collectAsStateWithLifecycle()
     val settings by vm.settings.collectAsStateWithLifecycle()
-    val fmt: (Money) -> String = { MoneyFormat.short(it, vm.notation(settings)) }
+    val fmt: (Money) -> String = { MoneyFormat.compact(it, vm.notation(settings)) }
     val s = state ?: return
     val items = remember(s.luxury.owned, s.simTimeMs / 60_000, s.progress.chapter) { vm.luxuryCategory(s, categoryId) }
     val c = Aurum.colors
@@ -276,7 +276,7 @@ fun CategoryScreen(vm: GameViewModel, categoryId: String, onBack: () -> Unit, on
 fun ItemScreen(vm: GameViewModel, itemId: String, onBack: () -> Unit) {
     val state by vm.state.collectAsStateWithLifecycle()
     val settings by vm.settings.collectAsStateWithLifecycle()
-    val fmt: (Money) -> String = { MoneyFormat.short(it, vm.notation(settings)) }
+    val fmt: (Money) -> String = { MoneyFormat.compact(it, vm.notation(settings)) }
     val s = state ?: return
     val ui = remember(s.luxury.owned, s.simTimeMs / 30_000, s.cash) { vm.luxuryItem(s, itemId) } ?: return
     val c = Aurum.colors
@@ -331,7 +331,7 @@ fun ItemScreen(vm: GameViewModel, itemId: String, onBack: () -> Unit) {
 fun AuctionScreen(vm: GameViewModel, onBack: () -> Unit) {
     val state by vm.state.collectAsStateWithLifecycle()
     val settings by vm.settings.collectAsStateWithLifecycle()
-    val fmt: (Money) -> String = { MoneyFormat.short(it, vm.notation(settings)) }
+    val fmt: (Money) -> String = { MoneyFormat.compact(it, vm.notation(settings)) }
     val s = state ?: return
     val a = vm.auction(s)
     val c = Aurum.colors

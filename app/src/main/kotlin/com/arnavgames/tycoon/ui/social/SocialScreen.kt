@@ -61,7 +61,7 @@ fun SocialScreen(vm: GameViewModel, onBack: () -> Unit, onOpenAccount: () -> Uni
     val social = vm.social
     val user by vm.cloud.user.collectAsStateWithLifecycle()
     val settings by vm.settings.collectAsStateWithLifecycle()
-    val fmt: (Money) -> String = { MoneyFormat.short(it, vm.notation(settings)) }
+    val fmt: (Money) -> String = { MoneyFormat.compact(it, vm.notation(settings)) }
     val c = Aurum.colors
     val scope = rememberCoroutineScope()
     var name by rememberSaveable { mutableStateOf(social.displayName) }

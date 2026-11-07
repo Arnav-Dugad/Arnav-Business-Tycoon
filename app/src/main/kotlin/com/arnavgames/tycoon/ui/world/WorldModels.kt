@@ -67,6 +67,51 @@ class WorldMapper(private val engine: GameEngine, private val portraitIds: Set<S
 
     private fun chip(r: RivalDef) = RivalChipUi(r.id, r.name, portrait(r.id), w.archetypeById[r.archetype]?.name ?: r.archetype)
 
+    /** Plain-language effects: "Costs $1.2M (half an hour of income) · tax-deductible", "+4% Retail Stores income for a day". */
+    fun describe(effects: List<com.arnavgames.tycoon.core.content.CardEffectDef>, s: GameState, cs: com.arnavgames.tycoon.core.state.CardState): List<String> {
+        val hourly = engine.desk.hourly(s)
+        fun money(h: Double) = com.arnavgames.tycoon.core.money.MoneyFormat.compact(hourly * com.arnavgames.tycoon.core.money.Multiplier.ofDouble(kotlin.math.abs(h)))
+        val biz = cs.business?.let { engine.content.businessById[it]?.name } ?: "your business"
+        val rival = cs.rival?.let { w.rivalById[it]?.name } ?: "the rival"
+        return effects.map { e ->
+            when (e.type) {
+                // Costs show the amount on the right of the option, so the text says it in time instead.
+                "cash" -> if (e.hours >= 0) "Gain ${money(e.hours)} (${hoursText(e.hours)})" else "Costs ${hoursText(e.hours)}"
+                "donation" -> "Donates ${hoursText(e.hours)} · tax-deductible"
+                "rd" -> "Invests ${hoursText(e.hours)} in research · R&D tax credit"
+                "income" -> {
+                    val who = when (e.target) { "all" -> "every business"; "business" -> biz; else -> e.target }
+                    val sign = if (e.pct >= 0) "+" else "−"
+                    "$sign${kotlin.math.round(kotlin.math.abs(e.pct) * 100).toInt()}% income at $who for ${durationText(e.hours)}"
+                }
+                "credit" -> "${if (e.points >= 0) "+" else "−"}${kotlin.math.abs(e.points)} credit score"
+                "relation" -> "${if (e.points >= 0) "+" else "−"}${kotlin.math.abs(e.points)} relationship with $rival"
+                "sell" -> "Sell $biz for ${trimDouble(e.multiple)}× its value"
+                else -> ""
+            }
+        }.filter { it.isNotBlank() }
+    }
+
+    private fun trimDouble(d: Double) = if (d == kotlin.math.floor(d)) d.toInt().toString() else String.format(java.util.Locale.US, "%.1f", d)
+
+    /** 0.5 → "half an hour of income", 0.25 → "15 minutes of income", 2 → "2 hours of income". */
+    private fun hoursText(h: Double): String {
+        val a = kotlin.math.abs(h)
+        return when {
+            a < 1.0 && a == 0.5 -> "half an hour of income"
+            a < 1.0 -> "${kotlin.math.round(a * 60).toInt()} minutes of income"
+            a == 1.0 -> "1 hour of income"
+            else -> "${trimDouble(a)} hours of income"
+        }
+    }
+
+    /** 24 → "a day", 48 → "2 days", 6 → "6 hours". */
+    private fun durationText(hours: Double): String = when {
+        hours >= 24 && hours % 24 == 0.0 -> if (hours == 24.0) "a day" else "${(hours / 24).toInt()} days"
+        hours == 1.0 -> "an hour"
+        else -> "${trimDouble(hours)} hours"
+    }
+
     fun desk(s: GameState): DeskUi {
         val desk = engine.desk
         val cards = s.world.cards.sortedBy { it.id }.mapNotNull { cs ->
@@ -74,9 +119,21 @@ class WorldMapper(private val engine: GameEngine, private val portraitIds: Set<S
             val options = def.options.mapIndexed { i, o ->
                 val cost = desk.maxCost(s, o)
                 val ally = desk.optionAvailable(s, cs, o)
+                // Say what each choice really does, from its effects (always complete, in plain words).
+                // Effects every outcome shares (usually the cost) are said once; each outcome lists only what differs.
+                val perOutcome = o.outcomes.map { describe(it.effects, s, cs) }
+                val common = perOutcome.firstOrNull().orEmpty().filter { phrase -> perOutcome.all { phrase in it } }
+                val detail = when {
+                    o.outcomes.size == 1 -> common.ifEmpty { listOf("Nothing changes.") }.joinToString(" · ")
+                    common.isNotEmpty() -> common.joinToString(" · ")
+                    else -> ""
+                }
                 CardOptionUi(
-                    i, desk.fill(o.label, s, cs), desk.fill(o.detail, s, cs),
-                    o.outcomes.map { OutcomeUi((it.p * 100).toInt(), desk.fill(it.text, s, cs)) },
+                    i, desk.fill(o.label, s, cs), detail,
+                    if (o.outcomes.size == 1) emptyList() else o.outcomes.mapIndexed { k, oc ->
+                        val fx = perOutcome[k].filter { it !in common }.joinToString(" · ")
+                        OutcomeUi((oc.p * 100).toInt(), listOf(desk.fill(oc.text, s, cs), fx).filter { it.isNotBlank() }.joinToString(" — "))
+                    },
                     cost, ally && cost <= s.cash,
                     when { !ally -> "Needs an ally (relationship ${w.config.cards.allyRelation}+)"; cost > s.cash -> "Not enough cash"; else -> null },
                 )

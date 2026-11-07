@@ -35,7 +35,7 @@ fun RollingMoney(
     modifier: Modifier = Modifier,
     style: TextStyle = Aurum.type.numberHero,
     color: Color = Aurum.colors.textPrimary,
-    format: (Money) -> String = { MoneyFormat.short(it) },
+    format: (Money) -> String = { MoneyFormat.compact(it) },
     maxExtrapolationMs: Long = 1_200,
     jumpMs: Long = 450,
 ) {
@@ -77,7 +77,7 @@ fun RollingMoney(
         text = format(display),
         style = style,
         color = color,
-        modifier = modifier.semantics { contentDescription = MoneyFormat.short(value) },
+        modifier = modifier.semantics { contentDescription = MoneyFormat.compact(value) },
         maxLines = 1,
         softWrap = false,
     )

@@ -32,6 +32,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalDensity
@@ -67,7 +68,7 @@ fun MarketsScreen(vm: GameViewModel, onOpenInstrument: (String) -> Unit, onOpenN
     val ui by vm.markets.collectAsStateWithLifecycle()
     val settings by vm.settings.collectAsStateWithLifecycle()
     val notation = vm.notation(settings)
-    val fmt: (Money) -> String = { MoneyFormat.short(it, notation) }
+    val fmt: (Money) -> String = { MoneyFormat.compact(it, notation) }
     val mk = ui ?: return
     if (!mk.unlocked) {
         ComingSoonScreen(
@@ -181,7 +182,10 @@ private fun MarketsHeader(mk: MarketsUi, fmt: (Money) -> String, modifier: Modif
         Column(Modifier.fillMaxWidth().statusBarsPadding().padding(horizontal = Space.gutter).padding(top = Space.md, bottom = Space.md)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text("PORTFOLIO", style = Aurum.type.overline, color = c.textTertiary, modifier = Modifier.weight(1f))
-                AurumChip("${mk.phase} · rate ${String.format(java.util.Locale.US, "%.2f", mk.ratePerDay * 100)}%/day", icon = AbtIcons.Chart)
+                var explain by androidx.compose.runtime.remember { androidx.compose.runtime.mutableStateOf(false) }
+                if (explain) com.arnavgames.tycoon.ui.common.GlossarySheet(com.arnavgames.tycoon.ui.common.Term.Economy) { explain = false }
+                AurumChip("Economy: ${mk.phase} · rates ${String.format(java.util.Locale.US, "%.2f", mk.ratePerDay * 100)}%/day", icon = AbtIcons.Globe,
+                    modifier = Modifier.clip(com.arnavgames.tycoon.designsystem.theme.AurumShapes.pill).clickable(onClickLabel = "What does the economy do?") { explain = true })
             }
             Text(fmt(mk.portfolioValue), style = Aurum.type.numberHero, color = c.textPrimary)
             Row(verticalAlignment = Alignment.CenterVertically) {

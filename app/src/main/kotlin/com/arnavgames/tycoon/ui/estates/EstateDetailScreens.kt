@@ -116,7 +116,7 @@ private fun cycleColor(cycle: String) = when (cycle) {
 fun DistrictScreen(vm: GameViewModel, districtId: String, onBack: () -> Unit, onOpenProperty: (Long) -> Unit) {
     val state by vm.state.collectAsStateWithLifecycle()
     val settings by vm.settings.collectAsStateWithLifecycle()
-    val fmt: (Money) -> String = { MoneyFormat.short(it, vm.notation(settings)) }
+    val fmt: (Money) -> String = { MoneyFormat.compact(it, vm.notation(settings)) }
     val s = state ?: return
     val ui = remember(s.simTimeMs / 60_000, s.estate.properties, s.estate.boughtListings, s.cash, s.progress.chapter) { vm.district(s, districtId) } ?: return
     var weekly by rememberSaveable { mutableStateOf(false) }
@@ -228,7 +228,7 @@ fun DistrictScreen(vm: GameViewModel, districtId: String, onBack: () -> Unit, on
 fun PropertyScreen(vm: GameViewModel, propertyId: Long, onBack: () -> Unit) {
     val state by vm.state.collectAsStateWithLifecycle()
     val settings by vm.settings.collectAsStateWithLifecycle()
-    val fmt: (Money) -> String = { MoneyFormat.short(it, vm.notation(settings)) }
+    val fmt: (Money) -> String = { MoneyFormat.compact(it, vm.notation(settings)) }
     val s = state ?: return
     val ui = remember(s.simTimeMs / 30_000, s.estate, s.timers, s.cash) { vm.property(s, propertyId) }
     val c = Aurum.colors

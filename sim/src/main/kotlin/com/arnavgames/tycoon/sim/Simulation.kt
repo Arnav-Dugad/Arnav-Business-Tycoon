@@ -55,6 +55,8 @@ data class RunResult(
     val samples: List<Sample>,
     /** Active-session minutes in which nothing meaningful was affordable. */
     val deadMinutes: Int,
+    /** Session minutes with neither a purchase nor a meaningful decision (docs/PLAN_2.0.md A0). */
+    val idleMinutes: Int,
     val sessionMinutes: Int,
     /** Longest stretch (real hours) with no net-worth growth while the player kept playing. */
     val longestStallHours: Double,
@@ -72,7 +74,7 @@ class Simulation(private val engine: GameEngine, private val contentHash: String
     fun run(bot: Bot, seed: Long, days: Int): RunResult = try {
         runInner(bot, seed, days)
     } catch (e: Exception) {
-        RunResult(bot.name, seed, emptyMap(), emptyList(), 0, 0, 0.0, Money.ZERO, error = "${e.javaClass.simpleName}: ${e.message}")
+        RunResult(bot.name, seed, emptyMap(), emptyList(), 0, 0, 0, 0.0, Money.ZERO, error = "${e.javaClass.simpleName}: ${e.message}")
     }
 
     private fun runInner(bot: Bot, seed: Long, days: Int): RunResult {
@@ -81,6 +83,8 @@ class Simulation(private val engine: GameEngine, private val contentHash: String
         val milestones = mutableMapOf<String, Double>()
         val samples = mutableListOf<Sample>()
         var deadMinutes = 0
+        var idleMinutes = 0
+        Decisions.count.get()[0] = 0
         var sessionMinutes = 0
         val eco = engine.economy
 
@@ -143,6 +147,7 @@ class Simulation(private val engine: GameEngine, private val contentHash: String
             }
             val steps = lengthMin * 60 / stepSeconds
             var minuteHadOption = false
+            var minuteHadDecision = false
             for (i in 0 until steps) {
                 // Taps during the early part of the session, batched per step (combo builds within the step).
                 val tappingSeconds = bot.schedule.tapMinutesPerSession * 60
@@ -155,7 +160,9 @@ class Simulation(private val engine: GameEngine, private val contentHash: String
                     }
                 }
                 val before = s
+                val decisionsBefore = Decisions.count.get()[0]
                 s = bot.act(engine, s, rng, sessionStart = i == 0, sessionEnd = i == steps - 1)
+                if (Decisions.count.get()[0] != decisionsBefore) minuteHadDecision = true
                 if (s.stats.levelsBought != before.stats.levelsBought || s.businesses.size != before.businesses.size ||
                     s.hq.level != before.hq.level || s.timers.size > before.timers.size
                 ) minuteHadOption = true
@@ -164,7 +171,9 @@ class Simulation(private val engine: GameEngine, private val contentHash: String
                 if ((i + 1) * stepSeconds % 60 == 0) {
                     sessionMinutes++
                     if (!minuteHadOption) deadMinutes++
+                    if (!minuteHadOption && !minuteHadDecision) idleMinutes++
                     minuteHadOption = false
+                    minuteHadDecision = false
                     record(realMs / 60_000.0)
                 }
             }
@@ -192,7 +201,7 @@ class Simulation(private val engine: GameEngine, private val contentHash: String
             record(minuteNow.toDouble())
         }
         longestStall = maxOf(longestStall, (realMs / 60_000 - lastGrowthMinute) / 60.0)
-        return RunResult(bot.name, seed, milestones, samples, deadMinutes, sessionMinutes, longestStall, eco.netWorth(s))
+        return RunResult(bot.name, seed, milestones, samples, deadMinutes, idleMinutes, sessionMinutes, longestStall, eco.netWorth(s))
     }
 
     private val marketSources = setOf("dividends", "coupons", "staking", "capital_gains", "rent", "property_gains", "luxury_gains")

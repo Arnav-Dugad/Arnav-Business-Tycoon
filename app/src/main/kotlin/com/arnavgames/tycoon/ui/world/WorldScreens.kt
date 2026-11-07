@@ -107,12 +107,28 @@ fun WorldStrip(vm: GameViewModel, onOpenDesk: () -> Unit, onOpenFortune: () -> U
     // Three tiles side by side; at large font sizes they stack so nothing is cut off.
     val stacked = androidx.compose.ui.platform.LocalDensity.current.fontScale > 1.3f
     val tiles: List<@Composable (Modifier) -> Unit> = buildList {
-        add { m -> StripTile(AbtIcons.Cards, "Desk", if (d.cards.isEmpty()) "No decisions" else "${d.cards.size} waiting", d.cards.isNotEmpty(), onOpenDesk, m) }
+        val deskValue = when {
+            d.cards.isNotEmpty() -> "${d.cards.size} waiting"
+            d.nextCardInMs != null -> "Next in ${shortDuration(d.nextCardInMs)}"
+            else -> "All clear"
+        }
+        add { m -> StripTile(AbtIcons.Cards, "Desk", deskValue, d.cards.isNotEmpty(), onOpenDesk, m) }
+        add { m -> StripTile(AbtIcons.Globe, "Economy", d.phase, false, onOpenDesk, m) }
         fortune?.let { (unlocked, rank) -> if (unlocked) add { m -> StripTile(AbtIcons.Trophy, "Fortune", if (rank <= 220) "#$rank" else "Unranked", false, onOpenFortune, m) } }
         fin?.let { (unlocked, rating) -> if (unlocked) add { m -> StripTile(AbtIcons.Gauge, "Credit", rating, false, onOpenFinance, m) } }
     }
     if (stacked) Column(verticalArrangement = Arrangement.spacedBy(Space.sm)) { tiles.forEach { it(Modifier.fillMaxWidth()) } }
     else Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(Space.sm)) { tiles.forEach { it(Modifier.weight(1f)) } }
+}
+
+/** "1h 20m", "45m", "2d 3h". */
+private fun shortDuration(ms: Long): String {
+    val m = (ms / 60_000).coerceAtLeast(1)
+    return when {
+        m < 60 -> "${m}m"
+        m < 24 * 60 -> "${m / 60}h ${m % 60}m"
+        else -> "${m / 1440}d ${(m % 1440) / 60}h"
+    }
 }
 
 @Composable
@@ -137,14 +153,16 @@ private fun StripTile(icon: androidx.compose.ui.graphics.vector.ImageVector, tit
 fun DeskScreen(vm: GameViewModel, onBack: () -> Unit, onOpenRival: (String) -> Unit) {
     val ui by vm.desk.collectAsStateWithLifecycle()
     val settings by vm.settings.collectAsStateWithLifecycle()
-    val fmt: (Money) -> String = { MoneyFormat.short(it, vm.notation(settings)) }
+    val fmt: (Money) -> String = { MoneyFormat.compact(it, vm.notation(settings)) }
     val d = ui ?: return
     val c = Aurum.colors
     var negotiating by remember { mutableStateOf<Pair<CardUi, Int>?>(null) }
     Box(Modifier.fillMaxSize()) {
     GlassScaffold(title = "The Desk", onBack = onBack) {
         item(key = "economy") {
-            AurumCard(Modifier.fillMaxWidth()) {
+            var explain by remember { mutableStateOf(false) }
+            if (explain) com.arnavgames.tycoon.ui.common.GlossarySheet(com.arnavgames.tycoon.ui.common.Term.Economy) { explain = false }
+            AurumCard(Modifier.fillMaxWidth(), onClick = { explain = true }) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     IconTile(AbtIcons.Globe, size = 40.dp)
                     Spacer(Modifier.width(Space.md))
@@ -153,6 +171,7 @@ fun DeskScreen(vm: GameViewModel, onBack: () -> Unit, onOpenRival: (String) -> U
                         Text(d.phase, style = Aurum.type.headline, color = c.textPrimary)
                         Text("Central bank rate ${pct(d.centralRate, 2)} a day", style = Aurum.type.bodySmall, color = c.textSecondary)
                     }
+                    AbtIcon(AbtIcons.Info, "What does the economy do?", tint = c.textTertiary, size = 18.dp)
                 }
             }
         }
@@ -250,7 +269,7 @@ private fun DecisionCard(card: CardUi, fmt: (Money) -> String, onChoose: (Int) -
                 }
                 if (o.detail.isNotBlank()) Text(o.detail, style = Aurum.type.bodySmall, color = c.textSecondary)
                 if (o.outcomes.size > 1) {
-                    o.outcomes.forEach { oc -> Text("${oc.percent}%: ${oc.text}", style = Aurum.type.bodySmall, color = c.textTertiary) }
+                    o.outcomes.forEach { oc -> Text("${oc.percent}% chance · ${oc.text}", style = Aurum.type.bodySmall, color = c.textTertiary) }
                 }
                 o.reason?.let { Text(it, style = Aurum.type.label, color = c.loss) }
                 if (o.enabled && o.outcomes.size > 1 && (o.label.startsWith("Negotiate") || o.label.startsWith("Counter") || o.label.startsWith("Call"))) {
@@ -269,7 +288,7 @@ private fun DecisionCard(card: CardUi, fmt: (Money) -> String, onChoose: (Int) -
 fun FortuneScreen(vm: GameViewModel, onBack: () -> Unit, onOpenRival: (String) -> Unit) {
     val state by vm.state.collectAsStateWithLifecycle()
     val settings by vm.settings.collectAsStateWithLifecycle()
-    val fmt: (Money) -> String = { MoneyFormat.short(it, vm.notation(settings)) }
+    val fmt: (Money) -> String = { MoneyFormat.compact(it, vm.notation(settings)) }
     val s = state ?: return
     val ui = remember(s.simTimeMs / 60_000, s.businesses.size) { vm.fortune(s) }
     val c = Aurum.colors
@@ -327,7 +346,7 @@ fun FortuneScreen(vm: GameViewModel, onBack: () -> Unit, onOpenRival: (String) -
 fun RivalScreen(vm: GameViewModel, rivalId: String, onBack: () -> Unit) {
     val state by vm.state.collectAsStateWithLifecycle()
     val settings by vm.settings.collectAsStateWithLifecycle()
-    val fmt: (Money) -> String = { MoneyFormat.short(it, vm.notation(settings)) }
+    val fmt: (Money) -> String = { MoneyFormat.compact(it, vm.notation(settings)) }
     val s = state ?: return
     val r = remember(s.simTimeMs / 60_000, s.world.relations) { vm.rival(s, rivalId) } ?: return
     val c = Aurum.colors
@@ -417,7 +436,7 @@ private fun Sparkline(values: List<Double>, modifier: Modifier) {
 fun FinanceScreen(vm: GameViewModel, onBack: () -> Unit, onOpenTaxes: () -> Unit) {
     val state by vm.state.collectAsStateWithLifecycle()
     val settings by vm.settings.collectAsStateWithLifecycle()
-    val fmt: (Money) -> String = { MoneyFormat.short(it, vm.notation(settings)) }
+    val fmt: (Money) -> String = { MoneyFormat.compact(it, vm.notation(settings)) }
     val s = state ?: return
     val f = remember(s.simTimeMs / 10_000, s.finance, s.cash) { vm.finance(s) }
     val c = Aurum.colors
@@ -563,7 +582,7 @@ fun FinanceScreen(vm: GameViewModel, onBack: () -> Unit, onOpenTaxes: () -> Unit
 fun TaxFilingScreen(vm: GameViewModel, onBack: () -> Unit) {
     val state by vm.state.collectAsStateWithLifecycle()
     val settings by vm.settings.collectAsStateWithLifecycle()
-    val fmt: (Money) -> String = { MoneyFormat.short(it, vm.notation(settings)) }
+    val fmt: (Money) -> String = { MoneyFormat.compact(it, vm.notation(settings)) }
     val s = state ?: return
     val f = remember(s.finance, s.simTimeMs / 60_000) { vm.finance(s) }
     val c = Aurum.colors

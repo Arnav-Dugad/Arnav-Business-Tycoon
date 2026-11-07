@@ -178,7 +178,7 @@ class MarketsMapper(private val engine: GameEngine) {
                 val sector = m.sectorById.getValue(st.sector)
                 kicker = "${sector.name} · ${bandWord(st.band)}"
                 about = "${st.trait}. ${bandAbout(st.band)}"
-                stats += StatUi("Market value", com.arnavgames.tycoon.core.money.MoneyFormat.short(Money.ofDollars(java.math.BigDecimal(st.baseCapBillions * 1e9 * scale * price / st.startPrice.toDouble()))))
+                stats += StatUi("Market value", com.arnavgames.tycoon.core.money.MoneyFormat.compact(Money.ofDollars(java.math.BigDecimal(st.baseCapBillions * 1e9 * scale * price / st.startPrice.toDouble()))))
                 stats += StatUi("Dividend", if (st.dividendPerDay > 0) "${MarketEngine.pct(st.dividendPerDay, 2)} a day" else "None")
                 stats += StatUi("Sensitivity", "β ${String.format(Locale.US, "%.2f", st.beta)}")
                 stats += StatUi("Board seat perk", sector.businesses.joinToString { engine.content.business(it).name } + " +5%")

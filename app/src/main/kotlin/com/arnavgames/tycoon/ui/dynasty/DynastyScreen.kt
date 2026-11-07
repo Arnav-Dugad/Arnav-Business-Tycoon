@@ -74,7 +74,7 @@ fun DynastyScreen(
 ) {
     val state by vm.state.collectAsStateWithLifecycle()
     val settings by vm.settings.collectAsStateWithLifecycle()
-    val fmt: (Money) -> String = { MoneyFormat.short(it, vm.notation(settings)) }
+    val fmt: (Money) -> String = { MoneyFormat.compact(it, vm.notation(settings)) }
     val s = state ?: return
     val c = Aurum.colors
     val content = vm.engine.content
@@ -86,6 +86,7 @@ fun DynastyScreen(
     val season = remember(s.meta, s.simTimeMs / 60_000) { m.season(s) }
     var ipoConfirm by remember { mutableStateOf<Double?>(null) }
     var avatarPicker by remember { mutableStateOf(false) }
+    var explain by remember { mutableStateOf<com.arnavgames.tycoon.ui.common.Term?>(null) }
     val update by vm.updates.state.collectAsStateWithLifecycle()
     val cloudConflict by vm.cloudConflict.collectAsStateWithLifecycle()
     Box(Modifier.fillMaxSize()) {
@@ -125,7 +126,9 @@ fun DynastyScreen(
             if (update !is com.arnavgames.tycoon.update.UpdateState.Idle) {
                 item(key = "update") { com.arnavgames.tycoon.ui.common.UpdateCard(vm.updates, settings.autoUpdate) }
             }
-            item(key = "dynasty") {
+            // Legacy is the hero only once it matters (crown ready, or a later generation); before that, today's goals lead.
+            val legacyMatters = dy.canPrestige || dy.legacy > 0 || dy.generation > 1
+            if (legacyMatters) item(key = "dynasty") {
                 AurumCard(Modifier.fillMaxWidth(), highlighted = dy.canPrestige) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Column(Modifier.weight(1f)) {
@@ -173,6 +176,19 @@ fun DynastyScreen(
                 item(key = "weekly") { MissionList(weekly, fmt, onClaim = { vm.dispatch(Command.ClaimWeekly(it)) }, onReroll = null) }
             }
             item(key = "season") { SeasonCard(season, onClaim = { vm.dispatch(Command.ClaimSeasonTier(it)) }) }
+            if (!legacyMatters) item(key = "legacy-teaser") {
+                AurumCard(Modifier.fillMaxWidth(), onClick = { explain = com.arnavgames.tycoon.ui.common.Term.Legacy }) {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        AbtIcon(AbtIcons.Crown, null, tint = c.goldText, size = 24.dp)
+                        Spacer(Modifier.width(Space.md))
+                        Column(Modifier.weight(1f)) {
+                            Text("Legacy", style = Aurum.type.titleSmall, color = c.textPrimary)
+                            Text("After Chapter 8 you pass the crown to an heir, who keeps a permanent income boost.", style = Aurum.type.bodySmall, color = c.textSecondary)
+                        }
+                        AbtIcon(AbtIcons.Info, "What is Legacy?", tint = c.textTertiary, size = 18.dp)
+                    }
+                }
+            }
             item(key = "achievements") {
                 AurumCard(Modifier.fillMaxWidth(), onClick = onOpenAchievements, highlighted = dy.achievementsClaimable > 0) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
@@ -260,6 +276,7 @@ fun DynastyScreen(
                 }
             }
         }
+        explain?.let { com.arnavgames.tycoon.ui.common.GlossarySheet(it) { explain = null } }
         if (avatarPicker) {
             com.arnavgames.tycoon.designsystem.components.AurumDialog(title = "Choose your avatar", onDismiss = { avatarPicker = false }) {
                 com.arnavgames.tycoon.ui.common.AvatarPicker(
@@ -291,7 +308,7 @@ private fun MissionList(items: List<MissionUi>, fmt: (Money) -> String, onClaim:
                 Column(Modifier.weight(1f)) {
                     Text(m.title, style = Aurum.type.titleSmall, color = if (m.claimed) c.textTertiary else c.textPrimary)
                     Text(m.description, style = Aurum.type.bodySmall, color = c.textSecondary)
-                    Text(buildList { if (m.reward.isPositive) add(fmt(m.reward)); if (m.bullion > 0) add("${m.bullion} Bullion"); if (m.xp > 0) add("${m.xp} XP") }.joinToString(" · "),
+                    Text(buildList { if (m.reward.isPositive) add("+" + fmt(m.reward)); if (m.bullion > 0) add("+${m.bullion} Bullion"); if (m.xp > 0) add("+${m.xp} season XP") }.joinToString(" · "),
                         style = Aurum.type.label, color = c.goldText)
                     if (!m.done) { Spacer(Modifier.height(Space.xxs)); GoldProgress(m.progress, height = 3.dp, label = "${m.title} progress") }
                 }
@@ -314,7 +331,7 @@ private fun SeasonCard(season: SeasonUi, onClaim: (Int) -> Unit) {
             Column(Modifier.weight(1f)) {
                 Text("SEASON", style = Aurum.type.overline, color = c.goldText)
                 Text(season.name, style = Aurum.type.headline, color = c.textPrimary)
-                Text("${season.xp} XP" + (season.nextTierXp?.let { " · next tier at $it" } ?: "") + " · ends in ${durationText(season.endsInMs)}", style = Aurum.type.bodySmall, color = c.textSecondary)
+                Text("${season.xp} season XP" + (season.nextTierXp?.let { " · next tier at $it" } ?: "") + " · ends in ${durationText(season.endsInMs)}", style = Aurum.type.bodySmall, color = c.textSecondary)
             }
         }
         season.event?.let { ev ->
@@ -381,7 +398,7 @@ fun AchievementsScreen(vm: GameViewModel, onBack: () -> Unit) {
 fun CrownScreen(vm: GameViewModel, onBack: () -> Unit) {
     val state by vm.state.collectAsStateWithLifecycle()
     val settings by vm.settings.collectAsStateWithLifecycle()
-    val fmt: (Money) -> String = { MoneyFormat.short(it, vm.notation(settings)) }
+    val fmt: (Money) -> String = { MoneyFormat.compact(it, vm.notation(settings)) }
     val s = state ?: return
     val ui = remember(s.dynasty.generation, s.luxury.owned) { vm.dynastyMapper.crown(s) { null } }
     val c = Aurum.colors

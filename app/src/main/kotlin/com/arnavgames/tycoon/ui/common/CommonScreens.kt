@@ -92,7 +92,7 @@ fun OfflineEarningsDialog(report: GameSession.OfflineReport, onDismiss: () -> Un
     AurumDialog(title = "While you were away", onDismiss = onDismiss) {
         CrownMark(size = 64.dp)
         Text(durationText(report.creditedMs), style = Aurum.type.body, color = c.textSecondary)
-        RollingMoney(value = report.earned, rate = Rate.ZERO, color = c.goldText, format = { "+" + com.arnavgames.tycoon.core.money.MoneyFormat.short(it) })
+        RollingMoney(value = report.earned, rate = Rate.ZERO, color = c.goldText, format = { "+" + com.arnavgames.tycoon.core.money.MoneyFormat.compact(it) })
         val note = when {
             report.flag == TimeFlag.ForwardJumpDetected || report.flag == TimeFlag.ClockWentBackwards ->
                 "Your device clock changed, so only the time we could verify was counted."

@@ -14,7 +14,8 @@ data class PropertyRowUi(
     val status: String, val busy: Boolean, val needsAttention: Boolean,
 )
 
-data class DecisionUi(val id: Long, val propertyId: Long, val text: String, val choices: List<String>)
+/** A tenant decision; each choice says in plain words what it costs or changes. */
+data class DecisionUi(val id: Long, val propertyId: Long, val text: String, val choices: List<String>, val details: List<String> = emptyList())
 
 data class EstatesUi(
     val unlocked: Boolean,
@@ -103,10 +104,27 @@ class EstatesMapper(private val engine: GameEngine) {
         }
     }
 
+    private fun days(d: Double) = if (d == 1.0) "a day" else "${trim(d)} days"
+
+    private fun trim(d: Double) = if (d == kotlin.math.floor(d)) d.toInt().toString() else String.format(java.util.Locale.US, "%.1f", d)
+
     fun decisions(s: GameState, propertyId: Long?): List<DecisionUi> = s.estate.events.filter { propertyId == null || it.propertyId == propertyId }.mapNotNull { ev ->
         val p = s.estate.properties[ev.propertyId] ?: return@mapNotNull null
         val def = c.eventById.getValue(ev.event)
-        DecisionUi(ev.id, ev.propertyId, def.text.replace("{type}", title(p).lowercase()).replace("{district}", c.districtById.getValue(p.district).name), def.choices.map { it.label })
+        val rent = est.marketRent6h(s, p)
+        fun cash(x: Double) = com.arnavgames.tycoon.core.money.MoneyFormat.compact(rent * com.arnavgames.tycoon.core.money.Multiplier.ofDouble(x))
+        val details = def.choices.map { ch ->
+            buildList {
+                if (ch.costRent > 0) add("Costs ${cash(ch.costRent)}")
+                if (ch.gainRent > 0) add("+${cash(ch.gainRent)}")
+                if (ch.condition != 0) add("Condition ${if (ch.condition > 0) "+" else "−"}${kotlin.math.abs(ch.condition) / 10}%")
+                if (ch.vacancyHours > 0) add("Tenant leaves · empty for about ${ch.vacancyHours} h")
+                if (ch.boostDays > 0) add("Rent +10% for ${days(ch.boostDays)}")
+                if (ch.boostDays < 0) add("Rent −10% for ${days(-ch.boostDays)}")
+                if (isEmpty()) add("Rent goes back to normal")
+            }.joinToString(" · ")
+        }
+        DecisionUi(ev.id, ev.propertyId, def.text.replace("{type}", title(p).lowercase()).replace("{district}", c.districtById.getValue(p.district).name), def.choices.map { it.label }, details)
     }
 
     private fun indexSeries(s: GameState, districtId: String, hours: Int, points: Int): List<Float> =

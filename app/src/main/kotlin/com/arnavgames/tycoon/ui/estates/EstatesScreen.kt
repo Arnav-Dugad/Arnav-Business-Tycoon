@@ -74,7 +74,7 @@ fun EstatesScreen(vm: GameViewModel, onOpenCity: (String) -> Unit, onOpenPropert
     val ui by vm.estates.collectAsStateWithLifecycle()
     val settings by vm.settings.collectAsStateWithLifecycle()
     val notation = vm.notation(settings)
-    val fmt: (Money) -> String = { MoneyFormat.short(it, notation) }
+    val fmt: (Money) -> String = { MoneyFormat.compact(it, notation) }
     val e = ui ?: return
     if (!e.unlocked) {
         ComingSoonScreen(
@@ -196,7 +196,11 @@ fun DecisionCard(d: DecisionUi, onChoose: (Int) -> Unit, onOpen: (() -> Unit)? =
         Text("Rent is 20% lower until you decide.", style = Aurum.type.bodySmall, color = c.textTertiary)
         Spacer(Modifier.height(Space.sm))
         d.choices.forEachIndexed { i, label ->
-            PillAction(label, enabled = true, onClick = { onChoose(i) }, modifier = Modifier.fillMaxWidth().padding(vertical = Space.xxs), style = if (i == 0) PillStyle.Gold else PillStyle.Glass)
+            PillAction(label, enabled = true, onClick = { onChoose(i) }, modifier = Modifier.fillMaxWidth().padding(top = Space.xxs), style = if (i == 0) PillStyle.Gold else PillStyle.Glass)
+            d.details.getOrNull(i)?.let {
+                Text(it, style = Aurum.type.label, color = c.textTertiary, textAlign = androidx.compose.ui.text.style.TextAlign.Center,
+                    modifier = Modifier.fillMaxWidth().padding(top = 2.dp, bottom = Space.xs))
+            }
         }
     }
 }
