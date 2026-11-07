@@ -1,0 +1,13 @@
+[
+ {
+  "id": "chairman",
+  "name": "The Chairman",
+  "business": "Mentor",
+  "prompt": "Premium editorial caricature portrait, head and shoulders, of a fictional retired business mentor known only as \"The Chairman\": a dignified, wry older gentleman in his seventies with silver swept-back hair, a neatly trimmed white beard, knowing half-smile and one raised eyebrow, wearing a charcoal three-piece suit with a gold tie pin and a small gold crown lapel pin. Playful exaggerated proportions (slightly larger head, expressive eyes), painterly digital illustration with soft warm lighting, smooth muted gold and deep navy background gradient, centered, looking at the viewer. Entirely invented person, not resembling any real or famous person. No text, no logos, no watermark.",
+  "model": "gpt-image-2.5-flare",
+  "figmaFile": "PPAZKE9gowejuMjFnBMBBM",
+  "figmaNodeId": "7:2",
+  "sourceUrl": "https://www.figma.com/api/mcp/asset/bc510540-74d3-40e9-8e70-acc2a02ac557.png",
+  "generatedAt": "2026-11-07"
+ }
+]

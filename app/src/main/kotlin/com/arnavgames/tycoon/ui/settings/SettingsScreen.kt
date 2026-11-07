@@ -223,7 +223,7 @@ fun CreditsScreen(onBack: () -> Unit, artCredits: List<String> = emptyList(), po
                 Text("All icons, the crest, logos and the world map are original artwork drawn in code for this game.", style = Aurum.type.body, color = c.textSecondary)
                 if (portraitCount > 0) {
                     Spacer(Modifier.height(Space.xs))
-                    Text("$portraitCount manager and rival portraits are AI-generated caricatures of invented people (Figma AI). They do not depict real people, including the rivals with parody names.", style = Aurum.type.bodySmall, color = c.textTertiary)
+                    Text("$portraitCount portraits (managers, rivals and The Chairman) are AI-generated caricatures of invented people (Figma AI). They do not depict real people, including the rivals with parody names.", style = Aurum.type.bodySmall, color = c.textTertiary)
                     Text("Sound effects and the four music tracks were synthesized in code for this game (no third-party audio or samples).", style = Aurum.type.bodySmall, color = c.textTertiary)
                 }
             }

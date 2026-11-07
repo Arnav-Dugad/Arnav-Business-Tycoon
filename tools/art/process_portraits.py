@@ -2,10 +2,10 @@
 
 Reads tools/art/portraits/<set>.json and the cached originals in tools/art/cache/<cache>/<id>.png (git-ignored),
 writes 320x320 WebP files to app/src/main/assets/img/<out>/<id>.webp and a credits.json next to them.
-Sets: "managers" (cache portraits, out portraits) and "rivals" (cache rivals, out rivals).
+Sets: "managers" (cache portraits, out portraits), "rivals" (cache rivals, out rivals) and "mentor" (The Chairman).
 Deterministic: same inputs give byte-identical outputs with the pinned Pillow settings.
 
-Usage: python -I tools/art/process_portraits.py <repo-root> [managers|rivals]
+Usage: python -I tools/art/process_portraits.py <repo-root> [managers|rivals|mentor]
 """
 import json
 import sys
@@ -16,7 +16,7 @@ from PIL import Image
 SIZE = 320
 
 
-SETS = {"managers": ("portraits", "portraits"), "rivals": ("rivals", "rivals")}
+SETS = {"managers": ("portraits", "portraits"), "rivals": ("rivals", "rivals"), "mentor": ("mentor", "mentor")}
 
 
 def main(repo: Path, which: str = "managers") -> None:

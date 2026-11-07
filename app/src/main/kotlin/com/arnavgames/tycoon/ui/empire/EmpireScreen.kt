@@ -350,7 +350,14 @@ private fun MentorCard(name: String, text: String, onDismiss: () -> Unit) {
         Modifier.fillMaxWidth().glassCard(AurumShapes.medium).padding(Space.md).testTag("mentor-card"),
         verticalAlignment = Alignment.Top,
     ) {
-        AbtIcon(AbtIcons.Bust, null, tint = c.goldText, size = 22.dp)
+        // The Chairman's face (AI caricature of an invented person; docs/ART_PIPELINE.md §3a).
+        coil3.compose.AsyncImage(
+            model = "file:///android_asset/img/mentor/chairman.webp", contentDescription = null,
+            contentScale = androidx.compose.ui.layout.ContentScale.Crop,
+            modifier = Modifier.size(52.dp).clip(androidx.compose.foundation.shape.CircleShape)
+                .border(1.5.dp, c.goldText.copy(alpha = 0.7f), androidx.compose.foundation.shape.CircleShape)
+                .background(c.separator),
+        )
         Spacer(Modifier.width(Space.md))
         Column(Modifier.weight(1f)) {
             Text(name.uppercase(), style = Aurum.type.overline, color = c.goldText)

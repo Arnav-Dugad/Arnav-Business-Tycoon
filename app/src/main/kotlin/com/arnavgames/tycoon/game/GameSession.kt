@@ -242,6 +242,9 @@ class GameSession @Inject constructor(
     /** Manager ids that have a bundled portrait (assets/img/portraits/<id>.webp). */
     fun portraitIds(): Set<String> = assetIds("img/portraits")
 
+    /** The Chairman and any other mentor portraits (assets/img/mentor). */
+    fun mentorPortraitCount(): Int = assetIds("img/mentor").size
+
     /** Rival caricature portraits bundled in assets/img/rivals (Phase 9). */
     fun rivalPortraitIds(): Set<String> = assetIds("img/rivals")
 

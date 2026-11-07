@@ -239,7 +239,7 @@ class GameViewModel @Inject constructor(
     private val artCredits: Map<String, String> by lazy { session.readArtCredits() }
 
     fun artCreditLines(): List<String> = artCredits.values.sorted()
-    fun portraitCount(): Int = session.portraitIds().size
+    fun portraitCount(): Int = session.portraitIds().size + session.mentorPortraitCount()
     fun rivalPortraitCount(): Int = session.rivalPortraitIds().size
     fun portraitPath(managerId: String): String? = if (managerId in portraitSet) "img/portraits/$managerId.webp" else null
     private val portraitSet: Set<String> by lazy { session.portraitIds() }
