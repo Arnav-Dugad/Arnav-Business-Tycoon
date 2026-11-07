@@ -542,7 +542,7 @@ fun BusinessCard(b: BusinessUi, fmt: (Money) -> String, onOpen: () -> Unit, onBu
                     val frac = if (b.storageCap.isPositive) b.stored.ratioTo(b.storageCap).toFloat() else 0f
                     GoldProgress(frac, height = 4.dp, brush = Brush.horizontalGradient(listOf(c.gain.copy(alpha = 0.7f), c.gain)), label = "Till ${(frac * 100).toInt()} percent full")
                     Spacer(Modifier.height(Space.xs))
-                    Text(if (frac >= 1f) "Till full" else "Till ${fmt(b.stored)}", style = Aurum.type.label, color = if (frac >= 1f) c.gain else c.textTertiary, maxLines = 1)
+                    Text(if (frac >= 1f) "Full · ${fmt(b.stored)}" else "Till ${fmt(b.stored)}", style = Aurum.type.label, color = if (frac >= 1f) c.gain else c.textTertiary, maxLines = 1)
                 }
                 SmallAction("Collect", enabled = b.stored.isPositive, onClick = onCollect, gold = false)
             } else {

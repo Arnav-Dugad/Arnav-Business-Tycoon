@@ -350,7 +350,7 @@ class GameViewModel @Inject constructor(
                     val d = content.business(id)
                     val b = s.businesses[id]
                     val tiers = b?.let { eco.tiersReached(d, it.level) } ?: 0
-                    MemberUi(d.name, b != null && tiers >= c.requiredTier && !b.mothballed, when { b == null -> "not owned"; b.mothballed -> "mothballed"; else -> "tier ${minOf(tiers, c.requiredTier)}/${c.requiredTier}" })
+                    MemberUi(d.name, b != null && tiers >= c.requiredTier && !b.mothballed, when { b == null -> "not owned"; b.mothballed -> "mothballed"; tiers >= c.requiredTier -> "tier ${c.requiredTier} reached"; else -> d.tiers.sortedBy { it.level }.getOrNull(c.requiredTier - 1)?.let { t -> "needs level ${t.level} (now ${b.level})" } ?: "needs tier ${c.requiredTier}" })
                 },
                 fee = c.fee, formed = c.id in s.conglomerates, blocker = blocker?.takeIf { c.id !in s.conglomerates },
                 canAfford = s.cash >= c.fee,
