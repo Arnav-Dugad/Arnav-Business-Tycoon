@@ -60,7 +60,11 @@ class GameSession @Inject constructor(
         data class Failed(val message: String) : Status
     }
 
-    data class OfflineReport(val earned: Money, val creditedMs: Long, val rawMs: Long, val flag: TimeFlag, val capMs: Long)
+    /** What happened while away. [stories] is The Daily Ledger's front page (empty for short absences). */
+    data class OfflineReport(
+        val earned: Money, val creditedMs: Long, val rawMs: Long, val flag: TimeFlag, val capMs: Long,
+        val stories: List<com.arnavgames.tycoon.ui.ledger.Story> = emptyList(), val dayNumber: Long = 1,
+    )
 
     private val _status = MutableStateFlow<Status>(Status.Loading)
     val status: StateFlow<Status> = _status.asStateFlow()
@@ -148,7 +152,9 @@ class GameSession @Inject constructor(
         val earned = (ns.cash - before) + advanced.state.businesses.values.fold(Money.ZERO) { a, b -> a + b.stored } -
             s.businesses.values.fold(Money.ZERO) { a, b -> a + b.stored }
         if (credit.creditMs >= 60_000 || credit.flag == TimeFlag.ForwardJumpDetected || credit.flag == TimeFlag.ClockWentBackwards) {
-            _offline.value = OfflineReport(earned.max(Money.ZERO), credit.creditMs, credit.rawWallMs, credit.flag, cap)
+            val stories = if (credit.creditMs >= com.arnavgames.tycoon.ui.ledger.DailyLedger.MIN_ABSENCE_MS)
+                runCatching { com.arnavgames.tycoon.ui.ledger.DailyLedger.build(engine, s, ns, advanced.events) }.getOrDefault(emptyList()) else emptyList()
+            _offline.value = OfflineReport(earned.max(Money.ZERO), credit.creditMs, credit.rawWallMs, credit.flag, cap, stories, ns.simTimeMs / 86_400_000L + 1)
         }
     }
 

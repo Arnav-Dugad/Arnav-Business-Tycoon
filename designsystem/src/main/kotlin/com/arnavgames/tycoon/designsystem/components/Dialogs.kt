@@ -47,6 +47,7 @@ fun AurumDialog(
     title: String,
     onDismiss: () -> Unit,
     dismissible: Boolean = true,
+    titleStyle: androidx.compose.ui.text.TextStyle? = null,
     content: @Composable ColumnScope.() -> Unit,
 ) {
     val c = Aurum.colors
@@ -79,7 +80,7 @@ fun AurumDialog(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.spacedBy(Space.md),
             ) {
-                Text(title, style = Aurum.type.headline, color = c.textPrimary, textAlign = TextAlign.Center)
+                Text(title, style = titleStyle ?: Aurum.type.headline, color = c.textPrimary, textAlign = TextAlign.Center)
                 content()
             }
         }

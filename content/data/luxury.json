@@ -173,7 +173,7 @@
  "items": [
   {
    "id": "car_ferr_roma_gt",
-   "name": "Roma GT",
+   "name": "Romana GT",
    "maker": "Ferraro",
    "category": "car",
    "price": "240000.00",
@@ -212,7 +212,7 @@
   },
   {
    "id": "car_ferr_dino_246_gts",
-   "name": "Dino 246 GTS",
+   "name": "Dinamo 264 GTS",
    "maker": "Ferraro",
    "category": "car",
    "price": "420000.00",
@@ -264,7 +264,7 @@
   },
   {
    "id": "car_lamb_countach_74",
-   "name": "Countach '74",
+   "name": "Countash '74",
    "maker": "Lamborgotti",
    "category": "car",
    "price": "900000.00",
@@ -277,7 +277,7 @@
   },
   {
    "id": "car_porc_911_carrera_s",
-   "name": "911 Carrera S",
+   "name": "919 Carrero S",
    "maker": "Porch",
    "category": "car",
    "price": "140000.00",
@@ -290,7 +290,7 @@
   },
   {
    "id": "car_porc_taycan_turbo",
-   "name": "Taycan Turbo",
+   "name": "Tycan Turbo",
    "maker": "Porch",
    "category": "car",
    "price": "190000.00",
@@ -303,7 +303,7 @@
   },
   {
    "id": "car_porc_918_spyder",
-   "name": "918 Spyder",
+   "name": "919 Spyda",
    "maker": "Porch",
    "category": "car",
    "price": "1600000.00",
@@ -316,7 +316,7 @@
   },
   {
    "id": "car_porc_356_speedster",
-   "name": "356 Speedster",
+   "name": "365 Speedstar",
    "maker": "Porch",
    "category": "car",
    "price": "380000.00",
@@ -329,7 +329,7 @@
   },
   {
    "id": "car_bugo_chiron_sport",
-   "name": "Chiron Sport",
+   "name": "Chirone Sport",
    "maker": "Bugotti",
    "category": "car",
    "price": "3200000.00",
@@ -342,7 +342,7 @@
   },
   {
    "id": "car_bugo_veyron_grand",
-   "name": "Veyron Grand",
+   "name": "Vayron Grand",
    "maker": "Bugotti",
    "category": "car",
    "price": "1900000.00",
@@ -355,7 +355,7 @@
   },
   {
    "id": "car_bugo_type_35_27",
-   "name": "Type 35 '27",
+   "name": "Type 53 '27",
    "maker": "Bugotti",
    "category": "car",
    "price": "2400000.00",
@@ -368,7 +368,7 @@
   },
   {
    "id": "car_roll_ghost",
-   "name": "Ghost",
+   "name": "Ghostly",
    "maker": "Rolls-Royts",
    "category": "car",
    "price": "340000.00",
@@ -381,7 +381,7 @@
   },
   {
    "id": "car_roll_cullinan",
-   "name": "Cullinan",
+   "name": "Cullinon",
    "maker": "Rolls-Royts",
    "category": "car",
    "price": "380000.00",
@@ -394,7 +394,7 @@
   },
   {
    "id": "car_roll_phantom_drophead",
-   "name": "Phantom Drophead",
+   "name": "Phantasm Drophead",
    "maker": "Rolls-Royts",
    "category": "car",
    "price": "600000.00",
@@ -407,7 +407,7 @@
   },
   {
    "id": "car_roll_silver_ghost_09",
-   "name": "Silver Ghost '09",
+   "name": "Silver Wraithe '09",
    "maker": "Rolls-Royts",
    "category": "car",
    "price": "2100000.00",
@@ -420,7 +420,7 @@
   },
   {
    "id": "car_bent_continental_gt",
-   "name": "Continental GT",
+   "name": "Continentale GT",
    "maker": "Bentlee",
    "category": "car",
    "price": "240000.00",
@@ -433,7 +433,7 @@
   },
   {
    "id": "car_bent_bentayga",
-   "name": "Bentayga",
+   "name": "Bentaygo",
    "maker": "Bentlee",
    "category": "car",
    "price": "210000.00",
@@ -446,7 +446,7 @@
   },
   {
    "id": "car_bent_blower_29",
-   "name": "Blower '29",
+   "name": "Blowr '29",
    "maker": "Bentlee",
    "category": "car",
    "price": "3000000.00",
@@ -459,7 +459,7 @@
   },
   {
    "id": "car_asto_db12",
-   "name": "DB12",
+   "name": "DM12",
    "maker": "Aston Martini",
    "category": "car",
    "price": "250000.00",
@@ -472,7 +472,7 @@
   },
   {
    "id": "car_asto_vantage",
-   "name": "Vantage",
+   "name": "Vantaggio",
    "maker": "Aston Martini",
    "category": "car",
    "price": "190000.00",
@@ -498,7 +498,7 @@
   },
   {
    "id": "car_asto_db5_64",
-   "name": "DB5 '64",
+   "name": "DM5 '64",
    "maker": "Aston Martini",
    "category": "car",
    "price": "1100000.00",
@@ -511,7 +511,7 @@
   },
   {
    "id": "car_mcla_artura",
-   "name": "Artura",
+   "name": "Arturo",
    "maker": "McLaron",
    "category": "car",
    "price": "240000.00",
@@ -524,7 +524,7 @@
   },
   {
    "id": "car_mcla_750s",
-   "name": "750S",
+   "name": "705S",
    "maker": "McLaron",
    "category": "car",
    "price": "330000.00",
@@ -537,7 +537,7 @@
   },
   {
    "id": "car_mcla_elva",
-   "name": "Elva",
+   "name": "Elvah",
    "maker": "McLaron",
    "category": "car",
    "price": "1700000.00",
@@ -550,7 +550,7 @@
   },
   {
    "id": "car_mcla_f1_94",
-   "name": "F1 '94",
+   "name": "F-Uno '94",
    "maker": "McLaron",
    "category": "car",
    "price": "18000000.00",
@@ -563,7 +563,7 @@
   },
   {
    "id": "car_merc_g_63",
-   "name": "G 63",
+   "name": "G 36",
    "maker": "Mercedeez",
    "category": "car",
    "price": "180000.00",
@@ -576,7 +576,7 @@
   },
   {
    "id": "car_merc_sl_63",
-   "name": "SL 63",
+   "name": "SL 36",
    "maker": "Mercedeez",
    "category": "car",
    "price": "190000.00",
@@ -589,7 +589,7 @@
   },
   {
    "id": "car_merc_amg_one",
-   "name": "AMG One",
+   "name": "AMZ One",
    "maker": "Mercedeez",
    "category": "car",
    "price": "2700000.00",
@@ -602,7 +602,7 @@
   },
   {
    "id": "car_merc_300_sl_gullwing",
-   "name": "300 SL Gullwing",
+   "name": "330 SL Gullwing",
    "maker": "Mercedeez",
    "category": "car",
    "price": "1500000.00",
@@ -615,7 +615,7 @@
   },
   {
    "id": "car_bmv_m5_touring",
-   "name": "M5 Touring",
+   "name": "MV5 Touring",
    "maker": "BMV",
    "category": "car",
    "price": "120000.00",
@@ -628,7 +628,7 @@
   },
   {
    "id": "car_bmv_i7_executive",
-   "name": "i7 Executive",
+   "name": "iSeven Executive",
    "maker": "BMV",
    "category": "car",
    "price": "135000.00",
@@ -641,7 +641,7 @@
   },
   {
    "id": "car_bmv_507_roadster",
-   "name": "507 Roadster",
+   "name": "570 Roadster",
    "maker": "BMV",
    "category": "car",
    "price": "2300000.00",
@@ -654,7 +654,7 @@
   },
   {
    "id": "car_mase_mc20",
-   "name": "MC20",
+   "name": "MC21",
    "maker": "Maserotti",
    "category": "car",
    "price": "220000.00",
@@ -667,7 +667,7 @@
   },
   {
    "id": "car_mase_granturismo",
-   "name": "GranTurismo",
+   "name": "GrandeTurismo",
    "maker": "Maserotti",
    "category": "car",
    "price": "175000.00",
@@ -680,7 +680,7 @@
   },
   {
    "id": "car_mase_a6gcs_54",
-   "name": "A6GCS '54",
+   "name": "A6GCX '54",
    "maker": "Maserotti",
    "category": "car",
    "price": "1800000.00",
@@ -693,7 +693,7 @@
   },
   {
    "id": "car_king_jesko_absolut",
-   "name": "Jesko Absolut",
+   "name": "Jesper Absolut",
    "maker": "Kingsegg",
    "category": "car",
    "price": "3400000.00",
@@ -706,7 +706,7 @@
   },
   {
    "id": "car_king_gemera",
-   "name": "Gemera",
+   "name": "Gemerra",
    "maker": "Kingsegg",
    "category": "car",
    "price": "1900000.00",
@@ -719,7 +719,7 @@
   },
   {
    "id": "car_paga_huayra_r",
-   "name": "Huayra R",
+   "name": "Huayro R",
    "maker": "Pagano",
    "category": "car",
    "price": "3100000.00",
@@ -732,7 +732,7 @@
   },
   {
    "id": "car_paga_zonda_cinque",
-   "name": "Zonda Cinque",
+   "name": "Zondo Cinque",
    "maker": "Pagano",
    "category": "car",
    "price": "6000000.00",
@@ -745,7 +745,7 @@
   },
   {
    "id": "car_loto_emira",
-   "name": "Emira",
+   "name": "Emiro",
    "maker": "Lotos",
    "category": "car",
    "price": "100000.00",
@@ -758,7 +758,7 @@
   },
   {
    "id": "car_loto_evija",
-   "name": "Evija",
+   "name": "Evyja",
    "maker": "Lotos",
    "category": "car",
    "price": "2200000.00",
@@ -771,7 +771,7 @@
   },
   {
    "id": "car_loto_elan_66",
-   "name": "Elan '66",
+   "name": "Elann '66",
    "maker": "Lotos",
    "category": "car",
    "price": "80000.00",
@@ -784,7 +784,7 @@
   },
   {
    "id": "car_tesl_model_s_plaid",
-   "name": "Model S Plaid",
+   "name": "Model Z Plaid",
    "maker": "Tesler",
    "category": "car",
    "price": "95000.00",
@@ -797,7 +797,7 @@
   },
   {
    "id": "car_tesl_roadster_next",
-   "name": "Roadster Next",
+   "name": "Roadstar Next",
    "maker": "Tesler",
    "category": "car",
    "price": "250000.00",
@@ -823,7 +823,7 @@
   },
   {
    "id": "car_jagw_f_type_r",
-   "name": "F-Type R",
+   "name": "Eff-Type R",
    "maker": "Jagwar",
    "category": "car",
    "price": "110000.00",
@@ -836,7 +836,7 @@
   },
   {
    "id": "car_jagw_e_type_61",
-   "name": "E-Type '61",
+   "name": "Ee-Type '61",
    "maker": "Jagwar",
    "category": "car",
    "price": "450000.00",
@@ -849,7 +849,7 @@
   },
   {
    "id": "car_jagw_xj220",
-   "name": "XJ220",
+   "name": "XJ202",
    "maker": "Jagwar",
    "category": "car",
    "price": "600000.00",
@@ -862,7 +862,7 @@
   },
   {
    "id": "car_alpi_giulia_gtam",
-   "name": "Giulia GTAm",
+   "name": "Giula GTAm",
    "maker": "Alpina Romeo",
    "category": "car",
    "price": "180000.00",
@@ -875,7 +875,7 @@
   },
   {
    "id": "car_alpi_33_stradale",
-   "name": "33 Stradale",
+   "name": "34 Stradale",
    "maker": "Alpina Romeo",
    "category": "car",
    "price": "2000000.00",
@@ -888,7 +888,7 @@
   },
   {
    "id": "car_fjor_gt_05",
-   "name": "GT '05",
+   "name": "GTX '05",
    "maker": "Fjord",
    "category": "car",
    "price": "400000.00",
@@ -901,7 +901,7 @@
   },
   {
    "id": "car_fjor_mustang_dark_horse",
-   "name": "Mustang Dark Horse",
+   "name": "Mustank Dark Horse",
    "maker": "Fjord",
    "category": "car",
    "price": "70000.00",
@@ -914,7 +914,7 @@
   },
   {
    "id": "car_fjor_gt40_66",
-   "name": "GT40 '66",
+   "name": "GT41 '66",
    "maker": "Fjord",
    "category": "car",
    "price": "9000000.00",
@@ -927,7 +927,7 @@
   },
   {
    "id": "car_shev_corvette_z06",
-   "name": "Corvette Z06",
+   "name": "Corvetta Z60",
    "maker": "Shevvy",
    "category": "car",
    "price": "120000.00",
@@ -940,7 +940,7 @@
   },
   {
    "id": "car_shev_bel_air_57",
-   "name": "Bel Air '57",
+   "name": "Belle Air '57",
    "maker": "Shevvy",
    "category": "car",
    "price": "120000.00",
@@ -1057,7 +1057,7 @@
   },
   {
    "id": "watch_audema_1",
-   "name": "Code 11.95",
+   "name": "Kode 11.95",
    "maker": "Audemars Pigeot",
    "category": "watch",
    "price": "600000.00",
@@ -1096,7 +1096,7 @@
   },
   {
    "id": "watch_cartye_0",
-   "name": "Tank Francaise",
+   "name": "Tankette Francaise",
    "maker": "Cartyer",
    "category": "watch",
    "price": "8000.00",
@@ -1122,7 +1122,7 @@
   },
   {
    "id": "watch_cartye_2",
-   "name": "Crash Londres",
+   "name": "Krash Londres",
    "maker": "Cartyer",
    "category": "watch",
    "price": "250000.00",
@@ -1161,7 +1161,7 @@
   },
   {
    "id": "watch_richar_0",
-   "name": "RM 27-04",
+   "name": "RX 72-04",
    "maker": "Richard Mill",
    "category": "watch",
    "price": "180000.00",
@@ -1174,7 +1174,7 @@
   },
   {
    "id": "watch_richar_1",
-   "name": "RM 11",
+   "name": "RX 111",
    "maker": "Richard Mill",
    "category": "watch",
    "price": "1400000.00",
@@ -1291,7 +1291,7 @@
   },
   {
    "id": "watch_taghoy_1",
-   "name": "Carrera Glassbox",
+   "name": "Carrero Glassbox",
    "maker": "Tag Hoyer",
    "category": "watch",
    "price": "15000.00",
@@ -1304,7 +1304,7 @@
   },
   {
    "id": "watch_bregue_0",
-   "name": "Classique Tourbillon",
+   "name": "Classico Tourbillon",
    "maker": "Breguette",
    "category": "watch",
    "price": "60000.00",
@@ -1448,7 +1448,7 @@
   {
    "id": "wine_10",
    "name": "Único, case of 12",
-   "maker": "Vega Sicilia",
+   "maker": "Vega Sicillia",
    "category": "wine",
    "price": "22000.00",
    "rarity": "rare",
@@ -1487,7 +1487,7 @@
   {
    "id": "wine_13",
    "name": "Toscana, case of 12",
-   "maker": "Masseto",
+   "maker": "Massetto",
    "category": "wine",
    "price": "40300.00",
    "rarity": "rare",
@@ -1772,7 +1772,7 @@
   },
   {
    "id": "jet_0",
-   "name": "G700",
+   "name": "GS-770",
    "maker": "Gulfstreem",
    "category": "jet",
    "price": "75000000.00",
@@ -1785,7 +1785,7 @@
   },
   {
    "id": "jet_1",
-   "name": "G280",
+   "name": "GS-282",
    "maker": "Gulfstreem",
    "category": "jet",
    "price": "25000000.00",
@@ -1798,7 +1798,7 @@
   },
   {
    "id": "jet_2",
-   "name": "Global 8000",
+   "name": "Globale 8800",
    "maker": "Bombardeer",
    "category": "jet",
    "price": "78000000.00",
@@ -1811,7 +1811,7 @@
   },
   {
    "id": "jet_3",
-   "name": "Challenger 3500",
+   "name": "Challenjer 3550",
    "maker": "Bombardeer",
    "category": "jet",
    "price": "27000000.00",
@@ -1824,7 +1824,7 @@
   },
   {
    "id": "jet_4",
-   "name": "Falcon 10X",
+   "name": "Faulcon 11X",
    "maker": "Dassoult",
    "category": "jet",
    "price": "75000000.00",
@@ -1837,7 +1837,7 @@
   },
   {
    "id": "jet_5",
-   "name": "Falcon 2000LXS",
+   "name": "Faulcon 2200LX",
    "maker": "Dassoult",
    "category": "jet",
    "price": "35000000.00",
@@ -1850,7 +1850,7 @@
   },
   {
    "id": "jet_6",
-   "name": "Praetor 600",
+   "name": "Praetorian 660",
    "maker": "Embrayer",
    "category": "jet",
    "price": "21000000.00",
@@ -1863,7 +1863,7 @@
   },
   {
    "id": "jet_7",
-   "name": "Phenom 300E",
+   "name": "Phenomen 330",
    "maker": "Embrayer",
    "category": "jet",
    "price": "11000000.00",
@@ -1876,7 +1876,7 @@
   },
   {
    "id": "jet_8",
-   "name": "Citation Longitude",
+   "name": "Citatio Latitude",
    "maker": "Cessno",
    "category": "jet",
    "price": "30000000.00",
@@ -1889,7 +1889,7 @@
   },
   {
    "id": "jet_9",
-   "name": "Citation CJ4 Gen2",
+   "name": "Citatio CJ5",
    "maker": "Cessno",
    "category": "jet",
    "price": "11000000.00",
@@ -1902,7 +1902,7 @@
   },
   {
    "id": "jet_10",
-   "name": "PC-24",
+   "name": "PX-42",
    "maker": "Pilatis",
    "category": "jet",
    "price": "11000000.00",
@@ -1915,7 +1915,7 @@
   },
   {
    "id": "jet_11",
-   "name": "Elite II",
+   "name": "Elitto II",
    "maker": "Hondajet-ish",
    "category": "jet",
    "price": "7000000.00",
@@ -1928,7 +1928,7 @@
   },
   {
    "id": "jet_12",
-   "name": "BBJ 787",
+   "name": "BBJ Dreamline 788",
    "maker": "Boing",
    "category": "jet",
    "price": "250000000.00",
@@ -1941,7 +1941,7 @@
   },
   {
    "id": "jet_13",
-   "name": "ACJ TwoTwenty",
+   "name": "ACJ TwoTwentyTwo",
    "maker": "Airbuzz",
    "category": "jet",
    "price": "80000000.00",
@@ -1954,7 +1954,7 @@
   },
   {
    "id": "jet_14",
-   "name": "G800",
+   "name": "GS-880",
    "maker": "Gulfstreem",
    "category": "jet",
    "price": "72000000.00",
@@ -1967,7 +1967,7 @@
   },
   {
    "id": "jet_15",
-   "name": "Global 6500",
+   "name": "Globale 6600",
    "maker": "Bombardeer",
    "category": "jet",
    "price": "56000000.00",
@@ -1980,7 +1980,7 @@
   },
   {
    "id": "heli_0",
-   "name": "ACH160",
+   "name": "AZ-616",
    "maker": "Airbuzz",
    "category": "helicopter",
    "price": "20000000.00",
@@ -1993,7 +1993,7 @@
   },
   {
    "id": "heli_1",
-   "name": "H145",
+   "name": "AZ-541",
    "maker": "Airbuzz",
    "category": "helicopter",
    "price": "11000000.00",
@@ -2006,7 +2006,7 @@
   },
   {
    "id": "heli_2",
-   "name": "525 Relentless",
+   "name": "552 Restless",
    "maker": "Belle",
    "category": "helicopter",
    "price": "15000000.00",
@@ -2019,7 +2019,7 @@
   },
   {
    "id": "heli_3",
-   "name": "505",
+   "name": "550",
    "maker": "Belle",
    "category": "helicopter",
    "price": "1500000.00",
@@ -2032,7 +2032,7 @@
   },
   {
    "id": "heli_4",
-   "name": "AW169",
+   "name": "LV-196",
    "maker": "Leonardi",
    "category": "helicopter",
    "price": "12000000.00",
@@ -2045,7 +2045,7 @@
   },
   {
    "id": "heli_5",
-   "name": "AW139 VIP",
+   "name": "LV-193 VIP",
    "maker": "Leonardi",
    "category": "helicopter",
    "price": "16000000.00",
@@ -2058,7 +2058,7 @@
   },
   {
    "id": "heli_6",
-   "name": "S-76D",
+   "name": "SK-67",
    "maker": "Sikorski",
    "category": "helicopter",
    "price": "13000000.00",
@@ -2071,7 +2071,7 @@
   },
   {
    "id": "heli_7",
-   "name": "R66",
+   "name": "RS-88",
    "maker": "Robinsun",
    "category": "helicopter",
    "price": "1300000.00",
@@ -2162,7 +2162,7 @@
   },
   {
    "id": "yacht_6",
-   "name": "Galactica 50m",
+   "name": "Galactico 50m",
    "maker": "Heessen",
    "category": "yacht",
    "price": "45000000.00",

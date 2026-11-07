@@ -256,6 +256,25 @@ object ContentValidator {
      * Exact names of the real people the parody rivals are based on: a rival may pun on them but never use them
      * (GDD §1.1). Lower case, compared after trimming.
      */
+    /** Real product model names (and makers) that luxury items must never use exactly: owner rule, GDD §1.1. */
+    val REAL_MODEL_BLOCKLIST = setOf(
+        "300 sl gullwing", "33 stradale", "356 speedster", "505", "507 roadster", "525 relentless",
+        "750s", "911 carrera s", "918 spyder", "a6gcs '54", "ach160", "acj twotwenty",
+        "amg one", "artura", "aw139 vip", "aw169", "bbj 787", "bel air '57",
+        "bentayga", "blower '29", "carrera glassbox", "challenger 3500", "chiron sport", "citation cj4 gen2",
+        "citation longitude", "classique tourbillon", "code 11.95", "continental gt", "corvette z06", "countach '74",
+        "crash londres", "cullinan", "db12", "db5 '64", "dino 246 gts", "e-type '61",
+        "elan '66", "elite ii", "elva", "emira", "evija", "f-type r",
+        "f1 '94", "falcon 10x", "falcon 2000lxs", "g 63", "g280", "g700",
+        "g800", "galactica 50m", "gemera", "ghost", "giulia gtam", "global 6500",
+        "global 8000", "granturismo", "gt '05", "gt40 '66", "h145", "huayra r",
+        "i7 executive", "jesko absolut", "m5 touring", "masseto", "mc20", "model s plaid",
+        "mustang dark horse", "pc-24", "phantom drophead", "phenom 300e", "praetor 600", "r66",
+        "rm 11", "rm 27-04", "roadster next", "roma gt", "s-76d", "silver ghost '09",
+        "sl 63", "tank francaise", "taycan turbo", "type 35 '27", "vantage", "vega sicilia",
+        "veyron grand", "xj220", "zonda cinque",
+    )
+
     val REAL_PEOPLE_BLOCKLIST = setOf(
         "elon musk", "jeff bezos", "larry ellison", "mark zuckerberg", "bernard arnault", "larry page", "sergey brin",
         "steve ballmer", "warren buffett", "jensen huang", "mukesh ambani", "bill gates", "michael dell", "rob walton",
@@ -338,6 +357,9 @@ object ContentValidator {
         if (l.items.isEmpty()) return
         check(l.items.map { it.id }.toSet().size == l.items.size, "luxury", "duplicate item ids")
         check(l.items.size >= 246, "luxury", "at least 246 luxury items")
+        l.items.forEach { i ->
+            check(i.name.trim().lowercase() !in REAL_MODEL_BLOCKLIST && i.maker.trim().lowercase() !in REAL_MODEL_BLOCKLIST, "luxury/${i.id}", "uses a real model or maker name exactly")
+        }
         check(l.sets.size >= 25, "luxury", "at least 25 collection sets")
         l.categories.forEach { c ->
             check(c.icon in ICONS, "luxury.${c.id}", "unknown icon '${c.icon}'")

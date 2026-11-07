@@ -22,6 +22,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import com.arnavgames.tycoon.designsystem.components.HairlineDivider
+import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -88,6 +94,7 @@ fun RecoveryScreen(errors: List<String>, onStartOver: (() -> Unit)?, title: Stri
 
 @Composable
 fun OfflineEarningsDialog(report: GameSession.OfflineReport, onDismiss: () -> Unit) {
+    if (report.stories.isNotEmpty()) return DailyLedgerDialog(report, onDismiss)
     val c = Aurum.colors
     AurumDialog(title = "While you were away", onDismiss = onDismiss) {
         CrownMark(size = 64.dp)
@@ -105,6 +112,43 @@ fun OfflineEarningsDialog(report: GameSession.OfflineReport, onDismiss: () -> Un
             Text(note, style = Aurum.type.bodySmall, color = c.textTertiary)
         }
         GoldButton("Collect", onClick = onDismiss, modifier = Modifier.fillMaxWidth(), leadingIcon = AbtIcons.Cash)
+    }
+}
+
+/**
+ * The Daily Ledger (docs/PLAN_2.0.md D1): a newspaper front page for absences of 30 minutes or more. Masthead in
+ * the system serif (no bundled font), the earnings as the lead, then up to five ranked stories.
+ */
+@Composable
+private fun DailyLedgerDialog(report: GameSession.OfflineReport, onDismiss: () -> Unit) {
+    val c = Aurum.colors
+    val masthead = Aurum.type.headline.copy(fontFamily = androidx.compose.ui.text.font.FontFamily.Serif, fontWeight = androidx.compose.ui.text.font.FontWeight.Bold, letterSpacing = androidx.compose.ui.unit.TextUnit(0.5f, androidx.compose.ui.unit.TextUnitType.Sp))
+    AurumDialog(title = "The Daily Ledger", onDismiss = onDismiss, titleStyle = masthead) {
+        Text("DAY ${report.dayNumber} · WHILE YOU WERE AWAY · ${durationText(report.creditedMs).uppercase()}", style = Aurum.type.overline, color = c.goldText,
+            textAlign = androidx.compose.ui.text.style.TextAlign.Center)
+        HairlineDivider()
+        Text("Your empire earned", style = Aurum.type.bodySmall, color = c.textSecondary)
+        RollingMoney(value = report.earned, rate = Rate.ZERO, color = c.goldText, format = { "+" + com.arnavgames.tycoon.core.money.MoneyFormat.compact(it) })
+        if (report.rawMs > report.capMs) Text("Offline earnings stop after ${durationText(report.capMs)}. A bigger HQ keeps them going longer.", style = Aurum.type.label, color = c.textTertiary,
+            textAlign = androidx.compose.ui.text.style.TextAlign.Center)
+        HairlineDivider()
+        Column(
+            Modifier.fillMaxWidth().heightIn(max = 360.dp).verticalScroll(rememberScrollState()),
+            verticalArrangement = Arrangement.spacedBy(Space.md),
+        ) {
+            report.stories.forEach { st ->
+                Row(verticalAlignment = Alignment.Top, modifier = Modifier.semantics(mergeDescendants = true) {}) {
+                    val tint = when (st.tone) { com.arnavgames.tycoon.ui.ledger.Tone.Good -> c.gain; com.arnavgames.tycoon.ui.ledger.Tone.Bad -> c.loss; else -> c.goldText }
+                    AbtIcon(AbtIcons.named(st.icon), null, tint = tint, size = 20.dp)
+                    Spacer(Modifier.width(Space.md))
+                    Column(Modifier.weight(1f)) {
+                        Text(st.headline, style = Aurum.type.titleSmall, color = c.textPrimary)
+                        Text(st.detail, style = Aurum.type.bodySmall, color = c.textSecondary)
+                    }
+                }
+            }
+        }
+        GoldButton("Back to work", onClick = onDismiss, modifier = Modifier.fillMaxWidth().testTag("ledger-close"), leadingIcon = AbtIcons.Cash)
     }
 }
 

@@ -35,6 +35,51 @@ SHOWROOMS = [
     ("marina", "Marina", "Yacht", 3), ("gallery", "Gallery", "Frame", 10), ("residences", "Residences", "Mansion", 3),
 ]
 
+# Display names for models (owner rule, docs/GDD.md §1.1: brands AND models are parodies, never the exact real name).
+# Item ids are built from the original strings above and must not change (saves, sets and auctions use them), so the
+# parody name is applied only to the displayed name, after the id is made.
+PARODY_MODELS = {
+    ("Ferraro", "Roma GT"): "Romana GT", ("Ferraro", "Dino 246 GTS"): "Dinamo 264 GTS",
+    ("Lamborgotti", "Countach '74"): "Countash '74",
+    ("Porch", "911 Carrera S"): "919 Carrero S", ("Porch", "Taycan Turbo"): "Tycan Turbo", ("Porch", "918 Spyder"): "919 Spyda",
+    ("Porch", "356 Speedster"): "365 Speedstar",
+    ("Bugotti", "Chiron Sport"): "Chirone Sport", ("Bugotti", "Veyron Grand"): "Vayron Grand", ("Bugotti", "Type 35 '27"): "Type 53 '27",
+    ("Rolls-Royts", "Ghost"): "Ghostly", ("Rolls-Royts", "Cullinan"): "Cullinon", ("Rolls-Royts", "Phantom Drophead"): "Phantasm Drophead",
+    ("Rolls-Royts", "Silver Ghost '09"): "Silver Wraithe '09",
+    ("Bentlee", "Continental GT"): "Continentale GT", ("Bentlee", "Bentayga"): "Bentaygo", ("Bentlee", "Blower '29"): "Blowr '29",
+    ("Aston Martini", "DB12"): "DM12", ("Aston Martini", "Vantage"): "Vantaggio", ("Aston Martini", "DB5 '64"): "DM5 '64",
+    ("McLaron", "Artura"): "Arturo", ("McLaron", "750S"): "705S", ("McLaron", "Elva"): "Elvah", ("McLaron", "F1 '94"): "F-Uno '94",
+    ("Mercedeez", "G 63"): "G 36", ("Mercedeez", "SL 63"): "SL 36", ("Mercedeez", "AMG One"): "AMZ One", ("Mercedeez", "300 SL Gullwing"): "330 SL Gullwing",
+    ("BMV", "M5 Touring"): "MV5 Touring", ("BMV", "i7 Executive"): "iSeven Executive", ("BMV", "507 Roadster"): "570 Roadster",
+    ("Maserotti", "MC20"): "MC21", ("Maserotti", "GranTurismo"): "GrandeTurismo", ("Maserotti", "A6GCS '54"): "A6GCX '54",
+    ("Kingsegg", "Jesko Absolut"): "Jesper Absolut", ("Kingsegg", "Gemera"): "Gemerra",
+    ("Pagano", "Huayra R"): "Huayro R", ("Pagano", "Zonda Cinque"): "Zondo Cinque",
+    ("Lotos", "Emira"): "Emiro", ("Lotos", "Evija"): "Evyja", ("Lotos", "Elan '66"): "Elann '66",
+    ("Tesler", "Model S Plaid"): "Model Z Plaid", ("Tesler", "Roadster Next"): "Roadstar Next",
+    ("Jagwar", "F-Type R"): "Eff-Type R", ("Jagwar", "E-Type '61"): "Ee-Type '61", ("Jagwar", "XJ220"): "XJ202",
+    ("Alpina Romeo", "Giulia GTAm"): "Giula GTAm", ("Alpina Romeo", "33 Stradale"): "34 Stradale",
+    ("Fjord", "GT '05"): "GTX '05", ("Fjord", "Mustang Dark Horse"): "Mustank Dark Horse", ("Fjord", "GT40 '66"): "GT41 '66",
+    ("Shevvy", "Corvette Z06"): "Corvetta Z60", ("Shevvy", "Bel Air '57"): "Belle Air '57",
+    # Jets and helicopters (real type designations are swapped for invented ones).
+    ("Gulfstreem", "G700"): "GS-770", ("Gulfstreem", "G280"): "GS-282", ("Gulfstreem", "G800"): "GS-880",
+    ("Bombardeer", "Global 8000"): "Globale 8800", ("Bombardeer", "Challenger 3500"): "Challenjer 3550", ("Bombardeer", "Global 6500"): "Globale 6600",
+    ("Dassoult", "Falcon 10X"): "Faulcon 11X", ("Dassoult", "Falcon 2000LXS"): "Faulcon 2200LX",
+    ("Embrayer", "Praetor 600"): "Praetorian 660", ("Embrayer", "Phenom 300E"): "Phenomen 330",
+    ("Cessno", "Citation Longitude"): "Citatio Latitude", ("Cessno", "Citation CJ4 Gen2"): "Citatio CJ5",
+    ("Pilatis", "PC-24"): "PX-42", ("Hondajet-ish", "Elite II"): "Elitto II", ("Boing", "BBJ 787"): "BBJ Dreamline 788",
+    ("Airbuzz", "ACJ TwoTwenty"): "ACJ TwoTwentyTwo",
+    ("Airbuzz", "ACH160"): "AZ-616", ("Airbuzz", "H145"): "AZ-541", ("Belle", "525 Relentless"): "552 Restless", ("Belle", "505"): "550",
+    ("Leonardi", "AW169"): "LV-196", ("Leonardi", "AW139 VIP"): "LV-193 VIP", ("Sikorski", "S-76D"): "SK-67", ("Robinsun", "R66"): "RS-88",
+    # Watches, wine and yachts that kept a real model or vessel name.
+    ("Audemars Pigeot", "Code 11.95"): "Kode 11.95", ("Cartyer", "Tank Francaise"): "Tankette Francaise", ("Cartyer", "Crash Londres"): "Krash Londres",
+    ("Richard Mill", "RM 27-04"): "RX 72-04", ("Richard Mill", "RM 11"): "RX 111", ("Tag Hoyer", "Carrera Glassbox"): "Carrero Glassbox",
+    ("Breguette", "Classique Tourbillon"): "Classico Tourbillon",
+    ("Heessen", "Galactica 50m"): "Galactico 50m",
+}
+
+# Makers that kept a real name (displayed names only; ids are made before these apply).
+PARODY_MAKERS = {"Masseto": "Massetto", "Vega Sicilia": "Vega Sicillia"}
+
 # Parody car makers: (maker, [(model, price, classic)])
 CARS = [
     ("Ferraro", [("Roma GT", 240_000, False), ("SF-91 Spyder", 520_000, False), ("Testarossi '86", 180_000, True), ("Dino 246 GTS", 420_000, True)]),
@@ -134,6 +179,8 @@ def main(repo: Path) -> None:
     items = []
 
     def add(iid, name, maker, cat, price, rarity, image=None, description="", classic=False, location=""):
+        name = PARODY_MODELS.get((maker, name), name)
+        maker = PARODY_MAKERS.get(maker, maker)
         items.append({"id": iid, "name": name, "maker": maker, "category": cat, "price": f"{int(price)}.00", "rarity": rarity,
                       "classic": classic, "image": image, "description": description, "location": location})
 
