@@ -182,7 +182,8 @@ fun EmpireScreen(vm: GameViewModel, onOpenBusiness: (String) -> Unit, onOpenDesk
             item(key = "hq") { HqCard(e.hq, fmt, onUpgrade = { vm.dispatch(Command.UpgradeHq) }) }
         }
         EmpireHeader(e, fmt, Modifier.align(Alignment.TopCenter).onSizeChanged { headerPx = it.height })
-        MomentOverlay(vm, Modifier.align(Alignment.TopCenter))
+        // Celebrations appear just below the header so they never cover the numbers.
+        MomentOverlay(vm, Modifier.align(Alignment.TopCenter).padding(top = with(density) { headerPx.toDp() }))
     }
 }
 
@@ -245,12 +246,16 @@ private fun CurrencyPill(icon: androidx.compose.ui.graphics.vector.ImageVector, 
 
 // ------------------------------------------------------------------ onboarding
 
-private fun guideText(e: EmpireUi): String? = when (e.onboardingStep) {
-    1 -> "Tap the counter to serve your first customers."
-    2 -> "Nice! Buy an upgrade for your kiosk to earn more each second."
-    3 -> "Unmanaged businesses fill their till. Tap Collect to bank it."
-    4 -> "Keep growing. A manager will run the kiosk for you — check the Next Move card."
-    else -> null
+/** The one instruction a new player sees: a waiting reward comes first, then the current step. */
+private fun guideText(e: EmpireUi): String? = when {
+    e.onboardingStep !in 1..4 -> null
+    e.mission?.claimable == true -> "You've earned a reward. Tap Claim on the card below."
+    else -> when (e.onboardingStep) {
+        1 -> "Tap the gold counter to serve customers. Every customer pays cash."
+        2 -> "Nice! Buy a level for your kiosk: it earns more every second, even without you."
+        3 -> "Your kiosk fills its till while it works. Tap Collect to bank the cash."
+        else -> "Keep growing. A manager will run the kiosk for you — the card at the top shows how."
+    }
 }
 
 /** Advances the onboarding guide when the player has done what it asks. */
@@ -445,6 +450,10 @@ fun BusinessCard(b: BusinessUi, fmt: (Money) -> String, onOpen: () -> Unit, onBu
             b.nextTierLevel?.let { "Next tier at level $it" } ?: "Top tier reached",
             style = Aurum.type.label, color = c.textTertiary,
         )
+        b.bestValue?.let {
+            Spacer(Modifier.height(Space.sm))
+            AurumChip(it, icon = AbtIcons.StarFilled, tint = c.goldText, modifier = Modifier.testTag("best-value"))
+        }
         b.hint?.let {
             Spacer(Modifier.height(Space.sm))
             Row(verticalAlignment = Alignment.CenterVertically) {

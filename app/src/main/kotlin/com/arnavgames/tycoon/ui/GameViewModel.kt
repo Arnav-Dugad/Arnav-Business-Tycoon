@@ -54,6 +54,8 @@ data class BusinessUi(
     val tierProgress: Float, val netRate: Rate, val managerName: String?, val stored: Money, val storageCap: Money,
     val buyCount: Int, val buyCost: Money, val canAfford: Boolean, val efficiency: Double, val timer: TimerUi?, val mothballed: Boolean,
     val hint: String?,
+    /** Set on the business whose next purchase pays back fastest: "Best value · pays back in 4 min". */
+    val bestValue: String? = null,
 )
 
 data class OpenableUi(val id: String, val name: String, val tagline: String, val icon: String, val cost: Money, val canAfford: Boolean, val lockedReason: String?)
@@ -317,6 +319,7 @@ class GameViewModel @Inject constructor(
             }
         }
         val businesses = content.businesses.filter { it.id in s.businesses }.map { def -> businessUi(s, def, qty) }
+            .let { list -> bestValue(s)?.let { (id, text) -> list.map { if (it.id == id) it.copy(bestValue = text) else it } } ?: list }
         val openable = content.businesses.filter { it.id !in s.businesses }.map { def ->
             val locked = !eng.isUnlocked(s, def.id)
             OpenableUi(def.id, def.name, def.tagline, def.icon, def.unlockCost, s.cash >= def.unlockCost && !locked, if (locked) "Unlocks in chapter ${def.chapter}" else null)
@@ -368,6 +371,42 @@ class GameViewModel @Inject constructor(
             buyCount = count, buyCost = cost, canAfford = s.cash >= cost, efficiency = rate.efficiency,
             timer = timer, mothballed = b.mothballed, hint = hintFor(s, def),
         )
+    }
+
+    /**
+     * The Advisor (docs/PLAN_2.0.md A3), kept subtle: which business's next purchase pays back fastest, either one
+     * more level or buying up to the next tier (where output jumps). Returns (business id, chip text).
+     */
+    private fun bestValue(s: GameState): Pair<String, String>? {
+        val eco = session.engine.economy
+        val content = session.engine.content
+        fun rateAt(id: String, level: Int) = eco.businessRate(s.copy(businesses = s.businesses + (id to s.businesses.getValue(id).copy(level = level))), id).net.perSecond()
+        var best: Triple<String, Double, String>? = null
+        for ((id, b) in s.businesses) {
+            if (b.mothballed) continue
+            val def = content.business(id)
+            val now = rateAt(id, b.level)
+            val routes = buildList {
+                add(1 to "")
+                eco.nextTier(def, b.level)?.let { t -> if (t.level - b.level in 2..40) add((t.level - b.level) to " (to level ${t.level})") }
+            }
+            for ((n, label) in routes) {
+                val gain = rateAt(id, b.level + n) - now
+                if (!gain.isPositive) continue
+                val cost = eco.levelCost(def, b.level, n)
+                val seconds = cost.ratioTo(gain)
+                if (best == null || seconds < best.second) best = Triple(id, seconds, label)
+            }
+        }
+        val (id, seconds, label) = best ?: return null
+        return id to "Best value$label · pays back in ${paybackText(seconds)}"
+    }
+
+    private fun paybackText(sec: Double): String = when {
+        sec < 90 -> "${sec.toInt().coerceAtLeast(1)} s"
+        sec < 5_400 -> "${(sec / 60).toInt()} min"
+        sec < 172_800 -> "${(sec / 3600).toInt()} h"
+        else -> "${(sec / 86_400).toInt()} days"
     }
 
     /** A short, actionable hint when the player is leaving money on the table. */
