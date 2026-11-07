@@ -116,6 +116,10 @@ class WorldMapper(private val engine: GameEngine, private val portraitIds: Set<S
         val desk = engine.desk
         val cards = s.world.cards.sortedBy { it.id }.mapNotNull { cs ->
             val def = w.cardById[cs.card] ?: return@mapNotNull null
+            // An option that only costs money is really buying its way out of the others' income hit: say so.
+            fun hurtsIncome(o: com.arnavgames.tycoon.core.content.CardOptionDef) = o.outcomes.any { oc -> oc.effects.any { it.type == "income" && it.pct < 0 } }
+            fun touchesIncome(o: com.arnavgames.tycoon.core.content.CardOptionDef) = o.outcomes.any { oc -> oc.effects.any { it.type == "income" } }
+            val othersHurt = def.options.count(::hurtsIncome)
             val options = def.options.mapIndexed { i, o ->
                 val cost = desk.maxCost(s, o)
                 val ally = desk.optionAvailable(s, cs, o)
@@ -123,8 +127,9 @@ class WorldMapper(private val engine: GameEngine, private val portraitIds: Set<S
                 // Effects every outcome shares (usually the cost) are said once; each outcome lists only what differs.
                 val perOutcome = o.outcomes.map { describe(it.effects, s, cs) }
                 val common = perOutcome.firstOrNull().orEmpty().filter { phrase -> perOutcome.all { phrase in it } }
+                val avoids = if (othersHurt > 0 && !touchesIncome(o) && o.outcomes.size == 1) listOf("no income hit") else emptyList()
                 val detail = when {
-                    o.outcomes.size == 1 -> common.ifEmpty { listOf("Nothing changes.") }.joinToString(" · ")
+                    o.outcomes.size == 1 -> (common + avoids).ifEmpty { listOf("Nothing changes.") }.joinToString(" · ").replaceFirstChar { it.uppercase() }
                     common.isNotEmpty() -> common.joinToString(" · ")
                     else -> ""
                 }
