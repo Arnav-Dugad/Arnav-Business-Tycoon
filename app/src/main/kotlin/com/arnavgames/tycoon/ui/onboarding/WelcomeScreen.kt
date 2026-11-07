@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.width
@@ -48,11 +49,14 @@ fun WelcomeScreen(onBegin: () -> Unit) {
     Box(
         Modifier.fillMaxSize(),
     ) {
+        // Centred on tall screens; scrolls when the content doesn't fit (small phones, large fonts).
+        androidx.compose.foundation.layout.BoxWithConstraints(Modifier.fillMaxSize().safeDrawingPadding()) {
+        val minH = maxHeight
         Column(
-            Modifier.fillMaxSize().safeDrawingPadding().verticalScroll(rememberScrollState()).padding(horizontal = Space.gutter, vertical = Space.xxxl),
+            Modifier.fillMaxWidth().verticalScroll(rememberScrollState()).heightIn(min = minH).padding(horizontal = Space.gutter, vertical = Space.xxl),
             horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = androidx.compose.foundation.layout.Arrangement.Center,
         ) {
-            Spacer(Modifier.height(Space.xl))
             CrownMark(Modifier.alpha(reveal.value), size = 132.dp)
             Spacer(Modifier.height(Space.xxl))
             Text("ARNAV GAMES PRESENTS", style = Aurum.type.overline, color = c.goldText, modifier = Modifier.alpha(reveal.value))
@@ -78,6 +82,7 @@ fun WelcomeScreen(onBegin: () -> Unit) {
             GoldButton("Open your kiosk", onClick = onBegin, modifier = Modifier.fillMaxWidth().widthIn(max = 480.dp), leadingIcon = AbtIcons.Store)
             Spacer(Modifier.height(Space.md))
             Text("Free to play. Works fully offline.", style = Aurum.type.bodySmall, color = c.textTertiary)
+        }
         }
     }
 }
