@@ -69,7 +69,8 @@ class CollectionMapper(private val engine: GameEngine) {
             showrooms = c.showrooms.map { room ->
                 val ownedHere = s.luxury.owned.keys.mapNotNull { c.itemById[it] }.filter { c.categoryById.getValue(it.category).showroom == room.id }
                 ShowroomUi(room.id, room.name, room.icon, ownedHere.count { it.id in displayed }, ownedHere.size, lux.capacity(s, room.id), lux.upgradeCost(s, room.id),
-                    ownedHere.sortedByDescending { it.statusPoints }.take(4).map { it.image to iconOf(it.category) })
+                    // Only what's on display: stored pieces earn no Status, so they're called out separately.
+                    ownedHere.filter { it.id in displayed }.sortedByDescending { it.statusPoints }.take(4).map { it.image to iconOf(it.category) })
             },
             categories = c.categories.map { cat ->
                 CategoryUi(cat.id, cat.name, cat.icon, lux.categoryUnlocked(s, cat.id), cat.chapter,

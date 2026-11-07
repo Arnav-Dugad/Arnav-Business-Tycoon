@@ -152,15 +152,26 @@ fun CollectionScreen(vm: GameViewModel, onOpenCategory: (String) -> Unit, onOpen
                                 AbtIcon(AbtIcons.named(r.icon), null, tint = c.goldText, size = 16.dp)
                                 Spacer(Modifier.width(Space.xs))
                                 Text(r.name, style = Aurum.type.titleSmall, color = c.textPrimary, modifier = Modifier.weight(1f))
-                                Text("${r.displayed}/${r.capacity}", style = Aurum.type.label, color = c.textTertiary)
+                                Text("${r.displayed}/${r.capacity}", style = Aurum.type.label, color = c.textTertiary,
+                                    modifier = Modifier.semantics { contentDescription = "${r.displayed} of ${r.capacity} display spaces used" })
                             }
                             Spacer(Modifier.height(Space.sm))
+                            // One tile per display slot (up to four): pieces on show, then free slots.
+                            val slots = r.capacity.coerceIn(1, 4)
                             Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
                                 (0 until 4).forEach { i ->
                                     val p = r.previews.getOrNull(i)
-                                    if (p != null) ItemImage(p.first, p.second, "", Modifier.weight(1f).aspectRatio(1f).clip(AurumShapes.tiny), iconSize = 14.dp)
-                                    else Box(Modifier.weight(1f).aspectRatio(1f).clip(AurumShapes.tiny).background(c.separator))
+                                    when {
+                                        p != null -> ItemImage(p.first, p.second, "", Modifier.weight(1f).aspectRatio(1f).clip(AurumShapes.tiny), iconSize = 14.dp)
+                                        i < slots -> Box(Modifier.weight(1f).aspectRatio(1f).clip(AurumShapes.tiny).background(c.separator))
+                                        else -> Spacer(Modifier.weight(1f).aspectRatio(1f))
+                                    }
                                 }
+                            }
+                            val stored = r.owned - r.displayed
+                            if (stored > 0) {
+                                Spacer(Modifier.height(Space.xs))
+                                Text("$stored stored, earning no Status", style = Aurum.type.label, color = c.goldText)
                             }
                             Spacer(Modifier.height(Space.sm))
                             PillAction("Expand · ${MoneyFormat.compact(r.upgradeCost)}", enabled = col.cash >= r.upgradeCost, onClick = { vm.dispatch(Command.UpgradeShowroom(r.id)) }, style = PillStyle.Glass, modifier = Modifier.fillMaxWidth())
