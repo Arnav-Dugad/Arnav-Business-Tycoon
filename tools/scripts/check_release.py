@@ -37,11 +37,11 @@ def main(repo: Path, apk: Path | None) -> int:
         print(f"G12 {d.name}: {len(files)} images, {len(missing)} uncredited, {len(bad)} bad licenses, {len(orphans)} orphan credits")
         if missing or bad:
             failures.append(f"{d.name}: uncredited {missing[:5]} bad {bad[:5]}")
-    # G12: audio is original (synthesized by tools/audio/gen_sfx.py)
+    # G12: audio is original (synthesized by tools/audio/gen_sfx.py and gen_music.py)
     raw = sorted((repo / "app/src/main/res/raw").glob("*"))
-    gen = (repo / "tools/audio/gen_sfx.py").read_text(encoding="utf-8")
+    gen = (repo / "tools/audio/gen_sfx.py").read_text(encoding="utf-8") + (repo / "tools/audio/gen_music.py").read_text(encoding="utf-8")
     unknown = [p.name for p in raw if p.stem not in gen]
-    print(f"G12 audio: {len(raw)} files, {len(unknown)} not produced by gen_sfx.py")
+    print(f"G12 audio: {len(raw)} files, {len(unknown)} not produced by gen_sfx.py / gen_music.py")
     if unknown:
         failures.append(f"audio of unknown origin: {unknown}")
     # G11: nothing forbidden is tracked

@@ -11,6 +11,8 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollToNode
 import androidx.compose.ui.test.hasScrollAction
+import androidx.compose.ui.test.onNodeWithTag
+import androidx.compose.ui.test.performSemanticsAction
 import androidx.compose.ui.test.isEnabled
 import androidx.compose.ui.test.onFirst
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -41,15 +43,25 @@ class FirstSessionFlowTest {
         tapCounter(25)
         scrollEmpireTo("Collect")
         val collect = rule.onAllNodes(hasText("Collect") and isEnabled()).fetchSemanticsNodes()
-        if (collect.isNotEmpty()) rule.onNode(hasText("Collect") and isEnabled()).performClick()
+        if (collect.isNotEmpty()) rule.onNode(hasText("Collect") and isEnabled()).tap()
         // Back to the top first: on short screens the counter scrolls out of view while the test buys and collects.
-        rule.onAllNodes(hasScrollAction()).onFirst().performScrollToIndex(0)
-        rule.onAllNodes(hasScrollAction()).onFirst().performScrollToNode(hasContentDescription("Serve a customer", substring = true))
+        empireList().performScrollToIndex(0)
+        empireList().performScrollToNode(hasContentDescription("Serve a customer", substring = true))
     }
 
     private fun scrollEmpireTo(text: String) {
-        rule.onAllNodes(hasScrollAction()).onFirst().performScrollToNode(hasText(text, substring = true))
+        empireList().performScrollToNode(hasText(text, substring = true))
     }
+
+    /**
+     * Clicks through the node's semantics action. A button scrolled just into view can sit under the floating tab
+     * bar, where a touch at its centre would land on a tab instead.
+     */
+    private fun androidx.compose.ui.test.SemanticsNodeInteraction.tap() =
+        performSemanticsAction(androidx.compose.ui.semantics.SemanticsActions.OnClick)
+
+    /** The Empire tab's list (by tag: other scrollable containers can be on screen during transitions). */
+    private fun empireList() = rule.onNodeWithTag("empire-list")
 
     @Test
     fun firstSessionFromWelcomeToRushedExpansion() {
@@ -71,7 +83,7 @@ class FirstSessionFlowTest {
         while (rule.onAllNodesWithText("Lv 5", substring = true).fetchSemanticsNodes().isEmpty() && guard++ < 60) {
             scrollEmpireTo("Buy ×1")
             val buy = rule.onAllNodes(hasText("Buy ×1", substring = true) and isEnabled()).fetchSemanticsNodes()
-            if (buy.isNotEmpty()) rule.onNode(hasText("Buy ×1", substring = true) and isEnabled()).performClick() else tapCounter(5)
+            if (buy.isNotEmpty()) rule.onNode(hasText("Buy ×1", substring = true) and isEnabled()).tap() else tapCounter(5)
             rule.waitForIdle()
         }
         waitForText("Lv 5")
@@ -82,7 +94,7 @@ class FirstSessionFlowTest {
         for (attempt in 0 until 3) {
             repeat(10) { earnRound() }
             scrollEmpireTo("Retail Stores")
-            rule.onNodeWithText("Retail Stores").performClick()
+            rule.onNodeWithText("Retail Stores").tap()
             waitForText("Price level")
             rule.onAllNodes(hasScrollAction()).onFirst().performScrollToNode(hasText("Weekend Market Stall"))
             buildEnabled = rule.onAllNodes(hasText("Build ·", substring = true) and isEnabled()).fetchSemanticsNodes().isNotEmpty()

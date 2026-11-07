@@ -4521,6 +4521,7 @@
   "weekDays": 7,
   "legacyScale": 4.0,
   "legacyExponent": 0.42,
+  "legacyNormalizerLog10": 13.4,
   "legacyIncomeFactor": 0.02,
   "legacyIncomeExponent": 0.9,
   "heirlooms": [

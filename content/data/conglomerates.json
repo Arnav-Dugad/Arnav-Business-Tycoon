@@ -38,7 +38,7 @@
       "telecom"
     ],
     "requiredTier": 3,
-    "fee": "1147133573452148437.50",
+    "fee": "3448556078400000.00",
     "incomeMultiplier": "1.4",
     "upkeepMultiplier": "0.8",
     "synergyText": "Members earn ×1.4; energy at cost (−20% upkeep)."
@@ -53,7 +53,7 @@
       "sports"
     ],
     "requiredTier": 3,
-    "fee": "1744646773524036254882.75",
+    "fee": "160895832393830400.00",
     "incomeMultiplier": "1.45",
     "upkeepMultiplier": "0.9",
     "synergyText": "Members earn ×1.45."
@@ -67,7 +67,7 @@
       "construction"
     ],
     "requiredTier": 3,
-    "fee": "754258945312500.00",
+    "fee": "73914525000000.00",
     "incomeMultiplier": "1.4",
     "upkeepMultiplier": "0.85",
     "synergyText": "Members earn ×1.4 and pay 15% less upkeep."
@@ -81,7 +81,7 @@
       "media"
     ],
     "requiredTier": 3,
-    "fee": "8673977871093750.00",
+    "fee": "266092290000000.00",
     "incomeMultiplier": "1.35",
     "upkeepMultiplier": "0.9",
     "synergyText": "Members earn ×1.35."
@@ -95,7 +95,7 @@
       "tech"
     ],
     "requiredTier": 3,
-    "fee": "151708415089046630859.50",
+    "fee": "44693286776064000.00",
     "incomeMultiplier": "1.45",
     "upkeepMultiplier": "0.85",
     "synergyText": "Members earn ×1.45 and pay 15% less upkeep."
@@ -110,7 +110,7 @@
       "tech"
     ],
     "requiredTier": 3,
-    "fee": "20063437895526416931152.25",
+    "fee": "579224996617789440.00",
     "incomeMultiplier": "1.5",
     "upkeepMultiplier": "0.85",
     "synergyText": "Members earn ×1.5."

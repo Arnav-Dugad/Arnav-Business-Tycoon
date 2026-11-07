@@ -16,7 +16,10 @@ import java.time.temporal.TemporalAdjusters
 
 data class BoardEntry(val uid: String, val name: String, val lnw: Double, val fairLnw: Double, val boosted: Boolean, val generation: Int, val isMe: Boolean)
 data class FriendRequest(val id: String, val from: String, val to: String, val fromName: String)
-data class Friend(val uid: String, val name: String, val nwLog10: Double, val boosted: Boolean, val giftSentToday: Boolean)
+data class Friend(
+    val uid: String, val name: String, val nwLog10: Double, val boosted: Boolean, val giftSentToday: Boolean,
+    val avatarId: String? = null, val frame: String? = null, val title: String? = null, val generation: Int = 1, val showcase: List<String> = emptyList(),
+)
 data class Gift(val id: String, val from: String, val fromName: String, val amount: Long)
 data class SealedLot(val weekId: String, val itemId: String, val myBid: Money?, val closesInMs: Long)
 data class LotResult(val weekId: String, val itemId: String, val winnerName: String?, val winningBid: Money?, val iWon: Boolean, val bids: Int)
@@ -59,7 +62,7 @@ class SocialService(private val cloud: CloudService, private val session: GameSe
         val code = friendCode(uid)
         runCatching { db.document("friendCodes/$code").set(mapOf("uid" to uid)).await() } // create-only; fine if it exists
         db.document("profiles/$uid").set(mapOf(
-            "name" to displayName, "friendCode" to code, "avatarId" to "crown", "title" to (s.store.title ?: ""),
+            "name" to displayName, "friendCode" to code, "avatarId" to (s.store.avatar ?: "crown"), "frame" to (s.store.frame ?: ""), "title" to (s.store.title ?: ""),
             "gen" to s.dynasty.generation.toLong(), "nwLog10" to lnw, "fairNwLog10" to if (boosted) 0.0 else lnw, "boosted" to boosted,
             "showcase" to s.luxury.owned.keys.take(6).toList(), "updatedAt" to FieldValue.serverTimestamp(),
         )).await()
@@ -150,7 +153,12 @@ class SocialService(private val cloud: CloudService, private val session: GameSe
         val sentToday = prefs.getStringSet("gifts:$today", emptySet()) ?: emptySet()
         val out = ids.take(30).mapNotNull { id ->
             val p = db.document("profiles/$id").get().await()
-            if (!p.exists()) null else Friend(id, p.getString("name") ?: "?", p.getDouble("nwLog10") ?: 0.0, p.getBoolean("boosted") ?: false, id in sentToday)
+            @Suppress("UNCHECKED_CAST")
+            if (!p.exists()) null else Friend(
+                id, p.getString("name") ?: "?", p.getDouble("nwLog10") ?: 0.0, p.getBoolean("boosted") ?: false, id in sentToday,
+                avatarId = p.getString("avatarId"), frame = p.getString("frame")?.takeIf { it.isNotEmpty() }, title = p.getString("title")?.takeIf { it.isNotEmpty() },
+                generation = (p.getLong("gen") ?: 1L).toInt(), showcase = (p.get("showcase") as? List<String>).orEmpty(),
+            )
         }
         cloud.countReads(1L + out.size)
         out

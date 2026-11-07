@@ -85,9 +85,9 @@ fun DynastyScreen(
     val ladder = remember(s.meta, s.simTimeMs / 60_000) { m.ladder(s) }
     val season = remember(s.meta, s.simTimeMs / 60_000) { m.season(s) }
     var ipoConfirm by remember { mutableStateOf<Double?>(null) }
-    val update by vm.update.collectAsStateWithLifecycle()
-    val uriHandler = androidx.compose.ui.platform.LocalUriHandler.current
-    androidx.compose.runtime.LaunchedEffect(Unit) { vm.checkForUpdate() }
+    var avatarPicker by remember { mutableStateOf(false) }
+    val update by vm.updates.state.collectAsStateWithLifecycle()
+    val cloudConflict by vm.cloudConflict.collectAsStateWithLifecycle()
     Box(Modifier.fillMaxSize()) {
         LazyColumn(
             Modifier.fillMaxSize().glassSource(GlassLayer.Content),
@@ -96,7 +96,11 @@ fun DynastyScreen(
         ) {
             item {
                 Column(Modifier.fillMaxWidth().statusBarsPadding().padding(top = Space.xl), horizontalAlignment = Alignment.CenterHorizontally) {
-                    CrownMark(size = 84.dp)
+                    // Your avatar (the crest until you choose one); tap to change it.
+                    Box(Modifier.clickable(onClickLabel = "Change avatar") { avatarPicker = true }.testTag("my-avatar")) {
+                        if (s.store.avatar == null && s.store.frame == null) CrownMark(size = 84.dp)
+                        else com.arnavgames.tycoon.ui.common.AvatarBadge(s.store.avatar, s.store.frame, 84.dp)
+                    }
                     Spacer(Modifier.height(Space.md))
                     Text("Your Dynasty", style = Aurum.type.display, color = c.textPrimary, modifier = Modifier.semantics { heading() })
                     val title = s.store.title?.let { content.store.cosmeticById[it]?.name }
@@ -104,19 +108,22 @@ fun DynastyScreen(
                     if (s.store.boosted) { Spacer(Modifier.height(Space.xs)); AurumChip("Boosted (demo purchases)", icon = AbtIcons.Bolt, tint = c.gain) }
                 }
             }
-            update?.let { u ->
-                item(key = "update") {
-                    AurumCard(Modifier.fillMaxWidth(), highlighted = true, onClick = { runCatching { uriHandler.openUri(u.url) } }) {
+            if (cloudConflict) {
+                item(key = "cloud-conflict") {
+                    AurumCard(Modifier.fillMaxWidth(), highlighted = true, onClick = onOpenAccount) {
                         Row(verticalAlignment = Alignment.CenterVertically) {
-                            AbtIcon(AbtIcons.Download, null, tint = c.goldText, size = 24.dp)
+                            AbtIcon(AbtIcons.Cloud, null, tint = c.goldText, size = 24.dp)
                             Spacer(Modifier.width(Space.md))
                             Column(Modifier.weight(1f)) {
-                                Text("Update available: ${u.version}", style = Aurum.type.titleSmall, color = c.textPrimary)
-                                Text("Tap to open the download page. Installing over this version keeps your save.", style = Aurum.type.bodySmall, color = c.textSecondary)
+                                Text("Choose which save to keep", style = Aurum.type.titleSmall, color = c.textPrimary)
+                                Text("This device and your cloud save both changed. Nothing was overwritten. Tap to choose.", style = Aurum.type.bodySmall, color = c.textSecondary)
                             }
                         }
                     }
                 }
+            }
+            if (update !is com.arnavgames.tycoon.update.UpdateState.Idle) {
+                item(key = "update") { com.arnavgames.tycoon.ui.common.UpdateCard(vm.updates, settings.autoUpdate) }
             }
             item(key = "dynasty") {
                 AurumCard(Modifier.fillMaxWidth(), highlighted = dy.canPrestige) {
@@ -251,6 +258,16 @@ fun DynastyScreen(
                     HairlineDivider(Modifier.padding(start = 60.dp))
                     MenuRow("Credits & licenses", AbtIcons.Book, onOpenCredits)
                 }
+            }
+        }
+        if (avatarPicker) {
+            com.arnavgames.tycoon.designsystem.components.AurumDialog(title = "Choose your avatar", onDismiss = { avatarPicker = false }) {
+                com.arnavgames.tycoon.ui.common.AvatarPicker(
+                    current = s.store.avatar, owned = s.store.cosmetics,
+                    onPick = { id -> vm.dispatch(Command.EquipCosmetic(id, "avatar")); avatarPicker = false },
+                    onLocked = { avatarPicker = false; vm.say("That avatar is in the Store (Cosmetics), bought with Bullion you earn in play."); onOpenStore() },
+                )
+                Text("Frames from the Store ring your avatar. Friends see it on your profile.", style = Aurum.type.bodySmall, color = c.textTertiary)
             }
         }
         ipoConfirm?.let { f ->

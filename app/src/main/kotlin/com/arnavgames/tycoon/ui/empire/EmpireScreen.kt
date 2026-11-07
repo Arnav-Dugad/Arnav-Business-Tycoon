@@ -44,6 +44,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
@@ -110,6 +111,12 @@ fun EmpireScreen(vm: GameViewModel, onOpenBusiness: (String) -> Unit, onOpenDesk
     val fmt: (Money) -> String = { MoneyFormat.short(it, notation) }
 
     OnboardingDriver(e, vm)
+    val mentorLine by vm.mentor.line.collectAsStateWithLifecycle()
+    val guiding = guideText(e) != null
+    androidx.compose.runtime.LaunchedEffect(e.mission?.chapterNumber, guiding) { if (!guiding) vm.mentorTip(e.mission?.chapterNumber ?: 8) }
+    val listState = androidx.compose.foundation.lazy.rememberLazyListState()
+    // A new line is inserted above the first card; lazy lists keep the old first item in place, so reveal it.
+    androidx.compose.runtime.LaunchedEffect(mentorLine?.id) { if (mentorLine != null && listState.firstVisibleItemIndex <= 1) listState.animateScrollToItem(0) }
 
     var headerPx by remember { mutableIntStateOf(0) }
     val density = LocalDensity.current
@@ -117,15 +124,17 @@ fun EmpireScreen(vm: GameViewModel, onOpenBusiness: (String) -> Unit, onOpenDesk
     Box(Modifier.fillMaxSize()) {
         // Content scrolls beneath the frosted header and tab bar (it is the glass "content" layer).
         LazyColumn(
+            state = listState,
             contentPadding = PaddingValues(
                 start = Space.gutter, end = Space.gutter,
                 top = with(density) { headerPx.toDp() } + Space.md,
                 bottom = BottomBarReserve + navInset + Space.lg,
             ),
             verticalArrangement = Arrangement.spacedBy(Space.md),
-            modifier = Modifier.fillMaxSize().glassSource(GlassLayer.Content),
+            modifier = Modifier.fillMaxSize().glassSource(GlassLayer.Content).testTag("empire-list"),
         ) {
             guideText(e)?.let { g -> item(key = "guide") { GuideBanner(g) } }
+            if (!guiding) mentorLine?.let { l -> item(key = "mentor") { MentorCard(vm.mentor.name, l.text, onDismiss = { vm.mentor.dismiss() }) } }
             e.mission?.let { m -> item(key = "mission") { NextMoveCard(m, onClaim = { vm.dispatch(Command.ClaimMission(m.id)) }) } }
             item(key = "world") { com.arnavgames.tycoon.ui.world.WorldStrip(vm, onOpenDesk, onOpenFortune, onOpenFinance) }
             item(key = "hustle") {
@@ -259,6 +268,26 @@ private fun GuideBanner(text: String) {
         AbtIcon(AbtIcons.Sparkle, null, tint = c.goldText, size = 20.dp)
         Spacer(Modifier.width(Space.md))
         Text(text, style = Aurum.type.body, color = c.textPrimary)
+    }
+}
+
+/** The Chairman's line: one at a time, dismissible. */
+@Composable
+private fun MentorCard(name: String, text: String, onDismiss: () -> Unit) {
+    val c = Aurum.colors
+    Row(
+        Modifier.fillMaxWidth().glassCard(AurumShapes.medium).padding(Space.md).testTag("mentor-card"),
+        verticalAlignment = Alignment.Top,
+    ) {
+        AbtIcon(AbtIcons.Bust, null, tint = c.goldText, size = 22.dp)
+        Spacer(Modifier.width(Space.md))
+        Column(Modifier.weight(1f)) {
+            Text(name.uppercase(), style = Aurum.type.overline, color = c.goldText)
+            Text("“$text”", style = Aurum.type.body, color = c.textPrimary)
+        }
+        androidx.compose.material3.IconButton(onClick = onDismiss, modifier = Modifier.size(32.dp)) {
+            AbtIcon(AbtIcons.Close, "Dismiss", tint = c.textTertiary, size = 16.dp)
+        }
     }
 }
 

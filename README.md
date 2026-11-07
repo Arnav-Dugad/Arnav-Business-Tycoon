@@ -19,7 +19,8 @@ An original finance idle tycoon for Android by **Arnav Games**. Grow a corner ki
 ## Install it (friends)
 1. On your Android phone (Android 9 or newer), open the [latest release](https://github.com/Arnav-Dugad/Arnav-Business-Tycoon/releases/latest) and download the `.apk` file.
 2. Open the downloaded file. If Android asks, allow **Install unknown apps** for your browser or file manager (Settings → Apps → your browser → Install unknown apps).
-3. Tap **Install**. To update later, install the newer `.apk` over the old one: your save is kept. The game also tells you when an update is available.
+3. Tap **Install**.
+4. **Updates are automatic** (from 1.1.0): the game downloads new versions on Wi-Fi, checks them, and installs them when you leave the game. The first time, it asks you to allow **Install unknown apps** for the game itself (Dynasty tab → update card → *Allow updates*). You can turn this off in Settings → Updates. Your save is always kept. (Coming from 1.0.0? Install 1.1.0 once by hand; after that it updates itself.)
 
 ## What's in the game
 - **18 businesses**, each with its own mechanic (pricing, reputation, delivery routes, drilling, film slates, launches…), managers, expansions and a merger tree up to your own holding company and IPO.
@@ -29,7 +30,8 @@ An original finance idle tycoon for Android by **Arnav Games**. Grow a corner ki
 - **The Desk**: 163 decision cards with visible odds, world events and disasters, 220 rival billionaires on the Fortune List, takeovers and a nemesis in every chapter.
 - **Finance**: credit score, loans, a credit line and income tax with self-filing (and audits), plus rescue options so you can never get stuck.
 - **Dynasty**: 8 story chapters, then Pass the Crown. Your heir keeps Legacy (a permanent multiplier), a trait, heirlooms and a 60-node Family Charter. Daily and weekly missions, 150 achievements, seasons and a daily reward ladder.
-- **Optional cloud** (when the cloud project is set up): account, cloud save with conflict protection, friends, leaderboards with fair-play ranking, weekly leagues, gifts and sealed-bid auctions.
+- **Optional cloud**: account (email or guest), automatic cloud backup with conflict protection, friends with avatars and profile showcases, leaderboards with fair-play ranking, weekly leagues, gifts and sealed-bid auctions.
+- **Music and a mentor**: four original music tracks and The Chairman, a mentor with 200 lines of advice and reactions.
 - Works fully offline. Dark and light themes, haptics, sound effects, large-text support.
 
 ## Documentation

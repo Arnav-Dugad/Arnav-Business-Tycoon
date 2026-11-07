@@ -74,6 +74,7 @@ fun MainShell(
         NavItem("collection", "Collection", AbtIcons.Collection, badge = auctionLive),
         NavItem("dynasty", "Dynasty", AbtIcons.Crown, badge = claimable || dynastyBadge),
     )
+    androidx.compose.runtime.LaunchedEffect(tab) { vm.music.setScene(tab) }
     Box(Modifier.fillMaxSize()) {
         AnimatedContent(tab, transitionSpec = { fadeIn(tween(220)) togetherWith fadeOut(tween(160)) }, label = "tab") { t ->
             when (t) {

@@ -159,14 +159,14 @@
   {
    "id": "slot_1",
    "name": "Extra business slot",
-   "description": "One more business slot, permanently. Every slot can also be earned in play (up to 3 here).",
+   "description": "One more business slot, permanently. Every slot can also be earned in play (up to 2 here).",
    "section": "upgrades",
    "demoPrice": null,
    "bullionPrice": 800,
    "grants": {
     "slots": 1
    },
-   "limit": 3
+   "limit": 2
   },
   {
    "id": "offline_2h",
@@ -311,6 +311,198 @@
     "cosmetic": "frame_obsidian"
    },
    "limit": 1
+  },
+  {
+   "id": "title_visionary",
+   "name": "Title: The Visionary",
+   "description": "A title for your profile.",
+   "section": "cosmetics",
+   "demoPrice": null,
+   "bullionPrice": 250,
+   "grants": {
+    "cosmetic": "title_visionary"
+   },
+   "limit": 1
+  },
+  {
+   "id": "title_self_made",
+   "name": "Title: Self-Made",
+   "description": "A title for your profile.",
+   "section": "cosmetics",
+   "demoPrice": null,
+   "bullionPrice": 250,
+   "grants": {
+    "cosmetic": "title_self_made"
+   },
+   "limit": 1
+  },
+  {
+   "id": "title_closer",
+   "name": "Title: The Closer",
+   "description": "A title for your profile.",
+   "section": "cosmetics",
+   "demoPrice": null,
+   "bullionPrice": 250,
+   "grants": {
+    "cosmetic": "title_closer"
+   },
+   "limit": 1
+  },
+  {
+   "id": "title_market_maker",
+   "name": "Title: Market Maker",
+   "description": "A title for your profile.",
+   "section": "cosmetics",
+   "demoPrice": null,
+   "bullionPrice": 300,
+   "grants": {
+    "cosmetic": "title_market_maker"
+   },
+   "limit": 1
+  },
+  {
+   "id": "title_iron_will",
+   "name": "Title: Iron Will",
+   "description": "A title for your profile.",
+   "section": "cosmetics",
+   "demoPrice": null,
+   "bullionPrice": 300,
+   "grants": {
+    "cosmetic": "title_iron_will"
+   },
+   "limit": 1
+  },
+  {
+   "id": "title_silver_spoon",
+   "name": "Title: Silver Spoon",
+   "description": "A title for your profile (worn ironically).",
+   "section": "cosmetics",
+   "demoPrice": null,
+   "bullionPrice": 350,
+   "grants": {
+    "cosmetic": "title_silver_spoon"
+   },
+   "limit": 1
+  },
+  {
+   "id": "frame_ruby",
+   "name": "Ruby frame",
+   "description": "A ruby frame for your profile picture.",
+   "section": "cosmetics",
+   "demoPrice": null,
+   "bullionPrice": 350,
+   "grants": {
+    "cosmetic": "frame_ruby"
+   },
+   "limit": 1
+  },
+  {
+   "id": "frame_amethyst",
+   "name": "Amethyst frame",
+   "description": "An amethyst frame for your profile picture.",
+   "section": "cosmetics",
+   "demoPrice": null,
+   "bullionPrice": 350,
+   "grants": {
+    "cosmetic": "frame_amethyst"
+   },
+   "limit": 1
+  },
+  {
+   "id": "frame_rose_gold",
+   "name": "Rose gold frame",
+   "description": "A rose gold frame for your profile picture.",
+   "section": "cosmetics",
+   "demoPrice": null,
+   "bullionPrice": 400,
+   "grants": {
+    "cosmetic": "frame_rose_gold"
+   },
+   "limit": 1
+  },
+  {
+   "id": "frame_platinum",
+   "name": "Platinum frame",
+   "description": "A platinum frame for your profile picture.",
+   "section": "cosmetics",
+   "demoPrice": null,
+   "bullionPrice": 600,
+   "grants": {
+    "cosmetic": "frame_platinum"
+   },
+   "limit": 1
+  },
+  {
+   "id": "avatar_yacht",
+   "name": "Avatar: Superyacht",
+   "description": "A superyacht emblem for your profile picture.",
+   "section": "cosmetics",
+   "demoPrice": null,
+   "bullionPrice": 300,
+   "grants": {
+    "cosmetic": "avatar_yacht"
+   },
+   "limit": 1
+  },
+  {
+   "id": "avatar_heli",
+   "name": "Avatar: Helicopter",
+   "description": "A helicopter emblem for your profile picture.",
+   "section": "cosmetics",
+   "demoPrice": null,
+   "bullionPrice": 300,
+   "grants": {
+    "cosmetic": "avatar_heli"
+   },
+   "limit": 1
+  },
+  {
+   "id": "avatar_island",
+   "name": "Avatar: Private island",
+   "description": "A private island emblem for your profile picture.",
+   "section": "cosmetics",
+   "demoPrice": null,
+   "bullionPrice": 400,
+   "grants": {
+    "cosmetic": "avatar_island"
+   },
+   "limit": 1
+  },
+  {
+   "id": "avatar_mansion",
+   "name": "Avatar: Mansion",
+   "description": "A mansion emblem for your profile picture.",
+   "section": "cosmetics",
+   "demoPrice": null,
+   "bullionPrice": 400,
+   "grants": {
+    "cosmetic": "avatar_mansion"
+   },
+   "limit": 1
+  },
+  {
+   "id": "avatar_watch",
+   "name": "Avatar: Grand complication",
+   "description": "A watch emblem for your profile picture.",
+   "section": "cosmetics",
+   "demoPrice": null,
+   "bullionPrice": 250,
+   "grants": {
+    "cosmetic": "avatar_watch"
+   },
+   "limit": 1
+  },
+  {
+   "id": "avatar_wine",
+   "name": "Avatar: Grand cru",
+   "description": "A wine emblem for your profile picture.",
+   "section": "cosmetics",
+   "demoPrice": null,
+   "bullionPrice": 250,
+   "grants": {
+    "cosmetic": "avatar_wine"
+   },
+   "limit": 1
   }
  ],
  "cosmetics": [
@@ -358,11 +550,111 @@
    "id": "frame_obsidian",
    "kind": "frame",
    "name": "Obsidian"
+  },
+  {
+   "id": "title_visionary",
+   "kind": "title",
+   "name": "The Visionary"
+  },
+  {
+   "id": "title_self_made",
+   "kind": "title",
+   "name": "Self-Made"
+  },
+  {
+   "id": "title_closer",
+   "kind": "title",
+   "name": "The Closer"
+  },
+  {
+   "id": "title_market_maker",
+   "kind": "title",
+   "name": "Market Maker"
+  },
+  {
+   "id": "title_iron_will",
+   "kind": "title",
+   "name": "Iron Will"
+  },
+  {
+   "id": "title_silver_spoon",
+   "kind": "title",
+   "name": "Silver Spoon"
+  },
+  {
+   "id": "frame_ruby",
+   "kind": "frame",
+   "name": "Ruby"
+  },
+  {
+   "id": "frame_amethyst",
+   "kind": "frame",
+   "name": "Amethyst"
+  },
+  {
+   "id": "frame_rose_gold",
+   "kind": "frame",
+   "name": "Rose gold"
+  },
+  {
+   "id": "frame_platinum",
+   "kind": "frame",
+   "name": "Platinum"
+  },
+  {
+   "id": "avatar_yacht",
+   "kind": "avatar",
+   "name": "Superyacht"
+  },
+  {
+   "id": "avatar_heli",
+   "kind": "avatar",
+   "name": "Helicopter"
+  },
+  {
+   "id": "avatar_island",
+   "kind": "avatar",
+   "name": "Private island"
+  },
+  {
+   "id": "avatar_mansion",
+   "kind": "avatar",
+   "name": "Mansion"
+  },
+  {
+   "id": "avatar_watch",
+   "kind": "avatar",
+   "name": "Grand complication"
+  },
+  {
+   "id": "avatar_wine",
+   "kind": "avatar",
+   "name": "Grand cru"
   }
+ ],
+ "freeAvatars": [
+  "crown",
+  "store",
+  "chef",
+  "fleet",
+  "wheat",
+  "factory",
+  "hanger",
+  "pickaxe",
+  "flame",
+  "bed",
+  "bank",
+  "crane",
+  "film",
+  "chip",
+  "antenna",
+  "plane",
+  "flask",
+  "rocket"
  ],
  "config": {
   "maxPermanentPct": 0.15,
-  "maxSlots": 3,
+  "maxSlots": 2,
   "maxOfflineHours": 4,
   "vipIncomePct": 0.05,
   "vipOfflineHours": 1,

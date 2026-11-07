@@ -87,6 +87,7 @@ data class EmpireUi(
 class GameViewModel @Inject constructor(
     private val session: GameSession,
     private val settingsStore: SettingsStore,
+    private val services: com.arnavgames.tycoon.game.AppServices,
 ) : ViewModel() {
 
     val status = session.status
@@ -166,13 +167,34 @@ class GameViewModel @Inject constructor(
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), false)
 
     /** Accounts, cloud save and (Phase 13) social features. */
-    val cloud by lazy { com.arnavgames.tycoon.cloud.CloudService(session.appContext, session) }
+    val cloud get() = services.cloud
+    /** A background sync found a conflict (both this device and the cloud changed). */
+    val cloudConflict get() = services.cloudConflict
+    fun clearCloudConflict() = services.clearCloudConflict()
 
     val sounds by lazy { com.arnavgames.tycoon.audio.SoundPlayer(session.appContext) }
-    val updates by lazy { com.arnavgames.tycoon.update.UpdateChecker(session.appContext) }
-    val update = MutableStateFlow<com.arnavgames.tycoon.update.UpdateInfo?>(null)
+    /** Automatic updates from GitHub releases. */
+    val updates get() = services.updates
+    val music get() = services.music
 
-    fun checkForUpdate(force: Boolean = false) { viewModelScope.launch { update.value = updates.check(force) } }
+    /** The Chairman, the player's mentor (built on first use: content is loaded by then). */
+    val mentor by lazy { com.arnavgames.tycoon.ui.mentor.MentorDirector(session.engine.content.mentor, session.appContext) }
+    private var mentorListening = false
+
+    /** Called by the Empire tab: starts listening for story moments and offers a tip for the current chapter. */
+    fun mentorTip(chapter: Int) {
+        session.state.value?.let { mentor.setGeneration(it.dynasty.generation) }
+        if (!mentorListening) {
+            mentorListening = true
+            viewModelScope.launch { session.events.collect { mentor.onEvent(it) } }
+        }
+        mentor.offerTip(chapter)
+    }
+
+    fun checkForUpdate(force: Boolean = false) {
+        if (force) viewModelScope.launch { updates.check(force = true); if (updates.state.value is com.arnavgames.tycoon.update.UpdateState.Idle) say("You have the latest version.") }
+        else updates.onForeground()
+    }
 
     val social by lazy { com.arnavgames.tycoon.cloud.SocialService(cloud, session, session.appContext) }
 

@@ -99,12 +99,18 @@ class StoreEngine(private val content: ContentPack) {
     }
 
     fun equip(s: GameState, cosmeticId: String?, kind: String): Result {
-        if (cosmeticId != null) {
+        if (kind !in KINDS) return Result.Err(GameError.Invalid("Unknown kind"))
+        val free = kind == "avatar" && cosmeticId in c.freeAvatars
+        if (cosmeticId != null && !free) {
             val def = c.cosmeticById[cosmeticId] ?: return Result.Err(GameError.NotFound("cosmetic"))
             if (cosmeticId !in s.store.cosmetics) return Result.Err(GameError.Locked("Not owned"))
             if (def.kind != kind) return Result.Err(GameError.Invalid("Wrong kind"))
         }
-        return Result.Ok(s.copy(store = if (kind == "title") s.store.copy(title = cosmeticId) else s.store.copy(frame = cosmeticId)))
+        return Result.Ok(s.copy(store = when (kind) {
+            "title" -> s.store.copy(title = cosmeticId)
+            "frame" -> s.store.copy(frame = cosmeticId)
+            else -> s.store.copy(avatar = cosmeticId)
+        }))
     }
 
     /** Next VIP expiry after [now] (an engine boundary: the income bonus changes there). */
@@ -112,5 +118,6 @@ class StoreEngine(private val content: ContentPack) {
 
     companion object {
         const val BOOST = "store_boost"
+        val KINDS = setOf("title", "frame", "avatar")
     }
 }

@@ -10,6 +10,7 @@ plugins {
     alias(libs.plugins.room) apply false
     alias(libs.plugins.google.services) apply false
     alias(libs.plugins.roborazzi) apply false
+    alias(libs.plugins.baselineprofile) apply false
 }
 
 // Guard: :core must stay pure Kotlin/JVM (no Android dependencies). See docs/ARCHITECTURE.md §2.

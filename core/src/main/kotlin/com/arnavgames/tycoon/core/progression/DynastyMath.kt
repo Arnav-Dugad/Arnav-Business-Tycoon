@@ -97,7 +97,7 @@ class DynastyMath(private val content: ContentPack) {
 
     /** Legacy earned by passing the crown now (before the Legacy bonuses and challenge bonus). */
     fun baseLegacyGain(peakNetWorth: Money): Long {
-        val x = peakNetWorth.toDollarsDouble() / 10.0.pow(LEGACY_NORMALIZER_LOG10)
+        val x = peakNetWorth.toDollarsDouble() / 10.0.pow(cfg.legacyNormalizerLog10)
         if (x <= 0) return 0
         return floor(cfg.legacyScale * x.pow(cfg.legacyExponent)).toLong()
     }
@@ -122,8 +122,6 @@ class DynastyMath(private val content: ContentPack) {
 
     companion object {
         const val DAY = 86_400_000L
-        /** Peak net worth is measured in units of $10^18 (Chapter 8 needs about 4×10^21, giving ~130 Legacy). */
-        const val LEGACY_NORMALIZER_LOG10 = 18
         fun round6(x: Double): Double = floor(x * 1_000_000.0 + 0.5) / 1_000_000.0
     }
 }

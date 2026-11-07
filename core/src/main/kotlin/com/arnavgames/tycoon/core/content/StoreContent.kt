@@ -12,6 +12,8 @@ data class StoreContent(
     val products: List<ProductDef>,
     val cosmetics: List<CosmeticDef>,
     val config: StoreConfig = StoreConfig(),
+    /** Avatars every player can choose; premium ones are cosmetics of kind "avatar". */
+    val freeAvatars: List<String> = emptyList(),
 ) {
     @kotlinx.serialization.Transient val productById = products.associateBy { it.id }
     @kotlinx.serialization.Transient val cosmeticById = cosmetics.associateBy { it.id }

@@ -84,6 +84,8 @@ data class StoreState(
     val cosmetics: Set<String> = emptySet(),
     val title: String? = null,
     val frame: String? = null,
+    /** Profile avatar: a free avatar id from store.json or an owned avatar cosmetic (null = the default crown). */
+    val avatar: String? = null,
 )
 
 @Serializable

@@ -207,13 +207,18 @@ internal object DebugScenarios {
             content.businesses.forEach { b ->
                 // Slots are full late in the game: mothball the weakest business outside a conglomerate to make room.
                 if (b.id !in s.businesses && engine.economy.usedSlots(s) >= engine.economy.slots(s)) {
-                    s.businesses.values.filter { !it.mothballed && engine.economy.conglomerateOf(s, it.id) == null }
+                    s.businesses.values.filter { !it.mothballed && it.managerId != null && engine.economy.conglomerateOf(s, it.id) == null }
                         .minByOrNull { engine.economy.businessRate(s, it.id).net.perSecond() }?.let { w -> s = s.run(Command.SetMothballed(w.id, true)) }
                 }
                 s = s.run(Command.OpenBusiness(b.id))
             }
-            // Levels last, so opening the newest (most expensive) businesses is never starved of cash.
-            content.businesses.forEach { b -> s = s.run(Command.BuyLevels(b.id, -1)) }
+            // Chapters 5-8 ask for a manager on each new business (hired before levels spend the cash).
+            content.businesses.forEach { b -> if (s.businesses[b.id]?.managerId == null) b.managers.firstOrNull()?.let { m -> s = s.run(Command.HireManager(b.id, m.id)) } }
+            // Levels last, so opening the newest (most expensive) businesses is never starved of cash; and none while
+            // a manager is still missing (a first manager costs 13× its business's opening price).
+            val wanted = content.chapters.flatMap { it.missions }.mapNotNull { (it.goal as? com.arnavgames.tycoon.core.content.GoalDef.HireManager)?.businessId }.toSet()
+            val managerMissing = s.businesses.values.any { it.id in wanted && it.managerId == null && !it.mothballed }
+            if (!managerMissing) content.businesses.forEach { b -> s = s.run(Command.BuyLevels(b.id, -1)) }
             content.conglomerates.forEach { s = s.run(Command.FormConglomerate(it.id)) }
             s = engine.advance(s, 30 * 60_000L).state
         }

@@ -1,0 +1,1005 @@
+{
+ "name": "The Chairman",
+ "lines": [
+  {
+   "id": "chapter_1_1",
+   "trigger": "chapter:1",
+   "text": "Every empire I know started with something embarrassingly small. Yours is a folding table. Good."
+  },
+  {
+   "id": "chapter_1_2",
+   "trigger": "chapter:1",
+   "text": "Tap the counter until your wrist complains. Nobody respects money they didn't sweat for at least once."
+  },
+  {
+   "id": "chapter_2_1",
+   "trigger": "chapter:2",
+   "text": "Main Street. Now people know your name, and some of them will want to borrow it."
+  },
+  {
+   "id": "chapter_2_2",
+   "trigger": "chapter:2",
+   "text": "You'll touch markets and property this chapter. Respect both; trust neither."
+  },
+  {
+   "id": "chapter_3_1",
+   "trigger": "chapter:3",
+   "text": "Raw power: fields, factories, fabric. The world runs on things before it runs on ideas."
+  },
+  {
+   "id": "chapter_3_2",
+   "trigger": "chapter:3",
+   "text": "Your first billion is near. It changes how waiters look at you. It shouldn't change how you look at them."
+  },
+  {
+   "id": "chapter_4_1",
+   "trigger": "chapter:4",
+   "text": "Old money will smile at you this chapter. Count your fingers after every handshake."
+  },
+  {
+   "id": "chapter_4_2",
+   "trigger": "chapter:4",
+   "text": "Mergers are marriages with lawyers. Choose partners whose weaknesses cover each other."
+  },
+  {
+   "id": "chapter_5_1",
+   "trigger": "chapter:5",
+   "text": "Banks, builders, broadcasters. You are no longer in business. You are the business climate."
+  },
+  {
+   "id": "chapter_5_2",
+   "trigger": "chapter:5",
+   "text": "The technologists are coming. They talk fast. Make them show you the numbers slowly."
+  },
+  {
+   "id": "chapter_6_1",
+   "trigger": "chapter:6",
+   "text": "Silicon and signal. Your empire learns to think, and then to talk back."
+  },
+  {
+   "id": "chapter_6_2",
+   "trigger": "chapter:6",
+   "text": "Two conglomerates. Remember when one kiosk felt like a lot? Keep that memory somewhere safe."
+  },
+  {
+   "id": "chapter_7_1",
+   "trigger": "chapter:7",
+   "text": "Escape velocity. Airlines lose money beautifully; cures make it quietly. Own both."
+  },
+  {
+   "id": "chapter_7_2",
+   "trigger": "chapter:7",
+   "text": "From here the numbers stop meaning anything to normal people. Make sure they still mean something to you."
+  },
+  {
+   "id": "chapter_8_1",
+   "trigger": "chapter:8",
+   "text": "The Crown. A stadium, a rocket, and then the question every founder dreads: who comes next?"
+  },
+  {
+   "id": "chapter_8_2",
+   "trigger": "chapter:8",
+   "text": "Finish this, and you'll hand it all to an heir. The best thing you can leave them is a habit, not a fortune."
+  },
+  {
+   "id": "done_1",
+   "trigger": "done:1",
+   "text": "One chapter down. You can stop pretending the kiosk was a hobby."
+  },
+  {
+   "id": "done_2",
+   "trigger": "done:2",
+   "text": "Main Street is yours. The next street over is noticing."
+  },
+  {
+   "id": "done_3",
+   "trigger": "done:3",
+   "text": "A billionaire. Congratulations. Now act like the money is borrowed: it is, from your future self."
+  },
+  {
+   "id": "done_4",
+   "trigger": "done:4",
+   "text": "Old money has accepted you. That should worry you slightly."
+  },
+  {
+   "id": "done_5",
+   "trigger": "done:5",
+   "text": "You disrupted the disruptors. Take a day. Then don't."
+  },
+  {
+   "id": "done_6",
+   "trigger": "done:6",
+   "text": "You've built a group. Groups need leaders more than they need founders. Learn the difference."
+  },
+  {
+   "id": "done_7",
+   "trigger": "done:7",
+   "text": "Escape velocity reached. Mind the gravity on the way back down; there is always a way back down."
+  },
+  {
+   "id": "done_8",
+   "trigger": "done:8",
+   "text": "It's done. I've watched a lot of people build things. You built it properly."
+  },
+  {
+   "id": "m_c1_open_kiosk",
+   "trigger": "mission:c1_open_kiosk",
+   "text": "Doors open. The first customer is the hardest. The second is just proof the first wasn't a fluke."
+  },
+  {
+   "id": "m_c1_hustle",
+   "trigger": "mission:c1_hustle",
+   "text": "Sixty customers by hand. You'll never again underestimate how hard a dollar is to earn."
+  },
+  {
+   "id": "m_c1_retail_10",
+   "trigger": "mission:c1_retail_10",
+   "text": "A real shop. Notice how the sign changed? So did your rent."
+  },
+  {
+   "id": "m_c1_first_manager",
+   "trigger": "mission:c1_first_manager",
+   "text": "Handing over the keys is the first lesson in scale: you can't be everywhere, so hire people who don't need you to be."
+  },
+  {
+   "id": "m_c1_restaurant",
+   "trigger": "mission:c1_restaurant",
+   "text": "A restaurant. Margins thin as a napkin. Run it well and it teaches you everything."
+  },
+  {
+   "id": "m_c1_market_stall",
+   "trigger": "mission:c1_market_stall",
+   "text": "Weekend market. Some of my best ideas came from overhearing customers at a stall."
+  },
+  {
+   "id": "m_c1_income",
+   "trigger": "mission:c1_income",
+   "text": "Momentum is the only thing in business that's free. Don't waste it."
+  },
+  {
+   "id": "m_c2_logistics",
+   "trigger": "mission:c2_logistics",
+   "text": "Trucks. Unglamorous, essential. Whoever controls delivery controls the shelf."
+  },
+  {
+   "id": "m_c2_hq3",
+   "trigger": "mission:c2_hq3",
+   "text": "A proper office. Resist the urge to buy an expensive chair. Buy a better spreadsheet."
+  },
+  {
+   "id": "m_c2_first_trade",
+   "trigger": "mission:c2_first_trade",
+   "text": "Your first trade. Whatever happened, write down why you made it. Memory flatters."
+  },
+  {
+   "id": "m_c2_first_property",
+   "trigger": "mission:c2_first_property",
+   "text": "A landlord now. Fix the boiler before the tenant calls. Reputation compounds like interest."
+  },
+  {
+   "id": "m_c2_restaurant_25",
+   "trigger": "mission:c2_restaurant_25",
+   "text": "Locals love the place. That's worth more than any review."
+  },
+  {
+   "id": "m_c2_logistics_mgr",
+   "trigger": "mission:c2_logistics_mgr",
+   "text": "A dispatch desk that runs without you. That's the whole trick, really. Repeat it forever."
+  },
+  {
+   "id": "m_c2_networth",
+   "trigger": "mission:c2_networth",
+   "text": "Twenty-five million. Don't tell your old friends the number. Tell them you're doing fine."
+  },
+  {
+   "id": "m_c3_farmland",
+   "trigger": "mission:c3_farmland",
+   "text": "Land. They stopped making it a while ago. Look after it and it looks after you."
+  },
+  {
+   "id": "m_c3_factory",
+   "trigger": "mission:c3_factory",
+   "text": "A production line. Watch for the bottleneck; there is always exactly one that matters."
+  },
+  {
+   "id": "m_c3_factory_25",
+   "trigger": "mission:c3_factory_25",
+   "text": "A balanced line hums. Learn to hear when it doesn't."
+  },
+  {
+   "id": "m_c3_fashion",
+   "trigger": "mission:c3_fashion",
+   "text": "Opening night. Fashion is the only business where being late is a strategy."
+  },
+  {
+   "id": "m_c3_collector",
+   "trigger": "mission:c3_collector",
+   "text": "Three pieces. Buy what you love; then you can never lose money, only taste."
+  },
+  {
+   "id": "m_c3_board_seat",
+   "trigger": "mission:c3_board_seat",
+   "text": "A seat at someone else's table. Listen more than you speak. Vote less than you'd like."
+  },
+  {
+   "id": "m_c3_networth",
+   "trigger": "mission:c3_networth",
+   "text": "Billionaire. The word sounds bigger than it feels, doesn't it?"
+  },
+  {
+   "id": "m_c4_mining",
+   "trigger": "mission:c4_mining",
+   "text": "Below the surface. Mines reward patience and punish optimism."
+  },
+  {
+   "id": "m_c4_energy",
+   "trigger": "mission:c4_energy",
+   "text": "Power. Everyone needs it; nobody thanks the people who keep it on."
+  },
+  {
+   "id": "m_c4_hotels",
+   "trigger": "mission:c4_hotels",
+   "text": "Check-in. A hotel is a promise you make every night to strangers."
+  },
+  {
+   "id": "m_c4_first_conglomerate",
+   "trigger": "mission:c4_first_conglomerate",
+   "text": "Synergy. A word I hated for forty years. When it's real, it's wonderful."
+  },
+  {
+   "id": "m_c4_auction",
+   "trigger": "mission:c4_auction",
+   "text": "Going once, going twice. Never bid with your pride. It always overpays."
+  },
+  {
+   "id": "m_c4_landlord",
+   "trigger": "mission:c4_landlord",
+   "text": "Five properties. Now you're in the business of other people's homes. Be decent."
+  },
+  {
+   "id": "m_c4_networth",
+   "trigger": "mission:c4_networth",
+   "text": "A trillionaire. There's no rulebook up here. Write a good one."
+  },
+  {
+   "id": "m_c5_bank",
+   "trigger": "mission:c5_bank",
+   "text": "A bank. Lend to people who don't need it and you'll sleep well. Lend to people who do and you'll matter."
+  },
+  {
+   "id": "m_c5_bank_mgr",
+   "trigger": "mission:c5_bank_mgr",
+   "text": "A treasury desk. Pick someone boring. Boring is the highest compliment in banking."
+  },
+  {
+   "id": "m_c5_construction",
+   "trigger": "mission:c5_construction",
+   "text": "Builders. Every skyline is a list of people who were told it couldn't be done on time."
+  },
+  {
+   "id": "m_c5_construction_25",
+   "trigger": "mission:c5_construction_25",
+   "text": "Topping out. Builders put a tree on the last beam. Find your own small ritual."
+  },
+  {
+   "id": "m_c5_media",
+   "trigger": "mission:c5_media",
+   "text": "Media. You can tell stories now. Tell true ones; they age better."
+  },
+  {
+   "id": "m_c5_media_mgr",
+   "trigger": "mission:c5_media_mgr",
+   "text": "Prime time has a host. Let them shine. Never let them believe they're the network."
+  },
+  {
+   "id": "m_c5_ten_businesses",
+   "trigger": "mission:c5_ten_businesses",
+   "text": "Ten businesses. Diversified enough that a bad year in one is a footnote in all."
+  },
+  {
+   "id": "m_c6_tech",
+   "trigger": "mission:c6_tech",
+   "text": "Shipped. The first version is always embarrassing. Ship anyway; the second is where you win."
+  },
+  {
+   "id": "m_c6_tech_mgr",
+   "trigger": "mission:c6_tech_mgr",
+   "text": "A chief technologist. Ask them to explain it to you like you're me. If they can't, they don't understand it."
+  },
+  {
+   "id": "m_c6_telecom",
+   "trigger": "mission:c6_telecom",
+   "text": "Signal. Owning the pipes is dull until everyone needs the pipes."
+  },
+  {
+   "id": "m_c6_telecom_25",
+   "trigger": "mission:c6_telecom_25",
+   "text": "Full coverage. Somewhere a farmer just got a signal for the first time. Remember that one."
+  },
+  {
+   "id": "m_c6_two_conglomerates",
+   "trigger": "mission:c6_two_conglomerates",
+   "text": "A group structure. Good. Now the hard part: making sure the right hand knows what the left is buying."
+  },
+  {
+   "id": "m_c7_airline",
+   "trigger": "mission:c7_airline",
+   "text": "Wheels up. Airlines are a beautiful way to turn a fortune into a smaller fortune. Run it tight."
+  },
+  {
+   "id": "m_c7_airline_mgr",
+   "trigger": "mission:c7_airline_mgr",
+   "text": "Flight operations in good hands. On-time departures are a moral act."
+  },
+  {
+   "id": "m_c7_pharma",
+   "trigger": "mission:c7_pharma",
+   "text": "A breakthrough. Price it so the people who need it can have it. History keeps receipts."
+  },
+  {
+   "id": "m_c7_pharma_10",
+   "trigger": "mission:c7_pharma_10",
+   "text": "First trials under way. Science is slow, then sudden. Fund the slow part."
+  },
+  {
+   "id": "m_c7_three_conglomerates",
+   "trigger": "mission:c7_three_conglomerates",
+   "text": "Three pillars. A table needs three legs to stand. You've built a table that seats a country."
+  },
+  {
+   "id": "m_c8_sports",
+   "trigger": "mission:c8_sports",
+   "text": "A home ground. You'll never make money on it. You'll make a city love you instead."
+  },
+  {
+   "id": "m_c8_sports_10",
+   "trigger": "mission:c8_sports_10",
+   "text": "Season tickets sold out. Hire for character in the front office; talent is easier to find."
+  },
+  {
+   "id": "m_c8_space",
+   "trigger": "mission:c8_space",
+   "text": "Liftoff. I watched the first moon landing on a borrowed television. Look at you."
+  },
+  {
+   "id": "m_c8_space_10",
+   "trigger": "mission:c8_space_10",
+   "text": "A stable orbit. Steady is the hardest thing to be at speed."
+  },
+  {
+   "id": "m_c8_networth",
+   "trigger": "mission:c8_networth",
+   "text": "Sovereign wealth. The crown is ready when you are. There's no hurry. There never really was."
+  },
+  {
+   "id": "open_retail",
+   "trigger": "open:retail",
+   "text": "A corner kiosk. Smile at every customer; half of business is remembering names."
+  },
+  {
+   "id": "open_restaurants",
+   "trigger": "open:restaurants",
+   "text": "Your first kitchen. Taste everything before it leaves the pass."
+  },
+  {
+   "id": "open_logistics",
+   "trigger": "open:logistics",
+   "text": "Your own trucks. Plan routes like a chess player: two deliveries ahead."
+  },
+  {
+   "id": "open_farmland",
+   "trigger": "open:farmland",
+   "text": "Fields of your own. Watch the weather the way traders watch the screen."
+  },
+  {
+   "id": "open_factory",
+   "trigger": "open:factory",
+   "text": "Machines don't take holidays, but the people running them should."
+  },
+  {
+   "id": "open_fashion",
+   "trigger": "open:fashion",
+   "text": "A label with your name on it. Brave. Make sure the seams are better than the marketing."
+  },
+  {
+   "id": "open_mining",
+   "trigger": "open:mining",
+   "text": "A mine. Safety first, second and third. Profit can wait its turn."
+  },
+  {
+   "id": "open_energy",
+   "trigger": "open:energy",
+   "text": "Power plants. Keep the lights on and nobody notices you. That's success."
+  },
+  {
+   "id": "open_hotels",
+   "trigger": "open:hotels",
+   "text": "A hotel. Clean sheets and a warm hello: the entire business, in one sentence."
+  },
+  {
+   "id": "open_bank",
+   "trigger": "open:bank",
+   "text": "A bank with your name over the door. Make it a name people trust with their savings."
+  },
+  {
+   "id": "open_construction",
+   "trigger": "open:construction",
+   "text": "Cranes on the skyline. Every one of them is a promise with a deadline."
+  },
+  {
+   "id": "open_media",
+   "trigger": "open:media",
+   "text": "A media house. Facts first. Ratings follow facts more often than people think."
+  },
+  {
+   "id": "open_tech",
+   "trigger": "open:tech",
+   "text": "A technology company. Hire people smarter than you and get out of their way."
+  },
+  {
+   "id": "open_telecom",
+   "trigger": "open:telecom",
+   "text": "Telecom. You're in the business of conversations now. Keep them reliable."
+  },
+  {
+   "id": "open_airline",
+   "trigger": "open:airline",
+   "text": "An airline. Every seat is a little act of trust at thirty-five thousand feet."
+  },
+  {
+   "id": "open_pharma",
+   "trigger": "open:pharma",
+   "text": "Pharmaceuticals. The most important business you'll ever own. Run it like it."
+  },
+  {
+   "id": "open_sports",
+   "trigger": "open:sports",
+   "text": "A sports franchise. Win with grace, lose with more of it."
+  },
+  {
+   "id": "open_space",
+   "trigger": "open:space",
+   "text": "A space company. The view from up there makes every border look like a pencil line."
+  },
+  {
+   "id": "ev_tier_1",
+   "trigger": "event:tier",
+   "text": "A new tier. The sign out front gets bigger; keep the customer service the same size."
+  },
+  {
+   "id": "ev_tier_2",
+   "trigger": "event:tier",
+   "text": "Bigger tier, bigger output. Bigger mistakes too, if you stop paying attention."
+  },
+  {
+   "id": "ev_manager_1",
+   "trigger": "event:manager",
+   "text": "A new manager. Tell them what success looks like, then trust them to find the road."
+  },
+  {
+   "id": "ev_expansion_1",
+   "trigger": "event:expansion",
+   "text": "An expansion done. Growth you planned for is the only kind that doesn't hurt."
+  },
+  {
+   "id": "ev_hq_1",
+   "trigger": "event:hq",
+   "text": "The headquarters grows. More desks, more ideas, more meetings. Guard against the meetings."
+  },
+  {
+   "id": "ev_conglomerate_1",
+   "trigger": "event:conglomerate",
+   "text": "Another conglomerate. Integration is where mergers live or die. Mind the details."
+  },
+  {
+   "id": "ev_holding_1",
+   "trigger": "event:holding",
+   "text": "A holding company. Congratulations, you now own the thing that owns the things."
+  },
+  {
+   "id": "ev_trade_1",
+   "trigger": "event:trade",
+   "text": "A trade done. Win or lose, ask whether you'd make it again with what you knew then."
+  },
+  {
+   "id": "ev_short_1",
+   "trigger": "event:short",
+   "text": "A short covered. Betting against things is a lonely game. Don't make a habit of loneliness."
+  },
+  {
+   "id": "ev_property_bought_1",
+   "trigger": "event:property_bought",
+   "text": "A new property. Buy the street, not just the house. Neighbourhoods move together."
+  },
+  {
+   "id": "ev_property_sold_1",
+   "trigger": "event:property_sold",
+   "text": "Sold. The best sale is the one where the buyer also walks away happy."
+  },
+  {
+   "id": "ev_renovation_1",
+   "trigger": "event:renovation",
+   "text": "Renovation done. Spend on what tenants feel: light, warmth, a door that closes properly."
+  },
+  {
+   "id": "ev_tower_1",
+   "trigger": "event:tower",
+   "text": "Your tower is finished. Go up to the top floor once. Then go back to work."
+  },
+  {
+   "id": "ev_disaster_1",
+   "trigger": "event:disaster",
+   "text": "A disaster hit one of your properties. Look after the people first; insurance will argue about the rest."
+  },
+  {
+   "id": "ev_foreclosure_1",
+   "trigger": "event:foreclosure",
+   "text": "A foreclosure. It happens to the best of us. Learn the lesson; don't wear it."
+  },
+  {
+   "id": "ev_luxury_1",
+   "trigger": "event:luxury",
+   "text": "A fine purchase. Things are lovely. People are lovelier. Keep that order."
+  },
+  {
+   "id": "ev_auction_won_1",
+   "trigger": "event:auction_won",
+   "text": "You won the lot. The room will remember who outbid them. Be gracious about it."
+  },
+  {
+   "id": "ev_auction_lost_1",
+   "trigger": "event:auction_lost",
+   "text": "Outbid. Good. Discipline you showed today is worth more than the painting."
+  },
+  {
+   "id": "ev_world_event_1",
+   "trigger": "event:world_event",
+   "text": "The world just moved. Don't react in the first hour. Nobody knows anything in the first hour."
+  },
+  {
+   "id": "ev_business_sold_1",
+   "trigger": "event:business_sold",
+   "text": "You sold a business. Letting go is a skill. You'll need it at the very end."
+  },
+  {
+   "id": "ev_payment_missed_1",
+   "trigger": "event:payment_missed",
+   "text": "A missed payment. Call your lender before they call you. It changes the whole conversation."
+  },
+  {
+   "id": "ev_loan_taken_1",
+   "trigger": "event:loan_taken",
+   "text": "Borrowed money is a tool, not a reward. Have a plan to give it back."
+  },
+  {
+   "id": "ev_loan_repaid_1",
+   "trigger": "event:loan_repaid",
+   "text": "Loan repaid. The best feeling in finance, and the most underrated."
+  },
+  {
+   "id": "ev_tax_filed_1",
+   "trigger": "event:tax_filed",
+   "text": "Taxes filed. The roads your trucks use don't pave themselves."
+  },
+  {
+   "id": "ev_tax_audited_1",
+   "trigger": "event:tax_audited",
+   "text": "An audit. Clean books are boring right up until they save you."
+  },
+  {
+   "id": "ev_restructured_1",
+   "trigger": "event:restructured",
+   "text": "Restructured. Pride is expensive. You just saved a fortune by setting some down."
+  },
+  {
+   "id": "ev_phoenix_1",
+   "trigger": "event:phoenix",
+   "text": "Reborn from the ashes. I've done it twice. The second building is always better."
+  },
+  {
+   "id": "ev_crown_passed_1",
+   "trigger": "event:crown_passed",
+   "text": "The crown has passed. I'll stay on for a while, if the new generation will have an old man around."
+  },
+  {
+   "id": "ev_nemesis_1",
+   "trigger": "event:nemesis",
+   "text": "Your nemesis made a move. Rivals are useful: they show you where you're soft."
+  },
+  {
+   "id": "ev_nemesis_2",
+   "trigger": "event:nemesis",
+   "text": "Don't hate your nemesis. Study them. Hatred is a terrible analyst."
+  },
+  {
+   "id": "ev_quarter_1",
+   "trigger": "event:quarter",
+   "text": "A quarter closed. Look at what grew and what didn't, then do more of the first thing."
+  },
+  {
+   "id": "ev_ipo_1",
+   "trigger": "event:ipo",
+   "text": "You've gone public. Now strangers own a piece of your dream. Treat their trust like your own money."
+  },
+  {
+   "id": "tip_1_1",
+   "trigger": "tip:1",
+   "text": "Collect the till before it fills; a full till is money standing still."
+  },
+  {
+   "id": "tip_1_2",
+   "trigger": "tip:1",
+   "text": "Managers keep the doors open while you're away. Hire one before you take a break."
+  },
+  {
+   "id": "tip_1_3",
+   "trigger": "tip:1",
+   "text": "Try the price levels. Too cheap and you're a charity; too dear and you're a museum."
+  },
+  {
+   "id": "tip_1_4",
+   "trigger": "tip:1",
+   "text": "Level ten is the first tier. Watch what happens to output when you reach it."
+  },
+  {
+   "id": "tip_1_5",
+   "trigger": "tip:1",
+   "text": "Frenzy is for when the counter is busiest. Save it for a rush, not a lull."
+  },
+  {
+   "id": "tip_1_6",
+   "trigger": "tip:1",
+   "text": "The Next Move card is your to-do list. I like to-do lists. They argue less than people do."
+  },
+  {
+   "id": "tip_1_7",
+   "trigger": "tip:1",
+   "text": "A second business never hurts. Restaurants pay well once their stars climb."
+  },
+  {
+   "id": "tip_1_8",
+   "trigger": "tip:1",
+   "text": "Expansions take time but multiply everything after them. Start them before you go to bed."
+  },
+  {
+   "id": "tip_1_9",
+   "trigger": "tip:1",
+   "text": "Watch income per second, not cash. Cash is a photograph; income is the film."
+  },
+  {
+   "id": "tip_1_10",
+   "trigger": "tip:1",
+   "text": "If you're stuck, tap. Honest work is never the wrong move in Chapter 1."
+  },
+  {
+   "id": "tip_2_1",
+   "trigger": "tip:2",
+   "text": "Trucks are only as good as their routes. Look at the logistics planner."
+  },
+  {
+   "id": "tip_2_2",
+   "trigger": "tip:2",
+   "text": "The headquarters adds slots. More slots, more businesses, more problems worth having."
+  },
+  {
+   "id": "tip_2_3",
+   "trigger": "tip:2",
+   "text": "Start small in the markets. Lose a little and learn a lot before you lose a lot and learn a little."
+  },
+  {
+   "id": "tip_2_4",
+   "trigger": "tip:2",
+   "text": "Your first property: location, location, and a tenant who pays on time."
+  },
+  {
+   "id": "tip_2_5",
+   "trigger": "tip:2",
+   "text": "A restaurant at level twenty-five is a neighbourhood landmark. Get there."
+  },
+  {
+   "id": "tip_2_6",
+   "trigger": "tip:2",
+   "text": "Dispatch managers make deliveries run while you sleep. Sleep is underrated in business."
+  },
+  {
+   "id": "tip_2_7",
+   "trigger": "tip:2",
+   "text": "Diversify slowly. Every new business needs attention before it pays attention back."
+  },
+  {
+   "id": "tip_2_8",
+   "trigger": "tip:2",
+   "text": "Keep a little cash aside. Opportunities don't send calendar invites."
+  },
+  {
+   "id": "tip_2_9",
+   "trigger": "tip:2",
+   "text": "The world strip shows what's moving markets. Read it like a weather report."
+  },
+  {
+   "id": "tip_2_10",
+   "trigger": "tip:2",
+   "text": "Decision cards are where character shows. Pick the option you'd explain to your mother."
+  },
+  {
+   "id": "tip_3_1",
+   "trigger": "tip:3",
+   "text": "Factories want balance. A fast line with a slow step is just an expensive queue."
+  },
+  {
+   "id": "tip_3_2",
+   "trigger": "tip:3",
+   "text": "Farmland rides the seasons. Plant with the cycle, not against it."
+  },
+  {
+   "id": "tip_3_3",
+   "trigger": "tip:3",
+   "text": "Fashion lives on launches. Time them with the trends, not your mood."
+  },
+  {
+   "id": "tip_3_4",
+   "trigger": "tip:3",
+   "text": "Collect a few fine things. Luxury raises your status, and status opens doors."
+  },
+  {
+   "id": "tip_3_5",
+   "trigger": "tip:3",
+   "text": "Board seats pay quietly. Own enough of a company and they'll ask your opinion."
+  },
+  {
+   "id": "tip_3_6",
+   "trigger": "tip:3",
+   "text": "Rivals are watching the Fortune list. So should you, but don't stare."
+  },
+  {
+   "id": "tip_3_7",
+   "trigger": "tip:3",
+   "text": "Check the tax page once a quarter. Deductions are found, not given."
+  },
+  {
+   "id": "tip_3_8",
+   "trigger": "tip:3",
+   "text": "Mothball a weak business if a better one needs the slot. Sentiment is not a strategy."
+  },
+  {
+   "id": "tip_3_9",
+   "trigger": "tip:3",
+   "text": "Credit rating matters now. Good credit is cheap money; bad credit is expensive advice."
+  },
+  {
+   "id": "tip_3_10",
+   "trigger": "tip:3",
+   "text": "A billion sounds like the finish line. It's barely the warm-up."
+  },
+  {
+   "id": "tip_4_1",
+   "trigger": "tip:4",
+   "text": "Conglomerates multiply members. Choose the merger whose parts you've already grown."
+  },
+  {
+   "id": "tip_4_2",
+   "trigger": "tip:4",
+   "text": "Mines and power plants reward steady investment. Don't starve them for flashier things."
+  },
+  {
+   "id": "tip_4_3",
+   "trigger": "tip:4",
+   "text": "Hotels fill with travellers when the world is calm. Watch the world."
+  },
+  {
+   "id": "tip_4_4",
+   "trigger": "tip:4",
+   "text": "Auctions run on a schedule. Know which lots you want before the gavel lifts."
+  },
+  {
+   "id": "tip_4_5",
+   "trigger": "tip:4",
+   "text": "Five properties is a portfolio. Spread them across cities and cycles."
+  },
+  {
+   "id": "tip_4_6",
+   "trigger": "tip:4",
+   "text": "Loans can accelerate a merger. Only borrow what your income can carry through a bad month."
+  },
+  {
+   "id": "tip_4_7",
+   "trigger": "tip:4",
+   "text": "Takeover bids come for the careless. Allies with good relationships make fine white knights."
+  },
+  {
+   "id": "tip_4_8",
+   "trigger": "tip:4",
+   "text": "The Desk will test your judgement. Read every option, even the ones you'll never pick."
+  },
+  {
+   "id": "tip_4_9",
+   "trigger": "tip:4",
+   "text": "Expansions on late businesses are expensive and worth it. Start them before long breaks."
+  },
+  {
+   "id": "tip_4_10",
+   "trigger": "tip:4",
+   "text": "A trillion. Somewhere, a rival is drawing up plans about you. Draw yours first."
+  },
+  {
+   "id": "tip_5_1",
+   "trigger": "tip:5",
+   "text": "Banks pay best with a good credit rating. Protect it like the family silver."
+  },
+  {
+   "id": "tip_5_2",
+   "trigger": "tip:5",
+   "text": "Construction runs on timers. Line them up so cranes never stand idle."
+  },
+  {
+   "id": "tip_5_3",
+   "trigger": "tip:5",
+   "text": "Media rewards consistency. A steady schedule beats a viral moment."
+  },
+  {
+   "id": "tip_5_4",
+   "trigger": "tip:5",
+   "text": "Ten businesses means ten managers. Upgrade the weakest one first."
+  },
+  {
+   "id": "tip_5_5",
+   "trigger": "tip:5",
+   "text": "Rush timers with Favor when a chapter goal is within reach, not before."
+  },
+  {
+   "id": "tip_5_6",
+   "trigger": "tip:5",
+   "text": "Dynasty missions refresh daily. Small wins every day add up to a big week."
+  },
+  {
+   "id": "tip_5_7",
+   "trigger": "tip:5",
+   "text": "Watch the weekly event. It bends the rules in your favour, if you notice it."
+  },
+  {
+   "id": "tip_5_8",
+   "trigger": "tip:5",
+   "text": "Sell businesses you no longer need only if the slot is worth more than the income."
+  },
+  {
+   "id": "tip_5_9",
+   "trigger": "tip:5",
+   "text": "The richest rivals have weaknesses. The Fortune page shows their temperament."
+  },
+  {
+   "id": "tip_6_1",
+   "trigger": "tip:6",
+   "text": "Technology scales fast. Feed it early and let it run."
+  },
+  {
+   "id": "tip_6_2",
+   "trigger": "tip:6",
+   "text": "Telecom levels add up quietly. Level twenty-five is where coverage becomes a moat."
+  },
+  {
+   "id": "tip_6_3",
+   "trigger": "tip:6",
+   "text": "Your second conglomerate should cover a different weakness from your first."
+  },
+  {
+   "id": "tip_6_4",
+   "trigger": "tip:6",
+   "text": "Market cycles turn. Rebalance when you're winning, not when you're scared."
+  },
+  {
+   "id": "tip_6_5",
+   "trigger": "tip:6",
+   "text": "Your tower and your best properties carry your rent. Renovate before you sell."
+  },
+  {
+   "id": "tip_6_6",
+   "trigger": "tip:6",
+   "text": "File taxes on time. Late filings invite the auditors, and they never leave early."
+  },
+  {
+   "id": "tip_6_7",
+   "trigger": "tip:6",
+   "text": "Keep a war chest for the airline. It is expensive and it will be worth it."
+  },
+  {
+   "id": "tip_6_8",
+   "trigger": "tip:6",
+   "text": "If a decision card feels like a trap, it probably is. Take the honest option."
+  },
+  {
+   "id": "tip_6_9",
+   "trigger": "tip:6",
+   "text": "Check the Store's cosmetics. Bullion earned in play buys a title worth wearing."
+  },
+  {
+   "id": "tip_7_1",
+   "trigger": "tip:7",
+   "text": "Airlines live on load factor. Keep the planes full and the managers sharp."
+  },
+  {
+   "id": "tip_7_2",
+   "trigger": "tip:7",
+   "text": "Pharma pipelines pay late and pay big. Level them before the next big push."
+  },
+  {
+   "id": "tip_7_3",
+   "trigger": "tip:7",
+   "text": "Three conglomerates make a holding company possible. Think about what you'll call it."
+  },
+  {
+   "id": "tip_7_4",
+   "trigger": "tip:7",
+   "text": "The IPO is a once-a-generation decision. Float only what you can live without."
+  },
+  {
+   "id": "tip_7_5",
+   "trigger": "tip:7",
+   "text": "Your heirlooms will carry into the next generation. Choose them with care."
+  },
+  {
+   "id": "tip_7_6",
+   "trigger": "tip:7",
+   "text": "The richest rivals are close now. They don't sleep. Neither do markets."
+  },
+  {
+   "id": "tip_7_7",
+   "trigger": "tip:7",
+   "text": "Space needs patience and capital. Start saving for it the day you open the airline."
+  },
+  {
+   "id": "tip_7_8",
+   "trigger": "tip:7",
+   "text": "Every big purchase now should have a reason you can say out loud in one sentence."
+  },
+  {
+   "id": "tip_7_9",
+   "trigger": "tip:7",
+   "text": "Look back at the Fortune list from Chapter 3. Then look at it now. Enjoy that for exactly a minute."
+  },
+  {
+   "id": "tip_8_1",
+   "trigger": "tip:8",
+   "text": "The final goal is net worth. Every business you level now pushes it a little further."
+  },
+  {
+   "id": "tip_8_2",
+   "trigger": "tip:8",
+   "text": "A sports franchise makes a city love you. Love is not on the balance sheet, but it matters."
+  },
+  {
+   "id": "tip_8_3",
+   "trigger": "tip:8",
+   "text": "The rocket will cost more than everything you built in the first three chapters. That's normal now."
+  },
+  {
+   "id": "tip_8_4",
+   "trigger": "tip:8",
+   "text": "Think about the heir: a trait, a Family Charter, the heirlooms. What do you want them to inherit?"
+  },
+  {
+   "id": "tip_8_5",
+   "trigger": "tip:8",
+   "text": "Passing the crown resets the empire but not the wisdom. Legacy makes the next run faster."
+  },
+  {
+   "id": "tip_8_6",
+   "trigger": "tip:8",
+   "text": "A challenge run doubles the story. Try one when you're bored of winning the easy way."
+  },
+  {
+   "id": "tip_8_7",
+   "trigger": "tip:8",
+   "text": "Write a Family Charter you'd be proud to follow yourself."
+  },
+  {
+   "id": "tip_8_8",
+   "trigger": "tip:8",
+   "text": "Nothing up here is urgent. Take the decisions slowly; there's no one left to rush you."
+  },
+  {
+   "id": "tip_8_9",
+   "trigger": "tip:8",
+   "text": "When you're ready, the Crown screen shows what the next generation receives. Read it twice."
+  }
+ ]
+}

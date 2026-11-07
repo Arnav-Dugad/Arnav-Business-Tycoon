@@ -59,32 +59,44 @@ LATER = [
      "unlocksBusinesses": ["tech", "telecom"],
      "missions": [
          m("c5_bank", "Lender of first resort", "Open Banking.", own("bank"), "5000000000000.00", favor=25),
+         m("c5_bank_mgr", "Treasury desk", "Hire a manager for Banking.", mgr("bank")),
          m("c5_construction", "Skyline", "Open Construction.", own("construction"), "60000000000000.00"),
+         m("c5_construction_25", "Topping out", "Raise Construction to level 25.", lvl("construction", 25)),
          m("c5_media", "On air", "Open Media.", own("media"), "700000000000000.00", favor=25),
+         m("c5_media_mgr", "Prime time", "Hire a manager for Media.", mgr("media")),
          m("c5_ten_businesses", "Diversified", "Own ten businesses.", {"type": "businessesOwned", "count": 10}, "1000000000000000.00", bullion=35),
      ]},
     {"number": 6, "title": "Altitude", "summary": "Silicon and signal. Your empire learns to think and to talk.",
      "unlocksBusinesses": ["airline", "pharma"],
      "missions": [
          m("c6_tech", "Ship it", "Open Technology.", own("tech"), "9000000000000000.00", favor=30),
+         m("c6_tech_mgr", "Chief technologist", "Hire a manager for Technology.", mgr("tech")),
          m("c6_telecom", "Signal", "Open Telecom & Data.", own("telecom"), "100000000000000000.00"),
+         m("c6_telecom_25", "Full coverage", "Raise Telecom & Data to level 25.", lvl("telecom", 25)),
          m("c6_two_conglomerates", "Group structure", "Form two conglomerates.", {"type": "conglomerates", "count": 2}, "300000000000000000.00", bullion=40),
      ]},
     {"number": 7, "title": "Escape Velocity", "summary": "Airlines and cures. Then the stadium, and the stars.",
      "unlocksBusinesses": ["sports", "space"],
      "missions": [
          m("c7_airline", "Wheels up", "Open an Airline.", own("airline"), "1000000000000000000.00", favor=35),
+         m("c7_airline_mgr", "Flight operations", "Hire a manager for the Airline.", mgr("airline")),
          m("c7_pharma", "Breakthrough", "Open Pharmaceuticals.", own("pharma"), "15000000000000000000.00"),
+         m("c7_pharma_10", "First trials", "Raise Pharmaceuticals to level 10.", lvl("pharma", 10)),
          m("c7_three_conglomerates", "Three pillars", "Form three conglomerates.", {"type": "conglomerates", "count": 3}, "20000000000000000000.00", bullion=50),
      ]},
     {"number": 8, "title": "The Crown", "summary": "Every pillar of the economy bears your name. Build the holding company that crowns it all.",
      "unlocksBusinesses": [],
      "missions": [
          m("c8_sports", "Home ground", "Open a Sports Franchise.", own("sports"), "200000000000000000000.00", favor=40),
+         m("c8_sports_10", "Season ticket", "Raise the Sports Franchise to level 10.", lvl("sports", 10)),
          m("c8_space", "Liftoff", "Open Space.", own("space"), "2000000000000000000000.00"),
-         m("c8_networth", "Sovereign wealth", "Reach a net worth of $1 sextillion.", nw("1000000000000000000000.00"), "0.00", bullion=100),
+         m("c8_space_10", "Stable orbit", "Raise Space to level 10.", lvl("space", 10)),
+         m("c8_networth", "Sovereign wealth", "Reach a net worth worthy of a dynasty.", nw("1000000000000000000000.00"), "0.00", bullion=100),
      ]},
 ]
+
+
+FINAL_GOAL_X = 4
 
 
 def scale_rewards(repo: Path, chapters: list) -> None:
@@ -104,8 +116,8 @@ def scale_rewards(repo: Path, chapters: list) -> None:
             if base is not None and mi["goal"]["type"] != "ownBusiness" and mi["id"] != "c8_networth":
                 mi["rewardCash"] = f"{base.quantize(Decimal('0.01'))}"
             if mi["id"] == "c8_networth":
-                # The final goal tracks the ladder: five times the Space unlock cost.
-                mi["goal"]["amount"] = f"{(unlocks['space'] * 5).quantize(Decimal('0.01'))}"
+                # The final goal tracks the ladder: a few times the Space unlock cost (TUNING_LOG p11).
+                mi["goal"]["amount"] = f"{(unlocks['space'] * FINAL_GOAL_X).quantize(Decimal('0.01'))}"
                 mi["description"] = "Reach a net worth worthy of a dynasty."
             if mi["goal"]["type"] == "ownBusiness":
                 mi["rewardCash"] = f"{(unlocks[mi['goal']['businessId']] / 2).quantize(Decimal('0.01'))}"

@@ -58,6 +58,14 @@ test("verified players publish profiles that everyone signed in can read", async
   await assertFails(setDoc(doc(verified(alice), "profiles", alice), profile({ name: "Al" })), "name too short");
 });
 
+test("profiles may carry an avatar frame, but only a short string", async () => {
+  await assertSucceeds(setDoc(doc(verified(alice), "profiles", alice), profile({ avatarId: "rocket", frame: "frame_gold" })));
+  await assertSucceeds(setDoc(doc(verified(alice), "profiles", alice), profile({ frame: "" })));
+  await assertFails(setDoc(doc(verified(alice), "profiles", alice), profile({ frame: "x".repeat(41) })), "frame too long");
+  await assertFails(setDoc(doc(verified(alice), "profiles", alice), profile({ frame: 7 })), "frame must be a string");
+  await assertFails(setDoc(doc(verified(alice), "profiles", alice), profile({ email: "a@b.c" })), "unknown fields stay forbidden");
+});
+
 test("the Boosted flag can never be cleared", async () => {
   await seed(`profiles/${alice}`, { ...profile({ boosted: true }), updatedAt: Timestamp.now() });
   await assertFails(setDoc(doc(verified(alice), "profiles", alice), profile({ boosted: false })));

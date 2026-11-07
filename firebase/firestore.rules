@@ -37,7 +37,8 @@ service cloud.firestore {
     match /profiles/{uid} {
       allow read: if signedIn();
       allow create, update: if isUser(uid) && verified()
-        && keys().hasOnly(['name', 'friendCode', 'avatarId', 'title', 'gen', 'nwLog10', 'fairNwLog10', 'boosted', 'showcase', 'updatedAt'])
+        && keys().hasOnly(['name', 'friendCode', 'avatarId', 'frame', 'title', 'gen', 'nwLog10', 'fairNwLog10', 'boosted', 'showcase', 'updatedAt'])
+        && (!('frame' in request.resource.data) || (request.resource.data.frame is string && request.resource.data.frame.size() <= 40))
         && request.resource.data.name is string && request.resource.data.name.size() >= 3 && request.resource.data.name.size() <= 24
         && request.resource.data.updatedAt == request.time
         && request.resource.data.nwLog10 is number && request.resource.data.nwLog10 >= 0 && request.resource.data.nwLog10 <= 400

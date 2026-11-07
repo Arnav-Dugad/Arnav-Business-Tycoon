@@ -95,7 +95,7 @@ fun StoreScreen(vm: GameViewModel, onBack: () -> Unit) {
                             when {
                                 cosmetic != null && cosmetic in s.store.cosmetics -> {
                                     val kind = content.cosmeticById[cosmetic]?.kind ?: "title"
-                                    val equipped = s.store.title == cosmetic || s.store.frame == cosmetic
+                                    val equipped = s.store.title == cosmetic || s.store.frame == cosmetic || s.store.avatar == cosmetic
                                     PillAction(if (equipped) "Equipped" else "Equip", !equipped, { vm.dispatch(Command.EquipCosmetic(cosmetic, kind)) }, style = PillStyle.Glass)
                                 }
                                 blocker != null -> Text(blocker, style = Aurum.type.label, color = c.textTertiary)

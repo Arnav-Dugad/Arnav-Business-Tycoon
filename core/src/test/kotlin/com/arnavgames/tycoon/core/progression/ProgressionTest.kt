@@ -115,7 +115,9 @@ class ProgressionTest {
 
     @Test
     fun legacyFollowsTheFormula() {
-        val g = dyn.baseLegacyGain(Money.ofDollars(java.math.BigDecimal("4e21")))
+        // At the Chapter 8 goal (whatever the ladder makes it), a first prestige earns about 130 Legacy.
+        val goal = engine.content.chapters.flatMap { it.missions }.single { it.id == "c8_networth" }.goal as com.arnavgames.tycoon.core.content.GoalDef.NetWorth
+        val g = dyn.baseLegacyGain(goal.amount)
         assertTrue(g in 120..140, "first prestige at the chapter 8 goal gives ~130 Legacy, got $g")
         assertTrue(dyn.legacyMultiplier(g) in 2.4..2.8)
         assertEquals(1.0, dyn.legacyMultiplier(0))

@@ -1,0 +1,250 @@
+"""Generates content/data/mentor.json: lines for The Chairman, the player's mentor (docs/CONTENT.md: 200 lines).
+
+The Chairman is an invented, retired founder: dry, warm, allergic to hype. Lines are original writing for this game.
+Triggers: chapter:N (a chapter begins), done:N (a chapter is complete), mission:<id> (story mission claimed),
+open:<business> (a business opens), event:<name> (a moment in play), tip:N (advice that rotates during chapter N).
+
+Usage: python -I tools/content/gen_mentor.py <repo-root>
+"""
+import json
+import sys
+from pathlib import Path
+
+CHAPTER = {
+    1: ["Every empire I know started with something embarrassingly small. Yours is a folding table. Good.",
+        "Tap the counter until your wrist complains. Nobody respects money they didn't sweat for at least once."],
+    2: ["Main Street. Now people know your name, and some of them will want to borrow it.",
+        "You'll touch markets and property this chapter. Respect both; trust neither."],
+    3: ["Raw power: fields, factories, fabric. The world runs on things before it runs on ideas.",
+        "Your first billion is near. It changes how waiters look at you. It shouldn't change how you look at them."],
+    4: ["Old money will smile at you this chapter. Count your fingers after every handshake.",
+        "Mergers are marriages with lawyers. Choose partners whose weaknesses cover each other."],
+    5: ["Banks, builders, broadcasters. You are no longer in business. You are the business climate.",
+        "The technologists are coming. They talk fast. Make them show you the numbers slowly."],
+    6: ["Silicon and signal. Your empire learns to think, and then to talk back.",
+        "Two conglomerates. Remember when one kiosk felt like a lot? Keep that memory somewhere safe."],
+    7: ["Escape velocity. Airlines lose money beautifully; cures make it quietly. Own both.",
+        "From here the numbers stop meaning anything to normal people. Make sure they still mean something to you."],
+    8: ["The Crown. A stadium, a rocket, and then the question every founder dreads: who comes next?",
+        "Finish this, and you'll hand it all to an heir. The best thing you can leave them is a habit, not a fortune."],
+}
+
+DONE = {
+    1: "One chapter down. You can stop pretending the kiosk was a hobby.",
+    2: "Main Street is yours. The next street over is noticing.",
+    3: "A billionaire. Congratulations. Now act like the money is borrowed: it is, from your future self.",
+    4: "Old money has accepted you. That should worry you slightly.",
+    5: "You disrupted the disruptors. Take a day. Then don't.",
+    6: "You've built a group. Groups need leaders more than they need founders. Learn the difference.",
+    7: "Escape velocity reached. Mind the gravity on the way back down; there is always a way back down.",
+    8: "It's done. I've watched a lot of people build things. You built it properly.",
+}
+
+MISSION = {
+    "c1_open_kiosk": "Doors open. The first customer is the hardest. The second is just proof the first wasn't a fluke.",
+    "c1_hustle": "Sixty customers by hand. You'll never again underestimate how hard a dollar is to earn.",
+    "c1_retail_10": "A real shop. Notice how the sign changed? So did your rent.",
+    "c1_first_manager": "Handing over the keys is the first lesson in scale: you can't be everywhere, so hire people who don't need you to be.",
+    "c1_restaurant": "A restaurant. Margins thin as a napkin. Run it well and it teaches you everything.",
+    "c1_market_stall": "Weekend market. Some of my best ideas came from overhearing customers at a stall.",
+    "c1_income": "Momentum is the only thing in business that's free. Don't waste it.",
+    "c2_logistics": "Trucks. Unglamorous, essential. Whoever controls delivery controls the shelf.",
+    "c2_hq3": "A proper office. Resist the urge to buy an expensive chair. Buy a better spreadsheet.",
+    "c2_first_trade": "Your first trade. Whatever happened, write down why you made it. Memory flatters.",
+    "c2_first_property": "A landlord now. Fix the boiler before the tenant calls. Reputation compounds like interest.",
+    "c2_restaurant_25": "Locals love the place. That's worth more than any review.",
+    "c2_logistics_mgr": "A dispatch desk that runs without you. That's the whole trick, really. Repeat it forever.",
+    "c2_networth": "Twenty-five million. Don't tell your old friends the number. Tell them you're doing fine.",
+    "c3_farmland": "Land. They stopped making it a while ago. Look after it and it looks after you.",
+    "c3_factory": "A production line. Watch for the bottleneck; there is always exactly one that matters.",
+    "c3_factory_25": "A balanced line hums. Learn to hear when it doesn't.",
+    "c3_fashion": "Opening night. Fashion is the only business where being late is a strategy.",
+    "c3_collector": "Three pieces. Buy what you love; then you can never lose money, only taste.",
+    "c3_board_seat": "A seat at someone else's table. Listen more than you speak. Vote less than you'd like.",
+    "c3_networth": "Billionaire. The word sounds bigger than it feels, doesn't it?",
+    "c4_mining": "Below the surface. Mines reward patience and punish optimism.",
+    "c4_energy": "Power. Everyone needs it; nobody thanks the people who keep it on.",
+    "c4_hotels": "Check-in. A hotel is a promise you make every night to strangers.",
+    "c4_first_conglomerate": "Synergy. A word I hated for forty years. When it's real, it's wonderful.",
+    "c4_auction": "Going once, going twice. Never bid with your pride. It always overpays.",
+    "c4_landlord": "Five properties. Now you're in the business of other people's homes. Be decent.",
+    "c4_networth": "A trillionaire. There's no rulebook up here. Write a good one.",
+    "c5_bank": "A bank. Lend to people who don't need it and you'll sleep well. Lend to people who do and you'll matter.",
+    "c5_bank_mgr": "A treasury desk. Pick someone boring. Boring is the highest compliment in banking.",
+    "c5_construction": "Builders. Every skyline is a list of people who were told it couldn't be done on time.",
+    "c5_construction_25": "Topping out. Builders put a tree on the last beam. Find your own small ritual.",
+    "c5_media": "Media. You can tell stories now. Tell true ones; they age better.",
+    "c5_media_mgr": "Prime time has a host. Let them shine. Never let them believe they're the network.",
+    "c5_ten_businesses": "Ten businesses. Diversified enough that a bad year in one is a footnote in all.",
+    "c6_tech": "Shipped. The first version is always embarrassing. Ship anyway; the second is where you win.",
+    "c6_tech_mgr": "A chief technologist. Ask them to explain it to you like you're me. If they can't, they don't understand it.",
+    "c6_telecom": "Signal. Owning the pipes is dull until everyone needs the pipes.",
+    "c6_telecom_25": "Full coverage. Somewhere a farmer just got a signal for the first time. Remember that one.",
+    "c6_two_conglomerates": "A group structure. Good. Now the hard part: making sure the right hand knows what the left is buying.",
+    "c7_airline": "Wheels up. Airlines are a beautiful way to turn a fortune into a smaller fortune. Run it tight.",
+    "c7_airline_mgr": "Flight operations in good hands. On-time departures are a moral act.",
+    "c7_pharma": "A breakthrough. Price it so the people who need it can have it. History keeps receipts.",
+    "c7_pharma_10": "First trials under way. Science is slow, then sudden. Fund the slow part.",
+    "c7_three_conglomerates": "Three pillars. A table needs three legs to stand. You've built a table that seats a country.",
+    "c8_sports": "A home ground. You'll never make money on it. You'll make a city love you instead.",
+    "c8_sports_10": "Season tickets sold out. Hire for character in the front office; talent is easier to find.",
+    "c8_space": "Liftoff. I watched the first moon landing on a borrowed television. Look at you.",
+    "c8_space_10": "A stable orbit. Steady is the hardest thing to be at speed.",
+    "c8_networth": "Sovereign wealth. The crown is ready when you are. There's no hurry. There never really was.",
+}
+
+OPEN = {
+    "retail": "A corner kiosk. Smile at every customer; half of business is remembering names.",
+    "restaurants": "Your first kitchen. Taste everything before it leaves the pass.",
+    "logistics": "Your own trucks. Plan routes like a chess player: two deliveries ahead.",
+    "farmland": "Fields of your own. Watch the weather the way traders watch the screen.",
+    "factory": "Machines don't take holidays, but the people running them should.",
+    "fashion": "A label with your name on it. Brave. Make sure the seams are better than the marketing.",
+    "mining": "A mine. Safety first, second and third. Profit can wait its turn.",
+    "energy": "Power plants. Keep the lights on and nobody notices you. That's success.",
+    "hotels": "A hotel. Clean sheets and a warm hello: the entire business, in one sentence.",
+    "bank": "A bank with your name over the door. Make it a name people trust with their savings.",
+    "construction": "Cranes on the skyline. Every one of them is a promise with a deadline.",
+    "media": "A media house. Facts first. Ratings follow facts more often than people think.",
+    "tech": "A technology company. Hire people smarter than you and get out of their way.",
+    "telecom": "Telecom. You're in the business of conversations now. Keep them reliable.",
+    "airline": "An airline. Every seat is a little act of trust at thirty-five thousand feet.",
+    "pharma": "Pharmaceuticals. The most important business you'll ever own. Run it like it.",
+    "sports": "A sports franchise. Win with grace, lose with more of it.",
+    "space": "A space company. The view from up there makes every border look like a pencil line.",
+}
+
+EVENT = {
+    "tier": ["A new tier. The sign out front gets bigger; keep the customer service the same size.",
+             "Bigger tier, bigger output. Bigger mistakes too, if you stop paying attention."],
+    "manager": ["A new manager. Tell them what success looks like, then trust them to find the road."],
+    "expansion": ["An expansion done. Growth you planned for is the only kind that doesn't hurt."],
+    "hq": ["The headquarters grows. More desks, more ideas, more meetings. Guard against the meetings."],
+    "conglomerate": ["Another conglomerate. Integration is where mergers live or die. Mind the details."],
+    "holding": ["A holding company. Congratulations, you now own the thing that owns the things."],
+    "trade": ["A trade done. Win or lose, ask whether you'd make it again with what you knew then."],
+    "short": ["A short covered. Betting against things is a lonely game. Don't make a habit of loneliness."],
+    "property_bought": ["A new property. Buy the street, not just the house. Neighbourhoods move together."],
+    "property_sold": ["Sold. The best sale is the one where the buyer also walks away happy."],
+    "renovation": ["Renovation done. Spend on what tenants feel: light, warmth, a door that closes properly."],
+    "tower": ["Your tower is finished. Go up to the top floor once. Then go back to work."],
+    "disaster": ["A disaster hit one of your properties. Look after the people first; insurance will argue about the rest."],
+    "foreclosure": ["A foreclosure. It happens to the best of us. Learn the lesson; don't wear it."],
+    "luxury": ["A fine purchase. Things are lovely. People are lovelier. Keep that order."],
+    "auction_won": ["You won the lot. The room will remember who outbid them. Be gracious about it."],
+    "auction_lost": ["Outbid. Good. Discipline you showed today is worth more than the painting."],
+    "world_event": ["The world just moved. Don't react in the first hour. Nobody knows anything in the first hour."],
+    "business_sold": ["You sold a business. Letting go is a skill. You'll need it at the very end."],
+    "payment_missed": ["A missed payment. Call your lender before they call you. It changes the whole conversation."],
+    "loan_taken": ["Borrowed money is a tool, not a reward. Have a plan to give it back."],
+    "loan_repaid": ["Loan repaid. The best feeling in finance, and the most underrated."],
+    "tax_filed": ["Taxes filed. The roads your trucks use don't pave themselves."],
+    "tax_audited": ["An audit. Clean books are boring right up until they save you."],
+    "restructured": ["Restructured. Pride is expensive. You just saved a fortune by setting some down."],
+    "phoenix": ["Reborn from the ashes. I've done it twice. The second building is always better."],
+    "crown_passed": ["The crown has passed. I'll stay on for a while, if the new generation will have an old man around."],
+    "nemesis": ["Your nemesis made a move. Rivals are useful: they show you where you're soft.",
+                "Don't hate your nemesis. Study them. Hatred is a terrible analyst."],
+    "quarter": ["A quarter closed. Look at what grew and what didn't, then do more of the first thing."],
+    "ipo": ["You've gone public. Now strangers own a piece of your dream. Treat their trust like your own money."],
+}
+
+TIPS = {
+    1: ["Collect the till before it fills; a full till is money standing still.",
+        "Managers keep the doors open while you're away. Hire one before you take a break.",
+        "Try the price levels. Too cheap and you're a charity; too dear and you're a museum.",
+        "Level ten is the first tier. Watch what happens to output when you reach it.",
+        "Frenzy is for when the counter is busiest. Save it for a rush, not a lull.",
+        "The Next Move card is your to-do list. I like to-do lists. They argue less than people do.",
+        "A second business never hurts. Restaurants pay well once their stars climb.",
+        "Expansions take time but multiply everything after them. Start them before you go to bed.",
+        "Watch income per second, not cash. Cash is a photograph; income is the film.",
+        "If you're stuck, tap. Honest work is never the wrong move in Chapter 1."],
+    2: ["Trucks are only as good as their routes. Look at the logistics planner.",
+        "The headquarters adds slots. More slots, more businesses, more problems worth having.",
+        "Start small in the markets. Lose a little and learn a lot before you lose a lot and learn a little.",
+        "Your first property: location, location, and a tenant who pays on time.",
+        "A restaurant at level twenty-five is a neighbourhood landmark. Get there.",
+        "Dispatch managers make deliveries run while you sleep. Sleep is underrated in business.",
+        "Diversify slowly. Every new business needs attention before it pays attention back.",
+        "Keep a little cash aside. Opportunities don't send calendar invites.",
+        "The world strip shows what's moving markets. Read it like a weather report.",
+        "Decision cards are where character shows. Pick the option you'd explain to your mother."],
+    3: ["Factories want balance. A fast line with a slow step is just an expensive queue.",
+        "Farmland rides the seasons. Plant with the cycle, not against it.",
+        "Fashion lives on launches. Time them with the trends, not your mood.",
+        "Collect a few fine things. Luxury raises your status, and status opens doors.",
+        "Board seats pay quietly. Own enough of a company and they'll ask your opinion.",
+        "Rivals are watching the Fortune list. So should you, but don't stare.",
+        "Check the tax page once a quarter. Deductions are found, not given.",
+        "Mothball a weak business if a better one needs the slot. Sentiment is not a strategy.",
+        "Credit rating matters now. Good credit is cheap money; bad credit is expensive advice.",
+        "A billion sounds like the finish line. It's barely the warm-up."],
+    4: ["Conglomerates multiply members. Choose the merger whose parts you've already grown.",
+        "Mines and power plants reward steady investment. Don't starve them for flashier things.",
+        "Hotels fill with travellers when the world is calm. Watch the world.",
+        "Auctions run on a schedule. Know which lots you want before the gavel lifts.",
+        "Five properties is a portfolio. Spread them across cities and cycles.",
+        "Loans can accelerate a merger. Only borrow what your income can carry through a bad month.",
+        "Takeover bids come for the careless. Allies with good relationships make fine white knights.",
+        "The Desk will test your judgement. Read every option, even the ones you'll never pick.",
+        "Expansions on late businesses are expensive and worth it. Start them before long breaks.",
+        "A trillion. Somewhere, a rival is drawing up plans about you. Draw yours first."],
+    5: ["Banks pay best with a good credit rating. Protect it like the family silver.",
+        "Construction runs on timers. Line them up so cranes never stand idle.",
+        "Media rewards consistency. A steady schedule beats a viral moment.",
+        "Ten businesses means ten managers. Upgrade the weakest one first.",
+        "Rush timers with Favor when a chapter goal is within reach, not before.",
+        "Dynasty missions refresh daily. Small wins every day add up to a big week.",
+        "Watch the weekly event. It bends the rules in your favour, if you notice it.",
+        "Sell businesses you no longer need only if the slot is worth more than the income.",
+        "The richest rivals have weaknesses. The Fortune page shows their temperament."],
+    6: ["Technology scales fast. Feed it early and let it run.",
+        "Telecom levels add up quietly. Level twenty-five is where coverage becomes a moat.",
+        "Your second conglomerate should cover a different weakness from your first.",
+        "Market cycles turn. Rebalance when you're winning, not when you're scared.",
+        "Your tower and your best properties carry your rent. Renovate before you sell.",
+        "File taxes on time. Late filings invite the auditors, and they never leave early.",
+        "Keep a war chest for the airline. It is expensive and it will be worth it.",
+        "If a decision card feels like a trap, it probably is. Take the honest option.",
+        "Check the Store's cosmetics. Bullion earned in play buys a title worth wearing."],
+    7: ["Airlines live on load factor. Keep the planes full and the managers sharp.",
+        "Pharma pipelines pay late and pay big. Level them before the next big push.",
+        "Three conglomerates make a holding company possible. Think about what you'll call it.",
+        "The IPO is a once-a-generation decision. Float only what you can live without.",
+        "Your heirlooms will carry into the next generation. Choose them with care.",
+        "The richest rivals are close now. They don't sleep. Neither do markets.",
+        "Space needs patience and capital. Start saving for it the day you open the airline.",
+        "Every big purchase now should have a reason you can say out loud in one sentence.",
+        "Look back at the Fortune list from Chapter 3. Then look at it now. Enjoy that for exactly a minute."],
+    8: ["The final goal is net worth. Every business you level now pushes it a little further.",
+        "A sports franchise makes a city love you. Love is not on the balance sheet, but it matters.",
+        "The rocket will cost more than everything you built in the first three chapters. That's normal now.",
+        "Think about the heir: a trait, a Family Charter, the heirlooms. What do you want them to inherit?",
+        "Passing the crown resets the empire but not the wisdom. Legacy makes the next run faster.",
+        "A challenge run doubles the story. Try one when you're bored of winning the easy way.",
+        "Write a Family Charter you'd be proud to follow yourself.",
+        "Nothing up here is urgent. Take the decisions slowly; there's no one left to rush you.",
+        "When you're ready, the Crown screen shows what the next generation receives. Read it twice."],
+}
+
+
+def main(repo: Path) -> None:
+    lines = []
+    for n, texts in CHAPTER.items():
+        lines += [{"id": f"chapter_{n}_{i + 1}", "trigger": f"chapter:{n}", "text": t} for i, t in enumerate(texts)]
+    lines += [{"id": f"done_{n}", "trigger": f"done:{n}", "text": t} for n, t in DONE.items()]
+    lines += [{"id": f"m_{mid}", "trigger": f"mission:{mid}", "text": t} for mid, t in MISSION.items()]
+    lines += [{"id": f"open_{b}", "trigger": f"open:{b}", "text": t} for b, t in OPEN.items()]
+    for name, texts in EVENT.items():
+        lines += [{"id": f"ev_{name}_{i + 1}", "trigger": f"event:{name}", "text": t} for i, t in enumerate(texts)]
+    for n, texts in TIPS.items():
+        lines += [{"id": f"tip_{n}_{i + 1}", "trigger": f"tip:{n}", "text": t} for i, t in enumerate(texts)]
+    out = {"name": "The Chairman", "lines": lines}
+    path = repo / "content/data/mentor.json"
+    path.write_text(json.dumps(out, indent=1, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n")
+    print(f"wrote {path}: {len(lines)} lines")
+
+
+if __name__ == "__main__":
+    main(Path(sys.argv[1]))

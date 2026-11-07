@@ -1,7 +1,15 @@
 package com.arnavgames.tycoon.cloud
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.ApplicationInfo
+import androidx.credentials.CredentialManager
+import androidx.credentials.CustomCredential
+import androidx.credentials.GetCredentialRequest
+import androidx.credentials.exceptions.GetCredentialCancellationException
+import androidx.credentials.exceptions.NoCredentialException
+import com.google.android.libraries.identity.googleid.GetGoogleIdOption
+import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
 import android.os.Build
 import com.arnavgames.tycoon.BuildConfig
 import com.arnavgames.tycoon.game.GameSession
@@ -10,6 +18,9 @@ import com.google.firebase.FirebaseOptions
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthException
+import com.google.firebase.auth.FirebaseAuthUserCollisionException
+import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.Blob
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
@@ -26,7 +37,10 @@ import java.security.MessageDigest
 /** The signed-in player as the UI sees them. */
 data class CloudUser(val uid: String, val email: String?, val verified: Boolean, val guest: Boolean, val google: Boolean)
 
-/** Where cloud calls go: the real project (google-services.json present), the local emulator (debug builds) or nowhere. */
+/**
+ * Where cloud calls go: the local emulator (debug builds, so tests never touch real players' data), the real project
+ * (release builds made with google-services.json) or nowhere (release builds without it: the offline edition).
+ */
 enum class CloudMode { Live, Emulator, Offline }
 
 sealed interface SyncResult {
@@ -47,8 +61,8 @@ data class SaveSummary(val rev: Long, val nwLog10: Double, val generation: Int, 
  */
 class CloudService(private val app: Context, private val session: GameSession) {
     val mode: CloudMode = when {
-        BuildConfig.HAS_FIREBASE -> CloudMode.Live
         (app.applicationInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE) != 0 -> CloudMode.Emulator
+        BuildConfig.HAS_FIREBASE -> CloudMode.Live
         else -> CloudMode.Offline
     }
 
@@ -108,6 +122,10 @@ class CloudService(private val app: Context, private val session: GameSession) {
         if (!available) return@withContext Result.failure(IllegalStateException(offlineReason()))
         runCatching { block() }.recoverCatching { e ->
             if (e is FirebaseFirestoreException && e.code == FirebaseFirestoreException.Code.RESOURCE_EXHAUSTED) error("The cloud is busy today. Your game is safe on this device; try again tomorrow.")
+            // The project exists but this sign-in method hasn't been switched on in the Firebase console yet.
+            val msg = e.message.orEmpty()
+            if (msg.contains("CONFIGURATION_NOT_FOUND") || (e is FirebaseAuthException && e.errorCode == "ERROR_OPERATION_NOT_ALLOWED"))
+                error("Cloud sign-in isn't switched on yet. Your game is saved on this device.")
             throw e
         }
     }
@@ -132,6 +150,44 @@ class CloudService(private val app: Context, private val session: GameSession) {
     }
 
     suspend fun signIn(email: String, password: String) = call { auth.signInWithEmailAndPassword(email, password).await(); refresh() }
+
+    /**
+     * Google's web client id from google-services.json (generated as a string resource once Google sign-in is enabled
+     * in the Firebase console), or null: then the Google button is hidden.
+     */
+    @SuppressLint("DiscouragedApi")
+    fun googleClientId(): String? {
+        if (mode != CloudMode.Live) return null
+        val id = app.resources.getIdentifier("default_web_client_id", "string", app.packageName)
+        return if (id != 0) app.getString(id) else null
+    }
+
+    /** Google sign-in through Credential Manager. A guest who signs in with Google keeps their account and cloud save. */
+    suspend fun signInGoogle(activity: Context) = call {
+        val clientId = googleClientId() ?: error("Google sign-in isn't available in this version.")
+        val option = GetGoogleIdOption.Builder().setServerClientId(clientId).setFilterByAuthorizedAccounts(false).build()
+        val request = GetCredentialRequest.Builder().addCredentialOption(option).build()
+        val credential = try {
+            withContext(Dispatchers.Main) { CredentialManager.create(activity).getCredential(activity, request) }.credential
+        } catch (e: GetCredentialCancellationException) {
+            error("Google sign-in was cancelled.")
+        } catch (e: NoCredentialException) {
+            error("No Google account on this device. Add one in Android settings, or use email.")
+        }
+        if (credential !is CustomCredential || credential.type != GoogleIdTokenCredential.TYPE_GOOGLE_ID_TOKEN_CREDENTIAL) error("Unexpected sign-in response.")
+        val firebaseCredential = GoogleAuthProvider.getCredential(GoogleIdTokenCredential.createFrom(credential.data).idToken, null)
+        val current = auth.currentUser
+        if (current != null && current.isAnonymous) {
+            try {
+                current.linkWithCredential(firebaseCredential).await()
+            } catch (e: FirebaseAuthUserCollisionException) {
+                // This Google account already has a game account: sign into that one (the guest's local save stays here).
+                auth.signInWithCredential(firebaseCredential).await()
+                prefs.edit().remove("lastSyncedRev").apply()
+            }
+        } else auth.signInWithCredential(firebaseCredential).await()
+        refresh()
+    }
 
     suspend fun sendVerification(): Result<Unit> {
         val last = prefs.getLong("verifySentAt", 0)

@@ -58,7 +58,7 @@ class StoreTest {
     @Test
     fun capsAndLimitsHold() {
         var s = withBullion(busyState(), 100_000)
-        repeat(3) { s = s.run(Command.BuyWithBullion("slot_1")) }
+        repeat(2) { s = s.run(Command.BuyWithBullion("slot_1")) }
         assertInstanceOf(GameError.Locked::class.java, s.reject(Command.BuyWithBullion("slot_1")))
         s = s.run(Command.DemoPurchase("starter_pack"))
         assertInstanceOf(GameError.Locked::class.java, s.reject(Command.DemoPurchase("starter_pack")), "once per account")
@@ -97,5 +97,19 @@ class StoreTest {
         assertEquals("title_tycoon", s.store.title)
         assertInstanceOf(GameError.Locked::class.java, s.reject(Command.EquipCosmetic("frame_gold", "frame")))
         assertInstanceOf(GameError.Invalid::class.java, s.reject(Command.EquipCosmetic("title_tycoon", "frame")))
+    }
+
+    @Test
+    fun freeAvatarsNeedNoPurchaseAndPremiumOnesDo() {
+        assertEquals(18, c.freeAvatars.size)
+        assertEquals(24, c.freeAvatars.size + c.cosmetics.count { it.kind == "avatar" })
+        var s = busyState().run(Command.EquipCosmetic("rocket", "avatar"))
+        assertEquals("rocket", s.store.avatar)
+        assertInstanceOf(GameError.Locked::class.java, s.reject(Command.EquipCosmetic("avatar_yacht", "avatar")))
+        assertInstanceOf(GameError.NotFound::class.java, s.reject(Command.EquipCosmetic("rocket", "title")), "free avatars are not titles")
+        s = withBullion(s, 1000).run(Command.BuyWithBullion("avatar_yacht")).run(Command.EquipCosmetic("avatar_yacht", "avatar"))
+        assertEquals("avatar_yacht", s.store.avatar)
+        assertFalse(s.store.boosted, "Bullion purchases never mark Boosted")
+        assertEquals(null, s.run(Command.EquipCosmetic(null, "avatar")).store.avatar)
     }
 }

@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
+    alias(libs.plugins.baselineprofile)
 }
 
 // Firebase config is never committed. Without it the app builds as the "offline edition".
@@ -13,9 +14,14 @@ if (hasFirebaseConfig) {
 }
 
 // Semantic version. versionCode = major*10000 + minor*100 + patch.
-val versionMajor = 1
-val versionMinor = 0
-val versionPatch = 0
+// -Pabt.versionOverride=1.1.1 builds another version (used only by the auto-update end-to-end test).
+val versionParts = (providers.gradleProperty("abt.versionOverride").orNull ?: "1.1.0").split('.').map { it.toInt() }
+val versionMajor = versionParts[0]
+val versionMinor = versionParts[1]
+val versionPatch = versionParts[2]
+// Where the in-app updater looks for the latest release. -Pabt.updateApi=... points a debug build at a local test server.
+val updateApi = providers.gradleProperty("abt.updateApi").orNull
+    ?: "https://api.github.com/repos/Arnav-Dugad/Arnav-Business-Tycoon/releases/latest"
 
 android {
     namespace = "com.arnavgames.tycoon"
@@ -32,6 +38,7 @@ android {
         testInstrumentationRunnerArguments["clearPackageData"] = "true"
         buildConfigField("boolean", "HAS_FIREBASE", hasFirebaseConfig.toString())
         buildConfigField("String", "GITHUB_REPO", "\"Arnav-Dugad/Arnav-Business-Tycoon\"")
+        buildConfigField("String", "UPDATE_API", "\"$updateApi\"")
     }
 
     // Release signing reads credentials from ~/.gradle/gradle.properties (outside the repo).
@@ -110,6 +117,10 @@ dependencies {
     implementation(libs.firebase.auth)
     implementation(libs.firebase.firestore)
     implementation(libs.kotlinx.coroutines.play.services)
+    // Google sign-in through Credential Manager (shown only when google-services.json has a web client id).
+    implementation(libs.androidx.credentials)
+    implementation(libs.androidx.credentials.play)
+    implementation(libs.googleid)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.lifecycle.runtime.compose)
@@ -118,6 +129,7 @@ dependencies {
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.core.splashscreen)
     implementation(libs.androidx.profileinstaller)
+    baselineProfile(project(":baselineprofile"))
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.hilt.android)
     implementation(libs.hilt.navigation.compose)

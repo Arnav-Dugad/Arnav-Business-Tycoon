@@ -53,6 +53,7 @@ fun AccountScreen(vm: GameViewModel, onBack: () -> Unit) {
     val user by cloud.user.collectAsStateWithLifecycle()
     val usage by cloud.usage.collectAsStateWithLifecycle()
     val c = Aurum.colors
+    val ctx = androidx.compose.ui.platform.LocalContext.current
     val scope = rememberCoroutineScope()
     var email by rememberSaveable { mutableStateOf("") }
     var password by rememberSaveable { mutableStateOf("") }
@@ -85,6 +86,9 @@ fun AccountScreen(vm: GameViewModel, onBack: () -> Unit) {
     }
 
     LaunchedEffect(user?.uid) { if (user != null) cloud.refresh() }
+    // A background backup found that both this device and the cloud changed: ask now.
+    val backgroundConflict by vm.cloudConflict.collectAsStateWithLifecycle()
+    LaunchedEffect(backgroundConflict) { if (backgroundConflict) { vm.clearCloudConflict(); sync() } }
 
     Box(Modifier.fillMaxSize()) {
         GlassScaffold(title = "Account", onBack = onBack) {
@@ -127,7 +131,9 @@ fun AccountScreen(vm: GameViewModel, onBack: () -> Unit) {
                         GhostButton("Forgot password", enabled = email.contains('@') && !busy, onClick = { run("Password reset email sent.") { cloud.resetPassword(email) } }, modifier = Modifier.fillMaxWidth())
                         Spacer(Modifier.height(Space.xs))
                         GhostButton("Continue as guest", enabled = !busy, onClick = { run("Signed in as a guest. You can upgrade to an email account any time.") { cloud.signInGuest() } }, modifier = Modifier.fillMaxWidth())
-                        Text("Google sign-in will appear once the game's cloud project is set up.", style = Aurum.type.label, color = c.textTertiary)
+                        if (cloud.googleClientId() != null) {
+                            GhostButton("Continue with Google", enabled = !busy, onClick = { run("Signed in with Google.") { cloud.signInGoogle(ctx) } }, modifier = Modifier.fillMaxWidth().testTag("google-signin"))
+                        }
                     }
                 }
             } else {
@@ -159,7 +165,7 @@ fun AccountScreen(vm: GameViewModel, onBack: () -> Unit) {
                 item(key = "save") {
                     AurumCard(Modifier.fillMaxWidth()) {
                         Text(if (cloud.lastSyncedRev() > 0) "Synced revision ${cloud.lastSyncedRev()}" else "Not backed up yet", style = Aurum.type.titleSmall, color = c.textPrimary)
-                        Text("Syncing never overwrites anything silently: if both this device and the cloud changed, you choose.", style = Aurum.type.bodySmall, color = c.textSecondary)
+                        Text("Your game backs up automatically when you leave it. Syncing never overwrites anything silently: if both this device and the cloud changed, you choose.", style = Aurum.type.bodySmall, color = c.textSecondary)
                         Spacer(Modifier.height(Space.sm))
                         GoldButton("Sync now", enabled = !busy, onClick = { sync() }, modifier = Modifier.fillMaxWidth().testTag("sync-now"))
                         Text("Today: ${usage.first} reads, ${usage.second} writes", style = Aurum.type.label, color = c.textTertiary)

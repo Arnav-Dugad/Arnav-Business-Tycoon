@@ -37,6 +37,7 @@ data class ContentPack(
     val world: WorldContent = WorldContent.EMPTY,
     val progression: ProgressionContent = ProgressionContent.EMPTY,
     val store: StoreContent = StoreContent.EMPTY,
+    val mentor: MentorContent = MentorContent.EMPTY,
 ) {
     @kotlinx.serialization.Transient
     val businessById: Map<String, BusinessDef> = businesses.associateBy { it.id }

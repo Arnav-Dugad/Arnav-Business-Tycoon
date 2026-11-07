@@ -25,6 +25,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.Role
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.arnavgames.tycoon.BuildConfig
@@ -86,7 +87,12 @@ fun SettingsScreen(vm: GameViewModel, onBack: () -> Unit, onCredits: () -> Unit)
                     Spacer(Modifier.height(Space.xs))
                     SegmentedSelector(listOf(0f, 0.4f, 0.8f), listOf(0f, 0.4f, 0.8f).minBy { kotlin.math.abs(it - settings.sfxVolume) },
                         { when (it) { 0f -> "Off"; 0.4f -> "Quiet"; else -> "Normal" } }, { v -> vm.updateSettings { it.copy(sfxVolume = v) } }, Modifier.fillMaxWidth())
-                    Text("Music is not included yet.", style = Aurum.type.bodySmall, color = c.textTertiary)
+                    Spacer(Modifier.height(Space.sm))
+                    Text("Music", style = Aurum.type.title, color = c.textPrimary)
+                    Spacer(Modifier.height(Space.xs))
+                    SegmentedSelector(listOf(0f, 0.3f, 0.6f), listOf(0f, 0.3f, 0.6f).minBy { kotlin.math.abs(it - settings.musicVolume) },
+                        { when (it) { 0f -> "Off"; 0.3f -> "Quiet"; else -> "Normal" } }, { v -> vm.updateSettings { it.copy(musicVolume = v) } }, Modifier.fillMaxWidth())
+                    Text("Four original tracks, one for each part of your empire. Pauses if another app is playing music.", style = Aurum.type.bodySmall, color = c.textTertiary)
                 }
             }
             item { SectionHeader("Your save") }
@@ -97,6 +103,15 @@ fun SettingsScreen(vm: GameViewModel, onBack: () -> Unit, onCredits: () -> Unit)
                     MenuRow("Import save file", AbtIcons.Upload, onClick = { confirmImport = true }, subtitle = "Replace this game with a backup")
                 }
             }
+            item { SectionHeader("Updates") }
+            item {
+                AurumCard(Modifier.fillMaxWidth()) {
+                    ToggleRow("Automatic updates", "Download new versions on Wi-Fi and install them when you leave the game", settings.autoUpdate) { v -> vm.updateSettings { it.copy(autoUpdate = v) } }
+                    HairlineDivider()
+                    GhostButton("Check for updates", onClick = { vm.checkForUpdate(force = true) }, modifier = Modifier.fillMaxWidth().padding(top = Space.sm).testTag("check-updates"))
+                }
+            }
+            item { com.arnavgames.tycoon.ui.common.UpdateCard(vm.updates, settings.autoUpdate) }
             item { SectionHeader("About") }
             item {
                 AurumCard(Modifier.fillMaxWidth(), contentPadding = PaddingValues(Space.xs)) {
@@ -173,7 +188,7 @@ fun CreditsScreen(onBack: () -> Unit, artCredits: List<String> = emptyList(), po
                 if (portraitCount > 0) {
                     Spacer(Modifier.height(Space.xs))
                     Text("$portraitCount manager and rival portraits are AI-generated caricatures of invented people (Figma AI). They do not depict real people, including the rivals with parody names.", style = Aurum.type.bodySmall, color = c.textTertiary)
-                    Text("Sound effects were synthesized for this game (no third-party audio).", style = Aurum.type.bodySmall, color = c.textTertiary)
+                    Text("Sound effects and the four music tracks were synthesized in code for this game (no third-party audio or samples).", style = Aurum.type.bodySmall, color = c.textTertiary)
                 }
             }
         }

@@ -5,6 +5,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -68,6 +70,7 @@ fun SocialScreen(vm: GameViewModel, onBack: () -> Unit, onOpenAccount: () -> Uni
     var board by remember { mutableStateOf<List<BoardEntry>>(emptyList()) }
     var league by remember { mutableStateOf<List<BoardEntry>>(emptyList()) }
     var friends by remember { mutableStateOf<List<Friend>>(emptyList()) }
+    var showcase by remember { mutableStateOf<Friend?>(null) }
     var requests by remember { mutableStateOf<List<FriendRequest>>(emptyList()) }
     var gifts by remember { mutableStateOf<List<Gift>>(emptyList()) }
     var lot by remember { mutableStateOf<SealedLot?>(null) }
@@ -92,6 +95,7 @@ fun SocialScreen(vm: GameViewModel, onBack: () -> Unit, onOpenAccount: () -> Uni
     val ready = social.canUse()
     LaunchedEffect(ready) { if (ready) reload() }
 
+    androidx.compose.foundation.layout.Box(Modifier.fillMaxSize()) {
     GlassScaffold(title = "Friends", onBack = onBack) {
         if (!vm.cloud.available || !ready) {
             item(key = "need") {
@@ -166,7 +170,9 @@ fun SocialScreen(vm: GameViewModel, onBack: () -> Unit, onOpenAccount: () -> Uni
                 friends.forEach { f ->
                     HairlineDivider(Modifier.padding(vertical = Space.xs))
                     Row(verticalAlignment = Alignment.CenterVertically) {
-                        Column(Modifier.weight(1f)) {
+                        com.arnavgames.tycoon.ui.common.AvatarBadge(f.avatarId, f.frame, 40.dp)
+                        Spacer(Modifier.width(Space.sm))
+                        Column(Modifier.weight(1f).clickable(onClickLabel = "View profile") { showcase = f }.testTag("friend-${f.uid}")) {
                             Text(f.name, style = Aurum.type.titleSmall, color = c.textPrimary)
                             Text("10^" + String.format(Locale.US, "%.1f", f.nwLog10) + if (f.boosted) " · Boosted" else "", style = Aurum.type.bodySmall, color = c.textSecondary)
                         }
@@ -217,6 +223,32 @@ fun SocialScreen(vm: GameViewModel, onBack: () -> Unit, onOpenAccount: () -> Uni
                 }
             }
         }
-        item(key = "note") { Row(verticalAlignment = Alignment.CenterVertically) { AbtIcon(AbtIcons.Info, null, tint = c.textTertiary, size = 14.dp); Spacer(Modifier.width(Space.xs)); Text("Only your display name, net worth, generation, title and showcase are public.", style = Aurum.type.label, color = c.textTertiary) } }
+        item(key = "note") { Row(verticalAlignment = Alignment.CenterVertically) { AbtIcon(AbtIcons.Info, null, tint = c.textTertiary, size = 14.dp); Spacer(Modifier.width(Space.xs)); Text("Only your display name, avatar, net worth, generation, title and showcase are public.", style = Aurum.type.label, color = c.textTertiary) } }
+    }
+    showcase?.let { f -> FriendProfileDialog(vm, f, onDismiss = { showcase = null }) }
+    }
+}
+
+/** A friend's public profile: avatar and frame, title, generation, net worth and up to six showcased luxury items. */
+@Composable
+private fun FriendProfileDialog(vm: GameViewModel, f: Friend, onDismiss: () -> Unit) {
+    val c = Aurum.colors
+    val content = vm.engine.content
+    com.arnavgames.tycoon.designsystem.components.AurumDialog(title = f.name, onDismiss = onDismiss) {
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            com.arnavgames.tycoon.ui.common.AvatarBadge(f.avatarId, f.frame, 72.dp)
+            Spacer(Modifier.width(Space.md))
+            Column {
+                f.title?.let { content.store.cosmeticById[it]?.name }?.let { Text(it, style = Aurum.type.titleSmall, color = c.goldText) }
+                Text("Generation ${f.generation}", style = Aurum.type.bodySmall, color = c.textSecondary)
+                Text("Net worth 10^" + String.format(Locale.US, "%.1f", f.nwLog10), style = Aurum.type.bodySmall, color = c.textSecondary)
+                if (f.boosted) Text("Boosted (demo purchases)", style = Aurum.type.label, color = c.gain)
+            }
+        }
+        SectionHeader("Showcase")
+        val items = f.showcase.mapNotNull { content.luxury.itemById[it]?.name }
+        if (items.isEmpty()) Text("Nothing on display yet.", style = Aurum.type.bodySmall, color = c.textTertiary)
+        items.forEach { Text("· $it", style = Aurum.type.body, color = c.textPrimary) }
+        com.arnavgames.tycoon.designsystem.components.GhostButton("Close", onClick = onDismiss, modifier = Modifier.fillMaxWidth())
     }
 }

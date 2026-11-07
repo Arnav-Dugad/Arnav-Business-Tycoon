@@ -18,7 +18,7 @@ object ContentLoader {
     }
 
     /** Files that make up the pack, relative to the content root. Order matters for the hash. */
-    val FILES = listOf("data/businesses.json", "data/chapters.json", "data/conglomerates.json", "data/markets.json", "data/estates.json", "data/luxury.json", "data/world.json", "data/progression.json", "data/store.json", "balance/balance.json")
+    val FILES = listOf("data/businesses.json", "data/chapters.json", "data/conglomerates.json", "data/markets.json", "data/estates.json", "data/luxury.json", "data/world.json", "data/progression.json", "data/store.json", "data/mentor.json", "balance/balance.json")
 
     data class Loaded(val pack: ContentPack, val hash: String, val issues: List<ContentIssue>)
 
@@ -33,8 +33,9 @@ object ContentLoader {
         val world = json.decodeFromString<WorldContent>(texts.getValue("data/world.json"))
         val progression = json.decodeFromString<ProgressionContent>(texts.getValue("data/progression.json"))
         val store = json.decodeFromString<StoreContent>(texts.getValue("data/store.json"))
+        val mentor = json.decodeFromString<MentorContent>(texts.getValue("data/mentor.json"))
         val balance = json.decodeFromString<BalanceConfig>(texts.getValue("balance/balance.json"))
-        val pack = ContentPack(businesses, balance, chapters, conglomerates, markets, estates, luxury, world, progression, store)
+        val pack = ContentPack(businesses, balance, chapters, conglomerates, markets, estates, luxury, world, progression, store, mentor)
         val digest = MessageDigest.getInstance("SHA-256")
         FILES.forEach { digest.update(it.toByteArray()); digest.update(texts.getValue(it).replace("\r\n", "\n").toByteArray()) }
         val hash = digest.digest().joinToString("") { "%02x".format(it) }.take(16)
@@ -177,7 +178,31 @@ object ContentValidator {
         validateWorld(pack, ids, ::check)
         validateProgression(pack, ::check)
         validateStore(pack, ::check)
+        validateMentor(pack, ::check)
         return out
+    }
+
+    private fun validateMentor(pack: ContentPack, check: (Boolean, String, String) -> Unit) {
+        val m = pack.mentor
+        check(m.lines.size >= 200, "mentor", "at least 200 lines (CONTENT.md)")
+        check(m.lines.map { it.id }.toSet().size == m.lines.size, "mentor", "duplicate line ids")
+        val missions = pack.chapters.flatMap { c -> c.missions.map { it.id } }.toSet()
+        val chapters = pack.chapters.map { it.number.toString() }.toSet()
+        m.lines.forEach { l ->
+            val path = "mentor/${l.id}"
+            check(ID.matches(l.id), path, "bad id")
+            check(l.text.isNotBlank() && l.text.length <= 180, path, "text must be 1–180 characters")
+            val (kind, arg) = l.trigger.split(':', limit = 2).let { it[0] to it.getOrElse(1) { "" } }
+            check(when (kind) {
+                "chapter", "done", "tip" -> arg in chapters
+                "mission" -> arg in missions
+                "open" -> arg in pack.businessById
+                "event" -> arg in MentorContent.EVENTS
+                else -> false
+            }, path, "unknown trigger '${l.trigger}'")
+        }
+        pack.chapters.forEach { c -> check(m.byTrigger["tip:${c.number}"].orEmpty().size >= 5, "mentor", "chapter ${c.number} needs at least 5 tips") }
+        missions.forEach { id -> check("mission:$id" in m.byTrigger, "mentor", "no line for mission $id") }
     }
 
     private fun validateStore(pack: ContentPack, check: (Boolean, String, String) -> Unit) {

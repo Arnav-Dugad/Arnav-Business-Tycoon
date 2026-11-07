@@ -1,6 +1,6 @@
 # Arnav Business Tycoon — Progress
 
-_Last updated: 2026-11-06._
+_Last updated: 2026-11-07._
 
 ## Current status
 - Phase 0 (Planning): **DONE**. The user approved the plan on 2026-11-06.
@@ -21,8 +21,10 @@ _Last updated: 2026-11-06._
 - **Preview release v0.9.0** published on GitHub (signed with the new release key; see Phase 16 notes below).
 - Phase 14 (Store): **DONE** (simulated purchases only). Details below.
 - Phases 12–13 (Firebase, social): **BUILT AND TESTED ON THE LOCAL EMULATOR**. The real Firebase project could not be created (account project quota), so the released app is the **offline edition**. Owner checklist below.
-- Phase 15 (Polish): **PARTLY DONE**: sound effects, Market Timing and Negotiation mini-games, update checker, accessibility checks, light-mode fixes. Not done: music, baseline-profile and macrobenchmark refresh.
+- Phase 15 (Polish): **DONE in 1.1.0**: sound effects and music, Market Timing and Negotiation mini-games, automatic updates, accessibility checks, light-mode fixes, baseline profile. Not done: a macrobenchmark refresh (needs a physical phone to mean much).
 - Phase 16 (Release): **v1.0.0 published on GitHub Releases** (signed APK). Gates below.
+- Phase 11 (Balance): **DONE for the target table, 16 of 17** (1.1.0): active Chapter 8 at 5.2 d, idle Chapter 2 at 12 h, spender 25–38 % faster per chapter. Open: idle Chapter 8 (2 of 3 seeds at 9.5 d), first conglomerate 2.4× for spenders, market/property income share still ~0 % and active dead minutes ~50 % (health metrics outside the pass/fail table). See TUNING_LOG p11a–p11f.
+- **1.1.0 session (owner request 2026-11-07: "check Firebase and complete whatever is left", plus "add auto update")**: real Firebase project created and wired; automatic updates; Phase 11 balance (Chapter 8 reachable, idle Chapter 2); music; mentor dialogue; avatars, cosmetics and friend profiles; story missions to 50. Details in "1.1.0 session" below.
 
 ## Decisions
 | Topic | Decision |
@@ -453,12 +455,27 @@ All in `:core` (pure Kotlin/JVM, enforced by `verifyCorePurity`):
 ## Content still below the CONTENT.md minimums (honest list)
 | Category | Minimum | Now | Note |
 |---|---|---|---|
-| Cosmetics | 30 | 14 (5 titles, 4 frames, 5 season titles) | Themes, HQ skins and card backs not built |
-| Player avatar options | 24 | 0 | Profiles use a crown badge |
-| Mentor and nemesis dialogue lines | 200 | ~40 (21 nemesis beats, chapter summaries, card texts aside) | The Chairman mentor has no dialogue system yet |
-| Story missions | 50 | 41 | Chapters 5–8 have 3–4 missions each instead of 7 |
+| Cosmetics | 30 | **30** (11 titles, 8 frames, 6 premium avatars, 5 season titles) | Themes, HQ skins and card backs still not built (titles, frames and avatars instead) |
+| Player avatar options | 24 | **24** (18 free, 6 premium) | Emblems drawn from the game's own icons on metal badges (no photos) |
+| Mentor and nemesis dialogue lines | 200 | **~220** (200 Chairman lines + 21 nemesis beats) | Mentor system built in 1.1.0 |
+| Story missions | 50 | **50** | Chapter 5 has 7; Chapters 6–8 have 5 each |
 | World-event mood photos, property and luxury photos | 20 + 86 + ~200 | 0 + 0 + 99 (museum) | Illustrated cards are used instead |
-| Music tracks | 4 | 0 | |
+| Music tracks | 4 | **4** | Synthesized in code (not CC0/CC-BY samples); not yet listened to by a human |
+
+## 1.1.0 session (2026-11-07): what was done and verified
+- **Firebase (live)**: a project slot was free (23 projects), so `arnav-business-tycoon` was created on the Spark plan. Firestore `(default)` in **asia-south1** (Mumbai), rules and indexes deployed (and redeployed with the profile `frame` field). Android apps registered for `com.arnavgames.tycoon`, `.debug` and `.bench` with the release and debug SHA-1/SHA-256 fingerprints. `app/google-services.json` downloaded (git-ignored; release builds are now "cloud ready"). Debug builds still use the local emulator, so tests never touch real data.
+  - **Blocked: Authentication.** Turning Auth on through the API (`identityPlatform:initializeAuth`) returns `BILLING_NOT_ENABLED` (it upgrades to Identity Platform, which needs Blaze). Per the Spark-only rule nothing was upgraded. The owner must click **Authentication → Get started** in the console and enable **Email/Password** and **Anonymous** (and Google if wanted). Until then the app says "Cloud sign-in isn't switched on yet. Your game is saved on this device." (checked on the release build). No rebuild is needed for email and guest; Google sign-in needs a rebuild after enabling (the web client id comes from a fresh google-services.json).
+- **Automatic updates** (owner request): see ARCHITECTURE §9. Verified end to end on API 37: background download, verification and silent install on leaving the game (1.1.0 → 1.1.1, save kept, "Updated from" message); tampered checksum rejected; APK signed with another key rejected; permission flow; foreground "Install now". Unit tests for the release parser (3).
+- **Background cloud backup** when leaving the game (ARCHITECTURE §9a), conflict prompt on the Dynasty tab.
+- **Google sign-in** code (Credential Manager; guest accounts are linked). Hidden until google-services.json has a web client id: **not tested live yet**.
+- **Music**: four original loops synthesized in code (`tools/audio/gen_music.py`, 1.45 MB Ogg Vorbis): Empire lounge jazz, Markets minor groove, Estates/Collection ambient pads, Dynasty 3/4 piano theme. Crossfades per tab, pauses in the background and when another app plays music; Settings → Music Off / Quiet / Normal. Verified playing on the emulator (`state:started`, 32 kHz stereo). Loudness −12 to −16 dBFS, no clipping. **Not listened to by a human yet.**
+- **The Chairman** (mentor): 200 original lines (`tools/content/gen_mentor.py` → `content/data/mentor.json`), validated (unique ids, every trigger points at a real chapter, mission, business or event; a line for every mission; ≥ 5 tips per chapter). Shown one at a time on the Empire tab: story reactions once per generation, moments in play once ever, a rotating chapter tip when opening the tab (at most every 10 minutes). Screenshots reviewed (dark and light).
+- **Avatars and cosmetics**: 24 avatars drawn from the game's own icons (18 free, 6 premium for Bullion), equipped through the engine (`StoreState.avatar`, saved and synced), shown on the Dynasty tab, friend list and friend profiles; 16 new cosmetics (6 titles, 4 frames, 6 avatars): 30 in total with season titles. Frames ring the avatar. StoreTest covers free vs premium avatars.
+- **Friend profiles**: tap a friend to see avatar and frame, title, generation, net worth and up to six showcased collection items. Profiles now publish the real avatar and frame (rules updated; 15 rules tests pass).
+- **Story missions**: 9 new (manager hires and level goals in Chapters 5–8): 50 in total.
+- **Baseline profile**: new `:baselineprofile` module (Macrobenchmark 1.5.0, verified on Google Maven). Generated on API 37 from a first-session journey (start, welcome, every tab, Empire scroll): 29,677 rules, 6,197 of them for the game's own code, packaged in release builds (`assets/dexopt/baseline.prof`). The plugin only copies `*-baseline-prof.txt`, so the generated startup profile was placed in `app/src/release/generated/baselineProfiles/` by hand (regenerate with `./gradlew :app:generateReleaseBaselineProfile`, then copy the `-startup-prof.txt` output there as both files).
+- **Balance (Phase 11)**: six 10-day batches (TUNING_LOG p11a–p11f). The ladder from Banking to Space is compressed (×3.6 per step instead of ×11.5, with level cost and revenue scaled the same way so paybacks don't change); the final goal is 4× the Space price (≈ $9.3×10^16); Chapter 7–8 level goals are level 10; Chapter 2's last goal is $25M; the Legacy normaliser follows the goal (13.4: a first crown still earns ~125 Legacy). The bots now save for the business the story asks for once nothing else is left in the chapter (a real player's habit the model lacked). Extra slots in the store are capped at 2. Result: **16 of 17 targets** (archive `docs/balance/2026-11-07-release-1.1.0/`).
+- **Test fixes**: FirstSessionFlowTest tapped buttons that sat under the floating tab bar (the touch landed on a tab): it now targets the Empire list by tag and clicks through semantics actions. **Passes on API 28 now** (the old 1.0.0 flake). The crown debug scenario hires the managers the new missions ask for.
 
 ## Release gates (TEST_PLAN §7)
 Checked for 1.0.0 on 2026-11-07:
@@ -482,11 +499,8 @@ The release is published with the ⚠️ items listed here and in the release no
 
 ## Owner checklist (morning)
 1. **Back up the release keystore** now: `C:\Users\rduga\Keystores\arnav-business-tycoon\abt-release.jks` **and** the passwords in `C:\Users\rduga\.gradle\gradle.properties` (lines starting `ABT_`). Keep two copies (password manager + USB or private cloud). Without them, updates can't be installed over the existing app.
-2. **Firebase (to switch cloud features on)**: free a project slot (delete an unused project in the Firebase console, or request more quota), then tell me, and I will:
-   - create `arnav-business-tycoon`, Firestore in **asia-south1**, deploy `firebase/firestore.rules`;
-   - register the Android app with the debug and release SHA fingerprints and download `google-services.json` (never committed);
-   - enable Email/Password and Anonymous sign-in.
-   You then enable **Google** sign-in in the console (Authentication → Sign-in method → Google; public name "Arnav Business Tycoon", support email).
+2. **Firebase: one console step left** (everything else was done on 2026-11-07). Open https://console.firebase.google.com/project/arnav-business-tycoon/authentication → **Get started** → Sign-in method → enable **Email/Password** and **Anonymous**. This uses the free Firebase Authentication (no billing). Sign-in in the released 1.1.0 starts working immediately; no update needed.
+   - Optional: also enable **Google** (public name "Arnav Business Tycoon", support email), then tell me: I re-download google-services.json and ship an update with the Google button (auto-update delivers it).
 3. Optional: try the release APK on a real phone (emulator frame timings are not a reliable 60 fps check).
 
 ## Environment inventory (verified 2026-11-06)

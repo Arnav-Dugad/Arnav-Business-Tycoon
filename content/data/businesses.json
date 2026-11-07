@@ -1249,10 +1249,10 @@
     "chapter": 4,
     "sector": "finance",
     "icon": "Bank",
-    "unlockCost": "2623509375000.00",
-    "baseCost": "187586040796.88",
+    "unlockCost": "821272500000.00",
+    "baseCost": "58722586684.24",
     "costGrowth": "1.164",
-    "baseRevenue": "288519379.45",
+    "baseRevenue": "90319110.09",
     "upkeep": "0.20",
     "storageSeconds": 60,
     "tiers": [
@@ -1305,7 +1305,7 @@
         "name": "Harriet Vandermeer",
         "title": "Branch Manager",
         "stars": 2,
-        "cost": "34105621875000.00",
+        "cost": "10676542500000.00",
         "policy": "Safe",
         "trait": "Lends to the reliable."
       },
@@ -1314,7 +1314,7 @@
         "name": "Kwame Lindberg",
         "title": "Credit Officer",
         "stars": 3,
-        "cost": "5247018750000000.00",
+        "cost": "1642545000000000.00",
         "policy": "Balanced",
         "trait": "Risk priced right."
       },
@@ -1323,7 +1323,7 @@
         "name": "Sebastian Okoro",
         "title": "Head of Lending",
         "stars": 4,
-        "cost": "1836456562500000000.00",
+        "cost": "574890750000000000.00",
         "policy": "Aggressive",
         "trait": "Every applicant is an opportunity."
       },
@@ -1332,7 +1332,7 @@
         "name": "Ingrid Mbeki-Shaw",
         "title": "Chief Risk Officer",
         "stars": 5,
-        "cost": "708347531250000000000.00",
+        "cost": "221743575000000000000.00",
         "policy": "Balanced",
         "trait": "Calm in every cycle."
       }
@@ -1343,7 +1343,7 @@
         "name": "Private Banking Desk",
         "description": "Serve the very wealthy.",
         "requiresLevel": 5,
-        "cost": "26235093750000.00",
+        "cost": "8212725000000.00",
         "durationSeconds": 600,
         "multiplier": "1.25"
       },
@@ -1352,7 +1352,7 @@
         "name": "Trading Floor",
         "description": "Markets, all day long.",
         "requiresLevel": 20,
-        "cost": "3410562187500000.00",
+        "cost": "1067654250000000.00",
         "durationSeconds": 2400,
         "multiplier": "1.5"
       },
@@ -1361,7 +1361,7 @@
         "name": "Clearing House",
         "description": "Every payment passes through you.",
         "requiresLevel": 45,
-        "cost": "419761500000000000.00",
+        "cost": "131403600000000000.00",
         "durationSeconds": 9000,
         "multiplier": "2"
       }
@@ -1380,10 +1380,10 @@
     "chapter": 4,
     "sector": "industrial",
     "icon": "Crane",
-    "unlockCost": "30170357812500.00",
-    "baseCost": "1969653428367.19",
+    "unlockCost": "2956581000000.00",
+    "baseCost": "193018589275.15",
     "costGrowth": "1.166",
-    "baseRevenue": "2452414725.35",
+    "baseRevenue": "240327371.20",
     "upkeep": "0.20",
     "storageSeconds": 60,
     "tiers": [
@@ -1436,7 +1436,7 @@
         "name": "Doyle Mancini",
         "title": "Site Foreman",
         "stars": 2,
-        "cost": "392214651562500.00",
+        "cost": "38435553000000.00",
         "policy": "Safe",
         "trait": "Wins the safe bids."
       },
@@ -1445,7 +1445,7 @@
         "name": "Leilani Hart",
         "title": "Estimator",
         "stars": 3,
-        "cost": "60340715625000000.00",
+        "cost": "5913162000000000.00",
         "policy": "Balanced",
         "trait": "Bids what it is worth."
       },
@@ -1454,7 +1454,7 @@
         "name": "Viktor Asamoah",
         "title": "Bid Director",
         "stars": 4,
-        "cost": "21119250468750000000.00",
+        "cost": "2069606700000000000.00",
         "policy": "Aggressive",
         "trait": "Holds out for the rich contracts."
       },
@@ -1463,7 +1463,7 @@
         "name": "Paloma Strand",
         "title": "Chief Construction Officer",
         "stars": 5,
-        "cost": "8145996609375000000000.00",
+        "cost": "798276870000000000000.00",
         "policy": "Balanced",
         "trait": "On time, on budget."
       }
@@ -1474,7 +1474,7 @@
         "name": "Tower Crane Fleet",
         "description": "Build taller, faster.",
         "requiresLevel": 5,
-        "cost": "301703578125000.00",
+        "cost": "29565810000000.00",
         "durationSeconds": 600,
         "multiplier": "1.25"
       },
@@ -1483,7 +1483,7 @@
         "name": "Precast Plant",
         "description": "Buildings made in sections.",
         "requiresLevel": 20,
-        "cost": "39221465156250000.00",
+        "cost": "3843555300000000.00",
         "durationSeconds": 2400,
         "multiplier": "1.5"
       },
@@ -1492,7 +1492,7 @@
         "name": "Architecture Studio",
         "description": "Landmarks people pay to see.",
         "requiresLevel": 45,
-        "cost": "4827257250000000000.00",
+        "cost": "473052960000000000.00",
         "durationSeconds": 9000,
         "multiplier": "2"
       }
@@ -1511,10 +1511,10 @@
     "chapter": 4,
     "sector": "media",
     "icon": "Film",
-    "unlockCost": "346959114843750.00",
-    "baseCost": "20681360997855.47",
+    "unlockCost": "10643691600000.00",
+    "baseCost": "634443710834.84",
     "costGrowth": "1.168",
-    "baseRevenue": "20845525165.49",
+    "baseRevenue": "639479787.70",
     "upkeep": "0.20",
     "storageSeconds": 60,
     "tiers": [
@@ -1567,7 +1567,7 @@
         "name": "Corinne Adeyemi",
         "title": "Programme Manager",
         "stars": 2,
-        "cost": "4510468492968750.00",
+        "cost": "138367990800000.00",
         "policy": "Safe",
         "trait": "Reliable hits, every season."
       },
@@ -1576,7 +1576,7 @@
         "name": "Felix Marchetti-Wu",
         "title": "Commissioning Editor",
         "stars": 3,
-        "cost": "693918229687500000.00",
+        "cost": "21287383200000000.00",
         "policy": "Balanced",
         "trait": "Backs quality."
       },
@@ -1585,7 +1585,7 @@
         "name": "Rana Holloway",
         "title": "Head of Content",
         "stars": 4,
-        "cost": "242871380390625000000.00",
+        "cost": "7450584120000000000.00",
         "policy": "Aggressive",
         "trait": "Swings for the blockbuster."
       },
@@ -1594,7 +1594,7 @@
         "name": "Anders Okafor",
         "title": "Chief Content Officer",
         "stars": 5,
-        "cost": "93678961007812500000000.00",
+        "cost": "2873796732000000000000.00",
         "policy": "Balanced",
         "trait": "Knows what audiences want."
       }
@@ -1605,7 +1605,7 @@
         "name": "Sound Stages",
         "description": "Film everything in-house.",
         "requiresLevel": 5,
-        "cost": "3469591148437500.00",
+        "cost": "106436916000000.00",
         "durationSeconds": 600,
         "multiplier": "1.25"
       },
@@ -1614,7 +1614,7 @@
         "name": "Streaming App",
         "description": "Your channels in every pocket.",
         "requiresLevel": 20,
-        "cost": "451046849296875000.00",
+        "cost": "13836799080000000.00",
         "durationSeconds": 2400,
         "multiplier": "1.5"
       },
@@ -1623,7 +1623,7 @@
         "name": "Studio Lot",
         "description": "Blockbusters on your back lot.",
         "requiresLevel": 45,
-        "cost": "55513458375000000000.00",
+        "cost": "1702990656000000000.00",
         "durationSeconds": 9000,
         "multiplier": "2"
       }
@@ -1642,10 +1642,10 @@
     "chapter": 5,
     "sector": "technology",
     "icon": "Chip",
-    "unlockCost": "3990029820703125.00",
-    "baseCost": "217154290477482.42",
+    "unlockCost": "38317289760000.00",
+    "baseCost": "2085388893004.97",
     "costGrowth": "1.170",
-    "baseRevenue": "177186963906.65",
+    "baseRevenue": "1701572304.67",
     "upkeep": "0.20",
     "storageSeconds": 60,
     "tiers": [
@@ -1698,7 +1698,7 @@
         "name": "Zoe Kallinikos",
         "title": "Engineering Manager",
         "stars": 2,
-        "cost": "51870387669140625.00",
+        "cost": "498124766880000.00",
         "policy": "Safe",
         "trait": "Ships when it is ready."
       },
@@ -1707,7 +1707,7 @@
         "name": "Arjun Whitlock",
         "title": "Product Lead",
         "stars": 3,
-        "cost": "7980059641406250000.00",
+        "cost": "76634579520000000.00",
         "policy": "Balanced",
         "trait": "Launches on the hype curve."
       },
@@ -1716,7 +1716,7 @@
         "name": "Lena Szabo-Grant",
         "title": "VP of Product",
         "stars": 4,
-        "cost": "2793020874492187500000.00",
+        "cost": "26822102832000000000.00",
         "policy": "Aggressive",
         "trait": "Ship early, ship often."
       },
@@ -1725,7 +1725,7 @@
         "name": "Mateus Obi",
         "title": "Chief Technology Officer",
         "stars": 5,
-        "cost": "1077308051589843750000000.00",
+        "cost": "10345668235200000000000.00",
         "policy": "Balanced",
         "trait": "Builds what lasts."
       }
@@ -1736,7 +1736,7 @@
         "name": "Research Campus",
         "description": "Bright minds, one address.",
         "requiresLevel": 5,
-        "cost": "39900298207031250.00",
+        "cost": "383172897600000.00",
         "durationSeconds": 600,
         "multiplier": "1.25"
       },
@@ -1745,7 +1745,7 @@
         "name": "Chip Fabrication Plant",
         "description": "Make your own silicon.",
         "requiresLevel": 20,
-        "cost": "5187038766914062500.00",
+        "cost": "49812476688000000.00",
         "durationSeconds": 2400,
         "multiplier": "1.5"
       },
@@ -1754,7 +1754,7 @@
         "name": "Advanced Computing Lab",
         "description": "Problems solved before they exist.",
         "requiresLevel": 45,
-        "cost": "638404771312500000000.00",
+        "cost": "6130766361600000000.00",
         "durationSeconds": 9000,
         "multiplier": "2"
       }
@@ -1773,10 +1773,10 @@
     "chapter": 5,
     "sector": "technology",
     "icon": "Antenna",
-    "unlockCost": "45885342938085937.50",
-    "baseCost": "2280120050013565.43",
+    "unlockCost": "137942243136000.00",
+    "baseCost": "6854582622225.03",
     "costGrowth": "1.172",
-    "baseRevenue": "1506089193206.53",
+    "baseRevenue": "4527661958.51",
     "upkeep": "0.20",
     "storageSeconds": 60,
     "tiers": [
@@ -1829,7 +1829,7 @@
         "name": "Reuben Castellane",
         "title": "Network Engineer",
         "stars": 2,
-        "cost": "596509458195117187.50",
+        "cost": "1793249160768000.00",
         "policy": "Safe",
         "trait": "Builds before it is needed."
       },
@@ -1838,7 +1838,7 @@
         "name": "Aiko Brannigan",
         "title": "Capacity Planner",
         "stars": 3,
-        "cost": "91770685876171875000.00",
+        "cost": "275884486272000000.00",
         "policy": "Balanced",
         "trait": "Utilization just right."
       },
@@ -1847,7 +1847,7 @@
         "name": "Emeka Vossberg",
         "title": "Growth Director",
         "stars": 4,
-        "cost": "32119740056660156250000.00",
+        "cost": "96559570195200000000.00",
         "policy": "Aggressive",
         "trait": "Runs the network hot."
       },
@@ -1856,7 +1856,7 @@
         "name": "Helena Marsh-Idowu",
         "title": "Chief Network Officer",
         "stars": 5,
-        "cost": "12389042593283203125000000.00",
+        "cost": "37244405646720000000000.00",
         "policy": "Balanced",
         "trait": "Five nines, always."
       }
@@ -1867,7 +1867,7 @@
         "name": "Fibre Backbone",
         "description": "Light-speed between every city.",
         "requiresLevel": 5,
-        "cost": "458853429380859375.00",
+        "cost": "1379422431360000.00",
         "durationSeconds": 600,
         "multiplier": "1.25"
       },
@@ -1876,7 +1876,7 @@
         "name": "Hyperscale Data Centre",
         "description": "Rent compute to the world.",
         "requiresLevel": 20,
-        "cost": "59650945819511718750.00",
+        "cost": "179324916076800000.00",
         "durationSeconds": 2400,
         "multiplier": "1.5"
       },
@@ -1885,7 +1885,7 @@
         "name": "Subsea Cable",
         "description": "Connect continents.",
         "requiresLevel": 45,
-        "cost": "7341654870093750000000.00",
+        "cost": "22070758901760000000.00",
         "durationSeconds": 9000,
         "multiplier": "2"
       }
@@ -1904,10 +1904,10 @@
     "chapter": 6,
     "sector": "travel",
     "icon": "Plane",
-    "unlockCost": "527681443787988281.25",
-    "baseCost": "23941260525142437.01",
+    "unlockCost": "496592075289600.00",
+    "baseCost": "22530715053922.26",
     "costGrowth": "1.174",
-    "baseRevenue": "12801758142255.49",
+    "baseRevenue": "12047517906.98",
     "upkeep": "0.20",
     "storageSeconds": 60,
     "tiers": [
@@ -1960,7 +1960,7 @@
         "name": "Rosalind Achebe",
         "title": "Duty Manager",
         "stars": 2,
-        "cost": "6859858769243847656.25",
+        "cost": "6455696978764800.00",
         "policy": "Safe",
         "trait": "Maintenance on the dot."
       },
@@ -1969,7 +1969,7 @@
         "name": "Gustavo Lindgren",
         "title": "Network Planner",
         "stars": 3,
-        "cost": "1055362887575976562500.00",
+        "cost": "993184150579200000.00",
         "policy": "Balanced",
         "trait": "Fares for every season."
       },
@@ -1978,7 +1978,7 @@
         "name": "Simone Okwuosa",
         "title": "Commercial Director",
         "stars": 4,
-        "cost": "369377010651591796875000.00",
+        "cost": "347614452702720000000.00",
         "policy": "Aggressive",
         "trait": "Pushes the schedule."
       },
@@ -1987,7 +1987,7 @@
         "name": "Henrik Adebayo",
         "title": "Chief Airline Officer",
         "stars": 5,
-        "cost": "142473989822756835937500000.00",
+        "cost": "134079860328192000000000.00",
         "policy": "Balanced",
         "trait": "Safe skies, full cabins."
       }
@@ -1998,7 +1998,7 @@
         "name": "Premium Lounges",
         "description": "Comfort worth paying for.",
         "requiresLevel": 5,
-        "cost": "5276814437879882812.50",
+        "cost": "4965920752896000.00",
         "durationSeconds": 600,
         "multiplier": "1.25"
       },
@@ -2007,7 +2007,7 @@
         "name": "Maintenance Hangar",
         "description": "Fix planes on your own schedule.",
         "requiresLevel": 20,
-        "cost": "685985876924384765625.00",
+        "cost": "645569697876480000.00",
         "durationSeconds": 2400,
         "multiplier": "1.5"
       },
@@ -2016,7 +2016,7 @@
         "name": "Long-Haul Fleet",
         "description": "Non-stop to everywhere.",
         "requiresLevel": 45,
-        "cost": "84429031006078125000000.00",
+        "cost": "79454732046336000000.00",
         "durationSeconds": 9000,
         "multiplier": "2"
       }
@@ -2035,10 +2035,10 @@
     "chapter": 6,
     "sector": "health",
     "icon": "Flask",
-    "unlockCost": "6068336603561865234.38",
-    "baseCost": "251383235513995588.62",
+    "unlockCost": "1787731471042560.00",
+    "baseCost": "74057480785935.78",
     "costGrowth": "1.176",
-    "baseRevenue": "108814944209171.67",
+    "baseRevenue": "32056873735.10",
     "upkeep": "0.20",
     "storageSeconds": 60,
     "tiers": [
@@ -2091,7 +2091,7 @@
         "name": "Dr. Imogen Fairweather",
         "title": "Lab Director",
         "stars": 2,
-        "cost": "78888375846304248046.88",
+        "cost": "23240509123553280.00",
         "policy": "Safe",
         "trait": "One careful trial at a time."
       },
@@ -2100,7 +2100,7 @@
         "name": "Dr. Kofi Lindqvist",
         "title": "Head of Trials",
         "stars": 3,
-        "cost": "12136673207123730468750.00",
+        "cost": "3575462942085120000.00",
         "policy": "Balanced",
         "trait": "A steady pipeline."
       },
@@ -2109,7 +2109,7 @@
         "name": "Dr. Ayasha Moreno",
         "title": "R&D Director",
         "stars": 4,
-        "cost": "4247835622493305664062500.00",
+        "cost": "1251412029729792000000.00",
         "policy": "Aggressive",
         "trait": "Funds everything promising."
       },
@@ -2118,7 +2118,7 @@
         "name": "Dr. Viktor Hallam",
         "title": "Chief Scientific Officer",
         "stars": 5,
-        "cost": "1638450882961703613281250000.00",
+        "cost": "482687497181491200000000.00",
         "policy": "Balanced",
         "trait": "Science first, sales follow."
       }
@@ -2129,7 +2129,7 @@
         "name": "Clinical Trial Network",
         "description": "Recruit patients worldwide.",
         "requiresLevel": 5,
-        "cost": "60683366035618652343.75",
+        "cost": "17877314710425600.00",
         "durationSeconds": 600,
         "multiplier": "1.25"
       },
@@ -2138,7 +2138,7 @@
         "name": "Active Ingredient Plant",
         "description": "Make your own compounds.",
         "requiresLevel": 20,
-        "cost": "7888837584630424804687.50",
+        "cost": "2324050912355328000.00",
         "durationSeconds": 2400,
         "multiplier": "1.5"
       },
@@ -2147,7 +2147,7 @@
         "name": "Genomics Centre",
         "description": "Medicine tailored to the patient.",
         "requiresLevel": 45,
-        "cost": "970933856569898437500000.00",
+        "cost": "286037035366809600000.00",
         "durationSeconds": 9000,
         "multiplier": "2"
       }
@@ -2166,10 +2166,10 @@
     "chapter": 7,
     "sector": "entertainment",
     "icon": "Ball",
-    "unlockCost": "69785870940961450195.31",
-    "baseCost": "2639523972896953680.54",
+    "unlockCost": "6435833295753216.00",
+    "baseCost": "243423719452901.97",
     "costGrowth": "1.178",
-    "baseRevenue": "924927025777959.20",
+    "baseRevenue": "85299159677.75",
     "upkeep": "0.20",
     "storageSeconds": 60,
     "tiers": [
@@ -2222,7 +2222,7 @@
         "name": "Brady Okonkwo",
         "title": "Team Manager",
         "stars": 2,
-        "cost": "907216322232498852539.06",
+        "cost": "83665832844791808.00",
         "policy": "Safe",
         "trait": "Keeps the squad steady."
       },
@@ -2231,7 +2231,7 @@
         "name": "Lucia Ferrante",
         "title": "Director of Football",
         "stars": 3,
-        "cost": "139571741881922900390625.00",
+        "cost": "12871666591506432000.00",
         "policy": "Balanced",
         "trait": "Signs smart."
       },
@@ -2240,7 +2240,7 @@
         "name": "Kenji Albrecht",
         "title": "Head Coach",
         "stars": 4,
-        "cost": "48850109658673015136718750.00",
+        "cost": "4505083307027251200000.00",
         "policy": "Aggressive",
         "trait": "Trophies at any cost."
       },
@@ -2249,7 +2249,7 @@
         "name": "Aurelia Mensah",
         "title": "Club President",
         "stars": 5,
-        "cost": "18842185154059591552734375000.00",
+        "cost": "1737674989853368320000000.00",
         "policy": "Balanced",
         "trait": "Builds dynasties."
       }
@@ -2260,7 +2260,7 @@
         "name": "Training Ground",
         "description": "Champions are built here.",
         "requiresLevel": 5,
-        "cost": "697858709409614501953.12",
+        "cost": "64358332957532160.00",
         "durationSeconds": 600,
         "multiplier": "1.25"
       },
@@ -2269,7 +2269,7 @@
         "name": "New Stadium",
         "description": "Sixty thousand seats, sold out.",
         "requiresLevel": 20,
-        "cost": "90721632223249885253906.25",
+        "cost": "8366583284479180800.00",
         "durationSeconds": 2400,
         "multiplier": "1.5"
       },
@@ -2278,7 +2278,7 @@
         "name": "Global Academy",
         "description": "Tomorrow's stars, today.",
         "requiresLevel": 45,
-        "cost": "11165739350553832031250000.00",
+        "cost": "1029733327320514560000.00",
         "durationSeconds": 9000,
         "multiplier": "2"
       }
@@ -2297,10 +2297,10 @@
     "chapter": 7,
     "sector": "aerospace",
     "icon": "Rocket",
-    "unlockCost": "802537515821056677246.09",
-    "baseCost": "27715001715418013645.69",
+    "unlockCost": "23168999864711577.60",
+    "baseCost": "800123182201712.55",
     "costGrowth": "1.180",
-    "baseRevenue": "7861879719112653.24",
+    "baseRevenue": "226969937925.14",
     "upkeep": "0.20",
     "storageSeconds": 60,
     "tiers": [
@@ -2353,7 +2353,7 @@
         "name": "Commander Ilse Varga",
         "title": "Flight Director",
         "stars": 2,
-        "cost": "10432987705673736804199.22",
+        "cost": "301196998241250508.80",
         "policy": "Safe",
         "trait": "Launch only when certain."
       },
@@ -2362,7 +2362,7 @@
         "name": "Dr. Tobias Achterberg",
         "title": "Mission Planner",
         "stars": 3,
-        "cost": "1605075031642113354492187.50",
+        "cost": "46337999729423155200.00",
         "policy": "Balanced",
         "trait": "Satellites first."
       },
@@ -2371,7 +2371,7 @@
         "name": "Rhiannon Okeke",
         "title": "Head of Missions",
         "stars": 4,
-        "cost": "561776261074739674072265625.00",
+        "cost": "16218299905298104320000.00",
         "policy": "Aggressive",
         "trait": "Shoots for the asteroid."
       },
@@ -2380,7 +2380,7 @@
         "name": "Dr. Malik Fontaine",
         "title": "Chief Space Officer",
         "stars": 5,
-        "cost": "216685129271685302856445312500.00",
+        "cost": "6255629963472125952000000.00",
         "policy": "Balanced",
         "trait": "Reaches for the stars, carefully."
       }
@@ -2391,7 +2391,7 @@
         "name": "Launch Complex",
         "description": "Your own pad on the coast.",
         "requiresLevel": 5,
-        "cost": "8025375158210566772460.94",
+        "cost": "231689998647115776.00",
         "durationSeconds": 600,
         "multiplier": "1.25"
       },
@@ -2400,7 +2400,7 @@
         "name": "Reusable Boosters",
         "description": "Rockets that land and fly again.",
         "requiresLevel": 20,
-        "cost": "1043298770567373680419921.88",
+        "cost": "30119699824125050880.00",
         "durationSeconds": 2400,
         "multiplier": "1.5"
       },
@@ -2409,7 +2409,7 @@
         "name": "Orbital Station",
         "description": "A home above the clouds.",
         "requiresLevel": 45,
-        "cost": "128406002531369068359375000.00",
+        "cost": "3707039978353852416000.00",
         "durationSeconds": 9000,
         "multiplier": "2"
       }

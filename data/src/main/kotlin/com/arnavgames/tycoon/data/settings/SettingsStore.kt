@@ -25,6 +25,8 @@ data class Settings(
     val musicVolume: Float = 0.6f,
     val sfxVolume: Float = 0.8f,
     val notation: NotationPref = NotationPref.Suffix,
+    /** Download new versions in the background and install them when the player leaves the game. */
+    val autoUpdate: Boolean = true,
 )
 
 /** Player preferences (DataStore). Game progress is never stored here — only in saves. */
@@ -36,6 +38,7 @@ class SettingsStore(private val context: Context) {
         val music = floatPreferencesKey("music_volume")
         val sfx = floatPreferencesKey("sfx_volume")
         val notation = stringPreferencesKey("notation")
+        val autoUpdate = booleanPreferencesKey("auto_update")
         val deviceId = stringPreferencesKey("device_id")
     }
 
@@ -46,6 +49,7 @@ class SettingsStore(private val context: Context) {
         musicVolume = p[K.music] ?: 0.6f,
         sfxVolume = p[K.sfx] ?: 0.8f,
         notation = p[K.notation]?.let { runCatching { NotationPref.valueOf(it) }.getOrNull() } ?: NotationPref.Suffix,
+        autoUpdate = p[K.autoUpdate] ?: true,
     )
 
     val settings: Flow<Settings> = context.dataStore.data.map(::fromPrefs)
@@ -60,6 +64,7 @@ class SettingsStore(private val context: Context) {
             p[K.music] = n.musicVolume.coerceIn(0f, 1f)
             p[K.sfx] = n.sfxVolume.coerceIn(0f, 1f)
             p[K.notation] = n.notation.name
+            p[K.autoUpdate] = n.autoUpdate
         }
     }
 

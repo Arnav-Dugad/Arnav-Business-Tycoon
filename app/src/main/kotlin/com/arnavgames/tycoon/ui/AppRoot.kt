@@ -55,6 +55,8 @@ import com.arnavgames.tycoon.ui.settings.CreditsScreen
 import com.arnavgames.tycoon.ui.settings.SettingsScreen
 import com.arnavgames.tycoon.ui.shell.MainShell
 import kotlinx.serialization.Serializable
+import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.first
 
 @Serializable object MainRoute
 @Serializable data class BusinessRoute(val id: String)
@@ -96,6 +98,13 @@ fun AppRoot(vm: GameViewModel, forcedTheme: ThemeMode?, onDarkChanged: (Boolean)
         val haptics = LocalHapticFeedback.current
 
         LaunchedEffect(Unit) { vm.messages.collect { snackbar.currentSnackbarData?.dismiss(); snackbar.showSnackbar(it) } }
+        LaunchedEffect(Unit) {
+            val from = kotlinx.coroutines.withTimeoutOrNull(5_000) { vm.updates.updatedFrom.filterNotNull().first() } ?: return@LaunchedEffect
+            vm.updates.consumeUpdatedFrom()
+            kotlinx.coroutines.delay(800)
+            snackbar.showSnackbar("Updated from $from to ${com.arnavgames.tycoon.BuildConfig.VERSION_NAME}. Your game is safe.")
+        }
+        LaunchedEffect(settings.musicVolume) { vm.music.setVolume(settings.musicVolume) }
         LaunchedEffect(settings.sfxVolume) {
             if (settings.sfxVolume <= 0f) return@LaunchedEffect
             vm.events.collect { e -> vm.sounds.onEvent(e, settings.sfxVolume) }

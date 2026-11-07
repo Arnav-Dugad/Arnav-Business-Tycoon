@@ -93,6 +93,29 @@ internal class Planner(private val engine: GameEngine) {
     }
 
     /** Opens newly unlocked businesses as soon as they are affordable: new content is its own reward for players. */
+    /**
+     * The opening price of a business the current chapter asks the player to open (Next Move card), if it is unlocked,
+     * not owned yet and reachable within [horizonSec] of income. Players save for these instead of spending greedily.
+     */
+    fun storyTarget(s: GameState, incomePerSec: Money, horizonSec: Long): Money? {
+        val ch = engine.content.chapters.firstOrNull { it.number == s.progress.chapter } ?: return null
+        val open = ch.missions.filter { it.id !in s.progress.completedMissions }
+        // Only when the story has nothing else to do: every open goal is about a business not owned yet.
+        fun aboutUnowned(g: com.arnavgames.tycoon.core.content.GoalDef) = when (g) {
+            is com.arnavgames.tycoon.core.content.GoalDef.OwnBusiness -> g.businessId !in s.businesses
+            is com.arnavgames.tycoon.core.content.GoalDef.BusinessLevel -> g.businessId !in s.businesses
+            is com.arnavgames.tycoon.core.content.GoalDef.HireManager -> g.businessId !in s.businesses
+            else -> false
+        }
+        if (open.isEmpty() || !open.all { aboutUnowned(it.goal) }) return null
+        return open.asSequence()
+            .mapNotNull { (it.goal as? com.arnavgames.tycoon.core.content.GoalDef.OwnBusiness)?.businessId }
+            .filter { it !in s.businesses && engine.isUnlocked(s, it) }
+            .map { engine.content.business(it).unlockCost }
+            .filter { it <= s.cash + incomePerSec * horizonSec }
+            .minOrNull()
+    }
+
     fun openNewBusinesses(s: GameState, maxShareOfCash: Double): GameState {
         var st = s
         for (def in engine.content.businesses) {
@@ -459,12 +482,15 @@ class ActiveBot(override val name: String = "active", private val reserveFractio
         // Managers keep money flowing offline; an engaged player hires one as soon as it pays back within ~20 minutes.
         p.firstManager(s)?.let { (cmd, cost) -> if (cost <= income * 1200 || cost <= s.cash * Multiplier.of("0.5")) s = engine.tryApply(s, cmd) }
         s = p.hqIfUseful(s, slotsFull = engine.economy.usedSlots(s) >= engine.economy.slots(s), incomePerSec = income, horizonSec = 600)
-        s = p.openNewBusinesses(s, 0.7)
+        // Saving for the business the story asks for (within a day of income): open it as soon as it's affordable.
+        val story = p.storyTarget(s, income, 24 * 3600L)
+        s = p.openNewBusinesses(s, if (story != null && story <= s.cash) 1.0 else 0.7)
+        val saving = p.storyTarget(s, income, 24 * 3600L) ?: Money.ZERO
         s = p.formConglomerates(s, 0.5)
         if (sessionStart) s = p.cheapDelayedActions(s, 0.05)
         // Greedy: keep buying the fastest payback until money runs out (respecting any reserve).
         repeat(400) {
-            val reserve = s.cash * Multiplier.ofDouble(reserveFraction)
+            val reserve = maxOf(s.cash * Multiplier.ofDouble(reserveFraction), saving)
             val best = (p.options(s, managedOnly = false) + p.moduleInvestments(s)).filter { s.cash - it.cost >= reserve }.minByOrNull { it.paybackSeconds } ?: return@repeat
             // Normally only fast paybacks; but an engaged player sitting on a pile of cash puts it to work.
             if (best.paybackSeconds > 12 * 3600 && best.cost > s.cash * Multiplier.of("0.25")) return@repeat
@@ -507,11 +533,14 @@ class IdleBot : Bot {
         for (b in s.businesses.values) if (engine.content.business(b.id).mechanic is MechanicDef.Logistics && b.managerId == null) s = engine.tryApply(s, Command.AutoPlanRoutes(b.id))
         val income = engine.economy.totalNetRate(s, managedOnly = true).perSecond()
         s = p.hqIfUseful(s, slotsFull = engine.economy.usedSlots(s) >= engine.economy.slots(s), incomePerSec = income, horizonSec = 1800)
-        s = p.openNewBusinesses(s, 0.7)
+        // Idle players follow the Next Move card too: save for the business it asks for (within two days of income).
+        val story = p.storyTarget(s, income, 48 * 3600L)
+        s = p.openNewBusinesses(s, if (story != null && story <= s.cash) 1.0 else 0.7)
+        val saving = p.storyTarget(s, income, 48 * 3600L) ?: Money.ZERO
         s = p.formConglomerates(s, 0.5)
         repeat(400) {
             // Idle players buy the obvious best-value upgrade (they hire managers above, so most income keeps flowing).
-            val best = p.options(s, managedOnly = false).minByOrNull { it.paybackSeconds } ?: return@repeat
+            val best = p.options(s, managedOnly = false).filter { s.cash - it.cost >= saving }.minByOrNull { it.paybackSeconds } ?: return@repeat
             if (best.paybackSeconds > 12 * 3600) return@repeat
             val ns = engine.tryApply(s, best.cmd)
             if (ns === s) return@repeat

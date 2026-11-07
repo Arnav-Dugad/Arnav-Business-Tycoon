@@ -7,6 +7,7 @@ these numbers afterwards through knob files.
 Usage: python -I tools/content/gen_businesses.py <repo-root>
 """
 import json
+import os
 import sys
 from decimal import Decimal, getcontext
 
@@ -94,6 +95,9 @@ B = [
 ]
 
 TIER_LEVELS = [10, 25, 50, 100, 150, 250, 400]
+# Index in B of the first compressed business (Banking) and its unlock step (TUNING_LOG p11b).
+TOP_FROM = int(os.environ.get("ABT_TOP_FROM", "6"))
+TOP_UNLOCK = Decimal(os.environ.get("ABT_TOP_UNLOCK", "3.6"))
 TIER_MULTS = ["1.5", "2", "2", "2.5", "2.5", "3", "3"]
 
 
@@ -111,9 +115,14 @@ def main(repo: Path) -> None:
     for i, (bid, name, tagline, starter, chapter, sector, icon, kind, tiers, managers, expansions, params) in enumerate(B):
         # Gentle steps through Chapter 2; steeper from Mining onward so the late chapters don't cascade (TUNING_LOG p5).
         late = i >= 3
-        base_cost *= Decimal("10.5") if late else Decimal("9.5")
-        revenue *= Decimal("8.5")
-        unlock *= Decimal("11.5") if late else 10
+        # From Banking on the ladder is compressed (TUNING_LOG p11): once every business is open, growth slows to
+        # ~0.4 decades a day, so ×11.5 steps put Space and the final goal days out of reach. Unlock, level cost and
+        # revenue shrink by the same ratio, so each business still pays back in the same time (no cascade).
+        top = i >= TOP_FROM
+        squeeze = TOP_UNLOCK / Decimal("11.5") if top else Decimal(1)
+        base_cost *= (Decimal("10.5") if late else Decimal("9.5")) * squeeze
+        revenue *= Decimal("8.5") * squeeze
+        unlock *= (Decimal("11.5") if late else 10) * squeeze
         growth = min(Decimal("1.180"), growth + Decimal("0.002"))
         mgr_mult = [Decimal(13), Decimal(2000), Decimal(700000), Decimal(270000000)]
         exp = [(5, Decimal(10), 600, "1.25"), (20, Decimal(1300), 2400, "1.5"), (45, Decimal(160000), 9000, "2")]

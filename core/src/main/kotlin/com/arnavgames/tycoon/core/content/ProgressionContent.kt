@@ -104,6 +104,8 @@ data class ProgressionConfig(
     val weekDays: Int = 7,
     val legacyScale: Double = 4.0,
     val legacyExponent: Double = 0.42,
+    /** log10 of the peak net worth that earns legacyScale Legacy. Tracks the Chapter 8 goal (TUNING_LOG p11). */
+    val legacyNormalizerLog10: Double = 18.0,
     val legacyIncomeFactor: Double = 0.02,
     val legacyIncomeExponent: Double = 0.9,
     /** Heirlooms allowed when passing the crown, by generation (last value repeats). */

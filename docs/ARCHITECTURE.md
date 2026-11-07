@@ -169,9 +169,18 @@ Capacity: about **330 daily active users** before hitting the write quota, about
 - `interface PurchaseProvider { catalog(): Flow<List<Product>>; purchase(productId): PurchaseResult; restore(): List<Entitlement> }`.
 - `SimulatedPurchaseProvider` (the only implementation shipped): shows a "DEMO PURCHASE — no real money is charged" bottom sheet, grants the entitlement through the Ledger (Bullion) or the entitlement store, and sets `boosted = true` on the profile. No payment UI, no payment data, and no Play Billing dependency.
 
-## 9. In-app update check
-- At most once per 24 h (and on demand in Settings): `GET https://api.github.com/repos/<owner>/<repo>/releases/latest` (unauthenticated; 60 requests/hour/IP is plenty).
-- Compare the semver tag with `BuildConfig.VERSION_NAME`. If newer, show a dialog with the changelog and a **"Open download page"** button that launches the browser on the release page. No silent download and no `REQUEST_INSTALL_PACKAGES` permission.
+## 9. Automatic updates (owner request, 1.1.0)
+The game is shared as an APK from GitHub Releases, so it updates itself (`update/UpdateManager.kt`):
+- **Check** at most every 6 h on returning to the game, and on demand in Settings: `GET https://api.github.com/repos/<owner>/<repo>/releases/latest` (unauthenticated, generic User-Agent, no personal data). The response gives the APK asset's URL, size and the SHA-256 `digest` GitHub computes for every asset.
+- **Download** in the background when "Automatic updates" is on (default) and the network is unmetered; otherwise the update card offers "Download now". Files go to `noBackupFilesDir/updates/`, capped at 150 MB.
+- **Verify before installing**: size and SHA-256 must match GitHub's numbers; the APK must have this package name, a higher version code and the same signing certificate as the installed game (Android also refuses a different key). A failed check deletes the file and shows why.
+- **Install** with `PackageInstaller` after `GameSession.saveNow()`: silently when the player leaves the game (Android 12+, `setRequireUserAction(USER_ACTION_NOT_REQUIRED)` with `UPDATE_PACKAGES_WITHOUT_USER_ACTION`; allowed because the game is updating itself), or when the player taps "Install now". Android 11 and older, and any case where Android insists, show the system confirmation (`STATUS_PENDING_USER_ACTION`); a confirmation that arrives in the background waits for the next tap.
+- **Consent**: nothing installs until the player enables "Install unknown apps" for the game once (the card's "Allow updates" opens that switch). The setting can be turned off.
+- After an update the game shows "Updated from X to Y. Your game is safe." once.
+- Tested end to end on the API 37 emulator: silent background update 1.1.0 → 1.1.1 keeping the save; tampered checksum rejected; APK re-signed with another key rejected; permission flow and foreground "Install now".
+
+## 9a. Background cloud backup (1.1.0)
+Signed-in players are backed up when they leave the game (at most every 15 minutes, `game/AppServices.kt`). It uses the same `sync()` as the button, so it never overwrites a newer cloud save: if both changed, the Dynasty tab shows "Choose which save to keep" and the Account screen opens the conflict choice.
 
 ## 10. Security and repo hygiene
 - `.gitignore`: `google-services.json`, `*.jks`, `*.keystore`, `keystore.properties`, `local.properties`, `.env*`, `*.apk`, `*.aab`, `firebase-debug.log`, `/tools/art/cache/`.

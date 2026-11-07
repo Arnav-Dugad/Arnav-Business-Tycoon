@@ -316,7 +316,7 @@ def main(repo: Path) -> None:
         "challenges": [{"id": i, "name": n, "description": d, "rule": r, "legacyBonus": b} for i, n, d, r, b in CHALLENGES],
         "config": {
             "dailyCount": 3, "weeklyCount": 5, "seasonDays": 28, "weekDays": 7,
-            "legacyScale": 4.0, "legacyExponent": 0.42, "legacyIncomeFactor": 0.02, "legacyIncomeExponent": 0.9,
+            "legacyScale": 4.0, "legacyExponent": 0.42, "legacyNormalizerLog10": 13.4, "legacyIncomeFactor": 0.02, "legacyIncomeExponent": 0.9,
             "heirlooms": [1, 1, 2, 2, 3], "traitChoices": 3,
             "ipo": {"floats": [0.10, 0.20, 0.30], "valuationMultiple": 2.0, "minChapter": 7},
         },

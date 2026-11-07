@@ -24,7 +24,7 @@ P = [
     ("favor_100", "Favor bundle", "100 Favor to rush timers.", "boosts", None, 100, {"favor": 100}, 0),
     ("favor_500", "Favor crate", "500 Favor to rush timers.", "boosts", "$2.99", 450, {"favor": 500}, 0),
     ("permanent_5", "Investor's edge", "+5% income from every business, permanently (up to 3).", "upgrades", "$4.99", 1500, {"permanentPct": 0.05}, 3),
-    ("slot_1", "Extra business slot", "One more business slot, permanently. Every slot can also be earned in play (up to 3 here).", "upgrades", None, 800, {"slots": 1}, 3),
+    ("slot_1", "Extra business slot", "One more business slot, permanently. Every slot can also be earned in play (up to 2 here).", "upgrades", None, 800, {"slots": 1}, 2),
     ("offline_2h", "Night shift", "+2 hours of offline earnings, permanently (up to 2).", "upgrades", None, 900, {"offlineHours": 2}, 2),
     ("vip_30", "VIP · 30 days", "For 30 game days: +5% income, +1 h offline earnings and 20 extra Bullion with every daily reward.", "passes", "$9.99", 2500, {"vipDays": 30}, 0),
     ("season_pass", "Season Pass", "Unlocks the premium track of the current season.", "passes", "$4.99", 1000, {"seasonPass": 1}, 0),
@@ -37,12 +37,37 @@ P = [
     ("frame_emerald", "Emerald frame", "An emerald frame for your profile picture.", "cosmetics", None, 350, {"cosmetic": "frame_emerald"}, 1),
     ("frame_sapphire", "Sapphire frame", "A sapphire frame for your profile picture.", "cosmetics", None, 350, {"cosmetic": "frame_sapphire"}, 1),
     ("frame_obsidian", "Obsidian frame", "An obsidian frame for your profile picture.", "cosmetics", None, 500, {"cosmetic": "frame_obsidian"}, 1),
+    ("title_visionary", "Title: The Visionary", "A title for your profile.", "cosmetics", None, 250, {"cosmetic": "title_visionary"}, 1),
+    ("title_self_made", "Title: Self-Made", "A title for your profile.", "cosmetics", None, 250, {"cosmetic": "title_self_made"}, 1),
+    ("title_closer", "Title: The Closer", "A title for your profile.", "cosmetics", None, 250, {"cosmetic": "title_closer"}, 1),
+    ("title_market_maker", "Title: Market Maker", "A title for your profile.", "cosmetics", None, 300, {"cosmetic": "title_market_maker"}, 1),
+    ("title_iron_will", "Title: Iron Will", "A title for your profile.", "cosmetics", None, 300, {"cosmetic": "title_iron_will"}, 1),
+    ("title_silver_spoon", "Title: Silver Spoon", "A title for your profile (worn ironically).", "cosmetics", None, 350, {"cosmetic": "title_silver_spoon"}, 1),
+    ("frame_ruby", "Ruby frame", "A ruby frame for your profile picture.", "cosmetics", None, 350, {"cosmetic": "frame_ruby"}, 1),
+    ("frame_amethyst", "Amethyst frame", "An amethyst frame for your profile picture.", "cosmetics", None, 350, {"cosmetic": "frame_amethyst"}, 1),
+    ("frame_rose_gold", "Rose gold frame", "A rose gold frame for your profile picture.", "cosmetics", None, 400, {"cosmetic": "frame_rose_gold"}, 1),
+    ("frame_platinum", "Platinum frame", "A platinum frame for your profile picture.", "cosmetics", None, 600, {"cosmetic": "frame_platinum"}, 1),
+    ("avatar_yacht", "Avatar: Superyacht", "A superyacht emblem for your profile picture.", "cosmetics", None, 300, {"cosmetic": "avatar_yacht"}, 1),
+    ("avatar_heli", "Avatar: Helicopter", "A helicopter emblem for your profile picture.", "cosmetics", None, 300, {"cosmetic": "avatar_heli"}, 1),
+    ("avatar_island", "Avatar: Private island", "A private island emblem for your profile picture.", "cosmetics", None, 400, {"cosmetic": "avatar_island"}, 1),
+    ("avatar_mansion", "Avatar: Mansion", "A mansion emblem for your profile picture.", "cosmetics", None, 400, {"cosmetic": "avatar_mansion"}, 1),
+    ("avatar_watch", "Avatar: Grand complication", "A watch emblem for your profile picture.", "cosmetics", None, 250, {"cosmetic": "avatar_watch"}, 1),
+    ("avatar_wine", "Avatar: Grand cru", "A wine emblem for your profile picture.", "cosmetics", None, 250, {"cosmetic": "avatar_wine"}, 1),
 ]
+
+# Avatars anyone can pick (the app draws each from the game's own icon set); premium ones are the avatar_* cosmetics.
+FREE_AVATARS = ["crown", "store", "chef", "fleet", "wheat", "factory", "hanger", "pickaxe", "flame", "bed", "bank", "crane",
+                "film", "chip", "antenna", "plane", "flask", "rocket"]
 
 COSMETICS = {
     "title_magnate": ("title", "The Magnate"), "title_old_money": ("title", "Old Money"), "title_disruptor": ("title", "The Disruptor"),
     "title_patron": ("title", "Patron of the Arts"), "title_tycoon": ("title", "Tycoon"),
     "frame_gold": ("frame", "Gold"), "frame_emerald": ("frame", "Emerald"), "frame_sapphire": ("frame", "Sapphire"), "frame_obsidian": ("frame", "Obsidian"),
+    "title_visionary": ("title", "The Visionary"), "title_self_made": ("title", "Self-Made"), "title_closer": ("title", "The Closer"),
+    "title_market_maker": ("title", "Market Maker"), "title_iron_will": ("title", "Iron Will"), "title_silver_spoon": ("title", "Silver Spoon"),
+    "frame_ruby": ("frame", "Ruby"), "frame_amethyst": ("frame", "Amethyst"), "frame_rose_gold": ("frame", "Rose gold"), "frame_platinum": ("frame", "Platinum"),
+    "avatar_yacht": ("avatar", "Superyacht"), "avatar_heli": ("avatar", "Helicopter"), "avatar_island": ("avatar", "Private island"),
+    "avatar_mansion": ("avatar", "Mansion"), "avatar_watch": ("avatar", "Grand complication"), "avatar_wine": ("avatar", "Grand cru"),
 }
 
 SECTIONS = [("bullion", "Bullion"), ("boosts", "Boosts"), ("upgrades", "Upgrades"), ("passes", "VIP and Season Pass"), ("cosmetics", "Cosmetics")]
@@ -58,7 +83,8 @@ def main(repo: Path) -> None:
         "products": products,
         "cosmetics": [{"id": k, "kind": v[0], "name": v[1]} for k, v in COSMETICS.items()],
         # Tuned on the spender-gap check (Phase 14): paying should be 25–40 % faster, never more than 2×.
-        "config": {"maxPermanentPct": 0.15, "maxSlots": 3, "maxOfflineHours": 4, "vipIncomePct": 0.05, "vipOfflineHours": 1, "vipLadderBullion": 20, "boostPct": 0.25},
+        "freeAvatars": FREE_AVATARS,
+        "config": {"maxPermanentPct": 0.15, "maxSlots": 2, "maxOfflineHours": 4, "vipIncomePct": 0.05, "vipOfflineHours": 1, "vipLadderBullion": 20, "boostPct": 0.25},
     }
     path = repo / "content/data/store.json"
     path.write_text(json.dumps(out, indent=1, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n")
