@@ -218,7 +218,10 @@ private fun CollectionHeader(col: CollectionUi, fmt: (Money) -> String, modifier
     Column(modifier.fillMaxWidth().glass(RectangleShape, GlassWeight.Regular, edge = false)) {
         Column(Modifier.fillMaxWidth().statusBarsPadding().padding(horizontal = Space.gutter).padding(top = Space.md, bottom = Space.md)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Text("STATUS", style = Aurum.type.overline, color = c.textTertiary, modifier = Modifier.weight(1f))
+                var explain by androidx.compose.runtime.remember { androidx.compose.runtime.mutableStateOf(false) }
+                if (explain) com.arnavgames.tycoon.ui.common.GlossarySheet(com.arnavgames.tycoon.ui.common.Term.Status) { explain = false }
+                Text("STATUS", style = Aurum.type.overline, color = c.textTertiary,
+                    modifier = Modifier.weight(1f).clickable(onClickLabel = "What is Status?") { explain = true })
                 AurumChip(col.tier, icon = AbtIcons.Crown, tint = c.goldText)
             }
             Text(pts(col.status), style = Aurum.type.numberHero, color = c.textPrimary)

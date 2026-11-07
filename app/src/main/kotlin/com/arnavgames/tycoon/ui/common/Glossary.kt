@@ -66,6 +66,12 @@ enum class Term(val title: String, val icon: ImageVector, val what: String, val 
         "Earned when you pass the crown to an heir after Chapter 8. The richer you became, the more Legacy you earn.",
         "Every Legacy point raises the next generation's income for good, and unlocks Family Charter perks.",
     ),
+    Status(
+        "Status", AbtIcons.Gem,
+        "How prestigious your collection looks to the world.",
+        "Displayed luxury items earn it: put pieces in your showrooms (only displayed items count). Rare and legendary pieces earn more.",
+        "Higher Status tiers get dealer discounts, invitations to better auctions and friendlier rivals.",
+    ),
     SeasonXp(
         "Season XP", AbtIcons.Star,
         "Progress on the current 4-week season.",

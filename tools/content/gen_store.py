@@ -70,7 +70,8 @@ COSMETICS = {
     "avatar_mansion": ("avatar", "Mansion"), "avatar_watch": ("avatar", "Grand complication"), "avatar_wine": ("avatar", "Grand cru"),
 }
 
-SECTIONS = [("bullion", "Bullion"), ("boosts", "Boosts"), ("upgrades", "Upgrades"), ("passes", "VIP and Season Pass"), ("cosmetics", "Cosmetics")]
+# What you can buy with Bullion earned in play comes first; demo Bullion packs come last (GDD §2 "Respect the player").
+SECTIONS = [("boosts", "Boosts"), ("upgrades", "Upgrades"), ("cosmetics", "Cosmetics"), ("passes", "VIP and Season Pass"), ("bullion", "Demo Bullion packs")]
 
 
 def main(repo: Path) -> None:

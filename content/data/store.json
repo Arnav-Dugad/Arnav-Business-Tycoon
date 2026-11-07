@@ -1,10 +1,6 @@
 {
  "sections": [
   {
-   "id": "bullion",
-   "name": "Bullion"
-  },
-  {
    "id": "boosts",
    "name": "Boosts"
   },
@@ -13,12 +9,16 @@
    "name": "Upgrades"
   },
   {
+   "id": "cosmetics",
+   "name": "Cosmetics"
+  },
+  {
    "id": "passes",
    "name": "VIP and Season Pass"
   },
   {
-   "id": "cosmetics",
-   "name": "Cosmetics"
+   "id": "bullion",
+   "name": "Demo Bullion packs"
   }
  ],
  "products": [
