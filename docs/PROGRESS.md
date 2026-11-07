@@ -483,11 +483,17 @@ Committed and pushed, **not released** (no release is published while the owner 
 - **Know what to do next**: one guide voice on the Empire tab; the Next Move card has **Show me** (opens the business, switches to the right tab, or scrolls to the card that opens the business); a "Best value" chip on the purchase that pays back fastest; locked businesses say why; first-visit introductions for Markets, Estates and Collection.
 - **Come back to a story**: The Daily Ledger front page after 30+ minutes away; a What's new sheet after updates.
 - **Notifications (E6)**: opt-in local notifications. On leaving, the planner plays the absence forward with the real engine (within the offline cap), so messages are real events: finished expansions, renovations and construction, the result of an auction the player bid in, a full Desk. Per-category switches, quiet hours (10 pm–8 am), close events merged, at most 3 a day (re-checked on the device). Cancelled on return. The permission is asked only when turned on: in Settings, or from a one-time offer the first time something takes 10+ minutes. UI tests mark the offer as seen (`QuietOffersRule`).
-- **Layout fixes from screenshot review**: World tiles two per row, so "5 waiting" and "Expansion" are never cut off; settings subtitles no longer touch the switch.
+- **After the story**: once Chapter 8 is done, "The crown is ready" becomes the Empire's next move (heir's permanent multiplier, Legacy gain, and that waiting grows it).
+- **The Chairman has a face** (D3): AI caricature of an invented person, same pipeline and credits as the other 112 portraits.
+- **Money decisions in plain numbers**: loans show the payment, count, total and interest before you borrow; credit rating says points to go; stock pages say what a board seat costs and does; Desk choices that only cost money say they avoid the income hit; merger requirements say the level needed; a full till shows what's waiting.
+- **First steps everywhere**: Markets suggests a calm first investment until you own something; daily and weekly goals show "12 of 60"; showrooms show what's on display and call out pieces in storage (they earn no Status).
+- **Fairness**: the Store leads with Bullion earned in play; the demo price is the secondary button.
+- **Wording**: no "yield" or "CBD" jargon in Estates; tenant choices no longer promise a duration their effect doesn't have.
+- **Layout fixes from screenshot review**: World tiles two per row, so "5 waiting" and "Expansion" are never cut off; settings subtitles no longer touch the switch; the welcome screen is centred; the counter stays below the businesses after Chapter 8.
 - **Account**: explains why to sign in; Google and guest come first.
 - **Balance lever A1 (Desk supply scales with the empire)**: under measurement; see TUNING_LOG.
 
-Evidence: core 176/176, sim 3/3, app 28/28 JVM tests (including `NotificationPlannerTest`: an 8-hour plan takes ~45 ms on the laptop), screenshots 01–22 in both themes reviewed. **Not verified**: a notification actually posted on a device (the emulator is shared with another project tonight), and the instrumented UI suite on the 1.2 code.
+Evidence: core 176/176, sim 3/3, app 29/29 JVM tests (including `NotificationPlannerTest`, where an 8-hour plan takes ~45 ms, and `DeskWordingTest` over every Desk card), screenshots 01–22 plus 15b in both themes reviewed; `check_release.py` PASS. **Not verified**: a notification actually posted on a device (the emulator is shared with another project tonight), and the instrumented UI suite on the 1.2 code.
 
 ## Release gates (TEST_PLAN §7)
 Checked for **1.1.0** on 2026-11-07 (released at the owner's choice with the open items below):
