@@ -84,6 +84,7 @@ import com.arnavgames.tycoon.ui.MissionUi
 import com.arnavgames.tycoon.ui.OpenableUi
 import com.arnavgames.tycoon.ui.common.countdownText
 import kotlinx.coroutines.delay
+import androidx.compose.ui.text.withStyle
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.navigationBars
@@ -361,7 +362,22 @@ private fun MentorCard(name: String, text: String, onDismiss: () -> Unit) {
         Spacer(Modifier.width(Space.md))
         Column(Modifier.weight(1f)) {
             Text(name.uppercase(), style = Aurum.type.overline, color = c.goldText)
-            Text("“$text”", style = Aurum.type.body, color = c.textPrimary)
+            // Typewriter reveal: the unrevealed part is drawn transparent so the card never changes size, and screen
+            // readers get the whole line at once. Reduced motion shows it immediately.
+            val line = "“$text”"
+            val reduced = Aurum.reducedMotion
+            var shown by remember(line) { mutableIntStateOf(if (reduced) line.length else 0) }
+            androidx.compose.runtime.LaunchedEffect(line, reduced) {
+                if (reduced) { shown = line.length; return@LaunchedEffect }
+                while (shown < line.length) { delay(16); shown = (shown + 1).coerceAtMost(line.length) }
+            }
+            Text(
+                androidx.compose.ui.text.buildAnnotatedString {
+                    append(line.substring(0, shown))
+                    withStyle(androidx.compose.ui.text.SpanStyle(color = androidx.compose.ui.graphics.Color.Transparent)) { append(line.substring(shown)) }
+                },
+                style = Aurum.type.body, color = c.textPrimary,
+            )
         }
         androidx.compose.material3.IconButton(onClick = onDismiss, modifier = Modifier.size(32.dp)) {
             AbtIcon(AbtIcons.Close, "Dismiss", tint = c.textTertiary, size = 16.dp)
