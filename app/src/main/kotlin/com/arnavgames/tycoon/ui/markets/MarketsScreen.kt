@@ -1,5 +1,9 @@
 package com.arnavgames.tycoon.ui.markets
 
+import androidx.compose.ui.platform.testTag
+import com.arnavgames.tycoon.designsystem.components.PillStyle
+import com.arnavgames.tycoon.designsystem.components.PillAction
+import kotlinx.coroutines.launch
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
@@ -12,6 +16,7 @@ import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
@@ -84,8 +89,11 @@ fun MarketsScreen(vm: GameViewModel, onOpenInstrument: (String) -> Unit, onOpenN
     val navInset = WindowInsets.navigationBars.asPaddingValues().calculateBottomPadding()
     val c = Aurum.colors
 
+    val listState = androidx.compose.foundation.lazy.rememberLazyListState()
+    val scope = androidx.compose.runtime.rememberCoroutineScope()
     Box(Modifier.fillMaxSize()) {
         LazyColumn(
+            state = listState,
             contentPadding = PaddingValues(
                 start = Space.gutter, end = Space.gutter,
                 top = with(density) { headerPx.toDp() } + Space.md,
@@ -95,6 +103,26 @@ fun MarketsScreen(vm: GameViewModel, onOpenInstrument: (String) -> Unit, onOpenN
             modifier = Modifier.fillMaxSize().glassSource(GlassLayer.Content),
         ) {
             item(key = "intro") { com.arnavgames.tycoon.ui.common.FirstVisitTip(com.arnavgames.tycoon.ui.common.Intro.Markets, AbtIcons.Markets) }
+            if (mk.positions.isEmpty()) {
+                // No investments yet: one clear first step instead of 120 tickers.
+                val calm = if (mk.tabsUnlocked[MarketTab.Funds] == null) MarketTab.Funds else MarketTab.Stocks
+                val tabsIndex = 2 + (if (mk.news.isNotEmpty()) 1 else 0) + 1 // intro, this card, news, timing
+                item(key = "starter") {
+                    AurumCard(Modifier.fillMaxWidth().testTag("first-investment")) {
+                        Text("Your first investment", style = Aurum.type.titleSmall, color = c.textPrimary)
+                        Text(
+                            if (calm == MarketTab.Funds) "Funds and bonds are the calm way in: they pay out steadily and swing less. Stocks move more, and owning 5% of a company earns a board seat."
+                            else "Pick a company you understand and start small. Shares pay dividends every day you hold them; owning 5% earns a board seat.",
+                            style = Aurum.type.bodySmall, color = c.textSecondary,
+                        )
+                        Spacer(Modifier.height(Space.sm))
+                        PillAction("Browse ${calm.label.lowercase()}", true, {
+                            tab = calm; sector = "all"
+                            scope.launch { listState.animateScrollToItem(tabsIndex) }
+                        }, style = PillStyle.Gold)
+                    }
+                }
+            }
             if (mk.news.isNotEmpty()) {
                 item(key = "news") { NewsCard(mk.news.take(3), onOpenNews, onOpenInstrument) }
             }
