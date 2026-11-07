@@ -138,6 +138,12 @@ data class CardsConfig(
     val jitterMin: Double = 0.75,
     val jitterMax: Double = 1.5,
     val maxQueued: Int = 3,
+    /**
+     * Decision supply grows with the empire (docs/PLAN_2.0.md A1): beyond [scaleFromBusinesses] businesses, every
+     * [scaleStepBusinesses] more make cards arrive proportionally more often and add one queue slot.
+     */
+    val scaleFromBusinesses: Int = 6,
+    val scaleStepBusinesses: Int = 4,
     /** Card ids drawn within this many draws are not drawn again. */
     val recentWindow: Int = 24,
     /** Income penalty on a business while a takeover card against it is pending. */

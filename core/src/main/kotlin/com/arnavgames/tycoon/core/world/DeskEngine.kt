@@ -41,6 +41,12 @@ class DeskEngine(private val content: ContentPack, private val economy: Economy,
         data class Err(val error: GameError) : Result
     }
 
+    /** Extra decision supply for big empires: 0 up to [CardsConfig.scaleFromBusinesses] businesses, +1 per step after. */
+    private fun extra(s: GameState): Int = (s.businesses.size - cc.scaleFromBusinesses).coerceAtLeast(0) / cc.scaleStepBusinesses.coerceAtLeast(1)
+
+    /** How many decisions can wait on the Desk at once. */
+    fun maxQueued(s: GameState): Int = cc.maxQueued + extra(s)
+
     fun cardsUnlocked(s: GameState) = math.isUnlocked(s, "cards") && (s.progress.onboardingStep >= 5 || s.progress.chapter >= 2) && !economy.dynasty.forbids(s, "noCards")
 
     // =====================================================================================
@@ -54,8 +60,8 @@ class DeskEngine(private val content: ContentPack, private val economy: Economy,
             if (s.world.nextCardAt == 0L) s = s.copy(world = s.world.copy(nextCardAt = maxOf(now + 60_000, cc.firstAtMinutes * 60_000L)))
             else if (now >= s.world.nextCardAt) {
                 val r = GameRandom.stream(s.worldSeed, "card", s.world.cardDraws)
-                if (s.world.cards.size < cc.maxQueued) s = draw(s, r, events)
-                val gap = (cc.everyHours * r.nextDouble(cc.jitterMin, cc.jitterMax) * 3_600_000).toLong()
+                if (s.world.cards.size < maxQueued(s)) s = draw(s, r, events)
+                val gap = (cc.everyHours / (1 + extra(s)) * r.nextDouble(cc.jitterMin, cc.jitterMax) * 3_600_000).toLong()
                 s = s.copy(world = s.world.copy(nextCardAt = now + gap, cardDraws = s.world.cardDraws + 1))
             }
         }
@@ -182,7 +188,7 @@ class DeskEngine(private val content: ContentPack, private val economy: Economy,
             val ch = s.progress.chapter
             fun done(b: Int) = "${n.chapter}:$b" in s.world.beats
             fun mark(b: Int) { s = s.copy(world = s.world.copy(beats = s.world.beats + "${n.chapter}:$b")); events += GameEvent.NemesisBeat(n.chapter, b) }
-            if (n.chapter == ch && !done(0) && s.world.cards.size < cc.maxQueued) {
+            if (n.chapter == ch && !done(0) && s.world.cards.size < maxQueued(s)) {
                 val cs = CardState(s.world.nextCardId, "nemesis_${n.chapter}", null, rival.id, s.simTimeMs)
                 s = s.copy(world = s.world.copy(cards = s.world.cards + cs, nextCardId = cs.id + 1))
                 mark(0)

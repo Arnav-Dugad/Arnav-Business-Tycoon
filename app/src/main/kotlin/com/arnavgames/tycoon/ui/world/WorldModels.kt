@@ -25,7 +25,7 @@ data class LogUi(val title: String, val text: String, val good: Boolean?, val ag
 
 data class DeskUi(
     val unlocked: Boolean, val phase: String, val centralRate: Double, val cards: List<CardUi>, val modifiers: List<ModifierUi>,
-    val log: List<LogUi>, val nextCardInMs: Long?, val cash: Money,
+    val log: List<LogUi>, val nextCardInMs: Long?, val cash: Money, val maxQueued: Int = 3,
 )
 
 data class FortuneRowUi(
@@ -155,7 +155,7 @@ class WorldMapper(private val engine: GameEngine, private val portraitIds: Set<S
         val log = s.world.log.reversed().map { LogUi(it.title, it.text, it.good, s.simTimeMs - it.time) }
         return DeskUi(
             desk.cardsUnlocked(s), engine.market.phaseName(s), engine.economy.centralRate(s), cards, mods, log,
-            if (desk.cardsUnlocked(s) && s.world.nextCardAt > s.simTimeMs) s.world.nextCardAt - s.simTimeMs else null, s.cash,
+            if (desk.cardsUnlocked(s) && s.world.nextCardAt > s.simTimeMs) s.world.nextCardAt - s.simTimeMs else null, s.cash, desk.maxQueued(s),
         )
     }
 

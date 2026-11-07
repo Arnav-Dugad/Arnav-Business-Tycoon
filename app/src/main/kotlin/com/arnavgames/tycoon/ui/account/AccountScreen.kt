@@ -22,6 +22,9 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import com.arnavgames.tycoon.designsystem.components.HairlineDivider
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.clickable
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -114,9 +117,32 @@ fun AccountScreen(vm: GameViewModel, onBack: () -> Unit) {
             if (!cloud.available) return@GlassScaffold
             val u = user
             if (u == null) {
+                item(key = "benefits") {
+                    AurumCard(Modifier.fillMaxWidth()) {
+                        Text("Why sign in?", style = Aurum.type.titleSmall, color = c.textPrimary)
+                        Spacer(Modifier.height(Space.sm))
+                        Benefit(AbtIcons.Cloud, "Your empire is backed up", "Lose your phone, keep your dynasty.")
+                        Benefit(AbtIcons.Refresh, "Play on more than one phone", "Your save follows you; nothing is overwritten without asking.")
+                        Benefit(AbtIcons.Rivals, "Friends and leaderboards", "Compare fortunes, send gifts, bid in Sealed Lots (email or Google).")
+                        Text("Optional. The game works fully offline without an account.", style = Aurum.type.label, color = c.textTertiary)
+                    }
+                }
                 item(key = "signin") {
                     AurumCard(Modifier.fillMaxWidth()) {
-                        Text("Sign in or create an account", style = Aurum.type.titleSmall, color = c.textPrimary)
+                        // One-tap options first.
+                        if (cloud.googleClientId() != null) {
+                            GoldButton("Continue with Google", enabled = !busy, onClick = { run("Signed in with Google.") { cloud.signInGoogle(ctx) } }, modifier = Modifier.fillMaxWidth().testTag("google-signin"))
+                            Spacer(Modifier.height(Space.xs))
+                        }
+                        GhostButton("Continue as guest", enabled = !busy, onClick = { run("Signed in as a guest. You can upgrade to an email account any time.") { cloud.signInGuest() } }, modifier = Modifier.fillMaxWidth())
+                        Text("Guest: backup in one tap, no email. Upgrade any time and keep your save.", style = Aurum.type.label, color = c.textTertiary,
+                            textAlign = androidx.compose.ui.text.style.TextAlign.Center, modifier = Modifier.fillMaxWidth().padding(top = Space.xxs))
+                        Spacer(Modifier.height(Space.md))
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            HairlineDivider(Modifier.weight(1f))
+                            Text("  or use email  ", style = Aurum.type.label, color = c.textTertiary)
+                            HairlineDivider(Modifier.weight(1f))
+                        }
                         Spacer(Modifier.height(Space.sm))
                         OutlinedTextField(email, { email = it.trim() }, label = { Text("Email") }, singleLine = true,
                             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email), modifier = Modifier.fillMaxWidth().testTag("email"))
@@ -128,12 +154,12 @@ fun AccountScreen(vm: GameViewModel, onBack: () -> Unit) {
                         val valid = email.contains('@') && password.length >= 8
                         GoldButton("Create account", enabled = valid && !busy, onClick = { run("Account created. Check your email to verify it.") { cloud.signUp(email, password) } }, modifier = Modifier.fillMaxWidth())
                         GhostButton("Sign in", enabled = valid && !busy, onClick = { run("Signed in.") { cloud.signIn(email, password) } }, modifier = Modifier.fillMaxWidth())
-                        GhostButton("Forgot password", enabled = email.contains('@') && !busy, onClick = { run("Password reset email sent.") { cloud.resetPassword(email) } }, modifier = Modifier.fillMaxWidth())
-                        Spacer(Modifier.height(Space.xs))
-                        GhostButton("Continue as guest", enabled = !busy, onClick = { run("Signed in as a guest. You can upgrade to an email account any time.") { cloud.signInGuest() } }, modifier = Modifier.fillMaxWidth())
-                        if (cloud.googleClientId() != null) {
-                            GhostButton("Continue with Google", enabled = !busy, onClick = { run("Signed in with Google.") { cloud.signInGoogle(ctx) } }, modifier = Modifier.fillMaxWidth().testTag("google-signin"))
-                        }
+                        if (!valid) Text("Enter an email and a password of 8 or more characters.", style = Aurum.type.label, color = c.textTertiary,
+                            textAlign = androidx.compose.ui.text.style.TextAlign.Center, modifier = Modifier.fillMaxWidth().padding(top = Space.xxs))
+                        Text("Forgot password?", style = Aurum.type.label, color = if (email.contains('@') && !busy) c.goldText else c.textTertiary,
+                            textAlign = androidx.compose.ui.text.style.TextAlign.Center,
+                            modifier = Modifier.fillMaxWidth().padding(top = Space.sm)
+                                .clickable(enabled = email.contains('@') && !busy, onClickLabel = "Send a password reset email") { run("Password reset email sent.") { cloud.resetPassword(email) } })
                     }
                 }
             } else {
@@ -218,5 +244,18 @@ private fun SaveCard(label: String, s: com.arnavgames.tycoon.cloud.SaveSummary) 
         Text(label, style = Aurum.type.titleSmall, color = c.textPrimary)
         Text("Net worth 10^${String.format(Locale.US, "%.1f", s.nwLog10)} · generation ${s.generation} · ${s.playSeconds / 3600} h played", style = Aurum.type.bodySmall, color = c.textSecondary)
         if (s.device.isNotBlank() || s.savedAt > 0) Text(listOfNotNull(s.device.ifBlank { null }, if (s.savedAt > 0) DateFormat.getDateTimeInstance().format(Date(s.savedAt)) else null).joinToString(" · "), style = Aurum.type.label, color = c.textTertiary)
+    }
+}
+
+@Composable
+private fun Benefit(icon: androidx.compose.ui.graphics.vector.ImageVector, title: String, body: String) {
+    val c = Aurum.colors
+    Row(verticalAlignment = Alignment.Top, modifier = Modifier.padding(bottom = Space.sm)) {
+        AbtIcon(icon, null, tint = c.goldText, size = 20.dp)
+        Spacer(Modifier.width(Space.md))
+        Column {
+            Text(title, style = Aurum.type.body, color = c.textPrimary)
+            Text(body, style = Aurum.type.bodySmall, color = c.textSecondary)
+        }
     }
 }

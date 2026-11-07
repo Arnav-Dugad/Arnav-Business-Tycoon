@@ -177,7 +177,7 @@ fun DeskScreen(vm: GameViewModel, onBack: () -> Unit, onOpenRival: (String) -> U
         }
         item(key = "cards-h") {
             SectionHeader("Decisions") {
-                d.nextCardInMs?.let { Text(if (d.cards.size >= 3) "Desk full" else "Next in ${durationText(it)}", style = Aurum.type.label, color = c.textTertiary) }
+                d.nextCardInMs?.let { Text(if (d.cards.size >= d.maxQueued) "Desk full" else "Next in ${durationText(it)}", style = Aurum.type.label, color = c.textTertiary) }
             }
         }
         if (d.cards.isEmpty()) item(key = "no-cards") {
