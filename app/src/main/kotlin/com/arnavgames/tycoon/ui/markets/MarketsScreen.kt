@@ -94,6 +94,7 @@ fun MarketsScreen(vm: GameViewModel, onOpenInstrument: (String) -> Unit, onOpenN
             verticalArrangement = Arrangement.spacedBy(Space.md),
             modifier = Modifier.fillMaxSize().glassSource(GlassLayer.Content),
         ) {
+            item(key = "intro") { com.arnavgames.tycoon.ui.common.FirstVisitTip(com.arnavgames.tycoon.ui.common.Intro.Markets, AbtIcons.Markets) }
             if (mk.news.isNotEmpty()) {
                 item(key = "news") { NewsCard(mk.news.take(3), onOpenNews, onOpenInstrument) }
             }

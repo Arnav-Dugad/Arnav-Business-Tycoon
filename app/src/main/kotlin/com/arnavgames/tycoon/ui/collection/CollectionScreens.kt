@@ -116,6 +116,7 @@ fun CollectionScreen(vm: GameViewModel, onOpenCategory: (String) -> Unit, onOpen
             verticalArrangement = Arrangement.spacedBy(Space.md),
             modifier = Modifier.fillMaxSize().glassSource(GlassLayer.Content),
         ) {
+            item(key = "intro") { com.arnavgames.tycoon.ui.common.FirstVisitTip(com.arnavgames.tycoon.ui.common.Intro.Collection, AbtIcons.Collection) }
             item(key = "auction") {
                 val a = col.auction
                 AurumCard(Modifier.fillMaxWidth(), highlighted = a != null, onClick = if (a != null) onOpenAuction else null) {

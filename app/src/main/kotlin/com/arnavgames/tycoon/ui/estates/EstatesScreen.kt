@@ -93,6 +93,7 @@ fun EstatesScreen(vm: GameViewModel, onOpenCity: (String) -> Unit, onOpenPropert
             verticalArrangement = Arrangement.spacedBy(Space.md),
             modifier = Modifier.fillMaxSize().glassSource(GlassLayer.Content),
         ) {
+            item(key = "intro") { com.arnavgames.tycoon.ui.common.FirstVisitTip(com.arnavgames.tycoon.ui.common.Intro.Estates, AbtIcons.Estates) }
             if (e.decisions.isNotEmpty()) {
                 item(key = "dec-h") { SectionHeader("Decisions") { Text("${e.decisions.size}", style = Aurum.type.label, color = c.textTertiary) } }
                 e.decisions.forEach { d -> item(key = "dec-${d.id}") { DecisionCard(d, onChoose = { i -> vm.dispatch(Command.ResolveTenantEvent(d.id, i)) }, onOpen = { onOpenProperty(d.propertyId) }) } }
