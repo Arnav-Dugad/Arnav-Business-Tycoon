@@ -1,0 +1,35 @@
+package com.arnavgames.tycoon.game
+
+import com.arnavgames.tycoon.core.engine.Command
+import com.arnavgames.tycoon.core.engine.CommandResult
+import com.arnavgames.tycoon.core.engine.EngineFixtures
+import com.arnavgames.tycoon.core.save.SaveCodec
+import com.arnavgames.tycoon.core.state.GameState
+import org.junit.jupiter.api.Test
+import java.io.File
+
+/** Writes golden saves from this version's own engine and debug scenarios (run once per release; not committed here). */
+class GoldenSaveGen {
+    @Test
+    fun write() {
+        val out = File(System.getenv("ABT_GOLDEN_OUT") ?: error("ABT_GOLDEN_OUT not set")).apply { mkdirs() }
+        val e = EngineFixtures.engine
+        fun save(name: String, s: GameState) {
+            val bytes = SaveCodec.encode(s, revision = 7, deviceId = "golden", savedAtWall = 1_800_000_000_000L, netWorthLog10 = e.economy.netWorth(s).log10Dollars())
+            File(out, "$name.abtsave").writeBytes(bytes)
+            println("GOLDEN $name ch=${s.progress.chapter} gen=${s.dynasty.generation} biz=${s.businesses.size} bytes=${bytes.size}")
+        }
+        val fresh = EngineFixtures.newGame(11)
+        save("fresh", (e.apply(fresh, Command.OpenBusiness("retail")) as CommandResult.Ok).state)
+        for (name in listOf("midgame", "markets", "auction", "world", "lategame", "crown")) {
+            save(name, DebugScenariosCopy.build(e, EngineFixtures.newGame(11), name)!!)
+        }
+        val crown = DebugScenariosCopy.build(e, EngineFixtures.newGame(12), "crown")!!
+        if (e.dynasty.canPrestige(crown)) {
+            val pv = e.crownPreview(crown)
+            val r = e.apply(crown, Command.PassTheCrown(pv.traits.first(), emptyList(), null, emptySet()))
+            if (r is CommandResult.Ok) save("generation2", e.advance(r.state, 3_600_000L).state)
+            else println("GOLDEN generation2 skipped: $r")
+        } else println("GOLDEN generation2 skipped: crown scenario did not reach the crown in this version")
+    }
+}
