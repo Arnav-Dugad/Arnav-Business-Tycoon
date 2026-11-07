@@ -75,6 +75,8 @@ data class InstrumentUi(
     val cash: Money,
     val locked: String?,
     val news: List<NewsUi>,
+    /** Roughly what a board-seat stake costs at today's price (stocks only). */
+    val seatCost: Money? = null,
 )
 
 data class ShortUi(val collateral: Money, val liability: Money, val pnl: Money, val health: Double)
@@ -172,17 +174,19 @@ class MarketsMapper(private val engine: GameEngine) {
         val stats = mutableListOf<StatUi>()
         var about = ""
         var kicker = ""
+        var cap: Money? = null
         when (ref.assetClass) {
             AssetClass.Stock -> {
                 val st = m.stockById.getValue(id)
                 val sector = m.sectorById.getValue(st.sector)
                 kicker = "${sector.name} · ${bandWord(st.band)}"
                 about = "${st.trait}. ${bandAbout(st.band)}"
-                stats += StatUi("Market value", com.arnavgames.tycoon.core.money.MoneyFormat.compact(Money.ofDollars(java.math.BigDecimal(st.baseCapBillions * 1e9 * scale * price / st.startPrice.toDouble()))))
+                cap = Money.ofDollars(java.math.BigDecimal(st.baseCapBillions * 1e9 * scale * price / st.startPrice.toDouble()))
+                stats += StatUi("Market value", com.arnavgames.tycoon.core.money.MoneyFormat.compact(cap))
                 stats += StatUi("Dividend", if (st.dividendPerDay > 0) "${MarketEngine.pct(st.dividendPerDay, 2)} a day" else "None")
                 val swing = when { st.beta < 0.8 -> "Calm"; st.beta <= 1.2 -> "Average"; else -> "Wild" }
                 stats += StatUi("Market swings", "$swing (β ${String.format(Locale.US, "%.2f", st.beta)})")
-                stats += StatUi("Board seat perk", sector.businesses.joinToString { engine.content.business(it).name } + " +5%")
+                stats += StatUi("Board seat perk", "+5% income at " + sector.businesses.joinToString { engine.content.business(it).name })
             }
             AssetClass.Fund -> {
                 val f = m.fundById.getValue(id)
@@ -245,6 +249,7 @@ class MarketsMapper(private val engine: GameEngine) {
             cash = s.cash,
             locked = if (math.isUnlocked(s, feature)) null else "Unlocks in chapter ${math.unlockChapter(feature)}",
             news = news(s, id).take(5),
+            seatCost = cap?.let { it * com.arnavgames.tycoon.core.money.Multiplier.ofDouble(m.config.boardSeatStake) },
         )
     }
 

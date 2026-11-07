@@ -119,7 +119,9 @@ fun InstrumentScreen(vm: GameViewModel, instrumentId: String, onBack: () -> Unit
                         Spacer(Modifier.height(Space.md))
                         val seat = stake >= ui.boardSeatStake
                         Text(
-                            if (seat) "Board seat held: you own ${pctOf(stake)}." else "Own ${pctOf(ui.boardSeatStake)} for a board seat. You own ${pctOf(stake)}.",
+                            if (seat) "Board seat held: you own ${pctOf(stake)}." else "Own ${pctOf(ui.boardSeatStake)} for a board seat" +
+                                (ui.seatCost?.let { " (about ${fmt(it * com.arnavgames.tycoon.core.money.Multiplier.ofDouble(((ui.boardSeatStake - stake) / ui.boardSeatStake).coerceIn(0.0, 1.0)))} more)" } ?: "") +
+                                ". You own ${pctOf(stake)}.",
                             style = Aurum.type.bodySmall, color = if (seat) c.gain else c.textSecondary,
                         )
                         Spacer(Modifier.height(Space.xs))
