@@ -477,7 +477,7 @@ fun FinanceScreen(vm: GameViewModel, onBack: () -> Unit, onOpenTaxes: () -> Unit
                     GoldProgress(((f.score - 300) / 550f).coerceIn(0f, 1f), height = 4.dp, label = "Credit score")
                     Spacer(Modifier.height(Space.xs))
                     Text(
-                        (f.nextRating?.let { "${it} at ${f.nextRatingAt}. " } ?: "The best rating there is. ") +
+                        (f.nextRating?.let { next -> f.nextRatingAt?.let { at -> "${at - f.score} points to $next ($at). " } } ?: "The best rating there is. ") +
                             "On-time payments raise your score; missed payments, foreclosures, audits and restructuring lower it. Heavy debt relative to income also counts against you.",
                         style = Aurum.type.bodySmall, color = c.textSecondary,
                     )
@@ -509,7 +509,14 @@ fun FinanceScreen(vm: GameViewModel, onBack: () -> Unit, onOpenTaxes: () -> Unit
                     val amount = f.borrowLimit * Multiplier.ofDouble(share / 100.0)
                     Spacer(Modifier.height(Space.sm))
                     GoldButton("Borrow ${fmt(amount)} for $term day" + if (term > 1) "s" else "", enabled = amount.isPositive, onClick = { vm.dispatch(Command.TakeLoan(amount, term)) }, modifier = Modifier.fillMaxWidth())
-                    Text("Repaid automatically in equal payments every 6 hours. A missed payment adds to the loan and hurts your score.", style = Aurum.type.label, color = c.textTertiary)
+                    if (amount.isPositive) {
+                        // The whole cost up front: payment, count and total interest.
+                        val payment = vm.loanInstallment(amount, f.loanRate, term)
+                        val total = payment * (term * 4L)
+                        Text("You pay back ${fmt(payment)} every 6 hours, ${term * 4} times: ${fmt(total)} in total, of which ${fmt(total - amount)} is interest.",
+                            style = Aurum.type.bodySmall, color = c.textSecondary, modifier = Modifier.testTag("loan-quote"))
+                    }
+                    Text("Payments are taken automatically. A missed payment adds to the loan and hurts your score.", style = Aurum.type.label, color = c.textTertiary)
                     if (f.loans.isNotEmpty()) {
                         Spacer(Modifier.height(Space.md))
                         f.loans.forEach { l ->

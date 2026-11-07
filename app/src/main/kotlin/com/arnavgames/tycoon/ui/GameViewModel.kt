@@ -278,6 +278,9 @@ class GameViewModel @Inject constructor(
     fun dismissOffline() = session.dismissOffline()
     fun debugScenario(name: String) = session.debugLoadScenario(name)
     fun startOver() = session.startNewGameAfterRecovery()
+    /** The 6-hourly payment for a new loan, exactly as the engine will charge it. */
+    fun loanInstallment(amount: Money, ratePerDay: Double, days: Int): Money = session.engine.credit.installment(amount, ratePerDay, days)
+
     fun updateSettings(f: (Settings) -> Settings) { viewModelScope.launch { settingsStore.update(f) } }
 
     val engine get() = session.engine
