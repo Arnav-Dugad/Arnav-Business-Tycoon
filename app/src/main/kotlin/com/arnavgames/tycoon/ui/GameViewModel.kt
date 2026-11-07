@@ -45,6 +45,8 @@ data class HustleUi(val perTap: Money, val combo: Int, val maxCombo: Int, val co
 data class MissionUi(
     val id: String, val title: String, val description: String, val progress: Float, val claimable: Boolean,
     val reward: String, val chapterNumber: Int, val chapterTitle: String, val done: Int, val total: Int,
+    /** Where "Show me" goes: "business:<id>", "open:<id>", "tab:<markets|estates|collection>", "list" or null. */
+    val goTo: String? = null,
 )
 
 data class TimerUi(val id: Long, val label: String, val startSim: Long, val endSim: Long, val rushFavor: Long)
@@ -315,6 +317,7 @@ class GameViewModel @Inject constructor(
                     reward = rewardText(m.rewardCash, m.rewardBullion, m.rewardFavor),
                     chapterNumber = ch.number, chapterTitle = ch.title,
                     done = ch.missions.count { it.id in s.progress.completedMissions }, total = ch.missions.size,
+                    goTo = goToFor(s, m.goal),
                 )
             }
         }
@@ -407,6 +410,20 @@ class GameViewModel @Inject constructor(
         sec < 5_400 -> "${(sec / 60).toInt()} min"
         sec < 172_800 -> "${(sec / 3600).toInt()} h"
         else -> "${(sec / 86_400).toInt()} days"
+    }
+
+    /** Where the Next Move card's "Show me" should take the player for this goal. */
+    private fun goToFor(s: GameState, g: com.arnavgames.tycoon.core.content.GoalDef): String? = when (g) {
+        is com.arnavgames.tycoon.core.content.GoalDef.OwnBusiness -> if (g.businessId in s.businesses) "business:${g.businessId}" else "open:${g.businessId}"
+        is com.arnavgames.tycoon.core.content.GoalDef.BusinessLevel -> if (g.businessId in s.businesses) "business:${g.businessId}" else "open:${g.businessId}"
+        is com.arnavgames.tycoon.core.content.GoalDef.HireManager -> if (g.businessId in s.businesses) "business:${g.businessId}" else "open:${g.businessId}"
+        is com.arnavgames.tycoon.core.content.GoalDef.ExpansionDone -> "business:${g.businessId}"
+        is com.arnavgames.tycoon.core.content.GoalDef.MarketTrades, is com.arnavgames.tycoon.core.content.GoalDef.BoardSeats -> "tab:markets"
+        is com.arnavgames.tycoon.core.content.GoalDef.PropertiesOwned -> "tab:estates"
+        is com.arnavgames.tycoon.core.content.GoalDef.LuxuryOwned, is com.arnavgames.tycoon.core.content.GoalDef.AuctionsWon -> "tab:collection"
+        is com.arnavgames.tycoon.core.content.GoalDef.BusinessesOwned, is com.arnavgames.tycoon.core.content.GoalDef.Conglomerates,
+        is com.arnavgames.tycoon.core.content.GoalDef.HqLevel, is com.arnavgames.tycoon.core.content.GoalDef.IncomePerSecond -> "list"
+        else -> null
     }
 
     /** A short, actionable hint when the player is leaving money on the table. */

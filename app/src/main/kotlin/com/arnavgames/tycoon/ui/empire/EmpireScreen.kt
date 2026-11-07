@@ -1,5 +1,6 @@
 package com.arnavgames.tycoon.ui.empire
 
+import kotlinx.coroutines.launch
 import com.arnavgames.tycoon.ui.common.shortPersonName
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.Animatable
@@ -102,7 +103,7 @@ import com.arnavgames.tycoon.designsystem.theme.glassCard
 import com.arnavgames.tycoon.designsystem.theme.glassSource
 
 @Composable
-fun EmpireScreen(vm: GameViewModel, onOpenBusiness: (String) -> Unit, onOpenDesk: () -> Unit = {}, onOpenFortune: () -> Unit = {}, onOpenFinance: () -> Unit = {}) {
+fun EmpireScreen(vm: GameViewModel, onOpenBusiness: (String) -> Unit, onOpenDesk: () -> Unit = {}, onOpenFortune: () -> Unit = {}, onOpenFinance: () -> Unit = {}, onSwitchTab: (String) -> Unit = {}) {
     val ui by vm.empire.collectAsStateWithLifecycle()
     val qty by vm.buyQty.collectAsStateWithLifecycle()
     val settings by vm.settings.collectAsStateWithLifecycle()
@@ -113,6 +114,9 @@ fun EmpireScreen(vm: GameViewModel, onOpenBusiness: (String) -> Unit, onOpenDesk
     OnboardingDriver(e, vm)
     val mentorLine by vm.mentor.line.collectAsStateWithLifecycle()
     val guiding = guideText(e) != null
+    // Tapping leads in Chapter 1; after that the businesses do, and the counter moves below them.
+    val hustleFirst = (e.mission?.chapterNumber ?: 1) <= 1
+    val scope = androidx.compose.runtime.rememberCoroutineScope()
     androidx.compose.runtime.LaunchedEffect(e.mission?.chapterNumber, guiding) { if (!guiding) vm.mentorTip(e.mission?.chapterNumber ?: 8) }
     val listState = androidx.compose.foundation.lazy.rememberLazyListState()
     // A new line is inserted above the first card; lazy lists keep the old first item in place, so reveal it.
@@ -135,10 +139,24 @@ fun EmpireScreen(vm: GameViewModel, onOpenBusiness: (String) -> Unit, onOpenDesk
         ) {
             guideText(e)?.let { g -> item(key = "guide") { GuideBanner(g) } }
             if (!guiding) mentorLine?.let { l -> item(key = "mentor") { MentorCard(vm.mentor.name, l.text, onDismiss = { vm.mentor.dismiss() }) } }
-            e.mission?.let { m -> item(key = "mission") { NextMoveCard(m, onClaim = { vm.dispatch(Command.ClaimMission(m.id)) }) } }
+            e.mission?.let { m ->
+                item(key = "mission") {
+                    // "Show me": open the business, switch tab, or scroll to the business list (just after this card,
+                    // the world strip and, in Chapter 1, the counter).
+                    val bizHeader = listOfNotNull(guideText(e), if (!guiding) mentorLine else null).size + 2 + if (hustleFirst) 1 else 0
+                    val go: (() -> Unit)? = m.goTo?.let { target ->
+                        {
+                            when {
+                                target.startsWith("business:") -> onOpenBusiness(target.removePrefix("business:"))
+                                target.startsWith("tab:") -> onSwitchTab(target.removePrefix("tab:"))
+                                else -> scope.launch { listState.animateScrollToItem(openIndex(e, target.removePrefix("open:"), bizHeader, hustleFirst)) }
+                            }
+                        }
+                    }
+                    NextMoveCard(m, onClaim = { vm.dispatch(Command.ClaimMission(m.id)) }, onGo = go)
+                }
+            }
             item(key = "world") { com.arnavgames.tycoon.ui.world.WorldStrip(vm, onOpenDesk, onOpenFortune, onOpenFinance) }
-            // Tapping leads in Chapter 1; after that the businesses do, and the counter moves below them.
-            val hustleFirst = (e.mission?.chapterNumber ?: 1) <= 1
             if (hustleFirst) item(key = "hustle") {
                 HustleCard(e.hustle, fmt, onTap = { vm.dispatch(Command.HustleTap(1)) }, onFrenzy = { vm.dispatch(Command.ActivateFrenzy) })
             }
@@ -185,6 +203,20 @@ fun EmpireScreen(vm: GameViewModel, onOpenBusiness: (String) -> Unit, onOpenDesk
         // Celebrations appear just below the header so they never cover the numbers.
         MomentOverlay(vm, Modifier.align(Alignment.TopCenter).padding(top = with(density) { headerPx.toDp() }))
     }
+}
+
+/** List index of the card that opens [id] (or the business list header if it isn't shown). Mirrors the LazyColumn order. */
+private fun openIndex(e: EmpireUi, id: String, bizHeader: Int, hustleFirst: Boolean): Int {
+    val available = e.openable.filter { it.lockedReason == null }
+    val locked = e.openable.filter { it.lockedReason != null }.take(2)
+    var i = bizHeader + 1 + e.businesses.size + if (hustleFirst) 0 else 1
+    if (available.isNotEmpty()) {
+        i += 1 // section header
+        available.indexOfFirst { it.id == id }.takeIf { it >= 0 }?.let { return i + it }
+        i += available.size
+    }
+    locked.indexOfFirst { it.id == id }.takeIf { it >= 0 }?.let { return i + it }
+    return bizHeader
 }
 
 // ------------------------------------------------------------------ header
@@ -309,7 +341,7 @@ private fun MentorCard(name: String, text: String, onDismiss: () -> Unit) {
 // ------------------------------------------------------------------ next move
 
 @Composable
-private fun NextMoveCard(m: MissionUi, onClaim: () -> Unit) {
+private fun NextMoveCard(m: MissionUi, onClaim: () -> Unit, onGo: (() -> Unit)? = null) {
     val c = Aurum.colors
     AurumCard(Modifier.fillMaxWidth(), highlighted = m.claimable) {
         Row(verticalAlignment = Alignment.CenterVertically) {
@@ -329,7 +361,8 @@ private fun NextMoveCard(m: MissionUi, onClaim: () -> Unit) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 AbtIcon(AbtIcons.Gift, null, tint = c.textTertiary, size = 14.dp)
                 Spacer(Modifier.width(Space.xs))
-                Text("Reward: ${m.reward}", style = Aurum.type.bodySmall, color = c.textTertiary)
+                Text("Reward: ${m.reward}", style = Aurum.type.bodySmall, color = c.textTertiary, modifier = Modifier.weight(1f))
+                if (onGo != null) PillAction("Show me", true, onGo, style = PillStyle.Glass, modifier = Modifier.testTag("show-me"))
             }
         }
     }

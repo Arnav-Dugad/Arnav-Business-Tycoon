@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -104,7 +105,6 @@ fun WorldStrip(vm: GameViewModel, onOpenDesk: () -> Unit, onOpenFortune: () -> U
     val fin by vm.financeSummary.collectAsStateWithLifecycle()
     val d = desk ?: return
     if (!d.unlocked) return
-    // Three tiles side by side; at large font sizes they stack so nothing is cut off.
     val stacked = androidx.compose.ui.platform.LocalDensity.current.fontScale > 1.3f
     val tiles: List<@Composable (Modifier) -> Unit> = buildList {
         val deskValue = when {
@@ -117,8 +117,16 @@ fun WorldStrip(vm: GameViewModel, onOpenDesk: () -> Unit, onOpenFortune: () -> U
         fortune?.let { (unlocked, rank) -> if (unlocked) add { m -> StripTile(AbtIcons.Trophy, "Fortune", if (rank <= 220) "#$rank" else "Unranked", false, onOpenFortune, m) } }
         fin?.let { (unlocked, rating) -> if (unlocked) add { m -> StripTile(AbtIcons.Gauge, "Credit", rating, false, onOpenFinance, m) } }
     }
-    if (stacked) Column(verticalArrangement = Arrangement.spacedBy(Space.sm)) { tiles.forEach { it(Modifier.fillMaxWidth()) } }
-    else Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(Space.sm)) { tiles.forEach { it(Modifier.weight(1f)) } }
+    // Two per row, so labels like "5 waiting" and "Expansion" are never cut off; one per row at large font sizes.
+    val perRow = if (stacked) 1 else 2
+    Column(verticalArrangement = Arrangement.spacedBy(Space.sm)) {
+        tiles.chunked(perRow).forEach { row ->
+            Row(Modifier.fillMaxWidth().height(androidx.compose.foundation.layout.IntrinsicSize.Min), horizontalArrangement = Arrangement.spacedBy(Space.sm)) {
+                row.forEach { it(Modifier.weight(1f).fillMaxHeight()) }
+                repeat(perRow - row.size) { Spacer(Modifier.weight(1f)) }
+            }
+        }
+    }
 }
 
 /** "1h 20m", "45m", "2d 3h". */
