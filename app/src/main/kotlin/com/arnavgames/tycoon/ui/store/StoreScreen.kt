@@ -100,11 +100,13 @@ fun StoreScreen(vm: GameViewModel, onBack: () -> Unit) {
                                 }
                                 blocker != null -> Text(blocker, style = Aurum.type.label, color = c.textTertiary)
                                 else -> {
-                                    p.demoPrice?.let { price ->
-                                        PillAction("Demo $price", true, { demo = p }, modifier = Modifier.testTag("demo-${p.id}"))
-                                    }
+                                    // Bullion earned in play leads (gold when affordable); the demo price is the quiet option.
+                                    val canBullion = p.bullionPrice?.let { bullion >= it } == true
                                     p.bullionPrice?.let { price ->
-                                        PillAction("$price Bullion", bullion >= price, { vm.dispatch(Command.BuyWithBullion(p.id)) }, style = PillStyle.Glass)
+                                        PillAction("$price Bullion", canBullion, { vm.dispatch(Command.BuyWithBullion(p.id)) }, style = if (canBullion) PillStyle.Gold else PillStyle.Glass)
+                                    }
+                                    p.demoPrice?.let { price ->
+                                        PillAction("Demo $price", true, { demo = p }, style = if (canBullion) PillStyle.Glass else PillStyle.Gold, modifier = Modifier.testTag("demo-${p.id}"))
                                     }
                                 }
                             }
