@@ -1,6 +1,6 @@
 # Arnav Business Tycoon — Progress
 
-_Last updated: 2026-11-07._
+_Last updated: 2026-11-07 (overnight)._
 
 ## Current status
 - Phase 0 (Planning): **DONE**. The user approved the plan on 2026-11-06.
@@ -477,6 +477,18 @@ All in `:core` (pure Kotlin/JVM, enforced by `verifyCorePurity`):
 - **Balance (Phase 11)**: six 10-day batches (TUNING_LOG p11a–p11f). The ladder from Banking to Space is compressed (×3.6 per step instead of ×11.5, with level cost and revenue scaled the same way so paybacks don't change); the final goal is 4× the Space price (≈ $9.3×10^16); Chapter 7–8 level goals are level 10; Chapter 2's last goal is $25M; the Legacy normaliser follows the goal (13.4: a first crown still earns ~125 Legacy). The bots now save for the business the story asks for once nothing else is left in the chapter (a real player's habit the model lacked). Extra slots in the store are capped at 2. Result: **16 of 17 targets** (archive `docs/balance/2026-11-07-release-1.1.0/`).
 - **Test fixes**: FirstSessionFlowTest tapped buttons that sat under the floating tab bar (the touch landed on a tab): it now targets the Empire list by tag and clicks through semantics actions. **Passes on API 28 now** (the old 1.0.0 flake). The crown debug scenario hires the managers the new missions ask for.
 
+## 1.2 "Clarity" work in progress (overnight 2026-11-07, owner: "make UX the most important thing")
+Committed and pushed, **not released** (no release is published while the owner sleeps; auto-update would push it to friends).
+- **Understand everything**: a glossary sheet for every invented word (Cash, Net worth, Income, Bullion, Favor, Economy, Legacy, Status, Season XP, Hours of income), opened by tapping the word. Desk choices, loan options, estate choices and market swings say exactly what they cost and do, in plain words.
+- **Know what to do next**: one guide voice on the Empire tab; the Next Move card has **Show me** (opens the business, switches to the right tab, or scrolls to the card that opens the business); a "Best value" chip on the purchase that pays back fastest; locked businesses say why; first-visit introductions for Markets, Estates and Collection.
+- **Come back to a story**: The Daily Ledger front page after 30+ minutes away; a What's new sheet after updates.
+- **Notifications (E6)**: opt-in local notifications. On leaving, the planner plays the absence forward with the real engine (within the offline cap), so messages are real events: finished expansions, renovations and construction, the result of an auction the player bid in, a full Desk. Per-category switches, quiet hours (10 pm–8 am), close events merged, at most 3 a day (re-checked on the device). Cancelled on return. The permission is asked only when turned on: in Settings, or from a one-time offer the first time something takes 10+ minutes. UI tests mark the offer as seen (`QuietOffersRule`).
+- **Layout fixes from screenshot review**: World tiles two per row, so "5 waiting" and "Expansion" are never cut off; settings subtitles no longer touch the switch.
+- **Account**: explains why to sign in; Google and guest come first.
+- **Balance lever A1 (Desk supply scales with the empire)**: under measurement; see TUNING_LOG.
+
+Evidence: core 176/176, sim 3/3, app 28/28 JVM tests (including `NotificationPlannerTest`: an 8-hour plan takes ~45 ms on the laptop), screenshots 01–22 in both themes reviewed. **Not verified**: a notification actually posted on a device (the emulator is shared with another project tonight), and the instrumented UI suite on the 1.2 code.
+
 ## Release gates (TEST_PLAN §7)
 Checked for **1.1.0** on 2026-11-07 (released at the owner's choice with the open items below):
 
@@ -516,9 +528,9 @@ The release is published with the ⚠️ items listed here and in the release no
 
 ## Owner checklist (morning)
 1. **Back up the release keystore** now: `C:\Users\rduga\Keystores\arnav-business-tycoon\abt-release.jks` **and** the passwords in `C:\Users\rduga\.gradle\gradle.properties` (lines starting `ABT_`). Keep two copies (password manager + USB or private cloud). Without them, updates can't be installed over the existing app.
-2. **Firebase: one console step left** (everything else was done on 2026-11-07). Open https://console.firebase.google.com/project/arnav-business-tycoon/authentication → **Get started** → Sign-in method → enable **Email/Password** and **Anonymous**. This uses the free Firebase Authentication (no billing). Sign-in in the released 1.1.0 starts working immediately; no update needed.
-   - Optional: also enable **Google** (public name "Arnav Business Tycoon", support email), then tell me: I re-download google-services.json and ship an update with the Google button (auto-update delivers it).
-3. Optional: try the release APK on a real phone (emulator frame timings are not a reliable 60 fps check).
+2. **Firebase**: done. Email, Anonymous and Google sign-in are enabled (owner, 2026-11-07); live smoke test 10/10. Still untested: Google sign-in on a real device with a Google account.
+3. **Close the three Firebase emulator processes** left from a rules test (PIDs 9316, 16412, 22180, Java/Node): the safety classifier did not let me stop them because they could belong to another session. Check them in Task Manager first.
+4. Optional: try the release APK on a real phone (emulator frame timings are not a reliable 60 fps check).
 
 ## Environment inventory (verified 2026-11-06)
 | Tool | State |
