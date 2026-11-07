@@ -168,6 +168,7 @@ private fun ReadyContent(vm: GameViewModel) {
         else vm.say("Updated from $from to $version. Your game is safe.")
     }
     val s = state ?: return LoadingScreen()
+    com.arnavgames.tycoon.notify.NotifyOffer(vm)
     val needsWelcome = s.progress.onboardingStep == 0 && s.businesses.isEmpty()
 
     AnimatedContent(targetState = needsWelcome, transitionSpec = { fadeIn(tween(500)) togetherWith fadeOut(tween(300)) }, label = "welcome") { welcome ->

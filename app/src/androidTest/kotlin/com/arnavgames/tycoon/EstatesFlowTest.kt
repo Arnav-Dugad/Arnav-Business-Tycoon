@@ -31,6 +31,7 @@ import org.junit.runner.RunWith
 @OptIn(ExperimentalTestApi::class)
 @RunWith(AndroidJUnit4::class)
 class EstatesFlowTest {
+    @get:Rule(order = 0) val quiet = QuietOffersRule()
     @get:Rule(order = 2) val shots = FailureScreenshotRule()
     @get:Rule(order = 1) val rule = createEmptyComposeRule()
     private var scenario: ActivityScenario<MainActivity>? = null

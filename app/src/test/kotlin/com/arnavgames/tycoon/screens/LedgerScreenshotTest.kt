@@ -81,4 +81,17 @@ class LedgerScreenshotTest(private val theme: String) {
         rule.waitForIdle()
         rule.onRoot().captureRoboImage("build/screens/21_whats_new_$theme.png")
     }
+
+    @Test
+    fun notifyOffer() {
+        rule.setContent {
+            AurumTheme(mode = if (theme == "dark") ThemeMode.Dark else ThemeMode.Light) {
+                Box(Modifier.fillMaxSize().background(Aurum.colors.background)) {
+                    com.arnavgames.tycoon.notify.NotifyOfferDialog("about 2 hours", onYes = {}, onNo = {})
+                }
+            }
+        }
+        rule.waitForIdle()
+        rule.onRoot().captureRoboImage("build/screens/22_notify_offer_$theme.png")
+    }
 }

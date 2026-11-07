@@ -27,6 +27,13 @@ data class Settings(
     val notation: NotationPref = NotationPref.Suffix,
     /** Download new versions in the background and install them when the player leaves the game. */
     val autoUpdate: Boolean = true,
+    /** Local notifications while away: off until the player turns them on. */
+    val notifications: Boolean = false,
+    val notifyTimers: Boolean = true,
+    val notifyAuctions: Boolean = true,
+    val notifyDesk: Boolean = true,
+    /** No notifications from 10 pm to 8 am. */
+    val quietHours: Boolean = true,
 )
 
 /** Player preferences (DataStore). Game progress is never stored here — only in saves. */
@@ -40,6 +47,11 @@ class SettingsStore(private val context: Context) {
         val notation = stringPreferencesKey("notation")
         val autoUpdate = booleanPreferencesKey("auto_update")
         val deviceId = stringPreferencesKey("device_id")
+        val notifications = booleanPreferencesKey("notifications")
+        val notifyTimers = booleanPreferencesKey("notify_timers")
+        val notifyAuctions = booleanPreferencesKey("notify_auctions")
+        val notifyDesk = booleanPreferencesKey("notify_desk")
+        val quietHours = booleanPreferencesKey("quiet_hours")
     }
 
     private fun fromPrefs(p: Preferences) = Settings(
@@ -50,6 +62,11 @@ class SettingsStore(private val context: Context) {
         sfxVolume = p[K.sfx] ?: 0.8f,
         notation = p[K.notation]?.let { runCatching { NotationPref.valueOf(it) }.getOrNull() } ?: NotationPref.Suffix,
         autoUpdate = p[K.autoUpdate] ?: true,
+        notifications = p[K.notifications] ?: false,
+        notifyTimers = p[K.notifyTimers] ?: true,
+        notifyAuctions = p[K.notifyAuctions] ?: true,
+        notifyDesk = p[K.notifyDesk] ?: true,
+        quietHours = p[K.quietHours] ?: true,
     )
 
     val settings: Flow<Settings> = context.dataStore.data.map(::fromPrefs)
@@ -65,6 +82,11 @@ class SettingsStore(private val context: Context) {
             p[K.sfx] = n.sfxVolume.coerceIn(0f, 1f)
             p[K.notation] = n.notation.name
             p[K.autoUpdate] = n.autoUpdate
+            p[K.notifications] = n.notifications
+            p[K.notifyTimers] = n.notifyTimers
+            p[K.notifyAuctions] = n.notifyAuctions
+            p[K.notifyDesk] = n.notifyDesk
+            p[K.quietHours] = n.quietHours
         }
     }
 

@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.selection.toggleable
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -60,6 +61,20 @@ fun SettingsScreen(vm: GameViewModel, onBack: () -> Unit, onCredits: () -> Unit)
     val importLauncher = rememberLauncherForActivityResult(ActivityResultContracts.OpenDocument()) { uri: Uri? ->
         if (uri != null) scope.launch { vm.importSave(ctx, uri) }
     }
+    // Notifications: the Android permission is asked only when the player turns them on.
+    var notifyBlocked by remember { mutableStateOf(false) }
+    val permissionLauncher = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
+        notifyBlocked = !granted
+        if (granted) vm.updateSettings { it.copy(notifications = true) }
+    }
+    val enableNotifications: (Boolean) -> Unit = { on ->
+        when {
+            !on -> { notifyBlocked = false; vm.updateSettings { it.copy(notifications = false) } }
+            com.arnavgames.tycoon.notify.Notifications.canPost(ctx) -> vm.updateSettings { it.copy(notifications = true) }
+            android.os.Build.VERSION.SDK_INT >= 33 -> permissionLauncher.launch(android.Manifest.permission.POST_NOTIFICATIONS)
+            else -> notifyBlocked = true
+        }
+    }
     Box {
         GlassScaffold("Settings", onBack) {
             item { SectionHeader("Appearance") }
@@ -93,6 +108,26 @@ fun SettingsScreen(vm: GameViewModel, onBack: () -> Unit, onCredits: () -> Unit)
                     SegmentedSelector(listOf(0f, 0.3f, 0.6f), listOf(0f, 0.3f, 0.6f).minBy { kotlin.math.abs(it - settings.musicVolume) },
                         { when (it) { 0f -> "Off"; 0.3f -> "Quiet"; else -> "Normal" } }, { v -> vm.updateSettings { it.copy(musicVolume = v) } }, Modifier.fillMaxWidth())
                     Text("Four original tracks, one for each part of your empire. Pauses if another app is playing music.", style = Aurum.type.bodySmall, color = c.textTertiary)
+                }
+            }
+            item { SectionHeader("Notifications") }
+            item {
+                AurumCard(Modifier.fillMaxWidth().testTag("notifications-card")) {
+                    ToggleRow("While you're away", "A heads-up when something finishes or needs you. Never more than 3 a day.", settings.notifications, enableNotifications)
+                    if (notifyBlocked) {
+                        Text("Notifications are turned off for this game in Android settings.", style = Aurum.type.bodySmall, color = c.loss)
+                        GhostButton("Open Android settings", onClick = {
+                            ctx.startActivity(Intent(android.provider.Settings.ACTION_APP_NOTIFICATION_SETTINGS).putExtra(android.provider.Settings.EXTRA_APP_PACKAGE, ctx.packageName))
+                        }, modifier = Modifier.fillMaxWidth().padding(top = Space.xs))
+                    }
+                    if (settings.notifications) {
+                        HairlineDivider()
+                        ToggleRow("Finished work", "Expansions, renovations and construction", settings.notifyTimers) { v -> vm.updateSettings { it.copy(notifyTimers = v) } }
+                        ToggleRow("Auctions", "The result of an auction you bid in", settings.notifyAuctions) { v -> vm.updateSettings { it.copy(notifyAuctions = v) } }
+                        ToggleRow("The Desk", "When your Desk is full of decisions", settings.notifyDesk) { v -> vm.updateSettings { it.copy(notifyDesk = v) } }
+                        HairlineDivider()
+                        ToggleRow("Quiet hours", "Nothing from 10 pm to 8 am; it waits for the morning", settings.quietHours) { v -> vm.updateSettings { it.copy(quietHours = v) } }
+                    }
                 }
             }
             item { SectionHeader("Your save") }
@@ -148,6 +183,7 @@ private fun ToggleRow(title: String, subtitle: String, checked: Boolean, onChang
             Text(title, style = Aurum.type.title, color = c.textPrimary)
             Text(subtitle, style = Aurum.type.bodySmall, color = c.textSecondary)
         }
+        Spacer(Modifier.width(Space.md))
         AurumToggle(checked = checked, onCheckedChange = null)
     }
 }

@@ -4,6 +4,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.VIBRATE" />
+    <!-- Local notifications only, asked for when the player turns them on in Settings (never at first launch). -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <!-- Automatic updates from the game's GitHub releases (docs/ARCHITECTURE.md §9). Installing still needs the
          player's "install unknown apps" permission; the second one only lets Android 12+ skip the confirmation for
          updates of this same app. -->
