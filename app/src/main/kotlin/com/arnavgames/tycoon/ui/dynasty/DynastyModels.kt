@@ -48,16 +48,24 @@ class DynastyMapper(private val engine: GameEngine) {
         "loans_repaid" to "Repay %d loans", "events" to "Live through %d world events",
     )
 
-    private fun describe(m: MissionState) = (metricNames[m.metric] ?: "%d").format(m.target).let {
+    private fun describe(m: MissionState) = (metricNames[m.metric] ?: "%d").replace("%d", "%,d").let { String.format(java.util.Locale.US, it, m.target) }.let {
         if (m.target == 1L) it.replace(" 1 ", " a ").replace("Frenzies", "Frenzy").replace("managers", "manager").replace("expansions", "expansion")
             .replace("properties", "property").replace("pieces", "piece").replace("renovations", "renovation").replace("businesses", "business")
             .replace("auctions", "auction").replace("returns", "return").replace("payouts", "payout").replace("loans", "loan").replace("events", "event")
             .replace("matters", "matter").replace("trades", "trade").replace("levels", "level").replace("hours", "hour")
+            .let { t -> Regex(" a ([aeiouAEIOU])").replace(t) { r -> " an ${r.groupValues[1]}" } }
         else it
     }
 
     private fun mission(s: GameState, i: Int, m: MissionState, title: String) =
-        MissionUi(i, title, describe(m), prog.progress(s, m).toFloat(), prog.done(s, m), m.claimed, m.rewardCash, m.bullion, m.seasonXp)
+        MissionUi(i, title, describe(m) + progressText(s, m), prog.progress(s, m).toFloat(), prog.done(s, m), m.claimed, m.rewardCash, m.bullion, m.seasonXp)
+
+    /** " · 12 of 60" while a counted goal is under way, so the bar has a number. */
+    private fun progressText(s: GameState, m: MissionState): String {
+        if (m.target <= 1 || prog.done(s, m)) return ""
+        val have = (prog.progress(s, m) * m.target).toLong().coerceIn(0, m.target)
+        return if (have > 0) String.format(java.util.Locale.US, " · %,d of %,d", have, m.target) else ""
+    }
 
     fun daily(s: GameState) = s.meta.daily.mapIndexed { i, m -> mission(s, i, m, p.dailyById[m.template]?.title ?: "Daily") }
     fun weekly(s: GameState) = s.meta.weekly.mapIndexed { i, m -> mission(s, i, m, p.weeklyById[m.template]?.title ?: "Weekly") }
