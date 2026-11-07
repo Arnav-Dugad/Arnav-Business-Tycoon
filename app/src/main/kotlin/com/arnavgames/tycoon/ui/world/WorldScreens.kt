@@ -489,10 +489,12 @@ fun FinanceScreen(vm: GameViewModel, onBack: () -> Unit, onOpenTaxes: () -> Unit
                     Fact("You can borrow", fmt(f.borrowLimit))
                     Fact("Interest", "${pct(f.loanRate, 2)} a day")
                     Spacer(Modifier.height(Space.sm))
+                    Text("How much (of what you can borrow)", style = Aurum.type.label, color = c.textTertiary)
                     Row(horizontalArrangement = Arrangement.spacedBy(Space.xs)) {
                         listOf(25, 50, 100).forEach { p -> PillAction("$p%", true, { share = p }, style = if (share == p) PillStyle.Gold else PillStyle.Glass) }
                     }
                     Spacer(Modifier.height(Space.xs))
+                    Text("For how long", style = Aurum.type.label, color = c.textTertiary)
                     Row(horizontalArrangement = Arrangement.spacedBy(Space.xs)) {
                         f.terms.forEach { t -> PillAction("$t day" + if (t > 1) "s" else "", true, { term = t }, style = if (term == t) PillStyle.Gold else PillStyle.Glass) }
                     }

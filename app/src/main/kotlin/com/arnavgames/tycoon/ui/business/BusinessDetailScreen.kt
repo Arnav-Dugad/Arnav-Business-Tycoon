@@ -303,7 +303,13 @@ private fun ColumnScope.RetailPanel(vm: GameViewModel, s: GameState, def: Busine
             modifier = Modifier.weight(1f).semantics { stateDescription = "${price.toInt()} percent of reference price" },
         )
     }
-    Text("Profit at this price: ${(preview * 100).toInt()}% of standard", style = Aurum.type.bodySmall, color = if (preview >= 1.0) c.gain else c.loss)
+    // Say how close the player is to the best price (without giving the answer away).
+    val best = Mechanics.retailEfficiency(m, st.copy(pricePct = Mechanics.retailOptimalPricePct(m)), s.simTimeMs)
+    val atBest = preview >= best * 0.985
+    Text(
+        "Profit at this price: ${(preview * 100).toInt()}% of standard" + if (atBest) " · you've found the sweet spot" else " · the best possible is ${(best * 100).toInt()}%",
+        style = Aurum.type.bodySmall, color = if (atBest) c.gain else if (preview >= 1.0) c.textSecondary else c.loss,
+    )
     Spacer(Modifier.height(Space.lg))
     Text("Promotion", style = Aurum.type.titleSmall, color = c.textPrimary)
     Text("Footfall ×${m.promoFootfall} for ${m.promoSeconds / 60} minutes.", style = Aurum.type.bodySmall, color = c.textSecondary)

@@ -108,6 +108,8 @@ class ScreensTest(private val theme: String) {
             tab("Markets")
             Thread.sleep(1000)
             shot("08_markets")
+            scrollTo("Wallmark")
+            runCatching { tapText("Wallmark"); Thread.sleep(1000); shot("08b_stock_detail") }
         }
     }
 
@@ -119,6 +121,8 @@ class ScreensTest(private val theme: String) {
             tab("Estates")
             Thread.sleep(800)
             shot("10_estates")
+            scrollTo("Lisbon")
+            runCatching { tapText("Lisbon"); Thread.sleep(1000); shot("10b_city_lisbon"); back() }
             tab("Collection")
             Thread.sleep(800)
             shot("11_collection")
@@ -136,6 +140,8 @@ class ScreensTest(private val theme: String) {
         launch("world") {
             waitText("Retail Stores", 60_000)
             runCatching { tapText("Desk"); Thread.sleep(800); shot("13_desk"); back() }
+            runCatching { tapText("Fortune"); Thread.sleep(800); shot("13b_fortune"); back() }
+            runCatching { tapText("Credit"); Thread.sleep(800); shot("13c_finance"); back() }
             tab("Dynasty")
             waitText("Your Dynasty")
             scrollTo("Account & cloud save")
