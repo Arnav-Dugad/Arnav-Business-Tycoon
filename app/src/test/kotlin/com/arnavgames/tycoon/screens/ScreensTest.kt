@@ -157,6 +157,11 @@ class ScreensTest(private val theme: String) {
             waitText("Your Dynasty")
             rule.waitUntil(120_000) { rule.onAllNodesWithText("Pass the Crown").fetchSemanticsNodes().isNotEmpty() }
             shot("15_dynasty_crown_ready")
+            tab("Empire")
+            runCatching { waitText("The crown is ready", 20_000) }
+            shot("15b_empire_crown_ready")
+            tab("Dynasty")
+            rule.waitUntil(30_000) { rule.onAllNodesWithText("Pass the Crown").fetchSemanticsNodes().isNotEmpty() }
             click(rule.onAllNodesWithText("Pass the Crown").onFirst())
             waitText("Heir trait")
             shot("16_crown")

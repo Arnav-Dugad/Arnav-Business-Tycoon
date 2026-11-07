@@ -85,7 +85,11 @@ data class EmpireUi(
     val claimableCount: Int,
     val mergers: List<MergerUi> = emptyList(),
     val holding: HoldingUi? = null,
+    /** Every chapter is done and the crown can pass: the Empire tab's next move. */
+    val crown: CrownReadyUi? = null,
 )
+
+data class CrownReadyUi(val legacyGain: Long, val multiplierNow: Double, val multiplierAfter: Double, val generation: Int)
 
 @HiltViewModel
 class GameViewModel @Inject constructor(
@@ -353,7 +357,12 @@ class GameViewModel @Inject constructor(
             )
         }.sortedWith(compareByDescending<MergerUi> { it.formed }.thenBy { it.blocker != null }.thenBy { it.fee })
         val holding = if (s.conglomerates.isNotEmpty()) HoldingUi(s.holdingName, s.conglomerates.size >= 3, content.balance.holdingFee, s.cash >= content.balance.holdingFee, s.conglomerates.size) else null
-        return EmpireUi(header, hustle, mission, businesses, openable, hq, s.progress.onboardingStep, s.progress.chapter, s.progress.claimableMissions.size, mergers, holding)
+        val dyn = session.engine.dynasty
+        val crown = if (mission == null && dyn.canPrestige(s)) {
+            val pv = session.engine.crownPreview(s)
+            CrownReadyUi(pv.legacyGain, dyn.legacyMultiplier(s.dynasty.legacy), pv.multiplier, s.dynasty.generation + 1)
+        } else null
+        return EmpireUi(header, hustle, mission, businesses, openable, hq, s.progress.onboardingStep, s.progress.chapter, s.progress.claimableMissions.size, mergers, holding, crown)
     }
 
     fun businessUi(s: GameState, def: BusinessDef, qty: BuyQty): BusinessUi {

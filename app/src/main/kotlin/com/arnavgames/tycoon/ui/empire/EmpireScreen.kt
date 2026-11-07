@@ -115,7 +115,7 @@ fun EmpireScreen(vm: GameViewModel, onOpenBusiness: (String) -> Unit, onOpenDesk
     val mentorLine by vm.mentor.line.collectAsStateWithLifecycle()
     val guiding = guideText(e) != null
     // Tapping leads in Chapter 1; after that the businesses do, and the counter moves below them.
-    val hustleFirst = (e.mission?.chapterNumber ?: 1) <= 1
+    val hustleFirst = (e.mission?.chapterNumber ?: e.chapter) <= 1
     val scope = androidx.compose.runtime.rememberCoroutineScope()
     androidx.compose.runtime.LaunchedEffect(e.mission?.chapterNumber, guiding) { if (!guiding) vm.mentorTip(e.mission?.chapterNumber ?: 8) }
     val listState = androidx.compose.foundation.lazy.rememberLazyListState()
@@ -156,6 +156,7 @@ fun EmpireScreen(vm: GameViewModel, onOpenBusiness: (String) -> Unit, onOpenDesk
                     NextMoveCard(m, onClaim = { vm.dispatch(Command.ClaimMission(m.id)) }, onGo = go)
                 }
             }
+            e.crown?.let { cr -> item(key = "crown") { CrownReadyCard(cr, onOpen = { onSwitchTab("dynasty") }) } }
             item(key = "world") { com.arnavgames.tycoon.ui.world.WorldStrip(vm, onOpenDesk, onOpenFortune, onOpenFinance) }
             if (hustleFirst) item(key = "hustle") {
                 HustleCard(e.hustle, fmt, onTap = { vm.dispatch(Command.HustleTap(1)) }, onFrenzy = { vm.dispatch(Command.ActivateFrenzy) })
@@ -202,6 +203,29 @@ fun EmpireScreen(vm: GameViewModel, onOpenBusiness: (String) -> Unit, onOpenDesk
         EmpireHeader(e, fmt, Modifier.align(Alignment.TopCenter).onSizeChanged { headerPx = it.height })
         // Celebrations appear just below the header so they never cover the numbers.
         MomentOverlay(vm, Modifier.align(Alignment.TopCenter).padding(top = with(density) { headerPx.toDp() }))
+    }
+}
+
+/** After the last chapter: the next move is the succession. Shows what the heir gains, and that waiting grows it. */
+@Composable
+private fun CrownReadyCard(cr: com.arnavgames.tycoon.ui.CrownReadyUi, onOpen: () -> Unit) {
+    val c = Aurum.colors
+    fun x(m: Double) = "×" + String.format(java.util.Locale.US, if (m < 10) "%.2f" else "%.1f", m)
+    AurumCard(Modifier.fillMaxWidth().testTag("crown-ready"), highlighted = true) {
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Text("YOUR STORY IS COMPLETE", style = Aurum.type.overline, color = c.goldText, modifier = Modifier.weight(1f))
+            AbtIcon(AbtIcons.Crown, null, tint = c.goldText, size = 20.dp)
+        }
+        Spacer(Modifier.height(Space.xs))
+        Text("The crown is ready", style = Aurum.type.headline, color = c.textPrimary)
+        Text(
+            "Pass it to an heir of generation ${cr.generation}. They start again from a kiosk, but every business earns " +
+                "${x(cr.multiplierAfter)} instead of ${x(cr.multiplierNow)}, for good. You'd gain ${"%,d".format(cr.legacyGain)} Legacy; " +
+                "it grows while you keep building.",
+            style = Aurum.type.bodySmall, color = c.textSecondary,
+        )
+        Spacer(Modifier.height(Space.sm))
+        GoldButton("Choose your heir", onClick = onOpen, leadingIcon = AbtIcons.Crown, modifier = Modifier.fillMaxWidth())
     }
 }
 
