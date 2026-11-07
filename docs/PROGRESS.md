@@ -478,6 +478,23 @@ All in `:core` (pure Kotlin/JVM, enforced by `verifyCorePurity`):
 - **Test fixes**: FirstSessionFlowTest tapped buttons that sat under the floating tab bar (the touch landed on a tab): it now targets the Empire list by tag and clicks through semantics actions. **Passes on API 28 now** (the old 1.0.0 flake). The crown debug scenario hires the managers the new missions ask for.
 
 ## Release gates (TEST_PLAN §7)
+Checked for **1.1.0** on 2026-11-07 (released at the owner's choice with the open items below):
+
+| Gate | Result | Evidence |
+|---|---|---|
+| G1 unit and property tests | ✅ core 160, sim 3, data, app 3 (update parser) | Gradle reports |
+| G2 content validation | ✅ incl. the new mentor validator (200 lines, all triggers valid) | `ContentTest` |
+| G3 balance targets | ⚠️ **16 of 17** (idle Chapter 8: 2 of 3 seeds at 9.5 d); spender 25–38 % faster per chapter, first conglomerate 2.4× | `docs/balance/2026-11-07-release-1.1.0/` |
+| G4 UI flows | ⚠️ Earlier on 2026-11-07 with near-final code: API 37 all 12 tests passed (CrownFlowTest after the scenario fix), API 28 **12/12** (first time FirstSessionFlowTest passes there). The final re-run on the last balance content was interrupted twice by another project sharing the emulator (adb server restarts killed the test orchestrator's shell; no app crash): 4 tests re-passed, 7 classes not re-run on the final numbers | androidTest reports, logcat |
+| G5 Firestore rules tests | ✅ 15/15; deployed to the live project | `cd firebase && npm test` |
+| G6 stress test | ⏭️ not re-run for 1.1.0 (1.0.0: 88,200 events, 0 crashes) | |
+| G7 upgrade keeps the save | ⚠️ 1.1.0 → 1.1.1 via the auto-updater keeps the save (tested). **1.0.0 → 1.1.0 not re-tested** (the save format only gained optional fields with defaults) | emulator |
+| G8 dark and light | ✅ new screens (mentor card, avatar picker, settings, update card) in both themes; avatar tint fixed for light | screenshots |
+| G9 signed release smoke test | ✅ on the morning release build: installs, Online mode, guest sign-in shows the "not switched on yet" message, no crash. Final APK built and content-checked, not re-launched | emulator, `unzip` check |
+| G10 APK size | ✅ 12.96 MB (music +1.45 MB) | `check_release.py` |
+| G11 secrets | ✅ clean; google-services.json ignored | `scan_secrets.py`, `check_release.py` |
+| G12 credits | ✅ 211 images, 11 original audio files (7 effects + 4 music) | `check_release.py` |
+
 Checked for 1.0.0 on 2026-11-07:
 
 | Gate | Result | Evidence |
