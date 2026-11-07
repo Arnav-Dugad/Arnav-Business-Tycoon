@@ -68,4 +68,17 @@ class LedgerScreenshotTest(private val theme: String) {
         rule.waitForIdle()
         rule.onRoot().captureRoboImage("build/screens/20_daily_ledger_$theme.png")
     }
+
+    @Test
+    fun whatsNew() {
+        rule.setContent {
+            AurumTheme(mode = if (theme == "dark") ThemeMode.Dark else ThemeMode.Light) {
+                Box(Modifier.fillMaxSize().background(Aurum.colors.background)) {
+                    com.arnavgames.tycoon.ui.common.WhatsNewSheet("1.2.0", com.arnavgames.tycoon.ui.common.WhatsNew.forVersion("1.2.0")) {}
+                }
+            }
+        }
+        rule.waitForIdle()
+        rule.onRoot().captureRoboImage("build/screens/21_whats_new_$theme.png")
+    }
 }

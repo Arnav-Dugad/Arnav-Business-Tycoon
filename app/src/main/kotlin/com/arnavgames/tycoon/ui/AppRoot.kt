@@ -22,6 +22,8 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
@@ -98,12 +100,6 @@ fun AppRoot(vm: GameViewModel, forcedTheme: ThemeMode?, onDarkChanged: (Boolean)
         val haptics = LocalHapticFeedback.current
 
         LaunchedEffect(Unit) { vm.messages.collect { snackbar.currentSnackbarData?.dismiss(); snackbar.showSnackbar(it) } }
-        LaunchedEffect(Unit) {
-            val from = kotlinx.coroutines.withTimeoutOrNull(5_000) { vm.updates.updatedFrom.filterNotNull().first() } ?: return@LaunchedEffect
-            vm.updates.consumeUpdatedFrom()
-            kotlinx.coroutines.delay(800)
-            snackbar.showSnackbar("Updated from $from to ${com.arnavgames.tycoon.BuildConfig.VERSION_NAME}. Your game is safe.")
-        }
         LaunchedEffect(settings.musicVolume) { vm.music.setVolume(settings.musicVolume) }
         LaunchedEffect(settings.sfxVolume) {
             if (settings.sfxVolume <= 0f) return@LaunchedEffect
@@ -112,16 +108,18 @@ fun AppRoot(vm: GameViewModel, forcedTheme: ThemeMode?, onDarkChanged: (Boolean)
         LaunchedEffect(settings.haptics) {
             if (!settings.haptics) return@LaunchedEffect
             vm.events.collect { e ->
+                // Haptic vocabulary (docs/PLAN_2.0.md F2): ticks for routine, a pulse for tiers, a heavy press for
+                // milestones, a buzz for bad news.
                 val type = when (e) {
                     is GameEvent.HustleEarned -> HapticFeedbackType.SegmentTick
-                    is GameEvent.LevelsBought, is GameEvent.Collected -> HapticFeedbackType.ContextClick
-                    is GameEvent.ManagerHired, is GameEvent.BusinessOpened, is GameEvent.MissionClaimed,
-                    is GameEvent.TierReached, is GameEvent.ExpansionCompleted, is GameEvent.HqUpgraded,
-                    is GameEvent.ChapterCompleted, is GameEvent.FrenzyStarted,
-                    is GameEvent.ConglomerateFormed, is GameEvent.HoldingFormed, is GameEvent.TradeExecuted,
-                    is GameEvent.PropertyBought, is GameEvent.PropertySold, is GameEvent.TowerCompleted,
-                    is GameEvent.LuxuryBought, is GameEvent.AuctionWon -> HapticFeedbackType.Confirm
-                    is GameEvent.AuctionBid -> HapticFeedbackType.ContextClick
+                    is GameEvent.LevelsBought, is GameEvent.Collected, is GameEvent.AuctionBid -> HapticFeedbackType.ContextClick
+                    is GameEvent.TierReached -> HapticFeedbackType.GestureThresholdActivate
+                    is GameEvent.ChapterCompleted, is GameEvent.ConglomerateFormed, is GameEvent.HoldingFormed, is GameEvent.CrownPassed,
+                    is GameEvent.IpoLaunched, is GameEvent.TowerCompleted, is GameEvent.AuctionWon -> HapticFeedbackType.LongPress
+                    is GameEvent.ManagerHired, is GameEvent.BusinessOpened, is GameEvent.MissionClaimed, is GameEvent.ExpansionCompleted,
+                    is GameEvent.HqUpgraded, is GameEvent.FrenzyStarted, is GameEvent.TradeExecuted, is GameEvent.PropertyBought,
+                    is GameEvent.PropertySold, is GameEvent.LuxuryBought -> HapticFeedbackType.Confirm
+                    is GameEvent.PaymentMissed, is GameEvent.Foreclosure -> HapticFeedbackType.Reject
                     is GameEvent.ShortCovered -> if (e.forced) HapticFeedbackType.Reject else HapticFeedbackType.Confirm
                     else -> null
                 }
@@ -159,6 +157,16 @@ fun AppRoot(vm: GameViewModel, forcedTheme: ThemeMode?, onDarkChanged: (Boolean)
 private fun ReadyContent(vm: GameViewModel) {
     val state by vm.state.collectAsStateWithLifecycle()
     val offline by vm.offline.collectAsStateWithLifecycle()
+    // After an update: the release's highlights (shown once, after any Daily Ledger), or a short message.
+    var whatsNew by remember { mutableStateOf<Pair<String, List<com.arnavgames.tycoon.ui.common.Highlight>>?>(null) }
+    LaunchedEffect(Unit) {
+        val from = kotlinx.coroutines.withTimeoutOrNull(5_000) { vm.updates.updatedFrom.filterNotNull().first() } ?: return@LaunchedEffect
+        vm.updates.consumeUpdatedFrom()
+        val version = com.arnavgames.tycoon.BuildConfig.VERSION_NAME
+        val highlights = com.arnavgames.tycoon.ui.common.WhatsNew.forVersion(version)
+        if (highlights.isNotEmpty()) whatsNew = version to highlights
+        else vm.say("Updated from $from to $version. Your game is safe.")
+    }
     val s = state ?: return LoadingScreen()
     val needsWelcome = s.progress.onboardingStep == 0 && s.businesses.isEmpty()
 
@@ -243,4 +251,5 @@ private fun ReadyContent(vm: GameViewModel) {
         }
     }
     offline?.let { report -> OfflineEarningsDialog(report = report, onDismiss = vm::dismissOffline) }
+    if (offline == null) whatsNew?.let { (v, h) -> com.arnavgames.tycoon.ui.common.WhatsNewSheet(v, h) { whatsNew = null } }
 }
