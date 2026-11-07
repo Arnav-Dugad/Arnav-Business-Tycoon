@@ -1322,7 +1322,7 @@
       "text": "The tenant of your {type} in {district} is a week late with the rent.",
       "choices": [
         {
-          "label": "Give them a month",
+          "label": "Give them more time",
           "gainRent": 0.0,
           "boostDays": 1.0
         },
@@ -1596,7 +1596,7 @@
       "text": "A short-stay platform offers to rent your {type} in {district} by the night.",
       "choices": [
         {
-          "label": "Try it for a week",
+          "label": "Try short stays",
           "boostDays": 2.0,
           "condition": -60
         },

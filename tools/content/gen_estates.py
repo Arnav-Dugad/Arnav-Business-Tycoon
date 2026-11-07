@@ -129,7 +129,7 @@ def ev(eid, text, *choices):
 # boostDays = rent +10 % for that many days; costValue = share of the property value.
 EVENTS = [
     ev("late_rent", "The tenant of your {type} in {district} is a week late with the rent.",
-       ("Give them a month", {"gainRent": 0.0, "boostDays": 1.0}), ("Charge a late fee", {"gainRent": 0.4}), ("Start eviction", {"vacancyHours": 8})),
+       ("Give them more time", {"gainRent": 0.0, "boostDays": 1.0}), ("Charge a late fee", {"gainRent": 0.4}), ("Start eviction", {"vacancyHours": 8})),
     ev("leak", "A pipe burst in your {type} in {district}.",
        ("Call a plumber now", {"costRent": 0.8}), ("Patch it yourself", {"costRent": 0.2, "condition": -60})),
     ev("long_lease", "A reliable tenant offers a long lease on your {type} in {district} if you take 5 % off.",
@@ -165,7 +165,7 @@ EVENTS = [
     ev("parking", "Tenants in {district} ask for parking spaces.",
        ("Build them", {"costRent": 1.4, "boostDays": 2.5}), ("Refuse", {})),
     ev("short_stay", "A short-stay platform offers to rent your {type} in {district} by the night.",
-       ("Try it for a week", {"boostDays": 2.0, "condition": -60}), ("Keep long-term tenants", {})),
+       ("Try short stays", {"boostDays": 2.0, "condition": -60}), ("Keep long-term tenants", {})),
     ev("elevator", "The lift in your {type} in {district} breaks down.",
        ("Replace it", {"costRent": 1.6, "condition": 50}), ("Repair it", {"costRent": 0.5})),
     ev("party", "Your tenant in {district} threw a party that damaged the hallway.",
