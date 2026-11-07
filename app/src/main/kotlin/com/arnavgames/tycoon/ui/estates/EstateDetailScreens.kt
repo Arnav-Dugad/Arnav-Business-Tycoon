@@ -90,7 +90,7 @@ fun CityScreen(vm: GameViewModel, cityId: String, onBack: () -> Unit, onOpenDist
                     ) {
                         Column(Modifier.weight(1f)) {
                             Text(d.name, style = Aurum.type.titleSmall, color = c.textPrimary)
-                            Text("${d.tier} · yield ${pct(d.yieldPerDay)}/day" + if (d.cbd) " · CBD" else "", style = Aurum.type.bodySmall, color = c.textTertiary)
+                            Text("${d.tier} · rent ${pct(d.yieldPerDay)} of price a day" + if (d.cbd) " · business district" else "", style = Aurum.type.bodySmall, color = c.textTertiary)
                             Text(d.cycle + cycleHint(d.cycle), style = Aurum.type.bodySmall, color = cycleColor(d.cycle))
                         }
                         Sparkline(d.spark, up = d.change24h >= 0, modifier = Modifier.size(width = 52.dp, height = 26.dp))
@@ -149,7 +149,7 @@ fun DistrictScreen(vm: GameViewModel, districtId: String, onBack: () -> Unit, on
                 Spacer(Modifier.height(Space.sm))
                 SegmentedSelector(listOf(false, true), weekly, { if (it) "1W" else "1D" }, { weekly = it }, Modifier.fillMaxWidth())
                 Spacer(Modifier.height(Space.sm))
-                Text("Gross yield ${pct(ui.yieldPerDay)} a day before property tax. Prices rise and fall on the district's cycle: buy low, sell high.", style = Aurum.type.bodySmall, color = c.textTertiary)
+                Text("Rent earns about ${pct(ui.yieldPerDay)} of the price a day, before property tax. Prices rise and fall on the district's cycle: buy low, sell high.", style = Aurum.type.bodySmall, color = c.textTertiary)
             }
         }
         if (ui.lockedReason != null) {
