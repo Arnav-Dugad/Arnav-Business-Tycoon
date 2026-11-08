@@ -62,6 +62,7 @@ import kotlinx.coroutines.flow.first
 
 @Serializable object MainRoute
 @Serializable data class BusinessRoute(val id: String)
+@Serializable object CounterRoute
 @Serializable object SettingsRoute
 @Serializable object CreditsRoute
 @Serializable data class InstrumentRoute(val id: String)
@@ -192,6 +193,7 @@ private fun ReadyContent(vm: GameViewModel) {
                         vm = vm,
                         onOpenBusiness = { nav.navigate(BusinessRoute(it)) },
                         onOpenSettings = { nav.navigate(SettingsRoute) },
+                        onOpenCounter = { nav.navigate(CounterRoute) },
                         onOpenCredits = { nav.navigate(CreditsRoute) },
                         onOpenInstrument = { nav.navigate(InstrumentRoute(it)) },
                         onOpenNews = { nav.navigate(NewsRoute) },
@@ -246,6 +248,7 @@ private fun ReadyContent(vm: GameViewModel) {
                 composable<BusinessRoute> { entry ->
                     BusinessDetailScreen(vm = vm, businessId = entry.toRoute<BusinessRoute>().id, onBack = { nav.popBackStack() })
                 }
+                composable<CounterRoute> { com.arnavgames.tycoon.ui.empire.CounterScreen(vm, onBack = { nav.popBackStack() }) }
                 composable<SettingsRoute> { SettingsScreen(vm = vm, onBack = { nav.popBackStack() }, onCredits = { nav.navigate(CreditsRoute) }) }
                 composable<CreditsRoute> { CreditsScreen(onBack = { nav.popBackStack() }, artCredits = vm.artCreditLines(), portraitCount = vm.portraitCount() + vm.rivalPortraitCount()) }
             }

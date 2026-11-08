@@ -62,10 +62,10 @@ class StoreFlowTest {
     @Test
     fun demoPurchaseIsLabelledAndSetsBoosted() {
         waitForMidgame()
-        rule.onNodeWithContentDescription("Dynasty", substring = true).performClick()
+        rule.onNodeWithContentDescription("More", substring = true).performClick()
+        rule.waitForIdle()
         waitForText("Your Dynasty")
-        rule.onAllNodes(hasScrollAction()).onFirst().performScrollToNode(hasText("Store (demo)"))
-        rule.onAllNodesWithText("Store (demo)").onFirst().performSemanticsAction(SemanticsActions.OnClick)
+        rule.onNodeWithTag("menu-store").performSemanticsAction(SemanticsActions.OnClick)
         waitForText("DEMO STORE")
         rule.onAllNodes(hasScrollAction()).onFirst().performScrollToNode(hasTestTag("demo-bullion_100"))
         rule.onNodeWithTag("demo-bullion_100").performSemanticsAction(SemanticsActions.OnClick)

@@ -2,6 +2,7 @@ package com.arnavgames.tycoon
 
 import android.content.Intent
 import androidx.compose.ui.semantics.SemanticsActions
+import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.isRoot
 import androidx.compose.ui.test.junit4.createEmptyComposeRule
@@ -50,7 +51,9 @@ class AuctionFlowTest {
     @Test
     fun proxyBidWinsAndThePieceIsShown() {
         waitForText("Raw Power", timeout = 60_000)
-        rule.onNodeWithContentDescription("Collection", substring = true).performClick()
+        rule.onNodeWithContentDescription("More", substring = true).performClick()
+        rule.waitForIdle()
+        rule.onNodeWithTag("door-collection").performSemanticsAction(androidx.compose.ui.semantics.SemanticsActions.OnClick)
         waitForText("STATUS")
         waitForText("Live auction", timeout = 30_000)
         rule.onAllNodesWithText("Live auction", substring = true).onFirst().performSemanticsAction(SemanticsActions.OnClick)

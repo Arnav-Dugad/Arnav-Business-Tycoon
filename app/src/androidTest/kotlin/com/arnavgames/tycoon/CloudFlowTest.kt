@@ -81,7 +81,8 @@ class CloudFlowTest {
 
     private fun openAccount() {
         waitForMidgame()
-        rule.onNodeWithContentDescription("Dynasty", substring = true).performClick()
+        rule.onNodeWithContentDescription("More", substring = true).performClick()
+        rule.waitForIdle()
         waitForText("Your Dynasty")
         rule.onAllNodes(hasScrollAction()).onFirst().performScrollToNode(hasText("Account & cloud save"))
         tap("Account & cloud save")

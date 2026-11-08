@@ -71,6 +71,7 @@ private fun fmtMult(x: Double) = "×" + String.format(Locale.US, if (x < 10) "%.
 fun DynastyScreen(
     vm: GameViewModel, onOpenSettings: () -> Unit, onOpenCredits: () -> Unit,
     onOpenAchievements: () -> Unit = {}, onOpenCrown: () -> Unit = {}, onOpenStore: () -> Unit = {}, onOpenAccount: () -> Unit = {}, onOpenSocial: () -> Unit = {},
+    onBack: (() -> Unit)? = null,
 ) {
     val state by vm.state.collectAsStateWithLifecycle()
     val settings by vm.settings.collectAsStateWithLifecycle()
@@ -95,8 +96,9 @@ fun DynastyScreen(
             contentPadding = PaddingValues(start = Space.gutter, end = Space.gutter, bottom = BottomBarReserve + Space.xxl),
             verticalArrangement = Arrangement.spacedBy(Space.md),
         ) {
+            if (onBack != null) item { com.arnavgames.tycoon.ui.common.BackChip(onBack, Modifier.statusBarsPadding().padding(top = Space.xs)) }
             item {
-                Column(Modifier.fillMaxWidth().statusBarsPadding().padding(top = Space.xl), horizontalAlignment = Alignment.CenterHorizontally) {
+                Column(Modifier.fillMaxWidth().then(if (onBack == null) Modifier.statusBarsPadding().padding(top = Space.xl) else Modifier), horizontalAlignment = Alignment.CenterHorizontally) {
                     // Your avatar (the crest until you choose one); tap to change it.
                     Box(Modifier.clickable(onClickLabel = "Change avatar") { avatarPicker = true }.testTag("my-avatar")) {
                         if (s.store.avatar == null && s.store.frame == null) CrownMark(size = 84.dp)

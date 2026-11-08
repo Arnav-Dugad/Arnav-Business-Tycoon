@@ -52,10 +52,10 @@ class AccessibilityFlowTest {
 
     @Test
     fun everyTappableElementHasALabel() {
-        rule.waitUntil(120_000) { rule.onAllNodesWithText("Collection", substring = true).fetchSemanticsNodes().isNotEmpty() }
+        rule.waitUntil(120_000) { rule.onAllNodesWithText("Manage businesses", substring = true).fetchSemanticsNodes().isNotEmpty() }
         rule.waitUntil(120_000) { rule.onAllNodesWithText("Desk", substring = true).fetchSemanticsNodes().isNotEmpty() }
         val problems = mutableMapOf<String, List<String>>()
-        for (tab in listOf("Empire", "Markets", "Estates", "Collection", "Dynasty")) {
+        for (tab in listOf("Empire", "Businesses", "Markets", "Estates", "More")) {
             rule.onNodeWithContentDescription(tab, substring = true).performClick()
             rule.waitForIdle()
             Thread.sleep(800)

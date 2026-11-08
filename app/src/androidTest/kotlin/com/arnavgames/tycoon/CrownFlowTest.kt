@@ -58,7 +58,9 @@ class CrownFlowTest {
     @Test
     fun passTheCrownStartsGenerationTwo() {
         waitForText("Desk", timeout = 60_000)
-        rule.onNodeWithContentDescription("Dynasty", substring = true).performClick()
+        rule.onNodeWithContentDescription("More", substring = true).performClick()
+        rule.waitForIdle()
+        rule.onNodeWithTag("door-dynasty").performSemanticsAction(SemanticsActions.OnClick)
         waitForText("Your Dynasty")
         // The scenario plays to the end of chapter 8 in the background; the button appears when it is done.
         rule.waitUntil(400_000) { rule.onAllNodesWithText("Pass the Crown").fetchSemanticsNodes().isNotEmpty() }

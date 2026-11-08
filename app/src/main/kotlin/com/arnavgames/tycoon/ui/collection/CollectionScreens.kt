@@ -96,12 +96,13 @@ private fun pts(x: Double) = String.format(Locale.US, "%,.0f", x)
 /** The Collection tab (docs/GDD.md §8). */
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-fun CollectionScreen(vm: GameViewModel, onOpenCategory: (String) -> Unit, onOpenAuction: () -> Unit) {
+fun CollectionScreen(vm: GameViewModel, onOpenCategory: (String) -> Unit, onOpenAuction: () -> Unit, onBack: (() -> Unit)? = null) {
     val ui by vm.collection.collectAsStateWithLifecycle()
     val settings by vm.settings.collectAsStateWithLifecycle()
     val fmt: (Money) -> String = { MoneyFormat.compact(it, vm.notation(settings)) }
     val col = ui ?: return
     if (!col.unlocked) {
+        if (onBack != null) androidx.activity.compose.BackHandler(onBack = onBack)
         ComingSoonScreen(icon = AbtIcons.Collection, title = "Collection", chapter = col.unlockChapter,
             lines = listOf("Cars, jets, yachts, islands and masterpieces", "Live auctions against rival billionaires", "Showrooms and set bonuses"))
         return
@@ -218,17 +219,18 @@ fun CollectionScreen(vm: GameViewModel, onOpenCategory: (String) -> Unit, onOpen
                 }
             }
         }
-        CollectionHeader(col, fmt, Modifier.align(Alignment.TopCenter).onSizeChanged { headerPx = it.height })
+        CollectionHeader(col, fmt, Modifier.align(Alignment.TopCenter).onSizeChanged { headerPx = it.height }, onBack = onBack)
     }
 }
 
 private fun secs(ms: Long): String { val s = (ms / 1000).coerceAtLeast(0); return if (s >= 60) "${s / 60}m ${s % 60}s" else "${s}s" }
 
 @Composable
-private fun CollectionHeader(col: CollectionUi, fmt: (Money) -> String, modifier: Modifier) {
+private fun CollectionHeader(col: CollectionUi, fmt: (Money) -> String, modifier: Modifier, onBack: (() -> Unit)? = null) {
     val c = Aurum.colors
     Column(modifier.fillMaxWidth().glass(RectangleShape, GlassWeight.Regular, edge = false)) {
         Column(Modifier.fillMaxWidth().statusBarsPadding().padding(horizontal = Space.gutter).padding(top = Space.md, bottom = Space.md)) {
+            if (onBack != null) com.arnavgames.tycoon.ui.common.BackChip(onBack, Modifier.padding(bottom = Space.xs))
             Row(verticalAlignment = Alignment.CenterVertically) {
                 var explain by androidx.compose.runtime.remember { androidx.compose.runtime.mutableStateOf(false) }
                 if (explain) com.arnavgames.tycoon.ui.common.GlossarySheet(com.arnavgames.tycoon.ui.common.Term.Status) { explain = false }

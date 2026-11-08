@@ -55,6 +55,8 @@ object AbtIcons {
     val ChevronUp = icon("ChevronUp", "M5.5 14.5L12 8l6.5 6.5")
     val Close = icon("Close", "M6 6l12 12M18 6L6 18")
     val Plus = icon("Plus", "M12 5v14M5 12h14")
+    /** Four rounded tiles: the More tab. */
+    val Menu = icon("Menu", "M4.5 4.5h6v6h-6Z", "M13.5 4.5h6v6h-6Z", "M4.5 13.5h6v6h-6Z", "M13.5 13.5h6v6h-6Z")
     val Minus = icon("Minus", "M5 12h14")
     val Check = icon("Check", "M5 12.5l5 5L19 7")
     val ArrowUp = icon("ArrowUp", "M12 19V5M6 11l6-6 6 6")
@@ -170,7 +172,7 @@ object AbtIcons {
         listOf(
             Empire, Markets, Estates, Collection, Crown, Cash, Bullion, Coin, Favor, ChevronRight, ChevronLeft, ChevronDown,
             ChevronUp, Close, Plus, Minus, Check, ArrowUp, ArrowDown, Refresh, Sliders, Info, Warning, Lock, Eye, EyeOff,
-            Mail, Bell, User, Rivals, Clock, Bolt, Sparkle, Star, Trophy, Briefcase, Store, Gift, Shield, Factory, News, Map,
+            Menu, Mail, Bell, User, Rivals, Clock, Bolt, Sparkle, Star, Trophy, Briefcase, Store, Gift, Shield, Factory, News, Map,
             Hand, Sun, Moon, Timer, Manager, Expand, Inbox, Chart, Volume, Music, Vibrate, Logout, Trash, Download, Cloud,
             Upload, Book, Fleet, Route, Tag, Megaphone, Chef, Pause, Play, StarFilled, House, Villa, Warehouse, Plot, Tower, Key, Wrench, Umbrella, Car, Watch, Wine, Gem, Heli, Yacht, Frame, Bust, Island, Mansion, Cards, Globe, Receipt, Gauge, Handshake,
             Wheat, Hanger, Pickaxe, Flame, Bed, Bank, Crane, Film, Chip, Antenna, Plane, Flask, Ball, Rocket, Buildings,

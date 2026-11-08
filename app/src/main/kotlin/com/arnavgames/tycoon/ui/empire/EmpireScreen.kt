@@ -103,21 +103,26 @@ import com.arnavgames.tycoon.designsystem.theme.glass
 import com.arnavgames.tycoon.designsystem.theme.glassCard
 import com.arnavgames.tycoon.designsystem.theme.glassSource
 
+/**
+ * The Empire tab: an overview of where things stand and what to do next. The tapping counter has its own full-screen
+ * page ([CounterScreen]) and the businesses their own tab ([BusinessesScreen]); this screen links to both.
+ */
 @Composable
-fun EmpireScreen(vm: GameViewModel, onOpenBusiness: (String) -> Unit, onOpenDesk: () -> Unit = {}, onOpenFortune: () -> Unit = {}, onOpenFinance: () -> Unit = {}, onSwitchTab: (String) -> Unit = {}) {
+fun EmpireScreen(
+    vm: GameViewModel, onOpenBusiness: (String) -> Unit, onOpenDesk: () -> Unit = {}, onOpenFortune: () -> Unit = {}, onOpenFinance: () -> Unit = {},
+    onSwitchTab: (String) -> Unit = {}, onOpenCounter: () -> Unit = {},
+) {
     val ui by vm.empire.collectAsStateWithLifecycle()
-    val qty by vm.buyQty.collectAsStateWithLifecycle()
     val settings by vm.settings.collectAsStateWithLifecycle()
     val notation = vm.notation(settings)
     val e = ui ?: return
     val fmt: (Money) -> String = { MoneyFormat.compact(it, notation) }
 
-    OnboardingDriver(e, vm)
     val mentorLine by vm.mentor.line.collectAsStateWithLifecycle()
-    val guiding = guideText(e) != null
-    // Tapping leads in Chapter 1; after that the businesses do, and the counter moves below them.
+    val guide = guideText(e, GuideWhere.Empire)
+    val guiding = guide != null
+    // Tapping leads in Chapter 1; after that the businesses do.
     val hustleFirst = (e.mission?.chapterNumber ?: e.chapter) <= 1
-    val scope = androidx.compose.runtime.rememberCoroutineScope()
     androidx.compose.runtime.LaunchedEffect(e.mission?.chapterNumber, guiding) { if (!guiding) vm.mentorTip(e.mission?.chapterNumber ?: 8) }
     val listState = androidx.compose.foundation.lazy.rememberLazyListState()
     // A new line is inserted above the first card; lazy lists keep the old first item in place, so reveal it.
@@ -138,19 +143,20 @@ fun EmpireScreen(vm: GameViewModel, onOpenBusiness: (String) -> Unit, onOpenDesk
             verticalArrangement = Arrangement.spacedBy(Space.md),
             modifier = Modifier.fillMaxSize().glassSource(GlassLayer.Content).testTag("empire-list"),
         ) {
-            guideText(e)?.let { g -> item(key = "guide") { GuideBanner(g) } }
+            guide?.let { g -> item(key = "guide") { GuideBanner(g) } }
             if (!guiding) mentorLine?.let { l -> item(key = "mentor") { MentorCard(vm.mentor.name, l.text, onDismiss = { vm.mentor.dismiss() }) } }
             e.mission?.let { m ->
                 item(key = "mission") {
-                    // "Show me": open the business, switch tab, or scroll to the business list (just after this card,
-                    // the world strip and, in Chapter 1, the counter).
-                    val bizHeader = listOfNotNull(guideText(e), if (!guiding) mentorLine else null).size + 2 + if (hustleFirst) 1 else 0
+                    // "Show me": open the business or the counter, or switch to the tab where the goal is played.
                     val go: (() -> Unit)? = m.goTo?.let { target ->
                         {
                             when {
                                 target.startsWith("business:") -> onOpenBusiness(target.removePrefix("business:"))
+                                target == "counter" -> onOpenCounter()
                                 target.startsWith("tab:") -> onSwitchTab(target.removePrefix("tab:"))
-                                else -> scope.launch { listState.animateScrollToItem(openIndex(e, target.removePrefix("open:"), bizHeader, hustleFirst)) }
+                                target.startsWith("open:") -> onSwitchTab("businesses:$target")
+                                target == "hq" -> onSwitchTab("businesses:hq")
+                                else -> onSwitchTab("businesses")
                             }
                         }
                     }
@@ -158,52 +164,86 @@ fun EmpireScreen(vm: GameViewModel, onOpenBusiness: (String) -> Unit, onOpenDesk
                 }
             }
             e.crown?.let { cr -> item(key = "crown") { CrownReadyCard(cr, onOpen = { onSwitchTab("dynasty") }) } }
+            if (hustleFirst) item(key = "counter") { CounterEntryCard(e.hustle, fmt, highlighted = e.onboardingStep == 1, onOpen = onOpenCounter) }
+            item(key = "businesses") { BusinessesSummaryCard(e, onOpen = { onSwitchTab("businesses") }) }
             item(key = "world") { com.arnavgames.tycoon.ui.world.WorldStrip(vm, onOpenDesk, onOpenFortune, onOpenFinance) }
-            if (hustleFirst) item(key = "hustle") {
-                HustleCard(e.hustle, fmt, onTap = { vm.dispatch(Command.HustleTap(1)) }, onFrenzy = { vm.dispatch(Command.ActivateFrenzy) })
-            }
-            item(key = "biz-header") {
-                Column {
-                    SectionHeader("Your businesses") {
-                        Text("${e.hq.slotsUsed}/${e.hq.slots} slots", style = Aurum.type.label, color = Aurum.colors.textTertiary)
-                    }
-                    Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-                        Text("Buy amount", style = Aurum.type.bodySmall, color = Aurum.colors.textSecondary, modifier = Modifier.weight(1f))
-                        SegmentedSelector(BuyQty.entries, qty, { it.label }, vm::setBuyQty)
-                    }
-                }
-            }
-            items(e.businesses, key = { it.id }) { b ->
-                BusinessCard(
-                    b, fmt,
-                    onOpen = { onOpenBusiness(b.id) },
-                    onBuy = { vm.dispatch(Command.BuyLevels(b.id, if (qty == BuyQty.Max) -1 else qty.count)) },
-                    onCollect = { vm.dispatch(Command.Collect(b.id)) },
-                )
-            }
-            if (!hustleFirst) item(key = "hustle") {
-                HustleCard(e.hustle, fmt, onTap = { vm.dispatch(Command.HustleTap(1)) }, onFrenzy = { vm.dispatch(Command.ActivateFrenzy) })
-            }
-            val available = e.openable.filter { it.lockedReason == null }
-            val locked = e.openable.filter { it.lockedReason != null }.take(2)
-            if (available.isNotEmpty()) {
-                item(key = "open-header") { SectionHeader("Open a new business") }
-                items(available, key = { "open-" + it.id }) { o -> OpenableCard(o, fmt, onOpen = { vm.dispatch(Command.OpenBusiness(o.id)) }) }
-            }
-            if (locked.isNotEmpty()) {
-                items(locked, key = { "locked-" + it.id }) { o -> OpenableCard(o, fmt, onOpen = {}) }
-            }
-            if (e.mergers.isNotEmpty()) {
-                item(key = "merger-header") { SectionHeader("Merger tree") }
-                items(e.mergers, key = { "merger-" + it.id }) { m -> MergerCard(m, fmt, onForm = { vm.dispatch(Command.FormConglomerate(m.id)) }) }
-                e.holding?.let { h -> item(key = "holding") { HoldingCard(h, fmt, onForm = { name -> vm.dispatch(Command.FormHolding(name)) }) } }
-            }
-            item(key = "hq-header") { SectionHeader("Headquarters") }
-            item(key = "hq") { HqCard(e.hq, fmt, onUpgrade = { vm.dispatch(Command.UpgradeHq) }) }
+            if (!hustleFirst) item(key = "counter") { CounterEntryCard(e.hustle, fmt, highlighted = false, onOpen = onOpenCounter) }
         }
         EmpireHeader(e, fmt, Modifier.align(Alignment.TopCenter).onSizeChanged { headerPx = it.height })
         // Celebrations appear just below the header so they never cover the numbers.
         MomentOverlay(vm, Modifier.align(Alignment.TopCenter).padding(top = with(density) { headerPx.toDp() }))
+    }
+}
+
+/** The way into the full-screen counter: what a customer pays, and the frenzy state. */
+@Composable
+private fun CounterEntryCard(h: HustleUi, fmt: (Money) -> String, highlighted: Boolean, onOpen: () -> Unit) {
+    val c = Aurum.colors
+    AurumCard(Modifier.fillMaxWidth().testTag("counter-entry"), onClick = onOpen, highlighted = highlighted) {
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Box(
+                Modifier.size(64.dp).clip(CircleShape)
+                    .background(Brush.radialGradient(listOf(c.goldFillTop, c.goldFillBottom, c.goldDeep)))
+                    .border(1.dp, Brush.verticalGradient(listOf(c.goldBright, c.goldDeep)), CircleShape),
+                contentAlignment = Alignment.Center,
+            ) { AbtIcon(AbtIcons.Hand, null, tint = c.textOnGold, size = 28.dp) }
+            Spacer(Modifier.width(Space.md))
+            Column(Modifier.weight(1f)) {
+                Text("Work the counter", style = Aurum.type.title, color = c.textPrimary)
+                Text("${fmt(h.perTap)} per customer", style = Aurum.type.bodySmall, color = c.textSecondary)
+                Text(
+                    when {
+                        h.frenzyActive -> "Frenzy ×3 running · ${countdownText(h.frenzyEndsAtSim - h.simNow)}"
+                        h.frenzyCharges > 0 -> "${h.frenzyCharges} ${if (h.frenzyCharges == 1) "frenzy" else "frenzies"} ready"
+                        else -> "Serve customers for cash"
+                    },
+                    style = Aurum.type.label, color = if (h.frenzyActive || h.frenzyCharges > 0) c.goldText else c.textTertiary,
+                )
+            }
+            AbtIcon(AbtIcons.ChevronRight, null, tint = c.textTertiary, size = 20.dp)
+        }
+    }
+}
+
+/** A glance at the businesses: income, what needs a tap (full tills), the best buy, and what you can open. */
+@Composable
+private fun BusinessesSummaryCard(e: EmpireUi, onOpen: () -> Unit) {
+    val c = Aurum.colors
+    val income = e.header.income
+    val fullTills = e.businesses.count { it.managerName == null && it.storageCap.isPositive && it.stored >= it.storageCap }
+    val best = e.businesses.firstOrNull { it.bestValue != null }
+    val canOpen = e.openable.count { it.lockedReason == null && it.canAfford }
+    AurumCard(Modifier.fillMaxWidth().testTag("businesses-summary"), onClick = onOpen) {
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Text("YOUR BUSINESSES", style = Aurum.type.overline, color = c.goldText, modifier = Modifier.weight(1f))
+            Text("${e.hq.slotsUsed}/${e.hq.slots} slots", style = Aurum.type.label, color = c.textTertiary)
+        }
+        Spacer(Modifier.height(Space.xs))
+        Row(verticalAlignment = Alignment.Bottom) {
+            Text(MoneyFormat.perSecond(income.perSecond()), style = Aurum.type.headline, color = c.textPrimary)
+            Spacer(Modifier.width(Space.xs))
+            Text(
+                "from ${e.businesses.size} ${if (e.businesses.size == 1) "business" else "businesses"}",
+                style = Aurum.type.bodySmall, color = c.textSecondary, modifier = Modifier.padding(bottom = 3.dp),
+            )
+        }
+        val notes = buildList {
+            if (fullTills > 0) add(AbtIcons.Cash to (if (fullTills == 1) "1 till is full: collect it" else "$fullTills tills are full: collect them"))
+            best?.let { b -> add(AbtIcons.StarFilled to "${b.name}: ${b.bestValue!!.replaceFirstChar { ch -> ch.lowercase() }}") }
+            if (canOpen > 0) add(AbtIcons.Plus to (if (canOpen == 1) "You can open a new business" else "You can open $canOpen new businesses"))
+        }
+        if (notes.isNotEmpty()) {
+            Spacer(Modifier.height(Space.sm))
+            notes.forEach { (icon, text) ->
+                Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(vertical = 2.dp)) {
+                    AbtIcon(icon, null, tint = c.goldText, size = 14.dp)
+                    Spacer(Modifier.width(Space.xs))
+                    Text(text, style = Aurum.type.bodySmall, color = c.textPrimary)
+                }
+            }
+        }
+        Spacer(Modifier.height(Space.sm))
+        GoldButton("Manage businesses", onClick = onOpen, modifier = Modifier.fillMaxWidth(), leadingIcon = AbtIcons.Store)
     }
 }
 
@@ -228,20 +268,6 @@ private fun CrownReadyCard(cr: com.arnavgames.tycoon.ui.CrownReadyUi, onOpen: ()
         Spacer(Modifier.height(Space.sm))
         GoldButton("Choose your heir", onClick = onOpen, leadingIcon = AbtIcons.Crown, modifier = Modifier.fillMaxWidth())
     }
-}
-
-/** List index of the card that opens [id] (or the business list header if it isn't shown). Mirrors the LazyColumn order. */
-private fun openIndex(e: EmpireUi, id: String, bizHeader: Int, hustleFirst: Boolean): Int {
-    val available = e.openable.filter { it.lockedReason == null }
-    val locked = e.openable.filter { it.lockedReason != null }.take(2)
-    var i = bizHeader + 1 + e.businesses.size + if (hustleFirst) 0 else 1
-    if (available.isNotEmpty()) {
-        i += 1 // section header
-        available.indexOfFirst { it.id == id }.takeIf { it >= 0 }?.let { return i + it }
-        i += available.size
-    }
-    locked.indexOfFirst { it.id == id }.takeIf { it >= 0 }?.let { return i + it }
-    return bizHeader
 }
 
 // ------------------------------------------------------------------ header
@@ -287,7 +313,7 @@ private fun EmpireHeader(e: EmpireUi, fmt: (Money) -> String, modifier: Modifier
 }
 
 @Composable
-private fun CurrencyPill(icon: androidx.compose.ui.graphics.vector.ImageVector, value: String, label: String, tint: androidx.compose.ui.graphics.Color, onClick: () -> Unit) {
+internal fun CurrencyPill(icon: androidx.compose.ui.graphics.vector.ImageVector, value: String, label: String, tint: androidx.compose.ui.graphics.Color, onClick: () -> Unit) {
     val c = Aurum.colors
     Row(
         Modifier.clip(AurumShapes.pill).clickable(onClickLabel = "What is $label?", onClick = onClick)
@@ -303,21 +329,29 @@ private fun CurrencyPill(icon: androidx.compose.ui.graphics.vector.ImageVector, 
 
 // ------------------------------------------------------------------ onboarding
 
+/** Where a guide line is shown: each screen words the step for what you can do from there. */
+internal enum class GuideWhere { Empire, Businesses, Counter }
+
 /** The one instruction a new player sees: a waiting reward comes first, then the current step. */
-private fun guideText(e: EmpireUi): String? = when {
+internal fun guideText(e: EmpireUi, where: GuideWhere): String? = when {
     e.onboardingStep !in 1..4 -> null
-    e.mission?.claimable == true -> "You've earned a reward. Tap Claim on the card below."
+    e.mission?.claimable == true ->
+        if (where == GuideWhere.Empire) "You've earned a reward. Tap Claim on the card below." else "You've earned a reward: claim it on the Empire tab."
     else -> when (e.onboardingStep) {
-        1 -> "Tap the gold counter to serve customers. Every customer pays cash."
-        2 -> "Nice! Buy a level for your kiosk: it earns more every second, even without you."
-        3 -> "Your kiosk fills its till while it works. Tap Collect to bank the cash."
-        else -> "Keep growing. A manager will run the kiosk for you — the card at the top shows how."
+        1 -> if (where == GuideWhere.Counter) "Tap the counter to serve customers. Every customer pays cash."
+        else "Open the counter below and serve customers. Every customer pays cash."
+        2 -> if (where == GuideWhere.Businesses) "Buy a level for your kiosk: it earns more every second, even without you."
+        else "Nice! Now open Businesses in the bar below and buy a level for your kiosk."
+        3 -> if (where == GuideWhere.Businesses) "Your kiosk fills its till while it works. Tap Collect to bank the cash."
+        else "Your kiosk's till is filling up. Open Businesses and tap Collect."
+        else -> if (where == GuideWhere.Businesses) "Keep growing. Open the kiosk and hire a manager so it runs without you."
+        else "Keep growing. A manager will run the kiosk for you: the card below shows how."
     }
 }
 
 /** Advances the onboarding guide when the player has done what it asks. */
 @Composable
-private fun OnboardingDriver(e: EmpireUi, vm: GameViewModel) {
+internal fun OnboardingDriver(e: EmpireUi, vm: GameViewModel) {
     val step = e.onboardingStep
     val retail = e.businesses.firstOrNull { it.id == "retail" }
     val next = when {
@@ -331,7 +365,7 @@ private fun OnboardingDriver(e: EmpireUi, vm: GameViewModel) {
 }
 
 @Composable
-private fun GuideBanner(text: String) {
+internal fun GuideBanner(text: String) {
     val c = Aurum.colors
     Row(
         Modifier.fillMaxWidth().glassCard(AurumShapes.medium, highlighted = true).padding(Space.md),
@@ -415,89 +449,6 @@ private fun NextMoveCard(m: MissionUi, onClaim: () -> Unit, onGo: (() -> Unit)? 
     }
 }
 
-// ------------------------------------------------------------------ hustle
-
-private data class Pop(val id: Long, val text: String)
-
-@Composable
-private fun HustleCard(h: HustleUi, fmt: (Money) -> String, onTap: () -> Unit, onFrenzy: () -> Unit) {
-    val c = Aurum.colors
-    val pops = remember { mutableStateListOf<Pop>() }
-    var popId by remember { mutableStateOf(0L) }
-    val source = remember { MutableInteractionSource() }
-    val pressed by source.collectIsPressedAsState()
-    val reduced = Aurum.reducedMotion
-    AurumCard(Modifier.fillMaxWidth()) {
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            Box(contentAlignment = Alignment.Center, modifier = Modifier.size(112.dp)) {
-                Box(
-                    Modifier
-                        .size(96.dp)
-                        .scale(if (pressed && !reduced) 0.93f else 1f)
-                        .clip(CircleShape)
-                        .background(Brush.radialGradient(listOf(c.goldFillTop, c.goldFillBottom, c.goldDeep)))
-                        .border(1.5.dp, Brush.verticalGradient(listOf(c.goldBright, c.goldDeep)), CircleShape)
-                        .drawWithContent {
-                            drawContent()
-                            drawRect(Brush.verticalGradient(listOf(Color.White.copy(alpha = 0.35f), Color.Transparent), endY = size.height * 0.5f))
-                        }
-                        .clickable(interactionSource = source, indication = null, role = Role.Button, onClickLabel = "Serve a customer") {
-                            onTap()
-                            popId++
-                            pops.add(Pop(popId, "+" + fmt(h.perTap)))
-                            if (pops.size > 6) pops.removeAt(0)
-                        }
-                        .semantics { contentDescription = "Serve a customer, earns ${fmt(h.perTap)}" },
-                    contentAlignment = Alignment.Center,
-                ) {
-                    AbtIcon(AbtIcons.Hand, null, tint = c.textOnGold, size = 40.dp)
-                }
-                pops.forEach { p -> androidx.compose.runtime.key(p.id) { FloatingPop(p, onDone = { pops.remove(p) }) } }
-            }
-            Spacer(Modifier.width(Space.lg))
-            Column(Modifier.weight(1f)) {
-                Text("Work the counter", style = Aurum.type.title, color = c.textPrimary)
-                Text("${fmt(h.perTap)} per customer", style = Aurum.type.bodySmall, color = c.textSecondary)
-                Spacer(Modifier.height(Space.sm))
-                val comboFrac = h.combo.toFloat() / h.maxCombo
-                GoldProgress(comboFrac, height = 5.dp, label = "Combo ${h.combo}")
-                Spacer(Modifier.height(Space.xxs))
-                Text(if (h.combo > 1) "Combo ×${"%.2f".format(h.comboMultiplier)}" else "Tap quickly to build a combo", style = Aurum.type.label, color = c.textTertiary)
-                Spacer(Modifier.height(Space.sm))
-                if (h.frenzyActive) {
-                    AurumChip("Frenzy ×3 · ${countdownText(h.frenzyEndsAtSim - h.simNow)}", icon = AbtIcons.Bolt, tint = c.textOnGold, background = c.gold)
-                } else {
-                    Row(
-                        Modifier.clip(AurumShapes.pill).border(1.dp, if (h.frenzyCharges > 0) c.gold else c.outline, AurumShapes.pill)
-                            .clickable(enabled = h.frenzyCharges > 0, role = Role.Button, onClick = onFrenzy)
-                            .heightIn(min = 36.dp).padding(horizontal = Space.md, vertical = Space.xs),
-                        verticalAlignment = Alignment.CenterVertically,
-                    ) {
-                        AbtIcon(AbtIcons.Bolt, null, tint = if (h.frenzyCharges > 0) c.goldText else c.textTertiary, size = 16.dp)
-                        Spacer(Modifier.width(Space.xs))
-                        Text("Frenzy ×3 · ${h.frenzyCharges} left", style = Aurum.type.label, color = if (h.frenzyCharges > 0) c.textPrimary else c.textTertiary)
-                    }
-                }
-            }
-        }
-    }
-}
-
-@Composable
-private fun FloatingPop(p: Pop, onDone: () -> Unit) {
-    val c = Aurum.colors
-    val anim = remember { Animatable(0f) }
-    val reduced = Aurum.reducedMotion
-    LaunchedEffect(p.id) {
-        anim.animateTo(1f, tween(if (reduced) 1 else 900))
-        onDone()
-    }
-    Text(
-        p.text, style = Aurum.type.titleSmall, color = c.goldText,
-        modifier = Modifier.offset(y = (-58 - 50 * anim.value).dp, x = ((p.id % 5) - 2).toInt().times(10).dp).alpha(1f - anim.value),
-    )
-}
-
 // ------------------------------------------------------------------ business cards
 
 @OptIn(ExperimentalLayoutApi::class)
@@ -571,11 +522,11 @@ fun BusinessCard(b: BusinessUi, fmt: (Money) -> String, onOpen: () -> Unit, onBu
 }
 
 @Composable
-private fun SmallAction(text: String, enabled: Boolean, onClick: () -> Unit, gold: Boolean) =
+internal fun SmallAction(text: String, enabled: Boolean, onClick: () -> Unit, gold: Boolean) =
     PillAction(text, enabled, onClick, style = if (gold) PillStyle.Gold else PillStyle.Positive)
 
 @Composable
-private fun OpenableCard(o: OpenableUi, fmt: (Money) -> String, onOpen: () -> Unit) {
+internal fun OpenableCard(o: OpenableUi, fmt: (Money) -> String, onOpen: () -> Unit) {
     val c = Aurum.colors
     val locked = o.lockedReason != null
     AurumCard(Modifier.fillMaxWidth().alpha(if (locked) 0.7f else 1f)) {
@@ -596,7 +547,7 @@ private fun OpenableCard(o: OpenableUi, fmt: (Money) -> String, onOpen: () -> Un
 }
 
 @Composable
-private fun HqCard(hq: HqUi, fmt: (Money) -> String, onUpgrade: () -> Unit) {
+internal fun HqCard(hq: HqUi, fmt: (Money) -> String, onUpgrade: () -> Unit) {
     val c = Aurum.colors
     AurumCard(Modifier.fillMaxWidth()) {
         Row(verticalAlignment = Alignment.CenterVertically) {
@@ -623,7 +574,7 @@ private data class Moment(val title: String, val body: String)
 
 /** Short, celebratory banner for milestones (tier reached, mission complete, chapter complete). */
 @Composable
-private fun MomentOverlay(vm: GameViewModel, modifier: Modifier) {
+internal fun MomentOverlay(vm: GameViewModel, modifier: Modifier) {
     val c = Aurum.colors
     var moment by remember { mutableStateOf<Moment?>(null) }
     LaunchedEffect(Unit) {

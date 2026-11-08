@@ -39,19 +39,31 @@ class FirstSessionFlowTest {
         repeat(times) { counter.performClick(); rule.waitForIdle() }
     }
 
-    /** One burst of play: tap the counter and collect the till if it has money. */
-    private fun earnRound() {
-        tapCounter(25)
-        scrollEmpireTo("Collect")
-        val collect = rule.onAllNodes(hasText("Collect") and isEnabled()).fetchSemanticsNodes()
-        if (collect.isNotEmpty()) rule.onNode(hasText("Collect") and isEnabled()).tap()
-        // Back to the top first: on short screens the counter scrolls out of view while the test buys and collects.
-        empireList().performScrollToIndex(0)
-        empireList().performScrollToNode(hasContentDescription("Serve a customer", substring = true))
+    private fun nav(tab: String) { rule.onNodeWithContentDescription(tab, substring = true).performClick(); rule.waitForIdle() }
+
+    /** Empire tab → the full-screen counter → serve [times] customers → back to the Businesses tab. */
+    private fun counterRound(times: Int) {
+        nav("Empire")
+        waitForText("Work the counter")
+        rule.onNodeWithTag("counter-entry").tap()
+        waitForText("EACH CUSTOMER PAYS")
+        tapCounter(times)
+        rule.onNodeWithContentDescription("Back").performClick()
+        waitForText("Manage businesses")
+        nav("Businesses")
+        waitForText("Buy amount")
     }
 
-    private fun scrollEmpireTo(text: String) {
-        empireList().performScrollToNode(hasText(text, substring = true))
+    /** One burst of play: work the counter, then collect the till if it has money. */
+    private fun earnRound() {
+        counterRound(25)
+        scrollBusinessesTo("Collect")
+        val collect = rule.onAllNodes(hasText("Collect") and isEnabled()).fetchSemanticsNodes()
+        if (collect.isNotEmpty()) rule.onNode(hasText("Collect") and isEnabled()).tap()
+    }
+
+    private fun scrollBusinessesTo(text: String) {
+        businessesList().performScrollToNode(hasText(text, substring = true))
     }
 
     /**
@@ -61,8 +73,8 @@ class FirstSessionFlowTest {
     private fun androidx.compose.ui.test.SemanticsNodeInteraction.tap() =
         performSemanticsAction(androidx.compose.ui.semantics.SemanticsActions.OnClick)
 
-    /** The Empire tab's list (by tag: other scrollable containers can be on screen during transitions). */
-    private fun empireList() = rule.onNodeWithTag("empire-list")
+    /** The Businesses tab's list (by tag: other scrollable containers can be on screen during transitions). */
+    private fun businessesList() = rule.onNodeWithTag("businesses-list")
 
     @Test
     fun firstSessionFromWelcomeToRushedExpansion() {
@@ -73,18 +85,23 @@ class FirstSessionFlowTest {
         waitForText("Claim $")
         rule.onNodeWithText("Claim $", substring = true).performClick()
 
-        // Hustle until the 60-customer mission completes, then claim its Favor.
+        // Hustle on the counter page until the 60-customer mission completes, then claim its Favor on Empire.
+        rule.onNodeWithTag("counter-entry").tap()
+        waitForText("EACH CUSTOMER PAYS")
         tapCounter(60)
+        rule.onNodeWithContentDescription("Back").performClick()
         waitForText("Claim $")
         rule.onNodeWithText("Claim $", substring = true).performClick()
         rule.waitUntil(5_000) { rule.onAllNodes(hasContentDescription("5 Favor")).fetchSemanticsNodes().isNotEmpty() }
 
-        // Buy levels until Retail reaches level 5 (tap more if cash runs out).
+        // Buy levels on the Businesses tab until Retail reaches level 5 (work the counter if cash runs out).
+        nav("Businesses")
+        waitForText("Buy amount")
         var guard = 0
         while (rule.onAllNodesWithText("Lv 5", substring = true).fetchSemanticsNodes().isEmpty() && guard++ < 60) {
-            scrollEmpireTo("Buy ×1")
+            scrollBusinessesTo("Buy ×1")
             val buy = rule.onAllNodes(hasText("Buy ×1", substring = true) and isEnabled()).fetchSemanticsNodes()
-            if (buy.isNotEmpty()) rule.onNode(hasText("Buy ×1", substring = true) and isEnabled()).tap() else tapCounter(5)
+            if (buy.isNotEmpty()) rule.onNode(hasText("Buy ×1", substring = true) and isEnabled()).tap() else counterRound(10)
             rule.waitForIdle()
         }
         waitForText("Lv 5")
@@ -94,15 +111,14 @@ class FirstSessionFlowTest {
         var buildEnabled = false
         for (attempt in 0 until 3) {
             repeat(10) { earnRound() }
-            scrollEmpireTo("Retail Stores")
+            scrollBusinessesTo("Retail Stores")
             rule.onNodeWithText("Retail Stores").tap()
             waitForText("Price level")
             rule.onAllNodes(hasScrollAction()).onFirst().performScrollToNode(hasText("Weekend Market Stall"))
             buildEnabled = rule.onAllNodes(hasText("Build ·", substring = true) and isEnabled()).fetchSemanticsNodes().isNotEmpty()
             if (buildEnabled) break
             rule.onNodeWithContentDescription("Back").performClick()
-            waitForText("Work the counter")
-            // Wait for the detail screen to finish leaving, so "the first scrollable list" is the Empire tab again.
+            waitForText("Buy amount")
             rule.waitUntil(10_000) { rule.onAllNodesWithText("Price level").fetchSemanticsNodes().isEmpty() }
         }
         check(buildEnabled) { "could not afford the expansion after earning" }
@@ -112,7 +128,7 @@ class FirstSessionFlowTest {
         // Completed expansions no longer show a Build or Rush action.
         rule.waitUntil(5_000) { rule.onAllNodesWithText("Rush ·", substring = true).fetchSemanticsNodes().isEmpty() }
         rule.onNodeWithContentDescription("Back").performClick()
-        waitForText("Work the counter")
+        waitForText("Buy amount")
     }
 
 }

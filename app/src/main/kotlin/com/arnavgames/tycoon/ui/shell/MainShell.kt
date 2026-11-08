@@ -32,8 +32,9 @@ import com.arnavgames.tycoon.ui.locked.ComingSoonScreen
 import com.arnavgames.tycoon.ui.markets.MarketsScreen
 
 /**
- * The five main tabs (GDD §16). Content scrolls edge to edge beneath a floating glass tab bar and a
- * frosted status-bar strip. Markets, Estates and Collection unlock in later chapters.
+ * The five main tabs: Empire (overview), Businesses, Markets, Estates and More (Collection, Dynasty, Store, account,
+ * settings). Content scrolls edge to edge beneath a floating glass tab bar and a frosted status-bar strip. The counter
+ * is a full-screen page opened from Empire.
  */
 @Composable
 fun MainShell(
@@ -56,8 +57,13 @@ fun MainShell(
     onOpenAccount: () -> Unit = {},
     onOpenSocial: () -> Unit = {},
     onOpenTiming: () -> Unit = {},
+    onOpenCounter: () -> Unit = {},
 ) {
     var tab by rememberSaveable { mutableStateOf("empire") }
+    // Inside More: the hub, or the Collection or Dynasty page (with a back button).
+    var morePage by rememberSaveable { mutableStateOf("hub") }
+    // A one-shot scroll target for the Businesses tab ("open:<id>" or "hq").
+    var businessFocus by rememberSaveable { mutableStateOf<String?>(null) }
     val empire by vm.empire.collectAsStateWithLifecycle()
     val claimable = (empire?.claimableCount ?: 0) > 0
     val estatesUi by vm.estates.collectAsStateWithLifecycle()
@@ -67,26 +73,58 @@ fun MainShell(
     val deskUi by vm.desk.collectAsStateWithLifecycle()
     val dynastyBadge by vm.dynastyBadge.collectAsStateWithLifecycle()
     val cardsWaiting = (deskUi?.cards?.size ?: 0) > 0
+    val e = empire
+    // Businesses wants you when a till is full (no manager) or the guide is pointing there.
+    val businessBadge = e != null && (e.onboardingStep in 2..4 ||
+        e.businesses.any { it.managerName == null && it.storageCap.isPositive && it.stored >= it.storageCap })
     val items = listOf(
-        NavItem("empire", "Empire", AbtIcons.Empire, badge = cardsWaiting),
+        NavItem("empire", "Empire", AbtIcons.Empire, badge = cardsWaiting || claimable),
+        NavItem("businesses", "Businesses", AbtIcons.Store, badge = businessBadge),
         NavItem("markets", "Markets", AbtIcons.Markets),
         NavItem("estates", "Estates", AbtIcons.Estates, badge = decisions),
-        NavItem("collection", "Collection", AbtIcons.Collection, badge = auctionLive),
-        NavItem("dynasty", "Dynasty", AbtIcons.Crown, badge = claimable || dynastyBadge),
+        NavItem("more", "More", AbtIcons.Menu, badge = dynastyBadge || auctionLive),
     )
-    androidx.compose.runtime.LaunchedEffect(tab) { vm.music.setScene(tab) }
+    // The tutorial advances from whichever tab the player is on.
+    e?.let { com.arnavgames.tycoon.ui.empire.OnboardingDriver(it, vm) }
+    val switchTo: (String) -> Unit = { target ->
+        when {
+            target == "collection" || target == "dynasty" -> { morePage = target; tab = "more" }
+            target.startsWith("businesses:") -> { businessFocus = target.removePrefix("businesses:"); tab = "businesses" }
+            else -> tab = target
+        }
+    }
+    androidx.compose.runtime.LaunchedEffect(tab, morePage) { vm.music.setScene(if (tab == "more" && morePage != "hub") morePage else tab) }
+    androidx.activity.compose.BackHandler(enabled = tab == "more" && morePage != "hub") { morePage = "hub" }
     Box(Modifier.fillMaxSize()) {
-        AnimatedContent(tab, transitionSpec = { fadeIn(tween(220)) togetherWith fadeOut(tween(160)) }, label = "tab") { t ->
+        AnimatedContent(tab to morePage, transitionSpec = { fadeIn(tween(220)) togetherWith fadeOut(tween(160)) }, label = "tab") { (t, page) ->
             when (t) {
-                "empire" -> EmpireScreen(vm, onOpenBusiness = onOpenBusiness, onOpenDesk = onOpenDesk, onOpenFortune = onOpenFortune, onOpenFinance = onOpenFinance, onSwitchTab = { tab = it })
+                "empire" -> EmpireScreen(
+                    vm, onOpenBusiness = onOpenBusiness, onOpenDesk = onOpenDesk, onOpenFortune = onOpenFortune, onOpenFinance = onOpenFinance,
+                    onSwitchTab = switchTo, onOpenCounter = onOpenCounter,
+                )
+                "businesses" -> com.arnavgames.tycoon.ui.empire.BusinessesScreen(vm, onOpenBusiness = onOpenBusiness, focus = businessFocus, onFocusDone = { businessFocus = null })
                 "markets" -> MarketsScreen(vm, onOpenInstrument = onOpenInstrument, onOpenNews = onOpenNews, onOpenTiming = onOpenTiming)
                 "estates" -> com.arnavgames.tycoon.ui.estates.EstatesScreen(vm, onOpenCity = onOpenCity, onOpenProperty = onOpenProperty)
-                "collection" -> com.arnavgames.tycoon.ui.collection.CollectionScreen(vm, onOpenCategory = onOpenLuxuryCategory, onOpenAuction = onOpenAuction)
-                else -> DynastyScreen(vm, onOpenSettings = onOpenSettings, onOpenCredits = onOpenCredits, onOpenAchievements = onOpenAchievements, onOpenCrown = onOpenCrown, onOpenStore = onOpenStore, onOpenAccount = onOpenAccount, onOpenSocial = onOpenSocial)
+                else -> when (page) {
+                    "collection" -> com.arnavgames.tycoon.ui.collection.CollectionScreen(vm, onOpenCategory = onOpenLuxuryCategory, onOpenAuction = onOpenAuction, onBack = { morePage = "hub" })
+                    "dynasty" -> DynastyScreen(
+                        vm, onOpenSettings = onOpenSettings, onOpenCredits = onOpenCredits, onOpenAchievements = onOpenAchievements, onOpenCrown = onOpenCrown,
+                        onOpenStore = onOpenStore, onOpenAccount = onOpenAccount, onOpenSocial = onOpenSocial, onBack = { morePage = "hub" },
+                    )
+                    else -> com.arnavgames.tycoon.ui.more.MoreScreen(
+                        vm, onOpenCollection = { morePage = "collection" }, onOpenDynasty = { morePage = "dynasty" },
+                        onOpenStore = onOpenStore, onOpenAchievements = onOpenAchievements, onOpenSocial = onOpenSocial, onOpenAccount = onOpenAccount,
+                        onOpenSettings = onOpenSettings, onOpenCredits = onOpenCredits,
+                    )
+                }
             }
         }
         // Frosted strip behind the status bar so scrolled content blurs under the clock instead of colliding with it.
         Box(Modifier.fillMaxWidth().windowInsetsTopHeight(WindowInsets.statusBars).glass(RoundedCornerShape(0), GlassWeight.Regular, edge = false))
-        AurumBottomBar(items = items, selected = tab, onSelect = { tab = it }, modifier = Modifier.align(Alignment.BottomCenter))
+        AurumBottomBar(
+            items = items, selected = tab,
+            onSelect = { t -> if (t == "more" && tab == "more") morePage = "hub"; tab = t },
+            modifier = Modifier.align(Alignment.BottomCenter),
+        )
     }
 }

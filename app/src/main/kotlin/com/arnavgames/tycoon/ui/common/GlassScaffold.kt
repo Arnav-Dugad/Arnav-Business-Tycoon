@@ -92,3 +92,16 @@ fun GlassScaffold(title: String, onBack: () -> Unit, content: LazyListScope.() -
     }
 }
 
+/** The round glass back button used by every pushed screen (48 dp touch target, "Back" for screen readers). */
+@Composable
+fun BackChip(onBack: () -> Unit, modifier: Modifier = Modifier) {
+    val c = Aurum.colors
+    Box(
+        modifier.size(Space.touch).clickable(role = Role.Button, onClickLabel = "Back", onClick = onBack).semantics { contentDescription = "Back" },
+        contentAlignment = Alignment.Center,
+    ) {
+        Box(Modifier.size(36.dp).glass(AurumShapes.pill, GlassWeight.Thin, blur = false), contentAlignment = Alignment.Center) {
+            AbtIcon(AbtIcons.ChevronLeft, null, tint = c.goldText, size = 20.dp)
+        }
+    }
+}

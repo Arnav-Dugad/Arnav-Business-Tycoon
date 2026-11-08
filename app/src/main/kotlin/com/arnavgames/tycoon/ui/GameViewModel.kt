@@ -45,7 +45,7 @@ data class HustleUi(val perTap: Money, val combo: Int, val maxCombo: Int, val co
 data class MissionUi(
     val id: String, val title: String, val description: String, val progress: Float, val claimable: Boolean,
     val reward: String, val chapterNumber: Int, val chapterTitle: String, val done: Int, val total: Int,
-    /** Where "Show me" goes: "business:<id>", "open:<id>", "tab:<markets|estates|collection>", "list" or null. */
+    /** Where "Show me" goes: "business:<id>", "open:<id>", "tab:<markets|estates|collection>", "counter", "hq", "list" or null. */
     val goTo: String? = null,
 )
 
@@ -433,8 +433,10 @@ class GameViewModel @Inject constructor(
         is com.arnavgames.tycoon.core.content.GoalDef.MarketTrades, is com.arnavgames.tycoon.core.content.GoalDef.BoardSeats -> "tab:markets"
         is com.arnavgames.tycoon.core.content.GoalDef.PropertiesOwned -> "tab:estates"
         is com.arnavgames.tycoon.core.content.GoalDef.LuxuryOwned, is com.arnavgames.tycoon.core.content.GoalDef.AuctionsWon -> "tab:collection"
+        is com.arnavgames.tycoon.core.content.GoalDef.HustleTaps -> "counter"
+        is com.arnavgames.tycoon.core.content.GoalDef.HqLevel -> "hq"
         is com.arnavgames.tycoon.core.content.GoalDef.BusinessesOwned, is com.arnavgames.tycoon.core.content.GoalDef.Conglomerates,
-        is com.arnavgames.tycoon.core.content.GoalDef.HqLevel, is com.arnavgames.tycoon.core.content.GoalDef.IncomePerSecond -> "list"
+        is com.arnavgames.tycoon.core.content.GoalDef.IncomePerSecond -> "list"
         else -> null
     }
 
