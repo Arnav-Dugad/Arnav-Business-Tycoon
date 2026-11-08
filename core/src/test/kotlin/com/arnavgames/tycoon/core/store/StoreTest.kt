@@ -102,7 +102,7 @@ class StoreTest {
     @Test
     fun freeAvatarsNeedNoPurchaseAndPremiumOnesDo() {
         assertEquals(18, c.freeAvatars.size)
-        assertEquals(24, c.freeAvatars.size + c.cosmetics.count { it.kind == "avatar" })
+        assertEquals(28, c.freeAvatars.size + c.cosmetics.count { it.kind == "avatar" })
         var s = busyState().run(Command.EquipCosmetic("rocket", "avatar"))
         assertEquals("rocket", s.store.avatar)
         assertInstanceOf(GameError.Locked::class.java, s.reject(Command.EquipCosmetic("avatar_yacht", "avatar")))

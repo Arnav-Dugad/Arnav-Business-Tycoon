@@ -215,7 +215,7 @@ private fun ReadyContent(vm: GameViewModel) {
                 composable<TimingRoute> { com.arnavgames.tycoon.ui.markets.MarketTimingScreen(vm, onBack = { nav.popBackStack() }) }
                 composable<SocialRoute> { com.arnavgames.tycoon.ui.social.SocialScreen(vm, onBack = { nav.popBackStack() }, onOpenAccount = { nav.navigate(AccountRoute) }) }
                 composable<AccountRoute> { com.arnavgames.tycoon.ui.account.AccountScreen(vm, onBack = { nav.popBackStack() }) }
-                composable<StoreRoute> { com.arnavgames.tycoon.ui.store.StoreScreen(vm, onBack = { nav.popBackStack() }) }
+                composable<StoreRoute> { com.arnavgames.tycoon.ui.store.StoreScreen(vm, onBack = { nav.popBackStack() }, onOpenGoals = { vm.requestTab("dynasty"); nav.popBackStack(MainRoute, inclusive = false) }) }
                 composable<AchievementsRoute> { com.arnavgames.tycoon.ui.dynasty.AchievementsScreen(vm, onBack = { nav.popBackStack() }) }
                 composable<CrownRoute> { com.arnavgames.tycoon.ui.dynasty.CrownScreen(vm, onBack = { nav.popBackStack() }) }
                 composable<DeskRoute> { com.arnavgames.tycoon.ui.world.DeskScreen(vm, onBack = { nav.popBackStack() }, onOpenRival = { nav.navigate(RivalRoute(it)) }) }

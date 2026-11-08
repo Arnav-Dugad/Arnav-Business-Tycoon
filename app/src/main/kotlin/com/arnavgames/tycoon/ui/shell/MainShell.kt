@@ -93,6 +93,8 @@ fun MainShell(
             else -> tab = target
         }
     }
+    val tabRequest by vm.tabRequest.collectAsStateWithLifecycle()
+    androidx.compose.runtime.LaunchedEffect(tabRequest) { tabRequest?.let { switchTo(it); vm.consumeTabRequest() } }
     androidx.compose.runtime.LaunchedEffect(tab, morePage) { vm.music.setScene(if (tab == "more" && morePage != "hub") morePage else tab) }
     androidx.activity.compose.BackHandler(enabled = tab == "more" && morePage != "hub") { morePage = "hub" }
     Box(Modifier.fillMaxSize()) {

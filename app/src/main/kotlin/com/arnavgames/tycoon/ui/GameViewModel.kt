@@ -282,6 +282,12 @@ class GameViewModel @Inject constructor(
     fun dismissOffline() = session.dismissOffline()
     fun debugScenario(name: String) = session.debugLoadScenario(name)
     fun startOver() = session.startNewGameAfterRecovery()
+    /** A screen outside the tabs (the Store) asking the tab bar to show a tab: "dynasty", "businesses", ... */
+    private val _tabRequest = kotlinx.coroutines.flow.MutableStateFlow<String?>(null)
+    val tabRequest: StateFlow<String?> = _tabRequest
+    fun requestTab(target: String) { _tabRequest.value = target }
+    fun consumeTabRequest() { _tabRequest.value = null }
+
     /** The 6-hourly payment for a new loan, exactly as the engine will charge it. */
     fun loanInstallment(amount: Money, ratePerDay: Double, days: Int): Money = session.engine.credit.installment(amount, ratePerDay, days)
 

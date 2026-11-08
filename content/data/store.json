@@ -97,6 +97,18 @@
    "limit": 0
   },
   {
+   "id": "boost_4h",
+   "name": "Income boost · 4 h",
+   "description": "Every business earns 25% more for 4 hours.",
+   "section": "boosts",
+   "demoPrice": null,
+   "bullionPrice": 120,
+   "grants": {
+    "boostHours": 4
+   },
+   "limit": 0
+  },
+  {
    "id": "boost_8h",
    "name": "Income boost · 8 h",
    "description": "Every business earns 25% more for 8 hours.",
@@ -117,6 +129,19 @@
    "bullionPrice": 450,
    "grants": {
     "boostHours": 24
+   },
+   "limit": 0
+  },
+  {
+   "id": "bundle_weekend",
+   "name": "Weekend bundle",
+   "description": "An 8-hour income boost and 150 Favor together, for less than buying them separately.",
+   "section": "boosts",
+   "demoPrice": null,
+   "bullionPrice": 260,
+   "grants": {
+    "boostHours": 8,
+    "favor": 150
    },
    "limit": 0
   },
@@ -503,6 +528,162 @@
     "cosmetic": "avatar_wine"
    },
    "limit": 1
+  },
+  {
+   "id": "title_mogul",
+   "name": "Title: Mogul",
+   "description": "Shown under your name on leaderboards and to friends.",
+   "section": "cosmetics",
+   "demoPrice": null,
+   "bullionPrice": 250,
+   "grants": {
+    "cosmetic": "title_mogul"
+   },
+   "limit": 1
+  },
+  {
+   "id": "title_heir",
+   "name": "Title: The Heir",
+   "description": "Shown under your name on leaderboards and to friends.",
+   "section": "cosmetics",
+   "demoPrice": null,
+   "bullionPrice": 300,
+   "grants": {
+    "cosmetic": "title_heir"
+   },
+   "limit": 1
+  },
+  {
+   "id": "title_night_owl",
+   "name": "Title: Night Owl",
+   "description": "Shown under your name on leaderboards and to friends.",
+   "section": "cosmetics",
+   "demoPrice": null,
+   "bullionPrice": 200,
+   "grants": {
+    "cosmetic": "title_night_owl"
+   },
+   "limit": 1
+  },
+  {
+   "id": "title_baron",
+   "name": "Title: Baron of Main Street",
+   "description": "Shown under your name on leaderboards and to friends.",
+   "section": "cosmetics",
+   "demoPrice": null,
+   "bullionPrice": 350,
+   "grants": {
+    "cosmetic": "title_baron"
+   },
+   "limit": 1
+  },
+  {
+   "id": "title_kingmaker",
+   "name": "Title: Kingmaker",
+   "description": "Shown under your name on leaderboards and to friends.",
+   "section": "cosmetics",
+   "demoPrice": null,
+   "bullionPrice": 500,
+   "grants": {
+    "cosmetic": "title_kingmaker"
+   },
+   "limit": 1
+  },
+  {
+   "id": "title_dynast",
+   "name": "Title: The Dynast",
+   "description": "Shown under your name on leaderboards and to friends.",
+   "section": "cosmetics",
+   "demoPrice": null,
+   "bullionPrice": 600,
+   "grants": {
+    "cosmetic": "title_dynast"
+   },
+   "limit": 1
+  },
+  {
+   "id": "frame_jade",
+   "name": "Jade frame",
+   "description": "A jade ring around your avatar.",
+   "section": "cosmetics",
+   "demoPrice": null,
+   "bullionPrice": 350,
+   "grants": {
+    "cosmetic": "frame_jade"
+   },
+   "limit": 1
+  },
+  {
+   "id": "frame_pearl",
+   "name": "Pearl frame",
+   "description": "A pearl ring around your avatar.",
+   "section": "cosmetics",
+   "demoPrice": null,
+   "bullionPrice": 450,
+   "grants": {
+    "cosmetic": "frame_pearl"
+   },
+   "limit": 1
+  },
+  {
+   "id": "frame_bronze",
+   "name": "Bronze frame",
+   "description": "A bronze ring around your avatar.",
+   "section": "cosmetics",
+   "demoPrice": null,
+   "bullionPrice": 200,
+   "grants": {
+    "cosmetic": "frame_bronze"
+   },
+   "limit": 1
+  },
+  {
+   "id": "avatar_car",
+   "name": "Avatar: Supercar",
+   "description": "A supercar emblem for your profile picture.",
+   "section": "cosmetics",
+   "demoPrice": null,
+   "bullionPrice": 300,
+   "grants": {
+    "cosmetic": "avatar_car"
+   },
+   "limit": 1
+  },
+  {
+   "id": "avatar_tower",
+   "name": "Avatar: Skyscraper",
+   "description": "A skyscraper emblem for your profile picture.",
+   "section": "cosmetics",
+   "demoPrice": null,
+   "bullionPrice": 350,
+   "grants": {
+    "cosmetic": "avatar_tower"
+   },
+   "limit": 1
+  },
+  {
+   "id": "avatar_gem",
+   "name": "Avatar: Diamond",
+   "description": "A diamond emblem for your profile picture.",
+   "section": "cosmetics",
+   "demoPrice": null,
+   "bullionPrice": 400,
+   "grants": {
+    "cosmetic": "avatar_gem"
+   },
+   "limit": 1
+  },
+  {
+   "id": "avatar_art",
+   "name": "Avatar: Masterpiece",
+   "description": "A gallery-frame emblem for your profile picture.",
+   "section": "cosmetics",
+   "demoPrice": null,
+   "bullionPrice": 300,
+   "grants": {
+    "cosmetic": "avatar_art"
+   },
+   "limit": 1
   }
  ],
  "cosmetics": [
@@ -630,6 +811,71 @@
    "id": "avatar_wine",
    "kind": "avatar",
    "name": "Grand cru"
+  },
+  {
+   "id": "title_mogul",
+   "kind": "title",
+   "name": "Mogul"
+  },
+  {
+   "id": "title_heir",
+   "kind": "title",
+   "name": "The Heir"
+  },
+  {
+   "id": "title_night_owl",
+   "kind": "title",
+   "name": "Night Owl"
+  },
+  {
+   "id": "title_baron",
+   "kind": "title",
+   "name": "Baron of Main Street"
+  },
+  {
+   "id": "title_kingmaker",
+   "kind": "title",
+   "name": "Kingmaker"
+  },
+  {
+   "id": "title_dynast",
+   "kind": "title",
+   "name": "The Dynast"
+  },
+  {
+   "id": "frame_jade",
+   "kind": "frame",
+   "name": "Jade"
+  },
+  {
+   "id": "frame_pearl",
+   "kind": "frame",
+   "name": "Pearl"
+  },
+  {
+   "id": "frame_bronze",
+   "kind": "frame",
+   "name": "Bronze"
+  },
+  {
+   "id": "avatar_car",
+   "kind": "avatar",
+   "name": "Supercar"
+  },
+  {
+   "id": "avatar_tower",
+   "kind": "avatar",
+   "name": "Skyscraper"
+  },
+  {
+   "id": "avatar_gem",
+   "kind": "avatar",
+   "name": "Diamond"
+  },
+  {
+   "id": "avatar_art",
+   "kind": "avatar",
+   "name": "Masterpiece"
   }
  ],
  "freeAvatars": [

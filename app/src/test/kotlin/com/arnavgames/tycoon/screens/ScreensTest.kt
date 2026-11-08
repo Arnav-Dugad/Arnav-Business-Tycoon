@@ -146,6 +146,9 @@ class ScreensTest(private val theme: String) {
             tag("menu-store")
             Thread.sleep(800)
             shot("12_store")
+            scrollTo("Just for show")
+            Thread.sleep(500)
+            shot("12b_store_cosmetics")
         }
     }
 

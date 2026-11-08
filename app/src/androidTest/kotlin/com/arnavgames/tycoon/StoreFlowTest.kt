@@ -49,7 +49,11 @@ class StoreFlowTest {
     /** The midgame scenario is ready once the Empire list can scroll to Restaurants (it may be below the fold on short screens). */
     private fun waitForMidgame(timeout: Long = 60_000) {
         rule.waitUntil(timeout) {
-            runCatching { rule.onAllNodes(hasScrollAction()).onFirst().performScrollToNode(hasText("Restaurants", substring = true)); true }.getOrDefault(false)
+            runCatching {
+                // The midgame scenario has loaded once Restaurants is on the Businesses tab.
+                rule.onNodeWithContentDescription("Businesses", substring = true).performClick()
+                rule.onNodeWithTag("businesses-list").performScrollToNode(hasText("Restaurants", substring = true)); true
+            }.getOrDefault(false)
         }
     }
 
@@ -64,9 +68,9 @@ class StoreFlowTest {
         waitForMidgame()
         rule.onNodeWithContentDescription("More", substring = true).performClick()
         rule.waitForIdle()
-        waitForText("Your Dynasty")
+        waitForText("Achievements")
         rule.onNodeWithTag("menu-store").performSemanticsAction(SemanticsActions.OnClick)
-        waitForText("DEMO STORE")
+        waitForText("YOUR BULLION")
         rule.onAllNodes(hasScrollAction()).onFirst().performScrollToNode(hasTestTag("demo-bullion_100"))
         rule.onNodeWithTag("demo-bullion_100").performSemanticsAction(SemanticsActions.OnClick)
         waitForText("DEMO PURCHASE — no real money is charged")

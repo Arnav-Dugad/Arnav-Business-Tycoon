@@ -19,8 +19,11 @@ P = [
     ("starter_pack", "Starter pack", "300 Bullion, 50 Favor and a 2-hour income boost. Once per account.", "bullion", "$2.99", None,
      {"bullion": 300, "favor": 50, "boostHours": 2}, 1),
     ("boost_2h", "Income boost · 2 h", "Every business earns 25% more for 2 hours. Buying again extends the time.", "boosts", "$0.99", 60, {"boostHours": 2}, 0),
+    ("boost_4h", "Income boost · 4 h", "Every business earns 25% more for 4 hours.", "boosts", None, 120, {"boostHours": 4}, 0),
     ("boost_8h", "Income boost · 8 h", "Every business earns 25% more for 8 hours.", "boosts", None, 180, {"boostHours": 8}, 0),
     ("boost_24h", "Income boost · 24 h", "Every business earns 25% more for a full day.", "boosts", None, 450, {"boostHours": 24}, 0),
+    ("bundle_weekend", "Weekend bundle", "An 8-hour income boost and 150 Favor together, for less than buying them separately.", "boosts", None, 260,
+     {"boostHours": 8, "favor": 150}, 0),
     ("favor_100", "Favor bundle", "100 Favor to rush timers.", "boosts", None, 100, {"favor": 100}, 0),
     ("favor_500", "Favor crate", "500 Favor to rush timers.", "boosts", "$2.99", 450, {"favor": 500}, 0),
     ("permanent_5", "Investor's edge", "+5% income from every business, permanently (up to 3).", "upgrades", "$4.99", 1500, {"permanentPct": 0.05}, 3),
@@ -53,6 +56,20 @@ P = [
     ("avatar_mansion", "Avatar: Mansion", "A mansion emblem for your profile picture.", "cosmetics", None, 400, {"cosmetic": "avatar_mansion"}, 1),
     ("avatar_watch", "Avatar: Grand complication", "A watch emblem for your profile picture.", "cosmetics", None, 250, {"cosmetic": "avatar_watch"}, 1),
     ("avatar_wine", "Avatar: Grand cru", "A wine emblem for your profile picture.", "cosmetics", None, 250, {"cosmetic": "avatar_wine"}, 1),
+    # 1.2: more to collect (all cosmetic: no effect on play).
+    ("title_mogul", "Title: Mogul", "Shown under your name on leaderboards and to friends.", "cosmetics", None, 250, {"cosmetic": "title_mogul"}, 1),
+    ("title_heir", "Title: The Heir", "Shown under your name on leaderboards and to friends.", "cosmetics", None, 300, {"cosmetic": "title_heir"}, 1),
+    ("title_night_owl", "Title: Night Owl", "Shown under your name on leaderboards and to friends.", "cosmetics", None, 200, {"cosmetic": "title_night_owl"}, 1),
+    ("title_baron", "Title: Baron of Main Street", "Shown under your name on leaderboards and to friends.", "cosmetics", None, 350, {"cosmetic": "title_baron"}, 1),
+    ("title_kingmaker", "Title: Kingmaker", "Shown under your name on leaderboards and to friends.", "cosmetics", None, 500, {"cosmetic": "title_kingmaker"}, 1),
+    ("title_dynast", "Title: The Dynast", "Shown under your name on leaderboards and to friends.", "cosmetics", None, 600, {"cosmetic": "title_dynast"}, 1),
+    ("frame_jade", "Jade frame", "A jade ring around your avatar.", "cosmetics", None, 350, {"cosmetic": "frame_jade"}, 1),
+    ("frame_pearl", "Pearl frame", "A pearl ring around your avatar.", "cosmetics", None, 450, {"cosmetic": "frame_pearl"}, 1),
+    ("frame_bronze", "Bronze frame", "A bronze ring around your avatar.", "cosmetics", None, 200, {"cosmetic": "frame_bronze"}, 1),
+    ("avatar_car", "Avatar: Supercar", "A supercar emblem for your profile picture.", "cosmetics", None, 300, {"cosmetic": "avatar_car"}, 1),
+    ("avatar_tower", "Avatar: Skyscraper", "A skyscraper emblem for your profile picture.", "cosmetics", None, 350, {"cosmetic": "avatar_tower"}, 1),
+    ("avatar_gem", "Avatar: Diamond", "A diamond emblem for your profile picture.", "cosmetics", None, 400, {"cosmetic": "avatar_gem"}, 1),
+    ("avatar_art", "Avatar: Masterpiece", "A gallery-frame emblem for your profile picture.", "cosmetics", None, 300, {"cosmetic": "avatar_art"}, 1),
 ]
 
 # Avatars anyone can pick (the app draws each from the game's own icon set); premium ones are the avatar_* cosmetics.
@@ -68,6 +85,10 @@ COSMETICS = {
     "frame_ruby": ("frame", "Ruby"), "frame_amethyst": ("frame", "Amethyst"), "frame_rose_gold": ("frame", "Rose gold"), "frame_platinum": ("frame", "Platinum"),
     "avatar_yacht": ("avatar", "Superyacht"), "avatar_heli": ("avatar", "Helicopter"), "avatar_island": ("avatar", "Private island"),
     "avatar_mansion": ("avatar", "Mansion"), "avatar_watch": ("avatar", "Grand complication"), "avatar_wine": ("avatar", "Grand cru"),
+    "title_mogul": ("title", "Mogul"), "title_heir": ("title", "The Heir"), "title_night_owl": ("title", "Night Owl"),
+    "title_baron": ("title", "Baron of Main Street"), "title_kingmaker": ("title", "Kingmaker"), "title_dynast": ("title", "The Dynast"),
+    "frame_jade": ("frame", "Jade"), "frame_pearl": ("frame", "Pearl"), "frame_bronze": ("frame", "Bronze"),
+    "avatar_car": ("avatar", "Supercar"), "avatar_tower": ("avatar", "Skyscraper"), "avatar_gem": ("avatar", "Diamond"), "avatar_art": ("avatar", "Masterpiece"),
 }
 
 # What you can buy with Bullion earned in play comes first; demo Bullion packs come last (GDD §2 "Respect the player").

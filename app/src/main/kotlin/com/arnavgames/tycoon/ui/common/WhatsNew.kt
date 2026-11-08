@@ -23,15 +23,16 @@ import com.arnavgames.tycoon.designsystem.theme.Space
 data class Highlight(val icon: String, val title: String, val body: String)
 
 /**
- * "What's new" after an update (docs/PLAN_2.0.md H3): three highlights, shown once, instead of a snackbar.
+ * "What's new" after an update (docs/PLAN_2.0.md H3): a few highlights, shown once, instead of a snackbar.
  * Add an entry for every release that players will notice.
  */
 object WhatsNew {
     private val notes: Map<String, List<Highlight>> = mapOf(
         "1.2.0" to listOf(
+            Highlight("Menu", "A new home for everything", "Businesses have their own tab, the counter has its own full-screen page, and Collection and your Dynasty live under More."),
             Highlight("News", "The Daily Ledger", "Come back to a front page of what happened while you were away: wins, problems and what's waiting."),
             Highlight("Info", "Always know what's next", "“Show me” takes you to your next goal, a gold chip marks the best-value purchase, and every cost is explained in plain words."),
-            Highlight("Bell", "A heads-up when it's done", "Optional notifications for finished expansions, auction results and a full Desk. Never more than 3 a day, never at night."),
+            Highlight("Bullion", "A better store", "See what's active, how to earn Bullion free, and exactly what each item does for you. 15 new items to collect."),
         ),
     )
 

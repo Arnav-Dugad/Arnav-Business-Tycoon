@@ -43,7 +43,7 @@ private val AMETHYST = Color(0xFF8E5BD1)
 private val PLATINUM = Color(0xFFB8C2CC)
 
 object Avatars {
-    /** Ids match store.json: the 18 free avatars, then the 6 premium avatar_* cosmetics. */
+    /** Ids match store.json: the 18 free avatars, then the 10 premium avatar_* cosmetics. */
     val all: List<AvatarDef> = listOf(
         AvatarDef("crown", "Crown", AbtIcons.Crown, GOLD), AvatarDef("store", "Merchant", AbtIcons.Store, EMERALD),
         AvatarDef("chef", "Chef", AbtIcons.Chef, RUBY), AvatarDef("fleet", "Fleet", AbtIcons.Fleet, SAPPHIRE),
@@ -57,6 +57,8 @@ object Avatars {
         AvatarDef("avatar_yacht", "Yacht", AbtIcons.Yacht, SAPPHIRE), AvatarDef("avatar_heli", "Chopper", AbtIcons.Heli, PLATINUM),
         AvatarDef("avatar_island", "Island", AbtIcons.Island, EMERALD), AvatarDef("avatar_mansion", "Mansion", AbtIcons.Mansion, GOLD),
         AvatarDef("avatar_watch", "Watch", AbtIcons.Watch, GOLD), AvatarDef("avatar_wine", "Vintage", AbtIcons.Wine, RUBY),
+        AvatarDef("avatar_car", "Supercar", AbtIcons.Car, RUBY), AvatarDef("avatar_tower", "Skyline", AbtIcons.Tower, SAPPHIRE),
+        AvatarDef("avatar_gem", "Diamond", AbtIcons.Gem, PLATINUM), AvatarDef("avatar_art", "Collector", AbtIcons.Frame, AMETHYST),
     )
     private val byId = all.associateBy { it.id }
     fun of(id: String?): AvatarDef = byId[id ?: "crown"] ?: all.first()
@@ -66,6 +68,7 @@ object Avatars {
     fun frameColor(frame: String?): Color? = when (frame) {
         "frame_gold" -> GOLD; "frame_emerald" -> EMERALD; "frame_sapphire" -> SAPPHIRE; "frame_obsidian" -> Color(0xFF1B1B22)
         "frame_ruby" -> RUBY; "frame_amethyst" -> AMETHYST; "frame_rose_gold" -> Color(0xFFE0A899); "frame_platinum" -> PLATINUM
+        "frame_jade" -> Color(0xFF6FBF9A); "frame_pearl" -> Color(0xFFEDE6D8); "frame_bronze" -> Color(0xFFB0763A)
         else -> null
     }
 }

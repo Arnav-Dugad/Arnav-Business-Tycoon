@@ -67,7 +67,11 @@ class CloudFlowTest {
     /** The midgame scenario is ready once the Empire list can scroll to Restaurants (it may be below the fold on short screens). */
     private fun waitForMidgame(timeout: Long = 60_000) {
         rule.waitUntil(timeout) {
-            runCatching { rule.onAllNodes(hasScrollAction()).onFirst().performScrollToNode(hasText("Restaurants", substring = true)); true }.getOrDefault(false)
+            runCatching {
+                // The midgame scenario has loaded once Restaurants is on the Businesses tab.
+                rule.onNodeWithContentDescription("Businesses", substring = true).performClick()
+                rule.onNodeWithTag("businesses-list").performScrollToNode(hasText("Restaurants", substring = true)); true
+            }.getOrDefault(false)
         }
     }
 
@@ -83,7 +87,7 @@ class CloudFlowTest {
         waitForMidgame()
         rule.onNodeWithContentDescription("More", substring = true).performClick()
         rule.waitForIdle()
-        waitForText("Your Dynasty")
+        waitForText("Account & cloud save")
         rule.onAllNodes(hasScrollAction()).onFirst().performScrollToNode(hasText("Account & cloud save"))
         tap("Account & cloud save")
         waitForText("Test server")
