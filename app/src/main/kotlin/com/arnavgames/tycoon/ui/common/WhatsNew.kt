@@ -28,6 +28,10 @@ data class Highlight(val icon: String, val title: String, val body: String)
  */
 object WhatsNew {
     private val notes: Map<String, List<Highlight>> = mapOf(
+        "1.2.2" to listOf(
+            Highlight("Hand", "Tap anywhere", "The counter now fills the top of the Empire tab: no button to aim for, tap anywhere and watch the cash rise from your finger."),
+            Highlight("Cash", "Cash first", "Your cash is the big number at the top; net worth sits just below it."),
+        ),
         "1.2.0" to listOf(
             Highlight("Menu", "A new home for everything", "Businesses have their own tab, the counter has its own full-screen page, and Collection and your Dynasty live under More."),
             Highlight("News", "The Daily Ledger", "Come back to a front page of what happened while you were away: wins, problems and what's waiting."),
@@ -45,9 +49,11 @@ object WhatsNew {
      */
     fun forUpdate(from: String, to: String): List<Highlight> {
         val t = to.substringBefore('-')
-        notes[t]?.let { return it }
         fun line(v: String) = v.substringBefore('-').split('.').take(2).joinToString(".")
-        return if (line(from) != line(t)) notes["${line(t)}.0"].orEmpty() else emptyList()
+        val exact = notes[t].orEmpty()
+        val lineNotes = if (line(from) != line(t) && t != "${line(t)}.0") notes["${line(t)}.0"].orEmpty() else emptyList()
+        // Arriving from an older line: that line's big notes first, then this patch's own.
+        return lineNotes + exact
     }
 }
 
