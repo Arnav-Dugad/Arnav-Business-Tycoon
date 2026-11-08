@@ -37,6 +37,18 @@ object WhatsNew {
     )
 
     fun forVersion(versionName: String): List<Highlight> = notes[versionName.substringBefore('-')].orEmpty()
+
+    /**
+     * Highlights after updating [from] → [to]: the exact release's notes if it has any; otherwise, when the update
+     * crosses into a new major.minor line (1.1.0 → 1.2.1), that line's x.y.0 notes; a patch within a line
+     * (1.2.0 → 1.2.1) shows none, so nobody sees the same sheet twice.
+     */
+    fun forUpdate(from: String, to: String): List<Highlight> {
+        val t = to.substringBefore('-')
+        notes[t]?.let { return it }
+        fun line(v: String) = v.substringBefore('-').split('.').take(2).joinToString(".")
+        return if (line(from) != line(t)) notes["${line(t)}.0"].orEmpty() else emptyList()
+    }
 }
 
 @Composable

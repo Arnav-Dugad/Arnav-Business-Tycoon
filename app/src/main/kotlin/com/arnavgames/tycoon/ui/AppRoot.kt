@@ -164,7 +164,7 @@ private fun ReadyContent(vm: GameViewModel) {
         val from = kotlinx.coroutines.withTimeoutOrNull(5_000) { vm.updates.updatedFrom.filterNotNull().first() } ?: return@LaunchedEffect
         vm.updates.consumeUpdatedFrom()
         val version = com.arnavgames.tycoon.BuildConfig.VERSION_NAME
-        val highlights = com.arnavgames.tycoon.ui.common.WhatsNew.forVersion(version)
+        val highlights = com.arnavgames.tycoon.ui.common.WhatsNew.forUpdate(from, version)
         if (highlights.isNotEmpty()) whatsNew = version to highlights
         else vm.say("Updated from $from to $version. Your game is safe.")
     }
