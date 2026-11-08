@@ -104,13 +104,13 @@ import com.arnavgames.tycoon.designsystem.theme.glassCard
 import com.arnavgames.tycoon.designsystem.theme.glassSource
 
 /**
- * The Empire tab: an overview of where things stand and what to do next. The tapping counter has its own full-screen
- * page ([CounterScreen]) and the businesses their own tab ([BusinessesScreen]); this screen links to both.
+ * The Empire tab: the counter fills the top three quarters (tap anywhere on it), then what to do next, the world and a
+ * summary of the businesses (which have their own tab, [BusinessesScreen]).
  */
 @Composable
 fun EmpireScreen(
     vm: GameViewModel, onOpenBusiness: (String) -> Unit, onOpenDesk: () -> Unit = {}, onOpenFortune: () -> Unit = {}, onOpenFinance: () -> Unit = {},
-    onSwitchTab: (String) -> Unit = {}, onOpenCounter: () -> Unit = {},
+    onSwitchTab: (String) -> Unit = {},
 ) {
     val ui by vm.empire.collectAsStateWithLifecycle()
     val settings by vm.settings.collectAsStateWithLifecycle()
@@ -121,17 +121,19 @@ fun EmpireScreen(
     val mentorLine by vm.mentor.line.collectAsStateWithLifecycle()
     val guide = guideText(e, GuideWhere.Empire)
     val guiding = guide != null
-    // Tapping leads in Chapter 1; after that the businesses do.
-    val hustleFirst = (e.mission?.chapterNumber ?: e.chapter) <= 1
+    val scope = androidx.compose.runtime.rememberCoroutineScope()
     androidx.compose.runtime.LaunchedEffect(e.mission?.chapterNumber, guiding) { if (!guiding) vm.mentorTip(e.mission?.chapterNumber ?: 8) }
     val listState = androidx.compose.foundation.lazy.rememberLazyListState()
     // A new line is inserted above the first card; lazy lists keep the old first item in place, so reveal it.
     androidx.compose.runtime.LaunchedEffect(mentorLine?.id) { if (mentorLine != null && listState.firstVisibleItemIndex <= 1) listState.animateScrollToItem(0) }
 
     var headerPx by remember { mutableIntStateOf(0) }
+    var screenPx by remember { mutableIntStateOf(0) }
     val density = LocalDensity.current
     val navInset = WindowInsets.navigationBars.asPaddingValues().calculateBottomPadding()
-    Box(Modifier.fillMaxSize()) {
+    // The counter takes three quarters of what's visible between the header and the tab bar; the rest peeks below.
+    val stageHeight = with(density) { ((screenPx - headerPx).toDp() - BottomBarReserve - navInset - Space.md * 2) * 0.75f }.coerceAtLeast(280.dp)
+    Box(Modifier.fillMaxSize().onSizeChanged { screenPx = it.height }) {
         // Content scrolls beneath the frosted header and tab bar (it is the glass "content" layer).
         LazyColumn(
             state = listState,
@@ -143,7 +145,7 @@ fun EmpireScreen(
             verticalArrangement = Arrangement.spacedBy(Space.md),
             modifier = Modifier.fillMaxSize().glassSource(GlassLayer.Content).testTag("empire-list"),
         ) {
-            guide?.let { g -> item(key = "guide") { GuideBanner(g) } }
+            item(key = "stage") { TapStage(vm, e, fmt, guide, Modifier.fillMaxWidth().height(stageHeight)) }
             if (!guiding) mentorLine?.let { l -> item(key = "mentor") { MentorCard(vm.mentor.name, l.text, onDismiss = { vm.mentor.dismiss() }) } }
             e.mission?.let { m ->
                 item(key = "mission") {
@@ -152,7 +154,7 @@ fun EmpireScreen(
                         {
                             when {
                                 target.startsWith("business:") -> onOpenBusiness(target.removePrefix("business:"))
-                                target == "counter" -> onOpenCounter()
+                                target == "counter" -> scope.launch { listState.animateScrollToItem(0) }
                                 target.startsWith("tab:") -> onSwitchTab(target.removePrefix("tab:"))
                                 target.startsWith("open:") -> onSwitchTab("businesses:$target")
                                 target == "hq" -> onSwitchTab("businesses:hq")
@@ -164,44 +166,12 @@ fun EmpireScreen(
                 }
             }
             e.crown?.let { cr -> item(key = "crown") { CrownReadyCard(cr, onOpen = { onSwitchTab("dynasty") }) } }
-            if (hustleFirst) item(key = "counter") { CounterEntryCard(e.hustle, fmt, highlighted = e.onboardingStep == 1, onOpen = onOpenCounter) }
             item(key = "businesses") { BusinessesSummaryCard(e, onOpen = { onSwitchTab("businesses") }) }
             item(key = "world") { com.arnavgames.tycoon.ui.world.WorldStrip(vm, onOpenDesk, onOpenFortune, onOpenFinance) }
-            if (!hustleFirst) item(key = "counter") { CounterEntryCard(e.hustle, fmt, highlighted = false, onOpen = onOpenCounter) }
         }
         EmpireHeader(e, fmt, Modifier.align(Alignment.TopCenter).onSizeChanged { headerPx = it.height })
         // Celebrations appear just below the header so they never cover the numbers.
         MomentOverlay(vm, Modifier.align(Alignment.TopCenter).padding(top = with(density) { headerPx.toDp() }))
-    }
-}
-
-/** The way into the full-screen counter: what a customer pays, and the frenzy state. */
-@Composable
-private fun CounterEntryCard(h: HustleUi, fmt: (Money) -> String, highlighted: Boolean, onOpen: () -> Unit) {
-    val c = Aurum.colors
-    AurumCard(Modifier.fillMaxWidth().testTag("counter-entry"), onClick = onOpen, highlighted = highlighted) {
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            Box(
-                Modifier.size(64.dp).clip(CircleShape)
-                    .background(Brush.radialGradient(listOf(c.goldFillTop, c.goldFillBottom, c.goldDeep)))
-                    .border(1.dp, Brush.verticalGradient(listOf(c.goldBright, c.goldDeep)), CircleShape),
-                contentAlignment = Alignment.Center,
-            ) { AbtIcon(AbtIcons.Hand, null, tint = c.textOnGold, size = 28.dp) }
-            Spacer(Modifier.width(Space.md))
-            Column(Modifier.weight(1f)) {
-                Text("Work the counter", style = Aurum.type.title, color = c.textPrimary)
-                Text("${fmt(h.perTap)} per customer", style = Aurum.type.bodySmall, color = c.textSecondary)
-                Text(
-                    when {
-                        h.frenzyActive -> "Frenzy ×3 running · ${countdownText(h.frenzyEndsAtSim - h.simNow)}"
-                        h.frenzyCharges > 0 -> "${h.frenzyCharges} ${if (h.frenzyCharges == 1) "frenzy" else "frenzies"} ready"
-                        else -> "Serve customers for cash"
-                    },
-                    style = Aurum.type.label, color = if (h.frenzyActive || h.frenzyCharges > 0) c.goldText else c.textTertiary,
-                )
-            }
-            AbtIcon(AbtIcons.ChevronRight, null, tint = c.textTertiary, size = 20.dp)
-        }
     }
 }
 
@@ -286,21 +256,21 @@ private fun EmpireHeader(e: EmpireUi, fmt: (Money) -> String, modifier: Modifier
         var explain by remember { mutableStateOf<com.arnavgames.tycoon.ui.common.Term?>(null) }
         explain?.let { com.arnavgames.tycoon.ui.common.GlossarySheet(it) { explain = null } }
         Row(verticalAlignment = Alignment.CenterVertically) {
-            Text("NET WORTH", style = Aurum.type.overline, color = c.textTertiary,
-                modifier = Modifier.weight(1f).clickable(onClickLabel = "What is net worth?") { explain = com.arnavgames.tycoon.ui.common.Term.NetWorth })
+            Text("CASH", style = Aurum.type.overline, color = c.textTertiary,
+                modifier = Modifier.weight(1f).clickable(onClickLabel = "What is cash?") { explain = com.arnavgames.tycoon.ui.common.Term.Cash })
             Row(horizontalArrangement = Arrangement.spacedBy(Space.sm)) {
                 CurrencyPill(AbtIcons.Bullion, e.header.bullion.toString(), "Bullion", c.bullion) { explain = com.arnavgames.tycoon.ui.common.Term.Bullion }
                 CurrencyPill(AbtIcons.Favor, e.header.favor.toString(), "Favor", c.goldText) { explain = com.arnavgames.tycoon.ui.common.Term.Favor }
             }
         }
-        RollingMoney(e.header.netWorth, e.header.income, format = fmt)
+        RollingMoney(e.header.cash, e.header.income, format = fmt, modifier = Modifier.testTag("header-cash"))
         Row(verticalAlignment = Alignment.CenterVertically) {
-            AbtIcon(AbtIcons.Cash, null, tint = c.goldText, size = 16.dp)
+            AbtIcon(AbtIcons.Chart, null, tint = c.goldText, size = 16.dp)
             Spacer(Modifier.width(Space.xs))
-            RollingMoney(e.header.cash, e.header.income, style = Aurum.type.number, color = c.textPrimary, format = fmt)
+            RollingMoney(e.header.netWorth, e.header.income, style = Aurum.type.number, color = c.textSecondary, format = fmt)
             Spacer(Modifier.width(Space.xs))
-            Text("cash", style = Aurum.type.bodySmall, color = c.textTertiary,
-                modifier = Modifier.clickable(onClickLabel = "What is cash?") { explain = com.arnavgames.tycoon.ui.common.Term.Cash })
+            Text("net worth", style = Aurum.type.bodySmall, color = c.textTertiary,
+                modifier = Modifier.clickable(onClickLabel = "What is net worth?") { explain = com.arnavgames.tycoon.ui.common.Term.NetWorth })
             Spacer(Modifier.weight(1f))
             if (!e.header.income.isZero) {
                 AbtIcon(AbtIcons.ArrowUp, null, tint = c.gain, size = 14.dp)
@@ -330,7 +300,7 @@ internal fun CurrencyPill(icon: androidx.compose.ui.graphics.vector.ImageVector,
 // ------------------------------------------------------------------ onboarding
 
 /** Where a guide line is shown: each screen words the step for what you can do from there. */
-internal enum class GuideWhere { Empire, Businesses, Counter }
+internal enum class GuideWhere { Empire, Businesses }
 
 /** The one instruction a new player sees: a waiting reward comes first, then the current step. */
 internal fun guideText(e: EmpireUi, where: GuideWhere): String? = when {
@@ -338,8 +308,8 @@ internal fun guideText(e: EmpireUi, where: GuideWhere): String? = when {
     e.mission?.claimable == true ->
         if (where == GuideWhere.Empire) "You've earned a reward. Tap Claim on the card below." else "You've earned a reward: claim it on the Empire tab."
     else -> when (e.onboardingStep) {
-        1 -> if (where == GuideWhere.Counter) "Tap the counter to serve customers. Every customer pays cash."
-        else "Open the counter below and serve customers. Every customer pays cash."
+        1 -> if (where == GuideWhere.Businesses) "Go back to Empire and tap the counter to serve customers."
+        else "Tap anywhere here to serve customers. Every customer pays cash."
         2 -> if (where == GuideWhere.Businesses) "Buy a level for your kiosk: it earns more every second, even without you."
         else "Nice! Now open Businesses in the bar below and buy a level for your kiosk."
         3 -> if (where == GuideWhere.Businesses) "Your kiosk fills its till while it works. Tap Collect to bank the cash."

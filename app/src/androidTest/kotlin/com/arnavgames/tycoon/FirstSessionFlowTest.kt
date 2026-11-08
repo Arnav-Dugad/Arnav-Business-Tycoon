@@ -41,15 +41,12 @@ class FirstSessionFlowTest {
 
     private fun nav(tab: String) { rule.onNodeWithContentDescription(tab, substring = true).performClick(); rule.waitForIdle() }
 
-    /** Empire tab → the full-screen counter → serve [times] customers → back to the Businesses tab. */
+    /** Empire tab (the counter is at the top) → serve [times] customers → back to the Businesses tab. */
     private fun counterRound(times: Int) {
         nav("Empire")
-        waitForText("Work the counter")
-        rule.onNodeWithTag("counter-entry").tap()
+        rule.onNodeWithTag("empire-list").performScrollToIndex(0)
         waitForText("EACH CUSTOMER PAYS")
         tapCounter(times)
-        rule.onNodeWithContentDescription("Back").performClick()
-        waitForText("Manage businesses")
         nav("Businesses")
         waitForText("Buy amount")
     }
@@ -81,15 +78,15 @@ class FirstSessionFlowTest {
         // Flow 1: onboarding
         waitForText("Open your kiosk", timeout = 20_000)
         rule.onNodeWithText("Open your kiosk").performClick()
-        waitForText("Work the counter")
+        waitForText("EACH CUSTOMER PAYS")
+        rule.onNodeWithTag("empire-list").performScrollToNode(hasText("Claim $", substring = true))
         waitForText("Claim $")
         rule.onNodeWithText("Claim $", substring = true).performClick()
 
-        // Hustle on the counter page until the 60-customer mission completes, then claim its Favor on Empire.
-        rule.onNodeWithTag("counter-entry").tap()
-        waitForText("EACH CUSTOMER PAYS")
+        // Serve customers on the Empire counter until the 60-customer mission completes, then claim its Favor.
+        rule.onNodeWithTag("empire-list").performScrollToIndex(0)
         tapCounter(60)
-        rule.onNodeWithContentDescription("Back").performClick()
+        rule.onNodeWithTag("empire-list").performScrollToNode(hasText("Claim $", substring = true))
         waitForText("Claim $")
         rule.onNodeWithText("Claim $", substring = true).performClick()
         rule.waitUntil(5_000) { rule.onAllNodes(hasContentDescription("5 Favor")).fetchSemanticsNodes().isNotEmpty() }

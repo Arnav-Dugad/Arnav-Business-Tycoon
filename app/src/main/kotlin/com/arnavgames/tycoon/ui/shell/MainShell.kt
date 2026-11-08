@@ -34,7 +34,7 @@ import com.arnavgames.tycoon.ui.markets.MarketsScreen
 /**
  * The five main tabs: Empire (overview), Businesses, Markets, Estates and More (Collection, Dynasty, Store, account,
  * settings). Content scrolls edge to edge beneath a floating glass tab bar and a frosted status-bar strip. The counter
- * is a full-screen page opened from Empire.
+ * is the top of the Empire tab.
  */
 @Composable
 fun MainShell(
@@ -57,7 +57,6 @@ fun MainShell(
     onOpenAccount: () -> Unit = {},
     onOpenSocial: () -> Unit = {},
     onOpenTiming: () -> Unit = {},
-    onOpenCounter: () -> Unit = {},
 ) {
     var tab by rememberSaveable { mutableStateOf("empire") }
     // Inside More: the hub, or the Collection or Dynasty page (with a back button).
@@ -102,7 +101,7 @@ fun MainShell(
             when (t) {
                 "empire" -> EmpireScreen(
                     vm, onOpenBusiness = onOpenBusiness, onOpenDesk = onOpenDesk, onOpenFortune = onOpenFortune, onOpenFinance = onOpenFinance,
-                    onSwitchTab = switchTo, onOpenCounter = onOpenCounter,
+                    onSwitchTab = switchTo,
                 )
                 "businesses" -> com.arnavgames.tycoon.ui.empire.BusinessesScreen(vm, onOpenBusiness = onOpenBusiness, focus = businessFocus, onFocusDone = { businessFocus = null })
                 "markets" -> MarketsScreen(vm, onOpenInstrument = onOpenInstrument, onOpenNews = onOpenNews, onOpenTiming = onOpenTiming)

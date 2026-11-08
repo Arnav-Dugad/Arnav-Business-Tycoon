@@ -12,6 +12,7 @@ import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onRoot
 import androidx.compose.ui.test.performTouchInput
 import androidx.compose.ui.test.click as touchClick
+import androidx.compose.ui.test.performScrollToIndex
 import androidx.compose.ui.test.performScrollToNode
 import androidx.compose.ui.test.performSemanticsAction
 import androidx.compose.ui.semantics.SemanticsActions
@@ -64,6 +65,14 @@ class ScreensTest(private val theme: String) {
     private fun tag(t: String) = click(rule.onNodeWithTag(t))
     /** Collection and Dynasty live under the More tab. */
     private fun more(door: String) { tab("More"); tag("door-$door") }
+    /** The Empire tab is ready (the businesses summary sits below the counter, so scroll to it, then back up). */
+    private fun waitEmpire(timeout: Long = 30_000) {
+        rule.waitUntil(timeout) {
+            runCatching { rule.onNodeWithTag("empire-list").performScrollToNode(hasText("Manage businesses")); true }.getOrDefault(false)
+        }
+        rule.onNodeWithTag("empire-list").performScrollToIndex(0)
+        rule.waitForIdle()
+    }
     private fun scrollTo(text: String) = runCatching { rule.onAllNodes(hasScrollAction()).onFirst().performScrollToNode(hasText(text, substring = true)) }
 
     private fun launch(scenario: String?, block: () -> Unit) {
@@ -79,19 +88,17 @@ class ScreensTest(private val theme: String) {
             waitText("Open your kiosk")
             shot("01_welcome")
             tapText("Open your kiosk")
-            waitText("Work the counter")
-            shot("02_empire_first_minute")
-            tag("counter-entry")
             waitText("EACH CUSTOMER PAYS")
+            shot("02_empire_first_minute")
             repeat(6) { rule.onNodeWithTag("counter-stage").performTouchInput { touchClick(center) }; rule.waitForIdle() }
-            shot("02b_counter")
+            shot("02b_empire_tapping")
         }
     }
 
     @Test
     fun midGame() {
         launch("midgame") {
-            waitText("Manage businesses")
+            waitEmpire()
             Thread.sleep(1500)
             rule.waitForIdle()
             shot("03_empire_midgame")
@@ -120,7 +127,7 @@ class ScreensTest(private val theme: String) {
     @Test
     fun markets() {
         launch("markets") {
-            waitText("Manage businesses")
+            waitEmpire()
             tab("Markets")
             Thread.sleep(1000)
             shot("08_markets")
@@ -132,7 +139,7 @@ class ScreensTest(private val theme: String) {
     @Test
     fun lateGame() {
         launch("lategame") {
-            waitText("Manage businesses", 60_000)
+            waitEmpire(60_000)
             shot("09_empire_lategame")
             tab("Estates")
             Thread.sleep(800)
@@ -155,10 +162,10 @@ class ScreensTest(private val theme: String) {
     @Test
     fun worldDesk() {
         launch("world") {
-            waitText("Manage businesses", 60_000)
-            runCatching { tapText("Desk"); Thread.sleep(800); shot("13_desk"); back() }
-            runCatching { tapText("Fortune"); Thread.sleep(800); shot("13b_fortune"); back() }
-            runCatching { tapText("Credit"); Thread.sleep(800); shot("13c_finance"); back() }
+            waitEmpire(60_000)
+            runCatching { scrollTo("Fortune"); tapText("Desk"); Thread.sleep(800); shot("13_desk"); back() }
+            runCatching { scrollTo("Fortune"); tapText("Fortune"); Thread.sleep(800); shot("13b_fortune"); back() }
+            runCatching { scrollTo("Credit"); tapText("Credit"); Thread.sleep(800); shot("13c_finance"); back() }
             tab("More")
             waitText("Account & cloud save")
             scrollTo("Account & cloud save")
@@ -169,13 +176,15 @@ class ScreensTest(private val theme: String) {
     @Test
     fun crown() {
         launch("crown") {
-            waitText("Manage businesses", 90_000)
+            waitEmpire(90_000)
             more("dynasty")
             waitText("Your Dynasty")
             rule.waitUntil(120_000) { rule.onAllNodesWithText("Pass the Crown").fetchSemanticsNodes().isNotEmpty() }
             shot("15_dynasty_crown_ready")
             tab("Empire")
-            runCatching { waitText("The crown is ready", 20_000) }
+            runCatching { waitText("Manage businesses", 5_000) }
+            scrollTo("The crown is ready")
+            Thread.sleep(500)
             shot("15b_empire_crown_ready")
             tab("More")
             rule.waitUntil(30_000) { rule.onAllNodesWithText("Pass the Crown").fetchSemanticsNodes().isNotEmpty() }
