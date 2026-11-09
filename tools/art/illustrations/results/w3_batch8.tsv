@@ -1,0 +1,49 @@
+card	w_tech_conference	13:5	6289557c-3b78-4750-87c2-19feb21a2132	an editorial illustration of a business decision, 'Tech conference': The world's biggest tech conference is in town
+card	w_food_inflation	13:11	79d93989-2d74-40d9-b9ff-9d459c0d7b06	an editorial illustration of a business decision, 'Food inflation': Food prices are up 12% this year
+card	nemesis_2	13:17	303f39d5-6b57-40c4-be7e-f4d7854002ec	"an editorial illustration of a business decision, 'Your nemesis': Vivienne Strand's high-street chains have noticed your stores. ""Main Street has room for one name,"" her company says"
+card	nemesis_3	13:30	4fc5e381-cd3d-4f99-95ea-d0f901304c58	an editorial illustration of a business decision, 'Your nemesis': Gina Rhinehart's mining group is bidding for the same mineral rights you want. Raw power is a crowded room
+card	nemesis_4	13:39	7b042e75-3af0-4b2e-a320-fbdd3bc9c3b8	an editorial illustration of a business decision, 'Your nemesis': Abigail Johnsun's fund family controls the old banks you need. Old money does not open doors for newcomers
+card	nemesis_5	13:45	1ef2221c-1293-47c7-83e4-7bb4cf13add4	an editorial illustration of a business decision, 'Your nemesis': Mark Zuckerbird's social network announces a copy of your newest product the same day you launch
+card	nemesis_6	13:55	3028c9b0-9424-46cd-938b-361e54e54b8f	an editorial illustration of a business decision, 'Your nemesis': Richard Bransun's airline is flying your routes at half price, with a party on every plane
+card	nemesis_7	13:78	4bb3e368-9a7b-44e5-b61f-d316fadd3e73	"an editorial illustration of a business decision, 'Your nemesis': Melon Tusk posts that your rockets are ""cute"". His company has booked every launch window this year"
+card	nemesis_8	13:83	970b8319-a757-4600-80bb-d06c0410c442	an editorial illustration of a business decision, 'Your nemesis': Jeff Bozos's company sits at the top of the Fortune List and intends to stay there
+tenant	late_rent	13:87	0e7c452d-6542-4921-aaa2-67161cdf1983	a landlord's moment: The tenant of your a property in a property is a week late with the rent
+tenant	leak	13:102	a3a714ae-a22a-4284-ae18-ebef824ed9c1	a landlord's moment: A pipe burst in your a property in a property
+tenant	long_lease	13:108	a12ef04a-879e-4729-a48d-0e970b88b2b1	a landlord's moment: A reliable tenant offers a long lease on your a property in a property if you take 5 % off
+tenant	noise	13:112	de6b968d-7957-457f-a962-6448bcc0d043	a landlord's moment: Neighbours complain about noise from your a property in a property
+tenant	pet	13:116	8dafee45-71fe-4006-b133-c7e20a5cf747	a landlord's moment: Your tenant in a property asks to keep a large dog
+tenant	sublet	14:3	36da13e0-b74f-4e5e-8f71-7bb1c5fc22d8	a landlord's moment: You discover your a property in a property is being sublet without permission
+tenant	roof	14:16	f57fc2a9-b750-4b2d-894f-faafec2e1aa5	a landlord's moment: Storm damage to the roof of your a property in a property
+tenant	upgrade_request	14:20	7a1510b2-0977-4a3c-8cf0-8b40178784ab	a landlord's moment: Your tenant in a property asks for a new kitchen and offers to pay more rent
+tenant	film_crew	14:26	abd550ab-589e-4291-ac46-a0108948e636	a landlord's moment: A film crew wants to shoot at your a property in a property for a day
+tenant	inspection	14:32	c7b8e07b-edca-4263-be25-d72002916cc4	a landlord's moment: The city schedules a safety inspection of your a property in a property
+tenant	rent_strike	14:46	4373c522-0e6f-4b90-9a20-3087b02d1c3e	a landlord's moment: Tenants in a property organise a rent strike over rising prices
+tenant	break_in	14:49	1d140eba-e224-4fd3-8718-0a5b1042bf18	a landlord's moment: A break-in at your a property in a property
+tenant	mould	14:62	b8460bba-7ece-4591-b189-bef763dc99b4	a landlord's moment: Mould is spreading in your a property in a property
+tenant	heating	14:68	6bc66b9b-ea89-4ebf-9dee-901182012ae5	a landlord's moment: The heating fails at your a property in a property in a cold snap
+tenant	referral	14:88	0e02c72d-8b76-41e6-95b0-00f3399e7404	a landlord's moment: Your tenant in a property refers a friend who wants a similar place
+tenant	art	14:97	7d7d9366-3147-4075-8b02-763c3cb5aed7	a landlord's moment: A local artist offers to paint a mural on your a property in a property
+tenant	early_exit	14:104	ede67a56-5162-43a1-a31c-178e180a1c39	a landlord's moment: Your tenant in a property wants to leave early and offers two weeks' rent
+tenant	parking	14:109	597f3c95-73ed-4b69-99ae-6418258e5ec9	a landlord's moment: Tenants in a property ask for parking spaces
+tenant	short_stay	14:127	5a3344b5-a182-43a6-8c21-8b70228d13f1	a landlord's moment: A short-stay platform offers to rent your a property in a property by the night
+tenant	elevator	14:132	20a99db9-f1a4-484c-ab69-fee5e23adaa7	a landlord's moment: The lift in your a property in a property breaks down
+tenant	party	14:136	71463da7-9a5d-4f06-a785-30be557a5d26	a landlord's moment: Your tenant in a property threw a party that damaged the hallway
+tenant	solar	14:147	dc5f036f-70c8-42e6-ada1-a54855502185	a landlord's moment: An installer offers solar panels for your a property in a property
+tenant	smart_locks	14:156	5f83140a-7fc2-4945-9e2d-f66622bc3234	a landlord's moment: Tenants in a property ask for smart locks
+tenant	charity	14:161	a29db5ec-50d3-4524-9153-e44069c57a80	a landlord's moment: A charity asks to use your vacant storage in a property rent-free for a month
+tenant	tree	14:174	1839f388-83c5-4bba-be50-2ce686d373d7	a landlord's moment: A neighbour's tree fell onto your a property in a property
+tenant	lawsuit_threat	14:178	753d87d6-48b5-46b5-aa1e-82364dc42ffe	a landlord's moment: A former tenant in a property threatens to sue over their deposit
+tenant	renovation_neighbor	14:193	26f0b472-fec1-47de-b242-a85a188db011	a landlord's moment: Construction next door is disturbing your tenants in a property
+tenant	energy_rating	14:205	e42eb1dc-16c8-43a6-aaed-eea7f7d33a29	a landlord's moment: New rules require a better energy rating for your a property in a property
+tenant	rodents	14:209	4ef9004a-aac5-49b9-9a31-43e9e9099d41	a landlord's moment: Tenants in a property report mice
+tenant	cleaning	14:223	dd178ea8-163a-4a4b-bde1-0a5ee3faa3c4	a landlord's moment: Tenants in a property ask for a cleaning service in the shared areas
+tenant	wifi	14:239	88423666-5bff-4754-9c7e-6856658276d7	a landlord's moment: Tenants in a property complain about slow internet
+tenant	viewing	15:5	6794f91b-30e2-41eb-80b8-e84ccd3070f0	a landlord's moment: A buyer asks to view your a property in a property: they love it
+tenant	historic	15:15	3d93121f-303d-40cf-baab-61107204afdb	a landlord's moment: Your a property in a property might be listed as a historic building
+tenant	window	15:20	813f0334-f342-44e2-b3e9-d083f09be27c	a landlord's moment: A window shattered at your a property in a property
+tenant	flood_risk	15:31	bb87cdff-6d15-46af-9891-094a7745e294	a landlord's moment: Forecasters warn of flooding near a property
+tenant	community	15:34	dd6fd219-0721-402a-a69b-7617e91e3243	a landlord's moment: Residents in a property ask you to sponsor a street festival
+tenant	rent_review	15:40	c1f38054-8cf7-4bab-ad0b-4328847a7bd5	a landlord's moment: It is time for the annual rent review on your a property in a property
+tenant	furnish	15:45	1b7e11d1-f494-455e-ae87-3a3f52eefcb0	a landlord's moment: A tenant in a property would pay more for a furnished place
+tenant	balcony	15:55	a796bf7c-19ff-4d00-8f4a-f65050fa52f2	a landlord's moment: Your tenant in a property wants permission to enclose the balcony
+tenant	insurance_audit	15:65	1b39addb-7cc4-4a57-a605-4f7973a6fab0	a landlord's moment: An insurer offers a free risk audit of your a property in a property

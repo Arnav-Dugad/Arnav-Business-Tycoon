@@ -56,6 +56,8 @@ fun MainShell(
     onOpenAccount: () -> Unit = {},
     onOpenSocial: () -> Unit = {},
     onOpenTiming: () -> Unit = {},
+    onOpenSlots: () -> Unit = {},
+    onOpenCheats: () -> Unit = {},
 ) {
     // Chosen once the game has loaded: a brand-new player starts at the Counter, everyone else on Empire.
     var chosenTab by rememberSaveable { mutableStateOf("") }
@@ -80,16 +82,19 @@ fun MainShell(
         e.businesses.any { it.managerName == null && it.storageCap.isPositive && it.stored >= it.storageCap })
     val items = listOf(
         NavItem("counter", "Counter", AbtIcons.Hand),
-        NavItem("empire", "Empire", AbtIcons.Empire, badge = cardsWaiting || claimable || empireBadge),
+        NavItem("empire", "Empire", AbtIcons.Empire, badge = cardsWaiting || empireBadge),
         NavItem("markets", "Markets", AbtIcons.Markets),
         NavItem("estates", "Estates", AbtIcons.Estates, badge = decisions),
-        NavItem("more", "More", AbtIcons.Menu, badge = dynastyBadge || auctionLive),
+        // Goals: every reward in one tab (daily reward, chapter, today, this week, season, achievements).
+        NavItem("goals", "Goals", AbtIcons.Trophy, badge = dynastyBadge || claimable),
+        NavItem("more", "More", AbtIcons.Menu, badge = auctionLive),
     )
     // The tutorial advances from whichever tab the player is on.
     e?.let { com.arnavgames.tycoon.ui.empire.OnboardingDriver(it, vm) }
     val switchTo: (String) -> Unit = { target ->
         when {
             target == "collection" || target == "dynasty" -> { morePage = target; chosenTab = "more" }
+            target == "goals" || target == "missions" -> chosenTab = "goals"
             target.startsWith("businesses:") -> { businessFocus = target.removePrefix("businesses:"); chosenTab = "empire" }
             target == "businesses" -> { businessFocus = "businesses"; chosenTab = "empire" }
             else -> chosenTab = target
@@ -109,6 +114,7 @@ fun MainShell(
                 )
                 "markets" -> MarketsScreen(vm, onOpenInstrument = onOpenInstrument, onOpenNews = onOpenNews, onOpenTiming = onOpenTiming)
                 "estates" -> com.arnavgames.tycoon.ui.estates.EstatesScreen(vm, onOpenCity = onOpenCity, onOpenProperty = onOpenProperty)
+                "goals" -> com.arnavgames.tycoon.ui.dynasty.GoalsScreen(vm, onOpenAchievements = onOpenAchievements, onOpenDynasty = { morePage = "dynasty"; chosenTab = "more" })
                 else -> when (page) {
                     "collection" -> com.arnavgames.tycoon.ui.collection.CollectionScreen(vm, onOpenCategory = onOpenLuxuryCategory, onOpenAuction = onOpenAuction, onBack = { morePage = "hub" })
                     "dynasty" -> DynastyScreen(
@@ -119,6 +125,8 @@ fun MainShell(
                         vm, onOpenCollection = { morePage = "collection" }, onOpenDynasty = { morePage = "dynasty" },
                         onOpenStore = onOpenStore, onOpenAchievements = onOpenAchievements, onOpenSocial = onOpenSocial, onOpenAccount = onOpenAccount,
                         onOpenSettings = onOpenSettings, onOpenCredits = onOpenCredits,
+                        onOpenDesk = onOpenDesk, onOpenFortune = onOpenFortune, onOpenFinance = onOpenFinance,
+                        onOpenSlots = onOpenSlots, onOpenCheats = onOpenCheats,
                     )
                 }
             }

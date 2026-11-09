@@ -1,0 +1,1635 @@
+{
+  "note": "Hand-painted-style illustrations generated with Figma AI (gpt-image-2.5-flare) from prompts written for this game. Invented scenes: no real logos, brands or identifiable people.",
+  "items": [
+    {
+      "id": "airline_ash_cloud",
+      "title": "An editorial illustration of a business decision, 'Ash cloud': A volcano's ash cloud closes airspace over your hub",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "airline_new_route",
+      "title": "An editorial illustration of a business decision, 'New route': a business could launch a nonstop route to Sydney",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "airline_strike",
+      "title": "An editorial illustration of a business decision, 'Pilots' strike': Pilots at a business vote to strike",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "bank_bad_loans",
+      "title": "An editorial illustration of a business decision, 'Bad loans': A borrower of a business has defaulted",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "bank_fintech_partner",
+      "title": "An editorial illustration of a business decision, 'Fintech partnership': A payments start-up wants to plug into a business",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "bank_regulator",
+      "title": "An editorial illustration of a business decision, 'Regulator review': The regulator asks a business to hold more capital",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "construction_crane",
+      "title": "An editorial illustration of a business decision, 'Crane collapse': A crane at a a business site has toppled. Nobody was hurt",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "construction_green",
+      "title": "An editorial illustration of a business decision, 'Green building': Clients want low-carbon buildings from a business",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "construction_tender",
+      "title": "An editorial illustration of a business decision, 'City tender': The city is tendering a new stadium. a business could bid",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "energy_grid_deal",
+      "title": "An editorial illustration of a business decision, 'Grid contract': The national grid wants a 10-year supply contract from a business",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "energy_pipeline_leak",
+      "title": "An editorial illustration of a business decision, 'Pipeline leak': A small leak at a business. Cleaning it fast is expensive",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "energy_solar",
+      "title": "An editorial illustration of a business decision, 'Solar expansion': You could cover a business's spare land with solar panels",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "factory_recall",
+      "title": "An editorial illustration of a business decision, 'Product recall': A batch from a business has a defect",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "factory_robots",
+      "title": "An editorial illustration of a business decision, 'Robot salesman': A robotics firm offers to automate a line at a business",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "factory_union",
+      "title": "An editorial illustration of a business decision, 'The union wants raises': Workers at a business demand a 10% raise",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "farm_drought",
+      "title": "An editorial illustration of a business decision, 'Drought warning': Forecasters warn of a dry month across your a business",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "farm_locusts",
+      "title": "An editorial illustration of a business decision, 'Locust swarm': A locust swarm is heading for your a business",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "farm_organic",
+      "title": "An editorial illustration of a business decision, 'Go organic?': A premium grocer will pay more for organic produce from a business",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "fashion_copycat",
+      "title": "An editorial illustration of a business decision, 'Copycats': Fast-fashion chains copied a business's collection within a week",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "fashion_muse",
+      "title": "An editorial illustration of a business decision, 'A new muse': A breakout model wants to front a business's new campaign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "fashion_show",
+      "title": "An editorial illustration of a business decision, 'Show in Paris?': Fashion week in Paris has a late slot for a business",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "gen_award",
+      "title": "An editorial illustration of a business decision, 'Industry award': a business is shortlisted for an industry award. The gala ticket isn't cheap",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "gen_bad_press",
+      "title": "An editorial illustration of a business decision, 'Bad press': A newspaper runs an unflattering story about a business",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "gen_burnout",
+      "title": "An editorial illustration of a business decision, 'Staff burnout': Overtime at a business is burning out your best people",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "gen_charity_run",
+      "title": "An editorial illustration of a business decision, 'Charity run': Staff at a business want to sponsor a charity run",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "gen_city_fair",
+      "title": "An editorial illustration of a business decision, 'Trade fair': A trade fair could showcase a business",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "gen_competitor_bust",
+      "title": "An editorial illustration of a business decision, 'Competitor in trouble': A competitor of a business is close to bankruptcy",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "gen_competitor_merger",
+      "title": "An editorial illustration of a business decision, 'Rivals merge': Two competitors of a business are merging",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "gen_consultant",
+      "title": "An editorial illustration of a business decision, 'Management consultants': A consulting firm promises to make a business 20% more efficient",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "gen_cyber_drill",
+      "title": "An editorial illustration of a business decision, 'Cyber drill': IT wants to run a cyber-attack drill at a business",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "gen_data_sale",
+      "title": "An editorial illustration of a business decision, 'Sell customer data?': A broker wants to buy a business's customer data",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "gen_eco_audit",
+      "title": "An editorial illustration of a business decision, 'Eco audit': Investors ask for an environmental audit of a business",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "gen_expansion_loan",
+      "title": "An editorial illustration of a business decision, 'Bank offer': A bank offers a business a cheap loan to open a new branch",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "gen_flood",
+      "title": "An editorial illustration of a business decision, 'Burst pipe': A burst pipe floods part of a business",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "gen_four_day_week",
+      "title": "An editorial illustration of a business decision, 'Four-day week': Staff at a business propose a four-day week",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "gen_heat",
+      "title": "An editorial illustration of a business decision, 'Air-conditioning fails': The air conditioning at a business fails during a heatwave",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "gen_holiday_party",
+      "title": "An editorial illustration of a business decision, 'Holiday party': It's time for a business's holiday party",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "gen_influencer",
+      "title": "An editorial illustration of a business decision, 'Influencer deal': An influencer offers to promote a business",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "gen_insurance_review",
+      "title": "An editorial illustration of a business decision, 'Insurance review': Your broker says a business is underinsured",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "gen_intern_idea",
+      "title": "An editorial illustration of a business decision, 'The intern's idea': An intern at a business has a bold idea",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "gen_lawsuit",
+      "title": "An editorial illustration of a business decision, 'A lawsuit': A former customer sues a business",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "gen_loyalty",
+      "title": "An editorial illustration of a business decision, 'Loyalty programme': Marketing pitches a loyalty programme for a business",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "gen_mentor",
+      "title": "An editorial illustration of a business decision, 'The Chairman calls': The Chairman suggests a business needs a sharper strategy",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "gen_mergers_bankers",
+      "title": "An editorial illustration of a business decision, 'Bankers' pitch': Investment bankers pitch a bolt-on acquisition for a business",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "gen_mystery_shopper",
+      "title": "An editorial illustration of a business decision, 'Mystery shopper': A mystery-shopper report on a business is grim",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "gen_night_shift",
+      "title": "An editorial illustration of a business decision, 'Night shift': Adding a night shift would raise a business's output",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "gen_old_equipment",
+      "title": "An editorial illustration of a business decision, 'Old equipment': Equipment at a business is wearing out",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "gen_patent_troll",
+      "title": "An editorial illustration of a business decision, 'Patent troll': A patent troll claims a business infringes a vague patent",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "gen_poach_exec",
+      "title": "An editorial illustration of a business decision, 'Poach an executive': A star executive from a competitor would join a business",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "gen_price_war",
+      "title": "An editorial illustration of a business decision, 'Price war': A rival slashes prices against a business",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "gen_quality_award",
+      "title": "An editorial illustration of a business decision, 'Quality certification': a business could earn a quality certification",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "gen_rebrand",
+      "title": "An editorial illustration of a business decision, 'Rebrand': Marketing wants to rebrand a business",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "gen_relocate_hq",
+      "title": "An editorial illustration of a business decision, 'Relocate the office': A cheaper office for a business has come up across town",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "gen_software_upgrade",
+      "title": "An editorial illustration of a business decision, 'Software upgrade': a business's systems are ten years old",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "gen_supplier_bankrupt",
+      "title": "An editorial illustration of a business decision, 'Supplier goes bust': A key supplier of a business has gone bankrupt",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "gen_supply_deal",
+      "title": "An editorial illustration of a business decision, 'Bulk supply deal': A supplier offers a business a bulk discount for paying upfront",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "gen_tax_advisor",
+      "title": "An editorial illustration of a business decision, 'Tax advisor': An advisor says a business could restructure to save tax",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "gen_union_drive",
+      "title": "An editorial illustration of a business decision, 'Union drive': Workers at a business want to unionise",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "gen_viral_video",
+      "title": "A small shop suddenly mobbed by excited customers holding up phones whose screens are plain glowing rectangles, confetti in the air, no icons or symbols anywhere",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "gen_volunteer",
+      "title": "An editorial illustration of a business decision, 'Volunteer day': Staff at a business want a paid volunteer day",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "gen_wellness",
+      "title": "An editorial illustration of a business decision, 'Wellness programme': HR wants a wellness programme at a business",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "hotel_bad_reviews",
+      "title": "An editorial illustration of a business decision, 'Bad reviews': A string of one-star reviews hits a business",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "hotel_celebrity_wedding",
+      "title": "An editorial illustration of a business decision, 'Celebrity wedding': A pop star wants to rent all of a business for a wedding",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "hotel_overbooking",
+      "title": "An editorial illustration of a business decision, 'Overbooked': a business has sold 120 rooms for 100 beds this weekend",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "logistics_big_contract",
+      "title": "An editorial illustration of a business decision, 'A big contract': A supermarket chain wants a business to run its deliveries. They want a discount",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "logistics_driver_shortage",
+      "title": "An editorial illustration of a business decision, 'Driver shortage': Half your drivers have been poached by a rival depot",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "logistics_fuel_hedge",
+      "title": "An editorial illustration of a business decision, 'Fuel hedge offer': A broker offers to lock in today's fuel price for a business",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "media_scoop",
+      "title": "An editorial illustration of a business decision, 'The scoop': Reporters at a business have a huge exclusive, but it's legally risky",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "media_star_host",
+      "title": "An editorial illustration of a business decision, 'Star host wants more': a business's star host wants double pay",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "media_streaming",
+      "title": "An editorial illustration of a business decision, 'Launch a streamer?': Should a business launch its own streaming service?",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "mining_community",
+      "title": "An editorial illustration of a business decision, 'The town wants a school': The town next to a business asks you to fund a new school",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "mining_rich_seam",
+      "title": "An editorial illustration of a business decision, 'A rich seam': Geologists at a business have found a rich seam, deep down",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "mining_safety",
+      "title": "An editorial illustration of a business decision, 'Safety inspection': Inspectors are coming to a business next week",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "nemesis_2",
+      "title": "Your business nemesis: a rival tycoon's dark glass tower casting a long shadow over your sunlit city at dusk, small invented figures seen from a distance or from behind, nobody recognisable and no famous lookalikes",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "nemesis_3",
+      "title": "Your business nemesis: a giant chessboard on a rooftop terrace where two business empires face off, no players visible, small invented figures seen from a distance or from behind, nobody recognisable and no famous lookalikes",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "nemesis_4",
+      "title": "Your business nemesis: two rival skyscrapers racing upward side by side, cranes on top of each, small invented figures seen from a distance or from behind, nobody recognisable and no famous lookalikes",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "nemesis_5",
+      "title": "Your business nemesis: a boardroom table seen from above, one empty chair at its head, papers scattered, small invented figures seen from a distance or from behind, nobody recognisable and no famous lookalikes",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "nemesis_6",
+      "title": "Your business nemesis: a storm rolling over a harbour where a rival's fleet of ships blocks yours, small invented figures seen from a distance or from behind, nobody recognisable and no famous lookalikes",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "nemesis_7",
+      "title": "Your business nemesis: a grand auction hall where two paddles rise at once, bidders seen only as silhouettes, small invented figures seen from a distance or from behind, nobody recognisable and no famous lookalikes",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "nemesis_8",
+      "title": "Your business nemesis: a long corridor of portraits of a rival dynasty, frames empty, sunlight across the floor, small invented figures seen from a distance or from behind, nobody recognisable and no famous lookalikes",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "p_art_advisor",
+      "title": "An editorial illustration of a business decision, 'Art advisor': An art advisor says the next auction has a sleeper hit",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "p_auditor_offer",
+      "title": "An editorial illustration of a business decision, 'Accounting firm': A top accounting firm offers to tidy up your books before tax time",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "p_book_deal",
+      "title": "An editorial illustration of a business decision, 'Book deal': A publisher wants your memoir",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "p_charity_gala",
+      "title": "An editorial illustration of a business decision, 'Charity gala': A charity gala wants you as its guest of honour",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "p_crypto_pitch",
+      "title": "A slick founder pitching an invented digital token to investors in a glass penthouse, the token shown only as a plain smooth gold disc with no marks at all, investors seen from behind",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "p_documentary",
+      "title": "An editorial illustration of a business decision, 'Documentary': A streaming service wants to film a documentary about your rise",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "p_family_office",
+      "title": "An editorial illustration of a business decision, 'Family office': Your advisors suggest a family office to manage your wealth",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "p_foundation",
+      "title": "An editorial illustration of a business decision, 'Start a foundation': Your advisors suggest starting a family foundation",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "p_health_scare",
+      "title": "An editorial illustration of a business decision, 'Doctor's orders': Your doctor says you need a week off",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "p_late_payment",
+      "title": "An editorial illustration of a business decision, 'Late payment': A big customer pays three months late",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "p_magazine_cover",
+      "title": "An editorial illustration of a business decision, 'Magazine cover': A business magazine wants you on its cover",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "p_old_friend",
+      "title": "An editorial illustration of a business decision, 'An old friend': A friend from your kiosk days needs a loan",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "p_private_bank",
+      "title": "An editorial illustration of a business decision, 'Private bank': A private bank offers you a line of credit",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "p_sabbatical",
+      "title": "An editorial illustration of a business decision, 'Sabbatical': Your top manager asks for a sabbatical",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "p_ted_talk",
+      "title": "An editorial illustration of a business decision, 'Big talk': You are invited to give a famous talk",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "p_yacht_party",
+      "title": "An editorial illustration of a business decision, 'Yacht party': A rival billionaire invites you to a yacht party in Monaco",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "pharma_patent",
+      "title": "An editorial illustration of a business decision, 'Patent cliff': a business's best-selling patent expires soon",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "pharma_price",
+      "title": "An editorial illustration of a business decision, 'Price backlash': Politicians attack a business's prices",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "pharma_trial",
+      "title": "An editorial illustration of a business decision, 'Phase III trial': a business's new drug is entering its final trial",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "r_acquisition_lowball",
+      "title": "An editorial illustration of a business moment between two rival companies, 'A cheeky offer', small invented figures seen from a distance or from behind, nobody recognisable and no famous lookalikes",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "r_acquisition_offer",
+      "title": "An editorial illustration of a business moment between two rival companies, 'Acquisition offer', small invented figures seen from a distance or from behind, nobody recognisable and no famous lookalikes",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "r_auction_truce",
+      "title": "An editorial illustration of a business moment between two rival companies, 'Auction truce', small invented figures seen from a distance or from behind, nobody recognisable and no famous lookalikes",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "r_bidding_war",
+      "title": "An editorial illustration of a business moment between two rival companies, 'Bidding war', small invented figures seen from a distance or from behind, nobody recognisable and no famous lookalikes",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "r_board_seat",
+      "title": "An editorial illustration of a business moment between two rival companies, 'Board seat', small invented figures seen from a distance or from behind, nobody recognisable and no famous lookalikes",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "r_charity_challenge",
+      "title": "An editorial illustration of a business moment between two rival companies, 'Charity challenge', small invented figures seen from a distance or from behind, nobody recognisable and no famous lookalikes",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "r_dinner",
+      "title": "An editorial illustration of a business moment between two rival companies, 'Dinner invitation', small invented figures seen from a distance or from behind, nobody recognisable and no famous lookalikes",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "r_golf",
+      "title": "An editorial illustration of a business moment between two rival companies, 'Golf weekend', small invented figures seen from a distance or from behind, nobody recognisable and no famous lookalikes",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "r_joint_venture",
+      "title": "An editorial illustration of a business moment between two rival companies, 'Joint venture', small invented figures seen from a distance or from behind, nobody recognisable and no famous lookalikes",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "r_joint_venture_tech",
+      "title": "An editorial illustration of a business moment between two rival companies, 'Shared research', small invented figures seen from a distance or from behind, nobody recognisable and no famous lookalikes",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "r_lawsuit_threat",
+      "title": "An editorial illustration of a business moment between two rival companies, 'Legal threat', small invented figures seen from a distance or from behind, nobody recognisable and no famous lookalikes",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "r_mentor_rival",
+      "title": "An editorial illustration of a business moment between two rival companies, 'Unexpected advice', small invented figures seen from a distance or from behind, nobody recognisable and no famous lookalikes",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "r_partnership_city",
+      "title": "An editorial illustration of a business moment between two rival companies, 'City partnership', small invented figures seen from a distance or from behind, nobody recognisable and no famous lookalikes",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "r_poach",
+      "title": "An editorial illustration of a business moment between two rival companies, 'Poaching war', small invented figures seen from a distance or from behind, nobody recognisable and no famous lookalikes",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "r_public_feud",
+      "title": "An editorial illustration of a business moment between two rival companies, 'Public feud', small invented figures seen from a distance or from behind, nobody recognisable and no famous lookalikes",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "r_rescue",
+      "title": "An editorial illustration of a business moment between two rival companies, 'A rival in trouble', small invented figures seen from a distance or from behind, nobody recognisable and no famous lookalikes",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "r_sector_alliance",
+      "title": "An editorial illustration of a business moment between two rival companies, 'Industry alliance', small invented figures seen from a distance or from behind, nobody recognisable and no famous lookalikes",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "r_spy",
+      "title": "An editorial illustration of a business moment between two rival companies, 'Industrial espionage', small invented figures seen from a distance or from behind, nobody recognisable and no famous lookalikes",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "r_takeover",
+      "title": "An editorial illustration of a business moment between two rival companies, 'Hostile takeover!', small invented figures seen from a distance or from behind, nobody recognisable and no famous lookalikes",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "r_takeover_raid",
+      "title": "An editorial illustration of a business moment between two rival companies, 'Corporate raid', small invented figures seen from a distance or from behind, nobody recognisable and no famous lookalikes",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "r_tip",
+      "title": "An editorial illustration of a business moment between two rival companies, 'A tip from a friend', small invented figures seen from a distance or from behind, nobody recognisable and no famous lookalikes",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "restaurant_critic",
+      "title": "An editorial illustration of a business decision, 'The critic is coming': A famous food critic has booked a table at a business tonight",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "restaurant_delivery_app",
+      "title": "A restaurant owner handing a warm takeaway bag to a courier on a bicycle at the door at dusk, the bag and clothes completely plain with no logos, pictograms or icons",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "restaurant_supplier",
+      "title": "An editorial illustration of a business decision, 'Supplier price hike': Your produce supplier raises prices 20%",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "retail_landlord",
+      "title": "An editorial illustration of a business decision, 'Landlord wants more': The landlord of your flagship a business site wants a rent rise",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "retail_shoplifting",
+      "title": "An editorial illustration of a business decision, 'Shoplifting spree': Stock keeps vanishing from a business. Security firms are circling",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "retail_viral_product",
+      "title": "A small shop swamped by an excited crowd after one of its gadgets became a hit, people carrying boxes out, phones held up with plain glowing screens, no app interfaces, hearts or icons anywhere",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "space_debris",
+      "title": "An editorial illustration of a business decision, 'Space debris': Debris threatens a a business satellite",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "space_launch_window",
+      "title": "An editorial illustration of a business decision, 'Launch window': A perfect launch window opens for a business. The weather is marginal",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "space_tourism",
+      "title": "An editorial illustration of a business decision, 'Space tourists': Billionaires want seats on a business's next flight",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "sports_derby",
+      "title": "An editorial illustration of a business decision, 'Derby day': a business plays its biggest rival this weekend",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "sports_stadium",
+      "title": "An editorial illustration of a business decision, 'New stadium': a business has outgrown its stadium",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "sports_star",
+      "title": "An editorial illustration of a business decision, 'A superstar is available': The world's best striker could join a business",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "tech_acquihire",
+      "title": "An editorial illustration of a business decision, 'Acqui-hire': A brilliant ten-person start-up could join a business",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "tech_hackers",
+      "title": "An editorial illustration of a business decision, 'Ransomware': Hackers have locked a business's servers and want a ransom",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "tech_open_source",
+      "title": "An editorial illustration of a business decision, 'Open-source it?': Engineers at a business want to open-source your core library",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "telecom_outage",
+      "title": "An editorial illustration of a business decision, 'Network outage': A nationwide outage hits a business",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "telecom_spectrum",
+      "title": "An editorial illustration of a business decision, 'Spectrum auction': Regulators are auctioning 6G spectrum",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "telecom_towers",
+      "title": "An editorial illustration of a business decision, 'Sell the towers?': An infrastructure fund wants to buy a business's towers",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "w_bank_offer",
+      "title": "An editorial illustration of a business decision, 'Rating agency visit': A rating agency wants to review your books",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "w_bond_offer",
+      "title": "An editorial illustration of a business decision, 'Government bonds': The treasury offers you a special bond at a good rate",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "w_carbon_tax",
+      "title": "An editorial illustration of a business decision, 'Carbon tax': A carbon tax is coming next year",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "w_currency_swing",
+      "title": "A giant old-fashioned balance scale on a harbour quay, gold bars on one pan and silver bars on the other, traders watching it tip, no currency signs or symbols anywhere",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "w_disaster_relief",
+      "title": "An editorial illustration of a business decision, 'Disaster relief': An earthquake abroad leaves thousands homeless",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "w_election",
+      "title": "An editorial illustration of a business decision, 'Election year': A tight election makes markets nervous",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "w_food_inflation",
+      "title": "An editorial illustration of a business decision, 'Food inflation': Food prices are up 12% this year",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "w_global_summit",
+      "title": "An editorial illustration of a business decision, 'Global summit': You are invited to speak at a global economic summit",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "w_green_bond",
+      "title": "An editorial illustration of a business decision, 'Green bond': Investors want to buy a green bond from your holding",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "w_heatwave",
+      "title": "An editorial illustration of a business decision, 'Heatwave': A brutal heatwave slows everything down",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "w_infrastructure",
+      "title": "An editorial illustration of a business decision, 'Infrastructure bill': A huge infrastructure bill passes",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "w_lottery_town",
+      "title": "An editorial illustration of a business decision, 'Town lottery': A town names a lottery after your company",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "w_market_rally",
+      "title": "An editorial illustration of a business decision, 'Market rally': Stock markets hit record highs. Your bankers suggest raising capital",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "w_minimum_wage",
+      "title": "An editorial illustration of a business decision, 'Minimum wage rise': The government raises the minimum wage",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "w_museum_wing",
+      "title": "An editorial illustration of a business decision, 'Museum wing': The city museum wants a new wing with your name on it",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "w_port_strike",
+      "title": "An editorial illustration of a business decision, 'Port strike': Dock workers strike at the world's busiest port",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "w_recession_plan",
+      "title": "An editorial illustration of a business decision, 'Recession plan': Economists warn of a slowdown",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "w_regulation_wave",
+      "title": "An editorial illustration of a business decision, 'New regulations': A wave of new regulations lands on business",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "w_research_grant",
+      "title": "An editorial illustration of a business decision, 'Research grant': The government matches private R&D spending this year",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "w_shipping_canal",
+      "title": "An editorial illustration of a business decision, 'Canal blocked': A container ship is stuck in a major canal",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "w_strike_wave",
+      "title": "An editorial illustration of a business decision, 'Strike wave': Strikes spread across the country",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "w_talent_visa",
+      "title": "An editorial illustration of a business decision, 'Talent visas': A new visa scheme makes hiring engineers abroad easier",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "w_tech_conference",
+      "title": "An editorial illustration of a business decision, 'Tech conference': The world's biggest tech conference is in town",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "w_tourism_boom",
+      "title": "An editorial illustration of a business decision, 'Tourism boom': A weak currency brings a flood of tourists",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "w_university",
+      "title": "An editorial illustration of a business decision, 'University chair': A university offers to name a chair after you",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    }
+  ]
+}

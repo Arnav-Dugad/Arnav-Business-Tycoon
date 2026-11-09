@@ -69,7 +69,11 @@ fun InstrumentScreen(vm: GameViewModel, instrumentId: String, onBack: () -> Unit
     val watch by vm.watchlist.collectAsStateWithLifecycle()
 
     GlassScaffold(title = ui.name, onBack = onBack) {
-        ui.art?.let { art -> item(key = "art") { com.arnavgames.tycoon.ui.common.Illustration(art, Modifier.fillMaxWidth().height(120.dp).clip(com.arnavgames.tycoon.designsystem.theme.AurumShapes.large)) } }
+        // The instrument's own painting, else (stocks) its sector's business painting.
+        item(key = "art") {
+            val m = Modifier.fillMaxWidth().height(150.dp).clip(com.arnavgames.tycoon.designsystem.theme.AurumShapes.large)
+            com.arnavgames.tycoon.ui.common.ArtOr(com.arnavgames.tycoon.ui.common.Art.instrument(ui.assetClass, ui.id), m) { ui.art?.let { com.arnavgames.tycoon.ui.common.Illustration(it, m) } }
+        }
         item(key = "hero") {
             AurumCard(Modifier.fillMaxWidth()) {
                 Row(verticalAlignment = Alignment.CenterVertically) {

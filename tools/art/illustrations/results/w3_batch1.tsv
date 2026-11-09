@@ -1,0 +1,55 @@
+sector	consumer	13:2	8d5b1113-1164-46b7-bdf7-a6654e5ab951	a panorama of the consumer & retail industry: shops, brands and the people who buy them
+sector	food	13:16	c33b82d7-0786-4380-bc0f-4715cf559e1f	a panorama of the food & agriculture industry: from field to fork
+sector	industrials	13:23	355384f7-c145-42b1-ad25-1eb1d3e901c0	a panorama of the industrials industry: machines, parts and the plants that make them
+sector	energy	13:28	f87b8d4f-f4fe-4b4d-aed9-864c68cc5bab	a panorama of the energy industry: oil, gas, power and the grid
+sector	materials	13:34	57988504-07d7-4449-a955-a604cd823d69	a panorama of the materials & mining industry: metals, minerals and everything dug from the ground
+sector	technology	13:49	c6d7448a-c453-4516-a93c-ba275a425f82	a panorama of the technology industry: software, chips and devices
+sector	media	13:51	444392d6-7d70-472d-b411-c94f22274998	a panorama of the media & telecom industry: networks, studios and the screens in between
+sector	healthcare	13:56	2edf5371-8d7b-4741-bddd-447414dcfbd4	a panorama of the healthcare industry: medicines, devices and care
+sector	property	13:63	0b0aa903-b06a-4eea-8ef4-b52664b99203	a panorama of the property & construction industry: builders, developers and landlords
+sector	financials	13:77	7a0f90fe-4c5b-487c-9e5b-5aa56bd48c5f	a panorama of the financials industry: banks, insurers and asset managers
+sector	transport	13:82	39874f20-63b5-4ce3-b75a-1f0ab02acbb8	a panorama of the transport & travel industry: freight, flights and places to stay
+sector	frontier	13:88	a3248e83-ec24-4567-8998-89f93ffc0023	a panorama of the frontier industry: rockets, robots and long bets
+stock	wlmr	13:93	e1a0dba9-0c27-4be6-b4e0-9956ad499ecb	a shops-and-brands company that is steady and long-established and known as a serial acquirer: its headquarters building seen from the street
+stock	cstg	13:97	4c802296-fc2f-490d-85cf-08059db4923e	a shops-and-brands company that is steady and long-established and known as a dividend aristocrat: its busiest workplace in full swing
+stock	trgt	13:115	64207130-2b3a-4820-a3a4-df4b3ec13c73	a shops-and-brands company that is steady and long-established and known as a value pick: its flagship product being made
+stock	amzm	14:4	b60600b4-6f46-41b7-9017-c52a9786f0d1	a shops-and-brands company that is solid and well known and known as a cyclical: its people at work, seen from a distance
+stock	niky	14:8	acb463a0-067e-4f61-9ae6-618ceb6818c3	a shops-and-brands company that is solid and well known and known as a cyclical: its offices with a sweeping city view
+stock	adsh	14:13	2466105c-4e2a-4cb1-bb8d-62a186f44bd6	a shops-and-brands company that is solid and well known and known as a high flyer: its warehouse and loading bays at dawn
+stock	ikyh	14:25	ba23a3fb-9bdc-43cc-ab81-661f8e12fa31	a shops-and-brands company that is solid and well known and known as a high flyer: its newest site under construction
+stock	zrfs	14:38	ff335c51-c3ac-4514-9c44-326800d36ee6	a shops-and-brands company that is fast-growing and ambitious and known as a dividend aristocrat: its showroom with customers browsing
+stock	sphr	14:43	9e96a7d8-0f97-48be-8ae4-bf2fb49ca2c7	a shops-and-brands company that is fast-growing and ambitious and known as a founder-led: its headquarters building seen from the street
+stock	bstb	14:56	1f6d5abc-ad25-43c8-8a58-f4b2e0f8113c	a shops-and-brands company that is young, daring and unproven and known as a takeover target: its busiest workplace in full swing
+stock	clkl	14:57	b7e214e9-cb52-4c59-a97d-c625fd289df6	a food and drink company that is steady and long-established and known as a serial acquirer: its flagship product being made
+stock	nstl	14:66	88876b20-67f8-4e04-9434-35f5f41983f4	a food and drink company that is steady and long-established and known as a value pick: its people at work, seen from a distance
+stock	peps	14:78	44c1a353-43de-4eb7-a9e2-168bb0da9a7a	a food and drink company that is steady and long-established and known as a high flyer: its offices with a sweeping city view
+stock	mcdw	14:81	00bc827f-5958-44ed-98c8-09c65fe62e7e	a food and drink company that is steady and long-established and known as a founder-led: its warehouse and loading bays at dawn
+stock	krfy	14:86	98c191b9-fa6b-472a-b918-1e1fc1935bb3	a food and drink company that is steady and long-established and known as a innovator: its newest site under construction
+stock	dnwn	14:96	e07d7d22-4950-4310-9539-51ddaaebe158	a food and drink company that is solid and well known and known as a steady compounder: its showroom with customers browsing
+stock	hnzl	14:103	5ade7067-d217-4163-a0e7-0ff7ae148ad2	a food and drink company that is solid and well known and known as a quiet giant: its headquarters building seen from the street
+stock	brgr	14:118	1d37e68f-936d-485f-80e1-bcfdb39665f3	a food and drink company that is solid and well known and known as a value pick: its busiest workplace in full swing
+stock	strb	14:121	d929919c-f846-480d-94c4-ea40198e62a1	a food and drink company that is solid and well known and known as a founder-led: its flagship product being made
+stock	sbwv	14:126	8b00aea2-2b74-43cd-8eb2-bf9d674c611d	a food and drink company that is fast-growing and ambitious and known as a high flyer: its people at work, seen from a distance
+stock	gnrl	14:129	9719fe47-ff16-4574-bc61-cf7a0a891b9c	an engineering and machinery company that is steady and long-established and known as a turnaround story: its offices with a sweeping city view
+stock	smns	14:134	e9998c89-9537-4fd6-85df-399dc69d2a45	an engineering and machinery company that is steady and long-established and known as a quiet giant: its warehouse and loading bays at dawn
+stock	hnyw	14:148	b8dc88ca-a485-4bdd-a0e7-8ba54106435f	an engineering and machinery company that is solid and well known and known as a serial acquirer: its newest site under construction
+stock	ncmp	14:158	ea074f70-9b9a-46b5-9720-32059a172e86	an engineering and machinery company that is solid and well known and known as a serial acquirer: its showroom with customers browsing
+stock	ktrp	14:164	238d7d78-8541-4e9d-aa53-1013ae7e0746	an engineering and machinery company that is solid and well known and known as a meme darling: its headquarters building seen from the street
+stock	derc	14:169	0225ccf7-ab70-4c02-860d-8349db61bd78	an engineering and machinery company that is solid and well known and known as a value pick: its busiest workplace in full swing
+stock	bshn	14:173	bb61584a-fd85-413e-809a-03ab7c2364c1	an engineering and machinery company that is solid and well known and known as a takeover target: its flagship product being made
+stock	htch	14:188	e1c7e651-ee55-4136-a4fa-70e0d0dafebe	an engineering and machinery company that is fast-growing and ambitious and known as a innovator: its people at work, seen from a distance
+stock	kmts	14:192	b7f7975b-31c2-4973-b293-37443f68f67b	an engineering and machinery company that is fast-growing and ambitious and known as a meme darling: its offices with a sweeping city view
+stock	abrb	14:196	f1957fd2-7134-4e78-adda-7ac313814045	an engineering and machinery company that is young, daring and unproven and known as a innovator: its warehouse and loading bays at dawn
+stock	extr	14:201	ed757d69-5ad6-4845-ba2f-c3af925837ab	an energy company that is steady and long-established and known as a founder-led: its newest site under construction
+stock	shlf	14:207	4682c036-3394-4a01-a412-00658ca87755	an energy company that is steady and long-established and known as a serial acquirer: its showroom with customers browsing
+stock	chvr	14:219	45ba4ab2-c2fd-4e71-9e47-55d8210c627a	an energy company that is steady and long-established and known as a turnaround story: its headquarters building seen from the street
+stock	armc	14:226	0ff267e0-5385-4e4e-923a-d650a0f46cd6	an energy company that is solid and well known and known as a cyclical: its busiest workplace in full swing
+stock	brts	14:231	404b66b0-ed4c-4626-8bd6-75f8a9da0f7f	an energy company that is solid and well known and known as a founder-led: its flagship product being made
+stock	tlnr	14:236	e38883bd-b2e0-4e4e-a82c-d6114d1f4e54	an energy company that is solid and well known and known as a serial acquirer: its people at work, seen from a distance
+stock	dknr	15:3	52abfda1-e069-4aa3-989b-50081fc5851c	an energy company that is solid and well known and known as a turnaround story: its offices with a sweeping city view
+stock	nxrp	15:18	0b8b7bec-bf3e-4699-a1b5-e8a37b1214bd	an energy company that is fast-growing and ambitious and known as a high flyer: its warehouse and loading bays at dawn
+stock	ibrd	15:24	33def714-29ef-4964-833b-c91fcfa8495c	an energy company that is fast-growing and ambitious and known as a steady compounder: its newest site under construction
+stock	ptrb	15:35	c7f2e5f7-c012-45c2-9d3b-d03d63709685	an energy company that is young, daring and unproven and known as a innovator: its showroom with customers browsing
+stock	bhbl	15:47	dba28970-61cd-45a4-bcc1-3713b7ed890a	a mining and materials company that is solid and well known and known as a value pick: its busiest workplace in full swing
+stock	glnk	15:57	0f8fb97f-9e26-4e13-8386-ab224ee3c97a	a mining and materials company that is solid and well known and known as a innovator: its flagship product being made
+stock	rtnt	15:69	9b4f4d86-cb14-49f8-b87c-2af28ffc6574	a mining and materials company that is steady and long-established and known as a dividend aristocrat: its headquarters building seen from the street

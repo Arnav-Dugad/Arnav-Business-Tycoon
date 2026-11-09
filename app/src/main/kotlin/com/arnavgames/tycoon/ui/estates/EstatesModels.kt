@@ -15,7 +15,7 @@ data class PropertyRowUi(
 )
 
 /** A tenant decision; each choice says in plain words what it costs or changes. */
-data class DecisionUi(val id: Long, val propertyId: Long, val text: String, val choices: List<String>, val details: List<String> = emptyList())
+data class DecisionUi(val id: Long, val propertyId: Long, val text: String, val choices: List<String>, val details: List<String> = emptyList(), val kind: String = "")
 
 data class EstatesUi(
     val unlocked: Boolean,
@@ -124,7 +124,7 @@ class EstatesMapper(private val engine: GameEngine) {
                 if (isEmpty()) add("Rent goes back to normal")
             }.joinToString(" · ")
         }
-        DecisionUi(ev.id, ev.propertyId, def.text.replace("{type}", title(p).lowercase()).replace("{district}", c.districtById.getValue(p.district).name), def.choices.map { it.label }, details)
+        DecisionUi(ev.id, ev.propertyId, def.text.replace("{type}", title(p).lowercase()).replace("{district}", c.districtById.getValue(p.district).name), def.choices.map { it.label }, details, kind = def.id)
     }
 
     private fun indexSeries(s: GameState, districtId: String, hours: Int, points: Int): List<Float> =

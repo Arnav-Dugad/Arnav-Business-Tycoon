@@ -87,7 +87,7 @@ class CloudFlowTest {
         waitForMidgame()
         rule.onNodeWithContentDescription("More", substring = true).performClick()
         rule.waitForIdle()
-        waitForText("Account & cloud save")
+        waitForText("Achievements")
         rule.onAllNodes(hasScrollAction()).onFirst().performScrollToNode(hasText("Account & cloud save"))
         tap("Account & cloud save")
         waitForText("Test server")

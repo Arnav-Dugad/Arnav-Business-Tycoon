@@ -23,6 +23,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.foundation.layout.width
+import com.arnavgames.tycoon.designsystem.components.AurumChip
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -46,8 +48,11 @@ import com.arnavgames.tycoon.designsystem.theme.glassSource
 import com.arnavgames.tycoon.ui.GameViewModel
 
 /**
- * The More tab: Collection and your Dynasty as the two big doors, then the Store, achievements, friends, account,
- * settings and credits. Badges show where something is waiting.
+ * The More tab, rebuilt around "where do I go next?":
+ * - you at the top (avatar, name, net worth, generation);
+ * - every place in the game as a painted door in one grid, each with a live line and a badge when something
+ *   waits (Collection, Dynasty, Store, Achievements, Desk, Fortune List, Finance, Friends);
+ * - the quiet utilities last (account, save slots, cheats, settings, credits).
  */
 @Composable
 fun MoreScreen(
@@ -55,60 +60,89 @@ fun MoreScreen(
     onOpenCollection: () -> Unit, onOpenDynasty: () -> Unit,
     onOpenStore: () -> Unit, onOpenAchievements: () -> Unit, onOpenSocial: () -> Unit, onOpenAccount: () -> Unit,
     onOpenSettings: () -> Unit, onOpenCredits: () -> Unit,
+    onOpenDesk: () -> Unit = {}, onOpenFortune: () -> Unit = {}, onOpenFinance: () -> Unit = {},
+    onOpenSlots: () -> Unit = {}, onOpenCheats: () -> Unit = {},
 ) {
     val state by vm.state.collectAsStateWithLifecycle()
     val collection by vm.collection.collectAsStateWithLifecycle()
-    val dynastyBadge by vm.dynastyBadge.collectAsStateWithLifecycle()
+    val empire by vm.empire.collectAsStateWithLifecycle()
+    val desk by vm.desk.collectAsStateWithLifecycle()
     val settings by vm.settings.collectAsStateWithLifecycle()
+    val slot by vm.slot.collectAsStateWithLifecycle()
     val s = state ?: return
     val c = Aurum.colors
+    val fmt: (com.arnavgames.tycoon.core.money.Money) -> String = { MoneyFormat.compact(it, vm.notation(settings)) }
     val dy = remember(s.dynasty, s.meta, s.progress, s.simTimeMs / 60_000) { vm.dynastyMapper.dynasty(s) }
     val col = collection
+    val list = androidx.compose.foundation.lazy.rememberLazyListState()
+    androidx.compose.runtime.LaunchedEffect(Unit) { vm.reselect.collect { if (it == "more") list.animateScrollToItem(0) } }
+    val A = com.arnavgames.tycoon.ui.common.Art
     LazyColumn(
-        Modifier.fillMaxSize().glassSource(GlassLayer.Content).testTag("more-list"),
+        Modifier.fillMaxSize().glassSource(GlassLayer.Content).testTag("more-list"), state = list,
         contentPadding = PaddingValues(start = Space.gutter, end = Space.gutter, bottom = BottomBarReserve + Space.xxl),
         verticalArrangement = Arrangement.spacedBy(Space.md),
     ) {
         item(key = "title") {
             Text("More", style = Aurum.type.hero, color = c.textPrimary, modifier = Modifier.statusBarsPadding().padding(top = Space.xl, start = Space.xs).semantics { heading() })
         }
-        item(key = "doors") {
-            Row(Modifier.fillMaxWidth().height(IntrinsicSize.Min), horizontalArrangement = Arrangement.spacedBy(Space.md)) {
-                Door(
-                    Modifier.weight(1f).fillMaxHeight().testTag("door-collection"), AbtIcons.Collection, "Collection",
-                    when {
-                        col == null -> ""
-                        !col.unlocked -> "Opens in chapter ${col.unlockChapter}"
-                        else -> "${col.tier} · ${MoneyFormat.compact(col.value, vm.notation(settings))}"
-                    },
-                    badge = col?.auction?.let { "Auction live" }, onClick = onOpenCollection, locked = col?.unlocked == false,
-                    art = com.arnavgames.tycoon.ui.common.Art.luxuryCategory("painting"),
-                )
-                Door(
-                    Modifier.weight(1f).fillMaxHeight().testTag("door-dynasty"), AbtIcons.Crown, "Your Dynasty",
-                    "Generation ${dy.generation}" + if (dy.canPrestige) " · crown ready" else "",
-                    badge = if (dynastyBadge) "Rewards waiting" else null, onClick = onOpenDynasty,
-                    art = com.arnavgames.tycoon.ui.common.Art.chapter(8),
-                )
+        // You: who you are in this game, at a glance.
+        item(key = "me") {
+            AurumCard(Modifier.fillMaxWidth().testTag("more-profile"), onClick = onOpenDynasty) {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    com.arnavgames.tycoon.ui.common.AvatarBadge(s.store.avatar, s.store.frame, 56.dp)
+                    Spacer(Modifier.width(Space.md))
+                    Column(Modifier.weight(1f)) {
+                        Text(s.holdingName ?: "Your empire", style = Aurum.type.title, color = c.textPrimary, maxLines = 1)
+                        Text("Generation ${dy.generation} · chapter ${s.progress.chapter}" + if (slot != 0) " · slot ${slot + 1}" else "", style = Aurum.type.bodySmall, color = c.textSecondary)
+                    }
+                    Column(horizontalAlignment = Alignment.End) {
+                        empire?.let { Text(fmt(it.header.netWorth), style = Aurum.type.number, color = c.textPrimary) }
+                        Text("net worth", style = Aurum.type.label, color = c.textTertiary)
+                    }
+                }
+                if (s.store.boosted || com.arnavgames.tycoon.core.engine.Cheats.isSandbox(s)) {
+                    Spacer(Modifier.height(Space.sm))
+                    Row(horizontalArrangement = Arrangement.spacedBy(Space.xs)) {
+                        if (s.store.boosted) AurumChip("Boosted", icon = AbtIcons.Bolt, tint = c.gain)
+                        if (com.arnavgames.tycoon.core.engine.Cheats.isSandbox(s)) AurumChip("Sandbox", icon = AbtIcons.Sparkle, tint = c.goldText)
+                    }
+                }
             }
         }
-        item(key = "play-header") { com.arnavgames.tycoon.designsystem.components.SectionHeader("Play") }
-        item(key = "menu") {
-            AurumCard(Modifier.fillMaxWidth(), contentPadding = PaddingValues(Space.xs)) {
-                MenuRow("Store", AbtIcons.Bullion, onOpenStore, subtitle = "${s.ledger.bullion.centsOrNull ?: 0} Bullion · boosts, upgrades and cosmetics", modifier = Modifier.testTag("menu-store"))
-                HairlineDivider(Modifier.padding(start = 60.dp))
-                MenuRow(
-                    "Achievements", AbtIcons.Trophy, onOpenAchievements,
-                    subtitle = "${dy.achievementsDone} of ${dy.achievementsTotal}" + if (dy.achievementsClaimable > 0) " · ${dy.achievementsClaimable} to claim" else "",
-                )
-                HairlineDivider(Modifier.padding(start = 60.dp))
-                MenuRow("Friends & leaderboards", AbtIcons.Rivals, onOpenSocial, subtitle = "Friend codes, leagues, gifts and Sealed Lots")
+        item(key = "places-h") { com.arnavgames.tycoon.designsystem.components.SectionHeader("Places") }
+        val cardsWaiting = desk?.cards?.size ?: 0
+        val doors = listOf(
+            DoorSpec("door-collection", AbtIcons.Collection, "Collection",
+                when { col == null -> ""; !col.unlocked -> "Opens in chapter ${col.unlockChapter}"; else -> "${col.tier} · ${fmt(col.value)}" },
+                col?.auction?.let { "Auction live" }, onOpenCollection, col?.unlocked == false, A.luxuryCategory("painting")),
+            DoorSpec("door-dynasty", AbtIcons.Crown, "Your Dynasty", "Generation ${dy.generation}" + if (dy.canPrestige) " · crown ready" else "",
+                if (dy.canPrestige) "Crown ready" else null, onOpenDynasty, false, A.chapter(8)),
+            DoorSpec("menu-store", AbtIcons.Bullion, "Store", "${s.ledger.bullion.centsOrNull ?: 0} Bullion", null, onOpenStore, false, A.luxuryCategory("jewelry")),
+            DoorSpec("door-achievements", AbtIcons.Trophy, "Achievements", "${dy.achievementsDone} of ${dy.achievementsTotal}",
+                if (dy.achievementsClaimable > 0) "${dy.achievementsClaimable} to claim" else null, onOpenAchievements, false, A.event("global_boom")),
+            DoorSpec("door-desk", AbtIcons.Cards, "The Desk", if (cardsWaiting > 0) "$cardsWaiting waiting" else "All clear",
+                if (cardsWaiting > 0) "Decisions waiting" else null, onOpenDesk, false, A.property("office_floor")),
+            DoorSpec("door-fortune", AbtIcons.Trophy, "Fortune List", "The world's richest", null, onOpenFortune, false, A.city("new_york")),
+            DoorSpec("door-finance", AbtIcons.Bank, "Finance", "Credit, loans and taxes", null, onOpenFinance, false, A.business("bank")),
+            DoorSpec("door-social", AbtIcons.Rivals, "Friends", "Leagues, gifts and lots", null, onOpenSocial, false, A.city("london")),
+        )
+        doors.chunked(2).forEachIndexed { i, pair ->
+            item(key = "doors-$i") {
+                Row(Modifier.fillMaxWidth().height(IntrinsicSize.Min), horizontalArrangement = Arrangement.spacedBy(Space.md)) {
+                    pair.forEach { d ->
+                        Door(Modifier.weight(1f).fillMaxHeight().testTag(d.tag), d.icon, d.title, d.line, badge = d.badge, onClick = d.onClick, locked = d.locked, art = d.art)
+                    }
+                }
             }
         }
         item(key = "you-header") { com.arnavgames.tycoon.designsystem.components.SectionHeader("You") }
         item(key = "menu-you") {
             AurumCard(Modifier.fillMaxWidth(), contentPadding = PaddingValues(Space.xs)) {
                 MenuRow("Account & cloud save", AbtIcons.Cloud, onOpenAccount, subtitle = "Optional: back up, sync and add friends")
+                HairlineDivider(Modifier.padding(start = 60.dp))
+                MenuRow("Save slots", AbtIcons.Menu, onOpenSlots, subtitle = "Playing slot ${slot + 1} of 3", modifier = Modifier.testTag("more-slots"))
+                HairlineDivider(Modifier.padding(start = 60.dp))
+                MenuRow("Cheats", AbtIcons.Sparkle, onOpenCheats, subtitle = "Cash, time skips and boosts, with Undo")
                 HairlineDivider(Modifier.padding(start = 60.dp))
                 MenuRow("Settings", AbtIcons.Sliders, onOpenSettings, subtitle = "Theme, sound, notifications, save backup")
                 HairlineDivider(Modifier.padding(start = 60.dp))
@@ -118,7 +152,12 @@ fun MoreScreen(
     }
 }
 
-/** One of the two big doors: icon, name, a live line, and a badge when something is waiting. */
+private data class DoorSpec(
+    val tag: String, val icon: ImageVector, val title: String, val line: String, val badge: String?,
+    val onClick: () -> Unit, val locked: Boolean, val art: String,
+)
+
+/** A painted door to one place: icon, name, a live line, and a badge when something is waiting. */
 @Composable
 private fun Door(modifier: Modifier, icon: ImageVector, title: String, line: String, badge: String?, onClick: () -> Unit, locked: Boolean = false, art: String? = null) {
     val c = Aurum.colors

@@ -122,9 +122,16 @@ class ScreensTest(private val theme: String) {
             tab("More")
             waitText("Achievements")
             shot("06a_more")
+            runCatching {
+                tab("Goals"); Thread.sleep(800); shot("06g_goals")
+                scrollTo("Achievements"); tag("goals-achievements"); Thread.sleep(800); shot("06h_achievements"); back()
+            }
+            tab("More")
+            waitText("Achievements")
             tag("door-dynasty")
             waitText("Your Dynasty")
             shot("06_dynasty")
+            back()
             scrollTo("Settings")
             tapText("Settings")
             waitText("Appearance")
@@ -185,7 +192,7 @@ class ScreensTest(private val theme: String) {
             runCatching { scrollTo("Fortune"); tapText("Fortune"); Thread.sleep(800); shot("13b_fortune"); back() }
             runCatching { scrollTo("Credit"); tapText("Credit"); Thread.sleep(800); shot("13c_finance"); back() }
             tab("More")
-            waitText("Account & cloud save")
+            waitText("Achievements")
             scrollTo("Account & cloud save")
             runCatching { tapText("Account"); Thread.sleep(800); shot("14_account") }
         }

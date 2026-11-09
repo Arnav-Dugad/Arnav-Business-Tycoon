@@ -246,8 +246,11 @@ private fun DecisionCard(card: CardUi, fmt: (Money) -> String, onChoose: (Int) -
         "world" -> "World"; "personal" -> "Personal"; else -> card.businessName ?: "Business"
     }
     AurumCard(Modifier.fillMaxWidth().testTag("decision-card"), highlighted = card.kind == "takeover" || card.kind == "nemesis") {
-        card.businessId?.let { id ->
-            com.arnavgames.tycoon.ui.common.Illustration(com.arnavgames.tycoon.ui.common.Art.business(id), Modifier.fillMaxWidth().height(96.dp).clip(AurumShapes.medium))
+        // The decision's own painting; else the business it concerns.
+        val ctx = androidx.compose.ui.platform.LocalContext.current
+        val art = remember(card.defId, card.businessId) { com.arnavgames.tycoon.ui.common.Art.card(card.defId).takeIf { com.arnavgames.tycoon.ui.common.Art.has(ctx, it) } ?: card.businessId?.let { com.arnavgames.tycoon.ui.common.Art.business(it) } }
+        art?.let {
+            com.arnavgames.tycoon.ui.common.Illustration(it, Modifier.fillMaxWidth().height(110.dp).clip(AurumShapes.medium))
             Spacer(Modifier.height(Space.md))
         }
         Row(verticalAlignment = Alignment.CenterVertically) {

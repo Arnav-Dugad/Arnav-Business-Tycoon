@@ -53,9 +53,11 @@ import com.arnavgames.tycoon.designsystem.theme.glassSource
  * navigation bar as you scroll, with content blurring beneath it.
  */
 @Composable
-fun GlassScaffold(title: String, onBack: () -> Unit, bottomBar: (@Composable () -> Unit)? = null, content: LazyListScope.() -> Unit) {
+fun GlassScaffold(
+    title: String, onBack: () -> Unit, bottomBar: (@Composable () -> Unit)? = null,
+    list: androidx.compose.foundation.lazy.LazyListState = rememberLazyListState(), content: LazyListScope.() -> Unit,
+) {
     val c = Aurum.colors
-    val list = rememberLazyListState()
     var barPx by remember { mutableIntStateOf(0) }
     var bottomPx by remember { mutableIntStateOf(0) }
     val density = LocalDensity.current

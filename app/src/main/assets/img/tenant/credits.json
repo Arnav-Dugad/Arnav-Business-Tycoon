@@ -1,0 +1,405 @@
+{
+  "note": "Hand-painted-style illustrations generated with Figma AI (gpt-image-2.5-flare) from prompts written for this game. Invented scenes: no real logos, brands or identifiable people.",
+  "items": [
+    {
+      "id": "art",
+      "title": "A landlord's moment: A local artist offers to paint a mural on your a property in a property",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "balcony",
+      "title": "A landlord's moment: Your tenant in a property wants permission to enclose the balcony",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "break_in",
+      "title": "A landlord's moment: A break-in at your a property in a property",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "charity",
+      "title": "A landlord's moment: A charity asks to use your vacant storage in a property rent-free for a month",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "cleaning",
+      "title": "A landlord's moment: Tenants in a property ask for a cleaning service in the shared areas",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "community",
+      "title": "A landlord's moment: Residents in a property ask you to sponsor a street festival",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "early_exit",
+      "title": "A landlord's moment: Your tenant in a property wants to leave early and offers two weeks' rent",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "elevator",
+      "title": "A landlord's moment: The lift in your a property in a property breaks down",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "energy_rating",
+      "title": "A landlord's moment: New rules require a better energy rating for your a property in a property",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "film_crew",
+      "title": "A landlord's moment: A film crew wants to shoot at your a property in a property for a day",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "flood_risk",
+      "title": "A landlord's moment: Forecasters warn of flooding near a property",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "furnish",
+      "title": "A landlord's moment: A tenant in a property would pay more for a furnished place",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "heating",
+      "title": "A landlord's moment: The heating fails at your a property in a property in a cold snap",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "historic",
+      "title": "A landlord's moment: Your a property in a property might be listed as a historic building",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "inspection",
+      "title": "A landlord's moment: The city schedules a safety inspection of your a property in a property",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "insurance_audit",
+      "title": "A landlord's moment: An insurer offers a free risk audit of your a property in a property",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "late_rent",
+      "title": "A landlord's moment: The tenant of your a property in a property is a week late with the rent",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "lawsuit_threat",
+      "title": "A landlord's moment: A former tenant in a property threatens to sue over their deposit",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "leak",
+      "title": "A landlord's moment: A pipe burst in your a property in a property",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "long_lease",
+      "title": "A landlord's moment: A reliable tenant offers a long lease on your a property in a property if you take 5 % off",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "mould",
+      "title": "A landlord's moment: Mould is spreading in your a property in a property",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "noise",
+      "title": "A landlord's moment: Neighbours complain about noise from your a property in a property",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "parking",
+      "title": "A landlord's moment: Tenants in a property ask for parking spaces",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "party",
+      "title": "A landlord's moment: Your tenant in a property threw a party that damaged the hallway",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "pet",
+      "title": "A landlord's moment: Your tenant in a property asks to keep a large dog",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "referral",
+      "title": "A landlord's moment: Your tenant in a property refers a friend who wants a similar place",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "renovation_neighbor",
+      "title": "A landlord's moment: Construction next door is disturbing your tenants in a property",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "rent_review",
+      "title": "A landlord's moment: It is time for the annual rent review on your a property in a property",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "rent_strike",
+      "title": "A landlord's moment: Tenants in a property organise a rent strike over rising prices",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "rodents",
+      "title": "A landlord's moment: Tenants in a property report mice",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "roof",
+      "title": "A landlord's moment: Storm damage to the roof of your a property in a property",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "short_stay",
+      "title": "A landlord's moment: A short-stay platform offers to rent your a property in a property by the night",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "smart_locks",
+      "title": "A landlord's moment: Tenants in a property ask for smart locks",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "solar",
+      "title": "A landlord's moment: An installer offers solar panels for your a property in a property",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "sublet",
+      "title": "A landlord's moment: You discover your a property in a property is being sublet without permission",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "tree",
+      "title": "A landlord's moment: A neighbour's tree fell onto your a property in a property",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "upgrade_request",
+      "title": "A landlord's moment: Your tenant in a property asks for a new kitchen and offers to pay more rent",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "viewing",
+      "title": "A landlord's moment: A buyer asks to view your a property in a property: they love it",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "wifi",
+      "title": "A landlord's moment: Tenants in a property complain about slow internet",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "window",
+      "title": "A landlord's moment: A window shattered at your a property in a property",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    }
+  ]
+}

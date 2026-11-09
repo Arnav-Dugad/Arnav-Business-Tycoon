@@ -22,6 +22,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import kotlinx.coroutines.launch
+import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.layout.size
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontStyle
@@ -78,22 +82,44 @@ fun StoreScreen(vm: GameViewModel, onBack: () -> Unit, onOpenGoals: () -> Unit =
     val season = vm.engine.dynasty.season(s.simTimeMs)
     val ctx = StoreCtx(s, vm, store, content.config, season, empire?.header?.income, fmt)
 
+    // Section chips jump down the one list (nothing is hidden behind tabs).
+    val list = androidx.compose.foundation.lazy.rememberLazyListState()
+    val keys = remember { mutableListOf<String>() }
+    val scope = androidx.compose.runtime.rememberCoroutineScope()
+    fun jump(key: String) { val i = keys.indexOf(key); if (i >= 0) scope.launch { list.animateScrollToItem(i + 1) } }
     Box(Modifier.fillMaxSize()) {
-        GlassScaffold(title = "Store", onBack = onBack) {
-            item(key = "wallet") { Wallet(s, bullion, store) }
-            ctx.activeLines().takeIf { it.isNotEmpty() }?.let { lines -> item(key = "active") { ActiveNow(lines) } }
-            item(key = "earn") { EarnFree(vm, s, onOpenGoals) }
+        GlassScaffold(title = "Store", onBack = onBack, list = list) {
+            keys.clear()
+            fun add(key: String, body: @Composable androidx.compose.foundation.lazy.LazyItemScope.() -> Unit) { keys += key; item(key = key, content = body) }
+            add("hero") {
+                com.arnavgames.tycoon.ui.common.Illustration(com.arnavgames.tycoon.ui.common.Art.luxuryCategory("jewelry"), Modifier.fillMaxWidth().height(140.dp).clip(com.arnavgames.tycoon.designsystem.theme.AurumShapes.large), scrim = true) {
+                    Column(Modifier.align(Alignment.BottomStart).padding(Space.lg)) {
+                        Text("THE STORE", style = Aurum.type.overline, color = c.gold)
+                        Text("Boosts, upgrades and looks", style = Aurum.type.headline, color = androidx.compose.ui.graphics.Color.White)
+                        Text("Spend the Bullion you earn by playing.", style = Aurum.type.bodySmall, color = androidx.compose.ui.graphics.Color.White.copy(alpha = 0.85f))
+                    }
+                }
+            }
+            add("wallet") { Wallet(s, bullion, store) }
+            add("jump") {
+                Row(Modifier.fillMaxWidth().horizontalScroll(androidx.compose.foundation.rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(Space.xs)) {
+                    listOf("sec-boosts" to "Boosts", "sec-upgrades" to "Upgrades", "sec-cosmetics" to "Looks", "sec-passes" to "Passes", "sec-bullion" to "Bullion")
+                        .forEach { (k, label) -> PillAction(label, true, { jump(k) }, style = PillStyle.Glass) }
+                }
+            }
+            ctx.activeLines().takeIf { it.isNotEmpty() }?.let { lines -> add("active") { ActiveNow(lines) } }
+            add("earn") { EarnFree(vm, s, onOpenGoals) }
             featured(s, content.products, store, season)?.let { f ->
-                item(key = "featured") { ProductCard(f, ctx, bullion, onDemo = { demo = it }, featured = true) }
+                add("featured") { ProductCard(f, ctx, bullion, onDemo = { demo = it }, featured = true) }
             }
             for ((secId, title) in listOf("boosts" to "Boosts", "upgrades" to "Upgrades", "passes" to "VIP and Season Pass")) {
                 val products = content.products.filter { it.section == secId }
                 if (products.isEmpty()) continue
-                item(key = "sec-$secId") { SectionHeader(title) }
-                products.forEach { p -> item(key = p.id) { ProductCard(p, ctx, bullion, onDemo = { demo = it }) } }
+                add("sec-$secId") { SectionHeader(title) }
+                products.forEach { p -> add(p.id) { ProductCard(p, ctx, bullion, onDemo = { demo = it }) } }
             }
             // Cosmetics: a gallery with previews, filtered by kind.
-            item(key = "sec-cosmetics") {
+            add("sec-cosmetics") {
                 Column {
                     SectionHeader("Cosmetics") {
                         val owned = content.cosmetics.count { it.id in s.store.cosmetics }
@@ -109,7 +135,7 @@ fun StoreScreen(vm: GameViewModel, onBack: () -> Unit, onOpenGoals: () -> Unit =
             }
             val cosmetics = content.products.filter { p -> p.grants.cosmetic?.let { content.cosmeticById[it]?.kind } == cosmeticKind }
             cosmetics.chunked(2).forEachIndexed { i, row ->
-                item(key = "cos-$cosmeticKind-$i") {
+                add("cos-$cosmeticKind-$i") {
                     Row(Modifier.fillMaxWidth().height(IntrinsicSize.Min), horizontalArrangement = Arrangement.spacedBy(Space.md)) {
                         row.forEach { p -> CosmeticTile(p, ctx, bullion, Modifier.weight(1f).fillMaxHeight()) }
                         if (row.size == 1) Spacer(Modifier.weight(1f))
@@ -118,13 +144,13 @@ fun StoreScreen(vm: GameViewModel, onBack: () -> Unit, onOpenGoals: () -> Unit =
             }
             val packs = content.products.filter { it.section == "bullion" }
             if (packs.isNotEmpty()) {
-                item(key = "sec-bullion") {
+                add("sec-bullion") {
                     Column {
                         SectionHeader("Demo Bullion packs")
                         Text("Demo only. No money changes hands.", style = Aurum.type.bodySmall, color = c.textSecondary)
                     }
                 }
-                packs.forEach { p -> item(key = p.id) { ProductCard(p, ctx, bullion, onDemo = { demo = it }) } }
+                packs.forEach { p -> add(p.id) { ProductCard(p, ctx, bullion, onDemo = { demo = it }) } }
             }
         }
         demo?.let { p ->
@@ -314,7 +340,7 @@ private fun ProductCard(p: ProductDef, ctx: StoreCtx, bullion: Long, onDemo: (Pr
             Spacer(Modifier.height(Space.xs))
         }
         Row(verticalAlignment = Alignment.Top) {
-            IconTile(iconFor(p), size = if (featured) 56.dp else 44.dp, highlighted = featured || owned > 0)
+            com.arnavgames.tycoon.ui.common.ArtOr(com.arnavgames.tycoon.ui.common.Art.product(p.id), Modifier.size(if (featured) 72.dp else 56.dp).clip(com.arnavgames.tycoon.designsystem.theme.AurumShapes.small)) { IconTile(iconFor(p), size = if (featured) 56.dp else 44.dp, highlighted = featured || owned > 0) }
             Spacer(Modifier.width(Space.md))
             Column(Modifier.weight(1f)) {
                 Text(p.name, style = if (featured) Aurum.type.title else Aurum.type.titleSmall, color = c.textPrimary)

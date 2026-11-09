@@ -203,6 +203,8 @@ fun PropertyRow(p: PropertyRowUi, fmt: (Money) -> String, onClick: () -> Unit) {
 fun DecisionCard(d: DecisionUi, onChoose: (Int) -> Unit, onOpen: (() -> Unit)? = null) {
     val c = Aurum.colors
     AurumCard(Modifier.fillMaxWidth(), highlighted = true) {
+        com.arnavgames.tycoon.ui.common.ArtOr(com.arnavgames.tycoon.ui.common.Art.tenant(d.kind), Modifier.fillMaxWidth().height(96.dp).clip(com.arnavgames.tycoon.designsystem.theme.AurumShapes.medium).padding(bottom = 0.dp))
+        Spacer(Modifier.height(Space.sm))
         Row(verticalAlignment = Alignment.Top) {
             AbtIcon(AbtIcons.Key, null, tint = c.goldText, size = 18.dp)
             Spacer(Modifier.width(Space.sm))

@@ -1,0 +1,55 @@
+card	w_election	13:3	557842cb-41b4-47e2-a467-d33660913ea6	an editorial illustration of a business decision, 'Election year': A tight election makes markets nervous
+card	w_carbon_tax	13:10	9b1660d5-d1c8-4668-a534-60b9e4a689b9	an editorial illustration of a business decision, 'Carbon tax': A carbon tax is coming next year
+card	w_talent_visa	13:15	81862dd9-e188-464b-8c2a-260cbf6c057e	an editorial illustration of a business decision, 'Talent visas': A new visa scheme makes hiring engineers abroad easier
+card	w_shipping_canal	13:25	95c5d7a9-f878-4cf9-a622-e78ff7fc9aba	an editorial illustration of a business decision, 'Canal blocked': A container ship is stuck in a major canal
+card	w_heatwave	13:29	280cb4e7-3d29-4f38-9c8a-6f83ebc80e3f	an editorial illustration of a business decision, 'Heatwave': A brutal heatwave slows everything down
+card	w_market_rally	13:35	2e9dd8e8-27f6-4977-8c9c-63bcaa17db6c	an editorial illustration of a business decision, 'Market rally': Stock markets hit record highs. Your bankers suggest raising capital
+card	w_bank_offer	13:47	9d11be29-debe-4a06-8dc6-4a3e9e64cac8	an editorial illustration of a business decision, 'Rating agency visit': A rating agency wants to review your books
+card	w_lottery_town	13:59	611c86da-ed47-4996-810d-64a5c065acd8	an editorial illustration of a business decision, 'Town lottery': A town names a lottery after your company
+card	w_university	13:66	7fd2d572-eb79-455d-b71a-18f5a575d0b0	an editorial illustration of a business decision, 'University chair': A university offers to name a chair after you
+card	w_museum_wing	13:75	b8f90241-2da1-4b6d-a1b2-dd640f32ecb9	an editorial illustration of a business decision, 'Museum wing': The city museum wants a new wing with your name on it
+card	w_disaster_relief	13:89	9d13351b-8c67-430d-bc06-b00f60e30d01	an editorial illustration of a business decision, 'Disaster relief': An earthquake abroad leaves thousands homeless
+card	w_green_bond	13:94	d254a09e-cb06-4371-a296-5e824798d8b3	an editorial illustration of a business decision, 'Green bond': Investors want to buy a green bond from your holding
+card	w_global_summit	13:103	8afbbf58-e7e6-45f1-b1d4-328f510b9113	an editorial illustration of a business decision, 'Global summit': You are invited to speak at a global economic summit
+card	w_research_grant	13:107	e68e65a4-21d5-4fcd-bac8-79fb00f1e68c	an editorial illustration of a business decision, 'Research grant': The government matches private R&D spending this year
+card	w_strike_wave	13:110	1e3e5174-4366-4bb9-a864-02673840ce07	an editorial illustration of a business decision, 'Strike wave': Strikes spread across the country
+card	p_documentary	13:118	cc43c33c-68c8-4138-b6ec-86e151520240	an editorial illustration of a business decision, 'Documentary': A streaming service wants to film a documentary about your rise
+card	p_magazine_cover	14:5	797aa2a4-bec6-4548-8974-76cf50d5774c	an editorial illustration of a business decision, 'Magazine cover': A business magazine wants you on its cover
+card	p_book_deal	14:10	3e67b0cd-6cbf-4dda-8c6d-fb71235004ab	an editorial illustration of a business decision, 'Book deal': A publisher wants your memoir
+card	p_yacht_party	14:21	7935ded8-497f-4922-b7d4-f5f05a788290	an editorial illustration of a business decision, 'Yacht party': A rival billionaire invites you to a yacht party in Monaco
+card	p_ted_talk	14:27	305a537b-6528-410c-ab38-8b5f9e732be4	an editorial illustration of a business decision, 'Big talk': You are invited to give a famous talk
+card	p_health_scare	14:33	359df463-1090-4be8-ad39-d5722635404e	an editorial illustration of a business decision, 'Doctor's orders': Your doctor says you need a week off
+card	p_auditor_offer	14:41	a84e6ee6-e6ab-43ff-881e-2d685a7cc69c	an editorial illustration of a business decision, 'Accounting firm': A top accounting firm offers to tidy up your books before tax time
+card	p_private_bank	14:44	46365bc2-2b6d-4cb5-aa15-4e41aa63526d	an editorial illustration of a business decision, 'Private bank': A private bank offers you a line of credit
+card	p_late_payment	14:47	0dfac40a-8cc3-4584-a11e-940c0e319959	an editorial illustration of a business decision, 'Late payment': A big customer pays three months late
+card	p_charity_gala	14:59	8758c2bc-3515-4eb9-a443-f5cc425ea5cf	an editorial illustration of a business decision, 'Charity gala': A charity gala wants you as its guest of honour
+card	p_foundation	14:65	62be6164-3ce5-4275-8539-aac8f840a218	an editorial illustration of a business decision, 'Start a foundation': Your advisors suggest starting a family foundation
+card	p_art_advisor	14:71	62d1519d-1d77-4e83-bc29-57f7106d0954	an editorial illustration of a business decision, 'Art advisor': An art advisor says the next auction has a sleeper hit
+card	p_crypto_pitch	14:102	9adecf10-c4cd-424e-80c5-847cdb37f6b7	an editorial illustration of a business decision, 'Crypto pitch': A founder pitches you a new coin
+card	p_old_friend	14:91	117ec596-67eb-4665-b786-7b76779c1f7b	an editorial illustration of a business decision, 'An old friend': A friend from your kiosk days needs a loan
+card	p_sabbatical	14:94	3c9da9ce-58dc-4a0d-856b-4f20422e1bf8	an editorial illustration of a business decision, 'Sabbatical': Your top manager asks for a sabbatical
+card	p_family_office	14:113	21764561-40fa-472a-b760-549296bcffa3	an editorial illustration of a business decision, 'Family office': Your advisors suggest a family office to manage your wealth
+card	r_acquisition_offer	14:125	c0984548-6018-4b4e-a81e-6f373a4af875	an editorial illustration of a business decision, 'Acquisition offer': a business offers to buy a business at a premium
+card	r_acquisition_lowball	14:128	d23675f0-1c48-4a83-b25d-08ffd48c4455	an editorial illustration of a business decision, 'A cheeky offer': a business sends a lowball offer for a business
+card	r_joint_venture	14:146	02397358-b1f8-45b8-b5ae-31c9e4603d60	an editorial illustration of a business decision, 'Joint venture': a business proposes a joint venture with a business
+card	r_joint_venture_tech	14:154	8f06ed18-a589-45ee-99cd-ca2099c0e0c9	an editorial illustration of a business decision, 'Shared research': a business wants to share research costs with a business
+card	r_takeover	14:160	20b99dc8-21f1-489c-a6c1-8e41cb910b80	an editorial illustration of a business decision, 'Hostile takeover!': a business is buying up shares to seize a business. Until you respond, its income is 10% lower
+card	r_takeover_raid	14:180	18d3d857-0e71-4342-8ad4-4e7fa10162e6	an editorial illustration of a business decision, 'Corporate raid': a business's fund has built a large stake in a business overnight. Its income is 10% lower until you act
+card	r_poach	14:194	54f44c3c-ef4a-4971-ada3-6879dd470f83	an editorial illustration of a business decision, 'Poaching war': a business is poaching managers from a business
+card	r_charity_challenge	14:197	42261601-5eff-4946-a4b4-071c78995cff	an editorial illustration of a business decision, 'Charity challenge': a business challenges you to match a charity donation
+card	r_dinner	14:213	7f3cc60c-04ae-4d6b-936d-28fc66b37a66	an editorial illustration of a business decision, 'Dinner invitation': a business invites you to dinner
+card	r_public_feud	14:218	72ee333c-2429-49b9-a664-d14035e7ea50	an editorial illustration of a business decision, 'Public feud': a business mocks your company in an interview
+card	r_tip	14:225	e52bc66a-74f8-4819-9a7b-c02df789e440	an editorial illustration of a business decision, 'A tip from a friend': a business tips you off about a coming boom
+card	r_partnership_city	14:235	e0ed2439-7f7d-4445-9a67-eecaf3913296	an editorial illustration of a business decision, 'City partnership': a business wants to co-develop a district together
+card	r_auction_truce	15:2	feff93b5-a504-4a39-a2f5-1fd90509f05b	an editorial illustration of a business decision, 'Auction truce': a business proposes not to bid against each other at the next auction
+card	r_lawsuit_threat	15:8	1876510a-cae3-46f3-89fe-66432930aa82	an editorial illustration of a business decision, 'Legal threat': a business's lawyers claim a business copied their design
+card	r_board_seat	15:28	490ba387-0c55-469b-ba31-462d05820358	an editorial illustration of a business decision, 'Board seat': a business offers you a seat on their company's board
+card	r_mentor_rival	15:38	0a27e4b7-aa9d-435a-94b7-c8d505d2f6b0	an editorial illustration of a business decision, 'Unexpected advice': a business sends you a note with surprisingly good advice
+card	r_bidding_war	15:53	8c4d6f6b-484c-47e0-95a8-2de918766fa7	an editorial illustration of a business decision, 'Bidding war': a business is bidding against you for a prime office tower
+card	r_sector_alliance	15:60	58dd2355-b2a5-4f82-b55b-c78ff4e84509	an editorial illustration of a business decision, 'Industry alliance': a business proposes an industry alliance to lobby for lower tariffs
+card	r_spy	15:64	c5aa9547-f6c6-4dc2-8030-e74cdcd9a45e	an editorial illustration of a business decision, 'Industrial espionage': Security catches someone from a business's company photographing a business's plans
+card	r_rescue	15:68	349b6a70-2bd7-4687-9d99-172d3f71bbce	an editorial illustration of a business decision, 'A rival in trouble': a business's company is in trouble and asks you for a bridge loan
+card	r_golf	15:75	ee934e24-137f-4a9f-a5bd-1d778bc24cf5	an editorial illustration of a business decision, 'Golf weekend': a business invites you to a golf weekend in Scotland
+card	w_port_strike	15:79	8f15d519-c7f0-4b00-8f79-2441abe545f0	an editorial illustration of a business decision, 'Port strike': Dock workers strike at the world's busiest port
+card	w_tourism_boom	15:84	403b4f4f-7a26-44f5-9004-77b768d64c77	an editorial illustration of a business decision, 'Tourism boom': A weak currency brings a flood of tourists
+card	w_regulation_wave	15:83	2360d50a-8ae8-4815-9870-90bcfddae7fe	an editorial illustration of a business decision, 'New regulations': A wave of new regulations lands on business

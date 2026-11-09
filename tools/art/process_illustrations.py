@@ -20,7 +20,11 @@ from PIL import Image
 
 # In generated.tsv "luxury" meant a collection category; in the second wave it means a single piece.
 FOLDERS = {"business": "business", "city": "city", "property": "property", "chapter": "chapter", "luxury": "luxurycat", "scene": "scene"}
-WAVE2 = {"tier": "tier", "expansion": "expansion", "district": "district", "tower": "tower", "hq": "hq", "event": "event", "luxury": "luxury"}
+WAVE2 = {"tier": "tier", "expansion": "expansion", "district": "district", "tower": "tower", "hq": "hq", "event": "event", "luxury": "luxury",
+         # Third wave: markets, the store, Desk cards and tenant events (smaller still: mostly row thumbnails).
+         "stock": "stock", "sector": "sector", "fund": "fund", "bond": "bond", "coin": "coin", "commodity": "commodity",
+         "product": "product", "card": "card", "tenant": "tenant"}
+WAVE3 = {"stock", "sector", "fund", "bond", "coin", "commodity", "product", "card", "tenant"}
 NOTE = ("Hand-painted-style illustrations generated with Figma AI (gpt-image-2.5-flare) from prompts written for this game. "
         "Invented scenes: no real logos, brands or identifiable people.")
 
@@ -56,7 +60,11 @@ def main(repo: Path) -> None:
         out_dir.mkdir(parents=True, exist_ok=True)
         with Image.open(cache / set_ / f"{id_}.png") as im:
             im = im.convert("RGB")
-            if second:
+            if second and set_ in WAVE3:
+                ratio = im.width / im.height
+                size = (384, 384) if 0.8 < ratio < 1.25 else (640, 427) if ratio >= 1.25 else (427, 640)
+                quality = 70
+            elif second:
                 ratio = im.width / im.height
                 size = (480, 480) if 0.8 < ratio < 1.25 else (768, 512) if ratio >= 1.25 else (512, 768)
                 quality = 72

@@ -28,6 +28,8 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.Role
@@ -154,43 +156,10 @@ fun DynastyScreen(
                     }
                 }
             }
-            item(key = "ladder") {
-                AurumCard(Modifier.fillMaxWidth(), highlighted = ladder.available) {
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        AbtIcon(AbtIcons.Gift, null, tint = c.goldText, size = 28.dp)
-                        Spacer(Modifier.width(Space.md))
-                        Column(Modifier.weight(1f)) {
-                            Text("Daily reward · day ${ladder.day} of 7", style = Aurum.type.titleSmall, color = c.textPrimary)
-                            Text(buildList {
-                                if (ladder.cashHours > 0) add("${String.format(Locale.US, "%.0f", ladder.cashHours)} h of income")
-                                if (ladder.bullion > 0) add("${ladder.bullion} Bullion")
-                                if (ladder.favor > 0) add("${ladder.favor} Favor")
-                            }.joinToString(" + ") + ". Missing a day pauses the ladder; it never resets.", style = Aurum.type.bodySmall, color = c.textSecondary)
-                        }
-                        Spacer(Modifier.width(Space.sm))
-                        PillAction(if (ladder.available) "Claim" else "Tomorrow", ladder.available, { vm.dispatch(Command.ClaimDailyReward) })
-                    }
-                }
+            // Daily reward, goals, the season and achievements live on the Goals tab now.
+            item(key = "goals-link") {
+                PillAction("Daily reward and goals are on the Goals tab", true, { vm.requestTab("goals") }, style = PillStyle.Glass, modifier = Modifier.fillMaxWidth())
             }
-            if (daily.isNotEmpty()) {
-                item(key = "daily-h") {
-                    SectionHeader("Today") {
-                        val ready = daily.filter { it.done && !it.claimed }
-                        if (ready.size >= 2) PillAction("Claim all ${ready.size}", true, { vm.dispatchAll(ready.map { Command.ClaimDaily(it.index) }, "Claimed ${ready.size} goals") })
-                    }
-                }
-                item(key = "daily") { MissionList(daily, fmt, onClaim = { vm.dispatch(Command.ClaimDaily(it)) }, onReroll = { vm.dispatch(Command.RerollDaily(it)) }) }
-            }
-            if (weekly.isNotEmpty()) {
-                item(key = "weekly-h") {
-                    SectionHeader("This week") {
-                        val ready = weekly.filter { it.done && !it.claimed }
-                        if (ready.size >= 2) PillAction("Claim all ${ready.size}", true, { vm.dispatchAll(ready.map { Command.ClaimWeekly(it.index) }, "Claimed ${ready.size} goals") })
-                    }
-                }
-                item(key = "weekly") { MissionList(weekly, fmt, onClaim = { vm.dispatch(Command.ClaimWeekly(it)) }, onReroll = null) }
-            }
-            item(key = "season") { SeasonCard(season, onClaim = { vm.dispatch(Command.ClaimSeasonTier(it)) }) }
             if (!legacyMatters) item(key = "legacy-teaser") {
                 AurumCard(Modifier.fillMaxWidth(), onClick = { explain = com.arnavgames.tycoon.ui.common.Term.Legacy }) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
@@ -201,19 +170,6 @@ fun DynastyScreen(
                             Text("After Chapter 8 you pass the crown to an heir, who keeps a permanent income boost.", style = Aurum.type.bodySmall, color = c.textSecondary)
                         }
                         AbtIcon(AbtIcons.Info, "What is Legacy?", tint = c.textTertiary, size = 18.dp)
-                    }
-                }
-            }
-            item(key = "achievements") {
-                AurumCard(Modifier.fillMaxWidth(), onClick = onOpenAchievements, highlighted = dy.achievementsClaimable > 0) {
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        AbtIcon(AbtIcons.Trophy, null, tint = c.goldText, size = 28.dp)
-                        Spacer(Modifier.width(Space.md))
-                        Column(Modifier.weight(1f)) {
-                            Text("Achievements", style = Aurum.type.titleSmall, color = c.textPrimary)
-                            Text("${dy.achievementsDone} of ${dy.achievementsTotal} collected" + if (dy.achievementsClaimable > 0) " · ${dy.achievementsClaimable} ready to claim" else "", style = Aurum.type.bodySmall, color = if (dy.achievementsClaimable > 0) c.goldText else c.textSecondary)
-                        }
-                        AbtIcon(AbtIcons.ChevronRight, null, tint = c.textTertiary, size = 18.dp)
                     }
                 }
             }
@@ -276,20 +232,6 @@ fun DynastyScreen(
                     }
                 }
             }
-            item { SectionHeader("More") }
-            item {
-                AurumCard(Modifier.fillMaxWidth(), contentPadding = PaddingValues(Space.xs)) {
-                    MenuRow("Friends & leaderboards", AbtIcons.Rivals, onOpenSocial, subtitle = "Friend codes, leagues, gifts and Sealed Lots")
-                    HairlineDivider(Modifier.padding(start = 60.dp))
-                    MenuRow("Account & cloud save", AbtIcons.Cloud, onOpenAccount, subtitle = "Optional: back up, sync and add friends")
-                    HairlineDivider(Modifier.padding(start = 60.dp))
-                    MenuRow("Store (demo)", AbtIcons.Bullion, onOpenStore, subtitle = "Boosts, upgrades and cosmetics. Demo only: nothing is ever charged")
-                    HairlineDivider(Modifier.padding(start = 60.dp))
-                    MenuRow("Settings", AbtIcons.Sliders, onOpenSettings, subtitle = "Theme, sound, haptics, save backup")
-                    HairlineDivider(Modifier.padding(start = 60.dp))
-                    MenuRow("Credits & licenses", AbtIcons.Book, onOpenCredits)
-                }
-            }
         }
         explain?.let { com.arnavgames.tycoon.ui.common.GlossarySheet(it) { explain = null } }
         if (avatarPicker) {
@@ -314,7 +256,7 @@ fun DynastyScreen(
 }
 
 @Composable
-private fun MissionList(items: List<MissionUi>, fmt: (Money) -> String, onClaim: (Int) -> Unit, onReroll: ((Int) -> Unit)?) {
+internal fun MissionList(items: List<MissionUi>, fmt: (Money) -> String, onClaim: (Int) -> Unit, onReroll: ((Int) -> Unit)?) {
     val c = Aurum.colors
     AurumCard(Modifier.fillMaxWidth(), contentPadding = PaddingValues(Space.md)) {
         items.forEachIndexed { i, m ->
@@ -339,7 +281,7 @@ private fun MissionList(items: List<MissionUi>, fmt: (Money) -> String, onClaim:
 }
 
 @Composable
-private fun SeasonCard(season: SeasonUi, onClaim: (Int) -> Unit) {
+internal fun SeasonCard(season: SeasonUi, onClaim: (Int) -> Unit) {
     val c = Aurum.colors
     AurumCard(Modifier.fillMaxWidth()) {
         Row(verticalAlignment = Alignment.CenterVertically) {
@@ -380,6 +322,11 @@ private fun SeasonCard(season: SeasonUi, onClaim: (Int) -> Unit) {
     }
 }
 
+/**
+ * Achievements as a trophy cabinet: a summary with your progress, category chips, and a two-column grid of medallions:
+ * gold when earned, glowing with a Claim button when ready, a quiet silhouette with the condition when not yet. Ready
+ * ones come first, then those still to earn, then the ones you have. Claim all sits at the bottom edge.
+ */
 @Composable
 fun AchievementsScreen(vm: GameViewModel, onBack: () -> Unit) {
     val state by vm.state.collectAsStateWithLifecycle()
@@ -387,44 +334,88 @@ fun AchievementsScreen(vm: GameViewModel, onBack: () -> Unit) {
     val list = remember(s.meta) { vm.dynastyMapper.achievements(s) }
     val c = Aurum.colors
     var show by com.arnavgames.tycoon.ui.common.rememberPref("achievements.show", "all")
+    var category by androidx.compose.runtime.saveable.rememberSaveable { mutableStateOf("all") }
     val ready = list.filter { it.state == 1 }
+    val earned = list.count { it.state == 2 }
+    val bullionEarned = list.filter { it.state == 2 }.sumOf { it.bullion }
+    val shown = list
+        .filter { category == "all" || it.category == category }
+        .filter { when (show) { "ready" -> it.state == 1; "todo" -> it.state == 0; "done" -> it.state == 2; else -> true } }
+        .sortedBy { when (it.state) { 1 -> 0; 0 -> 1; else -> 2 } }
     GlassScaffold(title = "Achievements", onBack = onBack, bottomBar = if (ready.isNotEmpty()) ({
-        // Claim everything in one tap instead of dozens.
         com.arnavgames.tycoon.designsystem.components.GoldButton(
             "Claim all ${ready.size} · +${ready.sumOf { it.bullion }} Bullion",
             onClick = { vm.dispatchAll(ready.map { Command.ClaimAchievement(it.id) }, "Claimed ${ready.size} achievements") },
             modifier = Modifier.fillMaxWidth().testTag("claim-all-achievements"), leadingIcon = AbtIcons.Trophy,
         )
     }) else null) {
-        item(key = "filter") {
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Text("${list.count { it.state == 2 }} of ${list.size} earned", style = Aurum.type.bodySmall, color = c.textSecondary, modifier = Modifier.weight(1f))
-                com.arnavgames.tycoon.ui.common.SortToggle(listOf(com.arnavgames.tycoon.ui.common.Choice("all", "Show all"), com.arnavgames.tycoon.ui.common.Choice("ready", "Ready to claim"), com.arnavgames.tycoon.ui.common.Choice("todo", "Not yet"), com.arnavgames.tycoon.ui.common.Choice("done", "Earned")), show, { show = it })
-            }
-        }
-        list.filter { when (show) { "ready" -> it.state == 1; "todo" -> it.state == 0; "done" -> it.state == 2; else -> true } }
-            .groupBy { it.category }.forEach { (cat, items) ->
-            item(key = "h-$cat") { SectionHeader("$cat · ${items.count { it.state == 2 }}/${items.size}") }
-            items(items, key = { it.id }) { a ->
-                Row(Modifier.fillMaxWidth().padding(horizontal = Space.xs, vertical = Space.xxs), verticalAlignment = Alignment.CenterVertically) {
-                    AbtIcon(if (a.state == 2) AbtIcons.Trophy else AbtIcons.Star, null, tint = when (a.state) { 2 -> c.goldText; 1 -> c.gain; else -> c.textTertiary }, size = 22.dp)
+        item(key = "summary") {
+            AurumCard(Modifier.fillMaxWidth(), highlighted = ready.isNotEmpty()) {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Medallion(earned = earned > 0, glowing = ready.isNotEmpty(), size = 64)
                     Spacer(Modifier.width(Space.md))
                     Column(Modifier.weight(1f)) {
-                        Text(a.title, style = Aurum.type.titleSmall, color = if (a.state == 0) c.textSecondary else c.textPrimary)
-                        Text(a.description, style = Aurum.type.bodySmall, color = c.textTertiary)
+                        Text("$earned of ${list.size}", style = Aurum.type.numberHero, color = c.textPrimary)
+                        Text("earned · $bullionEarned Bullion collected", style = Aurum.type.bodySmall, color = c.textSecondary)
+                        if (ready.isNotEmpty()) Text("${ready.size} ready to claim", style = Aurum.type.label, color = c.goldText)
                     }
-                    when (a.state) {
-                        1 -> PillAction("+${a.bullion}", true, { vm.dispatch(Command.ClaimAchievement(a.id)) })
-                        2 -> Text("${a.bullion}", style = Aurum.type.label, color = c.textTertiary)
-                        else -> Text("${a.bullion}", style = Aurum.type.label, color = c.textTertiary)
+                }
+                Spacer(Modifier.height(Space.md))
+                GoldProgress(if (list.isEmpty()) 0f else earned / list.size.toFloat(), height = 6.dp, label = "Achievements earned")
+            }
+        }
+        item(key = "filters") {
+            Column(verticalArrangement = Arrangement.spacedBy(Space.xs)) {
+                Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(Space.xs)) {
+                    (listOf("all") + list.map { it.category }.distinct()).forEach { cat ->
+                        val sel = category == cat
+                        val n = if (cat == "all") list.size else list.count { it.category == cat }
+                        PillAction(if (cat == "all") "All · $n" else "$cat · $n", true, { category = cat }, style = if (sel) PillStyle.Gold else PillStyle.Glass)
                     }
+                }
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Text("${shown.size} shown", style = Aurum.type.bodySmall, color = c.textTertiary, modifier = Modifier.weight(1f).padding(start = Space.xs))
+                    com.arnavgames.tycoon.ui.common.SortToggle(
+                        listOf(com.arnavgames.tycoon.ui.common.Choice("all", "Show all"), com.arnavgames.tycoon.ui.common.Choice("ready", "Ready to claim"),
+                            com.arnavgames.tycoon.ui.common.Choice("todo", "Not yet"), com.arnavgames.tycoon.ui.common.Choice("done", "Earned")),
+                        show, { show = it },
+                    )
+                }
+            }
+        }
+        if (shown.isEmpty()) item(key = "none") { Text("Nothing here yet.", style = Aurum.type.body, color = c.textSecondary, modifier = Modifier.padding(horizontal = Space.xs)) }
+        shown.chunked(2).forEachIndexed { i, pair ->
+            item(key = "row-$category-$show-$i") {
+                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(Space.sm)) {
+                    pair.forEach { a -> AchievementTile(a, Modifier.weight(1f).heightIn(min = 190.dp)) { vm.dispatch(Command.ClaimAchievement(a.id)) } }
+                    if (pair.size == 1) Spacer(Modifier.weight(1f))
                 }
             }
         }
     }
 }
 
-/** Pass the Crown (docs/GDD.md §12): choose the heir's trait, heirlooms, Family Charter and an optional challenge. */
+@Composable
+private fun AchievementTile(a: AchievementUi, modifier: Modifier, onClaim: () -> Unit) {
+    val c = Aurum.colors
+    AurumCard(modifier.testTag("ach-${a.id}"), highlighted = a.state == 1, contentPadding = PaddingValues(Space.md)) {
+        Medallion(earned = a.state == 2, glowing = a.state == 1, size = 44, locked = a.state == 0)
+        Spacer(Modifier.height(Space.sm))
+        Text(a.title, style = Aurum.type.titleSmall, color = if (a.state == 0) c.textSecondary else c.textPrimary, maxLines = 2)
+        Text(a.description, style = Aurum.type.bodySmall, color = c.textTertiary, maxLines = 3, minLines = 2)
+        Spacer(Modifier.height(Space.sm))
+        when (a.state) {
+            1 -> PillAction("Claim +${a.bullion}", true, onClaim, modifier = Modifier.fillMaxWidth())
+            2 -> Row(verticalAlignment = Alignment.CenterVertically) {
+                AbtIcon(AbtIcons.Check, null, tint = c.gain, size = 14.dp)
+                Spacer(Modifier.width(Space.xxs))
+                Text("Earned · ${a.bullion} Bullion", style = Aurum.type.label, color = c.gain)
+            }
+            else -> Text("${a.bullion} Bullion", style = Aurum.type.label, color = c.goldText)
+        }
+    }
+}
+
 @Composable
 fun CrownScreen(vm: GameViewModel, onBack: () -> Unit) {
     val state by vm.state.collectAsStateWithLifecycle()

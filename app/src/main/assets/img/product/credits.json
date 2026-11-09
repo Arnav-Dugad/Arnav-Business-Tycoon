@@ -1,0 +1,555 @@
+{
+  "note": "Hand-painted-style illustrations generated with Figma AI (gpt-image-2.5-flare) from prompts written for this game. Invented scenes: no real logos, brands or identifiable people.",
+  "items": [
+    {
+      "id": "avatar_art",
+      "title": "A store item for a business game called 'Avatar: Masterpiece': A gallery-frame emblem for your profile picture, shown as a luxurious object or scene, no prices",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 384x384, WebP"
+    },
+    {
+      "id": "avatar_car",
+      "title": "A small gold model of an invented sports car resting on a navy velvet pedestal on a sunny terrace, no shield, crest, badge or emblem anywhere",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 384x384, WebP"
+    },
+    {
+      "id": "avatar_gem",
+      "title": "A store item for a business game called 'Avatar: Diamond': A diamond emblem for your profile picture, shown as a luxurious object or scene, no prices",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 384x384, WebP"
+    },
+    {
+      "id": "avatar_heli",
+      "title": "A store item for a business game called 'Avatar: Helicopter': A helicopter emblem for your profile picture, shown as a luxurious object or scene, no prices",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 384x384, WebP"
+    },
+    {
+      "id": "avatar_island",
+      "title": "A store item for a business game called 'Avatar: Private island': A private island emblem for your profile picture, shown as a luxurious object or scene, no prices",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 384x384, WebP"
+    },
+    {
+      "id": "avatar_mansion",
+      "title": "A store item for a business game called 'Avatar: Mansion': A mansion emblem for your profile picture, shown as a luxurious object or scene, no prices",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 384x384, WebP"
+    },
+    {
+      "id": "avatar_tower",
+      "title": "A store item for a business game called 'Avatar: Skyscraper': A skyscraper emblem for your profile picture, shown as a luxurious object or scene, no prices",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 384x384, WebP"
+    },
+    {
+      "id": "avatar_watch",
+      "title": "A store item for a business game called 'Avatar: Grand complication': A watch emblem for your profile picture, shown as a luxurious object or scene, no prices",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 384x384, WebP"
+    },
+    {
+      "id": "avatar_wine",
+      "title": "A store item for a business game called 'Avatar: Grand cru': A wine emblem for your profile picture, shown as a luxurious object or scene, no prices",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 384x384, WebP"
+    },
+    {
+      "id": "avatar_yacht",
+      "title": "A store item for a business game called 'Avatar: Superyacht': A superyacht emblem for your profile picture, shown as a luxurious object or scene, no prices",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 384x384, WebP"
+    },
+    {
+      "id": "boost_24h",
+      "title": "A store item for a business game called 'Income boost · 24 h': Every business earns 25% more for a full day, shown as a luxurious object or scene, no prices",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 384x384, WebP"
+    },
+    {
+      "id": "boost_2h",
+      "title": "A store item for a business game called 'Income boost · 2 h': Every business earns 25% more for 2 hours. Buying again extends the time, shown as a luxurious object or scene, no prices",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 384x384, WebP"
+    },
+    {
+      "id": "boost_4h",
+      "title": "A store item for a business game called 'Income boost · 4 h': Every business earns 25% more for 4 hours, shown as a luxurious object or scene, no prices",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 384x384, WebP"
+    },
+    {
+      "id": "boost_8h",
+      "title": "A store item for a business game called 'Income boost · 8 h': Every business earns 25% more for 8 hours, shown as a luxurious object or scene, no prices",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 384x384, WebP"
+    },
+    {
+      "id": "bullion_100",
+      "title": "A store item for a business game called 'Pouch of Bullion': 100 Bullion, shown as a luxurious object or scene, no prices",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 384x384, WebP"
+    },
+    {
+      "id": "bullion_1200",
+      "title": "A store item for a business game called 'Chest of Bullion': 1,200 Bullion (1,000 + 20% extra), shown as a luxurious object or scene, no prices",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 384x384, WebP"
+    },
+    {
+      "id": "bullion_2600",
+      "title": "A store item for a business game called 'Vault of Bullion': 2,600 Bullion (2,000 + 30% extra), shown as a luxurious object or scene, no prices",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 384x384, WebP"
+    },
+    {
+      "id": "bullion_550",
+      "title": "A store item for a business game called 'Bag of Bullion': 550 Bullion (500 + 10% extra), shown as a luxurious object or scene, no prices",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 384x384, WebP"
+    },
+    {
+      "id": "bundle_weekend",
+      "title": "A store item for a business game called 'Weekend bundle': An 8-hour income boost and 150 Favor together, for less than buying them separately, shown as a luxurious object or scene, no prices",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 384x384, WebP"
+    },
+    {
+      "id": "favor_100",
+      "title": "A store item for a business game called 'Favor bundle': 100 Favor to rush timers, shown as a luxurious object or scene, no prices",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 384x384, WebP"
+    },
+    {
+      "id": "favor_500",
+      "title": "A store item for a business game called 'Favor crate': 500 Favor to rush timers, shown as a luxurious object or scene, no prices",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 384x384, WebP"
+    },
+    {
+      "id": "frame_amethyst",
+      "title": "A store item for a business game called 'Amethyst frame': An amethyst frame for your profile picture, shown as a luxurious object or scene, no prices",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 384x384, WebP"
+    },
+    {
+      "id": "frame_bronze",
+      "title": "A store item for a business game called 'Bronze frame': A bronze ring around your avatar, shown as a luxurious object or scene, no prices",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 384x384, WebP"
+    },
+    {
+      "id": "frame_emerald",
+      "title": "A store item for a business game called 'Emerald frame': An emerald frame for your profile picture, shown as a luxurious object or scene, no prices",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 384x384, WebP"
+    },
+    {
+      "id": "frame_gold",
+      "title": "A store item for a business game called 'Gold frame': A gold frame for your profile picture, shown as a luxurious object or scene, no prices",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 384x384, WebP"
+    },
+    {
+      "id": "frame_jade",
+      "title": "A store item for a business game called 'Jade frame': A jade ring around your avatar, shown as a luxurious object or scene, no prices",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 384x384, WebP"
+    },
+    {
+      "id": "frame_obsidian",
+      "title": "A store item for a business game called 'Obsidian frame': An obsidian frame for your profile picture, shown as a luxurious object or scene, no prices",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 384x384, WebP"
+    },
+    {
+      "id": "frame_pearl",
+      "title": "A store item for a business game called 'Pearl frame': A pearl ring around your avatar, shown as a luxurious object or scene, no prices",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 384x384, WebP"
+    },
+    {
+      "id": "frame_platinum",
+      "title": "A store item for a business game called 'Platinum frame': A platinum frame for your profile picture, shown as a luxurious object or scene, no prices",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 384x384, WebP"
+    },
+    {
+      "id": "frame_rose_gold",
+      "title": "A store item for a business game called 'Rose gold frame': A rose gold frame for your profile picture, shown as a luxurious object or scene, no prices",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 384x384, WebP"
+    },
+    {
+      "id": "frame_ruby",
+      "title": "A store item for a business game called 'Ruby frame': A ruby frame for your profile picture, shown as a luxurious object or scene, no prices",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 384x384, WebP"
+    },
+    {
+      "id": "frame_sapphire",
+      "title": "A store item for a business game called 'Sapphire frame': A sapphire frame for your profile picture, shown as a luxurious object or scene, no prices",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 384x384, WebP"
+    },
+    {
+      "id": "offline_2h",
+      "title": "A store item for a business game called 'Night shift': +2 hours of offline earnings, permanently (up to 2), shown as a luxurious object or scene, no prices",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 384x384, WebP"
+    },
+    {
+      "id": "permanent_5",
+      "title": "A store item for a business game called 'Investor's edge': +5% income from every business, permanently (up to 3), shown as a luxurious object or scene, no prices",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 384x384, WebP"
+    },
+    {
+      "id": "season_pass",
+      "title": "A store item for a business game called 'Season Pass': Unlocks the premium track of the current season, shown as a luxurious object or scene, no prices",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 384x384, WebP"
+    },
+    {
+      "id": "slot_1",
+      "title": "A store item for a business game called 'Extra business slot': One more business slot, permanently. Every slot can also be earned in play (up to 2 here), shown as a luxurious object or scene, no prices",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 384x384, WebP"
+    },
+    {
+      "id": "starter_pack",
+      "title": "A store item for a business game called 'Starter pack': 300 Bullion, 50 Favor and a 2-hour income boost. Once per account, shown as a luxurious object or scene, no prices",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 384x384, WebP"
+    },
+    {
+      "id": "title_baron",
+      "title": "A store item for a business game called 'Title: Baron of Main Street': Shown under your name on leaderboards and to friends, shown as a luxurious object or scene, no prices",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 384x384, WebP"
+    },
+    {
+      "id": "title_closer",
+      "title": "A store item for a business game called 'Title: The Closer': A title for your profile, shown as a luxurious object or scene, no prices",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 384x384, WebP"
+    },
+    {
+      "id": "title_disruptor",
+      "title": "A store item for a business game called 'Title: The Disruptor': A title for your profile, shown as a luxurious object or scene, no prices",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 384x384, WebP"
+    },
+    {
+      "id": "title_dynast",
+      "title": "A store item for a business game called 'Title: The Dynast': Shown under your name on leaderboards and to friends, shown as a luxurious object or scene, no prices",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 384x384, WebP"
+    },
+    {
+      "id": "title_heir",
+      "title": "A store item for a business game called 'Title: The Heir': Shown under your name on leaderboards and to friends, shown as a luxurious object or scene, no prices",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 384x384, WebP"
+    },
+    {
+      "id": "title_iron_will",
+      "title": "A store item for a business game called 'Title: Iron Will': A title for your profile, shown as a luxurious object or scene, no prices",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 384x384, WebP"
+    },
+    {
+      "id": "title_kingmaker",
+      "title": "A store item for a business game called 'Title: Kingmaker': Shown under your name on leaderboards and to friends, shown as a luxurious object or scene, no prices",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 384x384, WebP"
+    },
+    {
+      "id": "title_magnate",
+      "title": "A store item for a business game called 'Title: The Magnate': A title for your profile, shown as a luxurious object or scene, no prices",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 384x384, WebP"
+    },
+    {
+      "id": "title_market_maker",
+      "title": "A store item for a business game called 'Title: Market Maker': A title for your profile, shown as a luxurious object or scene, no prices",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 384x384, WebP"
+    },
+    {
+      "id": "title_mogul",
+      "title": "A store item for a business game called 'Title: Mogul': Shown under your name on leaderboards and to friends, shown as a luxurious object or scene, no prices",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 384x384, WebP"
+    },
+    {
+      "id": "title_night_owl",
+      "title": "A store item for a business game called 'Title: Night Owl': Shown under your name on leaderboards and to friends, shown as a luxurious object or scene, no prices",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 384x384, WebP"
+    },
+    {
+      "id": "title_old_money",
+      "title": "A store item for a business game called 'Title: Old Money': A title for your profile, shown as a luxurious object or scene, no prices",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 384x384, WebP"
+    },
+    {
+      "id": "title_patron",
+      "title": "A store item for a business game called 'Title: Patron of the Arts': A title for your profile, shown as a luxurious object or scene, no prices",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 384x384, WebP"
+    },
+    {
+      "id": "title_self_made",
+      "title": "A store item for a business game called 'Title: Self-Made': A title for your profile, shown as a luxurious object or scene, no prices",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 384x384, WebP"
+    },
+    {
+      "id": "title_silver_spoon",
+      "title": "A store item for a business game called 'Title: Silver Spoon': A title for your profile (worn ironically), shown as a luxurious object or scene, no prices",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 384x384, WebP"
+    },
+    {
+      "id": "title_tycoon",
+      "title": "A store item for a business game called 'Title: Tycoon': A title for your profile, shown as a luxurious object or scene, no prices",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 384x384, WebP"
+    },
+    {
+      "id": "title_visionary",
+      "title": "A store item for a business game called 'Title: The Visionary': A title for your profile, shown as a luxurious object or scene, no prices",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 384x384, WebP"
+    },
+    {
+      "id": "vip_30",
+      "title": "A store item for a business game called 'VIP · 30 days': For 30 game days: +5% income, +1 h offline earnings and 20 extra Bullion with every daily reward, shown as a luxurious object or scene, no prices",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 384x384, WebP"
+    }
+  ]
+}

@@ -238,7 +238,13 @@ fun MarketsScreen(vm: GameViewModel, onOpenInstrument: (String) -> Unit, onOpenN
                 }
                 val groups = if (flat) emptyMap() else rows.groupBy { it.group }
                 groups.forEach { (group, list) ->
-                    if (tab != MarketTab.Stocks || sector == "all") item(key = "g-$group") { SectionHeader(mk.sectors.firstOrNull { it.first == group }?.second ?: groupTitle(group)) }
+                    if (tab != MarketTab.Stocks || sector == "all") item(key = "g-$group") {
+                        Column {
+                            // Each sector opens with its painting.
+                            if (tab == MarketTab.Stocks) com.arnavgames.tycoon.ui.common.ArtOr(com.arnavgames.tycoon.ui.common.Art.sector(group), Modifier.fillMaxWidth().height(84.dp).clip(com.arnavgames.tycoon.designsystem.theme.AurumShapes.medium).padding(bottom = 0.dp))
+                            SectionHeader(mk.sectors.firstOrNull { it.first == group }?.second ?: groupTitle(group))
+                        }
+                    }
                     item(key = "list-$group") {
                         AurumCard(Modifier.fillMaxWidth(), contentPadding = PaddingValues(vertical = Space.xs)) {
                             list.forEachIndexed { i, r ->
@@ -323,7 +329,7 @@ fun InstrumentRow(r: InstrumentRowUi, onClick: () -> Unit) {
             .semantics(mergeDescendants = true) { contentDescription = "${r.name}, ${r.price}, ${MarketsMapper.pct(r.change)} today" + if (r.held) ", in your portfolio" else "" },
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        TickerLogo(r.ticker, r.assetClass)
+        com.arnavgames.tycoon.ui.common.ArtOr(com.arnavgames.tycoon.ui.common.Art.instrument(r.assetClass, r.id), Modifier.size(48.dp).clip(com.arnavgames.tycoon.designsystem.theme.AurumShapes.small)) { TickerLogo(r.ticker, r.assetClass) }
         Spacer(Modifier.width(Space.md))
         Column(Modifier.weight(1f)) {
             Row(verticalAlignment = Alignment.CenterVertically) {

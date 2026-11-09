@@ -35,6 +35,21 @@ object Art {
     fun luxuryCategory(id: String) = "img/luxurycat/$id.webp"
     fun luxuryItem(id: String) = "img/luxury/$id.webp"
     fun event(id: String) = "img/event/$id.webp"
+    /** A market instrument's painting: img/{stock,fund,bond,coin,commodity}/<id>.webp. */
+    fun instrument(assetClass: com.arnavgames.tycoon.core.content.AssetClass, id: String): String {
+        val folder = when (assetClass) {
+            com.arnavgames.tycoon.core.content.AssetClass.Stock -> "stock"
+            com.arnavgames.tycoon.core.content.AssetClass.Fund -> "fund"
+            com.arnavgames.tycoon.core.content.AssetClass.Bond -> "bond"
+            com.arnavgames.tycoon.core.content.AssetClass.Crypto -> "coin"
+            com.arnavgames.tycoon.core.content.AssetClass.Commodity -> "commodity"
+        }
+        return "img/$folder/$id.webp"
+    }
+    fun sector(id: String) = "img/sector/$id.webp"
+    fun product(id: String) = "img/product/$id.webp"
+    fun card(id: String) = "img/card/$id.webp"
+    fun tenant(id: String) = "img/tenant/$id.webp"
     const val WELCOME = "img/scene/welcome.webp"
 
     private val folders = ConcurrentHashMap<String, Set<String>>()
@@ -48,6 +63,13 @@ object Art {
 
     /** The first of [paths] that exists, or the last one. */
     fun pick(context: Context, vararg paths: String): String = paths.firstOrNull { has(context, it) } ?: paths.last()
+}
+
+/** The painting at [path] when it is bundled, otherwise [orElse] (an icon tile, a monogram, or nothing). */
+@Composable
+fun ArtOr(path: String, modifier: Modifier, orElse: @Composable () -> Unit = {}) {
+    val ctx = LocalContext.current
+    if (remember(path) { Art.has(ctx, path) }) Illustration(path, modifier) else orElse()
 }
 
 /** An illustration, cropped to fill; a soft placeholder shows while it decodes. [scrim] darkens the bottom for text. */

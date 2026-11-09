@@ -1,0 +1,45 @@
+{
+  "note": "Hand-painted-style illustrations generated with Figma AI (gpt-image-2.5-flare) from prompts written for this game. Invented scenes: no real logos, brands or identifiable people.",
+  "items": [
+    {
+      "id": "fund_defensive",
+      "title": "An index fund that owns a slice of many companies: Defensive companies that hold up in a downturn and pay steady dividends, shown as a calm panorama of many industries side by side",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "fund_global",
+      "title": "An index fund that owns a slice of many companies: An equal slice of every sector, so no single industry decides your returns, shown as a calm panorama of many industries side by side",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "fund_growth",
+      "title": "An index fund that owns a slice of many companies: Growth and speculative names. Bigger swings, bigger upside, shown as a calm panorama of many industries side by side",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    },
+    {
+      "id": "fund_total",
+      "title": "An index fund that owns a slice of every company on the exchange: a calm panorama of many industries side by side (farms, factories, ports, offices, shops), all buildings plain with no emblems or symbols on them",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 640x427, WebP"
+    }
+  ]
+}

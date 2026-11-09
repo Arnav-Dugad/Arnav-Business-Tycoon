@@ -571,6 +571,23 @@ Evidence: core 176/176, sim 3/3, app 29/29 JVM tests (including `NotificationPla
 - Emulator rules tests passed 15 of 15. The deployed rules match the repo (deploy skipped the upload as unchanged).
 - Owner-side metadata check: 1 cloud save (rev 24, fresh), plus 1 profile, 1 leaderboard entry and 1 friend code.
 
+## 1.6.0 (owner request 2026-11-09: images for everything incl. stocks; rearrange pages, a new tab, redesign More, overhaul store and achievements)
+**Navigation**
+- Six tabs: Counter, Empire, Markets, Estates, **Goals** (new) and More.
+- Goals gathers the daily reward (a 7-day strip), the current chapter, today's and this week's goals, the season and achievements, with "Claim everything". It carries the rewards badge.
+- Dynasty keeps the family, Legacy, IPO and the story.
+
+**More:** a profile card, a 2-column grid of painted doors (Collection, Dynasty, Store, Achievements, Desk, Fortune List, Finance, Friends), then account, save slots, cheats, settings and credits.
+
+**Store and Achievements**
+- Store: a painted header, plus section chips that jump down the one list.
+- Achievements: a trophy cabinet (summary, category chips, a medallion grid with ready ones first, Claim all on the bottom edge).
+
+**Images (third wave)**
+- 434 paintings: stocks 120, sectors 12, funds, bonds, coins, commodities, store items 55, Desk cards 163, tenant events 40.
+- Every stock and card painting was reviewed on contact sheets.
+- Redone: 28 rival and nemesis cards (the prompts had named parody tycoons, and one result resembled a real politician), a real crypto logo, a six-pointed star on a coin, a red cross, social icons, currency signs, a crest-like car badge and a delivery-app pictogram.
+
 ## Release gates (TEST_PLAN §7)
 Checked for **1.1.0** on 2026-11-07 (released at the owner's choice with the open items below):
 

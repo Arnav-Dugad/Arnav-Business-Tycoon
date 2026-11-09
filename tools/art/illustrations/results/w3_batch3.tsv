@@ -1,0 +1,55 @@
+stock	ldhr	13:7	0eb0b024-734d-4ac0-ad1e-88156dfdb715	a property and construction company that is fast-growing and ambitious and known as a quiet giant: its flagship product being made
+stock	evrg	13:21	6fa0af9a-d77b-42a6-b8e7-ec98e9aa4ca1	a property and construction company that is young, daring and unproven and known as a takeover target: its people at work, seen from a distance
+stock	brwn	13:26	6e59db10-4ae7-424c-b159-7bc554c397ca	a transport and travel company that is steady and long-established and known as a quiet giant: its offices with a sweeping city view
+stock	fdpx	13:31	fd83ba39-a8eb-4aaf-a062-e80278429429	a transport and travel company that is steady and long-established and known as a turnaround story: its warehouse and loading bays at dawn
+stock	mrsk	13:37	7e0cf626-6e14-47ed-8ac5-3b4f59d81ee8	a transport and travel company that is solid and well known and known as a turnaround story: its newest site under construction
+stock	dltl	13:53	c8f18f36-b1f4-44e2-9d9b-25795cfac7e9	a transport and travel company that is solid and well known and known as a cyclical: its showroom with customers browsing
+stock	untd	13:60	38e91843-7bc4-41b1-bc9b-6dae0b20d7ee	a transport and travel company that is solid and well known and known as a serial acquirer: its headquarters building seen from the street
+stock	emrt	13:73	ea03668f-dd7a-4359-88e5-92f1ddf4cbff	a transport and travel company that is solid and well known and known as a turnaround story: its busiest workplace in full swing
+stock	cryn	13:76	fe62651a-737e-4d96-ad88-8d6e4c2e110f	a transport and travel company that is solid and well known and known as a innovator: its flagship product being made
+stock	mryt	13:81	2fb84173-4401-4b9b-a5c6-d10a2c37abcf	a transport and travel company that is fast-growing and ambitious and known as a dividend aristocrat: its people at work, seen from a distance
+stock	arbn	13:99	dfe5afe2-4147-404c-9417-a0ff4dcf48a6	a transport and travel company that is fast-growing and ambitious and known as a takeover target: its offices with a sweeping city view
+stock	ubrd	13:111	ee1b3555-cd2e-4745-997a-6d046a8ce04a	a transport and travel company that is young, daring and unproven and known as a value pick: its warehouse and loading bays at dawn
+stock	tslr	13:114	87783e2d-698d-4e7a-af4d-c32df774292f	a frontier-science company that is solid and well known and known as a value pick: its newest site under construction
+stock	spcz	14:12	498a5257-e42d-4ca0-89e2-a4187f070cea	a frontier-science company that is fast-growing and ambitious and known as a value pick: its showroom with customers browsing
+stock	blrg	14:15	2b2913da-f480-4711-af11-648589db19af	a frontier-science company that is fast-growing and ambitious and known as a value pick: its headquarters building seen from the street
+stock	clsd	14:31	c4129298-9d5f-4212-9579-3106e908b773	a frontier-science company that is fast-growing and ambitious and known as a steady compounder: its busiest workplace in full swing
+stock	plnr	14:35	0b377857-88b6-480f-8c13-31c9853789a5	a frontier-science company that is fast-growing and ambitious and known as a cyclical: its flagship product being made
+stock	nrln	14:37	57fc2329-a951-454b-a252-78e5d4c1ca5f	a frontier-science company that is young, daring and unproven and known as a serial acquirer: its people at work, seen from a distance
+stock	rivi	14:51	7ebb2fba-c2e2-40d5-bf2a-637abe644c34	a frontier-science company that is young, daring and unproven and known as a serial acquirer: its offices with a sweeping city view
+stock	vrgl	14:54	fe17fcb6-52ce-4825-a3de-fdf0e65a7deb	a frontier-science company that is young, daring and unproven and known as a innovator: its warehouse and loading bays at dawn
+stock	pckt	14:70	af3849ae-27b1-4d67-9ff0-839d9bc174c4	a frontier-science company that is young, daring and unproven and known as a turnaround story: its newest site under construction
+stock	brdt	14:73	6190443e-cf63-4fe8-ab36-a024c02bc405	a frontier-science company that is young, daring and unproven and known as a value pick: its showroom with customers browsing
+fund	fund_total	14:99	9550832f-4b16-4531-a25a-2e2a211e4a29	an index fund that owns a slice of many companies: Every company on the exchange, weighted by size. The calm way in, shown as a calm panorama of many industries side by side
+fund	fund_growth	14:80	873f1cd8-5782-419f-8c10-3f59a3c2d750	an index fund that owns a slice of many companies: Growth and speculative names. Bigger swings, bigger upside, shown as a calm panorama of many industries side by side
+fund	fund_defensive	14:85	89bbce90-7b9e-4c56-a91d-1d054385f488	an index fund that owns a slice of many companies: Defensive companies that hold up in a downturn and pay steady dividends, shown as a calm panorama of many industries side by side
+fund	fund_global	14:105	e40f2563-4512-497f-8cb3-9990b75c5d35	an index fund that owns a slice of many companies: An equal slice of every sector, so no single industry decides your returns, shown as a calm panorama of many industries side by side
+bond	bond_gov_2	14:110	8bec56e9-8fd5-41c6-beb1-ccb9129d283b	a government bond: a government treasury building with columns, steady and paying interest over time
+bond	bond_gov_5	14:114	807f8c19-7e47-4f34-a3b8-c041cc52b5a2	a government bond: a government treasury building with columns, steady and paying interest over time
+bond	bond_gov_10	14:117	9a5a9a1a-7680-4f7a-95bf-9f544a1e8862	a government bond: a government treasury building with columns, steady and paying interest over time
+bond	bond_gov_30	14:130	4a62f921-0d7f-4e25-b6a4-89be03ee1fde	a government bond: a government treasury building with columns, steady and paying interest over time
+bond	bond_ig_5	14:143	bef5575a-9289-4263-a9bd-169024a7523c	a investment_grade bond: a lender's office, steady and paying interest over time
+bond	bond_ig_10	14:176	56b98c1f-9ac1-42db-a281-ae53f3ad1456	a investment_grade bond: a lender's office, steady and paying interest over time
+bond	bond_hy_5	14:155	9cca4c6c-5e28-40d1-8a91-e7ab7f5141f0	a high_yield bond: a lender's office, steady and paying interest over time
+bond	bond_hy_10	14:162	11479898-d604-4159-9636-61ec899f1c52	a high_yield bond: a lender's office, steady and paying interest over time
+coin	c_bcrn	14:181	f4f6a01a-0c65-4a4b-9fcf-a6229d649a0b	an invented cryptocurrency (Established coin. Volatile, but it has survived every crash so far): a futuristic digital mint glowing at night, no symbols or letters on any coin
+coin	c_ethn	14:195	ebe690b9-e113-43d2-adf4-57af6d25b9e8	an invented cryptocurrency (Established coin. Volatile, but it has survived every crash so far): a vast hall of humming server racks, no symbols or letters on any coin
+coin	c_bnnt	14:199	6916e6fd-4572-41de-baa1-dde9e31fa131	an invented cryptocurrency (Established coin. Volatile, but it has survived every crash so far): a crowd watching a giant price screen (no numbers), no symbols or letters on any coin
+coin	c_rplt	14:202	5944854a-acb0-4313-8611-98efe45b930c	an invented cryptocurrency (Established coin. Volatile, but it has survived every crash so far): a lone miner's rig in a mountain cabin, no symbols or letters on any coin
+coin	c_slrn	14:227	b85b56e0-5914-4616-8855-bd50bf7e4059	an invented cryptocurrency (Established coin. Volatile, but it has survived every crash so far): a sleek vault with glowing lattice patterns, no symbols or letters on any coin
+coin	c_crdn	15:22	9e2c211f-a56e-4f9e-ad56-f5b4ce229084	an invented cryptocurrency (Large project. Swings hard and can crash in a bad week): a busy street-market of digital traders, no symbols or letters on any coin
+coin	c_dgcn	14:237	6dc0cfb2-d0ca-447f-bd58-c9a30255ff47	an invented cryptocurrency (Large project. Swings hard and can crash in a bad week): a futuristic digital mint glowing at night, no symbols or letters on any coin
+coin	c_doty	15:4	81f4c30c-c266-449e-b582-d2fcf2601545	an invented cryptocurrency (Large project. Swings hard and can crash in a bad week): a vast hall of humming server racks, no symbols or letters on any coin
+coin	c_chnl	15:7	be1540e7-aeca-45e4-8923-98f14be7027c	an invented cryptocurrency (Large project. Swings hard and can crash in a bad week): a crowd watching a giant price screen (no numbers), no symbols or letters on any coin
+coin	c_avln	15:33	2c424d98-02f1-4444-a5a3-52b330993347	an invented cryptocurrency (Large project. Swings hard and can crash in a bad week): a lone miner's rig in a mountain cabin, no symbols or letters on any coin
+coin	c_shbi	15:42	d5c4bb4a-69c5-4d26-917e-2276f89a07e5	an invented cryptocurrency (Small project. Big hype cycles and real crash risk): a sleek vault with glowing lattice patterns, no symbols or letters on any coin
+coin	c_ltcn	15:54	1b8f94da-f0c7-409a-a9ac-8773124781f2	an invented cryptocurrency (Small project. Big hype cycles and real crash risk): a busy street-market of digital traders, no symbols or letters on any coin
+coin	c_tonn	15:58	07ddf381-ccf3-44ad-a1e3-061eff252807	an invented cryptocurrency (Small project. Big hype cycles and real crash risk): a futuristic digital mint glowing at night, no symbols or letters on any coin
+coin	c_stlr	15:70	e62bf3e5-f8cc-4a84-a202-294732203db3	an invented cryptocurrency (Small project. Big hype cycles and real crash risk): a vast hall of humming server racks, no symbols or letters on any coin
+coin	c_pegg	15:72	08db10ec-30cd-488e-9034-5060cdb62431	an invented cryptocurrency (Small project. Big hype cycles and real crash risk): a crowd watching a giant price screen (no numbers), no symbols or letters on any coin
+coin	c_mnrk	15:76	e9d9ffeb-a808-478d-9236-95766189cbb1	an invented cryptocurrency (Speculative token. It can multiply or go to nearly zero. Only bet what you can lose): a lone miner's rig in a mountain cabin, no symbols or letters on any coin
+coin	c_safm	15:78	af645d13-ed63-49c9-9be8-80d1569fee8e	an invented cryptocurrency (Speculative token. It can multiply or go to nearly zero. Only bet what you can lose): a sleek vault with glowing lattice patterns, no symbols or letters on any coin
+coin	c_sqid	15:87	b2b51057-e23c-4d02-86f0-75370f049274	an invented cryptocurrency (Speculative token. It can multiply or go to nearly zero. Only bet what you can lose): a busy street-market of digital traders, no symbols or letters on any coin
+coin	c_rugp	15:91	aa8683f3-3732-493d-9ef6-9b971bf6b1fe	an invented cryptocurrency (Speculative token. It can multiply or go to nearly zero. Only bet what you can lose): a futuristic digital mint glowing at night, no symbols or letters on any coin
+coin	c_frog	15:93	3582e787-fa9c-4274-840d-cc60d37dae57	an invented cryptocurrency (Speculative token. It can multiply or go to nearly zero. Only bet what you can lose): a vast hall of humming server racks, no symbols or letters on any coin
+commodity	crude	15:95	dcb7c9e9-dd41-4c0f-b9b9-3756d219889f	crude oil as a traded commodity: where it comes from and how it is shipped, sold by the barrel

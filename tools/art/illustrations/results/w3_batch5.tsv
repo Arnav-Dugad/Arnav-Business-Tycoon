@@ -1,0 +1,55 @@
+product	title_night_owl	13:8	9b14ac36-53af-4700-a9dc-3d93290928ca	a store item for a business game called 'Title: Night Owl': Shown under your name on leaderboards and to friends, shown as a luxurious object or scene, no prices
+product	title_baron	13:14	66d499cf-1d2f-4f51-bde6-832ae4e30dd4	a store item for a business game called 'Title: Baron of Main Street': Shown under your name on leaderboards and to friends, shown as a luxurious object or scene, no prices
+product	title_kingmaker	13:19	b224d317-c7cf-4e69-97ba-41bcd8142e6d	a store item for a business game called 'Title: Kingmaker': Shown under your name on leaderboards and to friends, shown as a luxurious object or scene, no prices
+product	title_dynast	13:33	ebe4ec7b-16a4-499f-b1f3-217f0c63adf7	a store item for a business game called 'Title: The Dynast': Shown under your name on leaderboards and to friends, shown as a luxurious object or scene, no prices
+product	frame_jade	13:46	9ed5f519-9904-4ec0-b205-02b5b0f7b329	a store item for a business game called 'Jade frame': A jade ring around your avatar, shown as a luxurious object or scene, no prices
+product	frame_pearl	13:52	6072f21f-1412-4fa4-aa46-e6affa1dac32	a store item for a business game called 'Pearl frame': A pearl ring around your avatar, shown as a luxurious object or scene, no prices
+product	frame_bronze	13:58	26e70fca-49a8-4fac-bde3-80de6647fdc2	a store item for a business game called 'Bronze frame': A bronze ring around your avatar, shown as a luxurious object or scene, no prices
+product	avatar_car	13:91	f3feb954-5e7f-4531-94b1-7774bb7896f3	a store item for a business game called 'Avatar: Supercar': A supercar emblem for your profile picture, shown as a luxurious object or scene, no prices
+product	avatar_tower	13:69	a29ce639-a481-4789-9abf-00be8e3cdbe0	a store item for a business game called 'Avatar: Skyscraper': A skyscraper emblem for your profile picture, shown as a luxurious object or scene, no prices
+product	avatar_gem	13:79	5db5c46e-5387-422a-bdbd-dc8b66b67b43	a store item for a business game called 'Avatar: Diamond': A diamond emblem for your profile picture, shown as a luxurious object or scene, no prices
+product	avatar_art	13:95	8e6773a7-a22b-422d-91c9-7e189f9ea88e	a store item for a business game called 'Avatar: Masterpiece': A gallery-frame emblem for your profile picture, shown as a luxurious object or scene, no prices
+card	retail_shoplifting	13:100	410f5787-388a-4414-9c58-ce7f6ea616d2	an editorial illustration of a business decision, 'Shoplifting spree': Stock keeps vanishing from a business. Security firms are circling
+card	retail_viral_product	13:105	c4440d11-5f02-4c75-8662-9a1dda3a0be1	an editorial illustration of a business decision, 'A product goes viral': A gadget you stock is all over social media. Suppliers want a bulk order today
+card	retail_landlord	13:113	ee8bc995-0fd8-4c17-9de4-1e3a0d3fac6e	an editorial illustration of a business decision, 'Landlord wants more': The landlord of your flagship a business site wants a rent rise
+card	restaurant_critic	14:17	2bcc5715-8ff2-481d-95e7-a10c1d428c50	an editorial illustration of a business decision, 'The critic is coming': A famous food critic has booked a table at a business tonight
+card	restaurant_supplier	14:22	ff8fff9d-5092-4147-82ec-84ddbe177d45	an editorial illustration of a business decision, 'Supplier price hike': Your produce supplier raises prices 20%
+card	restaurant_delivery_app	14:36	4ff3f89e-45df-43cd-9c54-7f5a8c83fbfc	an editorial illustration of a business decision, 'Delivery app deal': A delivery app offers to list a business for a 25% commission
+card	logistics_driver_shortage	14:40	712ee0b3-bd73-47c6-b6ed-ab94cc21e504	an editorial illustration of a business decision, 'Driver shortage': Half your drivers have been poached by a rival depot
+card	logistics_big_contract	14:42	26e46178-e9a0-4b85-bc72-fa5b3503a2e1	an editorial illustration of a business decision, 'A big contract': A supermarket chain wants a business to run its deliveries. They want a discount
+card	logistics_fuel_hedge	14:53	7df01a09-bc2d-48c5-8e02-dc8c93d17e08	an editorial illustration of a business decision, 'Fuel hedge offer': A broker offers to lock in today's fuel price for a business
+card	farm_drought	14:55	297cbdf5-9deb-49b7-af0a-448cf7d64e63	an editorial illustration of a business decision, 'Drought warning': Forecasters warn of a dry month across your a business
+card	farm_organic	14:58	893c2622-5ab3-411c-8346-d9474261ab68	an editorial illustration of a business decision, 'Go organic?': A premium grocer will pay more for organic produce from a business
+card	farm_locusts	14:64	a7225a07-0f20-4938-8373-692e7fad7cc8	an editorial illustration of a business decision, 'Locust swarm': A locust swarm is heading for your a business
+card	factory_union	14:69	05586e0c-a959-4e30-9092-f8e791e05d82	an editorial illustration of a business decision, 'The union wants raises': Workers at a business demand a 10% raise
+card	factory_robots	14:83	b56776ec-54d5-4728-89f5-e4b6434779fd	an editorial illustration of a business decision, 'Robot salesman': A robotics firm offers to automate a line at a business
+card	factory_recall	14:89	bb70c374-42c8-4951-98ac-5e7b042280a8	an editorial illustration of a business decision, 'Product recall': A batch from a business has a defect
+card	fashion_muse	14:93	4e5ab68b-544e-4244-9e07-4ba3527278e0	an editorial illustration of a business decision, 'A new muse': A breakout model wants to front a business's new campaign
+card	fashion_copycat	14:95	490cd2da-19bd-40aa-a324-bbd38c4fac7f	an editorial illustration of a business decision, 'Copycats': Fast-fashion chains copied a business's collection within a week
+card	fashion_show	14:108	61b96d55-1df5-450b-9170-e8990eb93a2b	an editorial illustration of a business decision, 'Show in Paris?': Fashion week in Paris has a late slot for a business
+card	mining_rich_seam	14:120	6ee0c587-92f8-442d-bd9c-3f874de3c2e6	an editorial illustration of a business decision, 'A rich seam': Geologists at a business have found a rich seam, deep down
+card	mining_safety	14:124	cd776fd7-d459-4cd3-8277-05bd4f646dec	an editorial illustration of a business decision, 'Safety inspection': Inspectors are coming to a business next week
+card	mining_community	14:137	2030ba86-57cb-40d9-897c-db1e75022380	an editorial illustration of a business decision, 'The town wants a school': The town next to a business asks you to fund a new school
+card	energy_grid_deal	14:140	62ff7a9b-8354-4d4f-b3e4-a0618dc965a6	an editorial illustration of a business decision, 'Grid contract': The national grid wants a 10-year supply contract from a business
+card	energy_solar	14:145	271d3b34-3df9-45b7-b7e6-788798ad8455	an editorial illustration of a business decision, 'Solar expansion': You could cover a business's spare land with solar panels
+card	energy_pipeline_leak	14:152	6199f54e-4b86-4e4d-b1d5-a3ff007bfc65	an editorial illustration of a business decision, 'Pipeline leak': A small leak at a business. Cleaning it fast is expensive
+card	hotel_celebrity_wedding	14:157	1d728dd1-cf76-41f3-9adc-fd5d0c0ea831	an editorial illustration of a business decision, 'Celebrity wedding': A pop star wants to rent all of a business for a wedding
+card	hotel_bad_reviews	14:163	45704778-491d-4919-9c73-3cece0a1a8e4	an editorial illustration of a business decision, 'Bad reviews': A string of one-star reviews hits a business
+card	hotel_overbooking	14:167	941e7635-b135-49b4-ae26-a4eb58d1d4a6	an editorial illustration of a business decision, 'Overbooked': a business has sold 120 rooms for 100 beds this weekend
+card	bank_regulator	14:172	249a3302-acaf-4023-a78a-894a5c067fab	an editorial illustration of a business decision, 'Regulator review': The regulator asks a business to hold more capital
+card	bank_fintech_partner	14:183	1c6e7db3-cd64-4e7e-99d6-119d7003624a	an editorial illustration of a business decision, 'Fintech partnership': A payments start-up wants to plug into a business
+card	bank_bad_loans	14:186	9711d9bd-5ac2-4e33-8c65-8369797ff07e	an editorial illustration of a business decision, 'Bad loans': A borrower of a business has defaulted
+card	construction_tender	14:191	19cd8af8-fb96-46f6-99a4-f413a512529b	an editorial illustration of a business decision, 'City tender': The city is tendering a new stadium. a business could bid
+card	construction_crane	14:206	32ce9b62-9794-4ad9-af6c-105eef3ee04e	an editorial illustration of a business decision, 'Crane collapse': A crane at a a business site has toppled. Nobody was hurt
+card	construction_green	14:210	6fc2ebca-5fc7-4cc8-bb97-ee8f9757c25e	an editorial illustration of a business decision, 'Green building': Clients want low-carbon buildings from a business
+card	media_scoop	14:217	52d60f03-75ee-4694-a64b-11f3dcc688e1	an editorial illustration of a business decision, 'The scoop': Reporters at a business have a huge exclusive, but it's legally risky
+card	media_star_host	14:224	da010119-65aa-4a21-acb4-ab5a9d20f5eb	an editorial illustration of a business decision, 'Star host wants more': a business's star host wants double pay
+card	media_streaming	14:230	695b89a0-de75-4949-b5c5-ff85fc4ff336	an editorial illustration of a business decision, 'Launch a streamer?': Should a business launch its own streaming service?
+card	tech_hackers	14:234	6a924953-9d75-4b73-b326-71dbf99c3b02	an editorial illustration of a business decision, 'Ransomware': Hackers have locked a business's servers and want a ransom
+card	tech_acquihire	15:10	c295c226-bdee-4ae4-bca3-06d8b7602248	an editorial illustration of a business decision, 'Acqui-hire': A brilliant ten-person start-up could join a business
+card	tech_open_source	15:13	efbf5622-ab78-4d17-8487-24f9c4699cac	an editorial illustration of a business decision, 'Open-source it?': Engineers at a business want to open-source your core library
+card	telecom_spectrum	15:19	d10c59db-a9fd-434c-9aa6-b2672c7f45dc	an editorial illustration of a business decision, 'Spectrum auction': Regulators are auctioning 6G spectrum
+card	telecom_outage	15:25	98fd17a4-50b3-4706-93c4-5347d898c012	an editorial illustration of a business decision, 'Network outage': A nationwide outage hits a business
+card	telecom_towers	15:30	2ec1475f-a23e-44d5-8aa1-639ddd179c51	an editorial illustration of a business decision, 'Sell the towers?': An infrastructure fund wants to buy a business's towers
+card	airline_strike	15:36	6b51d0fd-b482-4ec1-9340-6e1f3cc640ed	an editorial illustration of a business decision, 'Pilots' strike': Pilots at a business vote to strike
+card	airline_new_route	15:50	325561a7-6b88-4021-8d09-9c37d168f947	an editorial illustration of a business decision, 'New route': a business could launch a nonstop route to Sydney
