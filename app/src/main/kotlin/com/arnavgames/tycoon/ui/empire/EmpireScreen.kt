@@ -104,15 +104,17 @@ import com.arnavgames.tycoon.designsystem.theme.glassCard
 import com.arnavgames.tycoon.designsystem.theme.glassSource
 
 /**
- * The Empire tab: the counter fills the top three quarters (tap anywhere on it), then what to do next, the world and a
- * summary of the businesses (which have their own tab, [BusinessesScreen]).
+ * The Empire tab: what to do next (guide, the Chairman, the Next Move, the crown), the world, then every business,
+ * what you can open, the merger tree and headquarters. The counter has its own tab ([com.arnavgames.tycoon.ui.counter.CounterScreen]).
+ * [focus] scrolls once to "open:<id>" (the card that opens a business), "hq" or "businesses", then calls [onFocusDone].
  */
 @Composable
 fun EmpireScreen(
     vm: GameViewModel, onOpenBusiness: (String) -> Unit, onOpenDesk: () -> Unit = {}, onOpenFortune: () -> Unit = {}, onOpenFinance: () -> Unit = {},
-    onSwitchTab: (String) -> Unit = {},
+    onSwitchTab: (String) -> Unit = {}, focus: String? = null, onFocusDone: () -> Unit = {},
 ) {
     val ui by vm.empire.collectAsStateWithLifecycle()
+    val qty by vm.buyQty.collectAsStateWithLifecycle()
     val settings by vm.settings.collectAsStateWithLifecycle()
     val notation = vm.notation(settings)
     val e = ui ?: return
@@ -127,13 +129,35 @@ fun EmpireScreen(
     // A new line is inserted above the first card; lazy lists keep the old first item in place, so reveal it.
     androidx.compose.runtime.LaunchedEffect(mentorLine?.id) { if (mentorLine != null && listState.firstVisibleItemIndex <= 1) listState.animateScrollToItem(0) }
 
+    val available = e.openable.filter { it.lockedReason == null }
+    val locked = e.openable.filter { it.lockedReason != null }.take(2)
+    // The list's item keys, in order, so "Show me" can scroll to any card.
+    val order = buildList {
+        if (guide != null) add("guide")
+        if (!guiding && mentorLine != null) add("mentor")
+        if (e.mission != null) add("mission")
+        if (e.crown != null) add("crown")
+        add("world"); add("biz-header")
+        e.businesses.forEach { add(it.id) }
+        if (available.isNotEmpty()) { add("open-header"); available.forEach { add("open-" + it.id) } }
+        locked.forEach { add("locked-" + it.id) }
+        if (e.mergers.isNotEmpty()) { add("merger-header"); e.mergers.forEach { add("merger-" + it.id) }; if (e.holding != null) add("holding") }
+        add("hq")
+    }
+    fun scrollTo(target: String) {
+        val key = when {
+            target.startsWith("open:") -> target.removePrefix("open:").let { id -> if ("open-$id" in order) "open-$id" else if ("locked-$id" in order) "locked-$id" else "biz-header" }
+            target == "hq" -> "hq"
+            else -> "biz-header"
+        }
+        scope.launch { listState.animateScrollToItem(order.indexOf(key).coerceAtLeast(0)) }
+    }
+    androidx.compose.runtime.LaunchedEffect(focus) { focus?.let { scrollTo(it); onFocusDone() } }
+
     var headerPx by remember { mutableIntStateOf(0) }
-    var screenPx by remember { mutableIntStateOf(0) }
     val density = LocalDensity.current
     val navInset = WindowInsets.navigationBars.asPaddingValues().calculateBottomPadding()
-    // The counter takes three quarters of what's visible between the header and the tab bar; the rest peeks below.
-    val stageHeight = with(density) { ((screenPx - headerPx).toDp() - BottomBarReserve - navInset - Space.md * 2) * 0.75f }.coerceAtLeast(280.dp)
-    Box(Modifier.fillMaxSize().onSizeChanged { screenPx = it.height }) {
+    Box(Modifier.fillMaxSize()) {
         // Content scrolls beneath the frosted header and tab bar (it is the glass "content" layer).
         LazyColumn(
             state = listState,
@@ -145,20 +169,18 @@ fun EmpireScreen(
             verticalArrangement = Arrangement.spacedBy(Space.md),
             modifier = Modifier.fillMaxSize().glassSource(GlassLayer.Content).testTag("empire-list"),
         ) {
-            item(key = "stage") { TapStage(vm, e, fmt, guide, Modifier.fillMaxWidth().height(stageHeight)) }
+            guide?.let { g -> item(key = "guide") { GuideBanner(g) } }
             if (!guiding) mentorLine?.let { l -> item(key = "mentor") { MentorCard(vm.mentor.name, l.text, onDismiss = { vm.mentor.dismiss() }) } }
             e.mission?.let { m ->
                 item(key = "mission") {
-                    // "Show me": open the business or the counter, or switch to the tab where the goal is played.
+                    // "Show me": open the business, switch to the counter or another tab, or scroll to the right card.
                     val go: (() -> Unit)? = m.goTo?.let { target ->
                         {
                             when {
                                 target.startsWith("business:") -> onOpenBusiness(target.removePrefix("business:"))
-                                target == "counter" -> scope.launch { listState.animateScrollToItem(0) }
+                                target == "counter" -> onSwitchTab("counter")
                                 target.startsWith("tab:") -> onSwitchTab(target.removePrefix("tab:"))
-                                target.startsWith("open:") -> onSwitchTab("businesses:$target")
-                                target == "hq" -> onSwitchTab("businesses:hq")
-                                else -> onSwitchTab("businesses")
+                                else -> scrollTo(target)
                             }
                         }
                     }
@@ -166,8 +188,42 @@ fun EmpireScreen(
                 }
             }
             e.crown?.let { cr -> item(key = "crown") { CrownReadyCard(cr, onOpen = { onSwitchTab("dynasty") }) } }
-            item(key = "businesses") { BusinessesSummaryCard(e, onOpen = { onSwitchTab("businesses") }) }
             item(key = "world") { com.arnavgames.tycoon.ui.world.WorldStrip(vm, onOpenDesk, onOpenFortune, onOpenFinance) }
+            item(key = "biz-header") {
+                Column {
+                    SectionHeader("Your businesses") {
+                        Text("${e.hq.slotsUsed}/${e.hq.slots} slots", style = Aurum.type.label, color = Aurum.colors.textTertiary)
+                    }
+                    Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+                        Text("Buy", style = Aurum.type.bodySmall, color = Aurum.colors.textSecondary, modifier = Modifier.weight(1f))
+                        SegmentedSelector(BuyQty.entries, qty, { it.label }, vm::setBuyQty)
+                    }
+                }
+            }
+            items(e.businesses, key = { it.id }) { b ->
+                BusinessCard(
+                    b, fmt,
+                    onOpen = { onOpenBusiness(b.id) },
+                    onBuy = { vm.dispatch(Command.BuyLevels(b.id, if (qty == BuyQty.Max) -1 else qty.count)) },
+                    onCollect = { vm.dispatch(Command.Collect(b.id)) },
+                )
+            }
+            if (available.isNotEmpty()) {
+                item(key = "open-header") { SectionHeader("Open a new business") }
+                items(available, key = { "open-" + it.id }) { o -> OpenableCard(o, fmt, onOpen = { vm.dispatch(Command.OpenBusiness(o.id)) }) }
+            }
+            items(locked, key = { "locked-" + it.id }) { o -> OpenableCard(o, fmt, onOpen = {}) }
+            if (e.mergers.isNotEmpty()) {
+                item(key = "merger-header") { SectionHeader("Merger tree") }
+                items(e.mergers, key = { "merger-" + it.id }) { m -> MergerCard(m, fmt, onForm = { vm.dispatch(Command.FormConglomerate(m.id)) }) }
+                e.holding?.let { h -> item(key = "holding") { HoldingCard(h, fmt, onForm = { name -> vm.dispatch(Command.FormHolding(name)) }) } }
+            }
+            item(key = "hq") {
+                Column {
+                    SectionHeader("Headquarters")
+                    HqCard(e.hq, fmt, onUpgrade = { vm.dispatch(Command.UpgradeHq) })
+                }
+            }
         }
         EmpireHeader(e, fmt, Modifier.align(Alignment.TopCenter).onSizeChanged { headerPx = it.height })
         // Celebrations appear just below the header so they never cover the numbers.
@@ -175,47 +231,6 @@ fun EmpireScreen(
     }
 }
 
-/** A glance at the businesses: income, what needs a tap (full tills), the best buy, and what you can open. */
-@Composable
-private fun BusinessesSummaryCard(e: EmpireUi, onOpen: () -> Unit) {
-    val c = Aurum.colors
-    val income = e.header.income
-    val fullTills = e.businesses.count { it.managerName == null && it.storageCap.isPositive && it.stored >= it.storageCap }
-    val best = e.businesses.firstOrNull { it.bestValue != null }
-    val canOpen = e.openable.count { it.lockedReason == null && it.canAfford }
-    AurumCard(Modifier.fillMaxWidth().testTag("businesses-summary"), onClick = onOpen) {
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            Text("YOUR BUSINESSES", style = Aurum.type.overline, color = c.goldText, modifier = Modifier.weight(1f))
-            Text("${e.hq.slotsUsed}/${e.hq.slots} slots", style = Aurum.type.label, color = c.textTertiary)
-        }
-        Spacer(Modifier.height(Space.xs))
-        Row(verticalAlignment = Alignment.Bottom) {
-            Text(MoneyFormat.perSecond(income.perSecond()), style = Aurum.type.headline, color = c.textPrimary)
-            Spacer(Modifier.width(Space.xs))
-            Text(
-                "from ${e.businesses.size} ${if (e.businesses.size == 1) "business" else "businesses"}",
-                style = Aurum.type.bodySmall, color = c.textSecondary, modifier = Modifier.padding(bottom = 3.dp),
-            )
-        }
-        val notes = buildList {
-            if (fullTills > 0) add(AbtIcons.Cash to (if (fullTills == 1) "1 till is full: collect it" else "$fullTills tills are full: collect them"))
-            best?.let { b -> add(AbtIcons.StarFilled to "${b.name}: ${b.bestValue!!.replaceFirstChar { ch -> ch.lowercase() }}") }
-            if (canOpen > 0) add(AbtIcons.Plus to (if (canOpen == 1) "You can open a new business" else "You can open $canOpen new businesses"))
-        }
-        if (notes.isNotEmpty()) {
-            Spacer(Modifier.height(Space.sm))
-            notes.forEach { (icon, text) ->
-                Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(vertical = 2.dp)) {
-                    AbtIcon(icon, null, tint = c.goldText, size = 14.dp)
-                    Spacer(Modifier.width(Space.xs))
-                    Text(text, style = Aurum.type.bodySmall, color = c.textPrimary)
-                }
-            }
-        }
-        Spacer(Modifier.height(Space.sm))
-        GoldButton("Manage businesses", onClick = onOpen, modifier = Modifier.fillMaxWidth(), leadingIcon = AbtIcons.Store)
-    }
-}
 
 /** After the last chapter: the next move is the succession. Shows what the heir gains, and that waiting grows it. */
 @Composable
@@ -300,22 +315,18 @@ internal fun CurrencyPill(icon: androidx.compose.ui.graphics.vector.ImageVector,
 // ------------------------------------------------------------------ onboarding
 
 /** Where a guide line is shown: each screen words the step for what you can do from there. */
-internal enum class GuideWhere { Empire, Businesses }
+internal enum class GuideWhere { Empire, Counter }
 
 /** The one instruction a new player sees: a waiting reward comes first, then the current step. */
 internal fun guideText(e: EmpireUi, where: GuideWhere): String? = when {
     e.onboardingStep !in 1..4 -> null
     e.mission?.claimable == true ->
-        if (where == GuideWhere.Empire) "You've earned a reward. Tap Claim on the card below." else "You've earned a reward: claim it on the Empire tab."
+        if (where == GuideWhere.Empire) "You've earned a reward. Tap Claim on the card below." else "Reward waiting on the Empire tab."
     else -> when (e.onboardingStep) {
-        1 -> if (where == GuideWhere.Businesses) "Go back to Empire and tap the counter to serve customers."
-        else "Tap anywhere here to serve customers. Every customer pays cash."
-        2 -> if (where == GuideWhere.Businesses) "Buy a level for your kiosk: it earns more every second, even without you."
-        else "Nice! Now open Businesses in the bar below and buy a level for your kiosk."
-        3 -> if (where == GuideWhere.Businesses) "Your kiosk fills its till while it works. Tap Collect to bank the cash."
-        else "Your kiosk's till is filling up. Open Businesses and tap Collect."
-        else -> if (where == GuideWhere.Businesses) "Keep growing. Open the kiosk and hire a manager so it runs without you."
-        else "Keep growing. A manager will run the kiosk for you: the card below shows how."
+        1 -> if (where == GuideWhere.Counter) "Tap anywhere to serve customers. Every customer pays cash." else "Open the Counter tab and serve a few customers."
+        2 -> if (where == GuideWhere.Empire) "Buy a level for your kiosk. It earns more every second, even without you." else "Nice. Now open Empire and buy a level for your kiosk."
+        3 -> if (where == GuideWhere.Empire) "Your kiosk fills its till while it works. Tap Collect to bank it." else "Your kiosk's till is filling up. Collect it on the Empire tab."
+        else -> if (where == GuideWhere.Empire) "Open the kiosk and hire a manager so it runs without you." else "Hire a manager for the kiosk on the Empire tab."
     }
 }
 
@@ -395,9 +406,17 @@ private fun MentorCard(name: String, text: String, onDismiss: () -> Unit) {
 private fun NextMoveCard(m: MissionUi, onClaim: () -> Unit, onGo: (() -> Unit)? = null) {
     val c = Aurum.colors
     AurumCard(Modifier.fillMaxWidth(), highlighted = m.claimable) {
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            Text("CHAPTER ${m.chapterNumber} · ${m.chapterTitle.uppercase()}", style = Aurum.type.overline, color = c.goldText, modifier = Modifier.weight(1f))
-            Text("${m.done}/${m.total}", style = Aurum.type.numberSmall, color = c.textTertiary)
+        // The chapter's painting heads the card.
+        com.arnavgames.tycoon.ui.common.Illustration(
+            com.arnavgames.tycoon.ui.common.Art.chapter(m.chapterNumber), Modifier.fillMaxWidth().height(128.dp).clip(AurumShapes.medium), scrim = true,
+        ) {
+            Row(Modifier.align(Alignment.BottomStart).fillMaxWidth().padding(Space.md), verticalAlignment = Alignment.Bottom) {
+                Column(Modifier.weight(1f)) {
+                    Text("CHAPTER ${m.chapterNumber}", style = Aurum.type.overline, color = Color.White.copy(alpha = 0.8f))
+                    Text(m.chapterTitle, style = Aurum.type.title, color = Color.White)
+                }
+                Text("${m.done} of ${m.total}", style = Aurum.type.label, color = Color.White.copy(alpha = 0.85f))
+            }
         }
         Spacer(Modifier.height(Space.sm))
         Text(m.title, style = Aurum.type.headline, color = c.textPrimary)
@@ -427,7 +446,11 @@ fun BusinessCard(b: BusinessUi, fmt: (Money) -> String, onOpen: () -> Unit, onBu
     val c = Aurum.colors
     AurumCard(Modifier.fillMaxWidth(), onClick = onOpen) {
         Row(verticalAlignment = Alignment.CenterVertically) {
-            IconTile(AbtIcons.named(b.icon), highlighted = b.managerName != null)
+            com.arnavgames.tycoon.ui.common.Illustration(
+                com.arnavgames.tycoon.ui.common.Art.business(b.id),
+                Modifier.size(64.dp).clip(AurumShapes.small)
+                    .border(if (b.managerName != null) 1.5.dp else 0.dp, if (b.managerName != null) c.gold else Color.Transparent, AurumShapes.small),
+            )
             Spacer(Modifier.width(Space.md))
             // At large font sizes the income moves under the name so long names never break mid-word.
             val stacked = LocalDensity.current.fontScale > 1.35f
@@ -501,7 +524,13 @@ internal fun OpenableCard(o: OpenableUi, fmt: (Money) -> String, onOpen: () -> U
     val locked = o.lockedReason != null
     AurumCard(Modifier.fillMaxWidth().alpha(if (locked) 0.7f else 1f)) {
         Row(verticalAlignment = Alignment.CenterVertically) {
-            IconTile(if (locked) AbtIcons.Lock else AbtIcons.named(o.icon), tint = if (locked) c.textTertiary else c.goldText)
+            com.arnavgames.tycoon.ui.common.Illustration(
+                com.arnavgames.tycoon.ui.common.Art.business(o.id), Modifier.size(64.dp).clip(AurumShapes.small).alpha(if (locked) 0.55f else 1f),
+            ) {
+                if (locked) Box(Modifier.matchParentSize().background(Color.Black.copy(alpha = 0.35f)), contentAlignment = Alignment.Center) {
+                    AbtIcon(AbtIcons.Lock, null, tint = Color.White, size = 20.dp)
+                }
+            }
             Spacer(Modifier.width(Space.md))
             Column(Modifier.weight(1f)) {
                 Text(o.name, style = Aurum.type.title, color = c.textPrimary)
@@ -596,3 +625,6 @@ internal fun MomentOverlay(vm: GameViewModel, modifier: Modifier) {
         }
     }
 }
+
+/** The guide line for the Counter tab (null once the tutorial is done). */
+fun counterGuide(e: EmpireUi): String? = guideText(e, GuideWhere.Counter)

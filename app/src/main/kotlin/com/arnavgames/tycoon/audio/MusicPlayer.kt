@@ -21,7 +21,7 @@ class MusicPlayer(private val app: Context, private val scope: CoroutineScope) {
     private val tracks = mapOf(
         "empire" to R.raw.music_empire, "markets" to R.raw.music_markets,
         "estates" to R.raw.music_estates, "collection" to R.raw.music_estates, "dynasty" to R.raw.music_dynasty,
-        "businesses" to R.raw.music_empire, "more" to R.raw.music_dynasty,
+        "counter" to R.raw.music_empire, "more" to R.raw.music_dynasty,
     )
     private var player: MediaPlayer? = null
     private var currentTrack: Int? = null

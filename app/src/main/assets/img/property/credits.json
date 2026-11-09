@@ -1,0 +1,105 @@
+{
+  "note": "Hand-painted-style illustrations generated with Figma AI (gpt-image-2.5-flare) from prompts written for this game. Invented scenes: no real logos, brands or identifiable people.",
+  "items": [
+    {
+      "id": "apartment",
+      "title": "A mid-rise city apartment building with balconies and plants, warm lit windows in the evening, a quiet tree-lined street",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 960x640, WebP"
+    },
+    {
+      "id": "townhouse",
+      "title": "A row of elegant terraced townhouses with coloured front doors, iron railings and window boxes on a quiet street",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 960x640, WebP"
+    },
+    {
+      "id": "villa",
+      "title": "A white modernist villa on a Mediterranean hillside with an infinity pool, cypress trees and the sea below",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 960x640, WebP"
+    },
+    {
+      "id": "office_floor",
+      "title": "An open-plan office floor high in a tower, rows of desks and plants, floor-to-ceiling windows looking over the city at dusk",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 960x640, WebP"
+    },
+    {
+      "id": "retail_unit",
+      "title": "A bright corner shop unit with big plate-glass windows on a busy high street, an awning, shoppers' shadows on the pavement",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 960x640, WebP"
+    },
+    {
+      "id": "warehouse",
+      "title": "A large modern warehouse with a row of loading bays, lorries backed up to the doors, stacked pallets inside under high skylights",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 960x640, WebP"
+    },
+    {
+      "id": "hotel_plot",
+      "title": "An empty beachfront building plot marked with surveyor stakes and string lines, palm trees, the sea and a distant resort skyline",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 960x640, WebP"
+    },
+    {
+      "id": "land",
+      "title": "An open plot of land on the edge of a city, wild grass, a simple timber fence, the city skyline in the distance under a wide sky",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 960x640, WebP"
+    },
+    {
+      "id": "penthouse",
+      "title": "A luxury penthouse roof terrace at night with a glowing pool, lounge chairs and planters, the city lights spread out far below",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 960x640, WebP"
+    },
+    {
+      "id": "mixed_use",
+      "title": "A modern mixed-use city block, shops and cafes with awnings on the ground floor, apartments with balconies above, a small plaza with trees in front",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 960x640, WebP"
+    }
+  ]
+}

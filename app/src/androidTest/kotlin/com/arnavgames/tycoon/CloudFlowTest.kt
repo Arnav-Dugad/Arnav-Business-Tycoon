@@ -68,9 +68,9 @@ class CloudFlowTest {
     private fun waitForMidgame(timeout: Long = 60_000) {
         rule.waitUntil(timeout) {
             runCatching {
-                // The midgame scenario has loaded once Restaurants is on the Businesses tab.
-                rule.onNodeWithContentDescription("Businesses", substring = true).performClick()
-                rule.onNodeWithTag("businesses-list").performScrollToNode(hasText("Restaurants", substring = true)); true
+                // The midgame scenario has loaded once Restaurants is on the Empire tab.
+                rule.onNodeWithContentDescription("Empire", substring = true).performClick()
+                rule.onNodeWithTag("empire-list").performScrollToNode(hasText("Restaurants", substring = true)); true
             }.getOrDefault(false)
         }
     }

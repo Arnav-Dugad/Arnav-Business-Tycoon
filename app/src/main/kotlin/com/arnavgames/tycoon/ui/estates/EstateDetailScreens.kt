@@ -1,5 +1,8 @@
 package com.arnavgames.tycoon.ui.estates
 
+import com.arnavgames.tycoon.designsystem.theme.AurumShapes
+import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.clip
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -69,6 +72,7 @@ fun CityScreen(vm: GameViewModel, cityId: String, onBack: () -> Unit, onOpenDist
     val ui = remember(s.simTimeMs / 60_000, s.progress.chapter, s.estate.districtBoost) { vm.city(s, cityId) } ?: return
     val c = Aurum.colors
     GlassScaffold(title = ui.name, onBack = onBack) {
+        item(key = "hero") { com.arnavgames.tycoon.ui.common.Illustration(com.arnavgames.tycoon.ui.common.Art.city(ui.id), Modifier.fillMaxWidth().height(180.dp).clip(com.arnavgames.tycoon.designsystem.theme.AurumShapes.large)) }
         item(key = "about") {
             AurumCard(Modifier.fillMaxWidth()) {
                 Text(ui.description, style = Aurum.type.body, color = c.textSecondary)
@@ -180,7 +184,7 @@ fun DistrictScreen(vm: GameViewModel, districtId: String, onBack: () -> Unit, on
             item(key = l.id) {
                 AurumCard(Modifier.fillMaxWidth(), highlighted = selected == l.id, onClick = { selected = if (selected == l.id) null else l.id }) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
-                        IconTile(AbtIcons.named(l.icon), size = 44.dp, highlighted = l.distressed)
+                        com.arnavgames.tycoon.ui.common.Illustration(com.arnavgames.tycoon.ui.common.Art.property(l.typeId), Modifier.size(64.dp, 46.dp).clip(com.arnavgames.tycoon.designsystem.theme.AurumShapes.small))
                         Spacer(Modifier.width(Space.md))
                         Column(Modifier.weight(1f)) {
                             Text(l.type, style = Aurum.type.titleSmall, color = c.textPrimary)
@@ -246,10 +250,10 @@ fun PropertyScreen(vm: GameViewModel, propertyId: Long, onBack: () -> Unit) {
         return
     }
     GlassScaffold(title = ui.title, onBack = onBack) {
+        item(key = "art") { com.arnavgames.tycoon.ui.common.Illustration(com.arnavgames.tycoon.ui.common.Art.property(ui.typeId), Modifier.fillMaxWidth().height(170.dp).clip(com.arnavgames.tycoon.designsystem.theme.AurumShapes.large)) }
         item(key = "hero") {
             AurumCard(Modifier.fillMaxWidth()) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                    IconTile(AbtIcons.named(ui.icon), size = 48.dp, highlighted = true)
                     Spacer(Modifier.width(Space.md))
                     Column(Modifier.weight(1f)) {
                         Text(ui.location, style = Aurum.type.bodySmall, color = c.textSecondary)

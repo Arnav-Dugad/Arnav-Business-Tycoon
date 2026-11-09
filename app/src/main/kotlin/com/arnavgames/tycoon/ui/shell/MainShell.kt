@@ -32,9 +32,8 @@ import com.arnavgames.tycoon.ui.locked.ComingSoonScreen
 import com.arnavgames.tycoon.ui.markets.MarketsScreen
 
 /**
- * The five main tabs: Empire (overview), Businesses, Markets, Estates and More (Collection, Dynasty, Store, account,
- * settings). Content scrolls edge to edge beneath a floating glass tab bar and a frosted status-bar strip. The counter
- * is the top of the Empire tab.
+ * The five main tabs: Counter (the tapping game, full screen), Empire (what to do next and every business), Markets,
+ * Estates and More (Collection, Dynasty, Store, account, settings). Content scrolls edge to edge beneath a floating glass tab bar and a frosted status-bar strip.
  */
 @Composable
 fun MainShell(
@@ -58,10 +57,11 @@ fun MainShell(
     onOpenSocial: () -> Unit = {},
     onOpenTiming: () -> Unit = {},
 ) {
-    var tab by rememberSaveable { mutableStateOf("empire") }
+    // Chosen once the game has loaded: a brand-new player starts at the Counter, everyone else on Empire.
+    var chosenTab by rememberSaveable { mutableStateOf("") }
     // Inside More: the hub, or the Collection or Dynasty page (with a back button).
     var morePage by rememberSaveable { mutableStateOf("hub") }
-    // A one-shot scroll target for the Businesses tab ("open:<id>" or "hq").
+    // A one-shot scroll target for the Empire tab ("open:<id>", "hq" or "businesses").
     var businessFocus by rememberSaveable { mutableStateOf<String?>(null) }
     val empire by vm.empire.collectAsStateWithLifecycle()
     val claimable = (empire?.claimableCount ?: 0) > 0
@@ -73,12 +73,14 @@ fun MainShell(
     val dynastyBadge by vm.dynastyBadge.collectAsStateWithLifecycle()
     val cardsWaiting = (deskUi?.cards?.size ?: 0) > 0
     val e = empire
-    // Businesses wants you when a till is full (no manager) or the guide is pointing there.
-    val businessBadge = e != null && (e.onboardingStep in 2..4 ||
+    androidx.compose.runtime.LaunchedEffect(e != null) { if (chosenTab.isEmpty() && e != null) chosenTab = if (e.onboardingStep <= 1) "counter" else "empire" }
+    val tab = chosenTab.ifEmpty { "empire" }
+    // Empire wants you when a till is full (no manager), a reward waits, a decision waits, or the guide points there.
+    val empireBadge = e != null && (e.onboardingStep in 2..4 ||
         e.businesses.any { it.managerName == null && it.storageCap.isPositive && it.stored >= it.storageCap })
     val items = listOf(
-        NavItem("empire", "Empire", AbtIcons.Empire, badge = cardsWaiting || claimable),
-        NavItem("businesses", "Businesses", AbtIcons.Store, badge = businessBadge),
+        NavItem("counter", "Counter", AbtIcons.Hand),
+        NavItem("empire", "Empire", AbtIcons.Empire, badge = cardsWaiting || claimable || empireBadge),
         NavItem("markets", "Markets", AbtIcons.Markets),
         NavItem("estates", "Estates", AbtIcons.Estates, badge = decisions),
         NavItem("more", "More", AbtIcons.Menu, badge = dynastyBadge || auctionLive),
@@ -87,9 +89,10 @@ fun MainShell(
     e?.let { com.arnavgames.tycoon.ui.empire.OnboardingDriver(it, vm) }
     val switchTo: (String) -> Unit = { target ->
         when {
-            target == "collection" || target == "dynasty" -> { morePage = target; tab = "more" }
-            target.startsWith("businesses:") -> { businessFocus = target.removePrefix("businesses:"); tab = "businesses" }
-            else -> tab = target
+            target == "collection" || target == "dynasty" -> { morePage = target; chosenTab = "more" }
+            target.startsWith("businesses:") -> { businessFocus = target.removePrefix("businesses:"); chosenTab = "empire" }
+            target == "businesses" -> { businessFocus = "businesses"; chosenTab = "empire" }
+            else -> chosenTab = target
         }
     }
     val tabRequest by vm.tabRequest.collectAsStateWithLifecycle()
@@ -99,11 +102,11 @@ fun MainShell(
     Box(Modifier.fillMaxSize()) {
         AnimatedContent(tab to morePage, transitionSpec = { fadeIn(tween(220)) togetherWith fadeOut(tween(160)) }, label = "tab") { (t, page) ->
             when (t) {
+                "counter" -> com.arnavgames.tycoon.ui.counter.CounterScreen(vm, guide = e?.let { com.arnavgames.tycoon.ui.empire.counterGuide(it) })
                 "empire" -> EmpireScreen(
                     vm, onOpenBusiness = onOpenBusiness, onOpenDesk = onOpenDesk, onOpenFortune = onOpenFortune, onOpenFinance = onOpenFinance,
-                    onSwitchTab = switchTo,
+                    onSwitchTab = switchTo, focus = businessFocus, onFocusDone = { businessFocus = null },
                 )
-                "businesses" -> com.arnavgames.tycoon.ui.empire.BusinessesScreen(vm, onOpenBusiness = onOpenBusiness, focus = businessFocus, onFocusDone = { businessFocus = null })
                 "markets" -> MarketsScreen(vm, onOpenInstrument = onOpenInstrument, onOpenNews = onOpenNews, onOpenTiming = onOpenTiming)
                 "estates" -> com.arnavgames.tycoon.ui.estates.EstatesScreen(vm, onOpenCity = onOpenCity, onOpenProperty = onOpenProperty)
                 else -> when (page) {
@@ -124,7 +127,7 @@ fun MainShell(
         Box(Modifier.fillMaxWidth().windowInsetsTopHeight(WindowInsets.statusBars).glass(RoundedCornerShape(0), GlassWeight.Regular, edge = false))
         AurumBottomBar(
             items = items, selected = tab,
-            onSelect = { t -> if (t == "more" && tab == "more") morePage = "hub"; tab = t },
+            onSelect = { t -> if (t == "more" && tab == "more") morePage = "hub"; chosenTab = t },
             modifier = Modifier.align(Alignment.BottomCenter),
         )
     }

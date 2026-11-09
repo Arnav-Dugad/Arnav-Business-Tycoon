@@ -99,7 +99,7 @@ fun StoreScreen(vm: GameViewModel, onBack: () -> Unit, onOpenGoals: () -> Unit =
                         val owned = content.cosmetics.count { it.id in s.store.cosmetics }
                         Text("$owned of ${content.cosmetics.size} owned", style = Aurum.type.label, color = c.textTertiary)
                     }
-                    Text("Just for show: they never change how the game plays.", style = Aurum.type.bodySmall, color = c.textSecondary)
+                    Text("Looks only. They don't change the game.", style = Aurum.type.bodySmall, color = c.textSecondary)
                     Spacer(Modifier.height(Space.sm))
                     com.arnavgames.tycoon.designsystem.components.SegmentedSelector(
                         listOf("avatar", "frame", "title"), cosmeticKind, { when (it) { "avatar" -> "Avatars"; "frame" -> "Frames"; else -> "Titles" } },
@@ -121,15 +121,10 @@ fun StoreScreen(vm: GameViewModel, onBack: () -> Unit, onOpenGoals: () -> Unit =
                 item(key = "sec-bullion") {
                     Column {
                         SectionHeader("Demo Bullion packs")
-                        Text("Demo only: tapping one shows a demo receipt. No money is charged and no payment details are asked for.",
-                            style = Aurum.type.bodySmall, color = c.textSecondary)
+                        Text("Demo only. No money changes hands.", style = Aurum.type.bodySmall, color = c.textSecondary)
                     }
                 }
                 packs.forEach { p -> item(key = p.id) { ProductCard(p, ctx, bullion, onDemo = { demo = it }) } }
-            }
-            item(key = "foot") {
-                Text("No random rewards, no countdown offers and no limited stock: everything here is always available at the same price.",
-                    style = Aurum.type.label, color = c.textTertiary, textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth())
             }
         }
         demo?.let { p ->
@@ -251,7 +246,7 @@ private fun Wallet(s: GameState, bullion: Long, store: StoreEngine) {
             AbtIcon(AbtIcons.Shield, null, tint = c.goldText, size = 16.dp)
             Spacer(Modifier.width(Space.xs))
             Text(
-                "Demo store: no real money is ever charged and no payment details are asked for. Demo purchases add a Boosted badge to your profile.",
+                "Demo store. Nothing here ever costs real money.",
                 style = Aurum.type.bodySmall, color = c.textSecondary,
             )
         }
@@ -291,7 +286,6 @@ private fun EarnFree(vm: GameViewModel, s: GameState, onOpenGoals: () -> Unit) {
         add(Triple(AbtIcons.Check, "Today's goals", if (dailyLeft > 0) "${"%,d".format(dailyLeft)} Bullion still to earn" else "All earned today"))
         add(Triple(AbtIcons.Star, "This week's goals", if (weeklyLeft > 0) "${"%,d".format(weeklyLeft)} Bullion still to earn" else "All earned this week"))
         if (toClaim.isNotEmpty()) add(Triple(AbtIcons.Trophy, "Achievements", "${toClaim.size} to claim · ${"%,d".format(toClaim.sumOf { it.bullion })} Bullion"))
-        add(Triple(AbtIcons.Book, "Story missions", "Many chapter goals pay Bullion too"))
     }
     AurumCard(Modifier.fillMaxWidth().testTag("store-earn")) {
         Text("EARN BULLION FREE", style = Aurum.type.overline, color = c.goldText)

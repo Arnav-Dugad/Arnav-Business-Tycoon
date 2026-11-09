@@ -1,0 +1,185 @@
+{
+  "note": "Hand-painted-style illustrations generated with Figma AI (gpt-image-2.5-flare) from prompts written for this game. Invented scenes: no real logos, brands or identifiable people.",
+  "items": [
+    {
+      "id": "retail",
+      "title": "A small corner kiosk on a sunny cobbled street corner in Lisbon at early evening, striped awning, crates of fruit and newspapers, warm light spilling from the counter, tram rails in the foreground",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 960x640, WebP"
+    },
+    {
+      "id": "restaurants",
+      "title": "A busy neighbourhood restaurant at dusk seen from the street, tables on the pavement under string lights, a chef's pass glowing through the window, plates and wine glasses",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 960x640, WebP"
+    },
+    {
+      "id": "logistics",
+      "title": "A city delivery depot at dawn: a row of delivery vans and a cargo truck, roller doors open, stacked parcels on pallets, a forklift",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 960x640, WebP"
+    },
+    {
+      "id": "farmland",
+      "title": "Rolling farm fields at harvest time, a red barn and silo, a tractor working golden rows of wheat, orchards on the hills",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 960x640, WebP"
+    },
+    {
+      "id": "factory",
+      "title": "A brick and steel factory with a sawtooth roof and tall chimneys, conveyor belts and machinery visible through tall glowing windows, a rail siding in front",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 960x640, WebP"
+    },
+    {
+      "id": "fashion",
+      "title": "An elegant fashion atelier: mannequins wearing evening gowns, bolts of silk on shelves, a cutting table with patterns, a glimpse of a runway through an arched doorway",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 960x640, WebP"
+    },
+    {
+      "id": "mining",
+      "title": "An open-pit mine with terraced rock walls, a giant dump truck on the haul road, a mine headframe tower, mountains at evening",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 960x640, WebP"
+    },
+    {
+      "id": "energy",
+      "title": "A hillside wind farm and a field of solar panels beside a power station, transmission towers carrying lines toward a distant city",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 960x640, WebP"
+    },
+    {
+      "id": "hotels",
+      "title": "A grand seaside resort hotel at sunset with white balconies, palm trees, a turquoise swimming pool and loungers, the sea beyond",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 960x640, WebP"
+    },
+    {
+      "id": "bank",
+      "title": "A classic stone bank building with tall columns and bronze doors on a city avenue at dusk, street lamps lit, a vault door glimpsed inside",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 960x640, WebP"
+    },
+    {
+      "id": "construction",
+      "title": "A skyscraper under construction with two tower cranes, exposed steel beams and concrete floors rising against a clear sky, the city below",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 960x640, WebP"
+    },
+    {
+      "id": "media",
+      "title": "A television broadcast studio with cameras on pedestals, a curved news desk, studio lights and a glowing control room window",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 960x640, WebP"
+    },
+    {
+      "id": "tech",
+      "title": "A modern glass technology campus at dusk, glowing screens visible through tall windows, a courtyard with trees, a server room glowing in the basement",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 960x640, WebP"
+    },
+    {
+      "id": "telecom",
+      "title": "Telecom towers and satellite dishes on hills at night, glowing signal arcs crossing above a city of lights",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 960x640, WebP"
+    },
+    {
+      "id": "airline",
+      "title": "A passenger airliner lifting off a runway at sunset, the terminal and control tower behind, runway lights glowing",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 960x640, WebP"
+    },
+    {
+      "id": "pharma",
+      "title": "A bright pharmaceutical laboratory: glass flasks, a microscope, rows of medicine vials on a production line behind a glass wall",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 960x640, WebP"
+    },
+    {
+      "id": "sports",
+      "title": "A packed football stadium at night under floodlights, seen from high in the stands, the green pitch glowing, crowd as small dabs of colour",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 960x640, WebP"
+    },
+    {
+      "id": "space",
+      "title": "A rocket lifting off from a coastal launch pad at dawn, a tall plume of smoke and fire, launch gantry towers, the sea in the background",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 960x640, WebP"
+    }
+  ]
+}

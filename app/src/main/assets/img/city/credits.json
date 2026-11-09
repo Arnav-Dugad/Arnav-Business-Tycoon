@@ -1,0 +1,65 @@
+{
+  "note": "Hand-painted-style illustrations generated with Figma AI (gpt-image-2.5-flare) from prompts written for this game. Invented scenes: no real logos, brands or identifiable people.",
+  "items": [
+    {
+      "id": "lisbon",
+      "title": "The city of Lisbon from a hilltop viewpoint: terracotta rooftops tumbling down to the Tagus river, a yellow tram, the suspension bridge in the distance, a warm sunset haze",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 960x640, WebP"
+    },
+    {
+      "id": "london",
+      "title": "London along the River Thames at dusk: the Houses of Parliament and the clock tower, a red double-decker bus on the bridge, warm lamps along the embankment",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 960x640, WebP"
+    },
+    {
+      "id": "miami",
+      "title": "Miami Beach: pastel art-deco hotels along Ocean Drive, tall palm trees, a wide sandy beach and turquoise sea in afternoon light",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 960x640, WebP"
+    },
+    {
+      "id": "mumbai",
+      "title": "Mumbai's Marine Drive at dusk: the long curved seafront promenade with a necklace of street lights, art-deco apartment buildings and the Arabian Sea",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 960x640, WebP"
+    },
+    {
+      "id": "new_york",
+      "title": "The Manhattan skyline seen across the river at golden hour, art-deco skyscrapers, a ferry on the water, a bridge on the right",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 960x640, WebP"
+    },
+    {
+      "id": "dubai",
+      "title": "Dubai at sunset: a needle-like supertall tower above a cluster of glass skyscrapers, wooden dhow boats on the creek, desert haze",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 960x640, WebP"
+    }
+  ]
+}

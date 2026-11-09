@@ -23,6 +23,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.testTag
@@ -31,6 +32,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.arnavgames.tycoon.core.money.MoneyFormat
+import com.arnavgames.tycoon.designsystem.components.AbtIcon
 import com.arnavgames.tycoon.designsystem.components.AurumCard
 import com.arnavgames.tycoon.designsystem.components.BottomBarReserve
 import com.arnavgames.tycoon.designsystem.components.HairlineDivider
@@ -80,11 +82,13 @@ fun MoreScreen(
                         else -> "${col.tier} · ${MoneyFormat.compact(col.value, vm.notation(settings))}"
                     },
                     badge = col?.auction?.let { "Auction live" }, onClick = onOpenCollection, locked = col?.unlocked == false,
+                    art = com.arnavgames.tycoon.ui.common.Art.luxuryCategory("painting"),
                 )
                 Door(
                     Modifier.weight(1f).fillMaxHeight().testTag("door-dynasty"), AbtIcons.Crown, "Your Dynasty",
                     "Generation ${dy.generation}" + if (dy.canPrestige) " · crown ready" else "",
                     badge = if (dynastyBadge) "Rewards waiting" else null, onClick = onOpenDynasty,
+                    art = com.arnavgames.tycoon.ui.common.Art.chapter(8),
                 )
             }
         }
@@ -111,15 +115,19 @@ fun MoreScreen(
 
 /** One of the two big doors: icon, name, a live line, and a badge when something is waiting. */
 @Composable
-private fun Door(modifier: Modifier, icon: ImageVector, title: String, line: String, badge: String?, onClick: () -> Unit, locked: Boolean = false) {
+private fun Door(modifier: Modifier, icon: ImageVector, title: String, line: String, badge: String?, onClick: () -> Unit, locked: Boolean = false, art: String? = null) {
     val c = Aurum.colors
-    AurumCard(modifier, onClick = onClick, highlighted = badge != null) {
+    AurumCard(modifier, onClick = onClick, highlighted = badge != null, contentPadding = androidx.compose.foundation.layout.PaddingValues(Space.sm)) {
         Box(Modifier.fillMaxWidth()) {
-            IconTile(if (locked) AbtIcons.Lock else icon, size = 48.dp, highlighted = !locked, tint = if (locked) c.textTertiary else c.goldText)
-            if (badge != null) Box(Modifier.align(Alignment.TopEnd).size(10.dp).clip(CircleShape).background(c.loss))
+            if (art != null) {
+                com.arnavgames.tycoon.ui.common.Illustration(art, Modifier.fillMaxWidth().height(96.dp).clip(com.arnavgames.tycoon.designsystem.theme.AurumShapes.medium)
+                    .then(if (locked) Modifier.alpha(0.45f) else Modifier))
+            } else IconTile(if (locked) AbtIcons.Lock else icon, size = 48.dp, highlighted = !locked, tint = if (locked) c.textTertiary else c.goldText)
+            if (locked) AbtIcon(AbtIcons.Lock, null, tint = c.textPrimary, size = 18.dp, modifier = Modifier.align(Alignment.Center))
+            if (badge != null) Box(Modifier.align(Alignment.TopEnd).padding(Space.xs).size(10.dp).clip(CircleShape).background(c.loss))
         }
-        Spacer(Modifier.height(Space.md))
-        Column {
+        Spacer(Modifier.height(Space.sm))
+        Column(Modifier.padding(horizontal = Space.xs, vertical = Space.xxs)) {
             Text(title, style = Aurum.type.title, color = c.textPrimary)
             if (line.isNotEmpty()) Text(line, style = Aurum.type.bodySmall, color = c.textSecondary)
             badge?.let { Text(it, style = Aurum.type.label, color = c.goldText) }

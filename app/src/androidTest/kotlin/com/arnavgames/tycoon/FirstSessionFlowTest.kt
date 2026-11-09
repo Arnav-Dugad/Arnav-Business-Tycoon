@@ -41,14 +41,13 @@ class FirstSessionFlowTest {
 
     private fun nav(tab: String) { rule.onNodeWithContentDescription(tab, substring = true).performClick(); rule.waitForIdle() }
 
-    /** Empire tab (the counter is at the top) → serve [times] customers → back to the Businesses tab. */
+    /** Counter tab → serve [times] customers → back to the Empire tab (where the businesses are). */
     private fun counterRound(times: Int) {
-        nav("Empire")
-        rule.onNodeWithTag("empire-list").performScrollToIndex(0)
-        waitForText("EACH CUSTOMER PAYS")
+        nav("Counter")
+        waitForText("a customer")
         tapCounter(times)
-        nav("Businesses")
-        waitForText("Buy amount")
+        nav("Empire")
+        waitForText("Your businesses")
     }
 
     /** One burst of play: work the counter, then collect the till if it has money. */
@@ -70,30 +69,32 @@ class FirstSessionFlowTest {
     private fun androidx.compose.ui.test.SemanticsNodeInteraction.tap() =
         performSemanticsAction(androidx.compose.ui.semantics.SemanticsActions.OnClick)
 
-    /** The Businesses tab's list (by tag: other scrollable containers can be on screen during transitions). */
-    private fun businessesList() = rule.onNodeWithTag("businesses-list")
+    /** The Empire tab's list (by tag: other scrollable containers can be on screen during transitions). */
+    private fun businessesList() = rule.onNodeWithTag("empire-list")
 
     @Test
     fun firstSessionFromWelcomeToRushedExpansion() {
         // Flow 1: onboarding
         waitForText("Open your kiosk", timeout = 20_000)
         rule.onNodeWithText("Open your kiosk").performClick()
-        waitForText("EACH CUSTOMER PAYS")
+        waitForText("a customer")
+        nav("Empire")
         rule.onNodeWithTag("empire-list").performScrollToNode(hasText("Claim $", substring = true))
         waitForText("Claim $")
         rule.onNodeWithText("Claim $", substring = true).performClick()
 
-        // Serve customers on the Empire counter until the 60-customer mission completes, then claim its Favor.
-        rule.onNodeWithTag("empire-list").performScrollToIndex(0)
+        // Serve customers on the Counter tab until the 60-customer mission completes, then claim its Favor on Empire.
+        nav("Counter")
         tapCounter(60)
+        nav("Empire")
         rule.onNodeWithTag("empire-list").performScrollToNode(hasText("Claim $", substring = true))
         waitForText("Claim $")
         rule.onNodeWithText("Claim $", substring = true).performClick()
         rule.waitUntil(5_000) { rule.onAllNodes(hasContentDescription("5 Favor")).fetchSemanticsNodes().isNotEmpty() }
 
-        // Buy levels on the Businesses tab until Retail reaches level 5 (work the counter if cash runs out).
-        nav("Businesses")
-        waitForText("Buy amount")
+        // Buy levels on the Empire tab until Retail reaches level 5 (work the counter if cash runs out).
+        nav("Empire")
+        waitForText("Your businesses")
         var guard = 0
         while (rule.onAllNodesWithText("Lv 5", substring = true).fetchSemanticsNodes().isEmpty() && guard++ < 60) {
             scrollBusinessesTo("Buy ×1")
@@ -115,7 +116,7 @@ class FirstSessionFlowTest {
             buildEnabled = rule.onAllNodes(hasText("Build ·", substring = true) and isEnabled()).fetchSemanticsNodes().isNotEmpty()
             if (buildEnabled) break
             rule.onNodeWithContentDescription("Back").performClick()
-            waitForText("Buy amount")
+            waitForText("Your businesses")
             rule.waitUntil(10_000) { rule.onAllNodesWithText("Price level").fetchSemanticsNodes().isEmpty() }
         }
         check(buildEnabled) { "could not afford the expansion after earning" }
@@ -125,7 +126,7 @@ class FirstSessionFlowTest {
         // Completed expansions no longer show a Build or Rush action.
         rule.waitUntil(5_000) { rule.onAllNodesWithText("Rush ·", substring = true).fetchSemanticsNodes().isEmpty() }
         rule.onNodeWithContentDescription("Back").performClick()
-        waitForText("Buy amount")
+        waitForText("Your businesses")
     }
 
 }

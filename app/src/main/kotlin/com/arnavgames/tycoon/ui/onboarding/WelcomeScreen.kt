@@ -23,6 +23,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.graphics.Color
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Brush
@@ -39,50 +42,42 @@ import com.arnavgames.tycoon.designsystem.icons.AbtIcons
 import com.arnavgames.tycoon.designsystem.theme.Aurum
 import com.arnavgames.tycoon.designsystem.theme.Space
 
-/** First-run welcome. One clear action: open the first business. */
+/**
+ * First-run welcome: the painting of the folding table in Lisbon fills the screen, the title and one line sit over its
+ * fade, and there is one thing to do.
+ */
 @Composable
 fun WelcomeScreen(onBegin: () -> Unit) {
     val c = Aurum.colors
     val reduced = Aurum.reducedMotion
     val reveal = remember { Animatable(if (reduced) 1f else 0f) }
-    LaunchedEffect(Unit) { reveal.animateTo(1f, tween(900)) }
-    Box(
-        Modifier.fillMaxSize(),
-    ) {
-        // Centred on tall screens; scrolls when the content doesn't fit (small phones, large fonts).
-        androidx.compose.foundation.layout.BoxWithConstraints(Modifier.fillMaxSize().safeDrawingPadding()) {
-        val minH = maxHeight
+    LaunchedEffect(Unit) { reveal.animateTo(1f, tween(1100)) }
+    Box(Modifier.fillMaxSize().background(c.background)) {
+        // The painting, with a slow settle as it appears.
+        com.arnavgames.tycoon.ui.common.Illustration(
+            com.arnavgames.tycoon.ui.common.Art.WELCOME,
+            Modifier.fillMaxWidth().fillMaxHeight(0.72f).alpha(reveal.value)
+                .graphicsLayer { val k = 1.06f - 0.06f * reveal.value; scaleX = k; scaleY = k },
+        )
+        // Fade the painting into the page so the text sits on calm ground.
+        Box(Modifier.fillMaxSize().background(Brush.verticalGradient(0.35f to Color.Transparent, 0.7f to c.background)))
         Column(
-            Modifier.fillMaxWidth().verticalScroll(rememberScrollState()).heightIn(min = minH).padding(horizontal = Space.gutter, vertical = Space.xxl),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = androidx.compose.foundation.layout.Arrangement.Center,
+            Modifier.align(Alignment.BottomCenter).fillMaxWidth().safeDrawingPadding().padding(horizontal = Space.gutter, vertical = Space.xl),
+            horizontalAlignment = Alignment.Start,
         ) {
-            CrownMark(Modifier.alpha(reveal.value), size = 132.dp)
-            Spacer(Modifier.height(Space.xxl))
-            Text("ARNAV GAMES PRESENTS", style = Aurum.type.overline, color = c.goldText, modifier = Modifier.alpha(reveal.value))
-            Spacer(Modifier.height(Space.sm))
             Text(
-                "Arnav Business Tycoon", style = Aurum.type.hero, color = c.textPrimary, textAlign = TextAlign.Center,
+                "Arnav Business Tycoon", style = Aurum.type.hero, color = c.textPrimary,
                 modifier = Modifier.semantics { heading() }.alpha(reveal.value),
             )
-            Spacer(Modifier.height(Space.xl))
+            Spacer(Modifier.height(Space.sm))
             Text(
-                "Every fortune starts small. Yours starts with a folding table on a busy corner of Lisbon.",
-                style = Aurum.type.body, color = c.textSecondary, textAlign = TextAlign.Center, modifier = Modifier.widthIn(max = 420.dp),
+                "Every fortune starts small. Yours is a folding table on a corner in Lisbon.",
+                style = Aurum.type.body, color = c.textSecondary, modifier = Modifier.widthIn(max = 420.dp).alpha(reveal.value),
             )
-            Spacer(Modifier.height(Space.xxl))
-            AurumCard(Modifier.fillMaxWidth().widthIn(max = 480.dp)) {
-                Promise(AbtIcons.Store, "Run real businesses", "Set prices, earn reputation, plan delivery routes.")
-                Spacer(Modifier.height(Space.lg))
-                Promise(AbtIcons.Manager, "Hire managers", "They keep the doors open while you're away.")
-                Spacer(Modifier.height(Space.lg))
-                Promise(AbtIcons.Crown, "Build a dynasty", "Climb chapter by chapter from kiosk to empire.")
-            }
-            Spacer(Modifier.height(Space.xxxl))
-            GoldButton("Open your kiosk", onClick = onBegin, modifier = Modifier.fillMaxWidth().widthIn(max = 480.dp), leadingIcon = AbtIcons.Store)
-            Spacer(Modifier.height(Space.md))
-            Text("Free to play. Works fully offline.", style = Aurum.type.bodySmall, color = c.textTertiary)
-        }
+            Spacer(Modifier.height(Space.xl))
+            GoldButton("Open your kiosk", onClick = onBegin, modifier = Modifier.fillMaxWidth().widthIn(max = 480.dp))
+            Spacer(Modifier.height(Space.sm))
+            Text("Free. Plays offline.", style = Aurum.type.label, color = c.textTertiary)
         }
     }
 }

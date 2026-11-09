@@ -68,7 +68,7 @@ class ScreensTest(private val theme: String) {
     /** The Empire tab is ready (the businesses summary sits below the counter, so scroll to it, then back up). */
     private fun waitEmpire(timeout: Long = 30_000) {
         rule.waitUntil(timeout) {
-            runCatching { rule.onNodeWithTag("empire-list").performScrollToNode(hasText("Manage businesses")); true }.getOrDefault(false)
+            runCatching { rule.onNodeWithTag("empire-list").performScrollToNode(hasText("Your businesses", ignoreCase = true)); true }.getOrDefault(false)
         }
         rule.onNodeWithTag("empire-list").performScrollToIndex(0)
         rule.waitForIdle()
@@ -88,10 +88,13 @@ class ScreensTest(private val theme: String) {
             waitText("Open your kiosk")
             shot("01_welcome")
             tapText("Open your kiosk")
-            waitText("EACH CUSTOMER PAYS")
-            shot("02_empire_first_minute")
+            waitText("Tap anywhere")
+            shot("02_counter_first_minute")
             repeat(6) { rule.onNodeWithTag("counter-stage").performTouchInput { touchClick(center) }; rule.waitForIdle() }
-            shot("02b_empire_tapping")
+            shot("02b_counter_tapping")
+            tab("Empire")
+            waitText("Open for business")
+            shot("02c_empire_first_minute")
         }
     }
 
@@ -102,11 +105,16 @@ class ScreensTest(private val theme: String) {
             Thread.sleep(1500)
             rule.waitForIdle()
             shot("03_empire_midgame")
-            tab("Businesses")
-            waitText("Buy amount")
+            scrollTo("Your businesses")
+            Thread.sleep(400)
             shot("04_businesses")
             scrollTo("Restaurants")
             shot("04b_businesses_scrolled")
+            tab("Counter")
+            Thread.sleep(800)
+            shot("03b_counter_midgame")
+            tab("Empire")
+            waitEmpire()
             tapText("Retail Stores")
             waitText("Price level")
             shot("05_business_retail")
@@ -182,7 +190,7 @@ class ScreensTest(private val theme: String) {
             rule.waitUntil(120_000) { rule.onAllNodesWithText("Pass the Crown").fetchSemanticsNodes().isNotEmpty() }
             shot("15_dynasty_crown_ready")
             tab("Empire")
-            runCatching { waitText("Manage businesses", 5_000) }
+            runCatching { waitEmpire(5_000) }
             scrollTo("The crown is ready")
             Thread.sleep(500)
             shot("15b_empire_crown_ready")

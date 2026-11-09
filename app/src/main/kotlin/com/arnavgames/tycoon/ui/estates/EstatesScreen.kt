@@ -1,5 +1,6 @@
 package com.arnavgames.tycoon.ui.estates
 
+import androidx.compose.ui.draw.alpha
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -109,7 +110,7 @@ fun EstatesScreen(vm: GameViewModel, onOpenCity: (String) -> Unit, onOpenPropert
                                 .padding(horizontal = Space.md, vertical = Space.sm).semantics(mergeDescendants = true) {},
                             verticalAlignment = Alignment.CenterVertically,
                         ) {
-                            IconTile(if (city.unlocked) AbtIcons.Estates else AbtIcons.Lock, size = 36.dp, highlighted = city.owned > 0, tint = if (city.unlocked) c.goldText else c.textTertiary)
+                            com.arnavgames.tycoon.ui.common.Illustration(com.arnavgames.tycoon.ui.common.Art.city(city.id), Modifier.size(56.dp, 40.dp).clip(com.arnavgames.tycoon.designsystem.theme.AurumShapes.small).alpha(if (city.unlocked) 1f else 0.45f))
                             Spacer(Modifier.width(Space.md))
                             Column(Modifier.weight(1f)) {
                                 Text(city.name, style = Aurum.type.titleSmall, color = if (city.unlocked) c.textPrimary else c.textTertiary)
@@ -170,7 +171,7 @@ fun PropertyRow(p: PropertyRowUi, fmt: (Money) -> String, onClick: () -> Unit) {
             .semantics(mergeDescendants = true) {},
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        IconTile(AbtIcons.named(p.icon), size = 36.dp, highlighted = p.needsAttention)
+        com.arnavgames.tycoon.ui.common.Illustration(com.arnavgames.tycoon.ui.common.Art.property(p.typeId), Modifier.size(56.dp, 40.dp).clip(com.arnavgames.tycoon.designsystem.theme.AurumShapes.small))
         Spacer(Modifier.width(Space.md))
         Column(Modifier.weight(1f)) {
             Text(p.title, style = Aurum.type.titleSmall, color = c.textPrimary, maxLines = 1)

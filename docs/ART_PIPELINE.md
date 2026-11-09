@@ -46,6 +46,15 @@ Licenses accepted by the validator: `CC0-1.0`, `PDM-1.0`, `PD`, `CC-BY-2.0`, `CC
 - Pipeline: prompts and Figma node ids in `tools/art/portraits/managers.json` → full-resolution PNGs cached in `tools/art/cache/portraits/` (git-ignored) → `tools/art/process_portraits.py` → 320×320 WebP in `app/src/main/assets/img/portraits/` + `credits.json` (license `AI-GENERATED`).
 - Rivals (Phase 9) follow the same pipeline. Parody-named public figures get caricatures that hint at a *type* (tech founder, oil baron) without copying any real person's face.
 
+## 3b. Illustrations (owner request, 2026-11-09)
+- 54 hand-painted-style illustrations, one consistent look: gouache, flat shapes, a limited palette (deep navy, ivory, terracotta, muted gold), visible brush and paper texture, and no glossy 3D or render look. They cover the 18 businesses, 6 cities, 10 property types, 8 chapters, 11 collection categories and the welcome scene.
+- Generated with Figma AI (gpt-image-2.5-flare) in the project's Figma file. Every prompt forbids text, letters, logos and brand names, and forbids faces in close-up; real places only appear as cityscapes. Each image was reviewed before use.
+- Pipeline:
+  - `tools/art/illustrations/generated.tsv` holds the set, id, Figma node, asset id and subject of every image.
+  - The full-resolution PNGs live in `tools/art/cache/illustrations/` (git-ignored).
+  - `tools/art/process_illustrations.py` turns them into WebP files: 960×640 for landscape art, 720×1080 for the portrait scene. They land in `app/src/main/assets/img/{business,city,property,chapter,luxurycat,scene}/`, each folder with a `credits.json` (license `AI-GENERATED`). The total is 3.7 MB.
+- To add one: generate it with the same style prefix, append a row to `generated.tsv`, download the PNG into the cache, and re-run the script. `check_release.py` (G12) fails if any image is uncredited.
+
 ## 3b. Museum works (built in Phase 8)
 - `tools/art/fetch_aic.py` queries the Art Institute of Chicago API for highlighted works with `is_public_domain = true` (CC0), downloads 600-px IIIF images into the cache, writes 480-px WebP to `app/src/main/assets/img/art/` and `credits.json` (title, artist, date, credit line, source URL, CC0). Contact sheets are reviewed before use. 99 works (80 paintings, 19 sculptures), 2.1 MB.
 

@@ -30,18 +30,15 @@ import com.arnavgames.tycoon.designsystem.theme.Space
 enum class Intro(val key: String, val title: String, val body: String) {
     Markets(
         "markets", "How the markets work",
-        "Buy shares in parody companies. They pay dividends every day you hold them, and prices move with the economy and the news. " +
-            "Own 5% of a company for a board seat that boosts your own businesses.",
+        "Shares pay you every day you hold them, and prices move with the news. Own 5% of a company and you get a seat on its board.",
     ),
     Estates(
         "estates", "How property works",
-        "Buy homes and buildings in real cities. Tenants pay rent every few hours. Each district has its own market: " +
-            "buy when prices are at the bottom, sell at the peak, and renovate to raise the rent.",
+        "Tenants pay rent every few hours. Every district has its own price cycle: buy low, sell high, renovate for more rent.",
     ),
     Collection(
         "collection", "How collecting works",
-        "Luxury pieces earn Status while they're on display in your showrooms. Status brings dealer discounts and better auctions. " +
-            "Rare lots go under the hammer every two hours; a maximum bid lets your agent bid while you're away.",
+        "Pieces on display earn Status, and Status gets you discounts and better auctions. A new lot goes up every two hours.",
     ),
 }
 

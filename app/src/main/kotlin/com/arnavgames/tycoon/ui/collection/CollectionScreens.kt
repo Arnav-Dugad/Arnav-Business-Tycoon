@@ -1,5 +1,6 @@
 package com.arnavgames.tycoon.ui.collection
 
+import androidx.compose.ui.draw.alpha
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -190,7 +191,7 @@ fun CollectionScreen(vm: GameViewModel, onOpenCategory: (String) -> Unit, onOpen
                                 .padding(horizontal = Space.md, vertical = Space.sm).semantics(mergeDescendants = true) {},
                             verticalAlignment = Alignment.CenterVertically,
                         ) {
-                            IconTile(AbtIcons.named(cat.icon), size = 36.dp, highlighted = cat.owned > 0, tint = if (cat.unlocked) c.goldText else c.textTertiary)
+                            com.arnavgames.tycoon.ui.common.Illustration(com.arnavgames.tycoon.ui.common.Art.luxuryCategory(cat.id), Modifier.size(56.dp, 40.dp).clip(com.arnavgames.tycoon.designsystem.theme.AurumShapes.small).alpha(if (cat.unlocked) 1f else 0.45f))
                             Spacer(Modifier.width(Space.md))
                             Column(Modifier.weight(1f)) {
                                 Text(cat.name, style = Aurum.type.titleSmall, color = if (cat.unlocked) c.textPrimary else c.textTertiary)
@@ -262,6 +263,7 @@ fun CategoryScreen(vm: GameViewModel, categoryId: String, onBack: () -> Unit, on
     val items = remember(s.luxury.owned, s.simTimeMs / 60_000, s.progress.chapter) { vm.luxuryCategory(s, categoryId) }
     val c = Aurum.colors
     GlassScaffold(title = vm.luxuryCategoryName(categoryId), onBack = onBack) {
+        item(key = "art") { com.arnavgames.tycoon.ui.common.Illustration(com.arnavgames.tycoon.ui.common.Art.luxuryCategory(categoryId), Modifier.fillMaxWidth().height(170.dp).clip(com.arnavgames.tycoon.designsystem.theme.AurumShapes.large)) }
         item(key = "list") {
             AurumCard(Modifier.fillMaxWidth(), contentPadding = PaddingValues(vertical = Space.xs)) {
                 items.forEachIndexed { i, it ->

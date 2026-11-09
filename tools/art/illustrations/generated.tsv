@@ -1,0 +1,54 @@
+business	retail	8:2	c4d43a76-02e8-434d-93ae-4986cb9570b4	a small corner kiosk on a sunny cobbled street corner in Lisbon at early evening, striped awning, crates of fruit and newspapers, warm light spilling from the counter, tram rails in the foreground
+business	restaurants	8:3	48b523e2-a6fc-4b97-b41d-5b542da56296	a busy neighbourhood restaurant at dusk seen from the street, tables on the pavement under string lights, a chef's pass glowing through the window, plates and wine glasses
+city	lisbon	8:4	d17e687e-d697-45aa-bcf3-6dcb4baf0eb4	the city of Lisbon from a hilltop viewpoint: terracotta rooftops tumbling down to the Tagus river, a yellow tram, the suspension bridge in the distance, a warm sunset haze
+luxury	jet	8:5	2bc38a97-c697-4487-b3b3-a3c2a0e7f881	a sleek private jet on a quiet airfield at golden hour, stairs down, a red carpet, distant hangar and hills
+business	logistics	8:6	28ce8e7c-0b94-41c6-9edd-fb813c6e7618	a city delivery depot at dawn: a row of delivery vans and a cargo truck, roller doors open, stacked parcels on pallets, a forklift
+business	farmland	8:7	257673cf-cb7d-4800-a042-b127616f531a	rolling farm fields at harvest time, a red barn and silo, a tractor working golden rows of wheat, orchards on the hills
+business	factory	8:8	a4e28f0f-c0a0-48f8-83ad-dee4c5a399b6	a brick and steel factory with a sawtooth roof and tall chimneys, conveyor belts and machinery visible through tall glowing windows, a rail siding in front
+business	fashion	8:9	aa0d9338-76f1-47f6-9793-026bc98b47fd	an elegant fashion atelier: mannequins wearing evening gowns, bolts of silk on shelves, a cutting table with patterns, a glimpse of a runway through an arched doorway
+business	mining	8:10	39e4405d-c8e2-4672-a8fe-84df9a142d6a	an open-pit mine with terraced rock walls, a giant dump truck on the haul road, a mine headframe tower, mountains at evening
+business	energy	8:11	d0256940-b369-465c-83e9-602f95d0371c	a hillside wind farm and a field of solar panels beside a power station, transmission towers carrying lines toward a distant city
+business	hotels	8:12	9f2b6da5-f073-49fc-8aa5-f1dd149bb2dd	a grand seaside resort hotel at sunset with white balconies, palm trees, a turquoise swimming pool and loungers, the sea beyond
+business	bank	8:13	a22dbef5-c021-47f2-8115-1cbd82204e6c	a classic stone bank building with tall columns and bronze doors on a city avenue at dusk, street lamps lit, a vault door glimpsed inside
+business	construction	8:14	113b2bf6-8791-4b48-9e75-0b0043fe7a3b	a skyscraper under construction with two tower cranes, exposed steel beams and concrete floors rising against a clear sky, the city below
+business	media	8:15	b4514d9d-e8e4-4d69-953b-ef6503038093	a television broadcast studio with cameras on pedestals, a curved news desk, studio lights and a glowing control room window
+business	tech	8:16	f6e756a4-9393-47f6-a599-f27ee4206c71	a modern glass technology campus at dusk, glowing screens visible through tall windows, a courtyard with trees, a server room glowing in the basement
+business	telecom	8:17	019cd4b1-9148-4a7a-84c8-cf91a1dc0a42	telecom towers and satellite dishes on hills at night, glowing signal arcs crossing above a city of lights
+business	airline	8:18	83604a0b-4aae-415d-bc58-ca99b2d85643	a passenger airliner lifting off a runway at sunset, the terminal and control tower behind, runway lights glowing
+business	pharma	8:19	f8a8fddc-2fde-482f-8d66-fb0cf17334d0	a bright pharmaceutical laboratory: glass flasks, a microscope, rows of medicine vials on a production line behind a glass wall
+business	sports	8:20	f9a568c6-69b4-48a7-9e6c-dd43052200d3	a packed football stadium at night under floodlights, seen from high in the stands, the green pitch glowing, crowd as small dabs of colour
+business	space	8:21	7a7593e8-533e-47c4-bccf-dd767310e56e	a rocket lifting off from a coastal launch pad at dawn, a tall plume of smoke and fire, launch gantry towers, the sea in the background
+city	london	8:22	4f5031d1-9416-43d6-81c2-9b29cd72084b	London along the River Thames at dusk: the Houses of Parliament and the clock tower, a red double-decker bus on the bridge, warm lamps along the embankment
+city	miami	8:23	e6cda8cb-52dc-4fb8-a9b7-066c48e7e9ef	Miami Beach: pastel art-deco hotels along Ocean Drive, tall palm trees, a wide sandy beach and turquoise sea in afternoon light
+city	mumbai	8:24	abc7aa62-4428-4996-8a0b-d6971aee63aa	Mumbai's Marine Drive at dusk: the long curved seafront promenade with a necklace of street lights, art-deco apartment buildings and the Arabian Sea
+city	new_york	8:25	12588662-02e7-4eed-97b3-2d00b97db3a8	the Manhattan skyline seen across the river at golden hour, art-deco skyscrapers, a ferry on the water, a bridge on the right
+city	dubai	8:26	e30be417-abea-4325-a442-be5888988ab2	Dubai at sunset: a needle-like supertall tower above a cluster of glass skyscrapers, wooden dhow boats on the creek, desert haze
+property	apartment	8:27	ffc803f0-a9ad-4c6b-883f-de9bd8b96517	a mid-rise city apartment building with balconies and plants, warm lit windows in the evening, a quiet tree-lined street
+property	townhouse	8:28	ac01d8b5-27f4-48af-92f8-c2e7a621d495	a row of elegant terraced townhouses with coloured front doors, iron railings and window boxes on a quiet street
+property	villa	8:29	5103146a-4fb5-4238-8a31-dabd0dc33bef	a white modernist villa on a Mediterranean hillside with an infinity pool, cypress trees and the sea below
+property	office_floor	8:30	2ede7a92-9efd-4eb3-8668-e3b57592b924	an open-plan office floor high in a tower, rows of desks and plants, floor-to-ceiling windows looking over the city at dusk
+property	retail_unit	8:31	e572ff06-f27f-44b8-b6ab-a31dfbac24f1	a bright corner shop unit with big plate-glass windows on a busy high street, an awning, shoppers' shadows on the pavement
+property	warehouse	8:32	1987269b-ab3d-48b5-9649-c3d0df7ed8cd	a large modern warehouse with a row of loading bays, lorries backed up to the doors, stacked pallets inside under high skylights
+property	hotel_plot	8:33	94d258a2-6acd-42ca-817a-8119ca286975	an empty beachfront building plot marked with surveyor stakes and string lines, palm trees, the sea and a distant resort skyline
+property	land	8:34	6f708fd9-1482-4bc6-a1dc-2232cb415b93	an open plot of land on the edge of a city, wild grass, a simple timber fence, the city skyline in the distance under a wide sky
+property	penthouse	8:35	462a5348-c486-4445-9ecb-e7fe58f3df9b	a luxury penthouse roof terrace at night with a glowing pool, lounge chairs and planters, the city lights spread out far below
+property	mixed_use	8:36	3954fbad-c500-4052-b741-56a3152fac95	a modern mixed-use city block, shops and cafes with awnings on the ground floor, apartments with balconies above, a small plaza with trees in front
+chapter	1	8:37	d597d22e-cffc-49ee-88c7-085100a066d3	dawn on an empty city street, a single small kiosk opening its shutter, the first light catching a folding table and a cash box, a new beginning
+chapter	2	8:38	5aad6942-aeea-4263-82cd-0dc1501169b3	a lively main street on a sunny afternoon, a row of different shops and a restaurant with awnings, bunting overhead, delivery bikes, small figures walking
+chapter	3	8:39	a096e2d8-41c0-4cba-bd9e-bcef8f60b198	an industrial horizon of raw power: a mine headframe, factory chimneys and high-voltage pylons marching across hills toward a glowing sunset
+chapter	4	8:40	79b510f9-038c-4fe8-9198-ed883a1d85ef	an oak-panelled private members' club room, leather armchairs by a fireplace, framed landscape paintings, a decanter and two glasses on a side table, tall windows at night
+chapter	5	8:41	9b0c1681-ee2a-4e12-a29d-9855dc179406	a city at night transformed by technology: glowing glass towers, streams of light between buildings like data, a single bright startup loft window among old warehouses
+chapter	6	9:2	17be5d3f-9d9b-4490-9b4f-a5458483562e	an airliner cruising above a sea of sunlit clouds, a skyscraper top piercing the clouds in the distance, the curve of the sky
+chapter	7	9:3	e788089f-5122-4ca9-87db-25b723b72c31	a rocket climbing through the upper atmosphere toward the stars, the blue curve of the Earth below, a thin trail of fire, deep navy space with tiny gold stars
+chapter	8	9:4	409b4f57-93d0-4071-98ae-7ce209a3205a	the grand hall of a family estate, a golden crown resting on a velvet cushion on a marble table, a sweeping staircase and tall windows overlooking gardens at dusk
+luxury	car	9:5	fc9db525-6828-4771-807b-b5df0a9a155d	an elegant vintage-style grand touring sports car of invented design parked on a winding coastal road above the sea at sunset, no badges or plates
+luxury	watch	9:6	a83d8b2f-61c4-4cb3-a922-025f16618022	a fine mechanical wristwatch with a leather strap on a navy velvet tray, open case back showing gears, a loupe and watchmaker's tools, no brand or words on the dial
+luxury	wine	9:7	e4921ef4-0551-42de-9d04-fe18dc722beb	a vaulted stone wine cellar with oak barrels and racks of dusty bottles, a tasting table with a decanter and a glass of red wine, no labels with words
+luxury	jewelry	9:8	b3ee6619-b964-4a37-8077-4d4485fac92d	a diamond necklace, an emerald ring and pearl earrings on navy velvet inside an open antique jewellery box, a heavy vault door ajar behind
+luxury	helicopter	9:9	98187a10-0885-46cd-8783-9a3efb654eb7	a sleek private helicopter on a rooftop helipad at dusk, the city skyline lit up behind, the landing circle lights glowing
+luxury	yacht	9:10	168df695-9986-4bf2-9039-bad53cec32a1	a white superyacht at anchor in a turquoise cove beneath rocky cliffs, a tender boat beside it, gulls overhead
+luxury	painting	9:11	b7f694fb-0ffc-42ae-a8a4-287e1bb4b9fa	a quiet private art gallery with tall walls hung with framed landscape and still-life paintings, a velvet bench, skylights above
+luxury	sculpture	9:12	2d7af005-6f48-4705-b116-65ebf22895d1	a sculpture hall with abstract marble sculptures on plinths, ancient amphorae and a bronze horse, arched windows and a polished stone floor
+luxury	island	9:13	69341096-58ff-4074-ba14-cc1d0d899640	a small private island seen from above, a villa among palm trees, a turquoise lagoon, a wooden jetty with a seaplane
+luxury	mansion	9:14	c45639bc-0828-4ea7-af69-a3f38f1497dc	a grand country mansion with symmetrical wings, a long gravel drive, clipped hedges, a fountain in formal gardens and lit windows at dusk
+scene	welcome	9:15	3dfec94a-8608-4a8b-8fb1-7fbd76b53637	a folding table with a cash box and a few goods on a busy cobbled Lisbon street corner in the morning, a yellow tram passing, terracotta rooftops rising behind: the very start of a business empire

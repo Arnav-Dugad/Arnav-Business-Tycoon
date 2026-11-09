@@ -11,7 +11,7 @@ data class CityPinUi(val id: String, val name: String, val x: Float, val y: Floa
 
 data class PropertyRowUi(
     val id: Long, val title: String, val subtitle: String, val icon: String, val value: Money, val rent6h: Money,
-    val status: String, val busy: Boolean, val needsAttention: Boolean,
+    val status: String, val busy: Boolean, val needsAttention: Boolean, val typeId: String = "",
 )
 
 /** A tenant decision; each choice says in plain words what it costs or changes. */
@@ -36,7 +36,7 @@ data class CityUi(val id: String, val name: String, val description: String, val
 
 data class ListingUi(
     val id: String, val type: String, val icon: String, val size: Double, val condition: Int, val distressed: Boolean, val discount: Double,
-    val price: Money, val rentPerDay: Money, val cashNeeded: Map<Double, Money>,
+    val price: Money, val rentPerDay: Money, val cashNeeded: Map<Double, Money>, val typeId: String = "",
 )
 
 data class DistrictUi(
@@ -49,7 +49,7 @@ data class DistrictUi(
 data class TowerOptionUi(val id: String, val name: String, val floors: Int, val totalCost: Money, val nextStage: String?, val nextCost: Money?, val stagesDone: Int)
 
 data class PropertyUi(
-    val id: Long, val title: String, val location: String, val icon: String, val value: Money, val costBasis: Money, val gain: Money,
+    val id: Long, val title: String, val location: String, val icon: String, val typeId: String = "", val value: Money, val costBasis: Money, val gain: Money,
     val mortgage: Money, val condition: Int, val renovations: Int, val maxRenovations: Int, val rentPct: Int, val rentLevels: List<Int>,
     val rentLevelPreview: Map<Int, Money>, val expectedRent6h: Money, val tenantStatus: String, val busyLabel: String?,
     val busyEndsAt: Long?, val simNow: Long, val renovationCost: Money?, val renovationHours: Int, val repairCost: Money?,
@@ -88,7 +88,7 @@ class EstatesMapper(private val engine: GameEngine) {
         val busy = est.busy(s, p.id)
         return PropertyRowUi(
             p.id, title(p), location(p), c.typeById.getValue(p.type).icon, est.propertyValue(s, p), est.expectedRent6h(s, p),
-            status(s, p), busy, p.condition < 700 || s.estate.events.any { it.propertyId == p.id },
+            status(s, p), busy, p.condition < 700 || s.estate.events.any { it.propertyId == p.id }, typeId = p.type,
         )
     }
 
@@ -153,7 +153,7 @@ class EstatesMapper(private val engine: GameEngine) {
                 val probe = PropertyState(0, id, l.type, l.size, l.condition, costBasis = l.price)
                 ListingUi(l.id, t.name, t.icon, l.size, l.condition, l.distressed, l.discount, l.price,
                     est.marketRent6h(s, probe) * Multiplier.ofDouble(est.rentFactor(100) * 4),
-                    est.ltvOptions(s).associateWith { est.buyCost(l, it).first })
+                    est.ltvOptions(s).associateWith { est.buyCost(l, it).first }, typeId = l.type)
             },
             owned = s.estate.properties.values.filter { it.district == id }.sortedBy { it.id }.map { row(s, it) },
             unlocked = unlocked,
@@ -178,7 +178,7 @@ class EstatesMapper(private val engine: GameEngine) {
         val tw = p.tower?.let { towerUi(s, p, it.design) }
         val designs = if (p.type == "land" && d.cbd && p.tower == null) c.towers.map { towerUi(s, p, it.id) } else emptyList()
         return PropertyUi(
-            id = id, title = title(p), location = location(p), icon = t.icon, value = value, costBasis = p.costBasis, gain = value - p.costBasis,
+            id = id, title = title(p), location = location(p), icon = t.icon, typeId = p.type, value = value, costBasis = p.costBasis, gain = value - p.costBasis,
             mortgage = p.mortgage, condition = p.condition, renovations = p.renovations, maxRenovations = c.config.maxRenovations,
             rentPct = p.rentPct, rentLevels = est.RENT_LEVELS,
             rentLevelPreview = est.RENT_LEVELS.associateWith { lvl -> est.marketRent6h(s, p) * Multiplier.ofDouble(est.rentFactor(lvl) * 4) },

@@ -1,5 +1,6 @@
 package com.arnavgames.tycoon.ui.business
 
+import androidx.compose.ui.draw.alpha
 import com.arnavgames.tycoon.ui.common.shortPersonName
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -82,11 +83,10 @@ fun BusinessDetailScreen(vm: GameViewModel, businessId: String, onBack: () -> Un
     val c = Aurum.colors
 
     GlassScaffold(def.name, onBack) {
+            item(key = "art") { com.arnavgames.tycoon.ui.common.Illustration(com.arnavgames.tycoon.ui.common.Art.business(def.id), Modifier.fillMaxWidth().height(190.dp).clip(com.arnavgames.tycoon.designsystem.theme.AurumShapes.large)) }
             item {
                 AurumCard(Modifier.fillMaxWidth(), highlighted = true) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
-                        IconTile(AbtIcons.named(def.icon), size = 60.dp, highlighted = true)
-                        Spacer(Modifier.width(Space.lg))
                         Column(Modifier.weight(1f)) {
                             val tier = def.tiers.lastOrNull { b.level >= it.level }
                             Text(tier?.name ?: def.starterName, style = Aurum.type.headline, color = c.textPrimary)
