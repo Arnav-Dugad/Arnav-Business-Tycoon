@@ -91,6 +91,9 @@ class UpdateManager(
         scope.launch(Dispatchers.IO) { check(force) }
     }
 
+    /** The last check couldn't reach GitHub by any route (offline, or GitHub refused). */
+    val lastCheckFailed: Boolean get() = checker.lastCheckFailed
+
     suspend fun check(force: Boolean) {
         val cur = _state.value
         if (cur is UpdateState.Downloading || cur is UpdateState.Installing) return

@@ -40,4 +40,15 @@ class UpdateCheckerTest {
         assertFalse(UpdateChecker.isNewer("0.9.0", "1.0.0"))
         assertTrue(UpdateChecker.isNewer("1.0.1", "1.0"))
     }
+
+    @Test
+    fun releasePageFallbackFindsTheTagAndTheApk() {
+        assertEquals("v1.3.0", UpdateChecker.tagFromLatestRedirect("https://github.com/Arnav-Dugad/Arnav-Business-Tycoon/releases/tag/v1.3.0"))
+        assertEquals(null, UpdateChecker.tagFromLatestRedirect("https://github.com/Arnav-Dugad/Arnav-Business-Tycoon/releases"))
+        assertEquals(null, UpdateChecker.tagFromLatestRedirect(null))
+        val html = """<li><a href="/Arnav-Dugad/Arnav-Business-Tycoon/archive/refs/tags/v1.3.0.zip">Source</a></li>
+            <li><a href="/Arnav-Dugad/Arnav-Business-Tycoon/releases/download/v1.3.0/ArnavBusinessTycoon-1.3.0.apk" rel="nofollow">APK</a></li>"""
+        assertEquals("https://github.com/Arnav-Dugad/Arnav-Business-Tycoon/releases/download/v1.3.0/ArnavBusinessTycoon-1.3.0.apk", UpdateChecker.apkFromAssetsHtml(html))
+        assertEquals(null, UpdateChecker.apkFromAssetsHtml("<p>no assets</p>"))
+    }
 }

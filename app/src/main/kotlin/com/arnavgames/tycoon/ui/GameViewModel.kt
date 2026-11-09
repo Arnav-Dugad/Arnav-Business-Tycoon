@@ -200,7 +200,12 @@ class GameViewModel @Inject constructor(
     }
 
     fun checkForUpdate(force: Boolean = false) {
-        if (force) viewModelScope.launch { updates.check(force = true); if (updates.state.value is com.arnavgames.tycoon.update.UpdateState.Idle) say("You have the latest version.") }
+        if (force) viewModelScope.launch {
+            updates.check(force = true)
+            if (updates.state.value is com.arnavgames.tycoon.update.UpdateState.Idle) {
+                say(if (updates.lastCheckFailed) "Couldn't reach GitHub just now. The game will try again later." else "You have the latest version.")
+            }
+        }
         else updates.onForeground()
     }
 
