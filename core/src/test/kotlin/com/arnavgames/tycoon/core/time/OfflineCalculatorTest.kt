@@ -35,7 +35,7 @@ class OfflineCalculatorTest {
     }
 
     @Test
-    fun backThenForwardGivesNothingExtra() {
+    fun clockTricksNeverBlockRealTime() {
         val clock = FakeClock()
         var saved = OfflineCalculator.initial(clock)
         clock.reboot("b2")
@@ -45,15 +45,40 @@ class OfflineCalculatorTest {
         saved = r.newClock
         clock.changeWallClock(clock.wall - 10 * hour)    // set the clock back to the truth
         r = OfflineCalculator.compute(saved, clock, cap)
-        assertEquals(0, r.creditMs)
+        assertEquals(0, r.creditMs, "no real time passed")
         assertEquals(TimeFlag.ClockWentBackwards, r.flag)
         saved = r.newClock
-        clock.advance(9 * hour)                  // real time passes, still below the high-water mark
+        clock.advance(hour)                       // real time passes: it counts, the old mark no longer blocks it
         r = OfflineCalculator.compute(saved, clock, cap)
-        assertEquals(0, r.creditMs, "time before the high-water mark is never credited twice")
-        clock.advance(2 * hour)                  // now 1 h past the mark
-        r = OfflineCalculator.compute(r.newClock, clock, cap)
         assertEquals(hour, r.creditMs)
+    }
+
+    @Test
+    fun aMarkStuckInTheFutureDoesNotBlockOfflineTime() {
+        // The 1.2 save that earned nothing offline: the mark was 3.4 days ahead of the real clock.
+        val clock = FakeClock()
+        val now = clock.wall
+        val stuck = ClockState(lastWall = now, lastMono = 0, bootId = "boot-1", maxCreditedWall = now + 82 * hour, suspicionCount = 2)
+        clock.advance(hour)
+        assertEquals(hour, OfflineCalculator.compute(stuck, clock, 6 * hour).creditMs, "same boot: real elapsed time")
+        clock.reboot("b9")
+        clock.changeWallClock(now + 5 * hour)
+        val r = OfflineCalculator.compute(stuck, clock, 6 * hour)
+        assertEquals(5 * hour, r.creditMs, "after a reboot: time since the last session")
+        assertTrue(r.newClock.maxCreditedWall <= clock.wall, "the stuck mark is repaired")
+    }
+
+    @Test
+    fun aForwardJumpDuringPlayCannotPushTheMarkAhead() {
+        val clock = FakeClock()
+        var saved = OfflineCalculator.initial(clock)
+        val start = clock.wall
+        clock.advance(60_000L)
+        clock.changeWallClock(clock.wall + 72 * hour)
+        saved = OfflineCalculator.touch(saved, clock)
+        clock.advance(60_000L)
+        saved = OfflineCalculator.touch(saved, clock)
+        assertTrue(saved.maxCreditedWall <= start + 2 * 60_000L + 2 * OfflineCalculator.TOLERANCE_MS, "mark only follows real time")
     }
 
     @Test
@@ -80,9 +105,12 @@ class OfflineCalculatorTest {
                 2 -> clock.reboot("b${rng.nextInt(1000)}")
                 else -> clock.mono += rng.nextLong().mod(hour)
             }
+            val sameBoot = clock.bootId() == saved.bootId
+            val mono = clock.monotonicMillis() - saved.lastMono
             val r = OfflineCalculator.compute(saved, clock, cap)
             assertTrue(r.creditMs in 0..cap)
-            assertTrue(r.newClock.maxCreditedWall >= saved.maxCreditedWall)
+            if (sameBoot) assertTrue(r.creditMs <= maxOf(0L, mono), "same boot never credits more than real time")
+            assertTrue(r.newClock.maxCreditedWall <= clock.wall, "the mark is never ahead of the clock")
             saved = r.newClock
         }
     }

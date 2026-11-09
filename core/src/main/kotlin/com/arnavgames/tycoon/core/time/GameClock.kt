@@ -42,10 +42,14 @@ data class OfflineCredit(val creditMs: Long, val flag: TimeFlag, val newClock: C
 
 /**
  * Computes how much offline time to credit on resume. Rules (docs/ARCHITECTURE.md §6):
- * 1. Same boot: wall delta may not exceed the monotonic delta by more than [TOLERANCE_MS]; otherwise only the monotonic delta counts.
- * 2. High-water mark: time is only credited after [ClockState.maxCreditedWall] (setting the clock back and forward again gives nothing).
- * 3. Never negative. 4. Optional server time overrides the device clock when they disagree by more than 10 minutes.
- * 5. Credit is capped at [capMs].
+ * 1. Same boot: the monotonic clock (which the user can't change) is the truth. Real elapsed time is credited, whatever
+ *    the wall clock says; changing the date neither adds nor removes time.
+ * 2. After a reboot the monotonic clock restarts, so the wall clock is used, from the later of the last session and the
+ *    high-water mark. A mark that is ahead of the device clock came from a bad clock reading (or a clock set back since)
+ *    and is ignored: one wrong reading must never block real time for days (this happened to a real save in 1.2).
+ * 3. The high-water mark only advances by verified time, so a forward jump can't push it into the future.
+ * 4. Never negative. 5. Optional server time overrides the device clock when they disagree by more than 10 minutes.
+ * 6. Credit is capped at [capMs].
  */
 object OfflineCalculator {
     const val TOLERANCE_MS = 2 * 60_000L
@@ -60,20 +64,24 @@ object OfflineCalculator {
             wallNow = serverWallMs
             flag = TimeFlag.ServerMismatch
         }
-        val start = maxOf(saved.lastWall, saved.maxCreditedWall)
+        val sameBoot = clock.bootId() == saved.bootId && flag != TimeFlag.ServerMismatch
         var credit: Long
-        if (wallNow <= start) {
-            credit = 0
-            if (wallNow < saved.lastWall) flag = TimeFlag.ClockWentBackwards
+        val verifiedNow: Long
+        if (sameBoot) {
+            val monoDelta = (clock.monotonicMillis() - saved.lastMono).coerceAtLeast(0)
+            credit = monoDelta
+            val wallDelta = wallNow - saved.lastWall
+            if (wallDelta > monoDelta + TOLERANCE_MS) flag = TimeFlag.ForwardJumpDetected
+            else if (wallDelta < -TOLERANCE_MS) flag = TimeFlag.ClockWentBackwards
+            verifiedNow = minOf(wallNow, verifiedBase(saved) + monoDelta + TOLERANCE_MS)
         } else {
-            credit = wallNow - start
-            if (clock.bootId() == saved.bootId) {
-                val monoDelta = (clock.monotonicMillis() - saved.lastMono).coerceAtLeast(0)
-                if (credit > monoDelta + TOLERANCE_MS) {
-                    credit = monoDelta
-                    flag = TimeFlag.ForwardJumpDetected
-                }
-            }
+            val mark = if (saved.maxCreditedWall > wallNow) saved.lastWall else saved.maxCreditedWall
+            val start = maxOf(saved.lastWall, mark)
+            if (wallNow <= start) {
+                credit = 0
+                if (wallNow < saved.lastWall && flag == TimeFlag.None) flag = TimeFlag.ClockWentBackwards
+            } else credit = wallNow - start
+            verifiedNow = wallNow
         }
         val raw = credit
         if (credit > capMs) {
@@ -85,20 +93,30 @@ object OfflineCalculator {
             lastWall = wallNow,
             lastMono = clock.monotonicMillis(),
             bootId = clock.bootId(),
-            maxCreditedWall = maxOf(saved.maxCreditedWall, wallNow),
+            maxCreditedWall = nextMark(saved.maxCreditedWall, verifiedNow, wallNow),
             suspicionCount = saved.suspicionCount + if (suspicious) 1 else 0,
         )
         return OfflineCredit(credit, flag, newClock, raw)
     }
 
+    /** The last time we can vouch for: a wall reading that jumped ahead is not trusted beyond the mark. */
+    private fun verifiedBase(saved: ClockState) = minOf(saved.lastWall, saved.maxCreditedWall)
+
+    /** A mark ahead of the clock is dropped back to now; otherwise it rises only to verified time. */
+    private fun nextMark(mark: Long, verifiedNow: Long, wallNow: Long): Long = maxOf(mark.coerceAtMost(wallNow), verifiedNow)
+
     /** Called on every save during live play: records "now" without crediting anything. */
     fun touch(saved: ClockState, clock: GameClock): ClockState {
         val wall = clock.wallMillis()
+        val verified = if (clock.bootId() == saved.bootId) {
+            val monoDelta = (clock.monotonicMillis() - saved.lastMono).coerceAtLeast(0)
+            minOf(wall, verifiedBase(saved) + monoDelta + TOLERANCE_MS)
+        } else wall
         return saved.copy(
             lastWall = wall,
             lastMono = clock.monotonicMillis(),
             bootId = clock.bootId(),
-            maxCreditedWall = maxOf(saved.maxCreditedWall, wall),
+            maxCreditedWall = nextMark(saved.maxCreditedWall, verified, wall),
         )
     }
 
