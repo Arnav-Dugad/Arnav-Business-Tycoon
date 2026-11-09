@@ -19,6 +19,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.draw.clip
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.border
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.semantics.contentDescription
@@ -48,7 +53,16 @@ fun MergerCard(m: MergerUi, fmt: (Money) -> String, onForm: () -> Unit) {
     val c = Aurum.colors
     AurumCard(Modifier.fillMaxWidth(), highlighted = m.formed) {
         Row(verticalAlignment = Alignment.CenterVertically) {
-            IconTile(AbtIcons.Buildings, highlighted = m.formed)
+            // The member businesses' paintings, fanned like cards.
+            Box(Modifier.size(width = (40 + 22 * (m.members.size - 1).coerceAtLeast(0)).dp, height = 48.dp)) {
+                m.members.forEachIndexed { i, mem ->
+                    com.arnavgames.tycoon.ui.common.Illustration(
+                        com.arnavgames.tycoon.ui.common.Art.business(mem.id),
+                        Modifier.offset(x = (22 * i).dp).size(40.dp, 48.dp).clip(com.arnavgames.tycoon.designsystem.theme.AurumShapes.small)
+                            .border(1.5.dp, c.surface, com.arnavgames.tycoon.designsystem.theme.AurumShapes.small),
+                    )
+                }
+            }
             Spacer(Modifier.width(Space.md))
             Column(Modifier.weight(1f)) {
                 Text(m.name, style = Aurum.type.title, color = c.textPrimary)

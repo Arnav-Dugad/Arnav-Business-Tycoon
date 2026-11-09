@@ -550,7 +550,7 @@ internal fun HqCard(hq: HqUi, fmt: (Money) -> String, onUpgrade: () -> Unit) {
     val c = Aurum.colors
     AurumCard(Modifier.fillMaxWidth()) {
         Row(verticalAlignment = Alignment.CenterVertically) {
-            IconTile(AbtIcons.Empire)
+            com.arnavgames.tycoon.ui.common.Illustration(com.arnavgames.tycoon.ui.common.Art.property("office_floor"), Modifier.size(64.dp).clip(AurumShapes.small))
             Spacer(Modifier.width(Space.md))
             Column(Modifier.weight(1f)) {
                 Text(hq.name, style = Aurum.type.title, color = c.textPrimary)

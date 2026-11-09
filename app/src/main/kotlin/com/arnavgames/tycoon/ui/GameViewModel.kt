@@ -62,7 +62,7 @@ data class BusinessUi(
 
 data class OpenableUi(val id: String, val name: String, val tagline: String, val icon: String, val cost: Money, val canAfford: Boolean, val lockedReason: String?)
 
-data class MemberUi(val name: String, val ready: Boolean, val note: String)
+data class MemberUi(val name: String, val ready: Boolean, val note: String, val id: String = "")
 
 data class MergerUi(
     val id: String, val name: String, val description: String, val synergy: String, val members: List<MemberUi>,
@@ -356,7 +356,7 @@ class GameViewModel @Inject constructor(
                     val d = content.business(id)
                     val b = s.businesses[id]
                     val tiers = b?.let { eco.tiersReached(d, it.level) } ?: 0
-                    MemberUi(d.name, b != null && tiers >= c.requiredTier && !b.mothballed, when { b == null -> "not owned"; b.mothballed -> "mothballed"; tiers >= c.requiredTier -> "tier ${c.requiredTier} reached"; else -> d.tiers.sortedBy { it.level }.getOrNull(c.requiredTier - 1)?.let { t -> "needs level ${t.level} (now ${b.level})" } ?: "needs tier ${c.requiredTier}" })
+                    MemberUi(d.name, b != null && tiers >= c.requiredTier && !b.mothballed, when { b == null -> "not owned"; b.mothballed -> "mothballed"; tiers >= c.requiredTier -> "tier ${c.requiredTier} reached"; else -> d.tiers.sortedBy { it.level }.getOrNull(c.requiredTier - 1)?.let { t -> "needs level ${t.level} (now ${b.level})" } ?: "needs tier ${c.requiredTier}" }, id = id)
                 },
                 fee = c.fee, formed = c.id in s.conglomerates, blocker = blocker?.takeIf { c.id !in s.conglomerates },
                 canAfford = s.cash >= c.fee,
