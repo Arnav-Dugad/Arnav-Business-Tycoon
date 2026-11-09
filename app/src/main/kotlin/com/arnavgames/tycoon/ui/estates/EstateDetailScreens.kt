@@ -50,7 +50,6 @@ import com.arnavgames.tycoon.designsystem.theme.Space
 import com.arnavgames.tycoon.ui.GameViewModel
 import com.arnavgames.tycoon.ui.common.GlassScaffold
 import com.arnavgames.tycoon.ui.markets.PriceChart
-import com.arnavgames.tycoon.ui.markets.Sparkline
 import java.util.Locale
 
 private fun pct(x: Double, d: Int = 1) = String.format(Locale.US, "%.${d}f%%", x * 100)
@@ -92,13 +91,14 @@ fun CityScreen(vm: GameViewModel, cityId: String, onBack: () -> Unit, onOpenDist
                             .padding(horizontal = Space.md, vertical = Space.sm).semantics(mergeDescendants = true) {},
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
+                        com.arnavgames.tycoon.ui.common.Illustration(com.arnavgames.tycoon.ui.common.Art.district(d.id), Modifier.size(64.dp, 48.dp).clip(AurumShapes.small), fallback = com.arnavgames.tycoon.ui.common.Art.city(ui.id))
+                        Spacer(Modifier.width(Space.md))
                         Column(Modifier.weight(1f)) {
                             Text(d.name, style = Aurum.type.titleSmall, color = c.textPrimary)
-                            Text("${d.tier} · rent ${pct(d.yieldPerDay)} of price a day" + if (d.cbd) " · business district" else "", style = Aurum.type.bodySmall, color = c.textTertiary)
-                            Text(d.cycle + cycleHint(d.cycle), style = Aurum.type.bodySmall, color = cycleColor(d.cycle))
+                            Text("${d.tier} · ${pct(d.yieldPerDay)} rent a day" + if (d.cbd) " · offices" else "", style = Aurum.type.bodySmall, color = c.textTertiary, maxLines = 1, overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis)
+                            Text(d.cycle + cycleHint(d.cycle), style = Aurum.type.bodySmall, color = cycleColor(d.cycle), maxLines = 1, overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis)
                         }
-                        Sparkline(d.spark, up = d.change24h >= 0, modifier = Modifier.size(width = 52.dp, height = 26.dp))
-                        Spacer(Modifier.width(Space.sm))
+                        // The painting carries the identity; the signed arrow carries the trend (the sparkline lives on the district page).
                         ChangeLabel(d.change24h * 100)
                     }
                 }
@@ -109,10 +109,10 @@ fun CityScreen(vm: GameViewModel, cityId: String, onBack: () -> Unit, onOpenDist
 
 /** What a district's market phase means for the player, in a few words. */
 private fun cycleHint(cycle: String) = when (cycle) {
-    "Peak" -> " · prices high: a good time to sell"
-    "Bottom" -> " · prices low: a good time to buy"
-    "Rising" -> " · prices climbing"
-    "Falling" -> " · prices dropping"
+    "Peak" -> " · good time to sell"
+    "Bottom" -> " · good time to buy"
+    "Rising" -> " · climbing"
+    "Falling" -> " · dropping"
     else -> ""
 }
 
@@ -138,6 +138,7 @@ fun DistrictScreen(vm: GameViewModel, districtId: String, onBack: () -> Unit, on
     var insured by rememberSaveable { mutableStateOf(false) }
     val c = Aurum.colors
     GlassScaffold(title = ui.name, onBack = onBack) {
+        item(key = "art") { com.arnavgames.tycoon.ui.common.Illustration(com.arnavgames.tycoon.ui.common.Art.district(ui.id), Modifier.fillMaxWidth().height(170.dp).clip(AurumShapes.large)) }
         item(key = "index") {
             AurumCard(Modifier.fillMaxWidth()) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
@@ -363,6 +364,8 @@ fun PropertyScreen(vm: GameViewModel, propertyId: Long, onBack: () -> Unit) {
                         }
                         else -> ui.towerDesigns.forEach { d ->
                             Row(Modifier.fillMaxWidth().padding(vertical = Space.xxs), verticalAlignment = Alignment.CenterVertically) {
+                                com.arnavgames.tycoon.ui.common.Illustration(com.arnavgames.tycoon.ui.common.Art.tower(d.id), Modifier.size(56.dp, 72.dp).clip(AurumShapes.small))
+                                Spacer(Modifier.width(Space.md))
                                 Column(Modifier.weight(1f)) {
                                     Text(d.name, style = Aurum.type.titleSmall, color = c.textPrimary)
                                     Text("${d.floors} floors · ${fmt(d.totalCost)} in total", style = Aurum.type.bodySmall, color = c.textTertiary)

@@ -22,6 +22,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import com.arnavgames.tycoon.designsystem.components.HairlineDivider
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.semantics
@@ -136,6 +137,11 @@ private fun DailyLedgerDialog(report: GameSession.OfflineReport, onDismiss: () -
             Modifier.fillMaxWidth().heightIn(max = 360.dp).verticalScroll(rememberScrollState()),
             verticalArrangement = Arrangement.spacedBy(Space.md),
         ) {
+            // The front-page picture: the first story that has one (a world event's painting).
+            report.stories.firstOrNull { it.image != null }?.image?.let { img ->
+                val ctx = androidx.compose.ui.platform.LocalContext.current
+                if (Art.has(ctx, img)) Illustration(img, Modifier.fillMaxWidth().height(132.dp).clip(com.arnavgames.tycoon.designsystem.theme.AurumShapes.medium))
+            }
             report.stories.forEach { st ->
                 Row(verticalAlignment = Alignment.Top, modifier = Modifier.semantics(mergeDescendants = true) {}) {
                     val tint = when (st.tone) { com.arnavgames.tycoon.ui.ledger.Tone.Good -> c.gain; com.arnavgames.tycoon.ui.ledger.Tone.Bad -> c.loss; else -> c.goldText }

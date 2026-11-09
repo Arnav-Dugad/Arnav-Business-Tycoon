@@ -189,8 +189,14 @@ fun DeskScreen(vm: GameViewModel, onBack: () -> Unit, onOpenRival: (String) -> U
             }
         }
         if (d.cards.isEmpty()) item(key = "no-cards") {
-            Text("Nothing needs you right now. New decisions arrive every few hours; up to three wait for you, and none is ever decided without you.",
-                style = Aurum.type.bodySmall, color = c.textSecondary, modifier = Modifier.padding(horizontal = Space.xs))
+            // An empty desk is a calm moment, not a blank: say so, and say when the next decision comes.
+            AurumCard(Modifier.fillMaxWidth().testTag("desk-clear")) {
+                com.arnavgames.tycoon.ui.common.Illustration(com.arnavgames.tycoon.ui.common.Art.property("office_floor"), Modifier.fillMaxWidth().height(110.dp).clip(AurumShapes.medium))
+                Spacer(Modifier.height(Space.md))
+                Text("Desk clear", style = Aurum.type.titleSmall, color = c.textPrimary)
+                Text((d.nextCardInMs?.let { "The next decision arrives in about ${durationText(it)}. " } ?: "") + "Up to three wait for you, and none is ever decided without you.",
+                    style = Aurum.type.bodySmall, color = c.textSecondary)
+            }
         }
         items(d.cards, key = { "card-${it.id}" }) { card -> DecisionCard(card, fmt, onChoose = { vm.resolveCard(card.id, it) }, onOpenRival = onOpenRival, onNegotiate = { negotiating = card to it }) }
         if (d.modifiers.isNotEmpty()) {
@@ -240,6 +246,10 @@ private fun DecisionCard(card: CardUi, fmt: (Money) -> String, onChoose: (Int) -
         "world" -> "World"; "personal" -> "Personal"; else -> card.businessName ?: "Business"
     }
     AurumCard(Modifier.fillMaxWidth().testTag("decision-card"), highlighted = card.kind == "takeover" || card.kind == "nemesis") {
+        card.businessId?.let { id ->
+            com.arnavgames.tycoon.ui.common.Illustration(com.arnavgames.tycoon.ui.common.Art.business(id), Modifier.fillMaxWidth().height(96.dp).clip(AurumShapes.medium))
+            Spacer(Modifier.height(Space.md))
+        }
         Row(verticalAlignment = Alignment.CenterVertically) {
             AurumChip(kind, icon = if (card.rival != null) AbtIcons.Rivals else AbtIcons.Cards, tint = if (card.kind == "takeover") c.loss else c.goldText)
             Spacer(Modifier.weight(1f))
@@ -476,9 +486,15 @@ fun FinanceScreen(vm: GameViewModel, onBack: () -> Unit, onOpenTaxes: () -> Unit
                     }
                     GoldProgress(((f.score - 300) / 550f).coerceIn(0f, 1f), height = 4.dp, label = "Credit score")
                     Spacer(Modifier.height(Space.xs))
-                    Text(
-                        (f.nextRating?.let { next -> f.nextRatingAt?.let { at -> "${at - f.score} points to $next ($at). " } } ?: "The best rating there is. ") +
-                            "On-time payments raise your score; missed payments, foreclosures, audits and restructuring lower it. Heavy debt relative to income also counts against you.",
+                    // The headline first; how the score moves is one tap away (progressive disclosure).
+                    var howOpen by androidx.compose.runtime.saveable.rememberSaveable { androidx.compose.runtime.mutableStateOf(false) }
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Text(f.nextRating?.let { next -> f.nextRatingAt?.let { at -> "${at - f.score} points to $next ($at)" } } ?: "The best rating there is", style = Aurum.type.bodySmall, color = c.textSecondary, modifier = Modifier.weight(1f))
+                        Text(if (howOpen) "Hide" else "How it works", style = Aurum.type.label, color = c.goldText,
+                            modifier = Modifier.clip(com.arnavgames.tycoon.designsystem.theme.AurumShapes.pill).clickable { howOpen = !howOpen }.padding(horizontal = Space.sm, vertical = Space.sm))
+                    }
+                    if (howOpen) Text(
+                        "On-time payments raise your score; missed payments, foreclosures, audits and restructuring lower it. Heavy debt relative to income also counts against you.",
                         style = Aurum.type.bodySmall, color = c.textSecondary,
                     )
                     Spacer(Modifier.height(Space.sm))

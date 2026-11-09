@@ -34,7 +34,10 @@ data class ItemUi(
 )
 
 /** Maps engine state to the Collection UI. */
-class CollectionMapper(private val engine: GameEngine) {
+class CollectionMapper(private val engine: GameEngine, private val hasAsset: (String) -> Boolean = { false }) {
+    /** A piece's picture: its museum photo, else its painting (if bundled), else null (the icon tile). */
+    private fun img(i: com.arnavgames.tycoon.core.content.LuxuryItemDef): String? = i.image ?: "img/luxury/${i.id}.webp".takeIf(hasAsset)
+
     private val lux = engine.luxury
     private val c = engine.content.luxury
 
@@ -45,7 +48,7 @@ class CollectionMapper(private val engine: GameEngine) {
         val item = c.itemById.getValue(a.item)
         val next = lux.nextBidIncrement(a, item)
         return AuctionUi(
-            a.item, item.name, item.maker, item.image, iconOf(item.category), a.bid, next,
+            a.item, item.name, item.maker, img(item), iconOf(item.category), a.bid, next,
             when (a.leader) { "" -> "No bids yet"; LuxuryEngine.PLAYER -> "You"; else -> c.bidderById[a.leader]?.name ?: a.leader },
             a.leader == LuxuryEngine.PLAYER, (a.closeSim - s.simTimeMs).coerceAtLeast(0), a.log.reversed(),
             lux.isUnlocked(s, "auctions") && a.leader != LuxuryEngine.PLAYER && s.cash >= next, a.bidders.count { !it.out },
@@ -70,7 +73,7 @@ class CollectionMapper(private val engine: GameEngine) {
                 val ownedHere = s.luxury.owned.keys.mapNotNull { c.itemById[it] }.filter { c.categoryById.getValue(it.category).showroom == room.id }
                 ShowroomUi(room.id, room.name, room.icon, ownedHere.count { it.id in displayed }, ownedHere.size, lux.capacity(s, room.id), lux.upgradeCost(s, room.id),
                     // Only what's on display: stored pieces earn no Status, so they're called out separately.
-                    ownedHere.filter { it.id in displayed }.sortedByDescending { it.statusPoints }.take(4).map { it.image to iconOf(it.category) })
+                    ownedHere.filter { it.id in displayed }.sortedByDescending { it.statusPoints }.take(4).map { img(it) to iconOf(it.category) })
             },
             categories = c.categories.map { cat ->
                 CategoryUi(cat.id, cat.name, cat.icon, lux.categoryUnlocked(s, cat.id), cat.chapter,
@@ -83,7 +86,7 @@ class CollectionMapper(private val engine: GameEngine) {
     }
 
     fun category(s: GameState, id: String): List<ItemRowUi> = c.items.filter { it.category == id }.sortedBy { it.price }.map { i ->
-        ItemRowUi(i.id, i.name, i.maker, i.image, iconOf(i.category), lux.dealerPrice(s, i), i.statusPoints, i.id in s.luxury.owned, i.rarity)
+        ItemRowUi(i.id, i.name, i.maker, img(i), iconOf(i.category), lux.dealerPrice(s, i), i.statusPoints, i.id in s.luxury.owned, i.rarity)
     }
 
     fun categoryName(id: String) = c.categoryById[id]?.name ?: id
@@ -96,7 +99,7 @@ class CollectionMapper(private val engine: GameEngine) {
         val owned = s.luxury.owned[id]
         val value = owned?.let { lux.ownedValue(s, id) }
         return ItemUi(
-            id = id, name = i.name, maker = i.maker, category = cat.name, image = i.image, icon = cat.icon, description = i.description,
+            id = id, name = i.name, maker = i.maker, category = cat.name, image = img(i), icon = cat.icon, description = i.description,
             location = i.location, rarity = i.rarity, price = lux.dealerPrice(s, i), buyCost = lux.buyCost(s, i), status = i.statusPoints,
             owned = owned != null, value = value, paid = owned?.paid, sellQuote = owned?.let { lux.sellQuote(s, id) },
             atAuction = s.luxury.auction?.item == id, unlocked = lux.categoryUnlocked(s, i.category),

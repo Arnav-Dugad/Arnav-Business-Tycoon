@@ -99,10 +99,13 @@ fun DynastyScreen(
             if (onBack != null) item { com.arnavgames.tycoon.ui.common.BackChip(onBack, Modifier.statusBarsPadding().padding(top = Space.xs)) }
             item {
                 Column(Modifier.fillMaxWidth().then(if (onBack == null) Modifier.statusBarsPadding().padding(top = Space.xl) else Modifier), horizontalAlignment = Alignment.CenterHorizontally) {
-                    // Your avatar (the crest until you choose one); tap to change it.
-                    Box(Modifier.clickable(onClickLabel = "Change avatar") { avatarPicker = true }.testTag("my-avatar")) {
-                        if (s.store.avatar == null && s.store.frame == null) CrownMark(size = 84.dp)
-                        else com.arnavgames.tycoon.ui.common.AvatarBadge(s.store.avatar, s.store.frame, 84.dp)
+                    // The family seat, painted, with your avatar (the crest until you choose one) set into it; tap to change it.
+                    Box(Modifier.fillMaxWidth(), contentAlignment = Alignment.BottomCenter) {
+                        com.arnavgames.tycoon.ui.common.Illustration(com.arnavgames.tycoon.ui.common.Art.chapter(8), Modifier.fillMaxWidth().padding(bottom = 42.dp).height(150.dp).clip(com.arnavgames.tycoon.designsystem.theme.AurumShapes.large), scrim = true)
+                        Box(Modifier.clickable(onClickLabel = "Change avatar") { avatarPicker = true }.testTag("my-avatar")) {
+                            if (s.store.avatar == null && s.store.frame == null) CrownMark(size = 84.dp)
+                            else com.arnavgames.tycoon.ui.common.AvatarBadge(s.store.avatar, s.store.frame, 84.dp)
+                        }
                     }
                     Spacer(Modifier.height(Space.md))
                     Text("Your Dynasty", style = Aurum.type.display, color = c.textPrimary, modifier = Modifier.semantics { heading() })

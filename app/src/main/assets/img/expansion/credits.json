@@ -1,0 +1,545 @@
+{
+  "note": "Hand-painted-style illustrations generated with Figma AI (gpt-image-2.5-flare) from prompts written for this game. Invented scenes: no real logos, brands or identifiable people.",
+  "items": [
+    {
+      "id": "airline_long_haul_fleet",
+      "title": "Long-Haul Fleet for a airline business: Non-stop to everywhere.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "airline_lounge_network",
+      "title": "Premium Lounges for a airline business: Comfort worth paying for.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "airline_maintenance_hangar",
+      "title": "Maintenance Hangar for a airline business: Fix planes on your own schedule.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "bank_clearing_house",
+      "title": "Clearing House for a banking business: Every payment passes through you.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "bank_private_banking",
+      "title": "Private Banking Desk for a banking business: Serve the very wealthy.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "bank_trading_floor",
+      "title": "Trading Floor for a banking business: Markets, all day long.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "construction_design_studio",
+      "title": "Architecture Studio for a construction business: Landmarks people pay to see.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "construction_precast_plant",
+      "title": "Precast Plant for a construction business: Buildings made in sections.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "construction_tower_cranes",
+      "title": "Tower Crane Fleet for a construction business: Build taller, faster.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "energy_fusion_pilot",
+      "title": "Fusion Pilot Plant for a energy business: The future, plugged in.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "energy_solar_farm",
+      "title": "Solar Farm for a energy business: Free fuel, every sunny day.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "energy_storage_banks",
+      "title": "Grid Storage Banks for a energy business: Sell power when it is scarce.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "factory_robotics_cell",
+      "title": "Robotics Cell for a factories business: Arms that never tire.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "factory_smart_foundry",
+      "title": "Smart Foundry for a factories business: Self-tuning production.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "factory_supplier_park",
+      "title": "Supplier Park for a factories business: Your suppliers move in next door.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "farmland_agri_lab",
+      "title": "Agri-Science Lab for a farmland business: Seeds bred for your fields.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "farmland_grain_silos",
+      "title": "Grain Silos for a farmland business: Store the harvest, sell at the peak.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "farmland_irrigation",
+      "title": "Irrigation Network for a farmland business: Steady water, steadier yields.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "fashion_couture_atelier",
+      "title": "Couture Atelier for a fashion house business: Made-to-measure for the few.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "fashion_flagship_salon",
+      "title": "Flagship Salon for a fashion house business: A showroom on the grand boulevard.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "fashion_runway_week",
+      "title": "Runway Week Show for a fashion house business: Your collection, the city's attention.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "hotels_convention_centre",
+      "title": "Convention Centre for a hotels & resorts business: Fill rooms with every conference.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "hotels_private_island_resort",
+      "title": "Private Island Resort for a hotels & resorts business: Where the wealthy go to vanish.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "hotels_rooftop_pool",
+      "title": "Rooftop Pool for a hotels & resorts business: The best view in town.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "logistics_cargo_hub",
+      "title": "Air Cargo Hub for a logistics business: Overnight delivery to every city.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "logistics_cross_dock",
+      "title": "Cross-Dock Depot for a logistics business: Unload, sort and reload in one hour.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "logistics_rail_siding",
+      "title": "Private Rail Siding for a logistics business: Your own track to the main line.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "media_film_studio_lot",
+      "title": "Studio Lot for a media business: Blockbusters on your back lot.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "media_sound_stages",
+      "title": "Sound Stages for a media business: Film everything in-house.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "media_streaming_app",
+      "title": "Streaming App for a media business: Your channels in every pocket.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "mining_autonomous_haul",
+      "title": "Autonomous Haul Fleet for a mining business: Trucks that drive themselves.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "mining_ore_crusher",
+      "title": "Ore Crusher for a mining business: More ore from every tonne.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "mining_rail_spur",
+      "title": "Rail Spur for a mining business: Straight from pit to port.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "pharma_api_plant",
+      "title": "Active Ingredient Plant for a pharmaceuticals business: Make your own compounds.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "pharma_genomics_centre",
+      "title": "Genomics Centre for a pharmaceuticals business: Medicine tailored to the patient.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "pharma_trial_network",
+      "title": "Clinical Trial Network for a pharmaceuticals business: Recruit patients worldwide.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "restaurants_central_kitchen",
+      "title": "Central Kitchen for a restaurants business: Prep for every branch in one place.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "restaurants_chefs_table",
+      "title": "Chef's Table Experience for a restaurants business: A twelve-course counter that sells out months ahead.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "restaurants_terrace",
+      "title": "Garden Terrace for a restaurants business: Forty extra covers under string lights.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "retail_flagship_arcade",
+      "title": "Flagship Arcade for a retail stores business: A covered arcade of your own shops.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "retail_market_stall",
+      "title": "Weekend Market Stall for a retail stores business: A second stand at the Saturday market.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "retail_second_storefront",
+      "title": "Second Storefront for a retail stores business: Lease the empty unit across the street.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "space_launch_complex",
+      "title": "Launch Complex for a space business: Your own pad on the coast.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "space_orbital_station",
+      "title": "Orbital Station for a space business: A home above the clouds.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "space_reusable_boosters",
+      "title": "Reusable Boosters for a space business: Rockets that land and fly again.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "sports_global_academy",
+      "title": "Global Academy for a sports franchise business: Tomorrow's stars, today.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "sports_new_stadium",
+      "title": "New Stadium for a sports franchise business: Sixty thousand seats, sold out.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "sports_training_ground",
+      "title": "Training Ground for a sports franchise business: Champions are built here.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "tech_ai_lab",
+      "title": "Advanced Computing Lab for a technology business: Problems solved before they exist.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "tech_chip_fab",
+      "title": "Chip Fabrication Plant for a technology business: Make your own silicon.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "tech_research_campus",
+      "title": "Research Campus for a technology business: Bright minds, one address.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "telecom_fibre_backbone",
+      "title": "Fibre Backbone for a telecom & data business: Light-speed between every city.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "telecom_hyperscale_dc",
+      "title": "Hyperscale Data Centre for a telecom & data business: Rent compute to the world.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "telecom_subsea_cable",
+      "title": "Subsea Cable for a telecom & data business: Connect continents.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    }
+  ]
+}

@@ -1,0 +1,405 @@
+{
+  "note": "Hand-painted-style illustrations generated with Figma AI (gpt-image-2.5-flare) from prompts written for this game. Invented scenes: no real logos, brands or identifiable people.",
+  "items": [
+    {
+      "id": "dub_business_bay",
+      "title": "A street view of the Business Bay neighbourhood in Dubai, upscale, characteristic local architecture",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "dub_deira",
+      "title": "A street view of the Deira neighbourhood in Dubai, up-and-coming, characteristic local architecture",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "dub_difc",
+      "title": "A street view of the DIFC neighbourhood in Dubai, upscale, the business district with office towers, characteristic local architecture",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "dub_downtown_dubai",
+      "title": "A street view of the Downtown Dubai neighbourhood in Dubai, upscale, characteristic local architecture",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "dub_dubai_marina",
+      "title": "A street view of the Dubai Marina neighbourhood in Dubai, upscale, characteristic local architecture",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "dub_jumeirah",
+      "title": "A street view of the Jumeirah neighbourhood in Dubai, upscale, characteristic local architecture",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "dub_palm_jumeirah",
+      "title": "A street view of the Palm Jumeirah neighbourhood in Dubai, upscale, characteristic local architecture",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "lis_alfama",
+      "title": "A street view of the Alfama neighbourhood in Lisbon, lively mid-market, characteristic local architecture",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "lis_baixa",
+      "title": "A street view of the Baixa neighbourhood in Lisbon, upscale, characteristic local architecture",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "lis_belem",
+      "title": "A street view of the Belém neighbourhood in Lisbon, upscale, characteristic local architecture",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "lis_cais_do_sodre",
+      "title": "A street view of the Cais do Sodré neighbourhood in Lisbon, lively mid-market, characteristic local architecture",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "lis_chiado",
+      "title": "A street view of the Chiado neighbourhood in Lisbon, upscale, characteristic local architecture",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "lis_parque_das_nacoes",
+      "title": "A street view of the Parque das Nações neighbourhood in Lisbon, upscale, the business district with office towers, characteristic local architecture",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "lon_camden",
+      "title": "A street view of the Camden neighbourhood in London, lively mid-market, characteristic local architecture",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "lon_canary_wharf",
+      "title": "A street view of the Canary Wharf neighbourhood in London, upscale, characteristic local architecture",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "lon_city_of_london",
+      "title": "A street view of the City of London neighbourhood in London, upscale, the business district with office towers, characteristic local architecture",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "lon_kensington",
+      "title": "A street view of the Kensington neighbourhood in London, upscale, characteristic local architecture",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "lon_mayfair",
+      "title": "A street view of the Mayfair neighbourhood in London, upscale, characteristic local architecture",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "lon_shoreditch",
+      "title": "A street view of the Shoreditch neighbourhood in London, upscale, characteristic local architecture",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "lon_southwark",
+      "title": "A street view of the Southwark neighbourhood in London, lively mid-market, characteristic local architecture",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "mia_brickell",
+      "title": "A street view of the Brickell neighbourhood in Miami, upscale, the business district with office towers, characteristic local architecture",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "mia_coconut_grove",
+      "title": "A street view of the Coconut Grove neighbourhood in Miami, upscale, characteristic local architecture",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "mia_coral_gables",
+      "title": "A street view of the Coral Gables neighbourhood in Miami, upscale, characteristic local architecture",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "mia_key_biscayne",
+      "title": "A street view of the Key Biscayne neighbourhood in Miami, upscale, characteristic local architecture",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "mia_little_havana",
+      "title": "A street view of the Little Havana neighbourhood in Miami, up-and-coming, characteristic local architecture",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "mia_south_beach",
+      "title": "A street view of the South Beach neighbourhood in Miami, upscale, characteristic local architecture",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "mia_wynwood",
+      "title": "A street view of the Wynwood neighbourhood in Miami, lively mid-market, characteristic local architecture",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "mum_andheri",
+      "title": "A street view of the Andheri neighbourhood in Mumbai, lively mid-market, characteristic local architecture",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "mum_bandra",
+      "title": "A street view of the Bandra neighbourhood in Mumbai, upscale, characteristic local architecture",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "mum_colaba",
+      "title": "A street view of the Colaba neighbourhood in Mumbai, upscale, characteristic local architecture",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "mum_juhu",
+      "title": "A street view of the Juhu neighbourhood in Mumbai, upscale, characteristic local architecture",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "mum_lower_parel",
+      "title": "A street view of the Lower Parel neighbourhood in Mumbai, upscale, characteristic local architecture",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "mum_nariman_point",
+      "title": "A street view of the Nariman Point neighbourhood in Mumbai, upscale, the business district with office towers, characteristic local architecture",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "new_brooklyn_heights",
+      "title": "A street view of the Brooklyn Heights neighbourhood in New York, upscale, characteristic local architecture",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "new_financial_district",
+      "title": "A street view of the Financial District neighbourhood in New York, upscale, the business district with office towers, characteristic local architecture",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "new_harlem",
+      "title": "A street view of the Harlem neighbourhood in New York, lively mid-market, characteristic local architecture",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "new_hudson_yards",
+      "title": "A street view of the Hudson Yards neighbourhood in New York, upscale, characteristic local architecture",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "new_midtown",
+      "title": "A street view of the Midtown neighbourhood in New York, upscale, characteristic local architecture",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "new_soho",
+      "title": "A street view of the SoHo neighbourhood in New York, upscale, characteristic local architecture",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "new_upper_east_side",
+      "title": "A street view of the Upper East Side neighbourhood in New York, upscale, characteristic local architecture",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    }
+  ]
+}

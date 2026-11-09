@@ -1,0 +1,605 @@
+{
+  "note": "Hand-painted-style illustrations generated with Figma AI (gpt-image-2.5-flare) from prompts written for this game. Invented scenes: no real logos, brands or identifiable people.",
+  "items": [
+    {
+      "id": "ad_slump",
+      "title": "A news illustration of: Advertising slump. Brands slash their advertising budgets.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "ai_frenzy",
+      "title": "A news illustration of: AI frenzy. Every company wants software that thinks. Tech orders double.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "asteroid_hype",
+      "title": "A news illustration of: Asteroid-mining hype. A probe finds a metal-rich asteroid. Space stocks soar.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "automation_wave",
+      "title": "A news illustration of: Automation wave. Robots arrive on factory floors everywhere. Output jumps.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "bank_run",
+      "title": "A news illustration of: Bank-run jitters. Rumours of a bank run spook depositors.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "breakthrough_cure",
+      "title": "A news illustration of: Medical breakthrough. A breakthrough therapy lifts the whole sector.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "bumper_harvest",
+      "title": "A news illustration of: Bumper harvest. Perfect weather brings a record harvest.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "chip_shortage",
+      "title": "A news illustration of: Chip shortage. A global chip shortage slows every gadget maker.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "construction_strike",
+      "title": "A news illustration of: Builders' strike. A nationwide builders' strike stops work on hundreds of sites.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "consumer_confidence",
+      "title": "A news illustration of: Confidence surge. Consumer confidence hits a ten-year high.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "consumer_slump",
+      "title": "A news illustration of: Consumer slump. Shoppers tighten their belts.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "counterfeit_wave",
+      "title": "A news illustration of: Counterfeit wave. A flood of fakes undercuts branded goods.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "credit_crunch_build",
+      "title": "A news illustration of: Credit crunch. Banks stop lending to developers.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "crop_blight",
+      "title": "A news illustration of: Crop blight. A blight hits wheat across three continents. Food prices jump.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "cyber_attack",
+      "title": "A news illustration of: Global cyber-attack. A worm knocks out payment systems for a day.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "data_breach_wave",
+      "title": "A news illustration of: Data-breach wave. A wave of data breaches makes customers wary of tech firms.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "disaster_dubai_5",
+      "title": "A news illustration of: Sandstorm. A week-long sandstorm batters Dubai.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "disaster_lisbon_2",
+      "title": "A news illustration of: Earthquake. A strong earthquake shakes Lisbon.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "disaster_london_3",
+      "title": "A news illustration of: Thames flood. A storm surge overtops defences along the Thames.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "disaster_miami_0",
+      "title": "A news illustration of: Hurricane. A hurricane makes landfall near Miami.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "disaster_miami_6",
+      "title": "A news illustration of: King tide. A king tide floods Miami's waterfront streets.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "disaster_mumbai_1",
+      "title": "A news illustration of: Monsoon floods. Monsoon floods swamp parts of Mumbai.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "disaster_mumbai_7",
+      "title": "A news illustration of: Cyclone. A cyclone brushes the Mumbai coast.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "disaster_new_york_4",
+      "title": "A news illustration of: Superstorm. A superstorm floods lower Manhattan.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "drug_price_cap",
+      "title": "A news illustration of: Drug-price caps. New rules cap what drug makers can charge.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "factory_boom",
+      "title": "A news illustration of: Factory boom. Order books fill up across heavy industry.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "fashion_week",
+      "title": "A news illustration of: Fashion week. A breakout fashion week makes luxury labels the talk of the town.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "fever_season",
+      "title": "A news illustration of: Fever season. A nasty flu season keeps travellers at home.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "fintech_squeeze",
+      "title": "A news illustration of: Fintech squeeze. Payment apps undercut bank fees.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "foodie_craze",
+      "title": "A news illustration of: Foodie craze. A viral food trend packs restaurants every night.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "fuel_spike",
+      "title": "A news illustration of: Jet-fuel spike. Fuel costs bite into every airline and haulier.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "global_boom",
+      "title": "A news illustration of: Global boom. Every economy is growing at once. Business is good everywhere.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "global_jitters",
+      "title": "A news illustration of: Market jitters. A wobble on the world's stock markets makes customers cautious.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "gold_rush",
+      "title": "A news illustration of: Gold rush. Nervous investors buy gold. Miners cheer.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "green_subsidies",
+      "title": "A news illustration of: Green subsidies. Governments announce clean-energy subsidies.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "health_scare",
+      "title": "A news illustration of: Food-safety scare. A food-safety scare empties dining rooms for a day.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "heatwave_power",
+      "title": "A news illustration of: Heatwave. A record heatwave pushes electricity demand to new highs.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "holiday_season",
+      "title": "A news illustration of: Long weekend. A long weekend lifts leisure spending.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "housing_boom",
+      "title": "A news illustration of: Housing boom. Cheap credit sparks a building frenzy.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "innovation_week",
+      "title": "A news illustration of: Innovation week. Start-up week fills every conference hall.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "ipo_wave",
+      "title": "A news illustration of: IPO wave. A wave of listings keeps the investment bankers busy.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "launch_failure_news",
+      "title": "A news illustration of: Launch failures. Two rocket failures abroad make insurers nervous about space.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "metal_rally",
+      "title": "A news illustration of: Metals rally. Copper and lithium hit record prices.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "mine_collapse_news",
+      "title": "A news illustration of: Mine safety crackdown. Regulators inspect every mine after an accident abroad. Output slows.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "oil_glut",
+      "title": "A news illustration of: Oil glut. Tankers queue offshore with nowhere to sell. Energy margins collapse.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "oil_shock",
+      "title": "A news illustration of: Oil shock. Supply cuts send oil prices soaring. Energy companies print money.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "pandemic_drill",
+      "title": "A news illustration of: Pandemic preparedness. Governments stockpile medicines.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "power_cuts",
+      "title": "A news illustration of: Rolling power cuts. Grid failures cause rolling blackouts.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "rate_rise",
+      "title": "A news illustration of: Rate rise. The central bank surprises with a rate rise. Banks earn more on every loan.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "recovery_signs",
+      "title": "A news illustration of: Green shoots. Hiring picks up. The worst seems to be over.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "retail_holiday",
+      "title": "A news illustration of: Holiday shopping. The holiday season starts early. Tills are ringing.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "space_race",
+      "title": "A news illustration of: New space race. Governments order satellites by the hundred.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "steel_tariffs",
+      "title": "A news illustration of: Steel tariffs. New tariffs raise the cost of every machine.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "streaming_war",
+      "title": "A news illustration of: Streaming war. Every studio launches a streaming service. Content is king.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "supply_crunch",
+      "title": "A news illustration of: Supply-chain crunch. Ports jam and freight rates spike. Shippers are busy; everyone else waits.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "tax_holiday",
+      "title": "A news illustration of: Business tax holiday. A one-off business-rates holiday puts money back in every till.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "tech_bubble",
+      "title": "A news illustration of: Tech bubble. Investors pile into anything with an app. Technology revenues surge.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "trade_war",
+      "title": "A news illustration of: Trade war. Tariffs fly in both directions. Global trade slows.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "travel_rush",
+      "title": "A news illustration of: Travel rush. Everyone wants a holiday at once. Planes and hotels are full.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "world_cup_fever",
+      "title": "A news illustration of: Cup fever. A global football tournament glues the world to its screens.",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    }
+  ]
+}

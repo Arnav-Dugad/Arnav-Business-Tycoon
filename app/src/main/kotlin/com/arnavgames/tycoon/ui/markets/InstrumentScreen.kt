@@ -21,6 +21,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -63,6 +64,7 @@ fun InstrumentScreen(vm: GameViewModel, instrumentId: String, onBack: () -> Unit
     val c = Aurum.colors
 
     GlassScaffold(title = ui.name, onBack = onBack) {
+        ui.art?.let { art -> item(key = "art") { com.arnavgames.tycoon.ui.common.Illustration(art, Modifier.fillMaxWidth().height(120.dp).clip(com.arnavgames.tycoon.designsystem.theme.AurumShapes.large)) } }
         item(key = "hero") {
             AurumCard(Modifier.fillMaxWidth()) {
                 Row(verticalAlignment = Alignment.CenterVertically) {

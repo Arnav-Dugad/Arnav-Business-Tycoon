@@ -122,6 +122,11 @@ fun CollectionScreen(vm: GameViewModel, onOpenCategory: (String) -> Unit, onOpen
             item(key = "auction") {
                 val a = col.auction
                 AurumCard(Modifier.fillMaxWidth(), highlighted = a != null, onClick = if (a != null) onOpenAuction else null) {
+                    // Between auctions the card shows the saleroom; during one, the lot itself takes the picture's place.
+                    if (a == null) {
+                        com.arnavgames.tycoon.ui.common.Illustration(com.arnavgames.tycoon.ui.common.Art.luxuryCategory("painting"), Modifier.fillMaxWidth().height(110.dp).clip(AurumShapes.medium))
+                        Spacer(Modifier.height(Space.md))
+                    }
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         AbtIcon(AbtIcons.Timer, null, tint = c.goldText, size = 18.dp)
                         Spacer(Modifier.width(Space.sm))

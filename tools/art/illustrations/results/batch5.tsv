@@ -1,0 +1,64 @@
+tier	retail_5	10:3	eb541646-748e-4269-b4d6-4510059b1e72	a retail stores business grown into a 'Department Store': very grand, clearly bigger than a humble start
+tier	restaurants_3	10:13	fc43e822-3fc6-4b80-81f3-2685a31bebcd	a restaurants business grown into a 'Restaurant Group': well established, clearly bigger than a humble start
+tier	logistics_1	10:20	8a0391b5-fdaa-4043-b103-896d5b390339	a logistics business grown into a 'Courier Fleet': small and new, clearly bigger than a humble start
+expansion	logistics_rail_siding	10:27	5fd138c1-a165-49b2-96d1-150963e40983	Private Rail Siding for a logistics business: Your own track to the main line.
+tier	farmland_7	10:35	7351cf46-a690-41d3-a8a5-dcc614477687	a farmland business grown into a 'Farmland Empire': monumental, the biggest of its kind, clearly bigger than a humble start
+tier	factory_5	10:43	8d9dafa0-df76-4e34-9add-690e7f675e9e	a factories business grown into a 'Advanced Fabrication': very grand, clearly bigger than a humble start
+tier	fashion_3	10:51	99622ce6-dbad-475d-8beb-8b496833d0c7	a fashion house business grown into a 'Design House': well established, clearly bigger than a humble start
+tier	mining_1	10:56	bb19c8d1-88ff-4937-b8fd-e3fa0eee1cbc	a mining business grown into a 'Open Pit': small and new, clearly bigger than a humble start
+expansion	mining_rail_spur	10:63	11a33b6a-afcd-4eae-bd70-43155bc82fba	Rail Spur for a mining business: Straight from pit to port.
+tier	energy_7	10:69	7768b45c-5714-42a8-abc1-4ae2d0e7799e	a energy business grown into a 'Energy Empire': monumental, the biggest of its kind, clearly bigger than a humble start
+tier	bank_3	10:78	c6d14fea-0f39-4980-a4e3-8f9dec28f8bf	a banking business grown into a 'Regional Bank': well established, clearly bigger than a humble start
+tier	hotels_5	10:90	a453406b-f42f-4678-8d9c-2658aa023803	a hotels & resorts business grown into a 'Luxury Collection': very grand, clearly bigger than a humble start
+tier	construction_1	10:96	fbbe365a-32e5-49e1-b7e2-c7c194c63535	a construction business grown into a 'General Contractor': small and new, clearly bigger than a humble start
+expansion	construction_precast_plant	10:105	3cb9641b-908e-4f67-a6d8-0b77500f923b	Precast Plant for a construction business: Buildings made in sections.
+tier	media_7	10:112	e592c526-6afe-4aac-b4f8-53534f772f91	a media business grown into a 'Media Empire': monumental, the biggest of its kind, clearly bigger than a humble start
+tier	tech_5	10:117	38f01929-30b0-45ac-8dc3-35c3e61c8760	a technology business grown into a 'Innovation Leader': very grand, clearly bigger than a humble start
+tier	telecom_3	10:123	993c706c-4717-4262-9cfd-858c8be42513	a telecom & data business grown into a 'Data Centre Group': well established, clearly bigger than a humble start
+tier	airline_1	10:137	0792f8d8-a4fc-4701-af1c-a7740b0c08f0	a airline business grown into a 'Regional Airline': small and new, clearly bigger than a humble start
+expansion	airline_maintenance_hangar	10:143	967e7232-0a2e-4044-983d-b5fa4c5e1467	Maintenance Hangar for a airline business: Fix planes on your own schedule.
+tier	pharma_7	10:149	d284a74e-8dee-4f0a-8f55-d778f2df71f6	a pharmaceuticals business grown into a 'Pharma Empire': monumental, the biggest of its kind, clearly bigger than a humble start
+tier	sports_5	10:155	d441cd2b-113e-4e2c-b515-8cd55fd7d242	a sports franchise business grown into a 'Dynasty Club': very grand, clearly bigger than a humble start
+tier	space_3	10:163	f853ec1e-1003-4806-91f1-e6e790bc3a93	a space business grown into a 'Orbital Company': well established, clearly bigger than a humble start
+district	lis_alfama	10:171	310fd870-8c09-4cf0-b9d9-5dd890ceea6d	a street view of the Alfama neighbourhood in Lisbon, lively mid-market, characteristic local architecture
+district	lon_kensington	10:185	891cc849-8310-4f19-89f4-b19ce2048914	a street view of the Kensington neighbourhood in London, upscale, characteristic local architecture
+district	mia_coconut_grove	10:191	6fd2d2a7-6346-4e3a-afa7-43f95a021980	a street view of the Coconut Grove neighbourhood in Miami, upscale, characteristic local architecture
+district	mum_lower_parel	10:198	d57ef7aa-e99d-47c1-a7d8-2dc5b82c3696	a street view of the Lower Parel neighbourhood in Mumbai, upscale, characteristic local architecture
+district	new_hudson_yards	10:205	a7bc20ad-c85e-4313-94cc-2328e464d3ad	a street view of the Hudson Yards neighbourhood in New York, upscale, characteristic local architecture
+tower	aurelia	10:210	f8bd5cce-01bd-4dd4-92c8-81244c646f1b	a striking invented skyscraper called 'The Aurelia' rising over a waterfront city, 
+hq	1	10:217	7218b5ae-900a-40f9-b385-5f52ea2e51e5	a company headquarters at the 'Garage Office' stage, showing how grand the office has become
+hq	9	10:232	1d31759c-bffb-44ce-b452-dd0c6baa69b5	a company headquarters at the 'Boardroom Level' stage, showing how grand the office has become
+hq	17	10:238	8557eef3-d7a1-497a-a850-f953e73e4646	a company headquarters at the 'Gilded Spire' stage, showing how grand the office has become
+hq	25	10:245	e5b5811e-1fa2-47db-aef3-4cbdc9a82e13	a company headquarters at the 'Crown Tower' stage, showing how grand the office has become
+event	green_subsidies	10:251	2fc67bb3-9b39-4feb-9c28-e4fb0218f904	a news illustration of: Green subsidies. Governments announce clean-energy subsidies.
+event	crop_blight	10:257	200fa73e-f794-4af3-a6a2-318e6afd1cc3	a news illustration of: Crop blight. A blight hits wheat across three continents. Food prices jump.
+event	factory_boom	10:266	baae42f2-61f7-4aa7-a565-604caeb72b4b	a news illustration of: Factory boom. Order books fill up across heavy industry.
+event	ipo_wave	10:281	1efbe037-4e25-4051-83c2-94d585baa64a	a news illustration of: IPO wave. A wave of listings keeps the investment bankers busy.
+event	space_race	10:285	c234fa9b-8763-4d88-98fd-0346cf6d0bc7	a news illustration of: New space race. Governments order satellites by the hundred.
+event	trade_war	10:292	2ae2bda0-17ca-499e-9a5c-9c4cf87df698	a news illustration of: Trade war. Tariffs fly in both directions. Global trade slows.
+event	disaster_london_3	10:299	06ec0b88-87eb-4bb9-be5e-a757b77770a4	a news illustration of: Thames flood. A storm surge overtops defences along the Thames.
+luxury	car_ferr_dino_246_gts	11:7	fae96356-83de-4d4d-84fe-a3498efcdf0b	a classic vintage low wedge-shaped hypercar, an invented design shown as a showroom piece
+luxury	car_porc_356_speedster	11:11	757206a7-af18-4019-ad3c-909becad6f86	a classic vintage open-top roadster, an invented design shown as a showroom piece
+luxury	car_bent_continental_gt	11:29	732836ab-95d9-4233-a204-312db6bb9415	boxy 1980s-style supercar, an invented design shown as a showroom piece
+luxury	car_mcla_750s	11:33	0ce4943d-2680-4da8-9bd7-775e877af235	luxury off-road wagon, an invented design shown as a showroom piece
+luxury	car_bmv_i7_executive	11:40	feb2ba1b-cece-422e-a2e6-afc8fe2360ac	shooting-brake estate, an invented design shown as a showroom piece
+luxury	car_paga_zonda_cinque	11:46	85b344dd-bab9-45be-aa16-41c35cc522ba	a legendary, one-of-a-kind low wedge-shaped hypercar, an invented design shown as a showroom piece
+luxury	car_jagw_e_type_61	11:51	3c55ebaf-5fcc-4647-920a-a1ff7d7bcc4b	a classic vintage open-top roadster, an invented design shown as a showroom piece
+luxury	car_shev_bel_air_57	11:57	39b0f518-51f3-4068-b188-6cd98ae35ffc	a classic vintage boxy 1980s-style supercar, an invented design shown as a showroom piece
+luxury	watch_audema_0	11:77	d64050f1-bd1d-4788-ba7f-696b41bfde5f	slim gold dress watch, an invented design shown as a showroom piece
+luxury	watch_vacher_1	11:81	7f798fe3-2d0b-4b6f-8b64-405d2d818d7a	a rare, finely made steel dive watch with a rotating bezel, an invented design shown as a showroom piece
+luxury	watch_alange_0	11:87	ea1bf9d8-f195-4d94-93d3-c0f9e8a2e0bf	chronograph with three sub-dials, an invented design shown as a showroom piece
+luxury	wine_3	11:94	43796173-700e-42ed-b258-a0cf013e6aab	a rare, finely made bottles resting in a cellar rack, an invented design shown as a showroom piece
+luxury	wine_11	11:100	fd1dfc80-ca7a-42fc-92b9-18bbcfc82492	a rare, finely made a wooden case of bottles, an invented design shown as a showroom piece
+luxury	wine_19	11:106	7c03dadd-f64d-4796-8826-d680c74e7179	a rare, finely made a decanter and a bottle on a barrel top, an invented design shown as a showroom piece
+luxury	jewel_7	11:125	7c1c2ee4-87ca-44de-80e0-ca77c9490a33	emerald necklace, an invented design shown as a showroom piece
+luxury	jet_0	11:129	fccf901c-45f4-4b45-8b13-22d4c5a5f996	a legendary, one-of-a-kind slim business jet, an invented design shown as a showroom piece
+luxury	jet_8	11:133	f3236819-7da9-40da-bf3b-ca3f9eae26f5	a rare, finely made slim business jet, an invented design shown as a showroom piece
+luxury	heli_0	11:138	e25bcedd-22c5-4a25-a6dc-1c16a1df3ecc	a rare, finely made sleek private helicopter, an invented design shown as a showroom piece
+luxury	yacht_0	11:144	9bb5d296-98d0-4fba-b946-b7b350283d51	a legendary, one-of-a-kind sleek motor superyacht, an invented design shown as a showroom piece
+luxury	yacht_8	11:150	04791bd8-ffc3-4d34-aab1-31244fbec9d6	a rare, finely made catamaran with white sails, an invented design shown as a showroom piece
+luxury	yacht_16	11:169	417d3fe1-5f7f-4b47-97fe-bb7d9b644c90	a rare, finely made classic wooden sailing yacht, an invented design shown as a showroom piece
+luxury	island_4	11:175	c449bd30-1659-487c-9a85-5d3c0b88e6d8	a rare, finely made palm-ringed atoll, an invented design shown as a showroom piece
+luxury	mansion_2	11:180	6144a0ed-e74e-45b9-b51f-e55ecdf70f20	a legendary, one-of-a-kind Mediterranean palazzo with terraces, an invented design shown as a showroom piece
+luxury	mansion_10	11:186	70c4179f-a8cd-44c6-965d-51bb9ab63c0f	a rare, finely made Tudor manor with a long lawn, an invented design shown as a showroom piece
+luxury	mansion_18	11:191	8394292a-3e62-4665-af23-4506960c4115	a rare, finely made Hollywood-hills mansion with a pool, an invented design shown as a showroom piece

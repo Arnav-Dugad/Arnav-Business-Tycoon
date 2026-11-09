@@ -56,8 +56,12 @@ data class BusinessUi(
     val tierProgress: Float, val netRate: Rate, val managerName: String?, val stored: Money, val storageCap: Money,
     val buyCount: Int, val buyCost: Money, val canAfford: Boolean, val efficiency: Double, val timer: TimerUi?, val mothballed: Boolean,
     val hint: String?,
+    /** Tiers reached (0 = still the starter business): picks the business's painting. */
+    val tiersReached: Int = 0,
     /** Set on the business whose next purchase pays back fastest: "Best value · pays back in 4 min". */
     val bestValue: String? = null,
+    /** What the Buy button adds to income per second (shown before the player commits). */
+    val buyGain: Money = Money.ZERO,
 )
 
 data class OpenableUi(val id: String, val name: String, val tagline: String, val icon: String, val cost: Money, val canAfford: Boolean, val lockedReason: String?)
@@ -132,7 +136,7 @@ class GameViewModel @Inject constructor(
 
     fun city(s: GameState, id: String) = estatesMapper.city(s, id)
 
-    private val collectionMapper by lazy { com.arnavgames.tycoon.ui.collection.CollectionMapper(session.engine) }
+    private val collectionMapper by lazy { com.arnavgames.tycoon.ui.collection.CollectionMapper(session.engine) { com.arnavgames.tycoon.ui.common.Art.has(session.appContext, it) } }
 
     val collection: StateFlow<com.arnavgames.tycoon.ui.collection.CollectionUi?> = session.state.filterNotNull()
         .map { s -> collectionMapper.toUi(s) }
@@ -396,6 +400,11 @@ class GameViewModel @Inject constructor(
             stored = b.stored, storageCap = if (b.managerId == null) eco.storageCap(s, def.id) else Money.ZERO,
             buyCount = count, buyCost = cost, canAfford = s.cash >= cost, efficiency = rate.efficiency,
             timer = timer, mothballed = b.mothballed, hint = hintFor(s, def),
+            tiersReached = eco.tiersReached(def, b.level),
+            buyGain = if (b.mothballed) Money.ZERO else runCatching {
+                val after = eco.businessRate(s.copy(businesses = s.businesses + (def.id to b.copy(level = b.level + count))), def.id).net.perSecond()
+                after - rate.net.perSecond()
+            }.getOrDefault(Money.ZERO),
         )
     }
 

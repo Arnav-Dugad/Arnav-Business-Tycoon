@@ -107,7 +107,14 @@ fun AppRoot(vm: GameViewModel, forcedTheme: ThemeMode?, onDarkChanged: (Boolean)
         }
         LaunchedEffect(settings.haptics) {
             if (!settings.haptics) return@LaunchedEffect
+            var lastTick = 0L
             vm.events.collect { e ->
+                // Rapid multi-finger tapping would blur ticks into a buzz: at most one tick every 45 ms (docs: haptics principles).
+                if (e is GameEvent.HustleEarned) {
+                    val now = android.os.SystemClock.uptimeMillis()
+                    if (now - lastTick < 45) return@collect
+                    lastTick = now
+                }
                 // Haptic vocabulary (docs/PLAN_2.0.md F2): ticks for routine, a pulse for tiers, a heavy press for
                 // milestones, a buzz for bad news.
                 val type = when (e) {
@@ -140,7 +147,7 @@ fun AppRoot(vm: GameViewModel, forcedTheme: ThemeMode?, onDarkChanged: (Boolean)
                     title = "Please update the game",
                     onStartOver = null,
                 )
-                is GameSession.Status.Failed -> RecoveryScreen(errors = listOf(st.message), title = "Something went wrong", onStartOver = null)
+                is GameSession.Status.Failed -> RecoveryScreen(errors = listOf(st.message), title = "Your game couldn't load", onStartOver = null)
                 GameSession.Status.Ready -> ReadyContent(vm)
             }
             SnackbarHost(snackbar, Modifier.align(Alignment.BottomCenter).navigationBarsPadding().padding(bottom = 96.dp)) { data ->

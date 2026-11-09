@@ -53,10 +53,11 @@ import com.arnavgames.tycoon.designsystem.theme.glassSource
  * navigation bar as you scroll, with content blurring beneath it.
  */
 @Composable
-fun GlassScaffold(title: String, onBack: () -> Unit, content: LazyListScope.() -> Unit) {
+fun GlassScaffold(title: String, onBack: () -> Unit, bottomBar: (@Composable () -> Unit)? = null, content: LazyListScope.() -> Unit) {
     val c = Aurum.colors
     val list = rememberLazyListState()
     var barPx by remember { mutableIntStateOf(0) }
+    var bottomPx by remember { mutableIntStateOf(0) }
     val density = LocalDensity.current
     val navInset = WindowInsets.navigationBars.asPaddingValues().calculateBottomPadding()
     // The compact title fades in once the large title has scrolled away.
@@ -65,7 +66,7 @@ fun GlassScaffold(title: String, onBack: () -> Unit, content: LazyListScope.() -
         LazyColumn(
             state = list,
             modifier = Modifier.fillMaxSize().glassSource(GlassLayer.Content),
-            contentPadding = PaddingValues(start = Space.gutter, end = Space.gutter, top = with(density) { barPx.toDp() }, bottom = navInset + Space.huge),
+            contentPadding = PaddingValues(start = Space.gutter, end = Space.gutter, top = with(density) { barPx.toDp() }, bottom = navInset + Space.huge + with(density) { bottomPx.toDp() }),
             verticalArrangement = Arrangement.spacedBy(Space.md),
         ) {
             item(key = "__large_title") {
@@ -88,6 +89,11 @@ fun GlassScaffold(title: String, onBack: () -> Unit, content: LazyListScope.() -
                 Spacer(Modifier.width(Space.touch))
             }
             HairlineDivider(Modifier.alpha(if (showCompactTitle) 1f else 0f))
+        }
+        // The screen's one primary action, pinned to the bottom edge where it never moves (docs/UX.md).
+        if (bottomBar != null) Column(Modifier.fillMaxWidth().align(Alignment.BottomCenter).onSizeChanged { bottomPx = it.height }.glass(RectangleShape, GlassWeight.Regular, edge = false)) {
+            HairlineDivider()
+            Box(Modifier.fillMaxWidth().padding(start = Space.gutter, end = Space.gutter, top = Space.sm, bottom = Space.sm + navInset)) { bottomBar() }
         }
     }
 }

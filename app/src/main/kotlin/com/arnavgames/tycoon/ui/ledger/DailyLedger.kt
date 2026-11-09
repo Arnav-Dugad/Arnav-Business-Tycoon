@@ -10,7 +10,7 @@ import com.arnavgames.tycoon.core.state.GameState
 enum class Tone { Good, Bad, Neutral }
 
 /** One item on the front page. [icon] names an AbtIcons entry. */
-data class Story(val icon: String, val headline: String, val detail: String, val tone: Tone, val weight: Int)
+data class Story(val icon: String, val headline: String, val detail: String, val tone: Tone, val weight: Int, val image: String? = null)
 
 /**
  * "The Daily Ledger" (docs/PLAN_2.0.md D1): what happened while the player was away, as a short front page built
@@ -67,7 +67,7 @@ object DailyLedger {
 
         // The world.
         events.filterIsInstance<GameEvent.WorldEventStarted>().lastOrNull()?.let { e ->
-            c.world.eventById[e.eventId]?.let { ev -> out += Story("Globe", ev.title, ev.text, Tone.Neutral, 50) }
+            c.world.eventById[e.eventId]?.let { ev -> out += Story("Globe", ev.title, ev.text, Tone.Neutral, 50, image = "img/event/${ev.id}.webp") }
         }
         events.filterIsInstance<GameEvent.NemesisBeat>().lastOrNull()?.let { e ->
             val nem = c.world.nemesisByChapter[e.chapter]

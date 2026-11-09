@@ -69,7 +69,7 @@ fun AccountScreen(vm: GameViewModel, onBack: () -> Unit) {
         scope.launch {
             val r = block()
             busy = false
-            vm.say(if (r.isSuccess) label else (r.exceptionOrNull()?.message ?: "Something went wrong"))
+            vm.say(if (r.isSuccess) label else (r.exceptionOrNull()?.message ?: "That didn't go through. Check your connection and try again."))
         }
     }
 

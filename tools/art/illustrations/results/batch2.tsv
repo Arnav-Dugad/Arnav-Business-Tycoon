@@ -1,0 +1,64 @@
+tier	retail_2	10:10	887ee37e-4e9a-4c0a-a79c-5bd4817ddfd9	a retail stores business grown into a 'High-Street Store': busy and growing, clearly bigger than a humble start
+expansion	retail_flagship_arcade	10:17	99cae660-5247-4129-b3a1-946089cf3ad6	Flagship Arcade for a retail stores business: A covered arcade of your own shops.
+expansion	restaurants_terrace	10:25	6b1969f7-2a14-41a4-bb19-5390f91ea770	Garden Terrace for a restaurants business: Forty extra covers under string lights.
+tier	logistics_6	10:34	10bb65f1-43c2-4f9b-ac81-72aa44af9ba5	a logistics business grown into a 'Global Forwarder': vast and famous, clearly bigger than a humble start
+tier	farmland_4	10:42	d154e72f-604d-4948-98c2-955da8009ddd	a farmland business grown into a 'Agri Cooperative': large and impressive, clearly bigger than a humble start
+tier	factory_2	10:49	0b139676-d982-4e06-a9ed-06762d62d54e	a factories business grown into a 'Assembly Plant': busy and growing, clearly bigger than a humble start
+expansion	factory_smart_foundry	10:77	9d58a2b4-34b1-4b45-b40c-535c2dd2717a	Smart Foundry for a factories business: Self-tuning production.
+expansion	fashion_flagship_salon	10:84	e34ddbe2-c1bf-4b5d-86cf-8ff2d94debe7	Flagship Salon for a fashion house business: A showroom on the grand boulevard.
+tier	mining_6	10:86	c7b6c69e-6379-4080-a111-1a36709d1e74	a mining business grown into a 'Minerals Group': vast and famous, clearly bigger than a humble start
+tier	energy_4	10:92	d8f74638-2bf2-4b8b-b309-2f573bd44db5	a energy business grown into a 'Energy Group': large and impressive, clearly bigger than a humble start
+tier	hotels_2	10:99	59afb4cd-6b2a-44d4-9b84-06521bc9bbdb	a hotels & resorts business grown into a 'City Hotel': busy and growing, clearly bigger than a humble start
+expansion	hotels_private_island_resort	10:106	61a5fb5b-c96e-4087-9b3f-8cf422958295	Private Island Resort for a hotels & resorts business: Where the wealthy go to vanish.
+expansion	bank_private_banking	10:127	aff0feb1-95b2-4253-9d6a-1ca25653bc36	Private Banking Desk for a banking business: Serve the very wealthy.
+tier	construction_6	10:131	7ea9f6ef-473b-48a6-a28a-e9b15ffe1836	a construction business grown into a 'Megaproject Group': vast and famous, clearly bigger than a humble start
+tier	media_4	10:134	430ffaf2-dd04-4d89-b17a-78153ddf3b3b	a media business grown into a 'Media Group': large and impressive, clearly bigger than a humble start
+tier	tech_2	10:139	bb29bb18-f895-4414-8eea-a823193b0659	a technology business grown into a 'Product Company': busy and growing, clearly bigger than a humble start
+expansion	tech_ai_lab	10:146	e4abd07b-53a8-44f3-8845-bc63405208ac	Advanced Computing Lab for a technology business: Problems solved before they exist.
+expansion	telecom_fibre_backbone	10:153	92046088-8d05-4d5b-9d36-f5e6a8347a2c	Fibre Backbone for a telecom & data business: Light-speed between every city.
+tier	airline_6	10:175	ef5017b3-7345-4e93-8192-d11367a1c2b6	a airline business grown into a 'Global Alliance': vast and famous, clearly bigger than a humble start
+tier	pharma_4	10:179	a10e64a3-cfa4-479c-b927-99d78bcd12cb	a pharmaceuticals business grown into a 'Life Sciences Group': large and impressive, clearly bigger than a humble start
+tier	sports_2	10:184	81f64003-11a3-4903-9b04-4d4c582ac12d	a sports franchise business grown into a 'Professional Club': busy and growing, clearly bigger than a humble start
+expansion	sports_global_academy	10:190	9aff5400-9eaa-46da-a3d2-d3185e875a29	Global Academy for a sports franchise business: Tomorrow's stars, today.
+expansion	space_launch_complex	10:195	4e83a2db-e6d9-4bc2-b507-a5a995d1203e	Launch Complex for a space business: Your own pad on the coast.
+district	lis_parque_das_nacoes	10:202	54c6fdee-ec89-4e5f-b340-6febd16cadbd	a street view of the Parque das Nações neighbourhood in Lisbon, upscale, the business district with office towers, characteristic local architecture
+district	mia_south_beach	10:222	85944b18-f5d4-4fd8-a666-b70e061faf13	a street view of the South Beach neighbourhood in Miami, upscale, characteristic local architecture
+district	mum_bandra	10:226	a6499c0c-a97e-49cf-a453-6b42daf237fa	a street view of the Bandra neighbourhood in Mumbai, upscale, characteristic local architecture
+district	new_upper_east_side	10:230	b19d5ea2-c0fb-4c40-bd85-e37b8ae62e44	a street view of the Upper East Side neighbourhood in New York, upscale, characteristic local architecture
+district	dub_jumeirah	10:235	dfe80784-5ae2-4cec-b403-2a7e3aab063a	a street view of the Jumeirah neighbourhood in Dubai, upscale, characteristic local architecture
+tower	spire	10:241	f888cf1c-838f-49ac-b92e-4088beef663f	a striking invented skyscraper called 'Summit Spire' rising over a waterfront city, 
+hq	6	10:249	bbef3550-247c-4aa6-9ffd-07e396187fb4	a company headquarters at the 'Glass Floor' stage, showing how grand the office has become
+hq	14	10:270	fd9b1f45-2e2f-4f0c-91f3-7f3f6e4093f2	a company headquarters at the 'Skyline Campus' stage, showing how grand the office has become
+hq	22	10:275	5db89aaa-8d14-4790-b93d-6e78ee9051fc	a company headquarters at the 'Empire Plaza' stage, showing how grand the office has become
+event	oil_shock	10:279	4e1482dc-bb81-4ad3-8021-32a5554c5f6b	a news illustration of: Oil shock. Supply cuts send oil prices soaring. Energy companies print money.
+event	fever_season	10:284	55b4e0d9-fddf-4346-81e9-a4477199c53c	a news illustration of: Fever season. A nasty flu season keeps travellers at home.
+event	consumer_slump	10:290	e5ecbb15-7670-4e86-a37c-7185ca266451	a news illustration of: Consumer slump. Shoppers tighten their belts.
+event	gold_rush	10:297	b602a734-c2ce-4f77-83eb-67ff1b841ad4	a news illustration of: Gold rush. Nervous investors buy gold. Miners cheer.
+event	pandemic_drill	11:20	e5a886c6-1b74-434b-9c0b-717837b04448	a news illustration of: Pandemic preparedness. Governments stockpile medicines.
+event	tax_holiday	11:25	9b9c9a91-923b-427e-9c3f-1759e886294c	a news illustration of: Business tax holiday. A one-off business-rates holiday puts money back in every till.
+event	disaster_miami_0	11:28	fdff8d06-4a09-4b5f-864f-6569331b89a6	a news illustration of: Hurricane. A hurricane makes landfall near Miami.
+luxury	car_ferr_roma_gt	11:32	93b9fadd-276e-4d75-8ef4-54c122f6bcd6	sleek two-door coupe, an invented design shown as a showroom piece
+luxury	car_porc_911_carrera_s	11:39	1f747390-218d-4c8c-b711-58aa6b650450	curvy 1950s-style racer, an invented design shown as a showroom piece
+luxury	car_roll_cullinan	11:43	0aabcc13-7305-4e0d-ae29-33888782ac09	compact sports car, an invented design shown as a showroom piece
+luxury	car_asto_valkyrion	11:67	cb2eace8-2115-4992-a8e3-039931d79b9f	a legendary, one-of-a-kind elegant four-door saloon, an invented design shown as a showroom piece
+luxury	car_merc_amg_one	11:73	48056799-6413-4345-876e-c65c8b15f9f4	a rare, finely made long-bonnet grand tourer, an invented design shown as a showroom piece
+luxury	car_king_jesko_absolut	11:78	c09fcd7b-7405-4999-846e-88567595f41e	a legendary, one-of-a-kind sleek two-door coupe, an invented design shown as a showroom piece
+luxury	car_tesl_roadster_next	11:82	f01f8212-d05b-4dd1-8d7d-d864e0e037cf	curvy 1950s-style racer, an invented design shown as a showroom piece
+luxury	car_fjor_mustang_dark_horse	11:88	22b2ee35-f8df-4e92-a418-a69bf770d061	compact sports car, an invented design shown as a showroom piece
+luxury	watch_pateck_0	11:93	0f19ab4f-29da-4b57-a72f-50a1ada7fb98	rose-gold moon-phase watch, an invented design shown as a showroom piece
+luxury	watch_cartye_1	11:114	f8cefd7d-4536-41b0-a3b0-1a7ad0a0fc5d	square art-deco watch, an invented design shown as a showroom piece
+luxury	watch_hublow_0	11:120	b782ba63-8640-4aca-8a3d-7151b33b5ba1	pilot's watch with a large crown, an invented design shown as a showroom piece
+luxury	wine_0	11:126	fe612ef0-b28d-4e98-b954-866a47183bb5	a single old bottle on a straw bed, an invented design shown as a showroom piece
+luxury	wine_8	11:130	09848596-6e0d-4ae3-a56a-c64768b6e6d6	a rare, finely made bottles resting in a cellar rack, an invented design shown as a showroom piece
+luxury	wine_16	11:136	ff008bc5-3046-40e8-96bd-d1a3213db3a1	a wooden case of bottles, an invented design shown as a showroom piece
+luxury	jewel_4	11:141	32b9d140-150f-4585-b93b-457982637027	pearl choker, an invented design shown as a showroom piece
+luxury	jewel_12	11:161	fd652ece-9828-4195-89f3-cf53363d70cc	a legendary, one-of-a-kind diamond tiara, an invented design shown as a showroom piece
+luxury	jet_5	11:168	7a9b01e7-f068-4225-b486-591e7de0b084	a rare, finely made long-range private jet, an invented design shown as a showroom piece
+luxury	jet_13	11:174	aa393195-e610-4eb0-adfb-811c3d1d96ae	a legendary, one-of-a-kind long-range private jet, an invented design shown as a showroom piece
+luxury	heli_5	11:179	573c9ebf-06e7-4345-8083-f684bb4d43e9	a rare, finely made twin-engine executive helicopter, an invented design shown as a showroom piece
+luxury	yacht_5	11:185	fc03a2f7-b893-43c5-a567-1ac45ec73a9d	sleek motor superyacht, an invented design shown as a showroom piece
+luxury	yacht_13	11:190	666d88c4-6c97-45eb-b242-0a316c236a84	a rare, finely made catamaran with white sails, an invented design shown as a showroom piece
+luxury	island_1	11:205	c6af9fc4-4233-4087-93c9-17c4036ca24f	a rare, finely made rocky Mediterranean islet with a villa, an invented design shown as a showroom piece
+luxury	island_9	11:208	e95acfc0-7256-46a9-acb0-a0814f870c8e	a legendary, one-of-a-kind rocky Mediterranean islet with a villa, an invented design shown as a showroom piece
+luxury	mansion_7	11:211	4c9cea80-7ac5-4333-9d00-1a44cc51ddd8	a rare, finely made Palladian country house, an invented design shown as a showroom piece
+luxury	mansion_15	11:214	81a5e2e5-157f-493c-9d39-440e2f8c9295	a rare, finely made modernist glass villa on a cliff, an invented design shown as a showroom piece

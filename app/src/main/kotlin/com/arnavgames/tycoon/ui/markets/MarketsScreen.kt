@@ -102,16 +102,17 @@ fun MarketsScreen(vm: GameViewModel, onOpenInstrument: (String) -> Unit, onOpenN
             verticalArrangement = Arrangement.spacedBy(Space.md),
             modifier = Modifier.fillMaxSize().glassSource(GlassLayer.Content),
         ) {
-            item(key = "intro") { com.arnavgames.tycoon.ui.common.FirstVisitTip(com.arnavgames.tycoon.ui.common.Intro.Markets, AbtIcons.Markets) }
+            // One teaching card at a time: with nothing invested the starter card (with its action) does the teaching.
+            if (mk.positions.isNotEmpty()) item(key = "intro") { com.arnavgames.tycoon.ui.common.FirstVisitTip(com.arnavgames.tycoon.ui.common.Intro.Markets, AbtIcons.Markets) }
             if (mk.positions.isEmpty()) {
                 // No investments yet: one clear first step instead of 120 tickers.
                 val calm = if (mk.tabsUnlocked[MarketTab.Funds] == null) MarketTab.Funds else MarketTab.Stocks
-                val tabsIndex = 2 + (if (mk.news.isNotEmpty()) 1 else 0) + 1 // intro, this card, news, timing
+                val tabsIndex = 1 + (if (mk.news.isNotEmpty()) 1 else 0) + 1 // this card, news, timing
                 item(key = "starter") {
                     AurumCard(Modifier.fillMaxWidth().testTag("first-investment")) {
                         Text("Your first investment", style = Aurum.type.titleSmall, color = c.textPrimary)
                         Text(
-                            if (calm == MarketTab.Funds) "Funds and bonds are the calm way in: they pay out steadily and swing less. Stocks move more, and owning 5% of a company earns a board seat."
+                            if (calm == MarketTab.Funds) "Prices move with the news, and everything you hold pays you daily. Funds and bonds are the calm way in: they pay out steadily and swing less. Stocks move more, and owning 5% of a company earns a board seat."
                             else "Pick a company you understand and start small. Shares pay dividends every day you hold them; owning 5% earns a board seat.",
                             style = Aurum.type.bodySmall, color = c.textSecondary,
                         )

@@ -39,6 +39,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.runtime.withFrameNanos
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
@@ -186,6 +187,13 @@ fun CounterScreen(vm: GameViewModel, guide: String? = null) {
             }
             .testTag("counter-stage"),
     ) {
+        // Your best business, painted faintly into the floor of the stage: the shop you are serving in.
+        e.businesses.maxWithOrNull(compareBy<com.arnavgames.tycoon.ui.BusinessUi>({ it.tiersReached }, { it.level }))?.let { top ->
+            Box(Modifier.fillMaxWidth().fillMaxHeight(0.66f).align(Alignment.BottomCenter).alpha(if (c.isDark) 0.24f else 0.2f)) {
+                com.arnavgames.tycoon.ui.common.Illustration(com.arnavgames.tycoon.ui.common.Art.tier(top.id, top.tiersReached), Modifier.matchParentSize(), fallback = com.arnavgames.tycoon.ui.common.Art.business(top.id))
+                Box(Modifier.matchParentSize().background(Brush.verticalGradient(0f to c.background, 0.45f to Color.Transparent, 0.85f to Color.Transparent, 1f to c.background)))
+            }
+        }
         // Background light.
         Canvas(Modifier.matchParentSize()) {
             frame // redraw every frame

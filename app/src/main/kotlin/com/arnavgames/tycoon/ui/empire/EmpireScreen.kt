@@ -447,8 +447,8 @@ fun BusinessCard(b: BusinessUi, fmt: (Money) -> String, onOpen: () -> Unit, onBu
     AurumCard(Modifier.fillMaxWidth(), onClick = onOpen) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             com.arnavgames.tycoon.ui.common.Illustration(
-                com.arnavgames.tycoon.ui.common.Art.business(b.id),
-                Modifier.size(64.dp).clip(AurumShapes.small)
+                com.arnavgames.tycoon.ui.common.Art.tier(b.id, b.tiersReached), fallback = com.arnavgames.tycoon.ui.common.Art.business(b.id),
+                modifier = Modifier.size(64.dp).clip(AurumShapes.small)
                     .border(if (b.managerName != null) 1.5.dp else 0.dp, if (b.managerName != null) c.gold else Color.Transparent, AurumShapes.small),
             )
             Spacer(Modifier.width(Space.md))
@@ -509,7 +509,10 @@ fun BusinessCard(b: BusinessUi, fmt: (Money) -> String, onOpen: () -> Unit, onBu
                 AurumChip("Auto · ${shortPersonName(b.managerName)}", icon = AbtIcons.Manager, tint = c.goldText)
                 Spacer(Modifier.weight(1f))
             }
-            SmallAction("Buy ×${b.buyCount} · ${fmt(b.buyCost)}", enabled = b.canAfford, onClick = onBuy, gold = true)
+            Column(horizontalAlignment = Alignment.End) {
+                SmallAction("Buy ×${b.buyCount} · ${fmt(b.buyCost)}", enabled = b.canAfford, onClick = onBuy, gold = true)
+                if (b.buyGain.isPositive) Text("+${MoneyFormat.perSecond(b.buyGain)} income", style = Aurum.type.label, color = if (b.canAfford) c.gain else c.textTertiary, modifier = Modifier.padding(top = 2.dp, end = Space.sm))
+            }
         }
     }
 }
@@ -550,7 +553,7 @@ internal fun HqCard(hq: HqUi, fmt: (Money) -> String, onUpgrade: () -> Unit) {
     val c = Aurum.colors
     AurumCard(Modifier.fillMaxWidth()) {
         Row(verticalAlignment = Alignment.CenterVertically) {
-            com.arnavgames.tycoon.ui.common.Illustration(com.arnavgames.tycoon.ui.common.Art.property("office_floor"), Modifier.size(64.dp).clip(AurumShapes.small))
+            com.arnavgames.tycoon.ui.common.Illustration(com.arnavgames.tycoon.ui.common.Art.hq(hq.level), Modifier.size(64.dp).clip(AurumShapes.small), fallback = com.arnavgames.tycoon.ui.common.Art.property("office_floor"))
             Spacer(Modifier.width(Space.md))
             Column(Modifier.weight(1f)) {
                 Text(hq.name, style = Aurum.type.title, color = c.textPrimary)

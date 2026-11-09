@@ -17,6 +17,8 @@ data class CardOptionUi(
 data class CardUi(
     val id: Long, val kind: String, val title: String, val text: String, val businessName: String?, val rival: RivalChipUi?,
     val options: List<CardOptionUi>, val pressure: String?,
+    /** The business the decision is about (its painting heads the card). */
+    val businessId: String? = null,
 )
 
 data class ModifierUi(val title: String, val scope: String, val pct: Double, val endsInMs: Long)
@@ -147,6 +149,7 @@ class WorldMapper(private val engine: GameEngine, private val portraitIds: Set<S
                 cs.id, def.kind, desk.fill(def.title, s, cs), desk.fill(def.text, s, cs), cs.business?.let { engine.content.businessById[it]?.name },
                 cs.rival?.let { w.rivalById[it] }?.let(::chip), options,
                 if (def.kind == "takeover") "${engine.content.businessById[cs.business]?.name ?: "This business"} earns ${(w.config.cards.takeoverPenalty * 100).toInt()}% less until you respond." else null,
+                businessId = cs.business,
             )
         }
         val mods = s.world.modifiers.filter { it.untilSim > s.simTimeMs }.sortedBy { it.untilSim }.map { m ->

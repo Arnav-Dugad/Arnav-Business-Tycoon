@@ -1,0 +1,64 @@
+tier	retail_1	10:5	4670eb41-c2ca-4c15-b657-fc09d12fdb12	a retail stores business grown into a 'Neighbourhood Shop': small and new, clearly bigger than a humble start
+expansion	retail_second_storefront	10:14	3562902a-cc79-4945-af1a-53039a87902c	Second Storefront for a retail stores business: Lease the empty unit across the street.
+tier	restaurants_7	10:23	26314301-fc48-4b65-a32d-52b4960b1328	a restaurants business grown into a 'Culinary Empire': monumental, the biggest of its kind, clearly bigger than a humble start
+tier	logistics_5	10:30	ae56c19c-3fdf-4f80-b972-db7bf0aa624a	a logistics business grown into a 'Intermodal Group': very grand, clearly bigger than a humble start
+tier	farmland_3	10:37	ee213c14-08c2-4f66-bb82-8dbf0a290cfa	a farmland business grown into a 'Valley Holdings': well established, clearly bigger than a humble start
+tier	factory_1	10:47	4666641d-08f2-4494-94a9-4d0bd7dd32c8	a factories business grown into a 'Machine Shop': small and new, clearly bigger than a humble start
+expansion	factory_supplier_park	10:52	dd612809-751d-4ee6-b754-59273a3e6672	Supplier Park for a factories business: Your suppliers move in next door.
+tier	fashion_7	10:58	9f279a2d-5645-4b25-bee4-554bed762547	a fashion house business grown into a 'Fashion Empire': monumental, the biggest of its kind, clearly bigger than a humble start
+tier	mining_5	10:64	744e7d2d-a477-472d-ab8c-9e6d31ff265a	a mining business grown into a 'Deep Works': very grand, clearly bigger than a humble start
+tier	energy_3	10:70	7e9d1733-d24e-4a89-85af-7c2bd929d518	a energy business grown into a 'Regional Utility': well established, clearly bigger than a humble start
+tier	hotels_1	10:72	0d731283-cba4-4744-9d40-f71f3f41b047	a hotels & resorts business grown into a 'Boutique Hotel': small and new, clearly bigger than a humble start
+expansion	hotels_convention_centre	10:80	d8e37dfd-b5a4-4c95-85c7-e2d5358e0a4f	Convention Centre for a hotels & resorts business: Fill rooms with every conference.
+tier	bank_7	10:102	57dcdd82-9f64-4d83-a4ae-f7fecdf388a7	a banking business grown into a 'Banking Empire': monumental, the biggest of its kind, clearly bigger than a humble start
+tier	construction_5	10:109	d2ef0165-0de4-4799-8ca1-281774f1c986	a construction business grown into a 'Infrastructure Builder': very grand, clearly bigger than a humble start
+tier	media_3	10:116	8899e858-b8e5-4065-a99b-384e8bbcf198	a media business grown into a 'Streaming Service': well established, clearly bigger than a humble start
+tier	tech_1	10:122	eda1ac0c-e71a-4923-b425-2296ebbe381e	a technology business grown into a 'Software House': small and new, clearly bigger than a humble start
+expansion	tech_chip_fab	10:129	5d1278e1-a58c-47a4-8a3e-68d910950524	Chip Fabrication Plant for a technology business: Make your own silicon.
+tier	telecom_7	10:132	4c46bb89-6a35-4d1b-a389-c9e9b33440fb	a telecom & data business grown into a 'Telecom Empire': monumental, the biggest of its kind, clearly bigger than a humble start
+tier	airline_5	10:150	116f5ab4-5e49-4021-8697-cafcc44792be	a airline business grown into a 'Flag Carrier': very grand, clearly bigger than a humble start
+tier	pharma_3	10:157	0826daab-c3b0-4569-bc4c-b9b38ed575a0	a pharmaceuticals business grown into a 'Pharma Company': well established, clearly bigger than a humble start
+tier	sports_1	10:164	ebc434a7-0b4e-4434-a739-bbe31191a3fc	a sports franchise business grown into a 'Semi-Pro Club': small and new, clearly bigger than a humble start
+expansion	sports_new_stadium	10:170	65da3ed7-967e-4e28-b8e2-df28d1f7ce2a	New Stadium for a sports franchise business: Sixty thousand seats, sold out.
+tier	space_7	10:176	98d2f255-3491-447f-b724-6ed36bfc244d	a space business grown into a 'Space Empire': monumental, the biggest of its kind, clearly bigger than a humble start
+district	lis_cais_do_sodre	10:180	3573787a-2816-454e-b64e-d2e007400883	a street view of the Cais do Sodré neighbourhood in Lisbon, lively mid-market, characteristic local architecture
+district	lon_southwark	10:197	acd55937-40b0-48cf-b637-c779ae1b99ee	a street view of the Southwark neighbourhood in London, lively mid-market, characteristic local architecture
+district	mum_nariman_point	10:204	0b38e35b-6e7d-4f27-bac8-448910a53939	a street view of the Nariman Point neighbourhood in Mumbai, upscale, the business district with office towers, characteristic local architecture
+district	new_soho	10:212	cd591be3-0c73-4c78-b9d7-16b279ecbf21	a street view of the SoHo neighbourhood in New York, upscale, characteristic local architecture
+district	dub_difc	10:219	af565dc5-aa7a-45ca-abab-2f6890058fb6	a street view of the DIFC neighbourhood in Dubai, upscale, the business district with office towers, characteristic local architecture
+tower	monarch	10:224	6840dc62-60b2-496a-8b07-0ebc526fedf2	a striking invented skyscraper called 'Monarch Plaza' rising over a waterfront city, 
+hq	5	10:227	fa926a42-9f5f-4c20-a016-363a97e0fd91	a company headquarters at the 'Downtown Suite' stage, showing how grand the office has become
+hq	13	10:244	233a44f0-9a2b-4f38-bae2-2ca6c0e047c3	a company headquarters at the 'Penthouse Offices' stage, showing how grand the office has become
+hq	21	10:250	ae3cf4d9-0b9c-4804-95e0-9243101a84f7	a company headquarters at the 'Sovereign Tower' stage, showing how grand the office has become
+event	data_breach_wave	10:256	9cc78718-6242-4536-866d-8303abe6869e	a news illustration of: Data-breach wave. A wave of data breaches makes customers wary of tech firms.
+event	supply_crunch	10:263	fd45b297-92ca-4f58-a87e-a72c95e8d4d3	a news illustration of: Supply-chain crunch. Ports jam and freight rates spike. Shippers are busy; everyone else waits.
+event	retail_holiday	10:269	990e265d-b40c-4417-88eb-a9812391eb1e	a news illustration of: Holiday shopping. The holiday season starts early. Tills are ringing.
+event	mine_collapse_news	10:274	d47cb9d8-11b2-48fa-93bb-9857c648c807	a news illustration of: Mine safety crackdown. Regulators inspect every mine after an accident abroad. Output slows.
+event	world_cup_fever	10:291	b4e45825-4174-48ad-a062-990624ade5cf	a news illustration of: Cup fever. A global football tournament glues the world to its screens.
+event	global_jitters	10:298	30d8d3e3-beb9-44ef-b83f-14e4f58998a1	a news illustration of: Market jitters. A wobble on the world's stock markets makes customers cautious.
+event	holiday_season	11:4	6b060459-aa01-4718-aedc-d7a75c6aee30	a news illustration of: Long weekend. A long weekend lifts leisure spending.
+event	disaster_mumbai_7	11:8	c07ee46a-b7d7-481a-bed0-a5142a8a9bb4	a news illustration of: Cyclone. A cyclone brushes the Mumbai coast.
+luxury	car_lamb_countach_74	11:16	609039c5-7926-45ef-8da8-97078c2aafa8	a rare, finely made a classic vintage luxury off-road wagon, an invented design shown as a showroom piece
+luxury	car_roll_ghost	11:22	cfb0f9b6-9f55-4a4a-bb32-51dc783e5995	shooting-brake estate, an invented design shown as a showroom piece
+luxury	car_asto_vantage	11:36	0554b915-7f75-4fe5-9487-776f0d626c18	low wedge-shaped hypercar, an invented design shown as a showroom piece
+luxury	car_merc_sl_63	11:42	b5fcddd9-55be-4d8a-b0ac-6102dc94d812	open-top roadster, an invented design shown as a showroom piece
+luxury	car_mase_a6gcs_54	11:52	51d39113-7a28-45a0-8a2e-81844b8f1758	a rare, finely made a classic vintage boxy 1980s-style supercar, an invented design shown as a showroom piece
+luxury	car_tesl_model_s_plaid	11:61	d4ef7d38-b2b4-4570-b932-f7df29e3f242	luxury off-road wagon, an invented design shown as a showroom piece
+luxury	car_fjor_gt_05	11:65	8c65c0f7-c023-4d71-816f-586cdca5d8d8	a classic vintage shooting-brake estate, an invented design shown as a showroom piece
+luxury	watch_roleck_3	11:71	e8da8426-6f51-4cbd-a415-2b69606a318d	a rare, finely made skeleton watch showing its gears, an invented design shown as a showroom piece
+luxury	watch_cartye_0	11:89	e5aebc37-9bae-4b2d-a97a-8dafd9863c9d	rose-gold moon-phase watch, an invented design shown as a showroom piece
+luxury	watch_breitl_1	11:99	eb970a45-31d0-4bd7-b796-f2d5756c22c2	square art-deco watch, an invented design shown as a showroom piece
+luxury	watch_bregue_0	11:104	a0ca94b1-d873-46e0-9726-dd7dfd46dec4	pilot's watch with a large crown, an invented design shown as a showroom piece
+luxury	wine_7	11:110	34b46ac1-9d9e-4593-bcd9-e248ad89fc64	a rare, finely made a magnum bottle beside a crystal glass, an invented design shown as a showroom piece
+luxury	wine_15	11:116	0903d600-fb09-44b3-88dd-cb263cd18cc0	a rare, finely made a single old bottle on a straw bed, an invented design shown as a showroom piece
+luxury	jewel_3	11:122	fa7f0fcb-9915-4964-956f-d5d528568be8	a rare, finely made sapphire brooch, an invented design shown as a showroom piece
+luxury	jewel_11	11:142	2a24dcec-7ac5-4691-92cb-a1b68bd4666f	a rare, finely made gold bracelet set with stones, an invented design shown as a showroom piece
+luxury	jet_4	11:147	1a650d40-88da-4f5c-bf78-5c56b7e20e3a	a legendary, one-of-a-kind slim business jet, an invented design shown as a showroom piece
+luxury	jet_12	11:154	d3a6378d-73cf-43b4-9035-05ab1d23de40	a legendary, one-of-a-kind slim business jet, an invented design shown as a showroom piece
+luxury	heli_4	11:159	207f3c31-320c-451e-a9c6-6431d1002f23	a rare, finely made sleek private helicopter, an invented design shown as a showroom piece
+luxury	yacht_4	11:167	d874a022-7a8e-4b35-b692-918883a78df5	long silver megayacht, an invented design shown as a showroom piece
+luxury	yacht_12	11:172	b09fa894-7126-4173-8c60-d4a0240f1bcd	a rare, finely made explorer yacht with a helipad, an invented design shown as a showroom piece
+luxury	island_0	11:187	46debb69-bdd0-4de5-9dd0-2c27fe369d84	a rare, finely made palm-ringed atoll, an invented design shown as a showroom piece
+luxury	island_8	11:193	14b113ae-8d6b-4a18-9e2e-ad1fbda278d7	a rare, finely made palm-ringed atoll, an invented design shown as a showroom piece
+luxury	mansion_6	11:197	5d4c84c2-e06f-4fb4-864a-85bd909ee9bf	a legendary, one-of-a-kind colonial plantation house with a veranda, an invented design shown as a showroom piece
+luxury	mansion_14	11:202	175e9f45-e641-40ab-b382-e6a4c0915e73	a rare, finely made Palladian country house, an invented design shown as a showroom piece

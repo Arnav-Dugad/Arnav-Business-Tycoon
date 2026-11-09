@@ -92,6 +92,7 @@ fun MoreScreen(
                 )
             }
         }
+        item(key = "play-header") { com.arnavgames.tycoon.designsystem.components.SectionHeader("Play") }
         item(key = "menu") {
             AurumCard(Modifier.fillMaxWidth(), contentPadding = PaddingValues(Space.xs)) {
                 MenuRow("Store", AbtIcons.Bullion, onOpenStore, subtitle = "${s.ledger.bullion.centsOrNull ?: 0} Bullion · boosts, upgrades and cosmetics", modifier = Modifier.testTag("menu-store"))
@@ -102,7 +103,11 @@ fun MoreScreen(
                 )
                 HairlineDivider(Modifier.padding(start = 60.dp))
                 MenuRow("Friends & leaderboards", AbtIcons.Rivals, onOpenSocial, subtitle = "Friend codes, leagues, gifts and Sealed Lots")
-                HairlineDivider(Modifier.padding(start = 60.dp))
+            }
+        }
+        item(key = "you-header") { com.arnavgames.tycoon.designsystem.components.SectionHeader("You") }
+        item(key = "menu-you") {
+            AurumCard(Modifier.fillMaxWidth(), contentPadding = PaddingValues(Space.xs)) {
                 MenuRow("Account & cloud save", AbtIcons.Cloud, onOpenAccount, subtitle = "Optional: back up, sync and add friends")
                 HairlineDivider(Modifier.padding(start = 60.dp))
                 MenuRow("Settings", AbtIcons.Sliders, onOpenSettings, subtitle = "Theme, sound, notifications, save backup")

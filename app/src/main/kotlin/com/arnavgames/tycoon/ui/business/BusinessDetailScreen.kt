@@ -1,5 +1,6 @@
 package com.arnavgames.tycoon.ui.business
 
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.draw.alpha
 import com.arnavgames.tycoon.ui.common.shortPersonName
 import androidx.compose.foundation.background
@@ -31,6 +32,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import com.arnavgames.tycoon.ui.BuyQty
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.semantics.Role
@@ -82,8 +85,25 @@ fun BusinessDetailScreen(vm: GameViewModel, businessId: String, onBack: () -> Un
     val rate = eco.businessRate(s, businessId)
     val c = Aurum.colors
 
-    GlassScaffold(def.name, onBack) {
-            item(key = "art") { com.arnavgames.tycoon.ui.common.Illustration(com.arnavgames.tycoon.ui.common.Art.business(def.id), Modifier.fillMaxWidth().height(190.dp).clip(com.arnavgames.tycoon.designsystem.theme.AurumShapes.large)) }
+    val qty by vm.buyQty.collectAsStateWithLifecycle()
+    val ui = remember(s, qty) { vm.businessUi(s, def, qty) }
+    GlassScaffold(def.name, onBack, bottomBar = {
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            // Tap to cycle ×1 → ×10 → ×25 → Max; the same choice as the Empire tab's selector.
+            Box(
+                Modifier.size(Space.touch).clip(com.arnavgames.tycoon.designsystem.theme.AurumShapes.pill)
+                    .clickable(onClickLabel = "Change how many levels to buy") { vm.setBuyQty(BuyQty.entries[(qty.ordinal + 1) % BuyQty.entries.size]) },
+                contentAlignment = Alignment.Center,
+            ) { Text(qty.label, style = Aurum.type.title, color = c.goldText) }
+            Spacer(Modifier.width(Space.sm))
+            Column(Modifier.weight(1f)) {
+                Text("Level ${b.level} → ${b.level + ui.buyCount}", style = Aurum.type.bodySmall, color = c.textSecondary, maxLines = 1)
+                if (ui.buyGain.isPositive) Text("+${MoneyFormat.perSecond(ui.buyGain, notation)} income", style = Aurum.type.label, color = if (ui.canAfford) c.gain else c.textTertiary, maxLines = 1)
+            }
+            PillAction("Buy · ${fmt(ui.buyCost)}", enabled = ui.canAfford && !b.mothballed, onClick = { vm.dispatch(Command.BuyLevels(def.id, if (qty == BuyQty.Max) -1 else qty.count)) }, modifier = Modifier.testTag("detail-buy"))
+        }
+    }) {
+            item(key = "art") { com.arnavgames.tycoon.ui.common.Illustration(com.arnavgames.tycoon.ui.common.Art.tier(def.id, vm.engine.economy.tiersReached(def, b.level)), fallback = com.arnavgames.tycoon.ui.common.Art.business(def.id), modifier = Modifier.fillMaxWidth().height(190.dp).clip(com.arnavgames.tycoon.designsystem.theme.AurumShapes.large)) }
             item {
                 AurumCard(Modifier.fillMaxWidth(), highlighted = true) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
@@ -148,7 +168,9 @@ fun BusinessDetailScreen(vm: GameViewModel, businessId: String, onBack: () -> Un
                     val timer = s.timers.firstOrNull { it.targetId == def.id && it.detailId == e.id }
                     AurumCard(Modifier.fillMaxWidth(), highlighted = done) {
                         Row(verticalAlignment = Alignment.CenterVertically) {
-                            IconTile(if (done) AbtIcons.Check else AbtIcons.Expand, highlighted = done)
+                            com.arnavgames.tycoon.ui.common.Illustration(com.arnavgames.tycoon.ui.common.Art.expansion(def.id, e.id), Modifier.size(64.dp, 48.dp).clip(com.arnavgames.tycoon.designsystem.theme.AurumShapes.small).alpha(if (done || timer != null) 1f else 0.85f), fallback = com.arnavgames.tycoon.ui.common.Art.business(def.id)) {
+                                if (done) Box(Modifier.align(Alignment.BottomEnd).padding(3.dp).size(18.dp).clip(androidx.compose.foundation.shape.CircleShape).background(Aurum.colors.gain), contentAlignment = Alignment.Center) { AbtIcon(AbtIcons.Check, null, tint = Color.White, size = 12.dp) }
+                            }
                             Spacer(Modifier.width(Space.md))
                             Column(Modifier.weight(1f)) {
                                 Text(e.name, style = Aurum.type.titleSmall, color = c.textPrimary)

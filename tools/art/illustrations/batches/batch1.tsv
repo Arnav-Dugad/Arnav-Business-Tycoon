@@ -1,0 +1,64 @@
+tier	retail_1	a retail stores business grown into a 'Neighbourhood Shop': small and new, clearly bigger than a humble start	wide
+expansion	retail_second_storefront	Second Storefront for a retail stores business: Lease the empty unit across the street.	wide
+tier	restaurants_7	a restaurants business grown into a 'Culinary Empire': monumental, the biggest of its kind, clearly bigger than a humble start	wide
+tier	logistics_5	a logistics business grown into a 'Intermodal Group': very grand, clearly bigger than a humble start	wide
+tier	farmland_3	a farmland business grown into a 'Valley Holdings': well established, clearly bigger than a humble start	wide
+tier	factory_1	a factories business grown into a 'Machine Shop': small and new, clearly bigger than a humble start	wide
+expansion	factory_supplier_park	Supplier Park for a factories business: Your suppliers move in next door.	wide
+tier	fashion_7	a fashion house business grown into a 'Fashion Empire': monumental, the biggest of its kind, clearly bigger than a humble start	wide
+tier	mining_5	a mining business grown into a 'Deep Works': very grand, clearly bigger than a humble start	wide
+tier	energy_3	a energy business grown into a 'Regional Utility': well established, clearly bigger than a humble start	wide
+tier	hotels_1	a hotels & resorts business grown into a 'Boutique Hotel': small and new, clearly bigger than a humble start	wide
+expansion	hotels_convention_centre	Convention Centre for a hotels & resorts business: Fill rooms with every conference.	wide
+tier	bank_7	a banking business grown into a 'Banking Empire': monumental, the biggest of its kind, clearly bigger than a humble start	wide
+tier	construction_5	a construction business grown into a 'Infrastructure Builder': very grand, clearly bigger than a humble start	wide
+tier	media_3	a media business grown into a 'Streaming Service': well established, clearly bigger than a humble start	wide
+tier	tech_1	a technology business grown into a 'Software House': small and new, clearly bigger than a humble start	wide
+expansion	tech_chip_fab	Chip Fabrication Plant for a technology business: Make your own silicon.	wide
+tier	telecom_7	a telecom & data business grown into a 'Telecom Empire': monumental, the biggest of its kind, clearly bigger than a humble start	wide
+tier	airline_5	a airline business grown into a 'Flag Carrier': very grand, clearly bigger than a humble start	wide
+tier	pharma_3	a pharmaceuticals business grown into a 'Pharma Company': well established, clearly bigger than a humble start	wide
+tier	sports_1	a sports franchise business grown into a 'Semi-Pro Club': small and new, clearly bigger than a humble start	wide
+expansion	sports_new_stadium	New Stadium for a sports franchise business: Sixty thousand seats, sold out.	wide
+tier	space_7	a space business grown into a 'Space Empire': monumental, the biggest of its kind, clearly bigger than a humble start	wide
+district	lis_cais_do_sodre	a street view of the Cais do Sodré neighbourhood in Lisbon, lively mid-market, characteristic local architecture	wide
+district	lon_southwark	a street view of the Southwark neighbourhood in London, lively mid-market, characteristic local architecture	wide
+district	mum_nariman_point	a street view of the Nariman Point neighbourhood in Mumbai, upscale, the business district with office towers, characteristic local architecture	wide
+district	new_soho	a street view of the SoHo neighbourhood in New York, upscale, characteristic local architecture	wide
+district	dub_difc	a street view of the DIFC neighbourhood in Dubai, upscale, the business district with office towers, characteristic local architecture	wide
+tower	monarch	a striking invented skyscraper called 'Monarch Plaza' rising over a waterfront city, 	wide
+hq	5	a company headquarters at the 'Downtown Suite' stage, showing how grand the office has become	wide
+hq	13	a company headquarters at the 'Penthouse Offices' stage, showing how grand the office has become	wide
+hq	21	a company headquarters at the 'Sovereign Tower' stage, showing how grand the office has become	wide
+event	data_breach_wave	a news illustration of: Data-breach wave. A wave of data breaches makes customers wary of tech firms.	wide
+event	supply_crunch	a news illustration of: Supply-chain crunch. Ports jam and freight rates spike. Shippers are busy; everyone else waits.	wide
+event	retail_holiday	a news illustration of: Holiday shopping. The holiday season starts early. Tills are ringing.	wide
+event	mine_collapse_news	a news illustration of: Mine safety crackdown. Regulators inspect every mine after an accident abroad. Output slows.	wide
+event	world_cup_fever	a news illustration of: Cup fever. A global football tournament glues the world to its screens.	wide
+event	global_jitters	a news illustration of: Market jitters. A wobble on the world's stock markets makes customers cautious.	wide
+event	holiday_season	a news illustration of: Long weekend. A long weekend lifts leisure spending.	wide
+event	disaster_mumbai_7	a news illustration of: Cyclone. A cyclone brushes the Mumbai coast.	wide
+luxury	car_lamb_countach_74	a rare, finely made a classic vintage luxury off-road wagon, an invented design shown as a showroom piece	square
+luxury	car_roll_ghost	shooting-brake estate, an invented design shown as a showroom piece	square
+luxury	car_asto_vantage	low wedge-shaped hypercar, an invented design shown as a showroom piece	square
+luxury	car_merc_sl_63	open-top roadster, an invented design shown as a showroom piece	square
+luxury	car_mase_a6gcs_54	a rare, finely made a classic vintage boxy 1980s-style supercar, an invented design shown as a showroom piece	square
+luxury	car_tesl_model_s_plaid	luxury off-road wagon, an invented design shown as a showroom piece	square
+luxury	car_fjor_gt_05	a classic vintage shooting-brake estate, an invented design shown as a showroom piece	square
+luxury	watch_roleck_3	a rare, finely made skeleton watch showing its gears, an invented design shown as a showroom piece	square
+luxury	watch_cartye_0	rose-gold moon-phase watch, an invented design shown as a showroom piece	square
+luxury	watch_breitl_1	square art-deco watch, an invented design shown as a showroom piece	square
+luxury	watch_bregue_0	pilot's watch with a large crown, an invented design shown as a showroom piece	square
+luxury	wine_7	a rare, finely made a magnum bottle beside a crystal glass, an invented design shown as a showroom piece	square
+luxury	wine_15	a rare, finely made a single old bottle on a straw bed, an invented design shown as a showroom piece	square
+luxury	jewel_3	a rare, finely made sapphire brooch, an invented design shown as a showroom piece	square
+luxury	jewel_11	a rare, finely made gold bracelet set with stones, an invented design shown as a showroom piece	square
+luxury	jet_4	a legendary, one-of-a-kind slim business jet, an invented design shown as a showroom piece	square
+luxury	jet_12	a legendary, one-of-a-kind slim business jet, an invented design shown as a showroom piece	square
+luxury	heli_4	a rare, finely made sleek private helicopter, an invented design shown as a showroom piece	square
+luxury	yacht_4	long silver megayacht, an invented design shown as a showroom piece	square
+luxury	yacht_12	a rare, finely made explorer yacht with a helipad, an invented design shown as a showroom piece	square
+luxury	island_0	a rare, finely made palm-ringed atoll, an invented design shown as a showroom piece	square
+luxury	island_8	a rare, finely made palm-ringed atoll, an invented design shown as a showroom piece	square
+luxury	mansion_6	a legendary, one-of-a-kind colonial plantation house with a veranda, an invented design shown as a showroom piece	square
+luxury	mansion_14	a rare, finely made Palladian country house, an invented design shown as a showroom piece	square

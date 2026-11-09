@@ -1,0 +1,1975 @@
+{
+  "note": "Hand-painted-style illustrations generated with Figma AI (gpt-image-2.5-flare) from prompts written for this game. Invented scenes: no real logos, brands or identifiable people.",
+  "items": [
+    {
+      "id": "car_alpi_33_stradale",
+      "title": "A rare, finely made elegant four-door saloon, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "car_alpi_giulia_gtam",
+      "title": "A compact rally coupe with chunky roof lamps, mud flaps and a roof rack, forest green, no numbers or decals, shown on a low plinth in a sunlit showroom with a sea view, an invented design that does not resemble any real car model",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "car_asto_db12",
+      "title": "Long-bonnet grand tourer, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "car_asto_db5_64",
+      "title": "A rare, finely made a classic vintage shooting-brake estate, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "car_asto_valkyrion",
+      "title": "A legendary, one-of-a-kind elegant four-door saloon, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "car_asto_vantage",
+      "title": "A jet-age concept car with a clear dome canopy and twin tail fins, brushed silver, shown on a low plinth in a sunlit showroom with a sea view, an invented design that does not resemble any real car model",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "car_bent_bentayga",
+      "title": "Sleek two-door coupe, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "car_bent_blower_29",
+      "title": "A legendary, one-of-a-kind a classic vintage open-top roadster, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "car_bent_continental_gt",
+      "title": "A stubby bubble-roofed micro coupe with round eyes and tiny wheels, terracotta, shown on a low plinth in a sunlit showroom with a sea view, an invented design that does not resemble any real car model",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "car_bmv_507_roadster",
+      "title": "A rare, finely made a classic vintage compact sports car, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "car_bmv_i7_executive",
+      "title": "Shooting-brake estate, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "car_bmv_m5_touring",
+      "title": "Elegant four-door saloon, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "car_bugo_chiron_sport",
+      "title": "A legendary, one-of-a-kind long-bonnet grand tourer, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "car_bugo_type_35_27",
+      "title": "A rare, finely made a classic vintage elegant four-door saloon, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "car_bugo_veyron_grand",
+      "title": "A long low grand tourer with skirted rear wheels and a split rear window, plum with gold trim, shown on a low plinth in a sunlit showroom with a sea view, an invented design that does not resemble any real car model",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "car_ferr_dino_246_gts",
+      "title": "A teardrop-shaped two-seat streamliner with a long tapering tail fin, cream and navy two-tone, shown on a low plinth in a sunlit showroom with a sea view, an invented design that does not resemble any real car model",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "car_ferr_roma_gt",
+      "title": "Sleek two-door coupe, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "car_ferr_sf_91_spyder",
+      "title": "A rare, finely made open-top roadster, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "car_ferr_testarossi_86",
+      "title": "A classic vintage long-bonnet grand tourer, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "car_fjor_gt40_66",
+      "title": "A vintage touring wagon with varnished wood panels on its sides and a canvas roof, ivory and walnut, shown on a low plinth in a sunlit showroom with a sea view, an invented design that does not resemble any real car model",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "car_fjor_gt_05",
+      "title": "A classic vintage shooting-brake estate, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "car_fjor_mustang_dark_horse",
+      "title": "Compact sports car, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "car_jagw_e_type_61",
+      "title": "A classic vintage open-top roadster, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "car_jagw_f_type_r",
+      "title": "Sleek two-door coupe, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "car_jagw_xj220",
+      "title": "A rare, finely made a classic vintage long-bonnet grand tourer, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "car_king_gemera",
+      "title": "A rare, finely made open-top roadster, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "car_king_jesko_absolut",
+      "title": "A legendary, one-of-a-kind sleek two-door coupe, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "car_lamb_aventadoro_svj",
+      "title": "A rare, finely made compact sports car, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "car_lamb_countach_74",
+      "title": "A high-riding safari wagon with a curved glass roof strip and big round lamps, mustard yellow with a white roof, shown on a low plinth in a sunlit showroom with a sea view, an invented design that does not resemble any real car model",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "car_lamb_huracano_evo",
+      "title": "Shooting-brake estate, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "car_lamb_urus_cub",
+      "title": "Elegant four-door saloon, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "car_loto_elan_66",
+      "title": "A classic vintage compact sports car, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "car_loto_emira",
+      "title": "Elegant four-door saloon, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "car_loto_evija",
+      "title": "A rare, finely made shooting-brake estate, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "car_mase_a6gcs_54",
+      "title": "An open-wheeled vintage racer with a slim cigar-shaped body and wire wheels, pale blue, no numbers, shown on a low plinth in a sunlit showroom with a sea view, an invented design that does not resemble any real car model",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "car_mase_granturismo",
+      "title": "Curvy 1950s-style racer, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "car_mase_mc20",
+      "title": "A rounded pod-like luxury crossover with sliding doors and a panoramic glass roof, coral, shown on a low plinth in a sunlit showroom with a sea view, an invented design that does not resemble any real car model",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "car_mcla_750s",
+      "title": "An expedition truck with balloon tyres, a roof tent and jerry cans, sand coloured, shown on a low plinth in a sunlit showroom with a sea view, an invented design that does not resemble any real car model",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "car_mcla_artura",
+      "title": "Compact sports car, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "car_mcla_elva",
+      "title": "A rare, finely made curvy 1950s-style racer, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "car_mcla_f1_94",
+      "title": "A gleaming one-off record car with a single round headlamp in a pointed nose and a dorsal fin, gunmetal, shown on a low plinth in a sunlit showroom with a sea view, an invented design that does not resemble any real car model",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "car_merc_300_sl_gullwing",
+      "title": "A mid-century roadster with scalloped side coves and twin humps behind the seats, champagne gold, shown on a low plinth in a sunlit showroom with a sea view, an invented design that does not resemble any real car model",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "car_merc_amg_one",
+      "title": "A rare, finely made long-bonnet grand tourer, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "car_merc_g_63",
+      "title": "Sleek two-door coupe, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "car_merc_sl_63",
+      "title": "Open-top roadster, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "car_paga_huayra_r",
+      "title": "A legendary, one-of-a-kind long-bonnet grand tourer, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "car_paga_zonda_cinque",
+      "title": "A sculpted hypercar with flowing organic curves like a seashell and a glass bubble cockpit, teal, shown on a low plinth in a sunlit showroom with a sea view, an invented design that does not resemble any real car model",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "car_porc_356_speedster",
+      "title": "A classic vintage open-top roadster, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "car_porc_911_carrera_s",
+      "title": "Curvy 1950s-style racer, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "car_porc_918_spyder",
+      "title": "A rare, finely made sleek two-door coupe, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "car_porc_taycan_turbo",
+      "title": "A soft, pebble-smooth electric coupe with one continuous light bar wrapping around the nose, pearl white, shown on a low plinth in a sunlit showroom with a sea view, an invented design that does not resemble any real car model",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "car_roll_cullinan",
+      "title": "Compact sports car, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "car_roll_ghost",
+      "title": "Shooting-brake estate, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "car_roll_phantom_drophead",
+      "title": "A four-door parade convertible with a very long bonnet and wide whitewall tyres, burgundy, shown on a low plinth in a sunlit showroom with a sea view, an invented design that does not resemble any real car model",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "car_roll_silver_ghost_09",
+      "title": "A rare, finely made a classic vintage curvy 1950s-style racer, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "car_shev_bel_air_57",
+      "title": "A long chrome-trimmed 1950s-style cruiser with a fan-shaped grille and soaring tail fins, mint green, shown on a low plinth in a sunlit showroom with a sea view, an invented design that does not resemble any real car model",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "car_shev_corvette_z06",
+      "title": "Curvy 1950s-style racer, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "car_tesl_cybertrike",
+      "title": "A three-wheeled sports car with an exposed front engine and two bucket seats, olive green, shown on a low plinth in a sunlit showroom with a sea view, an invented design that does not resemble any real car model",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "car_tesl_model_s_plaid",
+      "title": "An amphibious leisure car with a boat-like hull and a striped canopy, white and orange, shown on a low plinth in a sunlit showroom with a sea view, an invented design that does not resemble any real car model",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "car_tesl_roadster_next",
+      "title": "Curvy 1950s-style racer, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "heli_0",
+      "title": "A rare, finely made sleek private helicopter, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "heli_1",
+      "title": "A rare, finely made twin-engine executive helicopter, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "heli_2",
+      "title": "A rare, finely made small two-seat helicopter, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "heli_3",
+      "title": "Helicopter over a mountain lake, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "heli_4",
+      "title": "A rare, finely made sleek private helicopter, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "heli_5",
+      "title": "A rare, finely made twin-engine executive helicopter, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "heli_6",
+      "title": "A rare, finely made small two-seat helicopter, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "heli_7",
+      "title": "Helicopter over a mountain lake, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "island_0",
+      "title": "A rare, finely made palm-ringed atoll, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "island_1",
+      "title": "A rare, finely made rocky Mediterranean islet with a villa, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "island_2",
+      "title": "A rare, finely made jungle island with a waterfall, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "island_3",
+      "title": "A legendary, one-of-a-kind sandbar island with a single house, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "island_4",
+      "title": "A rare, finely made palm-ringed atoll, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "island_5",
+      "title": "A rare, finely made rocky Mediterranean islet with a villa, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "island_6",
+      "title": "A rare, finely made jungle island with a waterfall, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "island_7",
+      "title": "A rare, finely made sandbar island with a single house, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "island_8",
+      "title": "A rare, finely made palm-ringed atoll, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "island_9",
+      "title": "A legendary, one-of-a-kind rocky Mediterranean islet with a villa, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "jet_0",
+      "title": "A legendary, one-of-a-kind slim business jet, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "jet_1",
+      "title": "A rare, finely made long-range private jet, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "jet_10",
+      "title": "A rare, finely made small light jet on a grass airfield, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "jet_11",
+      "title": "A rare, finely made jet with a sweeping tail at dusk, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "jet_12",
+      "title": "A legendary, one-of-a-kind slim business jet, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "jet_13",
+      "title": "A legendary, one-of-a-kind long-range private jet, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "jet_14",
+      "title": "A legendary, one-of-a-kind small light jet on a grass airfield, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "jet_15",
+      "title": "A rare, finely made jet with a sweeping tail at dusk, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "jet_2",
+      "title": "A legendary, one-of-a-kind small light jet on a grass airfield, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "jet_3",
+      "title": "A rare, finely made jet with a sweeping tail at dusk, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "jet_4",
+      "title": "A legendary, one-of-a-kind slim business jet, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "jet_5",
+      "title": "A rare, finely made long-range private jet, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "jet_6",
+      "title": "A rare, finely made small light jet on a grass airfield, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "jet_7",
+      "title": "A rare, finely made jet with a sweeping tail at dusk, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "jet_8",
+      "title": "A rare, finely made slim business jet, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "jet_9",
+      "title": "A rare, finely made long-range private jet, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "jewel_0",
+      "title": "A rare, finely made diamond tiara, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "jewel_1",
+      "title": "A rare, finely made emerald necklace, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "jewel_10",
+      "title": "Pearl choker, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "jewel_11",
+      "title": "A rare, finely made gold bracelet set with stones, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "jewel_12",
+      "title": "A legendary, one-of-a-kind diamond tiara, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "jewel_13",
+      "title": "A legendary, one-of-a-kind emerald necklace, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "jewel_14",
+      "title": "Ruby ring, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "jewel_2",
+      "title": "Ruby ring, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "jewel_3",
+      "title": "A rare, finely made sapphire brooch, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "jewel_4",
+      "title": "Pearl choker, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "jewel_5",
+      "title": "A legendary, one-of-a-kind gold bracelet set with stones, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "jewel_6",
+      "title": "Diamond tiara, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "jewel_7",
+      "title": "Emerald necklace, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "jewel_8",
+      "title": "A legendary, one-of-a-kind ruby ring, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "jewel_9",
+      "title": "Sapphire brooch, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "mansion_0",
+      "title": "A rare, finely made Palladian country house, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "mansion_1",
+      "title": "A rare, finely made modernist glass villa on a cliff, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "mansion_10",
+      "title": "A rare, finely made Tudor manor with a long lawn, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "mansion_11",
+      "title": "A rare, finely made Hollywood-hills mansion with a pool, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "mansion_12",
+      "title": "A rare, finely made chalet in snowy mountains, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "mansion_13",
+      "title": "A rare, finely made colonial plantation house with a veranda, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "mansion_14",
+      "title": "A rare, finely made Palladian country house, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "mansion_15",
+      "title": "A rare, finely made modernist glass villa on a cliff, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "mansion_16",
+      "title": "A legendary, one-of-a-kind Mediterranean palazzo with terraces, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "mansion_17",
+      "title": "A rare, finely made Tudor manor with a long lawn, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "mansion_18",
+      "title": "A rare, finely made Hollywood-hills mansion with a pool, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "mansion_19",
+      "title": "A rare, finely made chalet in snowy mountains, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "mansion_2",
+      "title": "A legendary, one-of-a-kind Mediterranean palazzo with terraces, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "mansion_3",
+      "title": "A rare, finely made Tudor manor with a long lawn, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "mansion_4",
+      "title": "A rare, finely made Hollywood-hills mansion with a pool, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "mansion_5",
+      "title": "A legendary, one-of-a-kind chalet in snowy mountains, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "mansion_6",
+      "title": "A legendary, one-of-a-kind colonial plantation house with a veranda, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "mansion_7",
+      "title": "A rare, finely made Palladian country house, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "mansion_8",
+      "title": "A rare, finely made modernist glass villa on a cliff, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "mansion_9",
+      "title": "A rare, finely made Mediterranean palazzo with terraces, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "watch_alange_0",
+      "title": "Chronograph with three sub-dials, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "watch_alange_1",
+      "title": "A rare, finely made skeleton watch showing its gears, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "watch_audema_0",
+      "title": "Slim gold dress watch, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "watch_audema_1",
+      "title": "A rare, finely made steel dive watch with a rotating bezel, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "watch_bregue_0",
+      "title": "Pilot's watch with a large crown, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "watch_breitl_0",
+      "title": "Rose-gold moon-phase watch, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "watch_breitl_1",
+      "title": "Square art-deco watch, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "watch_cartye_0",
+      "title": "Rose-gold moon-phase watch, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "watch_cartye_1",
+      "title": "Square art-deco watch, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "watch_cartye_2",
+      "title": "A rare, finely made pilot's watch with a large crown, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "watch_hublow_0",
+      "title": "Pilot's watch with a large crown, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "watch_jaeger_0",
+      "title": "Slim gold dress watch, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "watch_jaeger_1",
+      "title": "A rare, finely made steel dive watch with a rotating bezel, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "watch_omegah_0",
+      "title": "Chronograph with three sub-dials, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "watch_omegah_1",
+      "title": "Skeleton watch showing its gears, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "watch_pateck_0",
+      "title": "Rose-gold moon-phase watch, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "watch_pateck_1",
+      "title": "A rare, finely made square art-deco watch, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "watch_pateck_2",
+      "title": "A legendary, one-of-a-kind pilot's watch with a large crown, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "watch_richar_0",
+      "title": "A skeletonised chronograph watch with plain unmarked sub-dials, baton hands and no numerals or writing anywhere, rose gold, shown on a cushion in a sunlit showroom",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "watch_richar_1",
+      "title": "A legendary, one-of-a-kind skeleton watch showing its gears, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "watch_roleck_0",
+      "title": "Slim gold dress watch, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "watch_roleck_1",
+      "title": "Steel dive watch with a rotating bezel, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "watch_roleck_2",
+      "title": "A rare, finely made chronograph with three sub-dials, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "watch_roleck_3",
+      "title": "A rare, finely made skeleton watch showing its gears, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "watch_taghoy_0",
+      "title": "Rose-gold moon-phase watch, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "watch_taghoy_1",
+      "title": "Square art-deco watch, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "watch_vacher_0",
+      "title": "Slim gold dress watch, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "watch_vacher_1",
+      "title": "A rare, finely made steel dive watch with a rotating bezel, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "wine_0",
+      "title": "A single old bottle on a straw bed, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "wine_1",
+      "title": "A rare, finely made a wooden case of bottles, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "wine_10",
+      "title": "A rare, finely made a single old bottle on a straw bed, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "wine_11",
+      "title": "A rare, finely made a wooden case of bottles, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "wine_12",
+      "title": "A rare, finely made a magnum bottle beside a crystal glass, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "wine_13",
+      "title": "A rare, finely made bottles resting in a cellar rack, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "wine_14",
+      "title": "A decanter and a bottle on a barrel top, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "wine_15",
+      "title": "A rare, finely made a single old bottle on a straw bed, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "wine_16",
+      "title": "A wooden case of bottles, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "wine_17",
+      "title": "A magnum bottle beside a crystal glass, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "wine_18",
+      "title": "Bottles resting in a cellar rack, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "wine_19",
+      "title": "A rare, finely made a decanter and a bottle on a barrel top, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "wine_2",
+      "title": "A magnum bottle beside a crystal glass, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "wine_3",
+      "title": "A rare, finely made bottles resting in a cellar rack, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "wine_4",
+      "title": "A rare, finely made a decanter and a bottle on a barrel top, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "wine_5",
+      "title": "A rare, finely made a single old bottle on a straw bed, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "wine_6",
+      "title": "A wooden case of bottles, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "wine_7",
+      "title": "A rare, finely made a magnum bottle beside a crystal glass, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "wine_8",
+      "title": "A rare, finely made bottles resting in a cellar rack, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "wine_9",
+      "title": "A rare, finely made a decanter and a bottle on a barrel top, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "yacht_0",
+      "title": "A legendary, one-of-a-kind sleek motor superyacht, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "yacht_1",
+      "title": "A legendary, one-of-a-kind classic wooden sailing yacht, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "yacht_10",
+      "title": "Sleek motor superyacht, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "yacht_11",
+      "title": "A rare, finely made classic wooden sailing yacht, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "yacht_12",
+      "title": "A rare, finely made explorer yacht with a helipad, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "yacht_13",
+      "title": "A rare, finely made catamaran with white sails, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "yacht_14",
+      "title": "A legendary, one-of-a-kind long silver megayacht, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "yacht_15",
+      "title": "A legendary, one-of-a-kind sleek motor superyacht, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "yacht_16",
+      "title": "A rare, finely made classic wooden sailing yacht, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "yacht_17",
+      "title": "A rare, finely made explorer yacht with a helipad, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "yacht_18",
+      "title": "Catamaran with white sails, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "yacht_19",
+      "title": "A rare, finely made long silver megayacht, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "yacht_2",
+      "title": "A rare, finely made explorer yacht with a helipad, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "yacht_3",
+      "title": "A legendary, one-of-a-kind catamaran with white sails, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "yacht_4",
+      "title": "Long silver megayacht, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "yacht_5",
+      "title": "Sleek motor superyacht, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "yacht_6",
+      "title": "A rare, finely made classic wooden sailing yacht, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "yacht_7",
+      "title": "A rare, finely made explorer yacht with a helipad, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "yacht_8",
+      "title": "A rare, finely made catamaran with white sails, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    },
+    {
+      "id": "yacht_9",
+      "title": "Long silver megayacht, an invented design shown as a showroom piece",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 480x480, WebP"
+    }
+  ]
+}

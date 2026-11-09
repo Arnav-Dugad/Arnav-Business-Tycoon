@@ -77,6 +77,8 @@ data class InstrumentUi(
     val news: List<NewsUi>,
     /** Roughly what a board-seat stake costs at today's price (stocks only). */
     val seatCost: Money? = null,
+    /** A stock's sector painting (the sector's first business), shown at the top of its page. */
+    val art: String? = null,
 )
 
 data class ShortUi(val collateral: Money, val liability: Money, val pnl: Money, val health: Double)
@@ -175,11 +177,13 @@ class MarketsMapper(private val engine: GameEngine) {
         var about = ""
         var kicker = ""
         var cap: Money? = null
+        var art: String? = null
         when (ref.assetClass) {
             AssetClass.Stock -> {
                 val st = m.stockById.getValue(id)
                 val sector = m.sectorById.getValue(st.sector)
                 kicker = "${sector.name} · ${bandWord(st.band)}"
+                art = sector.businesses.firstOrNull()?.let { com.arnavgames.tycoon.ui.common.Art.business(it) }
                 about = "${st.trait}. ${bandAbout(st.band)}"
                 cap = Money.ofDollars(java.math.BigDecimal(st.baseCapBillions * 1e9 * scale * price / st.startPrice.toDouble()))
                 stats += StatUi("Market value", com.arnavgames.tycoon.core.money.MoneyFormat.compact(cap))
@@ -240,7 +244,7 @@ class MarketsMapper(private val engine: GameEngine) {
             else -> null
         }
         return InstrumentUi(
-            id = id, ticker = ref.ticker, name = ref.name, assetClass = ref.assetClass, kicker = kicker,
+            id = id, ticker = ref.ticker, name = ref.name, assetClass = ref.assetClass, kicker = kicker, art = art,
             price = fmtPrice(price), priceRaw = price, change = math.change24h(s, id), day = day, week = week, about = about, stats = stats,
             holdingValue = value, holdingQty = h?.let { fmtQty(it.qty.toDouble()) }, costBasis = h?.costBasis, pnl = value?.let { it - h.costBasis },
             stake = if (ref.assetClass == AssetClass.Stock) math.stake(s, id) else null,
