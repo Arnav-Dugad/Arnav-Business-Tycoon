@@ -125,6 +125,8 @@ fun CounterScreen(vm: GameViewModel, guide: String? = null) {
     val pulse = remember { Animatable(1f) }
     // The GPU shader where the platform has it (not on the JVM test renderer).
     val shader = remember { if (GoldShader.supported && Build.FINGERPRINT != "robolectric") GoldShader.create() else null }
+    // If the GPU path ever fails on a phone, fall back to the gradient for good instead of crashing.
+    val shaderBroken = remember { booleanArrayOf(false) }
 
     LaunchedEffect(Unit) {
         vm.events.collect { ev ->
@@ -188,7 +190,7 @@ fun CounterScreen(vm: GameViewModel, guide: String? = null) {
         Canvas(Modifier.matchParentSize()) {
             frame // redraw every frame
             val gold = if (c.isDark) c.gold else c.goldDeep
-            if (shader != null && Build.VERSION.SDK_INT >= 33) {
+            val drewShader = shader != null && Build.VERSION.SDK_INT >= 33 && !shaderBroken[0] && runCatching {
                 shader.setFloatUniform("res", size.width, size.height)
                 shader.setFloatUniform("time", time)
                 shader.setFloatUniform("heat", heat)
@@ -201,6 +203,9 @@ fun CounterScreen(vm: GameViewModel, guide: String? = null) {
                     else shader.setFloatUniform(name, t.at.x, t.at.y, time - t.t, 1f)
                 }
                 drawRect(ShaderBrush(shader))
+            }.onFailure { shaderBroken[0] = true; android.util.Log.w("Counter", "shader disabled", it) }.isSuccess
+            if (drewShader) {
+                // drawn above
             } else {
                 val a = (if (c.isDark) 0.16f else 0.22f) + heat * 0.18f + if (h.frenzyActive) 0.2f else 0f
                 drawRect(Brush.radialGradient(listOf(gold.copy(alpha = a), Color.Transparent), center = Offset(size.width / 2, size.height * 0.58f), radius = size.maxDimension * 0.7f))

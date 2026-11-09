@@ -15,7 +15,7 @@ object GoldShader {
         uniform float time;
         uniform float heat;
         uniform float frenzy;
-        uniform half4 gold;
+        layout(color) uniform half4 gold;
         uniform float4 t0;
         uniform float4 t1;
         uniform float4 t2;
@@ -34,9 +34,9 @@ object GoldShader {
             float f = sin(uv.x * 5.3 + time * 0.55) + sin(uv.y * 7.1 - time * 0.42) + sin((uv.x + uv.y) * 4.2 + time * 0.31)
                 + sin(distance(uv, float2(0.3, 0.7)) * 9.0 - time * 0.8) * 0.6;
             f = f * 0.14 + 0.5;
-            float glow = smoothstep(0.85, 0.0, distance(uv, float2(0.5, 0.58)));
-            float a = (0.07 + 0.16 * heat + 0.18 * frenzy) * glow * (0.55 + 0.45 * f);
-            a += 0.05 * f * (0.4 + heat);
+            float glow = smoothstep(1.05, 0.0, distance(uv, float2(0.5, 0.56)));
+            float a = (0.22 + 0.18 * heat + 0.2 * frenzy) * glow * (0.6 + 0.4 * f);
+            a += 0.07 * f * (0.6 + heat);
             a += 0.55 * (ring(p, t0) + ring(p, t1) + ring(p, t2) + ring(p, t3));
             a = clamp(a, 0.0, 0.9);
             return half4(gold.rgb * a, a);
