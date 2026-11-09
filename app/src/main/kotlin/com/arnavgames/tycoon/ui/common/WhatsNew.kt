@@ -28,6 +28,11 @@ data class Highlight(val icon: String, val title: String, val body: String)
  */
 object WhatsNew {
     private val notes: Map<String, List<Highlight>> = mapOf(
+        "1.4.0" to listOf(
+            Highlight("Frame", "Hundreds of new paintings", "Every business grows through its own paintings, and every district, tower, event and collection piece has one too."),
+            Highlight("Cash", "Know what you get", "Buy buttons show the income they add, and each business page has a Buy bar at the bottom."),
+            Highlight("Info", "Calmer, clearer pages", "One tip at a time, shorter labels, and details folded away until you want them."),
+        ),
         "1.3.0" to listOf(
             Highlight("Clock", "Earnings while you're away, fixed", "A wrong phone clock could stop offline earnings for days. Now real time always counts."),
             Highlight("Hand", "The Counter has its own tab", "Use as many fingers as you like. Coins fly into your cash, and the gold light follows your touch."),
