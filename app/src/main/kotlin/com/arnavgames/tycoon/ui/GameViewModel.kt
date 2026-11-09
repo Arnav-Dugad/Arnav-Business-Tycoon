@@ -107,7 +107,26 @@ class GameViewModel @Inject constructor(
     val events: SharedFlow<GameEvent> = session.events
     val settings: StateFlow<Settings> = settingsStore.settings.stateIn(viewModelScope, SharingStarted.Eagerly, Settings())
 
-    val buyQty = MutableStateFlow(BuyQty.One)
+    /** Small per-device UI choices (sort orders, the watchlist, the buy amount); never part of the save. */
+    private val uiPrefs by lazy { session.appContext.getSharedPreferences("ui_prefs", android.content.Context.MODE_PRIVATE) }
+
+    /** How many levels a Buy button buys; remembered between sessions. */
+    val buyQty = MutableStateFlow(runCatching { BuyQty.valueOf(session.appContext.getSharedPreferences("ui_prefs", android.content.Context.MODE_PRIVATE).getString("buyQty", null) ?: "One") }.getOrDefault(BuyQty.One))
+
+    /** Instruments the player starred (Markets → Watchlist). */
+    val watchlist = MutableStateFlow<Set<String>>(session.appContext.getSharedPreferences("ui_prefs", android.content.Context.MODE_PRIVATE).getStringSet("watchlist", emptySet()).orEmpty().toSet())
+
+    fun toggleWatch(id: String) {
+        val next = if (id in watchlist.value) watchlist.value - id else watchlist.value + id
+        watchlist.value = next
+        uiPrefs.edit().putStringSet("watchlist", next).apply()
+        say(if (id in next) "Added to your watchlist" else "Removed from your watchlist")
+    }
+
+    /** Tapping the tab you are already on: that tab scrolls back to the top. */
+    private val _reselect = MutableSharedFlow<String>(extraBufferCapacity = 4)
+    val reselect: SharedFlow<String> = _reselect.asSharedFlow()
+    fun reselectTab(tab: String) { _reselect.tryEmit(tab) }
 
     private val _messages = MutableSharedFlow<String>(extraBufferCapacity = 8)
     val messages: SharedFlow<String> = _messages.asSharedFlow()
@@ -267,7 +286,47 @@ class GameViewModel @Inject constructor(
         }
     }
 
-    fun setBuyQty(q: BuyQty) { buyQty.value = q }
+    // ---- Save slots ----
+    val slot: StateFlow<Int> = session.slot
+    suspend fun slotInfos() = session.slotInfos()
+    fun switchSlot(n: Int, onDone: () -> Unit = {}) {
+        viewModelScope.launch {
+            session.switchSlot(n).onSuccess { say("Now playing slot ${n + 1}"); onDone() }.onFailure { say(it.message ?: "That slot couldn't be opened") }
+        }
+    }
+    fun deleteSlot(n: Int, onDone: () -> Unit = {}) {
+        viewModelScope.launch { session.deleteSlot(n).onSuccess { say("Slot ${n + 1} deleted"); onDone() }.onFailure { say(it.message ?: "Couldn't delete that slot") } }
+    }
+
+    // ---- Sandbox cheats ----
+    /** The last cheat used ("+$1.2B"), shown with an Undo until the next one or until it is undone. */
+    val lastCheat = MutableStateFlow<String?>(null)
+    private var beforeCheat: GameState? = null
+    fun cheat(kind: String, done: String) {
+        val before = state.value ?: return
+        viewModelScope.launch {
+            when (val r = session.dispatch(Command.Cheat(kind))) {
+                is CommandResult.Ok -> { beforeCheat = before; lastCheat.value = done }
+                is CommandResult.Rejected -> _messages.tryEmit(errorText(r.error))
+            }
+        }
+    }
+    fun undoCheat() {
+        val back = beforeCheat ?: return
+        viewModelScope.launch { session.restore(back); beforeCheat = null; lastCheat.value = null; say("Undone") }
+    }
+    fun clearLastCheat() { lastCheat.value = null; beforeCheat = null }
+
+    /** Runs several commands in order ("Claim all"), then says [done] if at least one went through. */
+    fun dispatchAll(cmds: List<Command>, done: String) {
+        viewModelScope.launch {
+            var ok = 0
+            cmds.forEach { if (session.dispatch(it) is CommandResult.Ok) ok++ }
+            if (ok > 0) say(done)
+        }
+    }
+
+    fun setBuyQty(q: BuyQty) { buyQty.value = q; uiPrefs.edit().putString("buyQty", q.name).apply() }
 
     suspend fun exportSave(ctx: android.content.Context, uri: android.net.Uri) {
         val result = runCatching {

@@ -76,6 +76,11 @@ class GameSession @Inject constructor(
     val events: SharedFlow<GameEvent> = _events.asSharedFlow()
 
     private val _offline = MutableStateFlow<OfflineReport?>(null)
+
+    /** The save slot being played (0 = the main game, the only one that syncs to the cloud). Remembered on this device. */
+    private val slotPrefs by lazy { app.getSharedPreferences("ui_prefs", android.content.Context.MODE_PRIVATE) }
+    private val _slot = MutableStateFlow(0)
+    val slot: StateFlow<Int> = _slot.asStateFlow()
     val offline: StateFlow<OfflineReport?> = _offline.asStateFlow()
 
     lateinit var engine: GameEngine
@@ -96,7 +101,8 @@ class GameSession @Inject constructor(
                 val loaded = contentLazy.get()
                 if (loaded.issues.isNotEmpty()) Log.w(TAG, "content issues: ${loaded.issues}")
                 engine = GameEngine(loaded.pack)
-                when (val r = saves.load()) {
+                _slot.value = slotPrefs.getInt("saveSlot", 0).coerceIn(0, SLOTS - 1)
+                when (val r = saves.load(_slot.value)) {
                     SaveRepository.LoadResult.Empty -> {
                         val seed = GameRandom.newWorldSeed(SecureRandom().nextLong())
                         val fresh = engine.newGame(seed, loaded.hash, clock)
@@ -209,6 +215,55 @@ class GameSession @Inject constructor(
 
     fun dismissOffline() { _offline.value = null }
 
+    /** Every slot's newest save (null = empty), with the slot being played saved first so its card is current. */
+    suspend fun slotInfos(): List<com.arnavgames.tycoon.data.save.SaveRepository.SlotInfo?> {
+        saveNow()
+        return (0 until SLOTS).map { saves.peek(it) }
+    }
+
+    /**
+     * Switches to another save slot: the current game is saved first, then the other slot is loaded (and credited for
+     * the time since it was last played, like any return to the game), or a brand-new game starts in an empty slot.
+     */
+    suspend fun switchSlot(n: Int): Result<Unit> = runCatching {
+        require(n in 0 until SLOTS) { "No such slot" }
+        if (n == _slot.value) return@runCatching
+        saveNow()
+        tickJob?.cancel()
+        tickJob = null
+        val loaded = contentLazy.get()
+        val next = when (val r = saves.load(n)) {
+            is SaveRepository.LoadResult.Loaded -> r.save.state
+            SaveRepository.LoadResult.Empty -> engine.newGame(GameRandom.newWorldSeed(SecureRandom().nextLong()), loaded.hash, clock)
+            is SaveRepository.LoadResult.NeedsUpdate -> error("That save needs a newer version of the game")
+            is SaveRepository.LoadResult.Unrecoverable -> error("That save is damaged and can't be opened")
+        }
+        mutex.withLock {
+            _slot.value = n
+            slotPrefs.edit().putInt("saveSlot", n).apply()
+            _state.value = next
+            _offline.value = null
+            lastTickMono = clock.monotonicMillis()
+        }
+        persist(next)
+        if (foreground) {
+            resume()
+            startTicking()
+        }
+    }
+
+    /** Puts back an earlier state of the game being played (the cheat screen's Undo). */
+    suspend fun restore(s: GameState) {
+        mutex.withLock { _state.value = s; lastTickMono = clock.monotonicMillis() }
+        saveNow()
+    }
+
+    /** Deletes another slot's save for good (never the one being played). */
+    suspend fun deleteSlot(n: Int): Result<Unit> = runCatching {
+        require(n in 0 until SLOTS && n != _slot.value) { "You can't delete the game you're playing" }
+        saves.deleteSlot(n)
+    }
+
     /**
      * DEBUG BUILDS ONLY: replaces the game with a scenario built from normal engine commands, so every screen
      * can be inspected with realistic data. Does nothing in release builds.
@@ -255,7 +310,7 @@ class GameSession @Inject constructor(
     /** Newest save bytes for "Export save" (saves first so the export is current). */
     suspend fun exportBytes(): ByteArray? {
         saveNow()
-        return saves.exportLatest()
+        return saves.exportLatest(_slot.value)
     }
 
     /**
@@ -264,7 +319,7 @@ class GameSession @Inject constructor(
      */
     suspend fun importBytes(bytes: ByteArray) {
         saveNow()
-        val decoded = saves.import(bytes) // throws SaveError with a readable message if invalid
+        val decoded = saves.import(bytes, _slot.value) // throws SaveError with a readable message if invalid
         mutex.withLock {
             _state.value = decoded.state.copy(clock = OfflineCalculator.touch(decoded.state.clock, clock))
             lastTickMono = clock.monotonicMillis()
@@ -292,7 +347,7 @@ class GameSession @Inject constructor(
 
     private suspend fun persist(s: GameState) {
         try {
-            saves.save(s, engine.economy.netWorth(s).log10Dollars())
+            saves.save(s, engine.economy.netWorth(s).log10Dollars(), _slot.value)
             lastSaveMono = clock.monotonicMillis()
         } catch (e: Exception) {
             Log.e(TAG, "save failed", e)
@@ -308,6 +363,8 @@ class GameSession @Inject constructor(
     companion object {
         private const val TAG = "GameSession"
         const val TICK_MS = 1_000L
+        /** Save slots on this device: slot 0 is the main game (cloud-synced); 1 and 2 are local. */
+        const val SLOTS = 3
         const val AUTOSAVE_MS = 30_000L
         /** A single foreground tick never advances more than this (e.g. after the debugger paused the process). */
         const val MAX_TICK_MS = 10 * 60_000L

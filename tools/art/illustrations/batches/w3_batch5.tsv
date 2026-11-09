@@ -1,0 +1,55 @@
+product	title_night_owl	a store item for a business game called 'Title: Night Owl': Shown under your name on leaderboards and to friends, shown as a luxurious object or scene, no prices	square
+product	title_baron	a store item for a business game called 'Title: Baron of Main Street': Shown under your name on leaderboards and to friends, shown as a luxurious object or scene, no prices	square
+product	title_kingmaker	a store item for a business game called 'Title: Kingmaker': Shown under your name on leaderboards and to friends, shown as a luxurious object or scene, no prices	square
+product	title_dynast	a store item for a business game called 'Title: The Dynast': Shown under your name on leaderboards and to friends, shown as a luxurious object or scene, no prices	square
+product	frame_jade	a store item for a business game called 'Jade frame': A jade ring around your avatar, shown as a luxurious object or scene, no prices	square
+product	frame_pearl	a store item for a business game called 'Pearl frame': A pearl ring around your avatar, shown as a luxurious object or scene, no prices	square
+product	frame_bronze	a store item for a business game called 'Bronze frame': A bronze ring around your avatar, shown as a luxurious object or scene, no prices	square
+product	avatar_car	a store item for a business game called 'Avatar: Supercar': A supercar emblem for your profile picture, shown as a luxurious object or scene, no prices	square
+product	avatar_tower	a store item for a business game called 'Avatar: Skyscraper': A skyscraper emblem for your profile picture, shown as a luxurious object or scene, no prices	square
+product	avatar_gem	a store item for a business game called 'Avatar: Diamond': A diamond emblem for your profile picture, shown as a luxurious object or scene, no prices	square
+product	avatar_art	a store item for a business game called 'Avatar: Masterpiece': A gallery-frame emblem for your profile picture, shown as a luxurious object or scene, no prices	square
+card	retail_shoplifting	an editorial illustration of a business decision, 'Shoplifting spree': Stock keeps vanishing from a business. Security firms are circling	wide
+card	retail_viral_product	an editorial illustration of a business decision, 'A product goes viral': A gadget you stock is all over social media. Suppliers want a bulk order today	wide
+card	retail_landlord	an editorial illustration of a business decision, 'Landlord wants more': The landlord of your flagship a business site wants a rent rise	wide
+card	restaurant_critic	an editorial illustration of a business decision, 'The critic is coming': A famous food critic has booked a table at a business tonight	wide
+card	restaurant_supplier	an editorial illustration of a business decision, 'Supplier price hike': Your produce supplier raises prices 20%	wide
+card	restaurant_delivery_app	an editorial illustration of a business decision, 'Delivery app deal': A delivery app offers to list a business for a 25% commission	wide
+card	logistics_driver_shortage	an editorial illustration of a business decision, 'Driver shortage': Half your drivers have been poached by a rival depot	wide
+card	logistics_big_contract	an editorial illustration of a business decision, 'A big contract': A supermarket chain wants a business to run its deliveries. They want a discount	wide
+card	logistics_fuel_hedge	an editorial illustration of a business decision, 'Fuel hedge offer': A broker offers to lock in today's fuel price for a business	wide
+card	farm_drought	an editorial illustration of a business decision, 'Drought warning': Forecasters warn of a dry month across your a business	wide
+card	farm_organic	an editorial illustration of a business decision, 'Go organic?': A premium grocer will pay more for organic produce from a business	wide
+card	farm_locusts	an editorial illustration of a business decision, 'Locust swarm': A locust swarm is heading for your a business	wide
+card	factory_union	an editorial illustration of a business decision, 'The union wants raises': Workers at a business demand a 10% raise	wide
+card	factory_robots	an editorial illustration of a business decision, 'Robot salesman': A robotics firm offers to automate a line at a business	wide
+card	factory_recall	an editorial illustration of a business decision, 'Product recall': A batch from a business has a defect	wide
+card	fashion_muse	an editorial illustration of a business decision, 'A new muse': A breakout model wants to front a business's new campaign	wide
+card	fashion_copycat	an editorial illustration of a business decision, 'Copycats': Fast-fashion chains copied a business's collection within a week	wide
+card	fashion_show	an editorial illustration of a business decision, 'Show in Paris?': Fashion week in Paris has a late slot for a business	wide
+card	mining_rich_seam	an editorial illustration of a business decision, 'A rich seam': Geologists at a business have found a rich seam, deep down	wide
+card	mining_safety	an editorial illustration of a business decision, 'Safety inspection': Inspectors are coming to a business next week	wide
+card	mining_community	an editorial illustration of a business decision, 'The town wants a school': The town next to a business asks you to fund a new school	wide
+card	energy_grid_deal	an editorial illustration of a business decision, 'Grid contract': The national grid wants a 10-year supply contract from a business	wide
+card	energy_solar	an editorial illustration of a business decision, 'Solar expansion': You could cover a business's spare land with solar panels	wide
+card	energy_pipeline_leak	an editorial illustration of a business decision, 'Pipeline leak': A small leak at a business. Cleaning it fast is expensive	wide
+card	hotel_celebrity_wedding	an editorial illustration of a business decision, 'Celebrity wedding': A pop star wants to rent all of a business for a wedding	wide
+card	hotel_bad_reviews	an editorial illustration of a business decision, 'Bad reviews': A string of one-star reviews hits a business	wide
+card	hotel_overbooking	an editorial illustration of a business decision, 'Overbooked': a business has sold 120 rooms for 100 beds this weekend	wide
+card	bank_regulator	an editorial illustration of a business decision, 'Regulator review': The regulator asks a business to hold more capital	wide
+card	bank_fintech_partner	an editorial illustration of a business decision, 'Fintech partnership': A payments start-up wants to plug into a business	wide
+card	bank_bad_loans	an editorial illustration of a business decision, 'Bad loans': A borrower of a business has defaulted	wide
+card	construction_tender	an editorial illustration of a business decision, 'City tender': The city is tendering a new stadium. a business could bid	wide
+card	construction_crane	an editorial illustration of a business decision, 'Crane collapse': A crane at a a business site has toppled. Nobody was hurt	wide
+card	construction_green	an editorial illustration of a business decision, 'Green building': Clients want low-carbon buildings from a business	wide
+card	media_scoop	an editorial illustration of a business decision, 'The scoop': Reporters at a business have a huge exclusive, but it's legally risky	wide
+card	media_star_host	an editorial illustration of a business decision, 'Star host wants more': a business's star host wants double pay	wide
+card	media_streaming	an editorial illustration of a business decision, 'Launch a streamer?': Should a business launch its own streaming service?	wide
+card	tech_hackers	an editorial illustration of a business decision, 'Ransomware': Hackers have locked a business's servers and want a ransom	wide
+card	tech_acquihire	an editorial illustration of a business decision, 'Acqui-hire': A brilliant ten-person start-up could join a business	wide
+card	tech_open_source	an editorial illustration of a business decision, 'Open-source it?': Engineers at a business want to open-source your core library	wide
+card	telecom_spectrum	an editorial illustration of a business decision, 'Spectrum auction': Regulators are auctioning 6G spectrum	wide
+card	telecom_outage	an editorial illustration of a business decision, 'Network outage': A nationwide outage hits a business	wide
+card	telecom_towers	an editorial illustration of a business decision, 'Sell the towers?': An infrastructure fund wants to buy a business's towers	wide
+card	airline_strike	an editorial illustration of a business decision, 'Pilots' strike': Pilots at a business vote to strike	wide
+card	airline_new_route	an editorial illustration of a business decision, 'New route': a business could launch a nonstop route to Sydney	wide

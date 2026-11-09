@@ -173,11 +173,21 @@ fun DynastyScreen(
                 }
             }
             if (daily.isNotEmpty()) {
-                item(key = "daily-h") { SectionHeader("Today") }
+                item(key = "daily-h") {
+                    SectionHeader("Today") {
+                        val ready = daily.filter { it.done && !it.claimed }
+                        if (ready.size >= 2) PillAction("Claim all ${ready.size}", true, { vm.dispatchAll(ready.map { Command.ClaimDaily(it.index) }, "Claimed ${ready.size} goals") })
+                    }
+                }
                 item(key = "daily") { MissionList(daily, fmt, onClaim = { vm.dispatch(Command.ClaimDaily(it)) }, onReroll = { vm.dispatch(Command.RerollDaily(it)) }) }
             }
             if (weekly.isNotEmpty()) {
-                item(key = "weekly-h") { SectionHeader("This week") }
+                item(key = "weekly-h") {
+                    SectionHeader("This week") {
+                        val ready = weekly.filter { it.done && !it.claimed }
+                        if (ready.size >= 2) PillAction("Claim all ${ready.size}", true, { vm.dispatchAll(ready.map { Command.ClaimWeekly(it.index) }, "Claimed ${ready.size} goals") })
+                    }
+                }
                 item(key = "weekly") { MissionList(weekly, fmt, onClaim = { vm.dispatch(Command.ClaimWeekly(it)) }, onReroll = null) }
             }
             item(key = "season") { SeasonCard(season, onClaim = { vm.dispatch(Command.ClaimSeasonTier(it)) }) }
@@ -376,8 +386,24 @@ fun AchievementsScreen(vm: GameViewModel, onBack: () -> Unit) {
     val s = state ?: return
     val list = remember(s.meta) { vm.dynastyMapper.achievements(s) }
     val c = Aurum.colors
-    GlassScaffold(title = "Achievements", onBack = onBack) {
-        list.groupBy { it.category }.forEach { (cat, items) ->
+    var show by com.arnavgames.tycoon.ui.common.rememberPref("achievements.show", "all")
+    val ready = list.filter { it.state == 1 }
+    GlassScaffold(title = "Achievements", onBack = onBack, bottomBar = if (ready.isNotEmpty()) ({
+        // Claim everything in one tap instead of dozens.
+        com.arnavgames.tycoon.designsystem.components.GoldButton(
+            "Claim all ${ready.size} · +${ready.sumOf { it.bullion }} Bullion",
+            onClick = { vm.dispatchAll(ready.map { Command.ClaimAchievement(it.id) }, "Claimed ${ready.size} achievements") },
+            modifier = Modifier.fillMaxWidth().testTag("claim-all-achievements"), leadingIcon = AbtIcons.Trophy,
+        )
+    }) else null) {
+        item(key = "filter") {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text("${list.count { it.state == 2 }} of ${list.size} earned", style = Aurum.type.bodySmall, color = c.textSecondary, modifier = Modifier.weight(1f))
+                com.arnavgames.tycoon.ui.common.SortToggle(listOf(com.arnavgames.tycoon.ui.common.Choice("all", "Show all"), com.arnavgames.tycoon.ui.common.Choice("ready", "Ready to claim"), com.arnavgames.tycoon.ui.common.Choice("todo", "Not yet"), com.arnavgames.tycoon.ui.common.Choice("done", "Earned")), show, { show = it })
+            }
+        }
+        list.filter { when (show) { "ready" -> it.state == 1; "todo" -> it.state == 0; "done" -> it.state == 2; else -> true } }
+            .groupBy { it.category }.forEach { (cat, items) ->
             item(key = "h-$cat") { SectionHeader("$cat · ${items.count { it.state == 2 }}/${items.size}") }
             items(items, key = { it.id }) { a ->
                 Row(Modifier.fillMaxWidth().padding(horizontal = Space.xs, vertical = Space.xxs), verticalAlignment = Alignment.CenterVertically) {

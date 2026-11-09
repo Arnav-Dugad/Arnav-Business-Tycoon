@@ -64,6 +64,8 @@ import kotlinx.coroutines.flow.first
 @Serializable data class BusinessRoute(val id: String)
 @Serializable object SettingsRoute
 @Serializable object CreditsRoute
+@Serializable object CheatsRoute
+@Serializable object SlotsRoute
 @Serializable data class InstrumentRoute(val id: String)
 @Serializable object NewsRoute
 @Serializable data class CityRoute(val id: String)
@@ -253,7 +255,9 @@ private fun ReadyContent(vm: GameViewModel) {
                 composable<BusinessRoute> { entry ->
                     BusinessDetailScreen(vm = vm, businessId = entry.toRoute<BusinessRoute>().id, onBack = { nav.popBackStack() })
                 }
-                composable<SettingsRoute> { SettingsScreen(vm = vm, onBack = { nav.popBackStack() }, onCredits = { nav.navigate(CreditsRoute) }) }
+                composable<SettingsRoute> { SettingsScreen(vm = vm, onBack = { nav.popBackStack() }, onCredits = { nav.navigate(CreditsRoute) }, onCheats = { nav.navigate(CheatsRoute) }, onSlots = { nav.navigate(SlotsRoute) }) }
+                composable<CheatsRoute> { com.arnavgames.tycoon.ui.settings.CheatsScreen(vm, onBack = { nav.popBackStack() }, onOpenSlots = { nav.navigate(SlotsRoute) }) }
+                composable<SlotsRoute> { com.arnavgames.tycoon.ui.settings.SaveSlotsScreen(vm, onBack = { nav.popBackStack() }, onPlay = { nav.popBackStack(MainRoute, inclusive = false) }) }
                 composable<CreditsRoute> { CreditsScreen(onBack = { nav.popBackStack() }, artCredits = vm.artCreditLines(), portraitCount = vm.portraitCount() + vm.rivalPortraitCount()) }
             }
         }

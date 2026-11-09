@@ -55,6 +55,9 @@ object AbtIcons {
     val ChevronUp = icon("ChevronUp", "M5.5 14.5L12 8l6.5 6.5")
     val Close = icon("Close", "M6 6l12 12M18 6L6 18")
     val Plus = icon("Plus", "M12 5v14M5 12h14")
+    val Search = icon("Search", circle(10.5f, 10.5f, 6.5f), "M15.5 15.5L20.5 20.5")
+    /** Two opposed arrows: change the order of a list. */
+    val Sort = icon("Sort", "M7.5 4.5v15M4.5 16.5l3 3 3-3", "M16.5 19.5v-15M13.5 7.5l3-3 3 3")
     /** Four rounded tiles: the More tab. */
     val Menu = icon("Menu", "M4.5 4.5h6v6h-6Z", "M13.5 4.5h6v6h-6Z", "M4.5 13.5h6v6h-6Z", "M13.5 13.5h6v6h-6Z")
     val Minus = icon("Minus", "M5 12h14")

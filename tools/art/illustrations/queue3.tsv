@@ -1,0 +1,434 @@
+sector	consumer	a panorama of the consumer & retail industry: shops, brands and the people who buy them	wide
+sector	food	a panorama of the food & agriculture industry: from field to fork	wide
+sector	industrials	a panorama of the industrials industry: machines, parts and the plants that make them	wide
+sector	energy	a panorama of the energy industry: oil, gas, power and the grid	wide
+sector	materials	a panorama of the materials & mining industry: metals, minerals and everything dug from the ground	wide
+sector	financials	a panorama of the financials industry: banks, insurers and asset managers	wide
+sector	technology	a panorama of the technology industry: software, chips and devices	wide
+sector	media	a panorama of the media & telecom industry: networks, studios and the screens in between	wide
+sector	healthcare	a panorama of the healthcare industry: medicines, devices and care	wide
+sector	property	a panorama of the property & construction industry: builders, developers and landlords	wide
+sector	transport	a panorama of the transport & travel industry: freight, flights and places to stay	wide
+sector	frontier	a panorama of the frontier industry: rockets, robots and long bets	wide
+stock	wlmr	a shops-and-brands company that is steady and long-established and known as a serial acquirer: its headquarters building seen from the street	wide
+stock	cstg	a shops-and-brands company that is steady and long-established and known as a dividend aristocrat: its busiest workplace in full swing	wide
+stock	trgt	a shops-and-brands company that is steady and long-established and known as a value pick: its flagship product being made	wide
+stock	amzm	a shops-and-brands company that is solid and well known and known as a cyclical: its people at work, seen from a distance	wide
+stock	niky	a shops-and-brands company that is solid and well known and known as a cyclical: its offices with a sweeping city view	wide
+stock	adsh	a shops-and-brands company that is solid and well known and known as a high flyer: its warehouse and loading bays at dawn	wide
+stock	ikyh	a shops-and-brands company that is solid and well known and known as a high flyer: its newest site under construction	wide
+stock	zrfs	a shops-and-brands company that is fast-growing and ambitious and known as a dividend aristocrat: its showroom with customers browsing	wide
+stock	sphr	a shops-and-brands company that is fast-growing and ambitious and known as a founder-led: its headquarters building seen from the street	wide
+stock	bstb	a shops-and-brands company that is young, daring and unproven and known as a takeover target: its busiest workplace in full swing	wide
+stock	clkl	a food and drink company that is steady and long-established and known as a serial acquirer: its flagship product being made	wide
+stock	nstl	a food and drink company that is steady and long-established and known as a value pick: its people at work, seen from a distance	wide
+stock	peps	a food and drink company that is steady and long-established and known as a high flyer: its offices with a sweeping city view	wide
+stock	mcdw	a food and drink company that is steady and long-established and known as a founder-led: its warehouse and loading bays at dawn	wide
+stock	krfy	a food and drink company that is steady and long-established and known as a innovator: its newest site under construction	wide
+stock	dnwn	a food and drink company that is solid and well known and known as a steady compounder: its showroom with customers browsing	wide
+stock	hnzl	a food and drink company that is solid and well known and known as a quiet giant: its headquarters building seen from the street	wide
+stock	brgr	a food and drink company that is solid and well known and known as a value pick: its busiest workplace in full swing	wide
+stock	strb	a food and drink company that is solid and well known and known as a founder-led: its flagship product being made	wide
+stock	sbwv	a food and drink company that is fast-growing and ambitious and known as a high flyer: its people at work, seen from a distance	wide
+stock	gnrl	an engineering and machinery company that is steady and long-established and known as a turnaround story: its offices with a sweeping city view	wide
+stock	smns	an engineering and machinery company that is steady and long-established and known as a quiet giant: its warehouse and loading bays at dawn	wide
+stock	hnyw	an engineering and machinery company that is solid and well known and known as a serial acquirer: its newest site under construction	wide
+stock	ncmp	an engineering and machinery company that is solid and well known and known as a serial acquirer: its showroom with customers browsing	wide
+stock	ktrp	an engineering and machinery company that is solid and well known and known as a meme darling: its headquarters building seen from the street	wide
+stock	derc	an engineering and machinery company that is solid and well known and known as a value pick: its busiest workplace in full swing	wide
+stock	bshn	an engineering and machinery company that is solid and well known and known as a takeover target: its flagship product being made	wide
+stock	htch	an engineering and machinery company that is fast-growing and ambitious and known as a innovator: its people at work, seen from a distance	wide
+stock	kmts	an engineering and machinery company that is fast-growing and ambitious and known as a meme darling: its offices with a sweeping city view	wide
+stock	abrb	an engineering and machinery company that is young, daring and unproven and known as a innovator: its warehouse and loading bays at dawn	wide
+stock	extr	an energy company that is steady and long-established and known as a founder-led: its newest site under construction	wide
+stock	shlf	an energy company that is steady and long-established and known as a serial acquirer: its showroom with customers browsing	wide
+stock	chvr	an energy company that is steady and long-established and known as a turnaround story: its headquarters building seen from the street	wide
+stock	armc	an energy company that is solid and well known and known as a cyclical: its busiest workplace in full swing	wide
+stock	brts	an energy company that is solid and well known and known as a founder-led: its flagship product being made	wide
+stock	tlnr	an energy company that is solid and well known and known as a serial acquirer: its people at work, seen from a distance	wide
+stock	dknr	an energy company that is solid and well known and known as a turnaround story: its offices with a sweeping city view	wide
+stock	nxrp	an energy company that is fast-growing and ambitious and known as a high flyer: its warehouse and loading bays at dawn	wide
+stock	ibrd	an energy company that is fast-growing and ambitious and known as a steady compounder: its newest site under construction	wide
+stock	ptrb	an energy company that is young, daring and unproven and known as a innovator: its showroom with customers browsing	wide
+stock	rtnt	a mining and materials company that is steady and long-established and known as a dividend aristocrat: its headquarters building seen from the street	wide
+stock	bhbl	a mining and materials company that is solid and well known and known as a value pick: its busiest workplace in full swing	wide
+stock	glnk	a mining and materials company that is solid and well known and known as a innovator: its flagship product being made	wide
+stock	vylm	a mining and materials company that is solid and well known and known as a steady compounder: its people at work, seen from a distance	wide
+stock	ncrs	a mining and materials company that is solid and well known and known as a steady compounder: its offices with a sweeping city view	wide
+stock	alcl	a mining and materials company that is fast-growing and ambitious and known as a turnaround story: its warehouse and loading bays at dawn	wide
+stock	arcl	a mining and materials company that is fast-growing and ambitious and known as a value pick: its newest site under construction	wide
+stock	nwmn	a mining and materials company that is fast-growing and ambitious and known as a innovator: its showroom with customers browsing	wide
+stock	brkg	a mining and materials company that is young, daring and unproven and known as a dividend aristocrat: its headquarters building seen from the street	wide
+stock	frpr	a mining and materials company that is young, daring and unproven and known as a steady compounder: its busiest workplace in full swing	wide
+stock	jpmr	a bank and finance company that is steady and long-established and known as a high flyer: its flagship product being made	wide
+stock	bnkf	a bank and finance company that is steady and long-established and known as a dividend aristocrat: its people at work, seen from a distance	wide
+stock	wlsf	a bank and finance company that is steady and long-established and known as a dividend aristocrat: its offices with a sweeping city view	wide
+stock	gldm	a bank and finance company that is solid and well known and known as a meme darling: its warehouse and loading bays at dawn	wide
+stock	mrgn	a bank and finance company that is solid and well known and known as a turnaround story: its newest site under construction	wide
+stock	blck	a bank and finance company that is solid and well known and known as a steady compounder: its showroom with customers browsing	wide
+stock	styg	a bank and finance company that is solid and well known and known as a innovator: its headquarters building seen from the street	wide
+stock	brkl	a bank and finance company that is solid and well known and known as a cyclical: its busiest workplace in full swing	wide
+stock	mstk	a bank and finance company that is fast-growing and ambitious and known as a innovator: its flagship product being made	wide
+stock	vsrp	a bank and finance company that is young, daring and unproven and known as a innovator: its people at work, seen from a distance	wide
+stock	mcrh	a technology company that is solid and well known and known as a innovator: its offices with a sweeping city view	wide
+stock	prnc	a technology company that is solid and well known and known as a cyclical: its warehouse and loading bays at dawn	wide
+stock	gobl	a technology company that is solid and well known and known as a founder-led: its newest site under construction	wide
+stock	mtpl	a technology company that is fast-growing and ambitious and known as a steady compounder: its showroom with customers browsing	wide
+stock	nvdy	a technology company that is fast-growing and ambitious and known as a turnaround story: its headquarters building seen from the street	wide
+stock	smsn	a technology company that is fast-growing and ambitious and known as a takeover target: its busiest workplace in full swing	wide
+stock	orkl	a technology company that is fast-growing and ambitious and known as a turnaround story: its flagship product being made	wide
+stock	scsy	a technology company that is fast-growing and ambitious and known as a value pick: its people at work, seen from a distance	wide
+stock	inte	a technology company that is young, daring and unproven and known as a high flyer: its offices with a sweeping city view	wide
+stock	adob	a technology company that is young, daring and unproven and known as a meme darling: its warehouse and loading bays at dawn	wide
+stock	vrzn	a media and entertainment company that is steady and long-established and known as a steady compounder: its newest site under construction	wide
+stock	atlc	a media and entertainment company that is steady and long-established and known as a high flyer: its showroom with customers browsing	wide
+stock	cmcs	a media and entertainment company that is solid and well known and known as a serial acquirer: its headquarters building seen from the street	wide
+stock	dizn	a media and entertainment company that is solid and well known and known as a steady compounder: its busiest workplace in full swing	wide
+stock	ntfl	a media and entertainment company that is solid and well known and known as a quiet giant: its flagship product being made	wide
+stock	wrnr	a media and entertainment company that is solid and well known and known as a cyclical: its people at work, seen from a distance	wide
+stock	prmn	a media and entertainment company that is fast-growing and ambitious and known as a cyclical: its offices with a sweeping city view	wide
+stock	sptf	a media and entertainment company that is fast-growing and ambitious and known as a dividend aristocrat: its warehouse and loading bays at dawn	wide
+stock	vdfn	a media and entertainment company that is fast-growing and ambitious and known as a meme darling: its newest site under construction	wide
+stock	tktk	a media and entertainment company that is young, daring and unproven and known as a value pick: its showroom with customers browsing	wide
+stock	jhns	a medicine and healthcare company that is steady and long-established and known as a high flyer: its headquarters building seen from the street	wide
+stock	fzrp	a medicine and healthcare company that is steady and long-established and known as a dividend aristocrat: its busiest workplace in full swing	wide
+stock	rshl	a medicine and healthcare company that is steady and long-established and known as a dividend aristocrat: its flagship product being made	wide
+stock	nvrt	a medicine and healthcare company that is solid and well known and known as a founder-led: its people at work, seen from a distance	wide
+stock	astz	a medicine and healthcare company that is solid and well known and known as a turnaround story: its offices with a sweeping city view	wide
+stock	bayi	a medicine and healthcare company that is solid and well known and known as a quiet giant: its warehouse and loading bays at dawn	wide
+stock	elsl	a medicine and healthcare company that is fast-growing and ambitious and known as a innovator: its newest site under construction	wide
+stock	abve	a medicine and healthcare company that is fast-growing and ambitious and known as a turnaround story: its showroom with customers browsing	wide
+stock	glxs	a medicine and healthcare company that is young, daring and unproven and known as a turnaround story: its headquarters building seen from the street	wide
+stock	mdrn	a medicine and healthcare company that is young, daring and unproven and known as a quiet giant: its busiest workplace in full swing	wide
+stock	brkf	a property and construction company that is steady and long-established and known as a serial acquirer: its flagship product being made	wide
+stock	smny	a property and construction company that is steady and long-established and known as a cyclical: its people at work, seen from a distance	wide
+stock	emrp	a property and construction company that is steady and long-established and known as a value pick: its offices with a sweeping city view	wide
+stock	vnch	a property and construction company that is solid and well known and known as a steady compounder: its warehouse and loading bays at dawn	wide
+stock	skns	a property and construction company that is solid and well known and known as a founder-led: its newest site under construction	wide
+stock	bcht	a property and construction company that is solid and well known and known as a value pick: its showroom with customers browsing	wide
+stock	dlxd	a property and construction company that is solid and well known and known as a founder-led: its headquarters building seen from the street	wide
+stock	gdrg	a property and construction company that is solid and well known and known as a turnaround story: its busiest workplace in full swing	wide
+stock	ldhr	a property and construction company that is fast-growing and ambitious and known as a quiet giant: its flagship product being made	wide
+stock	evrg	a property and construction company that is young, daring and unproven and known as a takeover target: its people at work, seen from a distance	wide
+stock	brwn	a transport and travel company that is steady and long-established and known as a quiet giant: its offices with a sweeping city view	wide
+stock	fdpx	a transport and travel company that is steady and long-established and known as a turnaround story: its warehouse and loading bays at dawn	wide
+stock	mrsk	a transport and travel company that is solid and well known and known as a turnaround story: its newest site under construction	wide
+stock	dltl	a transport and travel company that is solid and well known and known as a cyclical: its showroom with customers browsing	wide
+stock	untd	a transport and travel company that is solid and well known and known as a serial acquirer: its headquarters building seen from the street	wide
+stock	emrt	a transport and travel company that is solid and well known and known as a turnaround story: its busiest workplace in full swing	wide
+stock	cryn	a transport and travel company that is solid and well known and known as a innovator: its flagship product being made	wide
+stock	mryt	a transport and travel company that is fast-growing and ambitious and known as a dividend aristocrat: its people at work, seen from a distance	wide
+stock	arbn	a transport and travel company that is fast-growing and ambitious and known as a takeover target: its offices with a sweeping city view	wide
+stock	ubrd	a transport and travel company that is young, daring and unproven and known as a value pick: its warehouse and loading bays at dawn	wide
+stock	tslr	a frontier-science company that is solid and well known and known as a value pick: its newest site under construction	wide
+stock	spcz	a frontier-science company that is fast-growing and ambitious and known as a value pick: its showroom with customers browsing	wide
+stock	blrg	a frontier-science company that is fast-growing and ambitious and known as a value pick: its headquarters building seen from the street	wide
+stock	clsd	a frontier-science company that is fast-growing and ambitious and known as a steady compounder: its busiest workplace in full swing	wide
+stock	plnr	a frontier-science company that is fast-growing and ambitious and known as a cyclical: its flagship product being made	wide
+stock	nrln	a frontier-science company that is young, daring and unproven and known as a serial acquirer: its people at work, seen from a distance	wide
+stock	rivi	a frontier-science company that is young, daring and unproven and known as a serial acquirer: its offices with a sweeping city view	wide
+stock	vrgl	a frontier-science company that is young, daring and unproven and known as a innovator: its warehouse and loading bays at dawn	wide
+stock	pckt	a frontier-science company that is young, daring and unproven and known as a turnaround story: its newest site under construction	wide
+stock	brdt	a frontier-science company that is young, daring and unproven and known as a value pick: its showroom with customers browsing	wide
+fund	fund_total	an index fund that owns a slice of many companies: Every company on the exchange, weighted by size. The calm way in, shown as a calm panorama of many industries side by side	wide
+fund	fund_growth	an index fund that owns a slice of many companies: Growth and speculative names. Bigger swings, bigger upside, shown as a calm panorama of many industries side by side	wide
+fund	fund_defensive	an index fund that owns a slice of many companies: Defensive companies that hold up in a downturn and pay steady dividends, shown as a calm panorama of many industries side by side	wide
+fund	fund_global	an index fund that owns a slice of many companies: An equal slice of every sector, so no single industry decides your returns, shown as a calm panorama of many industries side by side	wide
+bond	bond_gov_2	a government bond: a government treasury building with columns, steady and paying interest over time	wide
+bond	bond_gov_5	a government bond: a government treasury building with columns, steady and paying interest over time	wide
+bond	bond_gov_10	a government bond: a government treasury building with columns, steady and paying interest over time	wide
+bond	bond_gov_30	a government bond: a government treasury building with columns, steady and paying interest over time	wide
+bond	bond_ig_5	a investment_grade bond: a lender's office, steady and paying interest over time	wide
+bond	bond_ig_10	a investment_grade bond: a lender's office, steady and paying interest over time	wide
+bond	bond_hy_5	a high_yield bond: a lender's office, steady and paying interest over time	wide
+bond	bond_hy_10	a high_yield bond: a lender's office, steady and paying interest over time	wide
+coin	c_bcrn	an invented cryptocurrency (Established coin. Volatile, but it has survived every crash so far): a futuristic digital mint glowing at night, no symbols or letters on any coin	wide
+coin	c_ethn	an invented cryptocurrency (Established coin. Volatile, but it has survived every crash so far): a vast hall of humming server racks, no symbols or letters on any coin	wide
+coin	c_bnnt	an invented cryptocurrency (Established coin. Volatile, but it has survived every crash so far): a crowd watching a giant price screen (no numbers), no symbols or letters on any coin	wide
+coin	c_rplt	an invented cryptocurrency (Established coin. Volatile, but it has survived every crash so far): a lone miner's rig in a mountain cabin, no symbols or letters on any coin	wide
+coin	c_slrn	an invented cryptocurrency (Established coin. Volatile, but it has survived every crash so far): a sleek vault with glowing lattice patterns, no symbols or letters on any coin	wide
+coin	c_crdn	an invented cryptocurrency (Large project. Swings hard and can crash in a bad week): a busy street-market of digital traders, no symbols or letters on any coin	wide
+coin	c_dgcn	an invented cryptocurrency (Large project. Swings hard and can crash in a bad week): a futuristic digital mint glowing at night, no symbols or letters on any coin	wide
+coin	c_doty	an invented cryptocurrency (Large project. Swings hard and can crash in a bad week): a vast hall of humming server racks, no symbols or letters on any coin	wide
+coin	c_chnl	an invented cryptocurrency (Large project. Swings hard and can crash in a bad week): a crowd watching a giant price screen (no numbers), no symbols or letters on any coin	wide
+coin	c_avln	an invented cryptocurrency (Large project. Swings hard and can crash in a bad week): a lone miner's rig in a mountain cabin, no symbols or letters on any coin	wide
+coin	c_shbi	an invented cryptocurrency (Small project. Big hype cycles and real crash risk): a sleek vault with glowing lattice patterns, no symbols or letters on any coin	wide
+coin	c_ltcn	an invented cryptocurrency (Small project. Big hype cycles and real crash risk): a busy street-market of digital traders, no symbols or letters on any coin	wide
+coin	c_tonn	an invented cryptocurrency (Small project. Big hype cycles and real crash risk): a futuristic digital mint glowing at night, no symbols or letters on any coin	wide
+coin	c_stlr	an invented cryptocurrency (Small project. Big hype cycles and real crash risk): a vast hall of humming server racks, no symbols or letters on any coin	wide
+coin	c_pegg	an invented cryptocurrency (Small project. Big hype cycles and real crash risk): a crowd watching a giant price screen (no numbers), no symbols or letters on any coin	wide
+coin	c_mnrk	an invented cryptocurrency (Speculative token. It can multiply or go to nearly zero. Only bet what you can lose): a lone miner's rig in a mountain cabin, no symbols or letters on any coin	wide
+coin	c_safm	an invented cryptocurrency (Speculative token. It can multiply or go to nearly zero. Only bet what you can lose): a sleek vault with glowing lattice patterns, no symbols or letters on any coin	wide
+coin	c_sqid	an invented cryptocurrency (Speculative token. It can multiply or go to nearly zero. Only bet what you can lose): a busy street-market of digital traders, no symbols or letters on any coin	wide
+coin	c_rugp	an invented cryptocurrency (Speculative token. It can multiply or go to nearly zero. Only bet what you can lose): a futuristic digital mint glowing at night, no symbols or letters on any coin	wide
+coin	c_frog	an invented cryptocurrency (Speculative token. It can multiply or go to nearly zero. Only bet what you can lose): a vast hall of humming server racks, no symbols or letters on any coin	wide
+commodity	crude	crude oil as a traded commodity: where it comes from and how it is shipped, sold by the barrel	wide
+commodity	natgas	natural gas as a traded commodity: where it comes from and how it is shipped, sold by the MMBtu	wide
+commodity	gold	gold as a traded commodity: where it comes from and how it is shipped, sold by the ounce	wide
+commodity	silver	silver as a traded commodity: where it comes from and how it is shipped, sold by the ounce	wide
+commodity	copper	copper as a traded commodity: where it comes from and how it is shipped, sold by the pound	wide
+commodity	ironore	iron ore as a traded commodity: where it comes from and how it is shipped, sold by the tonne	wide
+commodity	lithium	lithium as a traded commodity: where it comes from and how it is shipped, sold by the tonne	wide
+commodity	rareearth	rare earths as a traded commodity: where it comes from and how it is shipped, sold by the kilogram	wide
+commodity	wheat	wheat as a traded commodity: where it comes from and how it is shipped, sold by the bushel	wide
+commodity	coffee	coffee as a traded commodity: where it comes from and how it is shipped, sold by the pound	wide
+commodity	cocoa	cocoa as a traded commodity: where it comes from and how it is shipped, sold by the tonne	wide
+commodity	timber	timber as a traded commodity: where it comes from and how it is shipped, sold by the board foot	wide
+product	bullion_100	a store item for a business game called 'Pouch of Bullion': 100 Bullion, shown as a luxurious object or scene, no prices	square
+product	bullion_550	a store item for a business game called 'Bag of Bullion': 550 Bullion (500 + 10% extra), shown as a luxurious object or scene, no prices	square
+product	bullion_1200	a store item for a business game called 'Chest of Bullion': 1,200 Bullion (1,000 + 20% extra), shown as a luxurious object or scene, no prices	square
+product	bullion_2600	a store item for a business game called 'Vault of Bullion': 2,600 Bullion (2,000 + 30% extra), shown as a luxurious object or scene, no prices	square
+product	starter_pack	a store item for a business game called 'Starter pack': 300 Bullion, 50 Favor and a 2-hour income boost. Once per account, shown as a luxurious object or scene, no prices	square
+product	boost_2h	a store item for a business game called 'Income boost · 2 h': Every business earns 25% more for 2 hours. Buying again extends the time, shown as a luxurious object or scene, no prices	square
+product	boost_4h	a store item for a business game called 'Income boost · 4 h': Every business earns 25% more for 4 hours, shown as a luxurious object or scene, no prices	square
+product	boost_8h	a store item for a business game called 'Income boost · 8 h': Every business earns 25% more for 8 hours, shown as a luxurious object or scene, no prices	square
+product	boost_24h	a store item for a business game called 'Income boost · 24 h': Every business earns 25% more for a full day, shown as a luxurious object or scene, no prices	square
+product	bundle_weekend	a store item for a business game called 'Weekend bundle': An 8-hour income boost and 150 Favor together, for less than buying them separately, shown as a luxurious object or scene, no prices	square
+product	favor_100	a store item for a business game called 'Favor bundle': 100 Favor to rush timers, shown as a luxurious object or scene, no prices	square
+product	favor_500	a store item for a business game called 'Favor crate': 500 Favor to rush timers, shown as a luxurious object or scene, no prices	square
+product	permanent_5	a store item for a business game called 'Investor's edge': +5% income from every business, permanently (up to 3), shown as a luxurious object or scene, no prices	square
+product	slot_1	a store item for a business game called 'Extra business slot': One more business slot, permanently. Every slot can also be earned in play (up to 2 here), shown as a luxurious object or scene, no prices	square
+product	offline_2h	a store item for a business game called 'Night shift': +2 hours of offline earnings, permanently (up to 2), shown as a luxurious object or scene, no prices	square
+product	vip_30	a store item for a business game called 'VIP · 30 days': For 30 game days: +5% income, +1 h offline earnings and 20 extra Bullion with every daily reward, shown as a luxurious object or scene, no prices	square
+product	season_pass	a store item for a business game called 'Season Pass': Unlocks the premium track of the current season, shown as a luxurious object or scene, no prices	square
+product	title_magnate	a store item for a business game called 'Title: The Magnate': A title for your profile, shown as a luxurious object or scene, no prices	square
+product	title_old_money	a store item for a business game called 'Title: Old Money': A title for your profile, shown as a luxurious object or scene, no prices	square
+product	title_disruptor	a store item for a business game called 'Title: The Disruptor': A title for your profile, shown as a luxurious object or scene, no prices	square
+product	title_patron	a store item for a business game called 'Title: Patron of the Arts': A title for your profile, shown as a luxurious object or scene, no prices	square
+product	title_tycoon	a store item for a business game called 'Title: Tycoon': A title for your profile, shown as a luxurious object or scene, no prices	square
+product	frame_gold	a store item for a business game called 'Gold frame': A gold frame for your profile picture, shown as a luxurious object or scene, no prices	square
+product	frame_emerald	a store item for a business game called 'Emerald frame': An emerald frame for your profile picture, shown as a luxurious object or scene, no prices	square
+product	frame_sapphire	a store item for a business game called 'Sapphire frame': A sapphire frame for your profile picture, shown as a luxurious object or scene, no prices	square
+product	frame_obsidian	a store item for a business game called 'Obsidian frame': An obsidian frame for your profile picture, shown as a luxurious object or scene, no prices	square
+product	title_visionary	a store item for a business game called 'Title: The Visionary': A title for your profile, shown as a luxurious object or scene, no prices	square
+product	title_self_made	a store item for a business game called 'Title: Self-Made': A title for your profile, shown as a luxurious object or scene, no prices	square
+product	title_closer	a store item for a business game called 'Title: The Closer': A title for your profile, shown as a luxurious object or scene, no prices	square
+product	title_market_maker	a store item for a business game called 'Title: Market Maker': A title for your profile, shown as a luxurious object or scene, no prices	square
+product	title_iron_will	a store item for a business game called 'Title: Iron Will': A title for your profile, shown as a luxurious object or scene, no prices	square
+product	title_silver_spoon	a store item for a business game called 'Title: Silver Spoon': A title for your profile (worn ironically), shown as a luxurious object or scene, no prices	square
+product	frame_ruby	a store item for a business game called 'Ruby frame': A ruby frame for your profile picture, shown as a luxurious object or scene, no prices	square
+product	frame_amethyst	a store item for a business game called 'Amethyst frame': An amethyst frame for your profile picture, shown as a luxurious object or scene, no prices	square
+product	frame_rose_gold	a store item for a business game called 'Rose gold frame': A rose gold frame for your profile picture, shown as a luxurious object or scene, no prices	square
+product	frame_platinum	a store item for a business game called 'Platinum frame': A platinum frame for your profile picture, shown as a luxurious object or scene, no prices	square
+product	avatar_yacht	a store item for a business game called 'Avatar: Superyacht': A superyacht emblem for your profile picture, shown as a luxurious object or scene, no prices	square
+product	avatar_heli	a store item for a business game called 'Avatar: Helicopter': A helicopter emblem for your profile picture, shown as a luxurious object or scene, no prices	square
+product	avatar_island	a store item for a business game called 'Avatar: Private island': A private island emblem for your profile picture, shown as a luxurious object or scene, no prices	square
+product	avatar_mansion	a store item for a business game called 'Avatar: Mansion': A mansion emblem for your profile picture, shown as a luxurious object or scene, no prices	square
+product	avatar_watch	a store item for a business game called 'Avatar: Grand complication': A watch emblem for your profile picture, shown as a luxurious object or scene, no prices	square
+product	avatar_wine	a store item for a business game called 'Avatar: Grand cru': A wine emblem for your profile picture, shown as a luxurious object or scene, no prices	square
+product	title_mogul	a store item for a business game called 'Title: Mogul': Shown under your name on leaderboards and to friends, shown as a luxurious object or scene, no prices	square
+product	title_heir	a store item for a business game called 'Title: The Heir': Shown under your name on leaderboards and to friends, shown as a luxurious object or scene, no prices	square
+product	title_night_owl	a store item for a business game called 'Title: Night Owl': Shown under your name on leaderboards and to friends, shown as a luxurious object or scene, no prices	square
+product	title_baron	a store item for a business game called 'Title: Baron of Main Street': Shown under your name on leaderboards and to friends, shown as a luxurious object or scene, no prices	square
+product	title_kingmaker	a store item for a business game called 'Title: Kingmaker': Shown under your name on leaderboards and to friends, shown as a luxurious object or scene, no prices	square
+product	title_dynast	a store item for a business game called 'Title: The Dynast': Shown under your name on leaderboards and to friends, shown as a luxurious object or scene, no prices	square
+product	frame_jade	a store item for a business game called 'Jade frame': A jade ring around your avatar, shown as a luxurious object or scene, no prices	square
+product	frame_pearl	a store item for a business game called 'Pearl frame': A pearl ring around your avatar, shown as a luxurious object or scene, no prices	square
+product	frame_bronze	a store item for a business game called 'Bronze frame': A bronze ring around your avatar, shown as a luxurious object or scene, no prices	square
+product	avatar_car	a store item for a business game called 'Avatar: Supercar': A supercar emblem for your profile picture, shown as a luxurious object or scene, no prices	square
+product	avatar_tower	a store item for a business game called 'Avatar: Skyscraper': A skyscraper emblem for your profile picture, shown as a luxurious object or scene, no prices	square
+product	avatar_gem	a store item for a business game called 'Avatar: Diamond': A diamond emblem for your profile picture, shown as a luxurious object or scene, no prices	square
+product	avatar_art	a store item for a business game called 'Avatar: Masterpiece': A gallery-frame emblem for your profile picture, shown as a luxurious object or scene, no prices	square
+card	retail_shoplifting	an editorial illustration of a business decision, 'Shoplifting spree': Stock keeps vanishing from a business. Security firms are circling	wide
+card	retail_viral_product	an editorial illustration of a business decision, 'A product goes viral': A gadget you stock is all over social media. Suppliers want a bulk order today	wide
+card	retail_landlord	an editorial illustration of a business decision, 'Landlord wants more': The landlord of your flagship a business site wants a rent rise	wide
+card	restaurant_critic	an editorial illustration of a business decision, 'The critic is coming': A famous food critic has booked a table at a business tonight	wide
+card	restaurant_supplier	an editorial illustration of a business decision, 'Supplier price hike': Your produce supplier raises prices 20%	wide
+card	restaurant_delivery_app	an editorial illustration of a business decision, 'Delivery app deal': A delivery app offers to list a business for a 25% commission	wide
+card	logistics_driver_shortage	an editorial illustration of a business decision, 'Driver shortage': Half your drivers have been poached by a rival depot	wide
+card	logistics_big_contract	an editorial illustration of a business decision, 'A big contract': A supermarket chain wants a business to run its deliveries. They want a discount	wide
+card	logistics_fuel_hedge	an editorial illustration of a business decision, 'Fuel hedge offer': A broker offers to lock in today's fuel price for a business	wide
+card	farm_drought	an editorial illustration of a business decision, 'Drought warning': Forecasters warn of a dry month across your a business	wide
+card	farm_organic	an editorial illustration of a business decision, 'Go organic?': A premium grocer will pay more for organic produce from a business	wide
+card	farm_locusts	an editorial illustration of a business decision, 'Locust swarm': A locust swarm is heading for your a business	wide
+card	factory_union	an editorial illustration of a business decision, 'The union wants raises': Workers at a business demand a 10% raise	wide
+card	factory_robots	an editorial illustration of a business decision, 'Robot salesman': A robotics firm offers to automate a line at a business	wide
+card	factory_recall	an editorial illustration of a business decision, 'Product recall': A batch from a business has a defect	wide
+card	fashion_muse	an editorial illustration of a business decision, 'A new muse': A breakout model wants to front a business's new campaign	wide
+card	fashion_copycat	an editorial illustration of a business decision, 'Copycats': Fast-fashion chains copied a business's collection within a week	wide
+card	fashion_show	an editorial illustration of a business decision, 'Show in Paris?': Fashion week in Paris has a late slot for a business	wide
+card	mining_rich_seam	an editorial illustration of a business decision, 'A rich seam': Geologists at a business have found a rich seam, deep down	wide
+card	mining_safety	an editorial illustration of a business decision, 'Safety inspection': Inspectors are coming to a business next week	wide
+card	mining_community	an editorial illustration of a business decision, 'The town wants a school': The town next to a business asks you to fund a new school	wide
+card	energy_grid_deal	an editorial illustration of a business decision, 'Grid contract': The national grid wants a 10-year supply contract from a business	wide
+card	energy_solar	an editorial illustration of a business decision, 'Solar expansion': You could cover a business's spare land with solar panels	wide
+card	energy_pipeline_leak	an editorial illustration of a business decision, 'Pipeline leak': A small leak at a business. Cleaning it fast is expensive	wide
+card	hotel_celebrity_wedding	an editorial illustration of a business decision, 'Celebrity wedding': A pop star wants to rent all of a business for a wedding	wide
+card	hotel_bad_reviews	an editorial illustration of a business decision, 'Bad reviews': A string of one-star reviews hits a business	wide
+card	hotel_overbooking	an editorial illustration of a business decision, 'Overbooked': a business has sold 120 rooms for 100 beds this weekend	wide
+card	bank_regulator	an editorial illustration of a business decision, 'Regulator review': The regulator asks a business to hold more capital	wide
+card	bank_fintech_partner	an editorial illustration of a business decision, 'Fintech partnership': A payments start-up wants to plug into a business	wide
+card	bank_bad_loans	an editorial illustration of a business decision, 'Bad loans': A borrower of a business has defaulted	wide
+card	construction_tender	an editorial illustration of a business decision, 'City tender': The city is tendering a new stadium. a business could bid	wide
+card	construction_crane	an editorial illustration of a business decision, 'Crane collapse': A crane at a a business site has toppled. Nobody was hurt	wide
+card	construction_green	an editorial illustration of a business decision, 'Green building': Clients want low-carbon buildings from a business	wide
+card	media_scoop	an editorial illustration of a business decision, 'The scoop': Reporters at a business have a huge exclusive, but it's legally risky	wide
+card	media_star_host	an editorial illustration of a business decision, 'Star host wants more': a business's star host wants double pay	wide
+card	media_streaming	an editorial illustration of a business decision, 'Launch a streamer?': Should a business launch its own streaming service?	wide
+card	tech_hackers	an editorial illustration of a business decision, 'Ransomware': Hackers have locked a business's servers and want a ransom	wide
+card	tech_acquihire	an editorial illustration of a business decision, 'Acqui-hire': A brilliant ten-person start-up could join a business	wide
+card	tech_open_source	an editorial illustration of a business decision, 'Open-source it?': Engineers at a business want to open-source your core library	wide
+card	telecom_spectrum	an editorial illustration of a business decision, 'Spectrum auction': Regulators are auctioning 6G spectrum	wide
+card	telecom_outage	an editorial illustration of a business decision, 'Network outage': A nationwide outage hits a business	wide
+card	telecom_towers	an editorial illustration of a business decision, 'Sell the towers?': An infrastructure fund wants to buy a business's towers	wide
+card	airline_strike	an editorial illustration of a business decision, 'Pilots' strike': Pilots at a business vote to strike	wide
+card	airline_new_route	an editorial illustration of a business decision, 'New route': a business could launch a nonstop route to Sydney	wide
+card	airline_ash_cloud	an editorial illustration of a business decision, 'Ash cloud': A volcano's ash cloud closes airspace over your hub	wide
+card	pharma_trial	an editorial illustration of a business decision, 'Phase III trial': a business's new drug is entering its final trial	wide
+card	pharma_patent	an editorial illustration of a business decision, 'Patent cliff': a business's best-selling patent expires soon	wide
+card	pharma_price	an editorial illustration of a business decision, 'Price backlash': Politicians attack a business's prices	wide
+card	sports_star	an editorial illustration of a business decision, 'A superstar is available': The world's best striker could join a business	wide
+card	sports_stadium	an editorial illustration of a business decision, 'New stadium': a business has outgrown its stadium	wide
+card	sports_derby	an editorial illustration of a business decision, 'Derby day': a business plays its biggest rival this weekend	wide
+card	space_launch_window	an editorial illustration of a business decision, 'Launch window': A perfect launch window opens for a business. The weather is marginal	wide
+card	space_tourism	an editorial illustration of a business decision, 'Space tourists': Billionaires want seats on a business's next flight	wide
+card	space_debris	an editorial illustration of a business decision, 'Space debris': Debris threatens a a business satellite	wide
+card	gen_consultant	an editorial illustration of a business decision, 'Management consultants': A consulting firm promises to make a business 20% more efficient	wide
+card	gen_burnout	an editorial illustration of a business decision, 'Staff burnout': Overtime at a business is burning out your best people	wide
+card	gen_award	an editorial illustration of a business decision, 'Industry award': a business is shortlisted for an industry award. The gala ticket isn't cheap	wide
+card	gen_charity_run	an editorial illustration of a business decision, 'Charity run': Staff at a business want to sponsor a charity run	wide
+card	gen_software_upgrade	an editorial illustration of a business decision, 'Software upgrade': a business's systems are ten years old	wide
+card	gen_poach_exec	an editorial illustration of a business decision, 'Poach an executive': A star executive from a competitor would join a business	wide
+card	gen_lawsuit	an editorial illustration of a business decision, 'A lawsuit': A former customer sues a business	wide
+card	gen_expansion_loan	an editorial illustration of a business decision, 'Bank offer': A bank offers a business a cheap loan to open a new branch	wide
+card	gen_viral_video	an editorial illustration of a business decision, 'Viral video': A video filmed at a business is going viral. For good reasons	wide
+card	gen_bad_press	an editorial illustration of a business decision, 'Bad press': A newspaper runs an unflattering story about a business	wide
+card	gen_supplier_bankrupt	an editorial illustration of a business decision, 'Supplier goes bust': A key supplier of a business has gone bankrupt	wide
+card	gen_four_day_week	an editorial illustration of a business decision, 'Four-day week': Staff at a business propose a four-day week	wide
+card	gen_rebrand	an editorial illustration of a business decision, 'Rebrand': Marketing wants to rebrand a business	wide
+card	gen_insurance_review	an editorial illustration of a business decision, 'Insurance review': Your broker says a business is underinsured	wide
+card	gen_intern_idea	an editorial illustration of a business decision, 'The intern's idea': An intern at a business has a bold idea	wide
+card	gen_competitor_bust	an editorial illustration of a business decision, 'Competitor in trouble': A competitor of a business is close to bankruptcy	wide
+card	gen_tax_advisor	an editorial illustration of a business decision, 'Tax advisor': An advisor says a business could restructure to save tax	wide
+card	gen_cyber_drill	an editorial illustration of a business decision, 'Cyber drill': IT wants to run a cyber-attack drill at a business	wide
+card	gen_flood	an editorial illustration of a business decision, 'Burst pipe': A burst pipe floods part of a business	wide
+card	gen_loyalty	an editorial illustration of a business decision, 'Loyalty programme': Marketing pitches a loyalty programme for a business	wide
+card	gen_price_war	an editorial illustration of a business decision, 'Price war': A rival slashes prices against a business	wide
+card	gen_mentor	an editorial illustration of a business decision, 'The Chairman calls': The Chairman suggests a business needs a sharper strategy	wide
+card	gen_eco_audit	an editorial illustration of a business decision, 'Eco audit': Investors ask for an environmental audit of a business	wide
+card	gen_city_fair	an editorial illustration of a business decision, 'Trade fair': A trade fair could showcase a business	wide
+card	gen_patent_troll	an editorial illustration of a business decision, 'Patent troll': A patent troll claims a business infringes a vague patent	wide
+card	gen_wellness	an editorial illustration of a business decision, 'Wellness programme': HR wants a wellness programme at a business	wide
+card	gen_data_sale	an editorial illustration of a business decision, 'Sell customer data?': A broker wants to buy a business's customer data	wide
+card	gen_mergers_bankers	an editorial illustration of a business decision, 'Bankers' pitch': Investment bankers pitch a bolt-on acquisition for a business	wide
+card	gen_heat	an editorial illustration of a business decision, 'Air-conditioning fails': The air conditioning at a business fails during a heatwave	wide
+card	gen_volunteer	an editorial illustration of a business decision, 'Volunteer day': Staff at a business want a paid volunteer day	wide
+card	gen_influencer	an editorial illustration of a business decision, 'Influencer deal': An influencer offers to promote a business	wide
+card	gen_quality_award	an editorial illustration of a business decision, 'Quality certification': a business could earn a quality certification	wide
+card	gen_night_shift	an editorial illustration of a business decision, 'Night shift': Adding a night shift would raise a business's output	wide
+card	gen_old_equipment	an editorial illustration of a business decision, 'Old equipment': Equipment at a business is wearing out	wide
+card	gen_union_drive	an editorial illustration of a business decision, 'Union drive': Workers at a business want to unionise	wide
+card	gen_holiday_party	an editorial illustration of a business decision, 'Holiday party': It's time for a business's holiday party	wide
+card	gen_supply_deal	an editorial illustration of a business decision, 'Bulk supply deal': A supplier offers a business a bulk discount for paying upfront	wide
+card	gen_relocate_hq	an editorial illustration of a business decision, 'Relocate the office': A cheaper office for a business has come up across town	wide
+card	gen_competitor_merger	an editorial illustration of a business decision, 'Rivals merge': Two competitors of a business are merging	wide
+card	gen_mystery_shopper	an editorial illustration of a business decision, 'Mystery shopper': A mystery-shopper report on a business is grim	wide
+card	w_bond_offer	an editorial illustration of a business decision, 'Government bonds': The treasury offers you a special bond at a good rate	wide
+card	w_recession_plan	an editorial illustration of a business decision, 'Recession plan': Economists warn of a slowdown	wide
+card	w_minimum_wage	an editorial illustration of a business decision, 'Minimum wage rise': The government raises the minimum wage	wide
+card	w_currency_swing	an editorial illustration of a business decision, 'Currency swing': The dollar swings wildly against other currencies	wide
+card	w_infrastructure	an editorial illustration of a business decision, 'Infrastructure bill': A huge infrastructure bill passes	wide
+card	w_election	an editorial illustration of a business decision, 'Election year': A tight election makes markets nervous	wide
+card	w_carbon_tax	an editorial illustration of a business decision, 'Carbon tax': A carbon tax is coming next year	wide
+card	w_talent_visa	an editorial illustration of a business decision, 'Talent visas': A new visa scheme makes hiring engineers abroad easier	wide
+card	w_shipping_canal	an editorial illustration of a business decision, 'Canal blocked': A container ship is stuck in a major canal	wide
+card	w_heatwave	an editorial illustration of a business decision, 'Heatwave': A brutal heatwave slows everything down	wide
+card	w_market_rally	an editorial illustration of a business decision, 'Market rally': Stock markets hit record highs. Your bankers suggest raising capital	wide
+card	w_bank_offer	an editorial illustration of a business decision, 'Rating agency visit': A rating agency wants to review your books	wide
+card	w_lottery_town	an editorial illustration of a business decision, 'Town lottery': A town names a lottery after your company	wide
+card	w_university	an editorial illustration of a business decision, 'University chair': A university offers to name a chair after you	wide
+card	w_museum_wing	an editorial illustration of a business decision, 'Museum wing': The city museum wants a new wing with your name on it	wide
+card	w_disaster_relief	an editorial illustration of a business decision, 'Disaster relief': An earthquake abroad leaves thousands homeless	wide
+card	w_green_bond	an editorial illustration of a business decision, 'Green bond': Investors want to buy a green bond from your holding	wide
+card	w_global_summit	an editorial illustration of a business decision, 'Global summit': You are invited to speak at a global economic summit	wide
+card	w_research_grant	an editorial illustration of a business decision, 'Research grant': The government matches private R&D spending this year	wide
+card	w_strike_wave	an editorial illustration of a business decision, 'Strike wave': Strikes spread across the country	wide
+card	p_documentary	an editorial illustration of a business decision, 'Documentary': A streaming service wants to film a documentary about your rise	wide
+card	p_magazine_cover	an editorial illustration of a business decision, 'Magazine cover': A business magazine wants you on its cover	wide
+card	p_book_deal	an editorial illustration of a business decision, 'Book deal': A publisher wants your memoir	wide
+card	p_yacht_party	an editorial illustration of a business decision, 'Yacht party': A rival billionaire invites you to a yacht party in Monaco	wide
+card	p_ted_talk	an editorial illustration of a business decision, 'Big talk': You are invited to give a famous talk	wide
+card	p_health_scare	an editorial illustration of a business decision, 'Doctor's orders': Your doctor says you need a week off	wide
+card	p_auditor_offer	an editorial illustration of a business decision, 'Accounting firm': A top accounting firm offers to tidy up your books before tax time	wide
+card	p_private_bank	an editorial illustration of a business decision, 'Private bank': A private bank offers you a line of credit	wide
+card	p_late_payment	an editorial illustration of a business decision, 'Late payment': A big customer pays three months late	wide
+card	p_charity_gala	an editorial illustration of a business decision, 'Charity gala': A charity gala wants you as its guest of honour	wide
+card	p_foundation	an editorial illustration of a business decision, 'Start a foundation': Your advisors suggest starting a family foundation	wide
+card	p_art_advisor	an editorial illustration of a business decision, 'Art advisor': An art advisor says the next auction has a sleeper hit	wide
+card	p_crypto_pitch	an editorial illustration of a business decision, 'Crypto pitch': A founder pitches you a new coin	wide
+card	p_old_friend	an editorial illustration of a business decision, 'An old friend': A friend from your kiosk days needs a loan	wide
+card	p_sabbatical	an editorial illustration of a business decision, 'Sabbatical': Your top manager asks for a sabbatical	wide
+card	p_family_office	an editorial illustration of a business decision, 'Family office': Your advisors suggest a family office to manage your wealth	wide
+card	r_acquisition_offer	an editorial illustration of a business decision, 'Acquisition offer': a business offers to buy a business at a premium	wide
+card	r_acquisition_lowball	an editorial illustration of a business decision, 'A cheeky offer': a business sends a lowball offer for a business	wide
+card	r_joint_venture	an editorial illustration of a business decision, 'Joint venture': a business proposes a joint venture with a business	wide
+card	r_joint_venture_tech	an editorial illustration of a business decision, 'Shared research': a business wants to share research costs with a business	wide
+card	r_takeover	an editorial illustration of a business decision, 'Hostile takeover!': a business is buying up shares to seize a business. Until you respond, its income is 10% lower	wide
+card	r_takeover_raid	an editorial illustration of a business decision, 'Corporate raid': a business's fund has built a large stake in a business overnight. Its income is 10% lower until you act	wide
+card	r_poach	an editorial illustration of a business decision, 'Poaching war': a business is poaching managers from a business	wide
+card	r_charity_challenge	an editorial illustration of a business decision, 'Charity challenge': a business challenges you to match a charity donation	wide
+card	r_dinner	an editorial illustration of a business decision, 'Dinner invitation': a business invites you to dinner	wide
+card	r_public_feud	an editorial illustration of a business decision, 'Public feud': a business mocks your company in an interview	wide
+card	r_tip	an editorial illustration of a business decision, 'A tip from a friend': a business tips you off about a coming boom	wide
+card	r_partnership_city	an editorial illustration of a business decision, 'City partnership': a business wants to co-develop a district together	wide
+card	r_auction_truce	an editorial illustration of a business decision, 'Auction truce': a business proposes not to bid against each other at the next auction	wide
+card	r_lawsuit_threat	an editorial illustration of a business decision, 'Legal threat': a business's lawyers claim a business copied their design	wide
+card	r_board_seat	an editorial illustration of a business decision, 'Board seat': a business offers you a seat on their company's board	wide
+card	r_mentor_rival	an editorial illustration of a business decision, 'Unexpected advice': a business sends you a note with surprisingly good advice	wide
+card	r_bidding_war	an editorial illustration of a business decision, 'Bidding war': a business is bidding against you for a prime office tower	wide
+card	r_sector_alliance	an editorial illustration of a business decision, 'Industry alliance': a business proposes an industry alliance to lobby for lower tariffs	wide
+card	r_spy	an editorial illustration of a business decision, 'Industrial espionage': Security catches someone from a business's company photographing a business's plans	wide
+card	r_rescue	an editorial illustration of a business decision, 'A rival in trouble': a business's company is in trouble and asks you for a bridge loan	wide
+card	r_golf	an editorial illustration of a business decision, 'Golf weekend': a business invites you to a golf weekend in Scotland	wide
+card	w_port_strike	an editorial illustration of a business decision, 'Port strike': Dock workers strike at the world's busiest port	wide
+card	w_tourism_boom	an editorial illustration of a business decision, 'Tourism boom': A weak currency brings a flood of tourists	wide
+card	w_regulation_wave	an editorial illustration of a business decision, 'New regulations': A wave of new regulations lands on business	wide
+card	w_tech_conference	an editorial illustration of a business decision, 'Tech conference': The world's biggest tech conference is in town	wide
+card	w_food_inflation	an editorial illustration of a business decision, 'Food inflation': Food prices are up 12% this year	wide
+card	nemesis_2	"an editorial illustration of a business decision, 'Your nemesis': Vivienne Strand's high-street chains have noticed your stores. ""Main Street has room for one name,"" her company says"	wide
+card	nemesis_3	an editorial illustration of a business decision, 'Your nemesis': Gina Rhinehart's mining group is bidding for the same mineral rights you want. Raw power is a crowded room	wide
+card	nemesis_4	an editorial illustration of a business decision, 'Your nemesis': Abigail Johnsun's fund family controls the old banks you need. Old money does not open doors for newcomers	wide
+card	nemesis_5	an editorial illustration of a business decision, 'Your nemesis': Mark Zuckerbird's social network announces a copy of your newest product the same day you launch	wide
+card	nemesis_6	an editorial illustration of a business decision, 'Your nemesis': Richard Bransun's airline is flying your routes at half price, with a party on every plane	wide
+card	nemesis_7	"an editorial illustration of a business decision, 'Your nemesis': Melon Tusk posts that your rockets are ""cute"". His company has booked every launch window this year"	wide
+card	nemesis_8	an editorial illustration of a business decision, 'Your nemesis': Jeff Bozos's company sits at the top of the Fortune List and intends to stay there	wide
+tenant	late_rent	a landlord's moment: The tenant of your a property in a property is a week late with the rent	wide
+tenant	leak	a landlord's moment: A pipe burst in your a property in a property	wide
+tenant	long_lease	a landlord's moment: A reliable tenant offers a long lease on your a property in a property if you take 5 % off	wide
+tenant	noise	a landlord's moment: Neighbours complain about noise from your a property in a property	wide
+tenant	pet	a landlord's moment: Your tenant in a property asks to keep a large dog	wide
+tenant	sublet	a landlord's moment: You discover your a property in a property is being sublet without permission	wide
+tenant	roof	a landlord's moment: Storm damage to the roof of your a property in a property	wide
+tenant	upgrade_request	a landlord's moment: Your tenant in a property asks for a new kitchen and offers to pay more rent	wide
+tenant	film_crew	a landlord's moment: A film crew wants to shoot at your a property in a property for a day	wide
+tenant	inspection	a landlord's moment: The city schedules a safety inspection of your a property in a property	wide
+tenant	rent_strike	a landlord's moment: Tenants in a property organise a rent strike over rising prices	wide
+tenant	break_in	a landlord's moment: A break-in at your a property in a property	wide
+tenant	mould	a landlord's moment: Mould is spreading in your a property in a property	wide
+tenant	heating	a landlord's moment: The heating fails at your a property in a property in a cold snap	wide
+tenant	referral	a landlord's moment: Your tenant in a property refers a friend who wants a similar place	wide
+tenant	art	a landlord's moment: A local artist offers to paint a mural on your a property in a property	wide
+tenant	early_exit	a landlord's moment: Your tenant in a property wants to leave early and offers two weeks' rent	wide
+tenant	parking	a landlord's moment: Tenants in a property ask for parking spaces	wide
+tenant	short_stay	a landlord's moment: A short-stay platform offers to rent your a property in a property by the night	wide
+tenant	elevator	a landlord's moment: The lift in your a property in a property breaks down	wide
+tenant	party	a landlord's moment: Your tenant in a property threw a party that damaged the hallway	wide
+tenant	solar	a landlord's moment: An installer offers solar panels for your a property in a property	wide
+tenant	smart_locks	a landlord's moment: Tenants in a property ask for smart locks	wide
+tenant	charity	a landlord's moment: A charity asks to use your vacant storage in a property rent-free for a month	wide
+tenant	tree	a landlord's moment: A neighbour's tree fell onto your a property in a property	wide
+tenant	lawsuit_threat	a landlord's moment: A former tenant in a property threatens to sue over their deposit	wide
+tenant	renovation_neighbor	a landlord's moment: Construction next door is disturbing your tenants in a property	wide
+tenant	energy_rating	a landlord's moment: New rules require a better energy rating for your a property in a property	wide
+tenant	rodents	a landlord's moment: Tenants in a property report mice	wide
+tenant	cleaning	a landlord's moment: Tenants in a property ask for a cleaning service in the shared areas	wide
+tenant	wifi	a landlord's moment: Tenants in a property complain about slow internet	wide
+tenant	viewing	a landlord's moment: A buyer asks to view your a property in a property: they love it	wide
+tenant	historic	a landlord's moment: Your a property in a property might be listed as a historic building	wide
+tenant	window	a landlord's moment: A window shattered at your a property in a property	wide
+tenant	flood_risk	a landlord's moment: Forecasters warn of flooding near a property	wide
+tenant	community	a landlord's moment: Residents in a property ask you to sponsor a street festival	wide
+tenant	rent_review	a landlord's moment: It is time for the annual rent review on your a property in a property	wide
+tenant	furnish	a landlord's moment: A tenant in a property would pay more for a furnished place	wide
+tenant	balcony	a landlord's moment: Your tenant in a property wants permission to enclose the balcony	wide
+tenant	insurance_audit	a landlord's moment: An insurer offers a free risk audit of your a property in a property	wide

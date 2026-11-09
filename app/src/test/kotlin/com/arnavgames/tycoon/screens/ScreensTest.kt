@@ -68,7 +68,7 @@ class ScreensTest(private val theme: String) {
     /** The Empire tab is ready (the businesses summary sits below the counter, so scroll to it, then back up). */
     private fun waitEmpire(timeout: Long = 30_000) {
         rule.waitUntil(timeout) {
-            runCatching { rule.onNodeWithTag("empire-list").performScrollToNode(hasText("Your businesses", ignoreCase = true)); true }.getOrDefault(false)
+            runCatching { rule.onNodeWithTag("empire-list").performScrollToNode(hasText("Your businesses", substring = true, ignoreCase = true)); true }.getOrDefault(false)
         }
         rule.onNodeWithTag("empire-list").performScrollToIndex(0)
         rule.waitForIdle()
@@ -129,6 +129,15 @@ class ScreensTest(private val theme: String) {
             tapText("Settings")
             waitText("Appearance")
             shot("07_settings")
+            scrollTo("Cheats")
+            runCatching {
+                tag("menu-cheats"); Thread.sleep(800); shot("07b_cheats_gate")
+                tag("cheats-use-here"); tag("cheats-confirm"); Thread.sleep(500); shot("07c_cheats")
+                tag("cheat-cash_day"); Thread.sleep(800); shot("07d_cheats_undo")
+                back()
+            }
+            scrollTo("Save slots")
+            runCatching { tag("menu-slots"); Thread.sleep(1500); shot("07e_save_slots"); back() }
         }
     }
 
@@ -139,6 +148,7 @@ class ScreensTest(private val theme: String) {
             tab("Markets")
             Thread.sleep(1000)
             shot("08_markets")
+            runCatching { tag("market-sort"); Thread.sleep(500); scrollTo("Top gainers"); shot("08c_markets_sorted") ; repeat(5) { tag("market-sort") } }
             scrollTo("Wallmark")
             runCatching { tapText("Wallmark"); Thread.sleep(1000); shot("08b_stock_detail") }
         }

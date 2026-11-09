@@ -88,8 +88,18 @@ fun EstatesScreen(vm: GameViewModel, onOpenCity: (String) -> Unit, onOpenPropert
     val density = LocalDensity.current
     val navInset = WindowInsets.navigationBars.asPaddingValues().calculateBottomPadding()
     val c = Aurum.colors
+    val listState = androidx.compose.foundation.lazy.rememberLazyListState()
+    androidx.compose.runtime.LaunchedEffect(Unit) { vm.reselect.collect { if (it == "estates") listState.animateScrollToItem(0) } }
+    var propSort by com.arnavgames.tycoon.ui.common.rememberPref("estates.sort", "attention")
+    val props = when (propSort) {
+        "value" -> e.properties.sortedByDescending { it.value }
+        "rent" -> e.properties.sortedByDescending { it.rent6h }
+        "name" -> e.properties.sortedBy { it.title }
+        else -> e.properties.sortedByDescending { it.needsAttention }
+    }
     Box(Modifier.fillMaxSize()) {
         LazyColumn(
+            state = listState,
             contentPadding = PaddingValues(start = Space.gutter, end = Space.gutter, top = with(density) { headerPx.toDp() } + Space.md, bottom = BottomBarReserve + navInset + Space.lg),
             verticalArrangement = Arrangement.spacedBy(Space.md),
             modifier = Modifier.fillMaxSize().glassSource(GlassLayer.Content),
@@ -121,7 +131,11 @@ fun EstatesScreen(vm: GameViewModel, onOpenCity: (String) -> Unit, onOpenPropert
                     }
                 }
             }
-            item(key = "props-h") { SectionHeader("Your properties") { Text("${e.properties.size}", style = Aurum.type.label, color = c.textTertiary) } }
+            item(key = "props-h") {
+                SectionHeader("Your properties (${e.properties.size})") {
+                    if (e.properties.size > 1) com.arnavgames.tycoon.ui.common.SortToggle(listOf(com.arnavgames.tycoon.ui.common.Choice("attention", "Needs you"), com.arnavgames.tycoon.ui.common.Choice("value", "Value"), com.arnavgames.tycoon.ui.common.Choice("rent", "Rent"), com.arnavgames.tycoon.ui.common.Choice("name", "A to Z")), propSort, { propSort = it })
+                }
+            }
             if (e.properties.isEmpty()) {
                 item(key = "empty") {
                     AurumCard(Modifier.fillMaxWidth()) {
@@ -131,7 +145,7 @@ fun EstatesScreen(vm: GameViewModel, onOpenCity: (String) -> Unit, onOpenPropert
             } else {
                 item(key = "props") {
                     AurumCard(Modifier.fillMaxWidth(), contentPadding = PaddingValues(vertical = Space.xs)) {
-                        e.properties.forEachIndexed { i, p ->
+                        props.forEachIndexed { i, p ->
                             if (i > 0) HairlineDivider(Modifier.padding(start = 64.dp))
                             PropertyRow(p, fmt) { onOpenProperty(p.id) }
                         }

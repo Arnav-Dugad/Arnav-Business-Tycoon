@@ -241,6 +241,8 @@ class CloudService(private val app: Context, private val session: GameSession) {
      */
     suspend fun sync(): SyncResult {
         if (overBudget()) return SyncResult.Failed("Daily cloud budget reached; trying again tomorrow.")
+        // Only the main game (slot 1) lives in the cloud, so another slot can never overwrite your backup.
+        if (session.slot.value != 0) return SyncResult.Failed("Cloud save backs up slot 1, your main game. Switch to it to sync.")
         val uid = _user.value?.uid ?: return SyncResult.Failed("Sign in to use cloud saves.")
         return call {
             val ref = db.document("saves/$uid")

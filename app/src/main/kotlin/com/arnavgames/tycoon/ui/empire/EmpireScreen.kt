@@ -129,6 +129,18 @@ fun EmpireScreen(
     // A new line is inserted above the first card; lazy lists keep the old first item in place, so reveal it.
     androidx.compose.runtime.LaunchedEffect(mentorLine?.id) { if (mentorLine != null && listState.firstVisibleItemIndex <= 1) listState.animateScrollToItem(0) }
 
+    // The business list in the order the player chose (remembered on this device).
+    var bizSort by com.arnavgames.tycoon.ui.common.rememberPref("empire.sort", "default")
+    val businesses = when (bizSort) {
+        "income" -> e.businesses.sortedByDescending { it.netRate.perSecond() }
+        "level" -> e.businesses.sortedByDescending { it.level }
+        "tier" -> e.businesses.sortedBy { b -> b.nextTierLevel?.let { it - b.level } ?: Int.MAX_VALUE }
+        "name" -> e.businesses.sortedBy { it.name }
+        else -> e.businesses
+    }
+    // Tills with money waiting (businesses without a manager): one tap collects them all.
+    val waiting = e.businesses.filter { it.managerName == null && it.stored.isPositive }
+    androidx.compose.runtime.LaunchedEffect(Unit) { vm.reselect.collect { if (it == "empire") listState.animateScrollToItem(0) } }
     val available = e.openable.filter { it.lockedReason == null }
     val locked = e.openable.filter { it.lockedReason != null }.take(2)
     // The list's item keys, in order, so "Show me" can scroll to any card.
@@ -138,7 +150,7 @@ fun EmpireScreen(
         if (e.mission != null) add("mission")
         if (e.crown != null) add("crown")
         add("world"); add("biz-header")
-        e.businesses.forEach { add(it.id) }
+        businesses.forEach { add(it.id) }
         if (available.isNotEmpty()) { add("open-header"); available.forEach { add("open-" + it.id) } }
         locked.forEach { add("locked-" + it.id) }
         if (e.mergers.isNotEmpty()) { add("merger-header"); e.mergers.forEach { add("merger-" + it.id) }; if (e.holding != null) add("holding") }
@@ -191,8 +203,16 @@ fun EmpireScreen(
             item(key = "world") { com.arnavgames.tycoon.ui.world.WorldStrip(vm, onOpenDesk, onOpenFortune, onOpenFinance) }
             item(key = "biz-header") {
                 Column {
-                    SectionHeader("Your businesses") {
-                        Text("${e.hq.slotsUsed}/${e.hq.slots} slots", style = Aurum.type.label, color = Aurum.colors.textTertiary)
+                    SectionHeader("Your businesses · ${e.hq.slotsUsed}/${e.hq.slots} slots") {
+                        com.arnavgames.tycoon.ui.common.SortToggle(
+                            listOf(com.arnavgames.tycoon.ui.common.Choice("default", "Opened"), com.arnavgames.tycoon.ui.common.Choice("income", "Income"), com.arnavgames.tycoon.ui.common.Choice("level", "Level"), com.arnavgames.tycoon.ui.common.Choice("tier", "Next tier"), com.arnavgames.tycoon.ui.common.Choice("name", "A to Z")),
+                            bizSort, { bizSort = it }, Modifier.testTag("biz-sort"),
+                        )
+                    }
+                    if (waiting.size >= 2) {
+                        val total = waiting.fold(Money.ZERO) { a, b -> a + b.stored }
+                        PillAction("Collect all · ${fmt(total)} from ${waiting.size} tills", true, { vm.dispatch(Command.CollectAll) }, style = PillStyle.Positive,
+                            modifier = Modifier.fillMaxWidth().padding(bottom = Space.sm).testTag("collect-all"))
                     }
                     Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
                         Text("Buy", style = Aurum.type.bodySmall, color = Aurum.colors.textSecondary, modifier = Modifier.weight(1f))
@@ -200,7 +220,7 @@ fun EmpireScreen(
                     }
                 }
             }
-            items(e.businesses, key = { it.id }) { b ->
+            items(businesses, key = { it.id }) { b ->
                 BusinessCard(
                     b, fmt,
                     onOpen = { onOpenBusiness(b.id) },

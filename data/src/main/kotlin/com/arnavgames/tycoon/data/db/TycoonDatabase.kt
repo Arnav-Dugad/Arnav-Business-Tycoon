@@ -60,6 +60,10 @@ interface SaveDao {
     @Query("DELETE FROM save_snapshots WHERE id = :id")
     suspend fun delete(id: Long)
 
+    /** Removes every snapshot of a save slot (the player deleted that save). */
+    @Query("DELETE FROM save_snapshots WHERE slot = :slot")
+    suspend fun deleteSlot(slot: Int)
+
     /** Atomic: the new snapshot and the pruning commit together or not at all. */
     @Transaction
     suspend fun insertAndPrune(e: SaveSnapshotEntity, keep: Int): Long {

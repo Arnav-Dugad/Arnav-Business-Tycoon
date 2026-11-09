@@ -1,0 +1,55 @@
+commodity	natgas	natural gas as a traded commodity: where it comes from and how it is shipped, sold by the MMBtu	wide
+commodity	gold	gold as a traded commodity: where it comes from and how it is shipped, sold by the ounce	wide
+commodity	silver	silver as a traded commodity: where it comes from and how it is shipped, sold by the ounce	wide
+commodity	copper	copper as a traded commodity: where it comes from and how it is shipped, sold by the pound	wide
+commodity	ironore	iron ore as a traded commodity: where it comes from and how it is shipped, sold by the tonne	wide
+commodity	lithium	lithium as a traded commodity: where it comes from and how it is shipped, sold by the tonne	wide
+commodity	rareearth	rare earths as a traded commodity: where it comes from and how it is shipped, sold by the kilogram	wide
+commodity	wheat	wheat as a traded commodity: where it comes from and how it is shipped, sold by the bushel	wide
+commodity	coffee	coffee as a traded commodity: where it comes from and how it is shipped, sold by the pound	wide
+commodity	cocoa	cocoa as a traded commodity: where it comes from and how it is shipped, sold by the tonne	wide
+commodity	timber	timber as a traded commodity: where it comes from and how it is shipped, sold by the board foot	wide
+product	bullion_100	a store item for a business game called 'Pouch of Bullion': 100 Bullion, shown as a luxurious object or scene, no prices	square
+product	bullion_550	a store item for a business game called 'Bag of Bullion': 550 Bullion (500 + 10% extra), shown as a luxurious object or scene, no prices	square
+product	bullion_1200	a store item for a business game called 'Chest of Bullion': 1,200 Bullion (1,000 + 20% extra), shown as a luxurious object or scene, no prices	square
+product	bullion_2600	a store item for a business game called 'Vault of Bullion': 2,600 Bullion (2,000 + 30% extra), shown as a luxurious object or scene, no prices	square
+product	starter_pack	a store item for a business game called 'Starter pack': 300 Bullion, 50 Favor and a 2-hour income boost. Once per account, shown as a luxurious object or scene, no prices	square
+product	boost_2h	a store item for a business game called 'Income boost · 2 h': Every business earns 25% more for 2 hours. Buying again extends the time, shown as a luxurious object or scene, no prices	square
+product	boost_4h	a store item for a business game called 'Income boost · 4 h': Every business earns 25% more for 4 hours, shown as a luxurious object or scene, no prices	square
+product	boost_8h	a store item for a business game called 'Income boost · 8 h': Every business earns 25% more for 8 hours, shown as a luxurious object or scene, no prices	square
+product	boost_24h	a store item for a business game called 'Income boost · 24 h': Every business earns 25% more for a full day, shown as a luxurious object or scene, no prices	square
+product	bundle_weekend	a store item for a business game called 'Weekend bundle': An 8-hour income boost and 150 Favor together, for less than buying them separately, shown as a luxurious object or scene, no prices	square
+product	favor_100	a store item for a business game called 'Favor bundle': 100 Favor to rush timers, shown as a luxurious object or scene, no prices	square
+product	favor_500	a store item for a business game called 'Favor crate': 500 Favor to rush timers, shown as a luxurious object or scene, no prices	square
+product	permanent_5	a store item for a business game called 'Investor's edge': +5% income from every business, permanently (up to 3), shown as a luxurious object or scene, no prices	square
+product	slot_1	a store item for a business game called 'Extra business slot': One more business slot, permanently. Every slot can also be earned in play (up to 2 here), shown as a luxurious object or scene, no prices	square
+product	offline_2h	a store item for a business game called 'Night shift': +2 hours of offline earnings, permanently (up to 2), shown as a luxurious object or scene, no prices	square
+product	vip_30	a store item for a business game called 'VIP · 30 days': For 30 game days: +5% income, +1 h offline earnings and 20 extra Bullion with every daily reward, shown as a luxurious object or scene, no prices	square
+product	season_pass	a store item for a business game called 'Season Pass': Unlocks the premium track of the current season, shown as a luxurious object or scene, no prices	square
+product	title_magnate	a store item for a business game called 'Title: The Magnate': A title for your profile, shown as a luxurious object or scene, no prices	square
+product	title_old_money	a store item for a business game called 'Title: Old Money': A title for your profile, shown as a luxurious object or scene, no prices	square
+product	title_disruptor	a store item for a business game called 'Title: The Disruptor': A title for your profile, shown as a luxurious object or scene, no prices	square
+product	title_patron	a store item for a business game called 'Title: Patron of the Arts': A title for your profile, shown as a luxurious object or scene, no prices	square
+product	title_tycoon	a store item for a business game called 'Title: Tycoon': A title for your profile, shown as a luxurious object or scene, no prices	square
+product	frame_gold	a store item for a business game called 'Gold frame': A gold frame for your profile picture, shown as a luxurious object or scene, no prices	square
+product	frame_emerald	a store item for a business game called 'Emerald frame': An emerald frame for your profile picture, shown as a luxurious object or scene, no prices	square
+product	frame_sapphire	a store item for a business game called 'Sapphire frame': A sapphire frame for your profile picture, shown as a luxurious object or scene, no prices	square
+product	frame_obsidian	a store item for a business game called 'Obsidian frame': An obsidian frame for your profile picture, shown as a luxurious object or scene, no prices	square
+product	title_visionary	a store item for a business game called 'Title: The Visionary': A title for your profile, shown as a luxurious object or scene, no prices	square
+product	title_self_made	a store item for a business game called 'Title: Self-Made': A title for your profile, shown as a luxurious object or scene, no prices	square
+product	title_closer	a store item for a business game called 'Title: The Closer': A title for your profile, shown as a luxurious object or scene, no prices	square
+product	title_market_maker	a store item for a business game called 'Title: Market Maker': A title for your profile, shown as a luxurious object or scene, no prices	square
+product	title_iron_will	a store item for a business game called 'Title: Iron Will': A title for your profile, shown as a luxurious object or scene, no prices	square
+product	title_silver_spoon	a store item for a business game called 'Title: Silver Spoon': A title for your profile (worn ironically), shown as a luxurious object or scene, no prices	square
+product	frame_ruby	a store item for a business game called 'Ruby frame': A ruby frame for your profile picture, shown as a luxurious object or scene, no prices	square
+product	frame_amethyst	a store item for a business game called 'Amethyst frame': An amethyst frame for your profile picture, shown as a luxurious object or scene, no prices	square
+product	frame_rose_gold	a store item for a business game called 'Rose gold frame': A rose gold frame for your profile picture, shown as a luxurious object or scene, no prices	square
+product	frame_platinum	a store item for a business game called 'Platinum frame': A platinum frame for your profile picture, shown as a luxurious object or scene, no prices	square
+product	avatar_yacht	a store item for a business game called 'Avatar: Superyacht': A superyacht emblem for your profile picture, shown as a luxurious object or scene, no prices	square
+product	avatar_heli	a store item for a business game called 'Avatar: Helicopter': A helicopter emblem for your profile picture, shown as a luxurious object or scene, no prices	square
+product	avatar_island	a store item for a business game called 'Avatar: Private island': A private island emblem for your profile picture, shown as a luxurious object or scene, no prices	square
+product	avatar_mansion	a store item for a business game called 'Avatar: Mansion': A mansion emblem for your profile picture, shown as a luxurious object or scene, no prices	square
+product	avatar_watch	a store item for a business game called 'Avatar: Grand complication': A watch emblem for your profile picture, shown as a luxurious object or scene, no prices	square
+product	avatar_wine	a store item for a business game called 'Avatar: Grand cru': A wine emblem for your profile picture, shown as a luxurious object or scene, no prices	square
+product	title_mogul	a store item for a business game called 'Title: Mogul': Shown under your name on leaderboards and to friends, shown as a luxurious object or scene, no prices	square
+product	title_heir	a store item for a business game called 'Title: The Heir': Shown under your name on leaderboards and to friends, shown as a luxurious object or scene, no prices	square

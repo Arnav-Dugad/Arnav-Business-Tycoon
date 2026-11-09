@@ -28,6 +28,11 @@ data class Highlight(val icon: String, val title: String, val body: String)
  */
 object WhatsNew {
     private val notes: Map<String, List<Highlight>> = mapOf(
+        "1.5.0" to listOf(
+            Highlight("Chart", "Sort, search and follow", "Search and sort the markets, star stocks to a watchlist, sort your businesses, properties and collection, and collect or claim everything in one tap."),
+            Highlight("Menu", "Three save slots", "Keep separate games on this phone. Slot 1 is your main game and the one backed up to the cloud."),
+            Highlight("Sparkle", "Cheats, with Undo", "Settings → Cheats: cash, time skips and boosts. A save that uses them becomes a sandbox and stays off the leaderboards."),
+        ),
         "1.4.0" to listOf(
             Highlight("Frame", "Hundreds of new paintings", "Every business grows through its own paintings, and every district, tower, event and collection piece has one too."),
             Highlight("Cash", "Know what you get", "Buy buttons show the income they add, and each business page has a Buy bar at the bottom."),

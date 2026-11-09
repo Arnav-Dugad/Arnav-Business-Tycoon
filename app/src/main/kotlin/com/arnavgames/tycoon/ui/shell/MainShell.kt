@@ -127,7 +127,8 @@ fun MainShell(
         Box(Modifier.fillMaxWidth().windowInsetsTopHeight(WindowInsets.statusBars).glass(RoundedCornerShape(0), GlassWeight.Regular, edge = false))
         AurumBottomBar(
             items = items, selected = tab,
-            onSelect = { t -> if (t == "more" && tab == "more") morePage = "hub"; chosenTab = t },
+            // Tapping the tab you are on takes you back to its top (and More back to its hub), like every good app.
+            onSelect = { t -> if (t == tab) vm.reselectTab(t); if (t == "more" && tab == "more") morePage = "hub"; chosenTab = t },
             modifier = Modifier.align(Alignment.BottomCenter),
         )
     }

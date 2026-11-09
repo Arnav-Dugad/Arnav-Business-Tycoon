@@ -25,6 +25,9 @@ data class InstrumentRowUi(
     val change: Double,
     val spark: List<Float>,
     val held: Boolean,
+    /** For sorting: the raw price and what it pays a day (dividend or coupon; 0 for none). */
+    val priceRaw: Double = 0.0,
+    val yieldPerDay: Double = 0.0,
 )
 
 data class PositionUi(val id: String, val ticker: String, val name: String, val value: Money, val pnl: Money, val pnlPct: Double, val short: Boolean, val assetClass: AssetClass)
@@ -145,16 +148,16 @@ class MarketsMapper(private val engine: GameEngine) {
     }
 
     private fun buildRows(s: GameState, held: Set<String>): Map<MarketTab, List<InstrumentRowUi>> {
-        fun row(id: String, subtitle: String, group: String): InstrumentRowUi {
+        fun row(id: String, subtitle: String, group: String, yieldPerDay: Double = 0.0): InstrumentRowUi {
             val ref = m.instrumentById.getValue(id)
             val q = s.market.quotes.getValue(id)
             val spark = (q.fine.map { PriceHistory.price(it).toFloat() } + q.price.toFloat())
-            return InstrumentRowUi(id, ref.ticker, ref.name, subtitle, ref.assetClass, group, fmtPrice(q.price), math.change24h(s, id), spark, id in held)
+            return InstrumentRowUi(id, ref.ticker, ref.name, subtitle, ref.assetClass, group, fmtPrice(q.price), math.change24h(s, id), spark, id in held, q.price, yieldPerDay)
         }
         return mapOf(
-            MarketTab.Stocks to m.stocks.map { st -> row(st.id, "${st.ticker} · ${bandWord(st.band)}", st.sector) },
+            MarketTab.Stocks to m.stocks.map { st -> row(st.id, "${st.ticker} · ${bandWord(st.band)}", st.sector, st.dividendPerDay) },
             MarketTab.Funds to m.funds.map { f -> row(f.id, "${f.ticker} · Fund", "funds") } +
-                m.bonds.map { b -> row(b.id, "${b.ticker} · pays ${MarketEngine.pct(engine.market.couponPerDay(s, b.id), 2)}/day", "bonds") },
+                m.bonds.map { b -> engine.market.couponPerDay(s, b.id).let { cp -> row(b.id, "${b.ticker} · pays ${MarketEngine.pct(cp, 2)}/day", "bonds", cp) } },
             MarketTab.Crypto to m.coins.map { c -> row(c.id, "${c.ticker} · ${tierWord(c.tier)}", "tier${c.tier}") },
             MarketTab.Commodities to m.commodities.map { c -> row(c.id, "per ${c.unit}", "commodities") },
         )

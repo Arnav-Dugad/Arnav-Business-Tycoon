@@ -1,0 +1,55 @@
+card	w_election	an editorial illustration of a business decision, 'Election year': A tight election makes markets nervous	wide
+card	w_carbon_tax	an editorial illustration of a business decision, 'Carbon tax': A carbon tax is coming next year	wide
+card	w_talent_visa	an editorial illustration of a business decision, 'Talent visas': A new visa scheme makes hiring engineers abroad easier	wide
+card	w_shipping_canal	an editorial illustration of a business decision, 'Canal blocked': A container ship is stuck in a major canal	wide
+card	w_heatwave	an editorial illustration of a business decision, 'Heatwave': A brutal heatwave slows everything down	wide
+card	w_market_rally	an editorial illustration of a business decision, 'Market rally': Stock markets hit record highs. Your bankers suggest raising capital	wide
+card	w_bank_offer	an editorial illustration of a business decision, 'Rating agency visit': A rating agency wants to review your books	wide
+card	w_lottery_town	an editorial illustration of a business decision, 'Town lottery': A town names a lottery after your company	wide
+card	w_university	an editorial illustration of a business decision, 'University chair': A university offers to name a chair after you	wide
+card	w_museum_wing	an editorial illustration of a business decision, 'Museum wing': The city museum wants a new wing with your name on it	wide
+card	w_disaster_relief	an editorial illustration of a business decision, 'Disaster relief': An earthquake abroad leaves thousands homeless	wide
+card	w_green_bond	an editorial illustration of a business decision, 'Green bond': Investors want to buy a green bond from your holding	wide
+card	w_global_summit	an editorial illustration of a business decision, 'Global summit': You are invited to speak at a global economic summit	wide
+card	w_research_grant	an editorial illustration of a business decision, 'Research grant': The government matches private R&D spending this year	wide
+card	w_strike_wave	an editorial illustration of a business decision, 'Strike wave': Strikes spread across the country	wide
+card	p_documentary	an editorial illustration of a business decision, 'Documentary': A streaming service wants to film a documentary about your rise	wide
+card	p_magazine_cover	an editorial illustration of a business decision, 'Magazine cover': A business magazine wants you on its cover	wide
+card	p_book_deal	an editorial illustration of a business decision, 'Book deal': A publisher wants your memoir	wide
+card	p_yacht_party	an editorial illustration of a business decision, 'Yacht party': A rival billionaire invites you to a yacht party in Monaco	wide
+card	p_ted_talk	an editorial illustration of a business decision, 'Big talk': You are invited to give a famous talk	wide
+card	p_health_scare	an editorial illustration of a business decision, 'Doctor's orders': Your doctor says you need a week off	wide
+card	p_auditor_offer	an editorial illustration of a business decision, 'Accounting firm': A top accounting firm offers to tidy up your books before tax time	wide
+card	p_private_bank	an editorial illustration of a business decision, 'Private bank': A private bank offers you a line of credit	wide
+card	p_late_payment	an editorial illustration of a business decision, 'Late payment': A big customer pays three months late	wide
+card	p_charity_gala	an editorial illustration of a business decision, 'Charity gala': A charity gala wants you as its guest of honour	wide
+card	p_foundation	an editorial illustration of a business decision, 'Start a foundation': Your advisors suggest starting a family foundation	wide
+card	p_art_advisor	an editorial illustration of a business decision, 'Art advisor': An art advisor says the next auction has a sleeper hit	wide
+card	p_crypto_pitch	an editorial illustration of a business decision, 'Crypto pitch': A founder pitches you a new coin	wide
+card	p_old_friend	an editorial illustration of a business decision, 'An old friend': A friend from your kiosk days needs a loan	wide
+card	p_sabbatical	an editorial illustration of a business decision, 'Sabbatical': Your top manager asks for a sabbatical	wide
+card	p_family_office	an editorial illustration of a business decision, 'Family office': Your advisors suggest a family office to manage your wealth	wide
+card	r_acquisition_offer	an editorial illustration of a business decision, 'Acquisition offer': a business offers to buy a business at a premium	wide
+card	r_acquisition_lowball	an editorial illustration of a business decision, 'A cheeky offer': a business sends a lowball offer for a business	wide
+card	r_joint_venture	an editorial illustration of a business decision, 'Joint venture': a business proposes a joint venture with a business	wide
+card	r_joint_venture_tech	an editorial illustration of a business decision, 'Shared research': a business wants to share research costs with a business	wide
+card	r_takeover	an editorial illustration of a business decision, 'Hostile takeover!': a business is buying up shares to seize a business. Until you respond, its income is 10% lower	wide
+card	r_takeover_raid	an editorial illustration of a business decision, 'Corporate raid': a business's fund has built a large stake in a business overnight. Its income is 10% lower until you act	wide
+card	r_poach	an editorial illustration of a business decision, 'Poaching war': a business is poaching managers from a business	wide
+card	r_charity_challenge	an editorial illustration of a business decision, 'Charity challenge': a business challenges you to match a charity donation	wide
+card	r_dinner	an editorial illustration of a business decision, 'Dinner invitation': a business invites you to dinner	wide
+card	r_public_feud	an editorial illustration of a business decision, 'Public feud': a business mocks your company in an interview	wide
+card	r_tip	an editorial illustration of a business decision, 'A tip from a friend': a business tips you off about a coming boom	wide
+card	r_partnership_city	an editorial illustration of a business decision, 'City partnership': a business wants to co-develop a district together	wide
+card	r_auction_truce	an editorial illustration of a business decision, 'Auction truce': a business proposes not to bid against each other at the next auction	wide
+card	r_lawsuit_threat	an editorial illustration of a business decision, 'Legal threat': a business's lawyers claim a business copied their design	wide
+card	r_board_seat	an editorial illustration of a business decision, 'Board seat': a business offers you a seat on their company's board	wide
+card	r_mentor_rival	an editorial illustration of a business decision, 'Unexpected advice': a business sends you a note with surprisingly good advice	wide
+card	r_bidding_war	an editorial illustration of a business decision, 'Bidding war': a business is bidding against you for a prime office tower	wide
+card	r_sector_alliance	an editorial illustration of a business decision, 'Industry alliance': a business proposes an industry alliance to lobby for lower tariffs	wide
+card	r_spy	an editorial illustration of a business decision, 'Industrial espionage': Security catches someone from a business's company photographing a business's plans	wide
+card	r_rescue	an editorial illustration of a business decision, 'A rival in trouble': a business's company is in trouble and asks you for a bridge loan	wide
+card	r_golf	an editorial illustration of a business decision, 'Golf weekend': a business invites you to a golf weekend in Scotland	wide
+card	w_port_strike	an editorial illustration of a business decision, 'Port strike': Dock workers strike at the world's busiest port	wide
+card	w_tourism_boom	an editorial illustration of a business decision, 'Tourism boom': A weak currency brings a flood of tourists	wide
+card	w_regulation_wave	an editorial illustration of a business decision, 'New regulations': A wave of new regulations lands on business	wide

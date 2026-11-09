@@ -84,6 +84,12 @@ fun MarketsScreen(vm: GameViewModel, onOpenInstrument: (String) -> Unit, onOpenN
     }
     var tab by rememberSaveable { mutableStateOf(MarketTab.Stocks) }
     var sector by rememberSaveable { mutableStateOf("all") }
+    // Quality of life: search, a remembered sort order, and quick filters for what you hold or watch.
+    var query by rememberSaveable { mutableStateOf("") }
+    var sort by com.arnavgames.tycoon.ui.common.rememberPref("markets.sort", "default")
+    var show by com.arnavgames.tycoon.ui.common.rememberPref("markets.show", "all")
+    var posSort by com.arnavgames.tycoon.ui.common.rememberPref("markets.posSort", "value")
+    val watch by vm.watchlist.collectAsStateWithLifecycle()
     var headerPx by remember { mutableIntStateOf(0) }
     val density = LocalDensity.current
     val navInset = WindowInsets.navigationBars.asPaddingValues().calculateBottomPadding()
@@ -91,6 +97,7 @@ fun MarketsScreen(vm: GameViewModel, onOpenInstrument: (String) -> Unit, onOpenN
 
     val listState = androidx.compose.foundation.lazy.rememberLazyListState()
     val scope = androidx.compose.runtime.rememberCoroutineScope()
+    androidx.compose.runtime.LaunchedEffect(Unit) { vm.reselect.collect { if (it == "markets") listState.animateScrollToItem(0) } }
     Box(Modifier.fillMaxSize()) {
         LazyColumn(
             state = listState,
@@ -134,10 +141,20 @@ fun MarketsScreen(vm: GameViewModel, onOpenInstrument: (String) -> Unit, onOpenN
                 )
             }
             if (mk.positions.isNotEmpty()) {
-                item(key = "pos-header") { SectionHeader("Your positions") { Text("${mk.positions.size}", style = Aurum.type.label, color = c.textTertiary) } }
+                item(key = "pos-header") {
+                    SectionHeader("Your positions (${mk.positions.size})") {
+                        com.arnavgames.tycoon.ui.common.SortToggle(listOf(com.arnavgames.tycoon.ui.common.Choice("value", "Value"), com.arnavgames.tycoon.ui.common.Choice("gain", "Best gain"), com.arnavgames.tycoon.ui.common.Choice("loss", "Worst loss"), com.arnavgames.tycoon.ui.common.Choice("name", "Name")), posSort, { posSort = it })
+                    }
+                }
                 item(key = "positions") {
                     AurumCard(Modifier.fillMaxWidth(), contentPadding = PaddingValues(vertical = Space.xs)) {
-                        mk.positions.forEachIndexed { i, p ->
+                        val sortedPositions = when (posSort) {
+                            "gain" -> mk.positions.sortedByDescending { it.pnlPct }
+                            "loss" -> mk.positions.sortedBy { it.pnlPct }
+                            "name" -> mk.positions.sortedBy { it.name }
+                            else -> mk.positions.sortedByDescending { it.value }
+                        }
+                        sortedPositions.forEachIndexed { i, p ->
                             if (i > 0) HairlineDivider(Modifier.padding(start = 72.dp))
                             PositionRow(p, fmt, onClick = { onOpenInstrument(p.id) })
                         }
@@ -167,16 +184,59 @@ fun MarketsScreen(vm: GameViewModel, onOpenInstrument: (String) -> Unit, onOpenN
                     }
                 }
             } else {
-                if (tab == MarketTab.Stocks) {
-                    item(key = "sectors") {
-                        Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(Space.xs)) {
-                            SectorChip("All", sector == "all") { sector = "all" }
-                            mk.sectors.forEach { (id, name) -> SectorChip(name, sector == id) { sector = id } }
+                item(key = "tools") {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        com.arnavgames.tycoon.ui.common.SearchField(query, { query = it }, "Search ${tab.label.lowercase()}", Modifier.weight(1f).testTag("market-search"))
+                        com.arnavgames.tycoon.ui.common.SortToggle(listOf(com.arnavgames.tycoon.ui.common.Choice("default", "Grouped"), com.arnavgames.tycoon.ui.common.Choice("gainers", "Top gainers"), com.arnavgames.tycoon.ui.common.Choice("losers", "Top losers"), com.arnavgames.tycoon.ui.common.Choice("yield", "Highest yield"), com.arnavgames.tycoon.ui.common.Choice("price", "Price"), com.arnavgames.tycoon.ui.common.Choice("name", "A to Z")), sort, { sort = it }, Modifier.testTag("market-sort"))
+                    }
+                }
+                item(key = "sectors") {
+                    Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(Space.xs)) {
+                        SectorChip("All", show == "all" && sector == "all") { show = "all"; sector = "all" }
+                        SectorChip("Watchlist · ${watch.size}", show == "watch") { show = if (show == "watch") "all" else "watch" }
+                        SectorChip("Held", show == "held") { show = if (show == "held") "all" else "held" }
+                        if (tab == MarketTab.Stocks) mk.sectors.forEach { (id, name) -> SectorChip(name, sector == id) { sector = if (sector == id) "all" else id } }
+                    }
+                }
+                val q = query.trim()
+                val rows = mk.rows[tab].orEmpty()
+                    .filter { tab != MarketTab.Stocks || sector == "all" || it.group == sector }
+                    .filter { when (show) { "watch" -> it.id in watch; "held" -> it.held; else -> true } }
+                    .filter { q.isEmpty() || it.ticker.contains(q, ignoreCase = true) || it.name.contains(q, ignoreCase = true) }
+                    .let { list ->
+                        when (sort) {
+                            "gainers" -> list.sortedByDescending { it.change }
+                            "losers" -> list.sortedBy { it.change }
+                            "yield" -> list.sortedByDescending { it.yieldPerDay }
+                            "price" -> list.sortedByDescending { it.priceRaw }
+                            "name" -> list.sortedBy { it.name }
+                            else -> list
+                        }
+                    }
+                // Grouped by sector only in the default view; any sort, search or filter gives one flat, ranked list.
+                val flat = sort != "default" || q.isNotEmpty() || show != "all"
+                if (rows.isEmpty()) item(key = "no-rows") {
+                    AurumCard(Modifier.fillMaxWidth()) {
+                        Text(
+                            when {
+                                q.isNotEmpty() -> "Nothing matches \"$q\" here. Try a ticker or part of a name."
+                                show == "watch" -> "Your watchlist is empty. Tap the star on any instrument's page to follow it here."
+                                show == "held" -> "You don't hold anything in ${tab.label.lowercase()} yet."
+                                else -> "Nothing to show."
+                            },
+                            style = Aurum.type.body, color = c.textSecondary,
+                        )
+                    }
+                }
+                if (flat && rows.isNotEmpty()) item(key = "flat-list") {
+                    AurumCard(Modifier.fillMaxWidth(), contentPadding = PaddingValues(vertical = Space.xs)) {
+                        rows.forEachIndexed { i, r ->
+                            if (i > 0) HairlineDivider(Modifier.padding(start = 72.dp))
+                            InstrumentRow(r, onClick = { onOpenInstrument(r.id) })
                         }
                     }
                 }
-                val rows = mk.rows[tab].orEmpty().filter { tab != MarketTab.Stocks || sector == "all" || it.group == sector }
-                val groups = rows.groupBy { it.group }
+                val groups = if (flat) emptyMap() else rows.groupBy { it.group }
                 groups.forEach { (group, list) ->
                     if (tab != MarketTab.Stocks || sector == "all") item(key = "g-$group") { SectionHeader(mk.sectors.firstOrNull { it.first == group }?.second ?: groupTitle(group)) }
                     item(key = "list-$group") {
@@ -211,7 +271,10 @@ private fun MarketsHeader(mk: MarketsUi, fmt: (Money) -> String, modifier: Modif
     Column(modifier.fillMaxWidth().glass(RectangleShape, GlassWeight.Regular, edge = false)) {
         Column(Modifier.fillMaxWidth().statusBarsPadding().padding(horizontal = Space.gutter).padding(top = Space.md, bottom = Space.md)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Text("PORTFOLIO", style = Aurum.type.overline, color = c.textTertiary, modifier = Modifier.weight(1f))
+                // The label never wraps; the economy chip gives way instead (it can shorten with an ellipsis).
+                Text("PORTFOLIO", style = Aurum.type.overline, color = c.textTertiary, maxLines = 1, softWrap = false)
+                Spacer(Modifier.width(Space.sm))
+                Spacer(Modifier.weight(1f))
                 var explain by androidx.compose.runtime.remember { androidx.compose.runtime.mutableStateOf(false) }
                 if (explain) com.arnavgames.tycoon.ui.common.GlossarySheet(com.arnavgames.tycoon.ui.common.Term.Economy) { explain = false }
                 AurumChip("Economy: ${mk.phase} · rates ${String.format(java.util.Locale.US, "%.2f", mk.ratePerDay * 100)}%/day", icon = AbtIcons.Globe,

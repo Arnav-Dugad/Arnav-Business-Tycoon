@@ -66,6 +66,18 @@ class SaveRepository(
         }
     }
 
+    /** What a slot holds, for the save-slot picker: the newest readable snapshot, or null when the slot is empty. */
+    data class SlotInfo(val slot: Int, val state: GameState, val savedAtWall: Long, val netWorthLog10: Double)
+
+    suspend fun peek(slot: Int): SlotInfo? = withContext(io) {
+        dao.latest(slot, 1).firstOrNull()?.let { snap ->
+            runCatching { SaveCodec.decode(snap.blob) }.getOrNull()?.let { SlotInfo(slot, it.state, it.header.savedAtWall, it.header.netWorthLog10) }
+        }
+    }
+
+    /** Deletes a whole slot (all its snapshots). The caller never deletes the slot being played. */
+    suspend fun deleteSlot(slot: Int) = withContext(io) { mutex.withLock { dao.deleteSlot(slot) } }
+
     /** Bytes of the newest snapshot for "Export save". */
     suspend fun exportLatest(slot: Int = 0): ByteArray? = withContext(io) { dao.latest(slot, 1).firstOrNull()?.blob }
 

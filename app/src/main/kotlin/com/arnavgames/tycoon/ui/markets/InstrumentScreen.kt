@@ -21,6 +21,10 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.clickable
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
@@ -62,6 +66,7 @@ fun InstrumentScreen(vm: GameViewModel, instrumentId: String, onBack: () -> Unit
     var side by rememberSaveable { mutableStateOf(OrderSide.Buy) }
     var preset by rememberSaveable { mutableStateOf(Preset.Quarter) }
     val c = Aurum.colors
+    val watch by vm.watchlist.collectAsStateWithLifecycle()
 
     GlassScaffold(title = ui.name, onBack = onBack) {
         ui.art?.let { art -> item(key = "art") { com.arnavgames.tycoon.ui.common.Illustration(art, Modifier.fillMaxWidth().height(120.dp).clip(com.arnavgames.tycoon.designsystem.theme.AurumShapes.large)) } }
@@ -74,6 +79,14 @@ fun InstrumentScreen(vm: GameViewModel, instrumentId: String, onBack: () -> Unit
                         Text(ui.ticker, style = Aurum.type.title, color = c.textPrimary)
                         Text(ui.kicker, style = Aurum.type.bodySmall, color = c.textSecondary)
                     }
+                    // Follow it: starred instruments gather under Markets → Watchlist.
+                    val watched = instrumentId in watch
+                    Box(
+                        Modifier.size(Space.touch).clip(com.arnavgames.tycoon.designsystem.theme.AurumShapes.pill)
+                            .clickable(role = androidx.compose.ui.semantics.Role.Button, onClickLabel = if (watched) "Remove from watchlist" else "Add to watchlist") { vm.toggleWatch(instrumentId) }
+                            .testTag("watch-star"),
+                        contentAlignment = Alignment.Center,
+                    ) { AbtIcon(if (watched) AbtIcons.StarFilled else AbtIcons.Star, if (watched) "On your watchlist" else "Not on your watchlist", tint = if (watched) c.gold else c.textTertiary, size = 22.dp) }
                 }
                 Spacer(Modifier.height(Space.md))
                 Row(verticalAlignment = Alignment.Bottom) {

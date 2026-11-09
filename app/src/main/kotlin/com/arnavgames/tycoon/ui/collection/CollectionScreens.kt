@@ -265,11 +265,34 @@ fun CategoryScreen(vm: GameViewModel, categoryId: String, onBack: () -> Unit, on
     val settings by vm.settings.collectAsStateWithLifecycle()
     val fmt: (Money) -> String = { MoneyFormat.compact(it, vm.notation(settings)) }
     val s = state ?: return
-    val items = remember(s.luxury.owned, s.simTimeMs / 60_000, s.progress.chapter) { vm.luxuryCategory(s, categoryId) }
+    val all = remember(s.luxury.owned, s.simTimeMs / 60_000, s.progress.chapter) { vm.luxuryCategory(s, categoryId) }
+    var sort by com.arnavgames.tycoon.ui.common.rememberPref("collection.sort", "price")
+    var query by androidx.compose.runtime.saveable.rememberSaveable { androidx.compose.runtime.mutableStateOf("") }
+    val rarityRank = mapOf("legendary" to 0, "epic" to 1, "rare" to 2, "common" to 3)
+    val items = all.filter { query.isBlank() || it.name.contains(query.trim(), true) || it.maker.contains(query.trim(), true) }.let { l ->
+        when (sort) {
+            "priceDown" -> l.sortedByDescending { it.price }
+            "status" -> l.sortedByDescending { it.status }
+            "rarity" -> l.sortedBy { rarityRank[it.rarity] ?: 9 }
+            "owned" -> l.sortedByDescending { it.owned }
+            "missing" -> l.sortedBy { it.owned }
+            else -> l.sortedBy { it.price }
+        }
+    }
     val c = Aurum.colors
     GlassScaffold(title = vm.luxuryCategoryName(categoryId), onBack = onBack) {
         item(key = "art") { com.arnavgames.tycoon.ui.common.Illustration(com.arnavgames.tycoon.ui.common.Art.luxuryCategory(categoryId), Modifier.fillMaxWidth().height(170.dp).clip(com.arnavgames.tycoon.designsystem.theme.AurumShapes.large)) }
-        item(key = "list") {
+        item(key = "tools") {
+            Column {
+                Text("${all.count { it.owned }} of ${all.size} owned", style = Aurum.type.bodySmall, color = c.textSecondary, modifier = Modifier.padding(horizontal = Space.xs, vertical = Space.xxs))
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    com.arnavgames.tycoon.ui.common.SearchField(query, { query = it }, "Search pieces", Modifier.weight(1f))
+                    com.arnavgames.tycoon.ui.common.SortToggle(listOf(com.arnavgames.tycoon.ui.common.Choice("price", "Cheapest"), com.arnavgames.tycoon.ui.common.Choice("priceDown", "Priciest"), com.arnavgames.tycoon.ui.common.Choice("status", "Most Status"), com.arnavgames.tycoon.ui.common.Choice("rarity", "Rarest"), com.arnavgames.tycoon.ui.common.Choice("owned", "Owned first"), com.arnavgames.tycoon.ui.common.Choice("missing", "Missing first")), sort, { sort = it })
+                }
+            }
+        }
+        if (items.isEmpty()) item(key = "none") { Text("Nothing matches \"${query.trim()}\".", style = Aurum.type.body, color = c.textSecondary, modifier = Modifier.padding(horizontal = Space.xs)) }
+        else item(key = "list") {
             AurumCard(Modifier.fillMaxWidth(), contentPadding = PaddingValues(vertical = Space.xs)) {
                 items.forEachIndexed { i, it ->
                     if (i > 0) HairlineDivider(Modifier.padding(start = 84.dp))

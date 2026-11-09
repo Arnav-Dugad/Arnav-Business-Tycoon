@@ -49,7 +49,7 @@ import com.arnavgames.tycoon.ui.common.GlassScaffold
 import kotlinx.coroutines.launch
 
 @Composable
-fun SettingsScreen(vm: GameViewModel, onBack: () -> Unit, onCredits: () -> Unit) {
+fun SettingsScreen(vm: GameViewModel, onBack: () -> Unit, onCredits: () -> Unit, onCheats: () -> Unit = {}, onSlots: () -> Unit = {}) {
     val settings by vm.settings.collectAsStateWithLifecycle()
     val c = Aurum.colors
     val ctx = LocalContext.current
@@ -133,9 +133,20 @@ fun SettingsScreen(vm: GameViewModel, onBack: () -> Unit, onCredits: () -> Unit)
             item { SectionHeader("Your save") }
             item {
                 AurumCard(Modifier.fillMaxWidth(), contentPadding = PaddingValues(Space.xs)) {
+                    val slotNow by vm.slot.collectAsStateWithLifecycle()
+                    MenuRow("Save slots", AbtIcons.Menu, onSlots, subtitle = "Playing slot ${slotNow + 1} of 3 · switch or start a new game", modifier = Modifier.testTag("menu-slots"))
+                    HairlineDivider(Modifier.padding(start = 60.dp))
                     MenuRow("Export save file", AbtIcons.Download, onClick = { exportLauncher.launch("arnav-business-tycoon.abtsave") }, subtitle = "Keep a backup copy of your progress")
                     HairlineDivider(Modifier.padding(start = 60.dp))
                     MenuRow("Import save file", AbtIcons.Upload, onClick = { confirmImport = true }, subtitle = "Replace this game with a backup")
+                }
+            }
+            item { SectionHeader("Sandbox") }
+            item {
+                AurumCard(Modifier.fillMaxWidth(), contentPadding = PaddingValues(Space.xs)) {
+                    val st by vm.state.collectAsStateWithLifecycle()
+                    val used = st?.let { com.arnavgames.tycoon.core.engine.Cheats.uses(it) } ?: 0
+                    MenuRow("Cheats", AbtIcons.Sparkle, onCheats, subtitle = if (used > 0) "This save is a sandbox · $used used" else "Cash, time skips and boosts, with Undo", modifier = Modifier.testTag("menu-cheats"))
                 }
             }
             item { SectionHeader("Updates") }

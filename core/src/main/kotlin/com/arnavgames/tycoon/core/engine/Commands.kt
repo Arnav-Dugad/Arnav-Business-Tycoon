@@ -94,6 +94,11 @@ sealed interface Command {
     data class WinSealedLot(val itemId: String, val price: Money) : Command
     /** Market Timing mini-game (GDD §13): a practice run on a replayed price tape; score 0–100 pays 1–10 Favor once a day. */
     data class FinishMarketTiming(val score: Int) : Command
+    /**
+     * Sandbox cheats (Settings → Cheats). Every use is counted in `meta.counters["cheats"]`, which marks the save as a
+     * sandbox for good: it is kept off leaderboards. [kind] is one of [Cheats.KINDS].
+     */
+    data class Cheat(val kind: String) : Command
 }
 
 sealed interface GameError {

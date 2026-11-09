@@ -54,7 +54,7 @@ class AppServices @Inject constructor(
         scope.launch {
             session.saveNow()
             val now = System.currentTimeMillis()
-            if (cloud.available && cloud.user.value != null && now - lastAutoSync > AUTO_SYNC_MS && cloud.localDirty()) {
+            if (cloud.available && cloud.user.value != null && session.slot.value == 0 && now - lastAutoSync > AUTO_SYNC_MS && cloud.localDirty()) {
                 lastAutoSync = now
                 if (cloud.sync() is SyncResult.Conflict) _cloudConflict.value = true
             }

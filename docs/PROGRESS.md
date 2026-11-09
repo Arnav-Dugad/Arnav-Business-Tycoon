@@ -547,6 +547,30 @@ Evidence: core 176/176, sim 3/3, app 29/29 JVM tests (including `NotificationPla
 **Verified:** core and app unit tests pass (226 of 226), and the screenshots were re-recorded and reviewed (Empire, business page, city, Counter, Dynasty, Markets, More, Desk, Finance, Store, Fortune, Collection, Ledger).
 **On the owner's S23+ (adb, release build 1.4.0, versionCode 10400, installed over 1.3.1):** save kept, Daily Ledger then What's New 1.4.0, Counter with the GPU shader and painted backdrop, the Empire income previews and the business-page Buy bar all worked, with 0 crashes in logcat. APK 33.9 MB (G10 pass).
 
+## 1.5.0 (owner request 2026-11-09: "vast QOL features", cheats, save slots, test Firebase)
+**QOL**
+- Markets: search, a remembered sort (top gainers, top losers, highest yield, price, A to Z), Watchlist and Held filters, and a watchlist star on every instrument page. Positions sort by value, gain, loss or name.
+- Empire: Collect all (2+ tills waiting), sort businesses (income, level, next tier, A to Z), and the Buy amount remembered across sessions.
+- Estates: sort your properties (needs you, value, rent, A to Z).
+- Collection categories: search and sort (cheapest, priciest, most Status, rarest, owned or missing first).
+- Achievements: Claim all and a filter. Daily and weekly goals: Claim all.
+- Tapping the current tab scrolls to its top.
+- Remembered choices live in SharedPreferences `ui_prefs` (never in the save).
+
+**Cheats** (Settings → Cheats; core `Command.Cheat`, `Cheats.kt`, 7 tests)
+- Ten cheats with live previews and a fixed Undo bar (it restores the state from before the cheat).
+- The first use marks the save as a sandbox for good (`meta.counters["cheats"]`, so the save format doesn't change). A sandbox never posts to leaderboards.
+- The main slot asks once, and offers an empty slot instead.
+
+**Save slots** (Settings → Save slots)
+- Three slots, using the existing `slot` column in the save database. Switching saves the current game first.
+- Only slot 1 syncs to the cloud and posts to social. Deleting a slot asks first and names what will be lost.
+
+**Firebase**
+- New `firebase/test/live-smoke.mjs` against the live project passed 13 of 13: guest and email sign-in, save create, read and update, refused revision skips, cross-user access and unverified social writes, then cleanup.
+- Emulator rules tests passed 15 of 15. The deployed rules match the repo (deploy skipped the upload as unchanged).
+- Owner-side metadata check: 1 cloud save (rev 24, fresh), plus 1 profile, 1 leaderboard entry and 1 friend code.
+
 ## Release gates (TEST_PLAN §7)
 Checked for **1.1.0** on 2026-11-07 (released at the owner's choice with the open items below):
 

@@ -57,6 +57,9 @@ class SocialService(private val cloud: CloudService, private val session: GameSe
     suspend fun publish(force: Boolean = false) = cloud.cloud {
         val uid = me()
         val s = session.state.value ?: error("No game loaded")
+        // Only the main game speaks for you online; a sandbox (a save that used cheats) never reaches the boards.
+        if (session.slot.value != 0) return@cloud Unit
+        val sandbox = com.arnavgames.tycoon.core.engine.Cheats.isSandbox(s)
         val boosted = s.store.boosted
         val lnw = nwLog10()
         val code = friendCode(uid)
@@ -67,7 +70,7 @@ class SocialService(private val cloud: CloudService, private val session: GameSe
             "showcase" to s.luxury.owned.keys.take(6).toList(), "updatedAt" to FieldValue.serverTimestamp(),
         )).await()
         val last = prefs.getLong("boardAt", 0)
-        if (force || System.currentTimeMillis() - last > 10 * 60_000) {
+        if (!sandbox && (force || System.currentTimeMillis() - last > 10 * 60_000)) {
             val entry = mapOf("n" to displayName, "lnw" to lnw, "flnw" to if (boosted) 0.0 else lnw, "b" to boosted, "g" to s.dynasty.generation.toLong(), "t" to FieldValue.serverTimestamp())
             db.document("boards/global/shards/${shard(uid)}").set(mapOf("entries" to mapOf(uid to entry)), cloud.merge()).await()
             // Weekly league: growth since this week's first publish (new and veteran players compete fairly).

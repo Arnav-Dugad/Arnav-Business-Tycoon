@@ -327,6 +327,7 @@ class GameEngine(val content: ContentPack) {
             is Command.ReceiveGift -> if (cmd.favor !in 1..50) Either.Err(GameError.Invalid("Gift out of range")) else
                 Either.Ok(state.copy(ledger = Grants.grant(state.ledger, state.simTimeMs, "gift from a friend", Money.ZERO, 0, cmd.favor)))
             is Command.WinSealedLot -> winSealedLot(state, cmd.itemId, cmd.price, events)
+            is Command.Cheat -> cheat(state, cmd.kind, events)
             is Command.FinishMarketTiming -> {
                 val day = dynasty.day(state.simTimeMs)
                 if (state.meta.timingDay == day) Either.Err(GameError.Locked("Market Timing pays once a day; practice again tomorrow"))
@@ -659,6 +660,30 @@ class GameEngine(val content: ContentPack) {
         val day = s.simTimeMs / DAY
         val used = if (s.hustle.frenzyDay == day) s.hustle.frenzyChargesUsed else 0
         return content.balance.hustle.frenzyChargesPerDay - used
+    }
+
+    /** Sandbox cheats: see [Command.Cheat]. Each one adds to the sticky "cheats" counter. */
+    private fun cheat(s: GameState, kind: String, events: MutableList<GameEvent>): Either {
+        if (kind !in Cheats.KINDS) return Either.Err(GameError.Invalid("Unknown cheat"))
+        fun cash(m: Money) = s.copy(ledger = Grants.grant(s.ledger, s.simTimeMs, "sandbox cheat", maxOf(m, Money.ofDollars(1_000)), 0, 0))
+        val next: GameState = when (kind) {
+            Cheats.CASH_HOUR -> cash(Cheats.incomeOver(this, s, 3_600))
+            Cheats.CASH_DAY -> cash(Cheats.incomeOver(this, s, 86_400))
+            Cheats.CASH_DOUBLE -> cash(s.cash)
+            Cheats.BULLION -> s.copy(ledger = Grants.grant(s.ledger, s.simTimeMs, "sandbox cheat", Money.ZERO, 1_000, 0))
+            Cheats.FAVOR -> s.copy(ledger = Grants.grant(s.ledger, s.simTimeMs, "sandbox cheat", Money.ZERO, 0, 500))
+            Cheats.SKIP_HOUR, Cheats.SKIP_8H -> advance(s, if (kind == Cheats.SKIP_HOUR) 3_600_000L else 8 * 3_600_000L).let { r -> events += r.events; r.state }
+            Cheats.FINISH_TIMERS -> s.timers.sortedBy { it.id }.fold(s.copy(timers = emptyList())) { acc, t -> completeTimer(acc, t, events) }
+            Cheats.FRENZY -> {
+                val until = s.simTimeMs + content.balance.hustle.frenzySeconds * 1000
+                events += GameEvent.FrenzyStarted(until)
+                s.copy(hustle = s.hustle.copy(frenzyUntil = until))
+            }
+            Cheats.LEVELS -> s.copy(businesses = s.businesses.mapValues { (_, b) -> b.copy(level = b.level + 10) })
+            else -> s
+        }
+        val counters = next.meta.counters + ("cheats" to (next.meta.counters["cheats"] ?: 0) + 1)
+        return Either.Ok(next.copy(meta = next.meta.copy(counters = counters)))
     }
 
     private fun frenzy(s: GameState, events: MutableList<GameEvent>): Either {
