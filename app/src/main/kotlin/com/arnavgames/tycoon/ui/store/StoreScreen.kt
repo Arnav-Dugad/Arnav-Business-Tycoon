@@ -112,8 +112,8 @@ fun StoreScreen(vm: GameViewModel, onBack: () -> Unit, onOpenGoals: () -> Unit =
             featured(s, content.products, store, season)?.let { f ->
                 add("featured") { ProductCard(f, ctx, bullion, onDemo = { demo = it }, featured = true) }
             }
-            for ((secId, title) in listOf("boosts" to "Boosts", "upgrades" to "Upgrades", "passes" to "VIP and Season Pass")) {
-                val products = content.products.filter { it.section == secId }
+            for ((secId, title) in listOf("boosts" to "Boosts", "upgrades" to "Upgrades", "passes" to "VIP")) {
+                val products = content.products.filter { it.section == secId && it.grants.seasonPass == 0 }
                 if (products.isEmpty()) continue
                 add("sec-$secId") { SectionHeader(title) }
                 products.forEach { p -> add(p.id) { ProductCard(p, ctx, bullion, onDemo = { demo = it }) } }
@@ -185,7 +185,6 @@ private class StoreCtx(
         if (s.store.permanentPct > 0) add(AbtIcons.ArrowUp to "Investor's edge: +${pct(s.store.permanentPct)} income, for good")
         if (s.store.extraSlots > 0) add(AbtIcons.Store to "${s.store.extraSlots} extra business ${if (s.store.extraSlots == 1) "slot" else "slots"}")
         if (s.store.offlineHours > 0) add(AbtIcons.Moon to "Night shift: +${s.store.offlineHours} h offline earnings")
-        if (store.seasonPassActive(s, season)) add(AbtIcons.Star to "Season Pass: premium rewards this season")
     }
 
     /** "What this does for you now", in numbers. */
@@ -235,7 +234,7 @@ private fun iconFor(p: ProductDef): ImageVector = with(p.grants) {
 private fun featured(s: GameState, products: List<ProductDef>, store: StoreEngine, season: Long): ProductDef? {
     val pool = listOf("bundle_weekend", "permanent_5", "offline_2h", "slot_1", "boost_8h", "vip_30")
         .mapNotNull { id -> products.firstOrNull { it.id == id } }
-        .filter { store.blocker(s, it) == null && !(it.grants.seasonPass > 0 && store.seasonPassActive(s, season)) }
+        .filter { store.blocker(s, it) == null && it.grants.seasonPass == 0 }
     if (pool.isEmpty()) return null
     val week = s.simTimeMs / (7 * 86_400_000L)
     return pool[(week % pool.size).toInt()]

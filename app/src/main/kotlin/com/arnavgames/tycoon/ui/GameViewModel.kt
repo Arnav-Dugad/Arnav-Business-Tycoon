@@ -137,7 +137,7 @@ class GameViewModel @Inject constructor(
         .flowOn(Dispatchers.Default)
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), null)
 
-    private val marketsMapper by lazy { com.arnavgames.tycoon.ui.markets.MarketsMapper(session.engine) }
+    val marketsMapper by lazy { com.arnavgames.tycoon.ui.markets.MarketsMapper(session.engine) }
 
     val markets: StateFlow<com.arnavgames.tycoon.ui.markets.MarketsUi?> = session.state.filterNotNull()
         .map { s -> marketsMapper.toUi(s) }

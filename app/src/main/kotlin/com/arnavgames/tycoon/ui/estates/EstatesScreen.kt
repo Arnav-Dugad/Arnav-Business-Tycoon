@@ -124,7 +124,7 @@ fun EstatesScreen(vm: GameViewModel, onOpenCity: (String) -> Unit, onOpenPropert
                             Spacer(Modifier.width(Space.md))
                             Column(Modifier.weight(1f)) {
                                 Text(city.name, style = Aurum.type.titleSmall, color = if (city.unlocked) c.textPrimary else c.textTertiary)
-                                Text(if (city.unlocked) "${city.districts} districts" + (if (city.owned > 0) " · ${city.owned} owned" else "") else "Opens in chapter ${city.chapter}", style = Aurum.type.bodySmall, color = c.textTertiary)
+                                Text(if (city.unlocked) "${city.districts} neighbourhoods" + (if (city.owned > 0) " · ${city.owned} owned" else "") else "Opens in chapter ${city.chapter}", style = Aurum.type.bodySmall, color = c.textTertiary)
                             }
                             AbtIcon(AbtIcons.ChevronRight, null, tint = c.textTertiary, size = 16.dp)
                         }

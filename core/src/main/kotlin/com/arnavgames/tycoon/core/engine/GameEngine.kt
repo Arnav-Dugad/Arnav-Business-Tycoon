@@ -287,6 +287,8 @@ class GameEngine(val content: ContentPack) {
             is Command.FormHolding -> formHolding(state, cmd.name, events)
             is Command.BuyInstrument -> trade(trading.buy(state, cmd.instrumentId, cmd.amount, events))
             is Command.SellInstrument -> trade(trading.sell(state, cmd.instrumentId, cmd.permille, events))
+            is Command.BuyShares -> trade(trading.buyShares(state, cmd.instrumentId, com.arnavgames.tycoon.core.state.Qty(cmd.sharesMicro), events))
+            is Command.SellShares -> trade(trading.sellShares(state, cmd.instrumentId, com.arnavgames.tycoon.core.state.Qty(cmd.sharesMicro), events))
             is Command.OpenShort -> trade(trading.openShort(state, cmd.stockId, cmd.amount, events))
             is Command.CoverShort -> trade(trading.cover(state, cmd.stockId, forced = false, events = events))
             is Command.BuyProperty -> est(economy.estate.buy(state, cmd.listingId, cmd.ltv, cmd.insured, events))

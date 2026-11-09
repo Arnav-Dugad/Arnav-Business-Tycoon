@@ -144,7 +144,15 @@ class MarketTest {
         val stock = m.stocks.filter { it.sector == "consumer" }.minBy { it.baseCapBillions }
         var s = rich(3).run(Command.OpenBusiness("retail"))
         val rateBefore = engine.economy.businessRate(s, "retail").gross
-        assertInstanceOf(GameError.Invalid::class.java, s.reject(Command.BuyInstrument(stock.id, Money.ofDollars((stock.baseCapBillions * 1e9).toLong()))))
+        // An order for the whole company is trimmed to the ownership limit (like a broker), never above it.
+        val whole = s.run(Command.BuyInstrument(stock.id, Money.ofDollars((stock.baseCapBillions * 1e9).toLong())))
+        val capped = math.stake(whole, stock.id)
+        assertTrue(capped <= m.config.maxStake + 1e-9 && capped > m.config.maxStake - 0.01, "trimmed stake $capped")
+        // At the limit, buying more is refused with a clear reason.
+        assertInstanceOf(GameError.Invalid::class.java, whole.reject(Command.BuyInstrument(stock.id, Money.ofDollars(1_000_000))))
+        // Exact share orders work and respect the same limit.
+        val exact = s.run(Command.BuyShares(stock.id, java.math.BigInteger.valueOf(1_000_000L * 10)))
+        assertEquals(java.math.BigInteger.valueOf(10_000_000L), exact.market.holdings.getValue(stock.id).qty.micro)
         // Buy a 6% stake (plus slippage headroom).
         s = s.run(Command.BuyInstrument(stock.id, Money.ofDollars((stock.baseCapBillions * 1e9 * 0.075).toLong())))
         assertTrue(math.stake(s, stock.id) >= m.config.boardSeatStake, "stake ${math.stake(s, stock.id)}")

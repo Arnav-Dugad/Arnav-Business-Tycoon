@@ -37,6 +37,10 @@ sealed interface Command {
     data class BuyInstrument(val instrumentId: String, val amount: Money) : Command
     /** Sells [permille]/1000 of a position (1000 = everything). */
     data class SellInstrument(val instrumentId: String, val permille: Int) : Command
+    /** Buys exactly [shares] (in millionths of a unit, like [com.arnavgames.tycoon.core.state.Qty]) at the current fill price. */
+    data class BuyShares(val instrumentId: String, val sharesMicro: java.math.BigInteger) : Command
+    /** Sells exactly [sharesMicro] (capped at what you hold). */
+    data class SellShares(val instrumentId: String, val sharesMicro: java.math.BigInteger) : Command
     data class OpenShort(val stockId: String, val amount: Money) : Command
     data class CoverShort(val stockId: String) : Command
     // Real estate (docs/GDD.md §7)

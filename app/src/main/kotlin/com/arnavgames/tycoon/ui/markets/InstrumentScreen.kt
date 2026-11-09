@@ -21,6 +21,8 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import com.arnavgames.tycoon.designsystem.components.PillStyle
+import com.arnavgames.tycoon.designsystem.components.PillAction
 import androidx.compose.ui.platform.testTag
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.Box
@@ -50,6 +52,15 @@ import com.arnavgames.tycoon.ui.common.GlassScaffold
 
 private enum class Range(val label: String) { Day("1D"), Week("1W") }
 
+/** Parses \"2.5M\", \"300k\", \"1,000\" or \"1.5e6\"; null when it isn't a number. */
+internal fun parseAmount(text: String): java.math.BigDecimal? {
+    val t = text.trim().replace(",", "").replace("$", "").replace(" ", "").uppercase()
+    if (t.isEmpty()) return null
+    val mult = mapOf('K' to 3, 'M' to 6, 'B' to 9, 'T' to 12)
+    val last = t.last()
+    return runCatching { if (last in mult) java.math.BigDecimal(t.dropLast(1)).movePointRight(mult.getValue(last)) else java.math.BigDecimal(t) }.getOrNull()?.takeIf { it.signum() >= 0 }
+}
+
 private enum class Preset(val label: String, val fraction: Double) { Ten("10%", 0.10), Quarter("25%", 0.25), Half("50%", 0.50), Max("Max", 1.0) }
 
 /** One instrument: chart, facts, your position, and the order ticket. */
@@ -65,6 +76,8 @@ fun InstrumentScreen(vm: GameViewModel, instrumentId: String, onBack: () -> Unit
     var range by rememberSaveable { mutableStateOf(Range.Day) }
     var side by rememberSaveable { mutableStateOf(OrderSide.Buy) }
     var preset by rememberSaveable { mutableStateOf(Preset.Quarter) }
+    var input by rememberSaveable(instrumentId) { mutableStateOf("") }
+    var byShares by rememberSaveable(instrumentId) { mutableStateOf(false) }
     val c = Aurum.colors
     val watch by vm.watchlist.collectAsStateWithLifecycle()
 
@@ -179,35 +192,54 @@ fun InstrumentScreen(vm: GameViewModel, instrumentId: String, onBack: () -> Unit
                     Text(if (sh.health < 0.3) "Margin is thin: a further rise forces a cover." else "Margin is healthy.", style = Aurum.type.bodySmall, color = if (sh.health < 0.3) c.warning else c.textSecondary)
                     Spacer(Modifier.height(Space.md))
                 }
-                if (current != OrderSide.Short || ui.short == null) {
-                    Text(if (current == OrderSide.Sell) "How much of your position" else "How much of your cash", style = Aurum.type.bodySmall, color = c.textSecondary)
-                    Spacer(Modifier.height(Space.xs))
-                    SegmentedSelector(Preset.entries, preset, { it.label }, { preset = it }, Modifier.fillMaxWidth())
-                    Spacer(Modifier.height(Space.md))
-                }
-                val pv = vm.previewOrder(s, instrumentId, current, preset.fraction, fmt)
-                if (pv.error != null) {
-                    Text(pv.error, style = Aurum.type.body, color = c.warning)
-                } else {
-                    pv.lines.forEachIndexed { i, (k, v) ->
-                        if (i > 0) HairlineDivider(Modifier.padding(vertical = Space.xs))
-                        KeyValue(k, v)
+                if (current == OrderSide.Short) {
+                    if (ui.short == null) {
+                        Text("How much of your cash to put up as margin", style = Aurum.type.bodySmall, color = c.textSecondary)
+                        Spacer(Modifier.height(Space.xs))
+                        SegmentedSelector(Preset.entries, preset, { it.label }, { preset = it }, Modifier.fillMaxWidth())
+                        Spacer(Modifier.height(Space.md))
                     }
-                }
-                Spacer(Modifier.height(Space.md))
-                GoldButton(
-                    text = pv.actionLabel,
-                    enabled = pv.ok,
-                    onClick = {
-                        val cmd = when (current) {
-                            OrderSide.Buy -> Command.BuyInstrument(instrumentId, s.cash * Multiplier.ofDouble(preset.fraction))
-                            OrderSide.Sell -> Command.SellInstrument(instrumentId, (preset.fraction * 1000).toInt())
-                            OrderSide.Short -> if (ui.short != null) Command.CoverShort(instrumentId) else Command.OpenShort(instrumentId, s.cash * Multiplier.ofDouble(preset.fraction * SHORT_NOTIONAL))
+                    val pv = vm.previewOrder(s, instrumentId, current, preset.fraction, fmt)
+                    if (pv.error != null) Text(pv.error, style = Aurum.type.body, color = c.warning)
+                    else pv.lines.forEachIndexed { i, (k, v) -> if (i > 0) HairlineDivider(Modifier.padding(vertical = Space.xs)); KeyValue(k, v) }
+                    Spacer(Modifier.height(Space.md))
+                    GoldButton(
+                        text = pv.actionLabel, enabled = pv.ok,
+                        onClick = { vm.dispatch(if (ui.short != null) Command.CoverShort(instrumentId) else Command.OpenShort(instrumentId, s.cash * Multiplier.ofDouble(preset.fraction * SHORT_NOTIONAL))) },
+                        modifier = Modifier.fillMaxWidth(),
+                    )
+                } else {
+                    // Exact amounts: type dollars or units (2.5M, 300K and 1,000 all work), or tap a share of the maximum.
+                    val unitName = when (ui.assetClass) { AssetClass.Stock -> "Shares"; AssetClass.Fund -> "Units"; AssetClass.Crypto -> "Coins"; AssetClass.Bond -> "Notes"; AssetClass.Commodity -> "Units" }
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Text(if (current == OrderSide.Sell) "How much to sell" else "How much to buy", style = Aurum.type.bodySmall, color = c.textSecondary, modifier = Modifier.weight(1f))
+                        SegmentedSelector(listOf(false, true), byShares, { if (it) unitName else "Dollars" }, { byShares = it; input = "" })
+                    }
+                    Spacer(Modifier.height(Space.xs))
+                    com.arnavgames.tycoon.ui.common.AmountField(input, { input = it }, if (byShares) "Number of ${unitName.lowercase()}" else "Amount in dollars", prefix = if (byShares) null else "$")
+                    Spacer(Modifier.height(Space.xs))
+                    Row(horizontalArrangement = Arrangement.spacedBy(Space.xs)) {
+                        listOf("25%" to "0.25", "50%" to "0.5", "75%" to "0.75", "Max" to "1").forEach { (label, f) ->
+                            PillAction(label, true, {
+                                val mx = vm.marketsMapper.maxValue(s, instrumentId, current, byShares).multiply(java.math.BigDecimal(f))
+                                input = (if (byShares) mx.setScale(6, java.math.RoundingMode.DOWN) else mx.setScale(2, java.math.RoundingMode.DOWN)).stripTrailingZeros().toPlainString()
+                            }, style = PillStyle.Glass, modifier = Modifier.weight(1f))
                         }
-                        vm.dispatch(cmd)
-                    },
-                    modifier = Modifier.fillMaxWidth(),
-                )
+                    }
+                    val tk = remember(input, byShares, current, s.market.tick, s.cash, s.market.holdings[instrumentId]) {
+                        vm.marketsMapper.ticket(s, instrumentId, current, byShares, parseAmount(input), fmt)
+                    }
+                    tk.maxNote?.let { Spacer(Modifier.height(Space.xs)); Text(it, style = Aurum.type.label, color = c.textTertiary) }
+                    Spacer(Modifier.height(Space.md))
+                    if (tk.ui.error != null) Text(tk.ui.error, style = Aurum.type.body, color = c.warning)
+                    else tk.ui.lines.forEachIndexed { i, (k, v) -> if (i > 0) HairlineDivider(Modifier.padding(vertical = Space.xs)); KeyValue(k, v) }
+                    Spacer(Modifier.height(Space.md))
+                    GoldButton(
+                        text = tk.ui.actionLabel, enabled = tk.ui.ok && tk.command != null,
+                        onClick = { tk.command?.let { cmd -> vm.dispatch(cmd) { input = "" } } },
+                        modifier = Modifier.fillMaxWidth().testTag("trade-go"),
+                    )
+                }
                 Spacer(Modifier.height(Space.xs))
                 Text("Orders fill at the current price plus slippage. Fees are 0.1%; realised gains pay 10% tax.", style = Aurum.type.bodySmall, color = c.textTertiary)
             }

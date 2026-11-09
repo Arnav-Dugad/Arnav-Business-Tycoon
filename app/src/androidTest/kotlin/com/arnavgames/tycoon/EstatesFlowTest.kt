@@ -57,25 +57,22 @@ class EstatesFlowTest {
 
     @Test
     fun mapCityDistrictBuyRentRenovate() {
-        waitForText("Main Street", timeout = 30_000)
+        waitForText("Your businesses", timeout = 30_000)
         rule.onNodeWithContentDescription("Estates", substring = true).performClick()
         waitForText("PROPERTY")
         waitForText("The map")
 
-        // City list under the map → Lisbon → its first district.
+        // City list under the map → Lisbon, whose properties for sale are listed directly (no districts).
         scrollTo("Lisbon")
-        clickText("districts")
-        waitForText("Districts")
-        scrollTo("yield")
-        clickText("yield")
-        waitForText("Listings")
+        clickText("neighbourhoods")
+        waitForText("For sale")
 
         // Select the first listing and buy it.
-        scrollTo("Condition")
-        clickText("Size ×")
+        scrollTo("a day ·")
+        clickText("a day ·")
         scrollTo("Buy ·")
         rule.onNode(hasText("Buy ·", substring = true) and isEnabled()).performSemanticsAction(SemanticsActions.OnClick)
-        waitForText("You own here")
+        waitForText("Yours in Lisbon")
 
         // Open it, change the rent, start a renovation.
         scrollTo("Finding a tenant")

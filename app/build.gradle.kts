@@ -16,7 +16,7 @@ if (hasFirebaseConfig) {
 
 // Semantic version. versionCode = major*10000 + minor*100 + patch.
 // -Pabt.versionOverride=1.1.1 builds another version (used only by the auto-update end-to-end test).
-val versionParts = (providers.gradleProperty("abt.versionOverride").orNull ?: "1.6.0").split('.').map { it.toInt() }
+val versionParts = (providers.gradleProperty("abt.versionOverride").orNull ?: "1.7.0").split('.').map { it.toInt() }
 val versionMajor = versionParts[0]
 val versionMinor = versionParts[1]
 val versionPatch = versionParts[2]

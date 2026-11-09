@@ -571,6 +571,15 @@ Evidence: core 176/176, sim 3/3, app 29/29 JVM tests (including `NotificationPla
 - Emulator rules tests passed 15 of 15. The deployed rules match the repo (deploy skipped the upload as unchanged).
 - Owner-side metadata check: 1 cloud save (rev 24, fresh), plus 1 profile, 1 leaderboard entry and 1 friend code.
 
+## 1.7.0 (owner request 2026-11-09 night): exact trading, businesses-only Empire, cities without districts
+- Markets: an exact-amount ticket (dollars or shares, with K/M/B/T shorthand) with 25/50/75%/Max chips and a live preview.
+  - Core `BuyShares`/`SellShares` commands; over-limit buys are trimmed to the 49% cap (`roomToBuy`) instead of being rejected.
+- Sorting: one sort menu (a dropdown listing every order, the current one ticked) everywhere.
+- Empire shows only businesses. The next move, the Chairman and the crown moved to Goals; HQ and the merger tree moved to a new Company page (More door + link on Empire).
+- Estates: a city lists everything for sale and everything you own there, each tagged with neighbourhood and trend, with sort and type filters. The district pages are no longer reachable.
+- Removed (owner choice): the Market Timing mini-game and Seasons (the season track, XP lines and season pass). The engine state stays so saves load.
+- The economy rebuild to real-world money (owner choice) is next, in 1.8.0, with a save conversion.
+
 ## 1.6.0 (owner request 2026-11-09: images for everything incl. stocks; rearrange pages, a new tab, redesign More, overhaul store and achievements)
 **Navigation**
 - Six tabs: Counter, Empire, Markets, Estates, **Goals** (new) and More.

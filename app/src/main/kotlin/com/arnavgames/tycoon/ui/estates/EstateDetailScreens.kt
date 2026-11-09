@@ -24,6 +24,8 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
@@ -63,13 +65,38 @@ private fun KV(key: String, value: String, divider: Boolean = false, color: andr
     }
 }
 
-/** A city: its districts with their cycle, yield and a 24-hour index sparkline. */
+/**
+ * A city: everything for sale there and everything you own there, in one list (owner request 2026-11-09: no
+ * districts to drill through). Each listing names its neighbourhood and that area's price trend; sort by price,
+ * rent yield or newest, and filter by kind of property.
+ */
 @Composable
-fun CityScreen(vm: GameViewModel, cityId: String, onBack: () -> Unit, onOpenDistrict: (String) -> Unit) {
+fun CityScreen(vm: GameViewModel, cityId: String, onBack: () -> Unit, onOpenProperty: (Long) -> Unit) {
     val state by vm.state.collectAsStateWithLifecycle()
+    val settings by vm.settings.collectAsStateWithLifecycle()
+    val fmt: (Money) -> String = { MoneyFormat.compact(it, vm.notation(settings)) }
     val s = state ?: return
     val ui = remember(s.simTimeMs / 60_000, s.progress.chapter, s.estate.districtBoost) { vm.city(s, cityId) } ?: return
+    val areas = remember(s.simTimeMs / 60_000, s.estate.properties, s.estate.boughtListings, s.cash, s.progress.chapter) {
+        ui.districts.mapNotNull { vm.district(s, it.id) }
+    }
+    var sort by com.arnavgames.tycoon.ui.common.rememberPref("city.sort", "yield")
+    var kind by rememberSaveable { mutableStateOf("all") }
+    var selected by rememberSaveable { mutableStateOf<String?>(null) }
+    var ltv by rememberSaveable { mutableStateOf(0.0) }
+    var insured by rememberSaveable { mutableStateOf(false) }
     val c = Aurum.colors
+    val owned = areas.flatMap { it.owned }
+    val listings = areas.flatMap { a -> a.listings.map { a to it } }
+    val kinds = listings.map { it.second.typeId to it.second.type }.distinct().sortedBy { it.second }
+    val shown = listings.filter { kind == "all" || it.second.typeId == kind }.let { l ->
+        when (sort) {
+            "cheap" -> l.sortedBy { it.second.price }
+            "pricey" -> l.sortedByDescending { it.second.price }
+            "deal" -> l.sortedBy { it.second.discount }
+            else -> l.sortedByDescending { it.second.rentPerDay.ratioTo(it.second.price) }
+        }
+    }
     GlassScaffold(title = ui.name, onBack = onBack) {
         item(key = "hero") { com.arnavgames.tycoon.ui.common.Illustration(com.arnavgames.tycoon.ui.common.Art.city(ui.id), Modifier.fillMaxWidth().height(180.dp).clip(com.arnavgames.tycoon.designsystem.theme.AurumShapes.large)) }
         item(key = "about") {
@@ -78,31 +105,116 @@ fun CityScreen(vm: GameViewModel, cityId: String, onBack: () -> Unit, onOpenDist
                 if (!ui.unlocked) {
                     Spacer(Modifier.height(Space.sm))
                     AurumChip("Opens in chapter ${ui.chapter}", icon = AbtIcons.Lock)
-                }
-            }
-        }
-        item(key = "d-h") { SectionHeader("Districts") }
-        item(key = "districts") {
-            AurumCard(Modifier.fillMaxWidth(), contentPadding = PaddingValues(vertical = Space.xs)) {
-                ui.districts.forEachIndexed { i, d ->
-                    if (i > 0) HairlineDivider(Modifier.padding(start = Space.md))
-                    Row(
-                        Modifier.fillMaxWidth().clickable(role = Role.Button) { onOpenDistrict(d.id) }.heightIn(min = Space.touch + 12.dp)
-                            .padding(horizontal = Space.md, vertical = Space.sm).semantics(mergeDescendants = true) {},
-                        verticalAlignment = Alignment.CenterVertically,
-                    ) {
-                        com.arnavgames.tycoon.ui.common.Illustration(com.arnavgames.tycoon.ui.common.Art.district(d.id), Modifier.size(64.dp, 48.dp).clip(AurumShapes.small), fallback = com.arnavgames.tycoon.ui.common.Art.city(ui.id))
-                        Spacer(Modifier.width(Space.md))
-                        Column(Modifier.weight(1f)) {
-                            Text(d.name, style = Aurum.type.titleSmall, color = c.textPrimary)
-                            Text("${d.tier} · ${pct(d.yieldPerDay)} rent a day" + if (d.cbd) " · offices" else "", style = Aurum.type.bodySmall, color = c.textTertiary, maxLines = 1, overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis)
-                            Text(d.cycle + cycleHint(d.cycle), style = Aurum.type.bodySmall, color = cycleColor(d.cycle), maxLines = 1, overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis)
-                        }
-                        // The painting carries the identity; the signed arrow carries the trend (the sparkline lives on the district page).
-                        ChangeLabel(d.change24h * 100)
+                } else {
+                    Spacer(Modifier.height(Space.sm))
+                    // The city's market at a glance: the average trend across its neighbourhoods.
+                    val avg = if (ui.districts.isEmpty()) 0.0 else ui.districts.sumOf { it.change24h } / ui.districts.size
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Text("Prices today", style = Aurum.type.bodySmall, color = c.textSecondary, modifier = Modifier.weight(1f))
+                        ChangeLabel(avg * 100)
                     }
                 }
             }
+        }
+        if (owned.isNotEmpty()) {
+            item(key = "own-h") { SectionHeader("Yours in ${ui.name} (${owned.size})") }
+            item(key = "own") {
+                AurumCard(Modifier.fillMaxWidth(), contentPadding = PaddingValues(vertical = Space.xs)) {
+                    owned.forEachIndexed { i, p ->
+                        if (i > 0) HairlineDivider(Modifier.padding(start = 64.dp))
+                        PropertyRow(p, fmt) { onOpenProperty(p.id) }
+                    }
+                }
+            }
+        }
+        if (ui.unlocked) {
+            item(key = "list-h") {
+                Column {
+                    SectionHeader("For sale (${shown.size})") {
+                        com.arnavgames.tycoon.ui.common.SortToggle(
+                            listOf(
+                                com.arnavgames.tycoon.ui.common.Choice("yield", "Best rent yield"), com.arnavgames.tycoon.ui.common.Choice("cheap", "Cheapest"),
+                                com.arnavgames.tycoon.ui.common.Choice("pricey", "Most expensive"), com.arnavgames.tycoon.ui.common.Choice("deal", "Biggest discount"),
+                            ),
+                            sort, { sort = it }, Modifier.testTag("city-sort"),
+                        )
+                    }
+                    if (kinds.size > 1) {
+                        androidx.compose.foundation.layout.Row(Modifier.fillMaxWidth().horizontalScroll(androidx.compose.foundation.rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(Space.xs)) {
+                            PillAction("All", true, { kind = "all" }, style = if (kind == "all") PillStyle.Gold else PillStyle.Glass)
+                            kinds.forEach { (id, name) -> PillAction(name, true, { kind = if (kind == id) "all" else id }, style = if (kind == id) PillStyle.Gold else PillStyle.Glass) }
+                        }
+                    }
+                }
+            }
+            val refresh = areas.minOfOrNull { it.refreshInMinutes } ?: 0
+            if (shown.isEmpty()) item(key = "none") { AurumCard(Modifier.fillMaxWidth()) { Text("Nothing for sale right now. New listings arrive in ${EstatesMapper.mins(refresh * 60_000)}.", style = Aurum.type.body, color = c.textSecondary) } }
+            shown.forEach { (area, l) ->
+                item(key = l.id) {
+                    ListingCard(vm, area, l, fmt, selected == l.id, { selected = if (selected == l.id) null else l.id }, ltv, { ltv = it }, insured, { insured = it }) { selected = null }
+                }
+            }
+        }
+    }
+}
+
+/** One property for sale: what it is, where, its price and rent; tap to choose financing and buy. */
+@Composable
+private fun ListingCard(
+    vm: GameViewModel, area: DistrictUi, l: ListingUi, fmt: (Money) -> String, open: Boolean, onToggle: () -> Unit,
+    ltv: Double, onLtv: (Double) -> Unit, insured: Boolean, onInsured: (Boolean) -> Unit, onBought: () -> Unit,
+) {
+    val c = Aurum.colors
+    AurumCard(Modifier.fillMaxWidth().testTag("listing-${l.id}"), highlighted = open, onClick = onToggle) {
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            com.arnavgames.tycoon.ui.common.Illustration(
+                com.arnavgames.tycoon.ui.common.Art.property(l.typeId), Modifier.size(72.dp, 52.dp).clip(com.arnavgames.tycoon.designsystem.theme.AurumShapes.small),
+            )
+            Spacer(Modifier.width(Space.md))
+            Column(Modifier.weight(1f)) {
+                Text(l.type, style = Aurum.type.titleSmall, color = c.textPrimary, maxLines = 1)
+                Text(area.name + if (area.cbd) " · business district" else "", style = Aurum.type.bodySmall, color = c.textSecondary, maxLines = 1, overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis)
+                Text("Rent ${fmt(l.rentPerDay)} a day · ${pct(l.rentPerDay.ratioTo(l.price), 1)}", style = Aurum.type.bodySmall, color = c.gain, maxLines = 1)
+            }
+            Column(horizontalAlignment = Alignment.End) {
+                Text(fmt(l.price), style = Aurum.type.numberSmall, color = c.textPrimary)
+                if (l.distressed) AurumChip("−${((1 - l.discount) * 100).toInt()}%", tint = c.warning)
+                else ChangeLabel(area.change24h * 100)
+            }
+        }
+        if (open) {
+            Spacer(Modifier.height(Space.md))
+            KV("Condition", "${l.condition / 10}%" + if (l.distressed) " · renovate to flip it" else "")
+            KV("Area market", area.cycle + cycleHint(area.cycle), divider = true, color = cycleColor(area.cycle))
+            Spacer(Modifier.height(Space.md))
+            if (area.lockedReason != null) {
+                Text(area.lockedReason, style = Aurum.type.body, color = c.textSecondary)
+                return@AurumCard
+            }
+            if (area.mortgagesUnlocked) {
+                Text("Mortgage", style = Aurum.type.bodySmall, color = c.textSecondary)
+                Spacer(Modifier.height(Space.xs))
+                SegmentedSelector(area.ltvOptions, ltv, { if (it == 0.0) "Cash" else "${(it * 100).toInt()}%" }, onLtv, Modifier.fillMaxWidth())
+                Spacer(Modifier.height(Space.sm))
+            }
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                AbtIcon(AbtIcons.Umbrella, null, tint = c.goldText, size = 16.dp)
+                Spacer(Modifier.width(Space.xs))
+                Text("Insure against disasters", style = Aurum.type.bodySmall, color = c.textSecondary, modifier = Modifier.weight(1f))
+                AurumToggle(insured, onInsured)
+            }
+            Spacer(Modifier.height(Space.sm))
+            val chosen = if (area.mortgagesUnlocked) ltv else 0.0
+            val need = l.cashNeeded[chosen] ?: l.cashNeeded.getValue(0.0)
+            KV("Price", fmt(l.price))
+            KV("You pay now (incl. 3% costs)", fmt(need), divider = true)
+            Spacer(Modifier.height(Space.md))
+            GoldButton(
+                text = if (area.cash >= need) "Buy · ${fmt(need)}" else "Need ${fmt(need - area.cash)} more",
+                enabled = area.cash >= need,
+                onClick = { vm.dispatch(Command.BuyProperty(l.id, chosen, insured)) { onBought() } },
+                modifier = Modifier.fillMaxWidth().testTag("buy-listing"),
+            )
         }
     }
 }

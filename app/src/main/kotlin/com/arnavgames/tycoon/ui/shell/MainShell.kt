@@ -55,8 +55,8 @@ fun MainShell(
     onOpenStore: () -> Unit = {},
     onOpenAccount: () -> Unit = {},
     onOpenSocial: () -> Unit = {},
-    onOpenTiming: () -> Unit = {},
     onOpenSlots: () -> Unit = {},
+    onOpenCompany: () -> Unit = {},
     onOpenCheats: () -> Unit = {},
 ) {
     // Chosen once the game has loaded: a brand-new player starts at the Counter, everyone else on Empire.
@@ -85,7 +85,7 @@ fun MainShell(
         NavItem("empire", "Empire", AbtIcons.Empire, badge = cardsWaiting || empireBadge),
         NavItem("markets", "Markets", AbtIcons.Markets),
         NavItem("estates", "Estates", AbtIcons.Estates, badge = decisions),
-        // Goals: every reward in one tab (daily reward, chapter, today, this week, season, achievements).
+        // Goals: every reward in one tab (daily reward, chapter, today, this week, achievements).
         NavItem("goals", "Goals", AbtIcons.Trophy, badge = dynastyBadge || claimable),
         NavItem("more", "More", AbtIcons.Menu, badge = auctionLive),
     )
@@ -110,11 +110,14 @@ fun MainShell(
                 "counter" -> com.arnavgames.tycoon.ui.counter.CounterScreen(vm, guide = e?.let { com.arnavgames.tycoon.ui.empire.counterGuide(it) })
                 "empire" -> EmpireScreen(
                     vm, onOpenBusiness = onOpenBusiness, onOpenDesk = onOpenDesk, onOpenFortune = onOpenFortune, onOpenFinance = onOpenFinance,
-                    onSwitchTab = switchTo, focus = businessFocus, onFocusDone = { businessFocus = null },
+                    onSwitchTab = switchTo, focus = businessFocus, onFocusDone = { businessFocus = null }, onOpenCompany = onOpenCompany,
                 )
-                "markets" -> MarketsScreen(vm, onOpenInstrument = onOpenInstrument, onOpenNews = onOpenNews, onOpenTiming = onOpenTiming)
+                "markets" -> MarketsScreen(vm, onOpenInstrument = onOpenInstrument, onOpenNews = onOpenNews)
                 "estates" -> com.arnavgames.tycoon.ui.estates.EstatesScreen(vm, onOpenCity = onOpenCity, onOpenProperty = onOpenProperty)
-                "goals" -> com.arnavgames.tycoon.ui.dynasty.GoalsScreen(vm, onOpenAchievements = onOpenAchievements, onOpenDynasty = { morePage = "dynasty"; chosenTab = "more" })
+                "goals" -> com.arnavgames.tycoon.ui.dynasty.GoalsScreen(
+                    vm, onOpenAchievements = onOpenAchievements, onOpenDynasty = { morePage = "dynasty"; chosenTab = "more" },
+                    onOpenBusiness = onOpenBusiness, onSwitchTab = switchTo, onOpenCompany = onOpenCompany,
+                )
                 else -> when (page) {
                     "collection" -> com.arnavgames.tycoon.ui.collection.CollectionScreen(vm, onOpenCategory = onOpenLuxuryCategory, onOpenAuction = onOpenAuction, onBack = { morePage = "hub" })
                     "dynasty" -> DynastyScreen(
@@ -126,7 +129,7 @@ fun MainShell(
                         onOpenStore = onOpenStore, onOpenAchievements = onOpenAchievements, onOpenSocial = onOpenSocial, onOpenAccount = onOpenAccount,
                         onOpenSettings = onOpenSettings, onOpenCredits = onOpenCredits,
                         onOpenDesk = onOpenDesk, onOpenFortune = onOpenFortune, onOpenFinance = onOpenFinance,
-                        onOpenSlots = onOpenSlots, onOpenCheats = onOpenCheats,
+                        onOpenSlots = onOpenSlots, onOpenCheats = onOpenCheats, onOpenCompany = onOpenCompany,
                     )
                 }
             }

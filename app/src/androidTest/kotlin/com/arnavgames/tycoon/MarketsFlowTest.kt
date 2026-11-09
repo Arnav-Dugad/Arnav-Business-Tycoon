@@ -61,7 +61,7 @@ class MarketsFlowTest {
     @Test
     fun buySellAndShortLock() {
         // The scenario finishes Chapter 1, which opens the exchange.
-        waitForText("Main Street", timeout = 30_000)
+        waitForText("Your businesses", timeout = 30_000)
         rule.onNodeWithContentDescription("Markets", substring = true).performClick()
         waitForText("PORTFOLIO")
         waitForText("Exchange")
@@ -70,6 +70,9 @@ class MarketsFlowTest {
         scrollTo("· Defensive")
         rule.onAllNodesWithText("· Defensive", substring = true).onFirst().performSemanticsAction(SemanticsActions.OnClick)
         waitForText("24-hour change")
+        // Choose an amount (a quarter of the maximum), then buy.
+        scrollTo("How much to buy")
+        rule.onNodeWithText("25%").performClick()
         scrollTo("Buy ·")
         rule.onNode(hasText("Buy ·", substring = true) and isEnabled()).performClick()
 
@@ -77,6 +80,8 @@ class MarketsFlowTest {
         waitForText("Your position")
         waitForText("Gain or loss")
         rule.onNodeWithContentDescription("Back").performClick()
+        rule.waitForIdle()
+        rule.onAllNodes(hasScrollAction()).onFirst().performScrollToNode(hasText("Your positions", substring = true, ignoreCase = true))
         waitForText("Your positions")
         scrollTo("· Defensive")
         rule.onAllNodesWithText("· Defensive", substring = true).onFirst().performSemanticsAction(SemanticsActions.OnClick)

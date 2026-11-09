@@ -275,6 +275,84 @@ class MarketsMapper(private val engine: GameEngine) {
         }
     }
 
+    /** What the ticket would do, and the command that does it. */
+    data class Ticket(val ui: OrderPreviewUi, val command: com.arnavgames.tycoon.core.engine.Command?, val maxNote: String? = null)
+
+    /**
+     * The exact-amount ticket: [value] is dollars or [byShares] units. Buying above the 49% ownership limit is trimmed
+     * to it (and says so); selling more than you hold sells it all.
+     */
+    fun ticket(s: GameState, id: String, side: OrderSide, byShares: Boolean, value: java.math.BigDecimal?, fmt: (Money) -> String): Ticket {
+        val t = engine.trading
+        val math = engine.market.math
+        val price = math.priceMicros(s, id) ?: return Ticket(OrderPreviewUi(false, "The market has not opened yet", emptyList(), side.name), null)
+        val unit = unitWord(m.instrumentById.getValue(id).assetClass)
+        val room = t.roomToBuy(s, id)
+        val maxNote = when (side) {
+            OrderSide.Buy -> room?.let { r -> if (r.isPositive) "You can own up to ${(m.config.maxStake * 100).toInt()}%: ${fmtQty(r.toDouble())} more $unit (about ${fmt(r.valueAt(price))})" else "You own the most allowed (${(m.config.maxStake * 100).toInt()}%)" }
+            OrderSide.Sell -> s.market.holdings[id]?.let { "You hold ${fmtQty(it.qty.toDouble())} $unit" }
+            OrderSide.Short -> null
+        }
+        if (value == null || value.signum() <= 0) return Ticket(OrderPreviewUi(false, null, emptyList(), if (side == OrderSide.Sell) "Sell" else "Buy"), null, maxNote)
+        fun qtyOf(v: java.math.BigDecimal) = com.arnavgames.tycoon.core.state.Qty(v.movePointRight(6).setScale(0, java.math.RoundingMode.DOWN).toBigInteger())
+        // Dollars → units at the current price (selling), for an exact quantity.
+        fun qtyForDollars(v: java.math.BigDecimal) = qtyOf(v.divide(java.math.BigDecimal(price).movePointLeft(6), 6, java.math.RoundingMode.DOWN))
+        val (r, cmd) = when (side) {
+            OrderSide.Buy -> if (byShares) {
+                val q = qtyOf(value)
+                t.previewBuyShares(s, id, q) to com.arnavgames.tycoon.core.engine.Command.BuyShares(id, q.micro)
+            } else {
+                val amount = Money.ofDollars(value)
+                t.previewBuy(s, id, amount) to com.arnavgames.tycoon.core.engine.Command.BuyInstrument(id, amount)
+            }
+            OrderSide.Sell -> {
+                val raw = if (byShares) qtyOf(value) else qtyForDollars(value)
+                // Within 0.1% of the whole position (a price tick since you tapped Max): sell it all, never leave dust.
+                val held = s.market.holdings[id]?.qty
+                val q = if (held != null && raw.micro.multiply(java.math.BigInteger.valueOf(1000)) >= held.micro.multiply(java.math.BigInteger.valueOf(999))) held else raw
+                t.previewSellQty(s, id, q) to com.arnavgames.tycoon.core.engine.Command.SellShares(id, q.micro)
+            }
+            OrderSide.Short -> return Ticket(preview(s, id, side, 0.25, fmt), null)
+        }
+        return when (r) {
+            is Trading.Result.Err -> Ticket(OrderPreviewUi(false, com.arnavgames.tycoon.ui.GameViewModel.errorText(r.error), emptyList(), side.name), null, maxNote)
+            is Trading.Result.Ok -> {
+                val p = r.preview
+                if (side == OrderSide.Buy && p.gross > s.cash) {
+                    Ticket(OrderPreviewUi(false, "That costs ${fmt(p.gross)}; you have ${fmt(s.cash)}.", emptyList(), "Buy"), null, maxNote)
+                } else {
+                    var ui = withSlippageWarning(p.slippage, previewOk(r, id, side, s, fmt))
+                    if (p.trimmed) ui = ui.copy(lines = listOf("Trimmed" to "to the ${(m.config.maxStake * 100).toInt()}% ownership limit") + ui.lines)
+                    // Buying a dollar amount: the order that runs is exactly the quantity shown (it never re-trims).
+                    val finalCmd = if (side == OrderSide.Buy) com.arnavgames.tycoon.core.engine.Command.BuyShares(id, p.quantity.micro) else cmd
+                    Ticket(ui, finalCmd, maxNote)
+                }
+            }
+        }
+    }
+
+    /** The largest sensible value for the Max chip: all your cash (or room under the limit), or your whole position. */
+    fun maxValue(s: GameState, id: String, side: OrderSide, byShares: Boolean): java.math.BigDecimal {
+        val math = engine.market.math
+        val price = math.priceMicros(s, id) ?: return java.math.BigDecimal.ZERO
+        val p = java.math.BigDecimal(price).movePointLeft(6)
+        return when (side) {
+            OrderSide.Sell -> {
+                val q = s.market.holdings[id]?.qty ?: return java.math.BigDecimal.ZERO
+                val units = java.math.BigDecimal(q.micro).movePointLeft(6)
+                if (byShares) units else units.multiply(p).setScale(2, java.math.RoundingMode.DOWN)
+            }
+            else -> {
+                // Cash, less a little for fees and slippage; capped by the ownership limit.
+                val cash = java.math.BigDecimal(s.cash.cents).movePointLeft(2).multiply(java.math.BigDecimal("0.97"))
+                val room = engine.trading.roomToBuy(s, id)?.let { java.math.BigDecimal(it.micro).movePointLeft(6) }
+                val unitsByCash = cash.divide(p, 6, java.math.RoundingMode.DOWN)
+                val units = room?.min(unitsByCash) ?: unitsByCash
+                if (byShares) units else units.multiply(p).setScale(2, java.math.RoundingMode.DOWN)
+            }
+        }
+    }
+
     private fun withSlippageWarning(slippage: Double, ui: OrderPreviewUi): OrderPreviewUi =
         if (slippage <= 0.02) ui else ui.copy(lines = ui.lines + ("Warning" to "large order: ${String.format(Locale.US, "%.1f%%", slippage * 100)} lost to slippage. Smaller orders fill better."))
 

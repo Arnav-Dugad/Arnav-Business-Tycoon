@@ -66,6 +66,7 @@ import kotlinx.coroutines.flow.first
 @Serializable object CreditsRoute
 @Serializable object CheatsRoute
 @Serializable object SlotsRoute
+@Serializable object CompanyRoute
 @Serializable data class InstrumentRoute(val id: String)
 @Serializable object NewsRoute
 @Serializable data class CityRoute(val id: String)
@@ -84,7 +85,6 @@ import kotlinx.coroutines.flow.first
 @Serializable object StoreRoute
 @Serializable object AccountRoute
 @Serializable object SocialRoute
-@Serializable object TimingRoute
 
 @Composable
 fun AppRoot(vm: GameViewModel, forcedTheme: ThemeMode?, onDarkChanged: (Boolean) -> Unit) {
@@ -210,6 +210,7 @@ private fun ReadyContent(vm: GameViewModel) {
                         onOpenAuction = { nav.navigate(AuctionRoute) },
                         onOpenDesk = { nav.navigate(DeskRoute) },
                         onOpenSlots = { nav.navigate(SlotsRoute) },
+                        onOpenCompany = { nav.navigate(CompanyRoute) },
                         onOpenCheats = { nav.navigate(CheatsRoute) },
                         onOpenFortune = { nav.navigate(FortuneRoute) },
                         onOpenFinance = { nav.navigate(FinanceRoute) },
@@ -218,10 +219,8 @@ private fun ReadyContent(vm: GameViewModel) {
                         onOpenStore = { nav.navigate(StoreRoute) },
                         onOpenAccount = { nav.navigate(AccountRoute) },
                         onOpenSocial = { nav.navigate(SocialRoute) },
-                        onOpenTiming = { nav.navigate(TimingRoute) },
                     )
                 }
-                composable<TimingRoute> { com.arnavgames.tycoon.ui.markets.MarketTimingScreen(vm, onBack = { nav.popBackStack() }) }
                 composable<SocialRoute> { com.arnavgames.tycoon.ui.social.SocialScreen(vm, onBack = { nav.popBackStack() }, onOpenAccount = { nav.navigate(AccountRoute) }) }
                 composable<AccountRoute> { com.arnavgames.tycoon.ui.account.AccountScreen(vm, onBack = { nav.popBackStack() }) }
                 composable<StoreRoute> { com.arnavgames.tycoon.ui.store.StoreScreen(vm, onBack = { nav.popBackStack() }, onOpenGoals = { vm.requestTab("goals"); nav.popBackStack(MainRoute, inclusive = false) }) }
@@ -240,7 +239,7 @@ private fun ReadyContent(vm: GameViewModel) {
                 }
                 composable<AuctionRoute> { com.arnavgames.tycoon.ui.collection.AuctionScreen(vm, onBack = { nav.popBackStack() }) }
                 composable<CityRoute> { entry ->
-                    com.arnavgames.tycoon.ui.estates.CityScreen(vm, entry.toRoute<CityRoute>().id, onBack = { nav.popBackStack() }, onOpenDistrict = { nav.navigate(DistrictRoute(it)) })
+                    com.arnavgames.tycoon.ui.estates.CityScreen(vm, entry.toRoute<CityRoute>().id, onBack = { nav.popBackStack() }, onOpenProperty = { nav.navigate(PropertyRoute(it)) })
                 }
                 composable<DistrictRoute> { entry ->
                     com.arnavgames.tycoon.ui.estates.DistrictScreen(vm, entry.toRoute<DistrictRoute>().id, onBack = { nav.popBackStack() }, onOpenProperty = { nav.navigate(PropertyRoute(it)) })
@@ -259,6 +258,7 @@ private fun ReadyContent(vm: GameViewModel) {
                 }
                 composable<SettingsRoute> { SettingsScreen(vm = vm, onBack = { nav.popBackStack() }, onCredits = { nav.navigate(CreditsRoute) }, onCheats = { nav.navigate(CheatsRoute) }, onSlots = { nav.navigate(SlotsRoute) }) }
                 composable<CheatsRoute> { com.arnavgames.tycoon.ui.settings.CheatsScreen(vm, onBack = { nav.popBackStack() }, onOpenSlots = { nav.navigate(SlotsRoute) }) }
+                composable<CompanyRoute> { com.arnavgames.tycoon.ui.empire.CompanyScreen(vm, onBack = { nav.popBackStack() }) }
                 composable<SlotsRoute> { com.arnavgames.tycoon.ui.settings.SaveSlotsScreen(vm, onBack = { nav.popBackStack() }, onPlay = { nav.popBackStack(MainRoute, inclusive = false) }) }
                 composable<CreditsRoute> { CreditsScreen(onBack = { nav.popBackStack() }, artCredits = vm.artCreditLines(), portraitCount = vm.portraitCount() + vm.rivalPortraitCount()) }
             }

@@ -61,7 +61,7 @@ fun MoreScreen(
     onOpenStore: () -> Unit, onOpenAchievements: () -> Unit, onOpenSocial: () -> Unit, onOpenAccount: () -> Unit,
     onOpenSettings: () -> Unit, onOpenCredits: () -> Unit,
     onOpenDesk: () -> Unit = {}, onOpenFortune: () -> Unit = {}, onOpenFinance: () -> Unit = {},
-    onOpenSlots: () -> Unit = {}, onOpenCheats: () -> Unit = {},
+    onOpenSlots: () -> Unit = {}, onOpenCheats: () -> Unit = {}, onOpenCompany: () -> Unit = {},
 ) {
     val state by vm.state.collectAsStateWithLifecycle()
     val collection by vm.collection.collectAsStateWithLifecycle()
@@ -115,6 +115,9 @@ fun MoreScreen(
             DoorSpec("door-collection", AbtIcons.Collection, "Collection",
                 when { col == null -> ""; !col.unlocked -> "Opens in chapter ${col.unlockChapter}"; else -> "${col.tier} · ${fmt(col.value)}" },
                 col?.auction?.let { "Auction live" }, onOpenCollection, col?.unlocked == false, A.luxuryCategory("painting")),
+            DoorSpec("door-company", AbtIcons.Buildings, "Your company", "HQ level ${empire?.hq?.level ?: 1} · ${empire?.mergers?.count { it.formed } ?: 0} mergers",
+                empire?.let { e -> if (e.hq.canAfford && e.hq.nextCost != null) "Upgrade ready" else if (e.mergers.any { !it.formed && it.blocker == null && it.canAfford }) "Merger ready" else null },
+                onOpenCompany, false, A.property("office_floor")),
             DoorSpec("door-dynasty", AbtIcons.Crown, "Your Dynasty", "Generation ${dy.generation}" + if (dy.canPrestige) " · crown ready" else "",
                 if (dy.canPrestige) "Crown ready" else null, onOpenDynasty, false, A.chapter(8)),
             DoorSpec("menu-store", AbtIcons.Bullion, "Store", "${s.ledger.bullion.centsOrNull ?: 0} Bullion", null, onOpenStore, false, A.luxuryCategory("jewelry")),

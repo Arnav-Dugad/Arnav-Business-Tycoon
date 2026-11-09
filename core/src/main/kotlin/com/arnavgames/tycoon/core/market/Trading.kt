@@ -45,6 +45,8 @@ class Trading(private val engine: MarketEngine) {
         val tax: Money = Money.ZERO,
         val net: Money = gross,
         val realizedGain: Money = Money.ZERO,
+        /** The order was cut down to the ownership limit. */
+        val trimmed: Boolean = false,
     )
 
     private fun err(e: GameError) = Result.Err(e)
@@ -68,18 +70,66 @@ class Trading(private val engine: MarketEngine) {
         val fill = math.toMicros(price / 1e6 * (1 + slip))
         val qty = Qty.affordable(amount - fee, fill)
         if (!qty.isPositive) return err(GameError.Invalid("Order too small"))
-        if (math.assetClass(id) == AssetClass.Stock) {
-            val held = state.market.holdings[id]?.qty ?: Qty.ZERO
-            val max = math.outstanding(state, id).fraction((cfg.maxStake * 1_000_000).toLong(), 1_000_000)
-            if (held + qty > max) return err(GameError.Invalid("You can own at most ${(cfg.maxStake * 100).toInt()}% of a listed company"))
+        val room = roomToBuy(state, id)
+        if (room != null && qty > room) {
+            if (!room.isPositive) return err(GameError.Invalid("You already own the most allowed: ${(cfg.maxStake * 100).toInt()}% of the company"))
+            return previewBuyShares(state, id, room, trimmed = true)
         }
         return Result.Ok(state, OrderPreview(qty, amount, fee, slip, fill, net = amount - fee))
+    }
+
+    /** Shares you may still buy of a stock (the ownership cap), or null when there is no cap (funds, bonds, coins…). */
+    fun roomToBuy(state: GameState, id: String): Qty? {
+        if (math.assetClass(id) != AssetClass.Stock) return null
+        val held = state.market.holdings[id]?.qty ?: Qty.ZERO
+        val max = math.outstanding(state, id).fraction((cfg.maxStake * 1_000_000).toLong(), 1_000_000)
+        return if (max > held) max - held else Qty.ZERO
+    }
+
+    /**
+     * The cost of exactly [shares]: the fill price includes the slippage of an order that size, and the fee is on top.
+     * [trimmed] marks an order cut down to the ownership limit (the UI says so).
+     */
+    fun previewBuyShares(state: GameState, id: String, shares: Qty, trimmed: Boolean = false): Result {
+        gate(state, id)?.let { return err(it) }
+        if (!shares.isPositive) return err(GameError.Invalid("Choose at least a fraction of a share"))
+        val room = roomToBuy(state, id)
+        val qty = if (room != null && shares > room) room else shares
+        if (!qty.isPositive) return err(GameError.Invalid("You already own the most allowed: ${(cfg.maxStake * 100).toInt()}% of the company"))
+        val price = math.priceMicros(state, id)!!
+        val slip = math.slippage(state, id, qty.valueAt(price).toDollarsDouble())
+        val fill = math.toMicros(price / 1e6 * (1 + slip))
+        val net = qty.valueAt(fill)
+        val fee = net * Multiplier.ofDouble(cfg.feeRate)
+        val gross = net + fee
+        if (gross < Money.ofDollars(1)) return err(GameError.Invalid("Minimum order is \$1"))
+        return Result.Ok(state, OrderPreview(qty, gross, fee, slip, fill, net = net, trimmed = trimmed || qty < shares))
+    }
+
+    fun buyShares(state: GameState, id: String, shares: Qty, events: MutableList<GameEvent>): Result {
+        val p = previewBuyShares(state, id, shares)
+        if (p !is Result.Ok) return p
+        return settleBuy(state, id, p.preview, events)
+    }
+
+    /** Sells exactly [shares] (at most what you hold). */
+    fun sellShares(state: GameState, id: String, shares: Qty, events: MutableList<GameEvent>): Result {
+        val h = state.market.holdings[id] ?: return err(GameError.NotFound("You hold no $id"))
+        if (!shares.isPositive) return err(GameError.Invalid("Choose at least a fraction of a share"))
+        if (shares >= h.qty) return sell(state, id, 1000, events)
+        val p = previewSellQty(state, id, shares)
+        if (p !is Result.Ok) return p
+        return settleSell(state, id, p.preview, events)
     }
 
     fun buy(state: GameState, id: String, amount: Money, events: MutableList<GameEvent>): Result {
         val p = previewBuy(state, id, amount)
         if (p !is Result.Ok) return p
-        val pv = p.preview
+        return settleBuy(state, id, p.preview, events)
+    }
+
+    private fun settleBuy(state: GameState, id: String, pv: OrderPreview, events: MutableList<GameEvent>): Result {
+        val amount = pv.gross
         val posted = Ledger.post(
             state.ledger, state.simTimeMs, TxnCategory.Investment, "buy ${engine.tickerOf(id)}",
             listOf(Posting(Accounts.CASH, -amount), Posting(MarketEngine.INVESTMENTS, pv.net), Posting(Accounts.expense("market_fees"), pv.fee)),
@@ -105,6 +155,15 @@ class Trading(private val engine: MarketEngine) {
         if (permille !in 1..1000) return err(GameError.Invalid("permille"))
         val h = state.market.holdings[id] ?: return err(GameError.NotFound("You hold no $id"))
         val qty = if (permille == 1000) h.qty else h.qty.fraction(permille.toLong(), 1000)
+        return previewSellQty(state, id, qty)
+    }
+
+    /** Selling exactly [qty] (all of the position when it equals what you hold). */
+    fun previewSellQty(state: GameState, id: String, wanted: Qty): Result {
+        gate(state, id)?.let { return err(it) }
+        val h = state.market.holdings[id] ?: return err(GameError.NotFound("You hold no $id"))
+        val qty = if (wanted > h.qty) h.qty else wanted
+        val permille = if (qty >= h.qty) 1000 else 0
         if (!qty.isPositive) return err(GameError.Invalid("Order too small"))
         val price = math.priceMicros(state, id)!!
         val marketValue = qty.valueAt(price)
@@ -122,7 +181,10 @@ class Trading(private val engine: MarketEngine) {
     fun sell(state: GameState, id: String, permille: Int, events: MutableList<GameEvent>): Result {
         val p = previewSell(state, id, permille)
         if (p !is Result.Ok) return p
-        val pv = p.preview
+        return settleSell(state, id, p.preview, events)
+    }
+
+    private fun settleSell(state: GameState, id: String, pv: OrderPreview, events: MutableList<GameEvent>): Result {
         val h = state.market.holdings.getValue(id)
         val basis = pv.gross - pv.realizedGain
         val posted = Ledger.post(

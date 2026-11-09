@@ -57,7 +57,7 @@ class CrownFlowTest {
 
     @Test
     fun passTheCrownStartsGenerationTwo() {
-        waitForText("Desk", timeout = 60_000)
+        waitForText("Your businesses", timeout = 60_000)
         rule.onNodeWithContentDescription("More", substring = true).performClick()
         rule.waitForIdle()
         rule.onNodeWithTag("door-dynasty").performSemanticsAction(SemanticsActions.OnClick)

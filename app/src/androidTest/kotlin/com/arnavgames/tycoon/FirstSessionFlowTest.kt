@@ -32,7 +32,7 @@ class FirstSessionFlowTest {
     @get:Rule(order = 1) val rule = createAndroidComposeRule<MainActivity>()
 
     private fun waitForText(text: String, substring: Boolean = true, timeout: Long = 10_000) =
-        rule.waitUntil(timeout) { rule.onAllNodesWithText(text, substring = substring).fetchSemanticsNodes().isNotEmpty() }
+        rule.waitUntil(timeout) { rule.onAllNodesWithText(text, substring = substring, ignoreCase = true).fetchSemanticsNodes().isNotEmpty() }
 
     private fun tapCounter(times: Int) {
         val counter = rule.onNodeWithContentDescription("Serve a customer", substring = true)
@@ -78,18 +78,21 @@ class FirstSessionFlowTest {
         waitForText("Open your kiosk", timeout = 20_000)
         rule.onNodeWithText("Open your kiosk").performClick()
         waitForText("a customer")
-        nav("Empire")
-        rule.onNodeWithTag("empire-list").performScrollToNode(hasText("Claim $", substring = true))
+        // Story rewards are claimed on the Goals tab (the next-move card).
+        nav("Goals")
+        rule.onNodeWithTag("goals-list").performScrollToNode(hasText("Claim $", substring = true))
         waitForText("Claim $")
-        rule.onNodeWithText("Claim $", substring = true).performClick()
+        rule.onAllNodesWithText("Claim $", substring = true).onFirst().performClick()
 
-        // Serve customers on the Counter tab until the 60-customer mission completes, then claim its Favor on Empire.
+        // Serve customers on the Counter tab until the 60-customer mission completes, then claim its Favor on Goals.
         nav("Counter")
         tapCounter(60)
-        nav("Empire")
-        rule.onNodeWithTag("empire-list").performScrollToNode(hasText("Claim $", substring = true))
+        nav("Goals")
+        rule.onNodeWithTag("goals-list").performScrollToNode(hasText("Claim $", substring = true))
         waitForText("Claim $")
-        rule.onNodeWithText("Claim $", substring = true).performClick()
+        rule.onAllNodesWithText("Claim $", substring = true).onFirst().performClick()
+        // The Favor shows in the Empire header.
+        nav("Empire")
         rule.waitUntil(5_000) { rule.onAllNodes(hasContentDescription("5 Favor")).fetchSemanticsNodes().isNotEmpty() }
 
         // Buy levels on the Empire tab until Retail reaches level 5 (work the counter if cash runs out).

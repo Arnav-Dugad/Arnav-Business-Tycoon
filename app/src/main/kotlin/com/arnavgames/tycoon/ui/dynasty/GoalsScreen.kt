@@ -58,11 +58,16 @@ import java.util.Locale
 /**
  * The Goals tab: everything that pays you for playing, in one place and in the order you'll want it (docs/UX.md):
  * a single "Claim everything" when more than one reward is waiting, the daily reward as a 7-day strip, the chapter
- * you're on, today's and this week's goals, the season, and the achievements summary. Nothing here expires in a way
+ * you're on, today's and this week's goals, and the achievements summary. Nothing here expires in a way
  * that punishes you: a missed day pauses the reward ladder and never resets it.
  */
 @Composable
-fun GoalsScreen(vm: GameViewModel, onOpenAchievements: () -> Unit, onOpenDynasty: () -> Unit) {
+fun GoalsScreen(
+    vm: GameViewModel, onOpenAchievements: () -> Unit, onOpenDynasty: () -> Unit,
+    onOpenBusiness: (String) -> Unit = {}, onSwitchTab: (String) -> Unit = {}, onOpenCompany: () -> Unit = {},
+) {
+    val empire by vm.empire.collectAsStateWithLifecycle()
+    val mentorLine by vm.mentor.line.collectAsStateWithLifecycle()
     val state by vm.state.collectAsStateWithLifecycle()
     val settings by vm.settings.collectAsStateWithLifecycle()
     val s = state ?: return
@@ -72,7 +77,6 @@ fun GoalsScreen(vm: GameViewModel, onOpenAchievements: () -> Unit, onOpenDynasty
     val daily = remember(s.meta, s.simTimeMs / 10_000) { m.daily(s) }
     val weekly = remember(s.meta, s.simTimeMs / 10_000) { m.weekly(s) }
     val ladder = remember(s.meta, s.simTimeMs / 60_000) { m.ladder(s) }
-    val season = remember(s.meta, s.simTimeMs / 60_000) { m.season(s) }
     val achievements = remember(s.meta) { m.achievements(s) }
     val chapter = vm.engine.content.chapters.firstOrNull { it.number == s.progress.chapter }
     val list = rememberLazyListState()
@@ -84,7 +88,6 @@ fun GoalsScreen(vm: GameViewModel, onOpenAchievements: () -> Unit, onOpenDynasty
         s.progress.claimableMissions.sorted().forEach { add(Command.ClaimMission(it)) }
         daily.filter { it.done && !it.claimed }.forEach { add(Command.ClaimDaily(it.index)) }
         weekly.filter { it.done && !it.claimed }.forEach { add(Command.ClaimWeekly(it.index)) }
-        season.tiers.filter { it.reached && !it.claimed }.forEach { add(Command.ClaimSeasonTier(it.tier)) }
         achievements.filter { it.state == 1 }.forEach { add(Command.ClaimAchievement(it.id)) }
     }
 
@@ -107,6 +110,26 @@ fun GoalsScreen(vm: GameViewModel, onOpenAchievements: () -> Unit, onOpenDynasty
                 GoldButton("Claim everything · ${claims.size}", onClick = { vm.dispatchAll(claims, "Claimed ${claims.size} rewards") },
                     modifier = Modifier.fillMaxWidth().testTag("claim-everything"), leadingIcon = AbtIcons.Gift)
             }
+            // Your next move in the story, with "Show me" taking you straight to it (moved here from Empire).
+            empire?.mission?.let { mi ->
+                item(key = "next-move") {
+                    val go: (() -> Unit)? = mi.goTo?.let { target ->
+                        {
+                            when {
+                                target.startsWith("business:") -> onOpenBusiness(target.removePrefix("business:"))
+                                target == "counter" -> onSwitchTab("counter")
+                                target == "hq" -> onOpenCompany()
+                                target.startsWith("tab:") -> onSwitchTab(target.removePrefix("tab:"))
+                                target.startsWith("open:") -> onSwitchTab("businesses:$target")
+                                else -> onSwitchTab("businesses")
+                            }
+                        }
+                    }
+                    com.arnavgames.tycoon.ui.empire.NextMoveCard(mi, onClaim = { vm.dispatch(Command.ClaimMission(mi.id)) }, onGo = go)
+                }
+            }
+            empire?.crown?.let { cr -> item(key = "crown") { com.arnavgames.tycoon.ui.empire.CrownReadyCard(cr, onOpen = onOpenDynasty) } }
+            mentorLine?.let { l -> item(key = "mentor") { com.arnavgames.tycoon.ui.empire.MentorCard(vm.mentor.name, l.text, onDismiss = { vm.mentor.dismiss() }) } }
             item(key = "ladder") { LadderCard(ladder) { vm.dispatch(Command.ClaimDailyReward) } }
             chapter?.let { ch ->
                 item(key = "chapter") {
@@ -157,8 +180,6 @@ fun GoalsScreen(vm: GameViewModel, onOpenAchievements: () -> Unit, onOpenDynasty
                 }
                 item(key = "weekly") { MissionList(weekly, fmt, onClaim = { vm.dispatch(Command.ClaimWeekly(it)) }, onReroll = null) }
             }
-            item(key = "season-h") { SectionHeader("Season") }
-            item(key = "season") { SeasonCard(season, onClaim = { vm.dispatch(Command.ClaimSeasonTier(it)) }) }
             item(key = "ach") {
                 val done = achievements.count { it.state == 2 }
                 val ready = achievements.count { it.state == 1 }

@@ -86,7 +86,6 @@ fun DynastyScreen(
     val daily = remember(s.meta, s.simTimeMs / 10_000) { m.daily(s) }
     val weekly = remember(s.meta, s.simTimeMs / 10_000) { m.weekly(s) }
     val ladder = remember(s.meta, s.simTimeMs / 60_000) { m.ladder(s) }
-    val season = remember(s.meta, s.simTimeMs / 60_000) { m.season(s) }
     var ipoConfirm by remember { mutableStateOf<Double?>(null) }
     var avatarPicker by remember { mutableStateOf(false) }
     var explain by remember { mutableStateOf<com.arnavgames.tycoon.ui.common.Term?>(null) }
@@ -265,7 +264,7 @@ internal fun MissionList(items: List<MissionUi>, fmt: (Money) -> String, onClaim
                 Column(Modifier.weight(1f)) {
                     Text(m.title, style = Aurum.type.titleSmall, color = if (m.claimed) c.textTertiary else c.textPrimary)
                     Text(m.description, style = Aurum.type.bodySmall, color = c.textSecondary)
-                    Text(buildList { if (m.reward.isPositive) add("+" + fmt(m.reward)); if (m.bullion > 0) add("+${m.bullion} Bullion"); if (m.xp > 0) add("+${m.xp} season XP") }.joinToString(" · "),
+                    Text(buildList { if (m.reward.isPositive) add("+" + fmt(m.reward)); if (m.bullion > 0) add("+${m.bullion} Bullion") }.joinToString(" · "),
                         style = Aurum.type.label, color = c.goldText)
                     if (!m.done) { Spacer(Modifier.height(Space.xxs)); GoldProgress(m.progress, height = 3.dp, label = "${m.title} progress") }
                 }

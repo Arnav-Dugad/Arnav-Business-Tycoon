@@ -93,8 +93,11 @@ class ScreensTest(private val theme: String) {
             repeat(6) { rule.onNodeWithTag("counter-stage").performTouchInput { touchClick(center) }; rule.waitForIdle() }
             shot("02b_counter_tapping")
             tab("Empire")
-            waitText("Open for business")
+            waitText("Your businesses")
             shot("02c_empire_first_minute")
+            tab("Goals")
+            waitText("Open for business")
+            shot("02d_goals_first_minute")
         }
     }
 
