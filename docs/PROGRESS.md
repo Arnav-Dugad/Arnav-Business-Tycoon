@@ -498,7 +498,7 @@ Balance batch r12 (3 bots × 3 seeds × 10 days): 16 of 17, the same as 1.1.0; i
 
 Evidence: core 176/176, sim 3/3, app 29/29 JVM tests (including `NotificationPlannerTest`, where an 8-hour plan takes ~45 ms, and `DeskWordingTest` over every Desk card), screenshots 01–22 plus 15b in both themes reviewed; `check_release.py` PASS. **Not verified**: a notification actually posted on a device (the emulator is shared with another project tonight), and the instrumented UI suite on the 1.2 code.
 
-## 1.3 work (owner requests 2026-11-09), committed, not released yet
+## 1.3.0 (owner requests 2026-11-09): PUBLISHED 2026-11-09
 - **Offline earnings fix:** the owner's cloud save had earned nothing offline. Its clock high-water mark was 3.4 days in the future, after one bad clock reading, so offline time only counted after that date (sim time = play time = 14.31 h).
   - New clock rules: within a boot, real elapsed time comes from the monotonic clock; the mark only rises by verified time; after a reboot, a mark ahead of the clock is ignored.
   - Existing saves repair themselves on the next launch.
@@ -511,6 +511,12 @@ Evidence: core 176/176, sim 3/3, app 29/29 JVM tests (including `NotificationPla
 - **Empire tab:** holds the guide, Chairman, Next Move, crown, world tiles and every business, plus opening new ones, mergers and HQ. Tabs: Counter, Empire, Markets, Estates, More. New players start at the Counter.
 - **54 painted illustrations** (Figma AI, one gouache style, no text, logos or faces): businesses, cities, property types, chapters, collection categories and the welcome scene. They appear across Empire, Estates, Collection, More, business detail, mergers, HQ and the new welcome screen. 3.7 MB; credited (`docs/ART_PIPELINE.md` §3b).
 - **Writing:** shorter, plainer copy in the intros and the store. What's new for 1.3.0 is written.
+- **Updater:** when GitHub's API limit is hit (60 an hour per internet address; mobile networks share addresses), the updater falls back to the public release pages. "Check for updates" now says when a check failed instead of claiming "latest".
+- **Release:**
+  - Installed on the owner's phone over USB first; the hash was verified on the device.
+  - Published as v1.3.0: tag = build commit 971dc50; the download matches the digest.
+  - The fallback route was checked live.
+  - Golden saves for 1.3.0 were added: ReleaseSaveCompatibilityTest 32/32.
 - **Not verified:** the shader and multi-touch on a real phone (the JVM renderer has no GPU), and the on-device UI suite.
 
 ## Release gates (TEST_PLAN §7)
