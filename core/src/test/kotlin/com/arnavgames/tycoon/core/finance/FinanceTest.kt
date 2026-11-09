@@ -227,8 +227,10 @@ class FinanceTest {
     @Test
     fun taxBracketsAreProgressive() {
         assertEquals(0.15, credit.effectiveRate(Money.ofDollars(1_000_000)), 1e-9)
-        val mid = credit.effectiveRate(Money.ofDollars(1_000_000_000_000L * 10))
+        // Real-world brackets (1.8.0, per hour of income): 15% to $100M, 22% to $1B, 28% to $10B, 35% above.
+        val mid = credit.effectiveRate(Money.ofDollars(5_000_000_000L))
         assertTrue(mid in 0.22..0.28, "effective $mid")
-        assertEquals(0.28, credit.marginalRate(Money.ofDollars(1_000_000_000_000L * 10)), 1e-9)
+        assertEquals(0.28, credit.marginalRate(Money.ofDollars(5_000_000_000L)), 1e-9)
+        assertEquals(0.35, credit.marginalRate(Money.ofDollars(50_000_000_000L)), 1e-9)
     }
 }

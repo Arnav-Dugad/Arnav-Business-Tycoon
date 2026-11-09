@@ -66,6 +66,14 @@ import com.arnavgames.tycoon.ui.common.GlassScaffold
 import com.arnavgames.tycoon.ui.common.durationText
 import java.util.Locale
 
+/** 24,035,878 → "24.0M"; small numbers stay exact. */
+private fun compactCount(n: Long): String = when {
+    n >= 1_000_000_000L -> String.format(Locale.US, "%.1fB", n / 1e9)
+    n >= 1_000_000L -> String.format(Locale.US, "%.1fM", n / 1e6)
+    n >= 100_000L -> String.format(Locale.US, "%.0fK", n / 1e3)
+    else -> String.format(Locale.US, "%,d", n)
+}
+
 private fun fmtMult(x: Double) = "×" + String.format(Locale.US, if (x < 10) "%.2f" else "%,.0f", x)
 
 /** Missions, rewards, seasons, the Dynasty and the story (docs/GDD.md §12). */
@@ -156,9 +164,6 @@ fun DynastyScreen(
                 }
             }
             // Daily reward, goals, the season and achievements live on the Goals tab now.
-            item(key = "goals-link") {
-                PillAction("Daily reward and goals are on the Goals tab", true, { vm.requestTab("goals") }, style = PillStyle.Glass, modifier = Modifier.fillMaxWidth())
-            }
             if (!legacyMatters) item(key = "legacy-teaser") {
                 AurumCard(Modifier.fillMaxWidth(), onClick = { explain = com.arnavgames.tycoon.ui.common.Term.Legacy }) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
@@ -335,7 +340,7 @@ fun AchievementsScreen(vm: GameViewModel, onBack: () -> Unit) {
     var show by com.arnavgames.tycoon.ui.common.rememberPref("achievements.show", "all")
     var category by androidx.compose.runtime.saveable.rememberSaveable { mutableStateOf("all") }
     val ready = list.filter { it.state == 1 }
-    val earned = list.count { it.state == 2 }
+    val earned = list.count { it.state >= 1 }
     val bullionEarned = list.filter { it.state == 2 }.sumOf { it.bullion }
     val shown = list
         .filter { category == "all" || it.category == category }
@@ -355,7 +360,7 @@ fun AchievementsScreen(vm: GameViewModel, onBack: () -> Unit) {
                     Spacer(Modifier.width(Space.md))
                     Column(Modifier.weight(1f)) {
                         Text("$earned of ${list.size}", style = Aurum.type.numberHero, color = c.textPrimary)
-                        Text("earned · $bullionEarned Bullion collected", style = Aurum.type.bodySmall, color = c.textSecondary)
+                        Text("earned · $bullionEarned Bullion collected so far", style = Aurum.type.bodySmall, color = c.textSecondary)
                         if (ready.isNotEmpty()) Text("${ready.size} ready to claim", style = Aurum.type.label, color = c.goldText)
                     }
                 }
@@ -386,7 +391,7 @@ fun AchievementsScreen(vm: GameViewModel, onBack: () -> Unit) {
         shown.chunked(2).forEachIndexed { i, pair ->
             item(key = "row-$category-$show-$i") {
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(Space.sm)) {
-                    pair.forEach { a -> AchievementTile(a, Modifier.weight(1f).heightIn(min = 190.dp)) { vm.dispatch(Command.ClaimAchievement(a.id)) } }
+                    pair.forEach { a -> AchievementTile(a, Modifier.weight(1f).heightIn(min = 150.dp)) { vm.dispatch(Command.ClaimAchievement(a.id)) } }
                     if (pair.size == 1) Spacer(Modifier.weight(1f))
                 }
             }
@@ -401,7 +406,7 @@ private fun AchievementTile(a: AchievementUi, modifier: Modifier, onClaim: () ->
         Medallion(earned = a.state == 2, glowing = a.state == 1, size = 44, locked = a.state == 0)
         Spacer(Modifier.height(Space.sm))
         Text(a.title, style = Aurum.type.titleSmall, color = if (a.state == 0) c.textSecondary else c.textPrimary, maxLines = 2)
-        Text(a.description, style = Aurum.type.bodySmall, color = c.textTertiary, maxLines = 3, minLines = 2)
+        Text(a.description, style = Aurum.type.bodySmall, color = c.textTertiary, maxLines = 2, minLines = 2)
         Spacer(Modifier.height(Space.sm))
         when (a.state) {
             1 -> PillAction("Claim +${a.bullion}", true, onClaim, modifier = Modifier.fillMaxWidth())
@@ -429,11 +434,24 @@ fun CrownScreen(vm: GameViewModel, onBack: () -> Unit) {
     var challenge by rememberSaveable { mutableStateOf<String?>(null) }
     var confirm by remember { mutableStateOf(false) }
     Box(Modifier.fillMaxSize()) {
-        GlassScaffold(title = "Pass the Crown", onBack = onBack) {
+        // The one irreversible action is pinned to the bottom edge with its outcome, never below the fold.
+        GlassScaffold(title = "Pass the Crown", onBack = onBack, bottomBar = {
+            Column {
+                Text(
+                    (ui.traits.firstOrNull { it.first == trait }?.second?.let { "Heir: $it" } ?: "Choose your heir's trait") +
+                        if (heirlooms.isNotEmpty()) " · ${heirlooms.size} heirloom${if (heirlooms.size == 1) "" else "s"}" else "",
+                    style = Aurum.type.bodySmall, color = c.textSecondary, maxLines = 1,
+                )
+                Spacer(Modifier.height(Space.xs))
+                GoldButton("Retire the founder · +${compactCount(ui.legacyGain)} Legacy", leadingIcon = AbtIcons.Crown, enabled = trait != null,
+                    onClick = { confirm = true }, modifier = Modifier.fillMaxWidth().testTag("crown-go"))
+            }
+        }) {
             item(key = "legacy") {
                 AurumCard(Modifier.fillMaxWidth(), highlighted = true) {
                     Text("GENERATION ${ui.generation}", style = Aurum.type.overline, color = c.goldText)
-                    Text("+${String.format(Locale.US, "%,d", ui.legacyGain)} Legacy", style = Aurum.type.numberHero, color = c.textPrimary)
+                    Text("+${compactCount(ui.legacyGain)}", style = Aurum.type.numberHero, color = c.textPrimary, maxLines = 1)
+                    Text("Legacy", style = Aurum.type.label, color = c.goldText)
                     Text("Total ${String.format(Locale.US, "%,d", ui.newLegacy)} · income ${fmtMult(ui.multiplier)} for every business, forever.", style = Aurum.type.bodySmall, color = c.textSecondary)
                     Spacer(Modifier.height(Space.xs))
                     Text("Your heir starts again from a single kiosk. Businesses, cash, investments, properties and collections are left behind, except the heirlooms you choose. Bullion, Favor, achievements and Legacy carry over.", style = Aurum.type.bodySmall, color = c.textSecondary)
@@ -481,9 +499,6 @@ fun CrownScreen(vm: GameViewModel, onBack: () -> Unit) {
             item(key = "challenge-h") { SectionHeader("Challenge (optional)") }
             item(key = "challenge-none") { ChoiceRow("No challenge", "Play the next generation normally.", selected = challenge == null, enabled = true) { challenge = null } }
             items(ui.challenges, key = { "c-${it.first}" }) { (id, name, text) -> ChoiceRow(name, text, selected = challenge == id, enabled = true) { challenge = id } }
-            item(key = "go") {
-                GoldButton("Pass the Crown", leadingIcon = AbtIcons.Crown, enabled = trait != null, onClick = { confirm = true }, modifier = Modifier.fillMaxWidth().testTag("crown-go"))
-            }
         }
         if (confirm) {
             AurumDialog(title = "Retire the founder?", onDismiss = { confirm = false }) {

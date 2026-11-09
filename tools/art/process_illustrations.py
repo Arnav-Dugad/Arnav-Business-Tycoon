@@ -23,7 +23,7 @@ FOLDERS = {"business": "business", "city": "city", "property": "property", "chap
 WAVE2 = {"tier": "tier", "expansion": "expansion", "district": "district", "tower": "tower", "hq": "hq", "event": "event", "luxury": "luxury",
          # Third wave: markets, the store, Desk cards and tenant events (smaller still: mostly row thumbnails).
          "stock": "stock", "sector": "sector", "fund": "fund", "bond": "bond", "coin": "coin", "commodity": "commodity",
-         "product": "product", "card": "card", "tenant": "tenant"}
+         "product": "product", "card": "card", "tenant": "tenant", "city": "city"}
 WAVE3 = {"stock", "sector", "fund", "bond", "coin", "commodity", "product", "card", "tenant"}
 NOTE = ("Hand-painted-style illustrations generated with Figma AI (gpt-image-2.5-flare) from prompts written for this game. "
         "Invented scenes: no real logos, brands or identifiable people.")

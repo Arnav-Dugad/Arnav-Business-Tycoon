@@ -168,7 +168,7 @@ private fun ListingCard(
     AurumCard(Modifier.fillMaxWidth().testTag("listing-${l.id}"), highlighted = open, onClick = onToggle) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             com.arnavgames.tycoon.ui.common.Illustration(
-                com.arnavgames.tycoon.ui.common.Art.property(l.typeId), Modifier.size(72.dp, 52.dp).clip(com.arnavgames.tycoon.designsystem.theme.AurumShapes.small),
+                com.arnavgames.tycoon.ui.common.Art.pick(androidx.compose.ui.platform.LocalContext.current, com.arnavgames.tycoon.ui.common.Art.district(l.districtId), com.arnavgames.tycoon.ui.common.Art.property(l.typeId)), Modifier.size(72.dp, 52.dp).clip(com.arnavgames.tycoon.designsystem.theme.AurumShapes.small),
             )
             Spacer(Modifier.width(Space.md))
             Column(Modifier.weight(1f)) {
@@ -297,7 +297,7 @@ fun DistrictScreen(vm: GameViewModel, districtId: String, onBack: () -> Unit, on
             item(key = l.id) {
                 AurumCard(Modifier.fillMaxWidth(), highlighted = selected == l.id, onClick = { selected = if (selected == l.id) null else l.id }) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
-                        com.arnavgames.tycoon.ui.common.Illustration(com.arnavgames.tycoon.ui.common.Art.property(l.typeId), Modifier.size(64.dp, 46.dp).clip(com.arnavgames.tycoon.designsystem.theme.AurumShapes.small))
+                        com.arnavgames.tycoon.ui.common.Illustration(com.arnavgames.tycoon.ui.common.Art.pick(androidx.compose.ui.platform.LocalContext.current, com.arnavgames.tycoon.ui.common.Art.district(l.districtId), com.arnavgames.tycoon.ui.common.Art.property(l.typeId)), Modifier.size(64.dp, 46.dp).clip(com.arnavgames.tycoon.designsystem.theme.AurumShapes.small))
                         Spacer(Modifier.width(Space.md))
                         Column(Modifier.weight(1f)) {
                             Text(l.type, style = Aurum.type.titleSmall, color = c.textPrimary)
@@ -363,7 +363,8 @@ fun PropertyScreen(vm: GameViewModel, propertyId: Long, onBack: () -> Unit) {
         return
     }
     GlassScaffold(title = ui.title, onBack = onBack) {
-        item(key = "art") { com.arnavgames.tycoon.ui.common.Illustration(com.arnavgames.tycoon.ui.common.Art.property(ui.typeId), Modifier.fillMaxWidth().height(170.dp).clip(com.arnavgames.tycoon.designsystem.theme.AurumShapes.large)) }
+        // The neighbourhood it stands in, when painted; otherwise the kind of building.
+        item(key = "art") { com.arnavgames.tycoon.ui.common.Illustration(com.arnavgames.tycoon.ui.common.Art.pick(androidx.compose.ui.platform.LocalContext.current, com.arnavgames.tycoon.ui.common.Art.district(ui.districtId), com.arnavgames.tycoon.ui.common.Art.property(ui.typeId)), Modifier.fillMaxWidth().height(170.dp).clip(com.arnavgames.tycoon.designsystem.theme.AurumShapes.large)) }
         item(key = "hero") {
             AurumCard(Modifier.fillMaxWidth()) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
@@ -460,7 +461,7 @@ fun PropertyScreen(vm: GameViewModel, propertyId: Long, onBack: () -> Unit) {
                         Spacer(Modifier.width(Space.sm))
                         Text("Skyscraper", style = Aurum.type.title, color = c.textPrimary)
                     }
-                    Text("Build a landmark in four stages. Floors lease one an hour once it opens, and the whole district's prices rise.", style = Aurum.type.bodySmall, color = c.textSecondary)
+                    Text("Build a landmark in four stages. Floors lease one an hour once it opens, and the whole neighbourhood's prices rise.", style = Aurum.type.bodySmall, color = c.textSecondary)
                     Spacer(Modifier.height(Space.sm))
                     when {
                         ui.towerLocked != null -> Text(ui.towerLocked, style = Aurum.type.body, color = c.textTertiary)

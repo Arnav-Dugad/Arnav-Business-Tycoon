@@ -112,7 +112,7 @@ class GameSession @Inject constructor(
                     }
                     is SaveRepository.LoadResult.Loaded -> {
                         if (r.recoveredFromOlder > 0) Log.w(TAG, "recovered from older snapshot: ${r.errors}")
-                        _state.value = r.save.state
+                        _state.value = upgrade(r.save.state)
                         _status.value = Status.Ready
                         if (foreground) resume()
                     }
@@ -215,6 +215,19 @@ class GameSession @Inject constructor(
 
     fun dismissOffline() { _offline.value = null }
 
+    /** Set when this launch converted an old save to real-world money (the app explains it once). */
+    private val _converted = MutableStateFlow(false)
+    val converted: StateFlow<Boolean> = _converted.asStateFlow()
+    fun dismissConverted() { _converted.value = false }
+
+    /** Saves from before 1.8.0 are converted to real-world money once (progress kept, money rescaled). */
+    private fun upgrade(s: GameState): GameState {
+        if (!com.arnavgames.tycoon.core.engine.EconomyConversion.needed(s)) return s
+        Log.i(TAG, "converting save to real-world money")
+        _converted.value = true
+        return com.arnavgames.tycoon.core.engine.EconomyConversion.convert(engine, s)
+    }
+
     /** Every slot's newest save (null = empty), with the slot being played saved first so its card is current. */
     suspend fun slotInfos(): List<com.arnavgames.tycoon.data.save.SaveRepository.SlotInfo?> {
         saveNow()
@@ -233,7 +246,7 @@ class GameSession @Inject constructor(
         tickJob = null
         val loaded = contentLazy.get()
         val next = when (val r = saves.load(n)) {
-            is SaveRepository.LoadResult.Loaded -> r.save.state
+            is SaveRepository.LoadResult.Loaded -> upgrade(r.save.state)
             SaveRepository.LoadResult.Empty -> engine.newGame(GameRandom.newWorldSeed(SecureRandom().nextLong()), loaded.hash, clock)
             is SaveRepository.LoadResult.NeedsUpdate -> error("That save needs a newer version of the game")
             is SaveRepository.LoadResult.Unrecoverable -> error("That save is damaged and can't be opened")
@@ -321,7 +334,8 @@ class GameSession @Inject constructor(
         saveNow()
         val decoded = saves.import(bytes, _slot.value) // throws SaveError with a readable message if invalid
         mutex.withLock {
-            _state.value = decoded.state.copy(clock = OfflineCalculator.touch(decoded.state.clock, clock))
+            val up = upgrade(decoded.state)
+            _state.value = up.copy(clock = OfflineCalculator.touch(up.clock, clock))
             lastTickMono = clock.monotonicMillis()
         }
     }

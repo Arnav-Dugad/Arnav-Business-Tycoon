@@ -289,8 +289,11 @@ fun SaveSlotsScreen(vm: GameViewModel, onBack: () -> Unit, onPlay: () -> Unit) {
                     if (!playing) {
                         Spacer(Modifier.height(Space.md))
                         Row(horizontalArrangement = Arrangement.spacedBy(Space.sm), verticalAlignment = Alignment.CenterVertically) {
-                            GoldButton(
-                                if (info == null) "Start a new game here" else "Play slot ${n + 1}",
+                            // An empty slot's "new game" is a quieter choice than playing a saved one.
+                            if (info == null) GhostButton("Start a new game here", onClick = { busy = true; vm.switchSlot(n) { busy = false; onPlay() } },
+                                enabled = !busy, modifier = Modifier.weight(1f).testTag("slot-play-$n"), leadingIcon = AbtIcons.Plus)
+                            else GoldButton(
+                                "Play slot ${n + 1}",
                                 onClick = { busy = true; vm.switchSlot(n) { busy = false; onPlay() } },
                                 enabled = !busy, modifier = Modifier.weight(1f).testTag("slot-play-$n"),
                                 leadingIcon = if (info == null) AbtIcons.Plus else AbtIcons.Play,

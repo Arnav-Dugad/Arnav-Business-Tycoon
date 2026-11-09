@@ -12,6 +12,7 @@ import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onFirst
 import androidx.compose.ui.test.onNodeWithContentDescription
+import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performSemanticsAction
 import androidx.compose.ui.test.printToString
 import androidx.test.core.app.ActivityScenario
@@ -59,7 +60,10 @@ class DeskAndTaxFlowTest {
 
     @Test
     fun resolveACardAndFileTaxes() {
-        waitForText("waiting", timeout = 240_000)
+        // The Desk is a door on the More tab; its badge says when decisions are waiting.
+        waitForText("Your businesses", timeout = 240_000)
+        rule.onNodeWithContentDescription("More", substring = true).performClick()
+        waitForText("waiting", timeout = 120_000)
         tap("Desk")
         waitForText("Decisions")
         rule.waitUntil(15_000) { rule.onAllNodesWithTag("decision-card").fetchSemanticsNodes().isNotEmpty() }

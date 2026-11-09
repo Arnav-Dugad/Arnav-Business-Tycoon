@@ -313,7 +313,14 @@ private fun ColumnScope.RetailPanel(vm: GameViewModel, s: GameState, def: Busine
     Text("Price level", style = Aurum.type.titleSmall, color = c.textPrimary)
     Text("Higher prices earn more per sale but drive shoppers away. Find the sweet spot.", style = Aurum.type.bodySmall, color = c.textSecondary)
     Spacer(Modifier.height(Space.sm))
-    Row(verticalAlignment = Alignment.CenterVertically) {
+    // With a manager in charge the slider would look broken when disabled: show the manager's price as a plain fact.
+    if (managed) {
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            AbtIcon(AbtIcons.Lock, null, tint = c.textTertiary, size = 16.dp)
+            Spacer(Modifier.width(Space.xs))
+            Text("Your manager sets the price: ${price.toInt()}% of the reference price", style = Aurum.type.body, color = c.textPrimary)
+        }
+    } else Row(verticalAlignment = Alignment.CenterVertically) {
         Text("${price.toInt()}%", style = Aurum.type.number, color = c.textPrimary, modifier = Modifier.width(64.dp))
         Slider(
             value = price,

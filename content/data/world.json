@@ -14207,9 +14207,9 @@
    "allyRelation": 40
   },
   "rivalCurve": {
-   "earlyPerDay": 1.1301,
+   "earlyPerDay": 0.009,
    "kneeDays": 4.5,
-   "latePerDay": 0.4
+   "latePerDay": 0.004
   },
   "events": {
    "firstAfterHours": 6.0,
@@ -14318,15 +14318,15 @@
    "missedPenalty": 0.02,
    "taxBrackets": [
     {
-     "upToPerHour": "1000000000.00",
+     "upToPerHour": "100000000.00",
      "rate": 0.15
     },
     {
-     "upToPerHour": "1000000000000.00",
+     "upToPerHour": "1000000000.00",
      "rate": 0.22
     },
     {
-     "upToPerHour": "1000000000000000.00",
+     "upToPerHour": "10000000000.00",
      "rate": 0.28
     },
     {

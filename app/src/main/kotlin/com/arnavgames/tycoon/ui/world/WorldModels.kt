@@ -80,7 +80,7 @@ class WorldMapper(private val engine: GameEngine, private val portraitIds: Set<S
         return effects.map { e ->
             when (e.type) {
                 // Costs show the amount on the right of the option, so the text says it in time instead.
-                "cash" -> if (e.hours >= 0) "Gain ${money(e.hours)} (${hoursText(e.hours)})" else "Costs ${hoursText(e.hours)}"
+                "cash" -> if (e.hours >= 0) "Gain ${com.arnavgames.tycoon.core.money.MoneyFormat.compact(engine.desk.windfall(s, e.hours))}" else "Costs ${hoursText(e.hours)}"
                 "donation" -> "Donates ${hoursText(e.hours)} · tax-deductible"
                 "rd" -> "Invests ${hoursText(e.hours)} in research · R&D tax credit"
                 "income" -> {

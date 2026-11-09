@@ -220,10 +220,20 @@ class DeskEngine(private val content: ContentPack, private val economy: Economy,
 
     fun hourly(s: GameState): Money = economy.totalNetRate(s).over(3600)
 
+    /**
+     * Cash a card pays for [hours] of income, capped at a tenth of net worth: a deal never pays more than a real
+     * windfall could (late-game income per hour can rival a fortune, and cards would out-earn the businesses).
+     */
+    fun windfall(s: GameState, hours: Double): Money {
+        val amt = hourly(s) * Multiplier.ofDouble(kotlin.math.abs(hours))
+        val cap = economy.netWorth(s) * Multiplier.of("0.10")
+        return if (cap.isPositive) amt.min(cap) else amt
+    }
+
     /** Business valuation used for sale offers: what it adds to net worth. */
     fun valuation(s: GameState, businessId: String): Money {
         val b = s.businesses[businessId] ?: return Money.ZERO
-        return economy.investedIn(content.business(businessId), b.level) * Multiplier.of("0.6") + b.stored
+        return economy.businessValue(s, businessId) + b.stored
     }
 
     fun optionAvailable(s: GameState, card: CardState, option: CardOptionDef): Boolean =
@@ -277,7 +287,7 @@ class DeskEngine(private val content: ContentPack, private val economy: Economy,
         for (e in outcome.effects) {
             when (e.type) {
                 "cash" -> {
-                    val amt = h * Multiplier.ofDouble(kotlin.math.abs(e.hours))
+                    val amt = if (e.hours > 0) windfall(s0, e.hours) else h * Multiplier.ofDouble(kotlin.math.abs(e.hours))
                     if (!amt.isPositive) continue
                     s = if (e.hours > 0) {
                         good = good ?: true

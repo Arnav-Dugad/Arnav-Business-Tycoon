@@ -190,7 +190,7 @@ class EstateTest {
     @Test
     fun skyscraperIsBuiltInStagesAndLiftsTheDistrict() {
         var s = atChapter(newGame(11).withHugeCash(), 5)
-        val cbd = c.districts.first { it.cbd && it.city == "london" && "land" in it.types }.id
+        val cbd = c.districts.first { d -> d.cbd && "land" in d.types && c.cities.first { it.id == d.city }.chapter <= 5 }.id
         var l = est.listings(s, cbd).firstOrNull { it.type == "land" }
         var guard = 0
         while (l == null && guard++ < 40) { s = s.adv(6 * hour); l = est.listings(s, cbd).firstOrNull { it.type == "land" } }

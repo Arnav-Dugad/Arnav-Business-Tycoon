@@ -44,13 +44,26 @@ class ReleaseSaveCompatibilityTest {
         val before = decoded.state
         balanced(before, "$label as saved")
 
-        // The app's load path: decode, then credit offline time (the cap applies in the app; an hour is typical).
-        var s = engine.advance(before, hour).state
+        // The app's load path: decode, convert old money to real-world money (1.8.0), then credit offline time.
+        val conv = com.arnavgames.tycoon.core.engine.EconomyConversion.convert(engine, before)
+        balanced(conv, "$label after the real-world conversion")
+        assertEquals(com.arnavgames.tycoon.core.engine.EconomyConversion.CURRENT, conv.meta.economy, "$label: economy version")
+        assertTrue(conv.market.holdings.isEmpty() && conv.market.shorts.isEmpty(), "$label: positions sold")
+        // Real-world money: nobody comes out far richer than a real fortune (the debug saves have every business at
+        // level 50+, which is a few trillion at real prices).
+        val nw = engine.economy.netWorth(conv)
+        assertTrue(nw.log10Dollars() < 13.0, "$label: net worth after conversion is ${nw} (log ${nw.log10Dollars()})")
+        assertTrue(!conv.cash.isNegative, "$label: negative cash")
+        // Converting twice changes nothing.
+        assertEquals(conv, com.arnavgames.tycoon.core.engine.EconomyConversion.convert(engine, conv), "$label: conversion is idempotent")
+        var s = engine.advance(conv, hour).state
         balanced(s, "$label after offline time")
 
         // Nothing the player built is lost.
         assertEquals(before.businesses.keys, s.businesses.keys, "$label: businesses")
-        before.businesses.forEach { (id, b) -> assertTrue(s.businesses.getValue(id).level >= b.level, "$label: $id lost levels") }
+        // The real-world conversion may trim extreme levels on big businesses, never below level 50; nothing after it.
+        before.businesses.forEach { (id, b) -> assertTrue(conv.businesses.getValue(id).level >= minOf(b.level, 50), "$label: $id trimmed below 50") }
+        conv.businesses.forEach { (id, b) -> assertTrue(s.businesses.getValue(id).level >= b.level, "$label: $id lost levels") }
         assertTrue(s.progress.chapter >= before.progress.chapter, "$label: chapter went backwards")
         assertTrue(s.progress.completedMissions.containsAll(before.progress.completedMissions), "$label: missions lost")
         assertEquals(before.dynasty.generation, s.dynasty.generation, "$label: generation")

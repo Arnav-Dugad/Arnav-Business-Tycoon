@@ -137,7 +137,7 @@ fun MainShell(
         // Frosted strip behind the status bar so scrolled content blurs under the clock instead of colliding with it.
         Box(Modifier.fillMaxWidth().windowInsetsTopHeight(WindowInsets.statusBars).glass(RoundedCornerShape(0), GlassWeight.Regular, edge = false))
         AurumBottomBar(
-            items = items, selected = tab,
+            items = items.map { if (it.key == tab) it.copy(badge = false) else it }, selected = tab,
             // Tapping the tab you are on takes you back to its top (and More back to its hub), like every good app.
             onSelect = { t -> if (t == tab) vm.reselectTab(t); if (t == "more" && tab == "more") morePage = "hub"; chosenTab = t },
             modifier = Modifier.align(Alignment.BottomCenter),

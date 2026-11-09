@@ -71,6 +71,12 @@ data class BusinessDef(
     val managers: List<ManagerDef>,
     val expansions: List<ExpansionDef>,
     val mechanic: MechanicDef,
+    /**
+     * The size of this business's market: gross revenue per second (before company-wide multipliers such as Legacy,
+     * mergers and boosts) approaches this ceiling smoothly instead of growing without end. Real businesses saturate;
+     * the way to grow further is a bigger business. Null = no ceiling.
+     */
+    val marketSize: Dollars? = null,
 )
 
 @Serializable

@@ -101,6 +101,64 @@ TOP_UNLOCK = Decimal(os.environ.get("ABT_TOP_UNLOCK", "3.6"))
 TIER_MULTS = ["1.5", "2", "2", "2.5", "2.5", "3", "3"]
 
 
+# Real-world money (owner decision 2026-11-09): what it costs to found each business at today's prices. The idle-game
+# ladder above climbed ~17 orders of magnitude; real fortunes top out in the hundreds of billions. Each business keeps
+# its internal shape (costs x c, so level paybacks inside one business keep their shape), but its revenue scales with
+# the NEXT business's cost factor, so the time to afford the next business is unchanged while growth inside a business
+# is slower. This is what a real conglomerate looks like: big purchases take a while to earn back.
+REAL_UNLOCK = {
+    "factory": "6000000", "fashion": "24000000", "mining": "100000000", "energy": "400000000", "hotels": "1500000000",
+    "bank": "2500000000", "construction": "4000000000", "media": "6000000000", "tech": "9000000000", "telecom": "13000000000",
+    "airline": "18000000000", "pharma": "25000000000", "sports": "32000000000", "space": "45000000000",
+}
+CONGLOMERATE_FEE_X = Decimal(os.environ.get("ABT_CONGL_X", "4"))
+# Extra stretch of level paybacks per chapter (1 = only the ladder rule above); tuned with the simulator.
+STRETCH_DEFAULT = {3: "3.5", 4: "6", 5: "6", 6: "6", 7: "6"}
+STRETCH = {ch: Decimal(os.environ.get(f"ABT_STRETCH{ch}", STRETCH_DEFAULT.get(ch, "1"))) for ch in range(1, 9)}
+# Revenue boost per chapter (>1 speeds a chapter up); tuned with the simulator.
+BOOST = {ch: Decimal(os.environ.get(f"ABT_BOOST{ch}", "1")) for ch in range(1, 9)}
+
+
+# Market size per business (gross revenue per second the business can reach before saturating). A business grows
+# toward its market; beyond that, growth means the next, bigger business. Tuned with the simulator.
+MARKET_SIZE = {
+    "retail": 400, "restaurants": 2000, "logistics": 8000, "farmland": 20000, "factory": 35000, "fashion": 55000,
+    "mining": 80000, "energy": 110000, "hotels": 150000, "bank": 200000, "construction": 250000, "media": 320000,
+    "tech": 400000, "telecom": 480000, "airline": 560000, "pharma": 650000, "sports": 750000, "space": 1000000,
+}
+MARKET_X = Decimal(os.environ.get("ABT_MARKET_X", "1"))
+
+
+def real_world(out: list) -> None:
+    order = [b["id"] for b in out]
+    factor = {b["id"]: (Decimal(REAL_UNLOCK[b["id"]]) / Decimal(b["unlockCost"]) if b["id"] in REAL_UNLOCK else Decimal(1)) for b in out}
+    for i, b in enumerate(out):
+        c = factor[b["id"]]
+        if c == 1:
+            continue
+        nxt = factor[order[i + 1]] if i + 1 < len(order) else c * (c / factor[order[i - 1]])
+        r = nxt / STRETCH[b["chapter"]] * BOOST[b["chapter"]]
+        b["unlockCost"] = money(Decimal(b["unlockCost"]) * c)
+        # Big businesses grow by gentler steps (a real conglomerate adds a plant, not a 17% dearer one each time).
+        if b["chapter"] >= 4:
+            b["costGrowth"] = os.environ.get("ABT_LATE_GROWTH", "1.14")
+        b["baseCost"] = money(Decimal(b["baseCost"]) * c)
+        b["baseRevenue"] = money(max(Decimal("0.01"), Decimal(b["baseRevenue"]) * r))
+        # Managers for the big later businesses cost a few times the founding price, not thirteen times it.
+        mgr = Decimal(os.environ.get("ABT_LATE_MGR", "0.2")) if b["chapter"] >= 4 else Decimal(1)
+        for m in b["managers"]:
+            m["cost"] = money(Decimal(m["cost"]) * c * mgr)
+        for e in b["expansions"]:
+            e["cost"] = money(Decimal(e["cost"]) * c)
+    # Market size: each business saturates after its third Scale Tier (level ~60: 360 levels' worth of base revenue at
+    # the tier-3 multiplier of x6), so mergers stay reachable but no business grows without end.
+    # The first-chapter shops are small and cheap; a low ceiling there only slowed the opening (Chapter 1 took 1.7 h
+    # instead of ~20 min), so their market is ten times roomier.
+    for b in out:
+        early = Decimal(10) if b["chapter"] <= 2 else Decimal(1)
+        b["marketSize"] = money(Decimal(b["baseRevenue"]) * Decimal(360) * MARKET_X * early)
+
+
 def money(d: Decimal) -> str:
     return f"{d.quantize(Decimal('0.01'))}"
 
@@ -141,6 +199,7 @@ def main(repo: Path) -> None:
             ],
             "mechanic": {"type": "module", "kind": kind, "params": params},
         })
+    real_world(out)
     path.write_text(json.dumps(out, indent=2, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n")
     print(f"wrote {len(out)} businesses")
     # Conglomerate fees scale with their most expensive member (×25 its unlock cost).
@@ -148,7 +207,7 @@ def main(repo: Path) -> None:
     cpath = repo / "content/data/conglomerates.json"
     congs = json.loads(cpath.read_text(encoding="utf-8"))
     for c in congs:
-        c["fee"] = money(max(unlocks[m] for m in c["members"]) * 25)
+        c["fee"] = money(max(unlocks[m] for m in c["members"]) * CONGLOMERATE_FEE_X)
     cpath.write_text(json.dumps(congs, indent=2, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n")
     print(f"updated {len(congs)} conglomerate fees")
 

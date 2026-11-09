@@ -2,6 +2,66 @@
   "note": "Hand-painted-style illustrations generated with Figma AI (gpt-image-2.5-flare) from prompts written for this game. Invented scenes: no real logos, brands or identifiable people.",
   "items": [
     {
+      "id": "cap_camps_bay",
+      "title": "The Camps Bay neighbourhood of Cape Town (South Africa) as it really looks, quiet residential streets of houses and gardens, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "cap_city_bowl",
+      "title": "The City Bowl neighbourhood of Cape Town (South Africa) as it really looks, its business district: office towers, busy avenues and plazas, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "cap_clifton",
+      "title": "The Clifton neighbourhood of Cape Town (South Africa) as it really looks, quiet residential streets of houses and gardens, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "cap_constantia",
+      "title": "The Constantia neighbourhood of Cape Town (South Africa) as it really looks, quiet residential streets of houses and gardens, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "cap_sea_point",
+      "title": "The Sea Point neighbourhood of Cape Town (South Africa) as it really looks, lively streets of apartment buildings, shops and cafés, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "cap_v_a_waterfront",
+      "title": "The V&A Waterfront neighbourhood of Cape Town (South Africa) as it really looks, lively streets of apartment buildings, shops and cafés, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
       "id": "dub_business_bay",
       "title": "A street view of the Business Bay neighbourhood in Dubai, upscale, characteristic local architecture",
       "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
@@ -64,6 +124,126 @@
     {
       "id": "dub_palm_jumeirah",
       "title": "A street view of the Palm Jumeirah neighbourhood in Dubai, upscale, characteristic local architecture",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "hon_causeway_bay",
+      "title": "The Causeway Bay neighbourhood of Hong Kong (China) as it really looks, lively streets of apartment buildings, shops and cafés, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "hon_central",
+      "title": "The Central neighbourhood of Hong Kong (China) as it really looks, its business district: office towers, busy avenues and plazas, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "hon_kwun_tong",
+      "title": "The Kwun Tong neighbourhood of Hong Kong (China) as it really looks, its working streets, old warehouses and new building sites, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "hon_mid_levels",
+      "title": "The Mid-Levels neighbourhood of Hong Kong (China) as it really looks, lively streets of apartment buildings, shops and cafés, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "hon_the_peak",
+      "title": "The The Peak neighbourhood of Hong Kong (China) as it really looks, quiet residential streets of houses and gardens, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "hon_tsim_sha_tsui",
+      "title": "The Tsim Sha Tsui neighbourhood of Hong Kong (China) as it really looks, lively streets of apartment buildings, shops and cafés, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "ist_bebek",
+      "title": "The Bebek neighbourhood of Istanbul (Türkiye) as it really looks, quiet residential streets of houses and gardens, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "ist_beyoglu",
+      "title": "The Beyoğlu neighbourhood of Istanbul (Türkiye) as it really looks, lively streets of apartment buildings, shops and cafés, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "ist_kadkoy",
+      "title": "The Kadıköy neighbourhood of Istanbul (Türkiye) as it really looks, lively streets of apartment buildings, shops and cafés, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "ist_levent",
+      "title": "The Levent neighbourhood of Istanbul (Türkiye) as it really looks, its business district: office towers, busy avenues and plazas, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "ist_nisantas",
+      "title": "The Nişantaşı neighbourhood of Istanbul (Türkiye) as it really looks, lively streets of apartment buildings, shops and cafés, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "ist_sultanahmet",
+      "title": "The Sultanahmet neighbourhood of Istanbul (Türkiye) as it really looks, lively streets of apartment buildings, shops and cafés, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
       "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
       "source": "Figma AI image generation",
       "sourceUrl": "",
@@ -202,6 +382,116 @@
       "modifications": "Resized to 768x512, WebP"
     },
     {
+      "id": "los_bel_air",
+      "title": "The Bel Air neighbourhood of Los Angeles (United States) as it really looks, quiet residential streets of houses and gardens, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "los_beverly_hills",
+      "title": "The Beverly Hills neighbourhood of Los Angeles (United States) as it really looks, quiet residential streets of houses and gardens, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "los_downtown_la",
+      "title": "The Downtown LA neighbourhood of Los Angeles (United States) as it really looks, its business district: office towers, busy avenues and plazas, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "los_hollywood",
+      "title": "The Hollywood neighbourhood of Los Angeles (United States) as it really looks, lively streets of apartment buildings, shops and cafés, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "los_santa_monica",
+      "title": "The Santa Monica neighbourhood of Los Angeles (United States) as it really looks, lively streets of apartment buildings, shops and cafés, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "los_silver_lake",
+      "title": "The Silver Lake neighbourhood of Los Angeles (United States) as it really looks, quiet residential streets of houses and gardens, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "mex_condesa",
+      "title": "The Condesa neighbourhood of Mexico City (Mexico) as it really looks, lively streets of apartment buildings, shops and cafés, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "mex_coyoacan",
+      "title": "The Coyoacán neighbourhood of Mexico City (Mexico) as it really looks, quiet residential streets of houses and gardens, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "mex_polanco",
+      "title": "The Polanco neighbourhood of Mexico City (Mexico) as it really looks, lively streets of apartment buildings, shops and cafés, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "mex_roma_norte",
+      "title": "The Roma Norte neighbourhood of Mexico City (Mexico) as it really looks, lively streets of apartment buildings, shops and cafés, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "mex_santa_fe",
+      "title": "The Santa Fe neighbourhood of Mexico City (Mexico) as it really looks, its business district: office towers, busy avenues and plazas, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
       "id": "mia_brickell",
       "title": "A street view of the Brickell neighbourhood in Miami, upscale, the business district with office towers, characteristic local architecture",
       "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
@@ -264,6 +554,66 @@
     {
       "id": "mia_wynwood",
       "title": "A street view of the Wynwood neighbourhood in Miami, lively mid-market, characteristic local architecture",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "mon_carre_dor",
+      "title": "The Carré d'Or neighbourhood of Monaco (Monaco) as it really looks, lively streets of apartment buildings, shops and cafés, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "mon_fontvieille",
+      "title": "The Fontvieille neighbourhood of Monaco (Monaco) as it really looks, its working streets, old warehouses and new building sites, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "mon_la_condamine",
+      "title": "The La Condamine neighbourhood of Monaco (Monaco) as it really looks, lively streets of apartment buildings, shops and cafés, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "mon_larvotto",
+      "title": "The Larvotto neighbourhood of Monaco (Monaco) as it really looks, lively streets of apartment buildings, shops and cafés, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "mon_monaco_ville",
+      "title": "The Monaco-Ville neighbourhood of Monaco (Monaco) as it really looks, quiet residential streets of houses and gardens, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "mon_monte_carlo",
+      "title": "The Monte-Carlo neighbourhood of Monaco (Monaco) as it really looks, its business district: office towers, busy avenues and plazas, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
       "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
       "source": "Figma AI image generation",
       "sourceUrl": "",
@@ -394,6 +744,606 @@
     {
       "id": "new_upper_east_side",
       "title": "A street view of the Upper East Side neighbourhood in New York, upscale, characteristic local architecture",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "par_belleville",
+      "title": "The Belleville neighbourhood of Paris (France) as it really looks, its working streets, old warehouses and new building sites, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "par_champs_elysees",
+      "title": "The Champs-Élysées neighbourhood of Paris (France) as it really looks, lively streets of apartment buildings, shops and cafés, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "par_la_defense",
+      "title": "The La Défense neighbourhood of Paris (France) as it really looks, its business district: office towers, busy avenues and plazas, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "par_le_marais",
+      "title": "The Le Marais neighbourhood of Paris (France) as it really looks, lively streets of apartment buildings, shops and cafés, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "par_montmartre",
+      "title": "The Montmartre neighbourhood of Paris (France) as it really looks, lively streets of apartment buildings, shops and cafés, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "par_saint_germain_des_pres",
+      "title": "The Saint-Germain-des-Prés neighbourhood of Paris (France) as it really looks, lively streets of apartment buildings, shops and cafés, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "riy_al_malaz",
+      "title": "The Al Malaz neighbourhood of Riyadh (Saudi Arabia) as it really looks, its working streets, old warehouses and new building sites, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "riy_al_malqa",
+      "title": "The Al Malqa neighbourhood of Riyadh (Saudi Arabia) as it really looks, quiet residential streets of houses and gardens, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "riy_al_sulimaniyah",
+      "title": "The Al Sulimaniyah neighbourhood of Riyadh (Saudi Arabia) as it really looks, lively streets of apartment buildings, shops and cafés, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "riy_diriyah",
+      "title": "The Diriyah neighbourhood of Riyadh (Saudi Arabia) as it really looks, quiet residential streets of houses and gardens, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "riy_hittin",
+      "title": "The Hittin neighbourhood of Riyadh (Saudi Arabia) as it really looks, quiet residential streets of houses and gardens, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "riy_olaya",
+      "title": "The Olaya neighbourhood of Riyadh (Saudi Arabia) as it really looks, its business district: office towers, busy avenues and plazas, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "sao_centro",
+      "title": "The Centro neighbourhood of São Paulo (Brazil) as it really looks, lively streets of apartment buildings, shops and cafés, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "sao_itaim_bibi",
+      "title": "The Itaim Bibi neighbourhood of São Paulo (Brazil) as it really looks, its business district: office towers, busy avenues and plazas, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "sao_jardins",
+      "title": "The Jardins neighbourhood of São Paulo (Brazil) as it really looks, lively streets of apartment buildings, shops and cafés, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "sao_moema",
+      "title": "The Moema neighbourhood of São Paulo (Brazil) as it really looks, lively streets of apartment buildings, shops and cafés, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "sao_morumbi",
+      "title": "The Morumbi neighbourhood of São Paulo (Brazil) as it really looks, quiet residential streets of houses and gardens, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "sao_vila_madalena",
+      "title": "The Vila Madalena neighbourhood of São Paulo (Brazil) as it really looks, quiet residential streets of houses and gardens, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "seo_banpo",
+      "title": "The Banpo neighbourhood of Seoul (South Korea) as it really looks, lively streets of apartment buildings, shops and cafés, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "seo_gangnam",
+      "title": "The Gangnam neighbourhood of Seoul (South Korea) as it really looks, lively streets of apartment buildings, shops and cafés, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "seo_hannam_dong",
+      "title": "The Hannam-dong neighbourhood of Seoul (South Korea) as it really looks, quiet residential streets of houses and gardens, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "seo_itaewon",
+      "title": "The Itaewon neighbourhood of Seoul (South Korea) as it really looks, lively streets of apartment buildings, shops and cafés, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "seo_mapo",
+      "title": "The Mapo neighbourhood of Seoul (South Korea) as it really looks, lively streets of apartment buildings, shops and cafés, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "seo_yeouido",
+      "title": "The Yeouido neighbourhood of Seoul (South Korea) as it really looks, its business district: office towers, busy avenues and plazas, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "sha_former_french_concession",
+      "title": "The Former French Concession neighbourhood of Shanghai (China) as it really looks, quiet residential streets of houses and gardens, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "sha_hongqiao",
+      "title": "The Hongqiao neighbourhood of Shanghai (China) as it really looks, its working streets, old warehouses and new building sites, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "sha_jingan",
+      "title": "The Jing'an neighbourhood of Shanghai (China) as it really looks, lively streets of apartment buildings, shops and cafés, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "sha_lujiazui",
+      "title": "The Lujiazui neighbourhood of Shanghai (China) as it really looks, its business district: office towers, busy avenues and plazas, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "sha_the_bund",
+      "title": "The The Bund neighbourhood of Shanghai (China) as it really looks, lively streets of apartment buildings, shops and cafés, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "sha_xujiahui",
+      "title": "The Xujiahui neighbourhood of Shanghai (China) as it really looks, lively streets of apartment buildings, shops and cafés, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "sin_holland_village",
+      "title": "The Holland Village neighbourhood of Singapore (Singapore) as it really looks, quiet residential streets of houses and gardens, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "sin_jurong_east",
+      "title": "The Jurong East neighbourhood of Singapore (Singapore) as it really looks, its working streets, old warehouses and new building sites, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "sin_marina_bay",
+      "title": "The Marina Bay neighbourhood of Singapore (Singapore) as it really looks, lively streets of apartment buildings, shops and cafés, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "sin_orchard",
+      "title": "The Orchard neighbourhood of Singapore (Singapore) as it really looks, lively streets of apartment buildings, shops and cafés, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "sin_raffles_place",
+      "title": "The Raffles Place neighbourhood of Singapore (Singapore) as it really looks, its business district: office towers, busy avenues and plazas, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "sin_sentosa_cove",
+      "title": "The Sentosa Cove neighbourhood of Singapore (Singapore) as it really looks, quiet residential streets of houses and gardens, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "syd_bondi",
+      "title": "The Bondi neighbourhood of Sydney (Australia) as it really looks, lively streets of apartment buildings, shops and cafés, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "syd_mosman",
+      "title": "The Mosman neighbourhood of Sydney (Australia) as it really looks, quiet residential streets of houses and gardens, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "syd_parramatta",
+      "title": "The Parramatta neighbourhood of Sydney (Australia) as it really looks, its working streets, old warehouses and new building sites, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "syd_point_piper",
+      "title": "The Point Piper neighbourhood of Sydney (Australia) as it really looks, quiet residential streets of houses and gardens, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "syd_surry_hills",
+      "title": "The Surry Hills neighbourhood of Sydney (Australia) as it really looks, quiet residential streets of houses and gardens, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "syd_sydney_cbd",
+      "title": "The Sydney CBD neighbourhood of Sydney (Australia) as it really looks, its business district: office towers, busy avenues and plazas, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "tok_asakusa",
+      "title": "The Asakusa neighbourhood of Tokyo (Japan) as it really looks, quiet residential streets of houses and gardens, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "tok_ginza",
+      "title": "The Ginza neighbourhood of Tokyo (Japan) as it really looks, lively streets of apartment buildings, shops and cafés, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "tok_marunouchi",
+      "title": "The Marunouchi neighbourhood of Tokyo (Japan) as it really looks, its business district: office towers, busy avenues and plazas, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "tok_roppongi",
+      "title": "The Roppongi neighbourhood of Tokyo (Japan) as it really looks, lively streets of apartment buildings, shops and cafés, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "tok_shibuya",
+      "title": "The Shibuya neighbourhood of Tokyo (Japan) as it really looks, lively streets of apartment buildings, shops and cafés, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "tok_shinjuku",
+      "title": "The Shinjuku neighbourhood of Tokyo (Japan) as it really looks, lively streets of apartment buildings, shops and cafés, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "tor_financial_district",
+      "title": "The Financial District neighbourhood of Toronto (Canada) as it really looks, its business district: office towers, busy avenues and plazas, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "tor_liberty_village",
+      "title": "The Liberty Village neighbourhood of Toronto (Canada) as it really looks, its working streets, old warehouses and new building sites, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "tor_rosedale",
+      "title": "The Rosedale neighbourhood of Toronto (Canada) as it really looks, quiet residential streets of houses and gardens, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "tor_scarborough",
+      "title": "The Scarborough neighbourhood of Toronto (Canada) as it really looks, quiet residential streets of houses and gardens, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "tor_the_annex",
+      "title": "The The Annex neighbourhood of Toronto (Canada) as it really looks, quiet residential streets of houses and gardens, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "tor_yorkville",
+      "title": "The Yorkville neighbourhood of Toronto (Canada) as it really looks, lively streets of apartment buildings, shops and cafés, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "zur_altstadt",
+      "title": "The Altstadt neighbourhood of Zurich (Switzerland) as it really looks, lively streets of apartment buildings, shops and cafés, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "zur_oerlikon",
+      "title": "The Oerlikon neighbourhood of Zurich (Switzerland) as it really looks, its working streets, old warehouses and new building sites, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "zur_paradeplatz",
+      "title": "The Paradeplatz neighbourhood of Zurich (Switzerland) as it really looks, its business district: office towers, busy avenues and plazas, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "zur_seefeld",
+      "title": "The Seefeld neighbourhood of Zurich (Switzerland) as it really looks, lively streets of apartment buildings, shops and cafés, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "zur_zurich_west",
+      "title": "The Zürich West neighbourhood of Zurich (Switzerland) as it really looks, its working streets, old warehouses and new building sites, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
+      "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
+      "source": "Figma AI image generation",
+      "sourceUrl": "",
+      "license": "AI-GENERATED",
+      "licenseUrl": "",
+      "modifications": "Resized to 768x512, WebP"
+    },
+    {
+      "id": "zur_zurichberg",
+      "title": "The Zürichberg neighbourhood of Zurich (Switzerland) as it really looks, quiet residential streets of houses and gardens, its real architecture and character, seen from a gentle height on a clear day, a few small invented figures far away, no text on any building or sign",
       "author": "AI-generated with Figma AI (gpt-image-2.5-flare)",
       "source": "Figma AI image generation",
       "sourceUrl": "",

@@ -104,6 +104,9 @@ class GameViewModel @Inject constructor(
 
     val status = session.status
     val offline = session.offline
+    /** True once after an old save was converted to real-world money (1.8.0). */
+    val converted = session.converted
+    fun dismissConverted() = session.dismissConverted()
     val events: SharedFlow<GameEvent> = session.events
     val settings: StateFlow<Settings> = settingsStore.settings.stateIn(viewModelScope, SharingStarted.Eagerly, Settings())
 
@@ -493,6 +496,8 @@ class GameViewModel @Inject constructor(
             }
         }
         val (id, seconds, label) = best ?: return null
+        // Only a genuinely good deal earns the chip: under a day to pay back.
+        if (!seconds.isFinite() || seconds > 86_400) return null
         return id to "Best value$label · pays back in ${paybackText(seconds)}"
     }
 
@@ -500,7 +505,8 @@ class GameViewModel @Inject constructor(
         sec < 90 -> "${sec.toInt().coerceAtLeast(1)} s"
         sec < 5_400 -> "${(sec / 60).toInt()} min"
         sec < 172_800 -> "${(sec / 3600).toInt()} h"
-        else -> "${(sec / 86_400).toInt()} days"
+        sec < 365.0 * 86_400 -> "${(sec / 86_400).toInt()} days"
+        else -> "over a year"
     }
 
     /** Where the Next Move card's "Show me" should take the player for this goal. */

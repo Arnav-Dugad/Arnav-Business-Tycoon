@@ -52,6 +52,7 @@ class GameEngine(val content: ContentPack) {
             contentHash = contentHash,
             createdAtWall = clock.wallMillis(),
             clock = OfflineCalculator.initial(clock),
+            meta = com.arnavgames.tycoon.core.state.MetaState(economy = EconomyConversion.CURRENT),
         )
         val start = content.balance.startingCash
         val ledger = if (start.isPositive) {
@@ -465,9 +466,7 @@ class GameEngine(val content: ContentPack) {
         return Either.Ok(s.copy(ledger = ledger, luxury = s.luxury.copy(owned = s.luxury.owned + (itemId to com.arnavgames.tycoon.core.state.OwnedItem(price, s.simTimeMs, viaAuction = true)))))
     }
 
-    fun ipoValuation(s: GameState): Money = s.businesses.values.fold(Money.ZERO) { a, b ->
-        a + economy.investedIn(content.business(b.id), b.level) * Multiplier.of("0.6")
-    } * Multiplier.ofDouble(content.progression.config.ipo.valuationMultiple)
+    fun ipoValuation(s: GameState): Money = s.businesses.values.fold(Money.ZERO) { a, b -> a + economy.businessValue(s, b.id) } * Multiplier.ofDouble(content.progression.config.ipo.valuationMultiple)
 
     private fun launchIpo(s: GameState, float: Double, events: MutableList<GameEvent>): Either {
         val cfg = content.progression.config.ipo

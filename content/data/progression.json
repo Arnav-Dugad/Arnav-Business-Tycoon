@@ -1267,121 +1267,121 @@
   {
    "id": "nw_3",
    "category": "Wealth",
-   "title": "First thousand",
-   "description": "Reach a net worth of $1K.",
+   "title": "First hundred",
+   "description": "Reach a net worth of $100.",
    "goal": {
     "type": "netWorth",
-    "log10": 3
+    "log10": 2
    },
    "bullion": 5
   },
   {
    "id": "nw_5",
    "category": "Wealth",
-   "title": "Six figures",
-   "description": "Reach a net worth of $100K.",
+   "title": "First thousand",
+   "description": "Reach a net worth of $1,000.",
    "goal": {
     "type": "netWorth",
-    "log10": 5
+    "log10": 3
    },
    "bullion": 10
   },
   {
    "id": "nw_7",
    "category": "Wealth",
-   "title": "Millionaire",
-   "description": "Reach a net worth of $10M.",
+   "title": "Five figures",
+   "description": "Reach a net worth of $10,000.",
    "goal": {
     "type": "netWorth",
-    "log10": 7
+    "log10": 4
    },
    "bullion": 15
   },
   {
    "id": "nw_9",
    "category": "Wealth",
-   "title": "Eight figures",
-   "description": "Reach a net worth of $1B.",
+   "title": "Six figures",
+   "description": "Reach a net worth of $100,000.",
    "goal": {
     "type": "netWorth",
-    "log10": 9
+    "log10": 5
    },
    "bullion": 20
   },
   {
    "id": "nw_11",
    "category": "Wealth",
-   "title": "Billionaire",
-   "description": "Reach a net worth of $100B.",
+   "title": "Millionaire",
+   "description": "Reach a net worth of $1 million.",
    "goal": {
     "type": "netWorth",
-    "log10": 11
+    "log10": 6
    },
    "bullion": 25
   },
   {
    "id": "nw_13",
    "category": "Wealth",
-   "title": "Ten billion",
-   "description": "Reach a net worth of $10T.",
+   "title": "Ten million",
+   "description": "Reach a net worth of $10 million.",
    "goal": {
     "type": "netWorth",
-    "log10": 13
+    "log10": 7
    },
    "bullion": 30
   },
   {
    "id": "nw_15",
    "category": "Wealth",
-   "title": "Trillionaire",
-   "description": "Reach a net worth of $1Qa.",
+   "title": "Hundred million",
+   "description": "Reach a net worth of $100 million.",
    "goal": {
     "type": "netWorth",
-    "log10": 15
+    "log10": 8
    },
    "bullion": 35
   },
   {
    "id": "nw_17",
    "category": "Wealth",
-   "title": "Hundred trillion",
-   "description": "Reach a net worth of $100Qa.",
+   "title": "Billionaire",
+   "description": "Reach a net worth of $1 billion.",
    "goal": {
     "type": "netWorth",
-    "log10": 17
+    "log10": 9
    },
    "bullion": 40
   },
   {
    "id": "nw_19",
    "category": "Wealth",
-   "title": "Quadrillionaire",
-   "description": "Reach a net worth of $10Qi.",
+   "title": "Ten billion",
+   "description": "Reach a net worth of $10 billion.",
    "goal": {
     "type": "netWorth",
-    "log10": 19
+    "log10": 10
    },
    "bullion": 45
   },
   {
    "id": "nw_21",
    "category": "Wealth",
-   "title": "Hundred quadrillion",
-   "description": "Reach a net worth of $1Sx.",
+   "title": "Hundred billion",
+   "description": "Reach a net worth of $100 billion.",
    "goal": {
     "type": "netWorth",
-    "log10": 21
+    "log10": 11
    },
    "bullion": 50
   },
   {
    "id": "nw_23",
    "category": "Wealth",
-   "title": "Quintillionaire",
-   "description": "Reach a net worth of $100Sx.",
+   "title": "Trillionaire",
+   "description": "Reach a net worth of $1 trillion.",
    "goal": {
     "type": "netWorth",
-    "log10": 23
+    "log10": 12
    },
    "bullion": 55
   },
@@ -4521,7 +4521,7 @@
   "weekDays": 7,
   "legacyScale": 4.0,
   "legacyExponent": 0.42,
-  "legacyNormalizerLog10": 13.4,
+  "legacyNormalizerLog10": 7.86,
   "legacyIncomeFactor": 0.02,
   "legacyIncomeExponent": 0.9,
   "heirlooms": [

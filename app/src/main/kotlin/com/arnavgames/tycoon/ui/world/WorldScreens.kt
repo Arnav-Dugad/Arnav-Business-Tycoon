@@ -185,7 +185,7 @@ fun DeskScreen(vm: GameViewModel, onBack: () -> Unit, onOpenRival: (String) -> U
         }
         item(key = "cards-h") {
             SectionHeader("Decisions") {
-                d.nextCardInMs?.let { Text(if (d.cards.size >= d.maxQueued) "Desk full" else "Next in ${durationText(it)}", style = Aurum.type.label, color = c.textTertiary) }
+                d.nextCardInMs?.let { Text(if (d.cards.size >= d.maxQueued) "Desk full: decide one to get more" else "Next in ${durationText(it)}", style = Aurum.type.label, color = c.textTertiary) }
             }
         }
         if (d.cards.isEmpty()) item(key = "no-cards") {
@@ -318,9 +318,17 @@ fun FortuneScreen(vm: GameViewModel, onBack: () -> Unit, onOpenRival: (String) -
             AurumCard(Modifier.fillMaxWidth(), highlighted = true) {
                 Text("YOUR RANK", style = Aurum.type.overline, color = c.goldText)
                 Text(if (ui.playerRank <= 220) "#${ui.playerRank} of ${ui.total}" else "Not on the list yet", style = Aurum.type.numberHero, color = c.textPrimary)
+                // The number that matters is the gap: how far to the next name, or how far ahead you are.
+                val me = ui.rows.firstOrNull { it.isPlayer }
                 val next = ui.rows.getOrNull(ui.playerRank - 2)
+                val behind = ui.rows.getOrNull(ui.playerRank)
                 Text(
-                    next?.let { "Next to pass: ${it.name} (${fmt(it.netWorth)})" } ?: "You are the richest person in the world.",
+                    when {
+                        next != null && me != null -> "${fmt(next.netWorth - me.netWorth)} behind ${next.name}"
+                        next != null -> "Next to pass: ${next.name} (${fmt(next.netWorth)})"
+                        behind != null && me != null -> "The richest person in the world, ${fmt(me.netWorth - behind.netWorth)} ahead of ${behind.name}"
+                        else -> "You are the richest person in the world."
+                    },
                     style = Aurum.type.bodySmall, color = c.textSecondary,
                 )
             }
@@ -332,7 +340,7 @@ fun FortuneScreen(vm: GameViewModel, onBack: () -> Unit, onOpenRival: (String) -
                         RivalAvatar(n.portrait, n.name, n.archetype, 56.dp)
                         Spacer(Modifier.width(Space.md))
                         Column(Modifier.weight(1f)) {
-                            Text("THIS CHAPTER'S NEMESIS", style = Aurum.type.overline, color = c.loss)
+                            Text("THIS CHAPTER'S NEMESIS", style = Aurum.type.overline, color = c.goldText)
                             Text(n.name, style = Aurum.type.headline, color = c.textPrimary)
                             Text("#${n.rank} · ${fmt(n.netWorth)}", style = Aurum.type.bodySmall, color = c.textSecondary)
                         }

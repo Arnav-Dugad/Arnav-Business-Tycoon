@@ -441,7 +441,12 @@ internal class Planner(private val engine: GameEngine) {
                 "safe" -> usable.minWith(compareBy<Int> { engine.desk.maxCost(s, def.options[it]) }.thenByDescending { optionValue(s, card, def.options[it]) })
                 else -> usable.maxBy { optionValue(s, card, def.options[it]) }
             }
+            val before = s.cash
             s = engine.tryApply(s, Command.ResolveCard(card.id, pick))
+            if (System.getenv("ABT_TRACE_CARDS") != null) {
+                val hourly = engine.economy.totalNetRate(s0).over(3600)
+                println("[card] ${card.card} opt=$pick cash ${com.arnavgames.tycoon.core.money.MoneyFormat.short(s.cash - before)} hourly=${com.arnavgames.tycoon.core.money.MoneyFormat.short(hourly)}")
+            }
         }
         return s
     }

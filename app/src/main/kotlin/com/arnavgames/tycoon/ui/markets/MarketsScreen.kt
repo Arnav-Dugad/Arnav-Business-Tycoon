@@ -132,7 +132,7 @@ fun MarketsScreen(vm: GameViewModel, onOpenInstrument: (String) -> Unit, onOpenN
                 }
             }
             if (mk.news.isNotEmpty()) {
-                item(key = "news") { NewsCard(mk.news.take(3), onOpenNews, onOpenInstrument) }
+                item(key = "news") { NewsCard(mk.news.take(1), onOpenNews, onOpenInstrument) }
             }
             if (mk.positions.isNotEmpty()) {
                 item(key = "pos-header") {

@@ -64,7 +64,7 @@
     },
     {
       "level": 7,
-      "cost": "1562500.00",
+      "cost": "531250.00",
       "extraSlots": 0,
       "offlineCapBonusSeconds": 0,
       "hustleMultiplier": "1.6",
@@ -72,7 +72,7 @@
     },
     {
       "level": 8,
-      "cost": "7812500.00",
+      "cost": "903125.00",
       "extraSlots": 0,
       "offlineCapBonusSeconds": 1800,
       "hustleMultiplier": "1.6",
@@ -80,7 +80,7 @@
     },
     {
       "level": 9,
-      "cost": "39062500.00",
+      "cost": "1535312.50",
       "extraSlots": 1,
       "offlineCapBonusSeconds": 0,
       "hustleMultiplier": "1.6",
@@ -88,7 +88,7 @@
     },
     {
       "level": 10,
-      "cost": "195312500.00",
+      "cost": "2610031.25",
       "extraSlots": 0,
       "offlineCapBonusSeconds": 1800,
       "hustleMultiplier": "1.6",
@@ -96,7 +96,7 @@
     },
     {
       "level": 11,
-      "cost": "976562500.00",
+      "cost": "4437053.12",
       "extraSlots": 0,
       "offlineCapBonusSeconds": 0,
       "hustleMultiplier": "1.6",
@@ -104,7 +104,7 @@
     },
     {
       "level": 12,
-      "cost": "4882812500.00",
+      "cost": "7542990.31",
       "extraSlots": 1,
       "offlineCapBonusSeconds": 1800,
       "hustleMultiplier": "1.6",
@@ -112,7 +112,7 @@
     },
     {
       "level": 13,
-      "cost": "24414062500.00",
+      "cost": "12823083.53",
       "extraSlots": 0,
       "offlineCapBonusSeconds": 0,
       "hustleMultiplier": "1.6",
@@ -120,7 +120,7 @@
     },
     {
       "level": 14,
-      "cost": "122070312500.00",
+      "cost": "21799242.00",
       "extraSlots": 0,
       "offlineCapBonusSeconds": 1800,
       "hustleMultiplier": "1.6",
@@ -128,7 +128,7 @@
     },
     {
       "level": 15,
-      "cost": "610351562500.00",
+      "cost": "37058711.41",
       "extraSlots": 1,
       "offlineCapBonusSeconds": 0,
       "hustleMultiplier": "1.6",
@@ -136,7 +136,7 @@
     },
     {
       "level": 16,
-      "cost": "3051757812500.00",
+      "cost": "62999809.39",
       "extraSlots": 0,
       "offlineCapBonusSeconds": 1800,
       "hustleMultiplier": "1.6",
@@ -144,7 +144,7 @@
     },
     {
       "level": 17,
-      "cost": "15258789062500.00",
+      "cost": "107099675.96",
       "extraSlots": 0,
       "offlineCapBonusSeconds": 0,
       "hustleMultiplier": "1.6",
@@ -152,7 +152,7 @@
     },
     {
       "level": 18,
-      "cost": "76293945312500.00",
+      "cost": "182069449.13",
       "extraSlots": 1,
       "offlineCapBonusSeconds": 1800,
       "hustleMultiplier": "1.6",
@@ -160,7 +160,7 @@
     },
     {
       "level": 19,
-      "cost": "381469726562500.00",
+      "cost": "309518063.53",
       "extraSlots": 0,
       "offlineCapBonusSeconds": 0,
       "hustleMultiplier": "1.6",
@@ -168,7 +168,7 @@
     },
     {
       "level": 20,
-      "cost": "1907348632812500.00",
+      "cost": "526180708.00",
       "extraSlots": 0,
       "offlineCapBonusSeconds": 1800,
       "hustleMultiplier": "1.6",
@@ -176,7 +176,7 @@
     },
     {
       "level": 21,
-      "cost": "9536743164062500.00",
+      "cost": "894507203.60",
       "extraSlots": 1,
       "offlineCapBonusSeconds": 0,
       "hustleMultiplier": "1.6",
@@ -184,7 +184,7 @@
     },
     {
       "level": 22,
-      "cost": "47683715820312500.00",
+      "cost": "1520662246.11",
       "extraSlots": 0,
       "offlineCapBonusSeconds": 1800,
       "hustleMultiplier": "1.6",
@@ -192,7 +192,7 @@
     },
     {
       "level": 23,
-      "cost": "238418579101562500.00",
+      "cost": "2585125818.39",
       "extraSlots": 0,
       "offlineCapBonusSeconds": 0,
       "hustleMultiplier": "1.6",
@@ -200,7 +200,7 @@
     },
     {
       "level": 24,
-      "cost": "1192092895507812500.00",
+      "cost": "4394713891.27",
       "extraSlots": 1,
       "offlineCapBonusSeconds": 1800,
       "hustleMultiplier": "1.6",
@@ -208,7 +208,7 @@
     },
     {
       "level": 25,
-      "cost": "5960464477539062500.00",
+      "cost": "7471013615.16",
       "extraSlots": 0,
       "offlineCapBonusSeconds": 0,
       "hustleMultiplier": "1.6",
@@ -218,7 +218,7 @@
   "managerSkillFloor": 0.7,
   "managerSkillPerStar": 0.06,
   "favorPerRushMinute": 1.0,
-  "holdingFee": "1000000000000000000.00",
+  "holdingFee": "20000000000.00",
   "holdingIncomeMultiplier": "1.25",
   "managerBudgetCashShare": 0.05,
   "managerBudgetIncomeSeconds": 1800

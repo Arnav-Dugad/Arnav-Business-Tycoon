@@ -39,6 +39,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.runtime.withFrameNanos
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
@@ -229,9 +230,13 @@ fun CounterScreen(vm: GameViewModel, guide: String? = null) {
 
         // The watermark, only until you start.
         if (h.totalTaps < 30) {
-            Column(Modifier.align(Alignment.Center).alpha(0.35f), horizontalAlignment = Alignment.CenterHorizontally) {
-                AbtIcon(AbtIcons.Hand, null, tint = c.goldText, size = 56.dp)
-                Text("Tap anywhere. Use more fingers to serve more customers.", style = Aurum.type.bodySmall, color = c.textSecondary)
+            Column(Modifier.align(Alignment.Center).padding(horizontal = Space.xl), horizontalAlignment = Alignment.CenterHorizontally) {
+                AbtIcon(AbtIcons.Hand, null, tint = c.goldText.copy(alpha = 0.6f), size = 56.dp)
+                Spacer(Modifier.height(Space.sm))
+                // Readable over the painting: a frosted pill, primary text.
+                Text("Tap anywhere. Use more fingers to serve more customers.", style = Aurum.type.bodySmall, color = c.textPrimary,
+                    textAlign = androidx.compose.ui.text.style.TextAlign.Center,
+                    modifier = Modifier.glass(AurumShapes.pill, GlassWeight.Thin, blur = false).padding(horizontal = Space.md, vertical = Space.xs))
             }
         }
 
@@ -308,7 +313,7 @@ private fun FrenzyPill(active: Boolean, charges: Int, left: String, onStart: () 
         AbtIcon(AbtIcons.Bolt, null, tint = if (active) c.textOnGold else if (on) c.goldText else c.textTertiary, size = 16.dp)
         Spacer(Modifier.width(Space.xs))
         Text(
-            when { active -> left; charges > 0 -> "×3 · $charges"; else -> "×3" },
+            when { active -> "Frenzy · $left"; charges > 0 -> "Frenzy ×3 · $charges left"; else -> "Frenzy · tomorrow" },
             style = Aurum.type.label, color = if (active) c.textOnGold else if (on) c.textPrimary else c.textTertiary,
         )
     }

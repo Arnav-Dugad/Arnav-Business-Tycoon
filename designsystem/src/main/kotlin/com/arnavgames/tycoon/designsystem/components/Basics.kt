@@ -27,6 +27,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.foundation.border
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.draw.scale
@@ -159,6 +160,8 @@ fun GhostButton(
             .scale(pressScale(source))
             .defaultMinSize(minHeight = 52.dp)
             .glass(AurumShapes.pill, GlassWeight.Thin, blur = false)
+            // Light mode: a hairline so a secondary button never disappears into a white card.
+            .then(if (!Aurum.colors.isDark) Modifier.border(1.dp, Aurum.colors.textTertiary.copy(alpha = 0.35f), AurumShapes.pill) else Modifier)
             .clickable(interactionSource = source, indication = null, enabled = enabled, role = Role.Button, onClick = onClick)
             .padding(horizontal = Space.xxl, vertical = Space.md),
         horizontalArrangement = Arrangement.Center,

@@ -27,7 +27,7 @@
     "repairCost": 0.06,
     "repairHours": 2,
     "maxRenovations": 3,
-    "maxProperties": 40,
+    "maxProperties": 150,
     "hostedUpkeepFactor": 0.9,
     "towerConstructionDiscount": 0.8,
     "unlocks": {
@@ -47,12 +47,12 @@
       "id": "lisbon",
       "name": "Lisbon",
       "chapter": 2,
-      "x": 0.4621,
-      "y": 0.4084,
+      "x": 0.4168,
+      "y": 0.2389,
       "longitude": -9.14,
       "latitude": 38.72,
-      "description": "Hills, trams and river light. Old neighbourhoods are being restored one building at a time: where most property fortunes start.",
-      "priceScale": "1",
+      "description": "Seven hills, yellow trams and river light. Old tiled buildings are being restored one at a time, and this is where most property fortunes begin.",
+      "priceScale": "1.00",
       "periodDays": 8.54,
       "amplitude": 0.03,
       "phase": 3.249
@@ -61,12 +61,12 @@
       "id": "london",
       "name": "London",
       "chapter": 2,
-      "x": 0.5135,
-      "y": 0.184,
+      "x": 0.4478,
+      "y": 0.1226,
       "longitude": -0.13,
       "latitude": 51.51,
-      "description": "A global capital of finance, Georgian squares and warehouse conversions. Expensive, but it never really goes out of fashion.",
-      "priceScale": "12",
+      "description": "A global capital of finance, Georgian squares and converted warehouses. Eye-wateringly expensive, yet it never really goes out of fashion.",
+      "priceScale": "2.43",
       "periodDays": 7.16,
       "amplitude": 0.045,
       "phase": 5.158
@@ -75,12 +75,12 @@
       "id": "miami",
       "name": "Miami",
       "chapter": 3,
-      "x": 0.0561,
-      "y": 0.6358,
+      "x": 0.1718,
+      "y": 0.3567,
       "longitude": -80.19,
       "latitude": 25.76,
-      "description": "Beaches, art deco and a skyline that keeps climbing. Hurricane season makes insurance worth having.",
-      "priceScale": "1500",
+      "description": "Beaches, art deco and a skyline that keeps on climbing. Money pours in from across the Americas, and hurricane season makes insurance worth every cent.",
+      "priceScale": "1.38",
       "periodDays": 9.74,
       "amplitude": 0.046,
       "phase": 5.84
@@ -89,12 +89,12 @@
       "id": "mumbai",
       "name": "Mumbai",
       "chapter": 4,
-      "x": 0.9307,
-      "y": 0.753,
+      "x": 0.6996,
+      "y": 0.4175,
       "longitude": 72.88,
       "latitude": 19.08,
-      "description": "India's commercial capital: old mill land turning into offices, sea-facing towers and some of the world's priciest square feet.",
-      "priceScale": "1725000",
+      "description": "India's restless commercial capital, where old mill land becomes glass towers and a sea-view flat costs more than most people can imagine.",
+      "priceScale": "0.83",
       "periodDays": 11.76,
       "amplitude": 0.023,
       "phase": 2.197
@@ -103,12 +103,12 @@
       "id": "new_york",
       "name": "New York",
       "chapter": 5,
-      "x": 0.0914,
-      "y": 0.3735,
-      "longitude": -74.01,
+      "x": 0.1931,
+      "y": 0.2208,
+      "longitude": -74.0,
       "latitude": 40.71,
-      "description": "Towers, brownstones and the world's busiest property market. Fortunes are made a block at a time.",
-      "priceScale": "821272500",
+      "description": "Brownstones, lofts and towers that scrape the clouds. Every square foot of Manhattan is fought over, and the deals here make careers.",
+      "priceScale": "2.36",
       "periodDays": 7.77,
       "amplitude": 0.042,
       "phase": 4.696
@@ -117,15 +117,239 @@
       "id": "dubai",
       "name": "Dubai",
       "chapter": 6,
-      "x": 0.8301,
-      "y": 0.6456,
+      "x": 0.6389,
+      "y": 0.3618,
       "longitude": 55.27,
       "latitude": 25.2,
-      "description": "Artificial islands, record-breaking towers and marinas full of yachts. The final frontier of luxury property.",
-      "priceScale": "38317289760",
+      "description": "Man-made islands, record-breaking towers and marinas full of yachts. Prices swing hard here, but the rental yields are hard to resist.",
+      "priceScale": "1.29",
       "periodDays": 10.3,
       "amplitude": 0.043,
       "phase": 1.892
+    },
+    {
+      "id": "riyadh",
+      "name": "Riyadh",
+      "chapter": 4,
+      "x": 0.6092,
+      "y": 0.3663,
+      "longitude": 46.68,
+      "latitude": 24.71,
+      "description": "A desert capital rebuilding itself at breakneck speed: new metro lines, mud-brick heritage restored, and villa land in the north changing hands fast.",
+      "priceScale": "0.30",
+      "periodDays": 7.27,
+      "amplitude": 0.038,
+      "phase": 0.419
+    },
+    {
+      "id": "tokyo",
+      "name": "Tokyo",
+      "chapter": 7,
+      "x": 0.93,
+      "y": 0.2665,
+      "longitude": 139.69,
+      "latitude": 35.69,
+      "description": "The world's largest city runs like clockwork. Neon towers, quiet backstreet homes and an earthquake code that shapes every building.",
+      "priceScale": "2.18",
+      "periodDays": 11.37,
+      "amplitude": 0.049,
+      "phase": 3.002
+    },
+    {
+      "id": "singapore",
+      "name": "Singapore",
+      "chapter": 7,
+      "x": 0.8063,
+      "y": 0.5786,
+      "longitude": 103.82,
+      "latitude": 1.35,
+      "description": "A spotless island city-state of gardens, towers and very strict rules. Land is scarce, demand is global, and prices rarely look back.",
+      "priceScale": "2.85",
+      "periodDays": 9.66,
+      "amplitude": 0.044,
+      "phase": 0.551
+    },
+    {
+      "id": "hong_kong",
+      "name": "Hong Kong",
+      "chapter": 8,
+      "x": 0.842,
+      "y": 0.388,
+      "longitude": 114.17,
+      "latitude": 22.32,
+      "description": "Skyscrapers packed between mountain and harbour, where a parking space can cost as much as a house elsewhere. Typhoons and politics keep it tense.",
+      "priceScale": "3.55",
+      "periodDays": 10.76,
+      "amplitude": 0.04,
+      "phase": 2.271
+    },
+    {
+      "id": "shanghai",
+      "name": "Shanghai",
+      "chapter": 5,
+      "x": 0.8671,
+      "y": 0.307,
+      "longitude": 121.47,
+      "latitude": 31.23,
+      "description": "Colonial banks on the Bund stare across the river at a forest of towers. Huge, fast and tightly regulated, with rents that lag far behind prices.",
+      "priceScale": "1.80",
+      "periodDays": 10.83,
+      "amplitude": 0.031,
+      "phase": 2.099
+    },
+    {
+      "id": "paris",
+      "name": "Paris",
+      "chapter": 6,
+      "x": 0.4564,
+      "y": 0.1467,
+      "longitude": 2.35,
+      "latitude": 48.86,
+      "description": "Haussmann boulevards, zinc rooftops and cafés on every corner. Supply barely moves, so a flat with a balcony and a view is a prize.",
+      "priceScale": "2.16",
+      "periodDays": 10.68,
+      "amplitude": 0.034,
+      "phase": 5.483
+    },
+    {
+      "id": "sydney",
+      "name": "Sydney",
+      "chapter": 5,
+      "x": 0.9697,
+      "y": 0.8988,
+      "longitude": 151.21,
+      "latitude": -33.87,
+      "description": "Harbour views, golden beaches and an obsession with property. Waterfront homes here are some of the most expensive in the southern hemisphere.",
+      "priceScale": "1.90",
+      "periodDays": 8.8,
+      "amplitude": 0.02,
+      "phase": 5.61
+    },
+    {
+      "id": "toronto",
+      "name": "Toronto",
+      "chapter": 4,
+      "x": 0.1746,
+      "y": 0.1941,
+      "longitude": -79.38,
+      "latitude": 43.65,
+      "description": "Canada's biggest city: a lakeside skyline of condo towers, leafy old neighbourhoods and one of the world's most diverse populations.",
+      "priceScale": "1.08",
+      "periodDays": 8.88,
+      "amplitude": 0.027,
+      "phase": 2.493
+    },
+    {
+      "id": "los_angeles",
+      "name": "Los Angeles",
+      "chapter": 6,
+      "x": 0.0406,
+      "y": 0.2814,
+      "longitude": -118.24,
+      "latitude": 34.05,
+      "description": "Hillside mansions, beach bungalows and a sprawl of studios and freeways. Sunshine sells every home here, but faults and wildfires lurk.",
+      "priceScale": "2.20",
+      "periodDays": 11.27,
+      "amplitude": 0.026,
+      "phase": 2.861
+    },
+    {
+      "id": "sao_paulo",
+      "name": "São Paulo",
+      "chapter": 3,
+      "x": 0.2875,
+      "y": 0.805,
+      "longitude": -46.63,
+      "latitude": -23.55,
+      "description": "South America's financial engine: an endless sea of towers, rooftop helipads and hidden gardens. The currency swings, but so do the bargains.",
+      "priceScale": "0.40",
+      "periodDays": 11.12,
+      "amplitude": 0.038,
+      "phase": 1.113
+    },
+    {
+      "id": "seoul",
+      "name": "Seoul",
+      "chapter": 6,
+      "x": 0.8861,
+      "y": 0.2494,
+      "longitude": 126.98,
+      "latitude": 37.57,
+      "description": "Palaces, mountains and high-rise apartment estates on both banks of the Han River. South of the river, a flat can cost a small fortune.",
+      "priceScale": "2.24",
+      "periodDays": 6.22,
+      "amplitude": 0.038,
+      "phase": 2.04
+    },
+    {
+      "id": "zurich",
+      "name": "Zurich",
+      "chapter": 7,
+      "x": 0.4777,
+      "y": 0.1602,
+      "longitude": 8.54,
+      "latitude": 47.38,
+      "description": "Private banks, a crystal-clear lake and the Alps on the horizon. Calm, safe and fabulously expensive, it barely notices a recession.",
+      "priceScale": "2.64",
+      "periodDays": 8.89,
+      "amplitude": 0.028,
+      "phase": 1.857
+    },
+    {
+      "id": "istanbul",
+      "name": "Istanbul",
+      "chapter": 2,
+      "x": 0.5482,
+      "y": 0.2181,
+      "longitude": 28.98,
+      "latitude": 41.01,
+      "description": "Minarets, ferries and waterfront mansions on the strait between two continents. Prices race inflation, and the ground itself is never fully still.",
+      "priceScale": "0.52",
+      "periodDays": 9.89,
+      "amplitude": 0.023,
+      "phase": 1.318
+    },
+    {
+      "id": "mexico_city",
+      "name": "Mexico City",
+      "chapter": 2,
+      "x": 0.1064,
+      "y": 0.4143,
+      "longitude": -99.13,
+      "latitude": 19.43,
+      "description": "A high-altitude megacity of tree-lined boulevards, colonial plazas and buzzing cafés. Yields are generous, but it sits on an old lakebed in quake country.",
+      "priceScale": "0.44",
+      "periodDays": 11.76,
+      "amplitude": 0.021,
+      "phase": 2.403
+    },
+    {
+      "id": "cape_town",
+      "name": "Cape Town",
+      "chapter": 3,
+      "x": 0.5118,
+      "y": 0.8993,
+      "longitude": 18.42,
+      "latitude": -33.92,
+      "description": "Table Mountain looms over beaches, vineyards and clifftop villas. Some of the world's best views sell for a fraction of European prices.",
+      "priceScale": "0.45",
+      "periodDays": 11.22,
+      "amplitude": 0.025,
+      "phase": 5.4
+    },
+    {
+      "id": "monaco",
+      "name": "Monaco",
+      "chapter": 8,
+      "x": 0.4739,
+      "y": 0.1933,
+      "longitude": 7.42,
+      "latitude": 43.74,
+      "description": "Two square kilometres of superyachts, casinos and tax-free fortunes on the Riviera. The most expensive address on Earth, and the final test.",
+      "priceScale": "5.00",
+      "periodDays": 11.66,
+      "amplitude": 0.04,
+      "phase": 4.494
     }
   ],
   "districts": [
@@ -133,339 +357,344 @@
       "id": "lis_alfama",
       "city": "lisbon",
       "name": "Alfama",
-      "tier": 1.0,
-      "yieldPerDay": 0.034,
+      "tier": 1.1,
+      "yieldPerDay": 0.033,
       "cbd": false,
-      "risk": 1.0,
+      "risk": 1.2,
       "types": [
         "apartment",
         "townhouse",
-        "retail_unit",
-        "mixed_use"
+        "hotel_plot"
       ],
       "periodDays": 5.42,
       "amplitude": 0.107,
       "phase": 6.054,
       "trendPerDay": 0.0057,
-      "x": 0.464,
-      "y": 0.377
+      "x": 0.417,
+      "y": 0.234
     },
     {
       "id": "lis_baixa",
       "city": "lisbon",
       "name": "Baixa",
       "tier": 1.4,
-      "yieldPerDay": 0.032,
+      "yieldPerDay": 0.0312,
       "cbd": false,
-      "risk": 0.9,
+      "risk": 1.2,
       "types": [
         "retail_unit",
-        "apartment",
         "hotel_plot",
-        "mixed_use"
+        "mixed_use",
+        "apartment"
       ],
       "periodDays": 4.46,
       "amplitude": 0.074,
       "phase": 5.418,
       "trendPerDay": 0.0023,
-      "x": 0.464,
-      "y": 0.452
+      "x": 0.417,
+      "y": 0.246
     },
     {
       "id": "lis_chiado",
       "city": "lisbon",
       "name": "Chiado",
-      "tier": 2.0,
-      "yieldPerDay": 0.028,
+      "tier": 1.6,
+      "yieldPerDay": 0.027,
       "cbd": false,
-      "risk": 0.9,
+      "risk": 1.1,
       "types": [
         "apartment",
+        "penthouse",
         "retail_unit",
-        "penthouse"
+        "hotel_plot"
       ],
       "periodDays": 6.58,
       "amplitude": 0.092,
       "phase": 3.121,
       "trendPerDay": 0.0058,
-      "x": 0.494,
-      "y": 0.418
+      "x": 0.421,
+      "y": 0.24
     },
     {
       "id": "lis_belem",
       "city": "lisbon",
       "name": "Belém",
-      "tier": 1.6,
-      "yieldPerDay": 0.03,
+      "tier": 1.3,
+      "yieldPerDay": 0.0276,
       "cbd": false,
       "risk": 1.1,
       "types": [
-        "villa",
         "townhouse",
+        "villa",
+        "apartment",
         "hotel_plot"
       ],
       "periodDays": 6.43,
       "amplitude": 0.115,
       "phase": 5.898,
       "trendPerDay": 0.0048,
-      "x": 0.403,
-      "y": 0.397
+      "x": 0.408,
+      "y": 0.237
     },
     {
       "id": "lis_cais_do_sodre",
       "city": "lisbon",
       "name": "Cais do Sodré",
       "tier": 1.2,
-      "yieldPerDay": 0.035,
+      "yieldPerDay": 0.0324,
       "cbd": false,
-      "risk": 1.1,
+      "risk": 1.2,
       "types": [
         "apartment",
+        "mixed_use",
         "retail_unit",
-        "warehouse",
-        "mixed_use"
+        "warehouse"
       ],
       "periodDays": 5.02,
       "amplitude": 0.086,
       "phase": 0.762,
       "trendPerDay": -0.0002,
-      "x": 0.493,
-      "y": 0.416
+      "x": 0.421,
+      "y": 0.24
     },
     {
       "id": "lis_parque_das_nacoes",
       "city": "lisbon",
       "name": "Parque das Nações",
-      "tier": 1.8,
-      "yieldPerDay": 0.029,
+      "tier": 1.1,
+      "yieldPerDay": 0.03,
       "cbd": true,
       "risk": 1.0,
       "types": [
         "office_floor",
-        "land",
         "apartment",
-        "penthouse"
+        "penthouse",
+        "land"
       ],
       "periodDays": 5.58,
       "amplitude": 0.1,
       "phase": 1.061,
       "trendPerDay": -0.0005,
-      "x": 0.462,
-      "y": 0.378
+      "x": 0.417,
+      "y": 0.234
     },
     {
       "id": "lon_city_of_london",
       "city": "london",
       "name": "City of London",
-      "tier": 2.8,
-      "yieldPerDay": 0.026,
+      "tier": 1.5,
+      "yieldPerDay": 0.0228,
       "cbd": true,
-      "risk": 0.8,
+      "risk": 0.9,
       "types": [
         "office_floor",
-        "land",
-        "penthouse",
-        "mixed_use"
+        "retail_unit",
+        "mixed_use",
+        "penthouse"
       ],
       "periodDays": 6.31,
       "amplitude": 0.115,
       "phase": 2.099,
       "trendPerDay": 0.0,
-      "x": 0.458,
-      "y": 0.216
+      "x": 0.44,
+      "y": 0.128
     },
     {
       "id": "lon_mayfair",
       "city": "london",
       "name": "Mayfair",
-      "tier": 3.0,
-      "yieldPerDay": 0.022,
+      "tier": 2.9,
+      "yieldPerDay": 0.0168,
       "cbd": false,
       "risk": 0.8,
       "types": [
-        "penthouse",
         "townhouse",
+        "penthouse",
+        "office_floor",
         "hotel_plot"
       ],
       "periodDays": 8.35,
       "amplitude": 0.12,
       "phase": 1.297,
       "trendPerDay": 0.0042,
-      "x": 0.57,
-      "y": 0.132
+      "x": 0.456,
+      "y": 0.114
     },
     {
       "id": "lon_kensington",
       "city": "london",
       "name": "Kensington",
-      "tier": 2.6,
-      "yieldPerDay": 0.024,
+      "tier": 2.5,
+      "yieldPerDay": 0.0174,
       "cbd": false,
       "risk": 0.8,
       "types": [
         "townhouse",
         "apartment",
+        "penthouse",
         "villa"
       ],
       "periodDays": 4.56,
       "amplitude": 0.096,
       "phase": 2.061,
       "trendPerDay": 0.0051,
-      "x": 0.569,
-      "y": 0.177
+      "x": 0.456,
+      "y": 0.121
     },
     {
       "id": "lon_shoreditch",
       "city": "london",
       "name": "Shoreditch",
-      "tier": 1.4,
-      "yieldPerDay": 0.033,
+      "tier": 1.2,
+      "yieldPerDay": 0.0264,
       "cbd": false,
-      "risk": 0.9,
+      "risk": 1.0,
       "types": [
         "office_floor",
+        "mixed_use",
         "apartment",
-        "retail_unit",
-        "mixed_use"
+        "retail_unit"
       ],
       "periodDays": 6.33,
       "amplitude": 0.044,
       "phase": 3.901,
       "trendPerDay": 0.0036,
-      "x": 0.502,
-      "y": 0.136
+      "x": 0.446,
+      "y": 0.115
     },
     {
       "id": "lon_camden",
       "city": "london",
       "name": "Camden",
-      "tier": 1.2,
-      "yieldPerDay": 0.034,
+      "tier": 1.1,
+      "yieldPerDay": 0.0252,
       "cbd": false,
       "risk": 0.9,
       "types": [
         "apartment",
-        "retail_unit",
-        "townhouse"
+        "townhouse",
+        "retail_unit"
       ],
       "periodDays": 8.27,
       "amplitude": 0.091,
       "phase": 1.225,
       "trendPerDay": 0.0052,
-      "x": 0.521,
-      "y": 0.221
+      "x": 0.449,
+      "y": 0.129
     },
     {
       "id": "lon_canary_wharf",
       "city": "london",
       "name": "Canary Wharf",
-      "tier": 2.2,
-      "yieldPerDay": 0.029,
+      "tier": 1.0,
+      "yieldPerDay": 0.0288,
       "cbd": false,
-      "risk": 1.0,
+      "risk": 1.1,
       "types": [
         "office_floor",
+        "apartment",
         "penthouse",
-        "apartment"
+        "retail_unit"
       ],
       "periodDays": 4.83,
       "amplitude": 0.078,
       "phase": 0.922,
       "trendPerDay": 0.0027,
-      "x": 0.516,
-      "y": 0.221
+      "x": 0.448,
+      "y": 0.129
     },
     {
       "id": "lon_southwark",
       "city": "london",
       "name": "Southwark",
-      "tier": 1.1,
-      "yieldPerDay": 0.035,
+      "tier": 1.2,
+      "yieldPerDay": 0.0258,
       "cbd": false,
       "risk": 1.0,
       "types": [
-        "warehouse",
         "apartment",
         "mixed_use",
+        "warehouse",
         "retail_unit"
       ],
       "periodDays": 6.69,
       "amplitude": 0.11,
       "phase": 3.223,
       "trendPerDay": 0.0016,
-      "x": 0.445,
-      "y": 0.189
+      "x": 0.438,
+      "y": 0.123
     },
     {
       "id": "mia_south_beach",
       "city": "miami",
       "name": "South Beach",
-      "tier": 2.2,
-      "yieldPerDay": 0.029,
+      "tier": 1.8,
+      "yieldPerDay": 0.03,
       "cbd": false,
-      "risk": 1.6,
+      "risk": 1.8,
       "types": [
-        "hotel_plot",
         "apartment",
-        "retail_unit",
-        "penthouse"
+        "penthouse",
+        "hotel_plot",
+        "retail_unit"
       ],
       "periodDays": 8.56,
       "amplitude": 0.101,
       "phase": 2.729,
       "trendPerDay": -0.0003,
-      "x": 0.085,
-      "y": 0.647
+      "x": 0.176,
+      "y": 0.359
     },
     {
       "id": "mia_brickell",
       "city": "miami",
       "name": "Brickell",
-      "tier": 2.0,
-      "yieldPerDay": 0.028,
+      "tier": 1.4,
+      "yieldPerDay": 0.033,
       "cbd": true,
-      "risk": 1.3,
+      "risk": 1.6,
       "types": [
         "office_floor",
-        "land",
         "penthouse",
+        "apartment",
         "mixed_use"
       ],
       "periodDays": 7.27,
       "amplitude": 0.112,
       "phase": 0.337,
       "trendPerDay": 0.0004,
-      "x": 0.102,
-      "y": 0.657
+      "x": 0.178,
+      "y": 0.36
     },
     {
       "id": "mia_wynwood",
       "city": "miami",
       "name": "Wynwood",
-      "tier": 1.1,
-      "yieldPerDay": 0.035,
+      "tier": 1.0,
+      "yieldPerDay": 0.036,
       "cbd": false,
-      "risk": 1.2,
+      "risk": 1.4,
       "types": [
         "warehouse",
+        "mixed_use",
         "retail_unit",
-        "mixed_use"
+        "apartment"
       ],
       "periodDays": 5.48,
       "amplitude": 0.047,
       "phase": 1.544,
       "trendPerDay": 0.0002,
-      "x": 0.05,
-      "y": 0.643
+      "x": 0.167,
+      "y": 0.358
     },
     {
       "id": "mia_coconut_grove",
       "city": "miami",
       "name": "Coconut Grove",
-      "tier": 1.8,
+      "tier": 1.6,
       "yieldPerDay": 0.027,
       "cbd": false,
-      "risk": 1.4,
+      "risk": 1.6,
       "types": [
         "villa",
         "townhouse",
@@ -475,203 +704,209 @@
       "amplitude": 0.067,
       "phase": 5.02,
       "trendPerDay": 0.0042,
-      "x": 0.102,
-      "y": 0.636
+      "x": 0.178,
+      "y": 0.357
     },
     {
       "id": "mia_little_havana",
       "city": "miami",
       "name": "Little Havana",
-      "tier": 0.8,
-      "yieldPerDay": 0.039,
+      "tier": 0.75,
+      "yieldPerDay": 0.042,
       "cbd": false,
-      "risk": 1.2,
+      "risk": 1.4,
       "types": [
         "apartment",
         "retail_unit",
-        "townhouse"
+        "townhouse",
+        "mixed_use"
       ],
       "periodDays": 8.17,
       "amplitude": 0.1,
       "phase": 2.168,
       "trendPerDay": 0.0046,
-      "x": 0.119,
-      "y": 0.682
+      "x": 0.181,
+      "y": 0.364
     },
     {
       "id": "mia_coral_gables",
       "city": "miami",
       "name": "Coral Gables",
-      "tier": 1.6,
-      "yieldPerDay": 0.029,
+      "tier": 1.5,
+      "yieldPerDay": 0.0264,
       "cbd": false,
-      "risk": 1.2,
+      "risk": 1.4,
       "types": [
         "villa",
         "townhouse",
-        "office_floor"
+        "office_floor",
+        "retail_unit"
       ],
       "periodDays": 7.87,
       "amplitude": 0.118,
       "phase": 6.16,
       "trendPerDay": 0.0016,
-      "x": 0.05,
-      "y": 0.652
+      "x": 0.166,
+      "y": 0.359
     },
     {
       "id": "mia_key_biscayne",
       "city": "miami",
       "name": "Key Biscayne",
-      "tier": 2.6,
-      "yieldPerDay": 0.025,
+      "tier": 2.2,
+      "yieldPerDay": 0.0228,
       "cbd": false,
-      "risk": 1.7,
+      "risk": 1.8,
       "types": [
         "villa",
-        "hotel_plot",
+        "apartment",
+        "penthouse",
         "land"
       ],
       "periodDays": 5.8,
       "amplitude": 0.043,
       "phase": 0.287,
       "trendPerDay": 0.0047,
-      "x": 0.112,
-      "y": 0.663
+      "x": 0.18,
+      "y": 0.361
     },
     {
       "id": "mum_nariman_point",
       "city": "mumbai",
       "name": "Nariman Point",
-      "tier": 2.6,
-      "yieldPerDay": 0.027,
+      "tier": 2.0,
+      "yieldPerDay": 0.024,
       "cbd": true,
-      "risk": 1.1,
+      "risk": 1.4,
       "types": [
         "office_floor",
-        "land",
-        "penthouse",
-        "hotel_plot"
+        "apartment",
+        "hotel_plot",
+        "retail_unit"
       ],
       "periodDays": 5.13,
       "amplitude": 0.114,
       "phase": 2.815,
       "trendPerDay": 0.0018,
-      "x": 0.931,
-      "y": 0.746
+      "x": 0.7,
+      "y": 0.416
     },
     {
       "id": "mum_bandra",
       "city": "mumbai",
       "name": "Bandra",
-      "tier": 2.0,
-      "yieldPerDay": 0.03,
+      "tier": 1.8,
+      "yieldPerDay": 0.0168,
       "cbd": false,
-      "risk": 1.1,
+      "risk": 1.3,
       "types": [
         "apartment",
         "penthouse",
-        "retail_unit"
+        "retail_unit",
+        "villa"
       ],
       "periodDays": 5.58,
       "amplitude": 0.095,
       "phase": 1.22,
       "trendPerDay": 0.0014,
-      "x": 0.95,
-      "y": 0.711
+      "x": 0.706,
+      "y": 0.411
     },
     {
       "id": "mum_colaba",
       "city": "mumbai",
       "name": "Colaba",
-      "tier": 1.8,
-      "yieldPerDay": 0.031,
+      "tier": 2.0,
+      "yieldPerDay": 0.0162,
       "cbd": false,
-      "risk": 1.2,
+      "risk": 1.4,
       "types": [
-        "hotel_plot",
         "apartment",
-        "retail_unit"
+        "hotel_plot",
+        "retail_unit",
+        "townhouse"
       ],
       "periodDays": 5.39,
       "amplitude": 0.084,
       "phase": 3.903,
       "trendPerDay": 0.0031,
-      "x": 0.95,
-      "y": 0.785
+      "x": 0.708,
+      "y": 0.423
     },
     {
       "id": "mum_juhu",
       "city": "mumbai",
       "name": "Juhu",
-      "tier": 2.2,
-      "yieldPerDay": 0.028,
+      "tier": 1.9,
+      "yieldPerDay": 0.0168,
       "cbd": false,
-      "risk": 1.3,
+      "risk": 1.4,
       "types": [
         "villa",
         "apartment",
-        "hotel_plot"
+        "hotel_plot",
+        "penthouse"
       ],
       "periodDays": 4.83,
       "amplitude": 0.041,
       "phase": 1.479,
       "trendPerDay": 0.0051,
-      "x": 0.95,
-      "y": 0.737
+      "x": 0.707,
+      "y": 0.415
     },
     {
       "id": "mum_lower_parel",
       "city": "mumbai",
       "name": "Lower Parel",
       "tier": 1.6,
-      "yieldPerDay": 0.032,
+      "yieldPerDay": 0.021,
       "cbd": false,
-      "risk": 1.0,
+      "risk": 1.4,
       "types": [
         "office_floor",
+        "penthouse",
         "mixed_use",
-        "apartment",
-        "warehouse"
+        "apartment"
       ],
       "periodDays": 4.59,
       "amplitude": 0.094,
       "phase": 0.335,
       "trendPerDay": 0.0009,
-      "x": 0.883,
-      "y": 0.785
+      "x": 0.693,
+      "y": 0.423
     },
     {
       "id": "mum_andheri",
       "city": "mumbai",
       "name": "Andheri",
-      "tier": 1.0,
-      "yieldPerDay": 0.037,
+      "tier": 0.9,
+      "yieldPerDay": 0.0216,
       "cbd": false,
-      "risk": 1.0,
+      "risk": 1.4,
       "types": [
         "apartment",
         "office_floor",
         "warehouse",
-        "land"
+        "retail_unit"
       ],
       "periodDays": 4.73,
       "amplitude": 0.116,
       "phase": 3.292,
       "trendPerDay": 0.0002,
-      "x": 0.941,
-      "y": 0.723
+      "x": 0.701,
+      "y": 0.412
     },
     {
       "id": "new_financial_district",
       "city": "new_york",
       "name": "Financial District",
-      "tier": 3.0,
-      "yieldPerDay": 0.025,
+      "tier": 1.3,
+      "yieldPerDay": 0.0252,
       "cbd": true,
-      "risk": 0.9,
+      "risk": 1.3,
       "types": [
         "office_floor",
-        "land",
+        "apartment",
         "penthouse",
         "mixed_use"
       ],
@@ -679,17 +914,17 @@
       "amplitude": 0.071,
       "phase": 3.605,
       "trendPerDay": 0.0008,
-      "x": 0.05,
-      "y": 0.405
+      "x": 0.184,
+      "y": 0.226
     },
     {
       "id": "new_midtown",
       "city": "new_york",
       "name": "Midtown",
-      "tier": 2.8,
-      "yieldPerDay": 0.026,
+      "tier": 1.5,
+      "yieldPerDay": 0.024,
       "cbd": false,
-      "risk": 0.8,
+      "risk": 1.0,
       "types": [
         "office_floor",
         "hotel_plot",
@@ -700,37 +935,38 @@
       "amplitude": 0.053,
       "phase": 2.685,
       "trendPerDay": 0.0015,
-      "x": 0.082,
-      "y": 0.342
+      "x": 0.192,
+      "y": 0.216
     },
     {
       "id": "new_soho",
       "city": "new_york",
       "name": "SoHo",
-      "tier": 2.4,
-      "yieldPerDay": 0.027,
+      "tier": 2.0,
+      "yieldPerDay": 0.0204,
       "cbd": false,
-      "risk": 0.9,
+      "risk": 1.0,
       "types": [
         "retail_unit",
         "apartment",
-        "mixed_use"
+        "mixed_use",
+        "penthouse"
       ],
       "periodDays": 4.97,
       "amplitude": 0.042,
       "phase": 0.278,
       "trendPerDay": -0.0001,
-      "x": 0.05,
-      "y": 0.352
+      "x": 0.183,
+      "y": 0.217
     },
     {
       "id": "new_upper_east_side",
       "city": "new_york",
       "name": "Upper East Side",
-      "tier": 2.6,
-      "yieldPerDay": 0.024,
+      "tier": 1.8,
+      "yieldPerDay": 0.0192,
       "cbd": false,
-      "risk": 0.8,
+      "risk": 0.9,
       "types": [
         "townhouse",
         "penthouse",
@@ -740,116 +976,118 @@
       "amplitude": 0.094,
       "phase": 0.791,
       "trendPerDay": 0.004,
-      "x": 0.1,
-      "y": 0.426
+      "x": 0.194,
+      "y": 0.23
     },
     {
       "id": "new_brooklyn_heights",
       "city": "new_york",
       "name": "Brooklyn Heights",
-      "tier": 1.8,
-      "yieldPerDay": 0.029,
+      "tier": 1.5,
+      "yieldPerDay": 0.0216,
       "cbd": false,
       "risk": 1.0,
       "types": [
         "townhouse",
-        "apartment"
+        "apartment",
+        "retail_unit"
       ],
       "periodDays": 5.22,
       "amplitude": 0.085,
       "phase": 0.227,
       "trendPerDay": 0.0059,
-      "x": 0.102,
-      "y": 0.392
+      "x": 0.195,
+      "y": 0.224
     },
     {
       "id": "new_harlem",
       "city": "new_york",
       "name": "Harlem",
-      "tier": 1.0,
-      "yieldPerDay": 0.036,
+      "tier": 0.75,
+      "yieldPerDay": 0.033,
       "cbd": false,
       "risk": 1.0,
       "types": [
         "apartment",
         "townhouse",
-        "retail_unit"
+        "retail_unit",
+        "mixed_use"
       ],
       "periodDays": 8.91,
       "amplitude": 0.063,
       "phase": 2.639,
       "trendPerDay": 0.0014,
-      "x": 0.154,
-      "y": 0.395
+      "x": 0.202,
+      "y": 0.224
     },
     {
       "id": "new_hudson_yards",
       "city": "new_york",
       "name": "Hudson Yards",
-      "tier": 2.2,
-      "yieldPerDay": 0.028,
+      "tier": 2.0,
+      "yieldPerDay": 0.0228,
       "cbd": false,
-      "risk": 1.0,
+      "risk": 1.1,
       "types": [
         "office_floor",
-        "land",
+        "penthouse",
         "mixed_use",
-        "penthouse"
+        "land"
       ],
       "periodDays": 4.89,
       "amplitude": 0.081,
       "phase": 4.727,
       "trendPerDay": 0.0037,
-      "x": 0.126,
-      "y": 0.376
+      "x": 0.198,
+      "y": 0.221
     },
     {
       "id": "dub_downtown_dubai",
       "city": "dubai",
       "name": "Downtown Dubai",
-      "tier": 3.0,
-      "yieldPerDay": 0.025,
+      "tier": 1.9,
+      "yieldPerDay": 0.0348,
       "cbd": false,
-      "risk": 0.9,
+      "risk": 1.1,
       "types": [
         "penthouse",
-        "hotel_plot",
         "apartment",
+        "hotel_plot",
         "mixed_use"
       ],
       "periodDays": 6.84,
       "amplitude": 0.059,
       "phase": 4.948,
       "trendPerDay": 0.0025,
-      "x": 0.791,
-      "y": 0.648
+      "x": 0.633,
+      "y": 0.362
     },
     {
       "id": "dub_palm_jumeirah",
       "city": "dubai",
       "name": "Palm Jumeirah",
-      "tier": 3.2,
-      "yieldPerDay": 0.024,
+      "tier": 2.6,
+      "yieldPerDay": 0.03,
       "cbd": false,
       "risk": 1.3,
       "types": [
         "villa",
-        "hotel_plot",
-        "penthouse"
+        "penthouse",
+        "hotel_plot"
       ],
       "periodDays": 5.39,
       "amplitude": 0.045,
       "phase": 3.871,
       "trendPerDay": 0.0007,
-      "x": 0.888,
-      "y": 0.586
+      "x": 0.647,
+      "y": 0.352
     },
     {
       "id": "dub_dubai_marina",
       "city": "dubai",
       "name": "Dubai Marina",
-      "tier": 2.5,
-      "yieldPerDay": 0.027,
+      "tier": 1.5,
+      "yieldPerDay": 0.039,
       "cbd": false,
       "risk": 1.1,
       "types": [
@@ -861,36 +1099,36 @@
       "amplitude": 0.112,
       "phase": 1.417,
       "trendPerDay": -0.0009,
-      "x": 0.762,
-      "y": 0.686
+      "x": 0.629,
+      "y": 0.368
     },
     {
       "id": "dub_difc",
       "city": "dubai",
       "name": "DIFC",
-      "tier": 3.0,
-      "yieldPerDay": 0.025,
+      "tier": 2.0,
+      "yieldPerDay": 0.036,
       "cbd": true,
-      "risk": 0.8,
+      "risk": 1.0,
       "types": [
         "office_floor",
-        "land",
+        "penthouse",
         "mixed_use",
-        "penthouse"
+        "land"
       ],
       "periodDays": 8.73,
       "amplitude": 0.078,
       "phase": 4.584,
       "trendPerDay": 0.0016,
-      "x": 0.767,
-      "y": 0.688
+      "x": 0.63,
+      "y": 0.369
     },
     {
       "id": "dub_jumeirah",
       "city": "dubai",
       "name": "Jumeirah",
-      "tier": 2.6,
-      "yieldPerDay": 0.026,
+      "tier": 1.8,
+      "yieldPerDay": 0.03,
       "cbd": false,
       "risk": 1.0,
       "types": [
@@ -902,17 +1140,17 @@
       "amplitude": 0.104,
       "phase": 2.434,
       "trendPerDay": 0.0005,
-      "x": 0.789,
-      "y": 0.656
+      "x": 0.633,
+      "y": 0.364
     },
     {
       "id": "dub_business_bay",
       "city": "dubai",
       "name": "Business Bay",
-      "tier": 1.8,
-      "yieldPerDay": 0.03,
+      "tier": 1.2,
+      "yieldPerDay": 0.042,
       "cbd": false,
-      "risk": 1.0,
+      "risk": 1.1,
       "types": [
         "office_floor",
         "apartment",
@@ -923,15 +1161,15 @@
       "amplitude": 0.103,
       "phase": 4.129,
       "trendPerDay": 0.0057,
-      "x": 0.829,
-      "y": 0.653
+      "x": 0.639,
+      "y": 0.363
     },
     {
       "id": "dub_deira",
       "city": "dubai",
       "name": "Deira",
-      "tier": 0.9,
-      "yieldPerDay": 0.037,
+      "tier": 0.7,
+      "yieldPerDay": 0.045,
       "cbd": false,
       "risk": 1.0,
       "types": [
@@ -943,8 +1181,1997 @@
       "amplitude": 0.058,
       "phase": 1.774,
       "trendPerDay": 0.0029,
+      "x": 0.644,
+      "y": 0.354
+    },
+    {
+      "id": "riy_olaya",
+      "city": "riyadh",
+      "name": "Olaya",
+      "tier": 1.6,
+      "yieldPerDay": 0.039,
+      "cbd": true,
+      "risk": 1.0,
+      "types": [
+        "office_floor",
+        "apartment",
+        "retail_unit",
+        "mixed_use"
+      ],
+      "periodDays": 7.33,
+      "amplitude": 0.051,
+      "phase": 3.056,
+      "trendPerDay": 0.0056,
+      "x": 0.608,
+      "y": 0.358
+    },
+    {
+      "id": "riy_al_sulimaniyah",
+      "city": "riyadh",
+      "name": "Al Sulimaniyah",
+      "tier": 1.4,
+      "yieldPerDay": 0.0408,
+      "cbd": false,
+      "risk": 1.0,
+      "types": [
+        "apartment",
+        "retail_unit",
+        "office_floor",
+        "mixed_use"
+      ],
+      "periodDays": 7.0,
+      "amplitude": 0.094,
+      "phase": 4.095,
+      "trendPerDay": 0.0012,
+      "x": 0.6,
+      "y": 0.363
+    },
+    {
+      "id": "riy_al_malqa",
+      "city": "riyadh",
+      "name": "Al Malqa",
+      "tier": 1.5,
+      "yieldPerDay": 0.033,
+      "cbd": false,
+      "risk": 1.0,
+      "types": [
+        "villa",
+        "apartment",
+        "townhouse",
+        "land"
+      ],
+      "periodDays": 5.4,
+      "amplitude": 0.111,
+      "phase": 1.041,
+      "trendPerDay": -0.0005,
+      "x": 0.612,
+      "y": 0.357
+    },
+    {
+      "id": "riy_hittin",
+      "city": "riyadh",
+      "name": "Hittin",
+      "tier": 1.7,
+      "yieldPerDay": 0.03,
+      "cbd": false,
+      "risk": 1.0,
+      "types": [
+        "villa",
+        "townhouse",
+        "land"
+      ],
+      "periodDays": 4.09,
+      "amplitude": 0.06,
+      "phase": 5.123,
+      "trendPerDay": 0.0005,
+      "x": 0.617,
+      "y": 0.376
+    },
+    {
+      "id": "riy_diriyah",
+      "city": "riyadh",
+      "name": "Diriyah",
+      "tier": 2.0,
+      "yieldPerDay": 0.027,
+      "cbd": false,
+      "risk": 1.2,
+      "types": [
+        "hotel_plot",
+        "villa",
+        "land",
+        "retail_unit"
+      ],
+      "periodDays": 7.76,
+      "amplitude": 0.08,
+      "phase": 2.409,
+      "trendPerDay": 0.0055,
+      "x": 0.608,
+      "y": 0.364
+    },
+    {
+      "id": "riy_al_malaz",
+      "city": "riyadh",
+      "name": "Al Malaz",
+      "tier": 0.8,
+      "yieldPerDay": 0.045,
+      "cbd": false,
+      "risk": 1.0,
+      "types": [
+        "apartment",
+        "retail_unit",
+        "warehouse"
+      ],
+      "periodDays": 8.83,
+      "amplitude": 0.043,
+      "phase": 0.521,
+      "trendPerDay": 0.0026,
+      "x": 0.6,
+      "y": 0.366
+    },
+    {
+      "id": "tok_marunouchi",
+      "city": "tokyo",
+      "name": "Marunouchi",
+      "tier": 2.4,
+      "yieldPerDay": 0.0192,
+      "cbd": true,
+      "risk": 1.4,
+      "types": [
+        "office_floor",
+        "retail_unit",
+        "hotel_plot",
+        "mixed_use"
+      ],
+      "periodDays": 4.0,
+      "amplitude": 0.056,
+      "phase": 4.24,
+      "trendPerDay": 0.0002,
+      "x": 0.933,
+      "y": 0.273
+    },
+    {
+      "id": "tok_ginza",
+      "city": "tokyo",
+      "name": "Ginza",
+      "tier": 2.8,
+      "yieldPerDay": 0.0168,
+      "cbd": false,
+      "risk": 1.4,
+      "types": [
+        "retail_unit",
+        "office_floor",
+        "hotel_plot",
+        "mixed_use"
+      ],
+      "periodDays": 4.71,
+      "amplitude": 0.106,
+      "phase": 3.862,
+      "trendPerDay": 0.0005,
+      "x": 0.936,
+      "y": 0.27
+    },
+    {
+      "id": "tok_roppongi",
+      "city": "tokyo",
+      "name": "Roppongi",
+      "tier": 2.2,
+      "yieldPerDay": 0.0204,
+      "cbd": false,
+      "risk": 1.4,
+      "types": [
+        "penthouse",
+        "apartment",
+        "hotel_plot",
+        "mixed_use"
+      ],
+      "periodDays": 8.77,
+      "amplitude": 0.066,
+      "phase": 0.379,
+      "trendPerDay": 0.0012,
+      "x": 0.937,
+      "y": 0.271
+    },
+    {
+      "id": "tok_shibuya",
+      "city": "tokyo",
+      "name": "Shibuya",
+      "tier": 1.8,
+      "yieldPerDay": 0.0216,
+      "cbd": false,
+      "risk": 1.4,
+      "types": [
+        "office_floor",
+        "apartment",
+        "retail_unit",
+        "mixed_use"
+      ],
+      "periodDays": 5.44,
+      "amplitude": 0.059,
+      "phase": 2.811,
+      "trendPerDay": 0.0019,
+      "x": 0.929,
+      "y": 0.263
+    },
+    {
+      "id": "tok_shinjuku",
+      "city": "tokyo",
+      "name": "Shinjuku",
+      "tier": 1.5,
+      "yieldPerDay": 0.0234,
+      "cbd": false,
+      "risk": 1.4,
+      "types": [
+        "office_floor",
+        "hotel_plot",
+        "apartment",
+        "retail_unit"
+      ],
+      "periodDays": 4.26,
+      "amplitude": 0.102,
+      "phase": 2.62,
+      "trendPerDay": 0.0034,
+      "x": 0.929,
+      "y": 0.263
+    },
+    {
+      "id": "tok_asakusa",
+      "city": "tokyo",
+      "name": "Asakusa",
+      "tier": 0.9,
+      "yieldPerDay": 0.0288,
+      "cbd": false,
+      "risk": 1.5,
+      "types": [
+        "townhouse",
+        "apartment",
+        "hotel_plot",
+        "retail_unit"
+      ],
+      "periodDays": 4.69,
+      "amplitude": 0.08,
+      "phase": 0.993,
+      "trendPerDay": 0.0017,
+      "x": 0.93,
+      "y": 0.261
+    },
+    {
+      "id": "sin_raffles_place",
+      "city": "singapore",
+      "name": "Raffles Place",
+      "tier": 1.6,
+      "yieldPerDay": 0.021,
+      "cbd": true,
+      "risk": 0.8,
+      "types": [
+        "office_floor",
+        "retail_unit",
+        "mixed_use",
+        "penthouse"
+      ],
+      "periodDays": 6.24,
+      "amplitude": 0.069,
+      "phase": 1.319,
+      "trendPerDay": 0.0012,
+      "x": 0.803,
+      "y": 0.575
+    },
+    {
+      "id": "sin_orchard",
+      "city": "singapore",
+      "name": "Orchard",
+      "tier": 1.8,
+      "yieldPerDay": 0.018,
+      "cbd": false,
+      "risk": 0.8,
+      "types": [
+        "retail_unit",
+        "apartment",
+        "penthouse",
+        "hotel_plot"
+      ],
+      "periodDays": 4.92,
+      "amplitude": 0.089,
+      "phase": 0.297,
+      "trendPerDay": 0.003,
+      "x": 0.807,
+      "y": 0.578
+    },
+    {
+      "id": "sin_marina_bay",
+      "city": "singapore",
+      "name": "Marina Bay",
+      "tier": 2.0,
+      "yieldPerDay": 0.018,
+      "cbd": false,
+      "risk": 0.9,
+      "types": [
+        "penthouse",
+        "office_floor",
+        "hotel_plot",
+        "apartment"
+      ],
+      "periodDays": 7.57,
+      "amplitude": 0.066,
+      "phase": 4.809,
+      "trendPerDay": 0.0029,
+      "x": 0.806,
+      "y": 0.572
+    },
+    {
+      "id": "sin_sentosa_cove",
+      "city": "singapore",
+      "name": "Sentosa Cove",
+      "tier": 2.0,
+      "yieldPerDay": 0.0168,
+      "cbd": false,
+      "risk": 0.9,
+      "types": [
+        "villa",
+        "penthouse",
+        "hotel_plot"
+      ],
+      "periodDays": 8.94,
+      "amplitude": 0.09,
+      "phase": 4.504,
+      "trendPerDay": 0.0019,
+      "x": 0.806,
+      "y": 0.577
+    },
+    {
+      "id": "sin_holland_village",
+      "city": "singapore",
+      "name": "Holland Village",
+      "tier": 1.3,
+      "yieldPerDay": 0.0192,
+      "cbd": false,
+      "risk": 0.8,
+      "types": [
+        "townhouse",
+        "villa",
+        "apartment",
+        "retail_unit"
+      ],
+      "periodDays": 6.2,
+      "amplitude": 0.076,
+      "phase": 1.045,
+      "trendPerDay": 0.0028,
+      "x": 0.801,
+      "y": 0.581
+    },
+    {
+      "id": "sin_jurong_east",
+      "city": "singapore",
+      "name": "Jurong East",
+      "tier": 0.75,
+      "yieldPerDay": 0.024,
+      "cbd": false,
+      "risk": 0.8,
+      "types": [
+        "warehouse",
+        "office_floor",
+        "apartment",
+        "retail_unit"
+      ],
+      "periodDays": 5.83,
+      "amplitude": 0.07,
+      "phase": 0.959,
+      "trendPerDay": -0.0007,
+      "x": 0.808,
+      "y": 0.571
+    },
+    {
+      "id": "hon_central",
+      "city": "hong_kong",
+      "name": "Central",
+      "tier": 2.2,
+      "yieldPerDay": 0.0168,
+      "cbd": true,
+      "risk": 1.2,
+      "types": [
+        "office_floor",
+        "retail_unit",
+        "penthouse",
+        "mixed_use"
+      ],
+      "periodDays": 7.47,
+      "amplitude": 0.044,
+      "phase": 0.573,
+      "trendPerDay": 0.0012,
+      "x": 0.847,
+      "y": 0.383
+    },
+    {
+      "id": "hon_the_peak",
+      "city": "hong_kong",
+      "name": "The Peak",
+      "tier": 3.2,
+      "yieldPerDay": 0.012,
+      "cbd": false,
+      "risk": 1.2,
+      "types": [
+        "villa",
+        "penthouse",
+        "land"
+      ],
+      "periodDays": 5.47,
+      "amplitude": 0.1,
+      "phase": 6.077,
+      "trendPerDay": 0.0031,
+      "x": 0.848,
+      "y": 0.389
+    },
+    {
+      "id": "hon_mid_levels",
+      "city": "hong_kong",
+      "name": "Mid-Levels",
+      "tier": 2.0,
+      "yieldPerDay": 0.0144,
+      "cbd": false,
+      "risk": 1.2,
+      "types": [
+        "apartment",
+        "penthouse",
+        "townhouse"
+      ],
+      "periodDays": 4.17,
+      "amplitude": 0.052,
+      "phase": 4.565,
+      "trendPerDay": 0.0005,
+      "x": 0.838,
+      "y": 0.386
+    },
+    {
+      "id": "hon_tsim_sha_tsui",
+      "city": "hong_kong",
+      "name": "Tsim Sha Tsui",
+      "tier": 1.6,
+      "yieldPerDay": 0.018,
+      "cbd": false,
+      "risk": 1.2,
+      "types": [
+        "retail_unit",
+        "hotel_plot",
+        "office_floor",
+        "apartment"
+      ],
+      "periodDays": 4.8,
+      "amplitude": 0.077,
+      "phase": 0.221,
+      "trendPerDay": -0.0009,
+      "x": 0.85,
+      "y": 0.382
+    },
+    {
+      "id": "hon_causeway_bay",
+      "city": "hong_kong",
+      "name": "Causeway Bay",
+      "tier": 1.5,
+      "yieldPerDay": 0.0168,
+      "cbd": false,
+      "risk": 1.2,
+      "types": [
+        "retail_unit",
+        "apartment",
+        "mixed_use",
+        "hotel_plot"
+      ],
+      "periodDays": 5.75,
+      "amplitude": 0.042,
+      "phase": 6.209,
+      "trendPerDay": 0.0,
+      "x": 0.848,
+      "y": 0.395
+    },
+    {
+      "id": "hon_kwun_tong",
+      "city": "hong_kong",
+      "name": "Kwun Tong",
+      "tier": 0.8,
+      "yieldPerDay": 0.0216,
+      "cbd": false,
+      "risk": 1.3,
+      "types": [
+        "office_floor",
+        "warehouse",
+        "apartment",
+        "mixed_use"
+      ],
+      "periodDays": 4.82,
+      "amplitude": 0.042,
+      "phase": 4.697,
+      "trendPerDay": 0.0034,
+      "x": 0.843,
+      "y": 0.381
+    },
+    {
+      "id": "sha_lujiazui",
+      "city": "shanghai",
+      "name": "Lujiazui",
+      "tier": 1.8,
+      "yieldPerDay": 0.015,
+      "cbd": true,
+      "risk": 1.3,
+      "types": [
+        "office_floor",
+        "penthouse",
+        "hotel_plot",
+        "retail_unit"
+      ],
+      "periodDays": 8.7,
+      "amplitude": 0.058,
+      "phase": 1.889,
+      "trendPerDay": 0.0039,
+      "x": 0.877,
+      "y": 0.311
+    },
+    {
+      "id": "sha_the_bund",
+      "city": "shanghai",
+      "name": "The Bund",
+      "tier": 2.0,
+      "yieldPerDay": 0.0138,
+      "cbd": false,
+      "risk": 1.3,
+      "types": [
+        "hotel_plot",
+        "retail_unit",
+        "office_floor",
+        "penthouse"
+      ],
+      "periodDays": 7.05,
+      "amplitude": 0.118,
+      "phase": 4.468,
+      "trendPerDay": 0.0012,
+      "x": 0.864,
+      "y": 0.302
+    },
+    {
+      "id": "sha_former_french_concession",
+      "city": "shanghai",
+      "name": "Former French Concession",
+      "tier": 2.2,
+      "yieldPerDay": 0.012,
+      "cbd": false,
+      "risk": 1.2,
+      "types": [
+        "townhouse",
+        "villa",
+        "apartment",
+        "retail_unit"
+      ],
+      "periodDays": 5.4,
+      "amplitude": 0.117,
+      "phase": 2.749,
+      "trendPerDay": 0.0035,
+      "x": 0.859,
+      "y": 0.307
+    },
+    {
+      "id": "sha_jingan",
+      "city": "shanghai",
+      "name": "Jing'an",
+      "tier": 2.0,
+      "yieldPerDay": 0.0132,
+      "cbd": false,
+      "risk": 1.2,
+      "types": [
+        "apartment",
+        "office_floor",
+        "retail_unit",
+        "mixed_use"
+      ],
+      "periodDays": 7.62,
+      "amplitude": 0.118,
+      "phase": 1.715,
+      "trendPerDay": -0.0009,
+      "x": 0.86,
+      "y": 0.308
+    },
+    {
+      "id": "sha_xujiahui",
+      "city": "shanghai",
+      "name": "Xujiahui",
+      "tier": 1.4,
+      "yieldPerDay": 0.0144,
+      "cbd": false,
+      "risk": 1.2,
+      "types": [
+        "apartment",
+        "retail_unit",
+        "office_floor"
+      ],
+      "periodDays": 4.92,
+      "amplitude": 0.086,
+      "phase": 4.591,
+      "trendPerDay": -0.0007,
       "x": 0.866,
-      "y": 0.597
+      "y": 0.308
+    },
+    {
+      "id": "sha_hongqiao",
+      "city": "shanghai",
+      "name": "Hongqiao",
+      "tier": 1.0,
+      "yieldPerDay": 0.0156,
+      "cbd": false,
+      "risk": 1.2,
+      "types": [
+        "office_floor",
+        "warehouse",
+        "apartment",
+        "land"
+      ],
+      "periodDays": 7.31,
+      "amplitude": 0.078,
+      "phase": 1.286,
+      "trendPerDay": -0.0007,
+      "x": 0.87,
+      "y": 0.317
+    },
+    {
+      "id": "par_la_defense",
+      "city": "paris",
+      "name": "La Défense",
+      "tier": 0.9,
+      "yieldPerDay": 0.03,
+      "cbd": true,
+      "risk": 0.9,
+      "types": [
+        "office_floor",
+        "apartment",
+        "retail_unit",
+        "mixed_use"
+      ],
+      "periodDays": 4.38,
+      "amplitude": 0.059,
+      "phase": 4.218,
+      "trendPerDay": 0.0053,
+      "x": 0.45,
+      "y": 0.142
+    },
+    {
+      "id": "par_saint_germain_des_pres",
+      "city": "paris",
+      "name": "Saint-Germain-des-Prés",
+      "tier": 1.8,
+      "yieldPerDay": 0.018,
+      "cbd": false,
+      "risk": 0.8,
+      "types": [
+        "apartment",
+        "retail_unit",
+        "hotel_plot",
+        "penthouse"
+      ],
+      "periodDays": 4.87,
+      "amplitude": 0.054,
+      "phase": 1.564,
+      "trendPerDay": 0.0048,
+      "x": 0.464,
+      "y": 0.138
+    },
+    {
+      "id": "par_le_marais",
+      "city": "paris",
+      "name": "Le Marais",
+      "tier": 1.6,
+      "yieldPerDay": 0.0204,
+      "cbd": false,
+      "risk": 0.9,
+      "types": [
+        "apartment",
+        "retail_unit",
+        "mixed_use",
+        "townhouse"
+      ],
+      "periodDays": 8.26,
+      "amplitude": 0.08,
+      "phase": 6.219,
+      "trendPerDay": 0.0056,
+      "x": 0.452,
+      "y": 0.148
+    },
+    {
+      "id": "par_champs_elysees",
+      "city": "paris",
+      "name": "Champs-Élysées",
+      "tier": 2.0,
+      "yieldPerDay": 0.018,
+      "cbd": false,
+      "risk": 0.8,
+      "types": [
+        "retail_unit",
+        "office_floor",
+        "hotel_plot",
+        "penthouse"
+      ],
+      "periodDays": 6.6,
+      "amplitude": 0.07,
+      "phase": 5.52,
+      "trendPerDay": 0.0021,
+      "x": 0.448,
+      "y": 0.151
+    },
+    {
+      "id": "par_montmartre",
+      "city": "paris",
+      "name": "Montmartre",
+      "tier": 1.1,
+      "yieldPerDay": 0.024,
+      "cbd": false,
+      "risk": 0.8,
+      "types": [
+        "apartment",
+        "townhouse",
+        "retail_unit",
+        "hotel_plot"
+      ],
+      "periodDays": 6.73,
+      "amplitude": 0.1,
+      "phase": 0.993,
+      "trendPerDay": 0.0018,
+      "x": 0.453,
+      "y": 0.156
+    },
+    {
+      "id": "par_belleville",
+      "city": "paris",
+      "name": "Belleville",
+      "tier": 0.8,
+      "yieldPerDay": 0.0276,
+      "cbd": false,
+      "risk": 0.9,
+      "types": [
+        "apartment",
+        "mixed_use",
+        "retail_unit",
+        "warehouse"
+      ],
+      "periodDays": 6.44,
+      "amplitude": 0.05,
+      "phase": 5.144,
+      "trendPerDay": 0.0009,
+      "x": 0.466,
+      "y": 0.144
+    },
+    {
+      "id": "syd_sydney_cbd",
+      "city": "sydney",
+      "name": "Sydney CBD",
+      "tier": 1.3,
+      "yieldPerDay": 0.027,
+      "cbd": true,
+      "risk": 1.0,
+      "types": [
+        "office_floor",
+        "apartment",
+        "retail_unit",
+        "hotel_plot"
+      ],
+      "periodDays": 4.85,
+      "amplitude": 0.063,
+      "phase": 0.581,
+      "trendPerDay": 0.0021,
+      "x": 0.972,
+      "y": 0.897
+    },
+    {
+      "id": "syd_point_piper",
+      "city": "sydney",
+      "name": "Point Piper",
+      "tier": 3.2,
+      "yieldPerDay": 0.012,
+      "cbd": false,
+      "risk": 1.0,
+      "types": [
+        "villa",
+        "penthouse",
+        "land"
+      ],
+      "periodDays": 6.26,
+      "amplitude": 0.048,
+      "phase": 1.417,
+      "trendPerDay": 0.0007,
+      "x": 0.979,
+      "y": 0.895
+    },
+    {
+      "id": "syd_bondi",
+      "city": "sydney",
+      "name": "Bondi",
+      "tier": 1.6,
+      "yieldPerDay": 0.0192,
+      "cbd": false,
+      "risk": 1.0,
+      "types": [
+        "apartment",
+        "townhouse",
+        "retail_unit",
+        "hotel_plot"
+      ],
+      "periodDays": 5.73,
+      "amplitude": 0.099,
+      "phase": 1.382,
+      "trendPerDay": -0.0008,
+      "x": 0.969,
+      "y": 0.9
+    },
+    {
+      "id": "syd_surry_hills",
+      "city": "sydney",
+      "name": "Surry Hills",
+      "tier": 1.2,
+      "yieldPerDay": 0.0228,
+      "cbd": false,
+      "risk": 1.0,
+      "types": [
+        "townhouse",
+        "apartment",
+        "mixed_use",
+        "retail_unit"
+      ],
+      "periodDays": 4.43,
+      "amplitude": 0.083,
+      "phase": 0.762,
+      "trendPerDay": 0.0034,
+      "x": 0.97,
+      "y": 0.89
+    },
+    {
+      "id": "syd_mosman",
+      "city": "sydney",
+      "name": "Mosman",
+      "tier": 2.0,
+      "yieldPerDay": 0.0168,
+      "cbd": false,
+      "risk": 1.0,
+      "types": [
+        "villa",
+        "townhouse",
+        "apartment"
+      ],
+      "periodDays": 5.16,
+      "amplitude": 0.068,
+      "phase": 0.189,
+      "trendPerDay": -0.0008,
+      "x": 0.967,
+      "y": 0.903
+    },
+    {
+      "id": "syd_parramatta",
+      "city": "sydney",
+      "name": "Parramatta",
+      "tier": 0.7,
+      "yieldPerDay": 0.0276,
+      "cbd": false,
+      "risk": 1.0,
+      "types": [
+        "apartment",
+        "office_floor",
+        "warehouse",
+        "land"
+      ],
+      "periodDays": 7.89,
+      "amplitude": 0.042,
+      "phase": 2.059,
+      "trendPerDay": -0.0003,
+      "x": 0.969,
+      "y": 0.903
+    },
+    {
+      "id": "tor_financial_district",
+      "city": "toronto",
+      "name": "Financial District",
+      "tier": 1.3,
+      "yieldPerDay": 0.0276,
+      "cbd": true,
+      "risk": 1.0,
+      "types": [
+        "office_floor",
+        "penthouse",
+        "retail_unit",
+        "mixed_use"
+      ],
+      "periodDays": 5.65,
+      "amplitude": 0.116,
+      "phase": 1.367,
+      "trendPerDay": 0.005,
+      "x": 0.167,
+      "y": 0.201
+    },
+    {
+      "id": "tor_yorkville",
+      "city": "toronto",
+      "name": "Yorkville",
+      "tier": 2.0,
+      "yieldPerDay": 0.0216,
+      "cbd": false,
+      "risk": 0.9,
+      "types": [
+        "penthouse",
+        "apartment",
+        "retail_unit",
+        "hotel_plot"
+      ],
+      "periodDays": 7.21,
+      "amplitude": 0.043,
+      "phase": 2.905,
+      "trendPerDay": -0.0007,
+      "x": 0.168,
+      "y": 0.2
+    },
+    {
+      "id": "tor_rosedale",
+      "city": "toronto",
+      "name": "Rosedale",
+      "tier": 2.4,
+      "yieldPerDay": 0.018,
+      "cbd": false,
+      "risk": 0.9,
+      "types": [
+        "villa",
+        "townhouse",
+        "land"
+      ],
+      "periodDays": 8.64,
+      "amplitude": 0.074,
+      "phase": 4.197,
+      "trendPerDay": 0.0031,
+      "x": 0.175,
+      "y": 0.202
+    },
+    {
+      "id": "tor_the_annex",
+      "city": "toronto",
+      "name": "The Annex",
+      "tier": 1.4,
+      "yieldPerDay": 0.0252,
+      "cbd": false,
+      "risk": 0.9,
+      "types": [
+        "townhouse",
+        "apartment",
+        "retail_unit"
+      ],
+      "periodDays": 5.91,
+      "amplitude": 0.048,
+      "phase": 0.922,
+      "trendPerDay": 0.0051,
+      "x": 0.184,
+      "y": 0.19
+    },
+    {
+      "id": "tor_liberty_village",
+      "city": "toronto",
+      "name": "Liberty Village",
+      "tier": 0.9,
+      "yieldPerDay": 0.03,
+      "cbd": false,
+      "risk": 1.0,
+      "types": [
+        "apartment",
+        "warehouse",
+        "mixed_use",
+        "office_floor"
+      ],
+      "periodDays": 6.42,
+      "amplitude": 0.07,
+      "phase": 0.847,
+      "trendPerDay": 0.0027,
+      "x": 0.179,
+      "y": 0.188
+    },
+    {
+      "id": "tor_scarborough",
+      "city": "toronto",
+      "name": "Scarborough",
+      "tier": 0.7,
+      "yieldPerDay": 0.0288,
+      "cbd": false,
+      "risk": 1.0,
+      "types": [
+        "townhouse",
+        "apartment",
+        "warehouse",
+        "land"
+      ],
+      "periodDays": 8.12,
+      "amplitude": 0.116,
+      "phase": 5.425,
+      "trendPerDay": 0.0018,
+      "x": 0.171,
+      "y": 0.196
+    },
+    {
+      "id": "los_downtown_la",
+      "city": "los_angeles",
+      "name": "Downtown LA",
+      "tier": 0.9,
+      "yieldPerDay": 0.033,
+      "cbd": true,
+      "risk": 1.5,
+      "types": [
+        "office_floor",
+        "apartment",
+        "warehouse",
+        "mixed_use"
+      ],
+      "periodDays": 7.78,
+      "amplitude": 0.086,
+      "phase": 1.955,
+      "trendPerDay": 0.0039,
+      "x": 0.037,
+      "y": 0.278
+    },
+    {
+      "id": "los_beverly_hills",
+      "city": "los_angeles",
+      "name": "Beverly Hills",
+      "tier": 3.0,
+      "yieldPerDay": 0.018,
+      "cbd": false,
+      "risk": 1.5,
+      "types": [
+        "villa",
+        "retail_unit",
+        "hotel_plot",
+        "land"
+      ],
+      "periodDays": 5.03,
+      "amplitude": 0.096,
+      "phase": 3.688,
+      "trendPerDay": -0.0005,
+      "x": 0.04,
+      "y": 0.273
+    },
+    {
+      "id": "los_bel_air",
+      "city": "los_angeles",
+      "name": "Bel Air",
+      "tier": 3.2,
+      "yieldPerDay": 0.0156,
+      "cbd": false,
+      "risk": 1.7,
+      "types": [
+        "villa",
+        "land",
+        "townhouse"
+      ],
+      "periodDays": 6.64,
+      "amplitude": 0.118,
+      "phase": 5.185,
+      "trendPerDay": 0.0013,
+      "x": 0.037,
+      "y": 0.286
+    },
+    {
+      "id": "los_santa_monica",
+      "city": "los_angeles",
+      "name": "Santa Monica",
+      "tier": 2.0,
+      "yieldPerDay": 0.0216,
+      "cbd": false,
+      "risk": 1.6,
+      "types": [
+        "apartment",
+        "hotel_plot",
+        "retail_unit",
+        "office_floor"
+      ],
+      "periodDays": 7.46,
+      "amplitude": 0.107,
+      "phase": 4.017,
+      "trendPerDay": 0.0058,
+      "x": 0.039,
+      "y": 0.291
+    },
+    {
+      "id": "los_hollywood",
+      "city": "los_angeles",
+      "name": "Hollywood",
+      "tier": 1.2,
+      "yieldPerDay": 0.0288,
+      "cbd": false,
+      "risk": 1.5,
+      "types": [
+        "apartment",
+        "mixed_use",
+        "retail_unit",
+        "hotel_plot"
+      ],
+      "periodDays": 5.78,
+      "amplitude": 0.076,
+      "phase": 5.926,
+      "trendPerDay": 0.0041,
+      "x": 0.031,
+      "y": 0.29
+    },
+    {
+      "id": "los_silver_lake",
+      "city": "los_angeles",
+      "name": "Silver Lake",
+      "tier": 1.1,
+      "yieldPerDay": 0.0276,
+      "cbd": false,
+      "risk": 1.5,
+      "types": [
+        "townhouse",
+        "apartment",
+        "retail_unit"
+      ],
+      "periodDays": 7.62,
+      "amplitude": 0.041,
+      "phase": 4.48,
+      "trendPerDay": 0.0027,
+      "x": 0.032,
+      "y": 0.273
+    },
+    {
+      "id": "sao_itaim_bibi",
+      "city": "sao_paulo",
+      "name": "Itaim Bibi",
+      "tier": 1.6,
+      "yieldPerDay": 0.03,
+      "cbd": true,
+      "risk": 1.4,
+      "types": [
+        "office_floor",
+        "apartment",
+        "penthouse",
+        "mixed_use"
+      ],
+      "periodDays": 6.88,
+      "amplitude": 0.082,
+      "phase": 5.524,
+      "trendPerDay": 0.0052,
+      "x": 0.297,
+      "y": 0.813
+    },
+    {
+      "id": "sao_jardins",
+      "city": "sao_paulo",
+      "name": "Jardins",
+      "tier": 1.8,
+      "yieldPerDay": 0.0252,
+      "cbd": false,
+      "risk": 1.3,
+      "types": [
+        "apartment",
+        "retail_unit",
+        "penthouse",
+        "hotel_plot"
+      ],
+      "periodDays": 8.8,
+      "amplitude": 0.041,
+      "phase": 5.808,
+      "trendPerDay": 0.0046,
+      "x": 0.286,
+      "y": 0.805
+    },
+    {
+      "id": "sao_vila_madalena",
+      "city": "sao_paulo",
+      "name": "Vila Madalena",
+      "tier": 1.3,
+      "yieldPerDay": 0.03,
+      "cbd": false,
+      "risk": 1.3,
+      "types": [
+        "townhouse",
+        "apartment",
+        "retail_unit",
+        "mixed_use"
+      ],
+      "periodDays": 8.72,
+      "amplitude": 0.116,
+      "phase": 2.235,
+      "trendPerDay": 0.005,
+      "x": 0.283,
+      "y": 0.796
+    },
+    {
+      "id": "sao_moema",
+      "city": "sao_paulo",
+      "name": "Moema",
+      "tier": 1.4,
+      "yieldPerDay": 0.0276,
+      "cbd": false,
+      "risk": 1.3,
+      "types": [
+        "apartment",
+        "townhouse",
+        "retail_unit"
+      ],
+      "periodDays": 7.13,
+      "amplitude": 0.074,
+      "phase": 6.185,
+      "trendPerDay": 0.0058,
+      "x": 0.288,
+      "y": 0.803
+    },
+    {
+      "id": "sao_morumbi",
+      "city": "sao_paulo",
+      "name": "Morumbi",
+      "tier": 1.3,
+      "yieldPerDay": 0.0264,
+      "cbd": false,
+      "risk": 1.4,
+      "types": [
+        "villa",
+        "apartment",
+        "land"
+      ],
+      "periodDays": 4.02,
+      "amplitude": 0.077,
+      "phase": 5.399,
+      "trendPerDay": 0.0019,
+      "x": 0.289,
+      "y": 0.806
+    },
+    {
+      "id": "sao_centro",
+      "city": "sao_paulo",
+      "name": "Centro",
+      "tier": 0.7,
+      "yieldPerDay": 0.039,
+      "cbd": false,
+      "risk": 1.5,
+      "types": [
+        "retail_unit",
+        "office_floor",
+        "mixed_use",
+        "apartment"
+      ],
+      "periodDays": 8.74,
+      "amplitude": 0.053,
+      "phase": 1.747,
+      "trendPerDay": 0.0015,
+      "x": 0.278,
+      "y": 0.803
+    },
+    {
+      "id": "seo_yeouido",
+      "city": "seoul",
+      "name": "Yeouido",
+      "tier": 1.6,
+      "yieldPerDay": 0.021,
+      "cbd": true,
+      "risk": 1.1,
+      "types": [
+        "office_floor",
+        "apartment",
+        "retail_unit",
+        "mixed_use"
+      ],
+      "periodDays": 4.06,
+      "amplitude": 0.057,
+      "phase": 4.2,
+      "trendPerDay": 0.0001,
+      "x": 0.882,
+      "y": 0.249
+    },
+    {
+      "id": "seo_gangnam",
+      "city": "seoul",
+      "name": "Gangnam",
+      "tier": 2.2,
+      "yieldPerDay": 0.018,
+      "cbd": false,
+      "risk": 1.1,
+      "types": [
+        "office_floor",
+        "apartment",
+        "retail_unit",
+        "penthouse"
+      ],
+      "periodDays": 5.91,
+      "amplitude": 0.11,
+      "phase": 4.524,
+      "trendPerDay": 0.0042,
+      "x": 0.887,
+      "y": 0.253
+    },
+    {
+      "id": "seo_banpo",
+      "city": "seoul",
+      "name": "Banpo",
+      "tier": 3.0,
+      "yieldPerDay": 0.0144,
+      "cbd": false,
+      "risk": 1.1,
+      "types": [
+        "apartment",
+        "penthouse",
+        "retail_unit"
+      ],
+      "periodDays": 7.29,
+      "amplitude": 0.045,
+      "phase": 1.661,
+      "trendPerDay": 0.0003,
+      "x": 0.882,
+      "y": 0.253
+    },
+    {
+      "id": "seo_hannam_dong",
+      "city": "seoul",
+      "name": "Hannam-dong",
+      "tier": 3.0,
+      "yieldPerDay": 0.0144,
+      "cbd": false,
+      "risk": 1.1,
+      "types": [
+        "villa",
+        "penthouse",
+        "apartment"
+      ],
+      "periodDays": 7.3,
+      "amplitude": 0.106,
+      "phase": 3.177,
+      "trendPerDay": 0.0015,
+      "x": 0.876,
+      "y": 0.248
+    },
+    {
+      "id": "seo_itaewon",
+      "city": "seoul",
+      "name": "Itaewon",
+      "tier": 1.4,
+      "yieldPerDay": 0.024,
+      "cbd": false,
+      "risk": 1.1,
+      "types": [
+        "retail_unit",
+        "mixed_use",
+        "hotel_plot",
+        "townhouse"
+      ],
+      "periodDays": 6.52,
+      "amplitude": 0.102,
+      "phase": 5.1,
+      "trendPerDay": -0.0004,
+      "x": 0.896,
+      "y": 0.248
+    },
+    {
+      "id": "seo_mapo",
+      "city": "seoul",
+      "name": "Mapo",
+      "tier": 1.2,
+      "yieldPerDay": 0.0216,
+      "cbd": false,
+      "risk": 1.1,
+      "types": [
+        "apartment",
+        "office_floor",
+        "mixed_use",
+        "retail_unit"
+      ],
+      "periodDays": 5.54,
+      "amplitude": 0.086,
+      "phase": 2.159,
+      "trendPerDay": -0.0005,
+      "x": 0.88,
+      "y": 0.253
+    },
+    {
+      "id": "zur_paradeplatz",
+      "city": "zurich",
+      "name": "Paradeplatz",
+      "tier": 1.8,
+      "yieldPerDay": 0.0192,
+      "cbd": true,
+      "risk": 0.7,
+      "types": [
+        "office_floor",
+        "retail_unit",
+        "mixed_use",
+        "hotel_plot"
+      ],
+      "periodDays": 7.76,
+      "amplitude": 0.116,
+      "phase": 2.655,
+      "trendPerDay": 0.0009,
+      "x": 0.472,
+      "y": 0.164
+    },
+    {
+      "id": "zur_altstadt",
+      "city": "zurich",
+      "name": "Altstadt",
+      "tier": 1.6,
+      "yieldPerDay": 0.0168,
+      "cbd": false,
+      "risk": 0.7,
+      "types": [
+        "apartment",
+        "retail_unit",
+        "townhouse",
+        "hotel_plot"
+      ],
+      "periodDays": 4.42,
+      "amplitude": 0.048,
+      "phase": 3.12,
+      "trendPerDay": 0.0049,
+      "x": 0.481,
+      "y": 0.161
+    },
+    {
+      "id": "zur_seefeld",
+      "city": "zurich",
+      "name": "Seefeld",
+      "tier": 1.8,
+      "yieldPerDay": 0.0156,
+      "cbd": false,
+      "risk": 0.7,
+      "types": [
+        "apartment",
+        "penthouse",
+        "townhouse"
+      ],
+      "periodDays": 6.04,
+      "amplitude": 0.041,
+      "phase": 0.198,
+      "trendPerDay": 0.004,
+      "x": 0.483,
+      "y": 0.164
+    },
+    {
+      "id": "zur_zurichberg",
+      "city": "zurich",
+      "name": "Zürichberg",
+      "tier": 2.2,
+      "yieldPerDay": 0.0144,
+      "cbd": false,
+      "risk": 0.7,
+      "types": [
+        "villa",
+        "townhouse",
+        "apartment"
+      ],
+      "periodDays": 4.82,
+      "amplitude": 0.064,
+      "phase": 5.658,
+      "trendPerDay": 0.0058,
+      "x": 0.486,
+      "y": 0.163
+    },
+    {
+      "id": "zur_zurich_west",
+      "city": "zurich",
+      "name": "Zürich West",
+      "tier": 1.0,
+      "yieldPerDay": 0.0216,
+      "cbd": false,
+      "risk": 0.8,
+      "types": [
+        "office_floor",
+        "warehouse",
+        "apartment",
+        "mixed_use"
+      ],
+      "periodDays": 8.12,
+      "amplitude": 0.057,
+      "phase": 3.203,
+      "trendPerDay": 0.0025,
+      "x": 0.484,
+      "y": 0.167
+    },
+    {
+      "id": "zur_oerlikon",
+      "city": "zurich",
+      "name": "Oerlikon",
+      "tier": 0.8,
+      "yieldPerDay": 0.0228,
+      "cbd": false,
+      "risk": 0.8,
+      "types": [
+        "apartment",
+        "office_floor",
+        "warehouse",
+        "land"
+      ],
+      "periodDays": 6.51,
+      "amplitude": 0.08,
+      "phase": 1.266,
+      "trendPerDay": 0.006,
+      "x": 0.483,
+      "y": 0.159
+    },
+    {
+      "id": "ist_levent",
+      "city": "istanbul",
+      "name": "Levent",
+      "tier": 1.6,
+      "yieldPerDay": 0.033,
+      "cbd": true,
+      "risk": 1.7,
+      "types": [
+        "office_floor",
+        "penthouse",
+        "retail_unit",
+        "mixed_use"
+      ],
+      "periodDays": 5.21,
+      "amplitude": 0.059,
+      "phase": 0.572,
+      "trendPerDay": 0.0014,
+      "x": 0.548,
+      "y": 0.212
+    },
+    {
+      "id": "ist_bebek",
+      "city": "istanbul",
+      "name": "Bebek",
+      "tier": 2.6,
+      "yieldPerDay": 0.024,
+      "cbd": false,
+      "risk": 1.7,
+      "types": [
+        "villa",
+        "apartment",
+        "penthouse"
+      ],
+      "periodDays": 4.45,
+      "amplitude": 0.065,
+      "phase": 3.299,
+      "trendPerDay": 0.0042,
+      "x": 0.555,
+      "y": 0.226
+    },
+    {
+      "id": "ist_nisantas",
+      "city": "istanbul",
+      "name": "Nişantaşı",
+      "tier": 2.0,
+      "yieldPerDay": 0.027,
+      "cbd": false,
+      "risk": 1.7,
+      "types": [
+        "apartment",
+        "retail_unit",
+        "penthouse",
+        "mixed_use"
+      ],
+      "periodDays": 5.35,
+      "amplitude": 0.119,
+      "phase": 4.264,
+      "trendPerDay": 0.0024,
+      "x": 0.547,
+      "y": 0.216
+    },
+    {
+      "id": "ist_beyoglu",
+      "city": "istanbul",
+      "name": "Beyoğlu",
+      "tier": 1.2,
+      "yieldPerDay": 0.036,
+      "cbd": false,
+      "risk": 1.7,
+      "types": [
+        "apartment",
+        "hotel_plot",
+        "retail_unit",
+        "mixed_use"
+      ],
+      "periodDays": 4.25,
+      "amplitude": 0.065,
+      "phase": 1.98,
+      "trendPerDay": -0.0006,
+      "x": 0.547,
+      "y": 0.227
+    },
+    {
+      "id": "ist_kadkoy",
+      "city": "istanbul",
+      "name": "Kadıköy",
+      "tier": 1.1,
+      "yieldPerDay": 0.033,
+      "cbd": false,
+      "risk": 1.7,
+      "types": [
+        "apartment",
+        "retail_unit",
+        "mixed_use",
+        "townhouse"
+      ],
+      "periodDays": 7.4,
+      "amplitude": 0.064,
+      "phase": 2.714,
+      "trendPerDay": 0.0017,
+      "x": 0.543,
+      "y": 0.225
+    },
+    {
+      "id": "ist_sultanahmet",
+      "city": "istanbul",
+      "name": "Sultanahmet",
+      "tier": 1.3,
+      "yieldPerDay": 0.039,
+      "cbd": false,
+      "risk": 1.8,
+      "types": [
+        "hotel_plot",
+        "retail_unit",
+        "townhouse"
+      ],
+      "periodDays": 5.41,
+      "amplitude": 0.11,
+      "phase": 6.087,
+      "trendPerDay": 0.0006,
+      "x": 0.542,
+      "y": 0.224
+    },
+    {
+      "id": "mex_santa_fe",
+      "city": "mexico_city",
+      "name": "Santa Fe",
+      "tier": 1.4,
+      "yieldPerDay": 0.036,
+      "cbd": true,
+      "risk": 1.5,
+      "types": [
+        "office_floor",
+        "apartment",
+        "penthouse",
+        "land"
+      ],
+      "periodDays": 5.05,
+      "amplitude": 0.113,
+      "phase": 1.446,
+      "trendPerDay": 0.0017,
+      "x": 0.102,
+      "y": 0.418
+    },
+    {
+      "id": "mex_polanco",
+      "city": "mexico_city",
+      "name": "Polanco",
+      "tier": 2.0,
+      "yieldPerDay": 0.033,
+      "cbd": false,
+      "risk": 1.5,
+      "types": [
+        "apartment",
+        "penthouse",
+        "retail_unit",
+        "hotel_plot"
+      ],
+      "periodDays": 5.02,
+      "amplitude": 0.102,
+      "phase": 5.327,
+      "trendPerDay": 0.0021,
+      "x": 0.108,
+      "y": 0.424
+    },
+    {
+      "id": "mex_condesa",
+      "city": "mexico_city",
+      "name": "Condesa",
+      "tier": 1.6,
+      "yieldPerDay": 0.0348,
+      "cbd": false,
+      "risk": 1.6,
+      "types": [
+        "apartment",
+        "townhouse",
+        "retail_unit",
+        "mixed_use"
+      ],
+      "periodDays": 8.12,
+      "amplitude": 0.054,
+      "phase": 1.106,
+      "trendPerDay": 0.0009,
+      "x": 0.1,
+      "y": 0.416
+    },
+    {
+      "id": "mex_roma_norte",
+      "city": "mexico_city",
+      "name": "Roma Norte",
+      "tier": 1.4,
+      "yieldPerDay": 0.0372,
+      "cbd": false,
+      "risk": 1.6,
+      "types": [
+        "apartment",
+        "mixed_use",
+        "retail_unit",
+        "hotel_plot"
+      ],
+      "periodDays": 7.61,
+      "amplitude": 0.102,
+      "phase": 0.373,
+      "trendPerDay": 0.0045,
+      "x": 0.11,
+      "y": 0.413
+    },
+    {
+      "id": "mex_coyoacan",
+      "city": "mexico_city",
+      "name": "Coyoacán",
+      "tier": 1.2,
+      "yieldPerDay": 0.0312,
+      "cbd": false,
+      "risk": 1.5,
+      "types": [
+        "townhouse",
+        "villa",
+        "apartment"
+      ],
+      "periodDays": 6.74,
+      "amplitude": 0.041,
+      "phase": 2.132,
+      "trendPerDay": 0.0058,
+      "x": 0.104,
+      "y": 0.422
+    },
+    {
+      "id": "mex_centro_historico",
+      "city": "mexico_city",
+      "name": "Centro Histórico",
+      "tier": 0.8,
+      "yieldPerDay": 0.042,
+      "cbd": false,
+      "risk": 1.7,
+      "types": [
+        "retail_unit",
+        "hotel_plot",
+        "mixed_use",
+        "warehouse"
+      ],
+      "periodDays": 5.65,
+      "amplitude": 0.061,
+      "phase": 3.445,
+      "trendPerDay": 0.0019,
+      "x": 0.104,
+      "y": 0.416
+    },
+    {
+      "id": "cap_city_bowl",
+      "city": "cape_town",
+      "name": "City Bowl",
+      "tier": 1.2,
+      "yieldPerDay": 0.042,
+      "cbd": true,
+      "risk": 1.3,
+      "types": [
+        "office_floor",
+        "apartment",
+        "retail_unit",
+        "mixed_use"
+      ],
+      "periodDays": 4.38,
+      "amplitude": 0.077,
+      "phase": 0.02,
+      "trendPerDay": -0.0009,
+      "x": 0.508,
+      "y": 0.894
+    },
+    {
+      "id": "cap_v_a_waterfront",
+      "city": "cape_town",
+      "name": "V&A Waterfront",
+      "tier": 2.4,
+      "yieldPerDay": 0.033,
+      "cbd": false,
+      "risk": 1.2,
+      "types": [
+        "penthouse",
+        "hotel_plot",
+        "retail_unit",
+        "office_floor"
+      ],
+      "periodDays": 4.39,
+      "amplitude": 0.05,
+      "phase": 0.071,
+      "trendPerDay": 0.0043,
+      "x": 0.502,
+      "y": 0.891
+    },
+    {
+      "id": "cap_clifton",
+      "city": "cape_town",
+      "name": "Clifton",
+      "tier": 3.2,
+      "yieldPerDay": 0.027,
+      "cbd": false,
+      "risk": 1.2,
+      "types": [
+        "villa",
+        "penthouse",
+        "apartment"
+      ],
+      "periodDays": 4.33,
+      "amplitude": 0.117,
+      "phase": 2.625,
+      "trendPerDay": 0.002,
+      "x": 0.511,
+      "y": 0.907
+    },
+    {
+      "id": "cap_camps_bay",
+      "city": "cape_town",
+      "name": "Camps Bay",
+      "tier": 2.6,
+      "yieldPerDay": 0.03,
+      "cbd": false,
+      "risk": 1.2,
+      "types": [
+        "villa",
+        "hotel_plot",
+        "apartment"
+      ],
+      "periodDays": 8.63,
+      "amplitude": 0.052,
+      "phase": 3.682,
+      "trendPerDay": -0.0006,
+      "x": 0.521,
+      "y": 0.89
+    },
+    {
+      "id": "cap_sea_point",
+      "city": "cape_town",
+      "name": "Sea Point",
+      "tier": 1.6,
+      "yieldPerDay": 0.039,
+      "cbd": false,
+      "risk": 1.2,
+      "types": [
+        "apartment",
+        "penthouse",
+        "retail_unit"
+      ],
+      "periodDays": 5.15,
+      "amplitude": 0.118,
+      "phase": 3.709,
+      "trendPerDay": 0.0006,
+      "x": 0.515,
+      "y": 0.9
+    },
+    {
+      "id": "cap_constantia",
+      "city": "cape_town",
+      "name": "Constantia",
+      "tier": 1.8,
+      "yieldPerDay": 0.03,
+      "cbd": false,
+      "risk": 1.2,
+      "types": [
+        "villa",
+        "land",
+        "hotel_plot"
+      ],
+      "periodDays": 6.69,
+      "amplitude": 0.049,
+      "phase": 3.965,
+      "trendPerDay": 0.0034,
+      "x": 0.508,
+      "y": 0.9
+    },
+    {
+      "id": "mon_monte_carlo",
+      "city": "monaco",
+      "name": "Monte-Carlo",
+      "tier": 1.3,
+      "yieldPerDay": 0.018,
+      "cbd": true,
+      "risk": 0.8,
+      "types": [
+        "office_floor",
+        "penthouse",
+        "apartment",
+        "retail_unit"
+      ],
+      "periodDays": 4.27,
+      "amplitude": 0.085,
+      "phase": 2.246,
+      "trendPerDay": 0.0018,
+      "x": 0.482,
+      "y": 0.192
+    },
+    {
+      "id": "mon_carre_dor",
+      "city": "monaco",
+      "name": "Carré d'Or",
+      "tier": 1.5,
+      "yieldPerDay": 0.0156,
+      "cbd": false,
+      "risk": 0.8,
+      "types": [
+        "penthouse",
+        "retail_unit",
+        "apartment",
+        "hotel_plot"
+      ],
+      "periodDays": 5.9,
+      "amplitude": 0.113,
+      "phase": 5.467,
+      "trendPerDay": 0.001,
+      "x": 0.473,
+      "y": 0.2
+    },
+    {
+      "id": "mon_larvotto",
+      "city": "monaco",
+      "name": "Larvotto",
+      "tier": 1.4,
+      "yieldPerDay": 0.0168,
+      "cbd": false,
+      "risk": 0.9,
+      "types": [
+        "apartment",
+        "penthouse",
+        "hotel_plot"
+      ],
+      "periodDays": 6.15,
+      "amplitude": 0.085,
+      "phase": 3.839,
+      "trendPerDay": 0.0019,
+      "x": 0.479,
+      "y": 0.203
+    },
+    {
+      "id": "mon_fontvieille",
+      "city": "monaco",
+      "name": "Fontvieille",
+      "tier": 0.9,
+      "yieldPerDay": 0.0204,
+      "cbd": false,
+      "risk": 0.8,
+      "types": [
+        "office_floor",
+        "apartment",
+        "warehouse",
+        "mixed_use"
+      ],
+      "periodDays": 6.92,
+      "amplitude": 0.082,
+      "phase": 6.115,
+      "trendPerDay": 0.0055,
+      "x": 0.469,
+      "y": 0.197
+    },
+    {
+      "id": "mon_la_condamine",
+      "city": "monaco",
+      "name": "La Condamine",
+      "tier": 1.0,
+      "yieldPerDay": 0.0192,
+      "cbd": false,
+      "risk": 0.8,
+      "types": [
+        "apartment",
+        "retail_unit",
+        "mixed_use",
+        "hotel_plot"
+      ],
+      "periodDays": 4.64,
+      "amplitude": 0.071,
+      "phase": 4.512,
+      "trendPerDay": -0.0006,
+      "x": 0.477,
+      "y": 0.191
+    },
+    {
+      "id": "mon_monaco_ville",
+      "city": "monaco",
+      "name": "Monaco-Ville",
+      "tier": 1.1,
+      "yieldPerDay": 0.0168,
+      "cbd": false,
+      "risk": 0.8,
+      "types": [
+        "townhouse",
+        "apartment",
+        "retail_unit"
+      ],
+      "periodDays": 5.41,
+      "amplitude": 0.107,
+      "phase": 3.959,
+      "trendPerDay": 0.0026,
+      "x": 0.483,
+      "y": 0.184
     }
   ],
   "types": [
@@ -952,7 +3179,7 @@
       "id": "apartment",
       "name": "Apartment",
       "icon": "Buildings",
-      "basePrice": "25000.00",
+      "basePrice": "450000.00",
       "yieldMultiplier": 1.0,
       "renovationCost": 0.1,
       "renovationHours": 2,
@@ -966,7 +3193,7 @@
       "id": "townhouse",
       "name": "Townhouse",
       "icon": "House",
-      "basePrice": "60000.00",
+      "basePrice": "1200000.00",
       "yieldMultiplier": 0.95,
       "renovationCost": 0.12,
       "renovationHours": 3,
@@ -980,7 +3207,7 @@
       "id": "villa",
       "name": "Villa",
       "icon": "Villa",
-      "basePrice": "250000.00",
+      "basePrice": "3500000.00",
       "yieldMultiplier": 0.8,
       "renovationCost": 0.14,
       "renovationHours": 5,
@@ -994,7 +3221,7 @@
       "id": "office_floor",
       "name": "Office floor",
       "icon": "Briefcase",
-      "basePrice": "120000.00",
+      "basePrice": "5000000.00",
       "yieldMultiplier": 1.05,
       "renovationCost": 0.1,
       "renovationHours": 3,
@@ -1012,7 +3239,7 @@
       "id": "retail_unit",
       "name": "Retail unit",
       "icon": "Store",
-      "basePrice": "45000.00",
+      "basePrice": "900000.00",
       "yieldMultiplier": 1.1,
       "renovationCost": 0.09,
       "renovationHours": 2,
@@ -1030,7 +3257,7 @@
       "id": "warehouse",
       "name": "Warehouse",
       "icon": "Warehouse",
-      "basePrice": "80000.00",
+      "basePrice": "4000000.00",
       "yieldMultiplier": 1.15,
       "renovationCost": 0.08,
       "renovationHours": 3,
@@ -1047,7 +3274,7 @@
       "id": "hotel_plot",
       "name": "Hotel plot",
       "icon": "Bed",
-      "basePrice": "900000.00",
+      "basePrice": "25000000.00",
       "yieldMultiplier": 0.9,
       "renovationCost": 0.16,
       "renovationHours": 6,
@@ -1063,7 +3290,7 @@
       "id": "land",
       "name": "Land",
       "icon": "Plot",
-      "basePrice": "10000.00",
+      "basePrice": "1500000.00",
       "yieldMultiplier": 0.5,
       "renovationCost": 0.2,
       "renovationHours": 4,
@@ -1077,7 +3304,7 @@
       "id": "penthouse",
       "name": "Penthouse",
       "icon": "Tower",
-      "basePrice": "600000.00",
+      "basePrice": "6000000.00",
       "yieldMultiplier": 0.85,
       "renovationCost": 0.15,
       "renovationHours": 5,
@@ -1091,7 +3318,7 @@
       "id": "mixed_use",
       "name": "Mixed-use block",
       "icon": "Buildings",
-      "basePrice": "400000.00",
+      "basePrice": "15000000.00",
       "yieldMultiplier": 1.0,
       "renovationCost": 0.12,
       "renovationHours": 6,
@@ -1112,10 +3339,10 @@
       "name": "The Aurelia",
       "floors": 40,
       "stageCosts": [
-        "400000.00",
-        "1200000.00",
-        "2000000.00",
-        "900000.00"
+        "60000000.00",
+        "180000000.00",
+        "300000000.00",
+        "135000000.00"
       ],
       "stageHours": [
         3,
@@ -1129,7 +3356,7 @@
         "Floors",
         "Fit-out"
       ],
-      "value": "5500000.00",
+      "value": "825000000.00",
       "floorRentPerDay": 0.032,
       "landmarkBoost": 0.04
     },
@@ -1138,10 +3365,10 @@
       "name": "Harbour Needle",
       "floors": 55,
       "stageCosts": [
-        "600000.00",
-        "1800000.00",
-        "3000000.00",
-        "1400000.00"
+        "90000000.00",
+        "270000000.00",
+        "450000000.00",
+        "210000000.00"
       ],
       "stageHours": [
         4,
@@ -1155,7 +3382,7 @@
         "Floors",
         "Fit-out"
       ],
-      "value": "8000000.00",
+      "value": "1200000000.00",
       "floorRentPerDay": 0.031,
       "landmarkBoost": 0.05
     },
@@ -1164,10 +3391,10 @@
       "name": "The Prism",
       "floors": 48,
       "stageCosts": [
-        "500000.00",
-        "1500000.00",
-        "2600000.00",
-        "1100000.00"
+        "75000000.00",
+        "225000000.00",
+        "390000000.00",
+        "165000000.00"
       ],
       "stageHours": [
         3,
@@ -1181,7 +3408,7 @@
         "Floors",
         "Fit-out"
       ],
-      "value": "6800000.00",
+      "value": "1020000000.00",
       "floorRentPerDay": 0.032,
       "landmarkBoost": 0.045
     },
@@ -1190,10 +3417,10 @@
       "name": "Helix Tower",
       "floors": 64,
       "stageCosts": [
-        "800000.00",
-        "2400000.00",
-        "3800000.00",
-        "1800000.00"
+        "120000000.00",
+        "360000000.00",
+        "570000000.00",
+        "270000000.00"
       ],
       "stageHours": [
         4,
@@ -1207,7 +3434,7 @@
         "Floors",
         "Fit-out"
       ],
-      "value": "10500000.00",
+      "value": "1575000000.00",
       "floorRentPerDay": 0.03,
       "landmarkBoost": 0.06
     },
@@ -1216,10 +3443,10 @@
       "name": "Monarch Plaza",
       "floors": 36,
       "stageCosts": [
-        "350000.00",
-        "1000000.00",
-        "1700000.00",
-        "800000.00"
+        "52500000.00",
+        "150000000.00",
+        "255000000.00",
+        "120000000.00"
       ],
       "stageHours": [
         2,
@@ -1233,7 +3460,7 @@
         "Floors",
         "Fit-out"
       ],
-      "value": "4600000.00",
+      "value": "690000000.00",
       "floorRentPerDay": 0.033,
       "landmarkBoost": 0.035
     },
@@ -1242,10 +3469,10 @@
       "name": "Summit Spire",
       "floors": 80,
       "stageCosts": [
-        "1100000.00",
-        "3200000.00",
-        "5200000.00",
-        "2400000.00"
+        "165000000.00",
+        "480000000.00",
+        "780000000.00",
+        "360000000.00"
       ],
       "stageHours": [
         5,
@@ -1259,7 +3486,7 @@
         "Floors",
         "Fit-out"
       ],
-      "value": "14500000.00",
+      "value": "2175000000.00",
       "floorRentPerDay": 0.029,
       "landmarkBoost": 0.07
     },
@@ -1268,10 +3495,10 @@
       "name": "Lumen Works",
       "floors": 44,
       "stageCosts": [
-        "450000.00",
-        "1300000.00",
-        "2300000.00",
-        "1000000.00"
+        "67500000.00",
+        "195000000.00",
+        "345000000.00",
+        "150000000.00"
       ],
       "stageHours": [
         3,
@@ -1285,7 +3512,7 @@
         "Floors",
         "Fit-out"
       ],
-      "value": "6100000.00",
+      "value": "915000000.00",
       "floorRentPerDay": 0.032,
       "landmarkBoost": 0.04
     },
@@ -1294,10 +3521,10 @@
       "name": "Tidewater Tower",
       "floors": 52,
       "stageCosts": [
-        "550000.00",
-        "1700000.00",
-        "2800000.00",
-        "1300000.00"
+        "82500000.00",
+        "255000000.00",
+        "420000000.00",
+        "195000000.00"
       ],
       "stageHours": [
         4,
@@ -1311,7 +3538,7 @@
         "Floors",
         "Fit-out"
       ],
-      "value": "7400000.00",
+      "value": "1110000000.00",
       "floorRentPerDay": 0.031,
       "landmarkBoost": 0.05
     }

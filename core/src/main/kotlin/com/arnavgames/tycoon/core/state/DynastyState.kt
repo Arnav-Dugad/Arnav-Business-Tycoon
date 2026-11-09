@@ -9,6 +9,8 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 data class MetaState(
+    /** Which economy the save's money is in: 1 = the idle-game scale (before 1.8.0), 2 = real-world money. */
+    val economy: Int = 1,
     /** Lifetime counters by metric (levels, taps, cards, trades…), across generations. */
     val counters: Map<String, Long> = emptyMap(),
     val daily: List<MissionState> = emptyList(),

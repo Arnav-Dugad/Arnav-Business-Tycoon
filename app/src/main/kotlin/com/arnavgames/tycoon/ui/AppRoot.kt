@@ -21,6 +21,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -265,5 +266,20 @@ private fun ReadyContent(vm: GameViewModel) {
         }
     }
     offline?.let { report -> OfflineEarningsDialog(report = report, onDismiss = vm::dismissOffline) }
+    // Once, after an old save moved to real-world money: say what changed and that progress is kept.
+    val converted by vm.converted.collectAsStateWithLifecycle()
+    if (converted && offline == null) {
+        com.arnavgames.tycoon.designsystem.components.AurumDialog(title = "Your empire, in real money", onDismiss = vm::dismissConverted) {
+            androidx.compose.material3.Text(
+                "Prices across the game now match the real world: a Lisbon apartment costs what it really costs, companies on the exchange are their real size, and the richest people are worth hundreds of billions, not quadrillions.",
+                style = com.arnavgames.tycoon.designsystem.theme.Aurum.type.body, color = com.arnavgames.tycoon.designsystem.theme.Aurum.colors.textSecondary,
+            )
+            androidx.compose.material3.Text(
+                "Everything you built is kept: your chapter, businesses and their levels, managers, headquarters, mergers, properties and collection. Your money was converted to the new scale, and your share and coin positions were sold at today's prices.",
+                style = com.arnavgames.tycoon.designsystem.theme.Aurum.type.body, color = com.arnavgames.tycoon.designsystem.theme.Aurum.colors.textSecondary,
+            )
+            com.arnavgames.tycoon.designsystem.components.GoldButton("Got it", onClick = vm::dismissConverted, modifier = androidx.compose.ui.Modifier.fillMaxWidth())
+        }
+    }
     if (offline == null) whatsNew?.let { (v, h) -> com.arnavgames.tycoon.ui.common.WhatsNewSheet(v, h) { whatsNew = null } }
 }

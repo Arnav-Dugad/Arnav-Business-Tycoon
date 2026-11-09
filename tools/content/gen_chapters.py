@@ -53,7 +53,7 @@ LATER = [
          m("c4_first_conglomerate", "Synergy", "Form your first conglomerate.", {"type": "conglomerates", "count": 1}, "200000000000.00", bullion=30),
          m("c4_auction", "Going once", "Win a live auction on the Collection tab.", {"type": "auctionsWon", "count": 1}, "0.00", bullion=20),
          m("c4_landlord", "Property portfolio", "Own five properties.", {"type": "propertiesOwned", "count": 5}, "0.00", bullion=20),
-         m("c4_networth", "Trillionaire", "Reach a net worth of $1 trillion.", nw("1000000000000.00"), "200000000000.00", bullion=30),
+         m("c4_networth", "Ten billion", "Reach a net worth of $10 billion.", nw("10000000000.00"), "2000000000.00", bullion=30),
      ]},
     {"number": 5, "title": "Disruption", "summary": "Banks, builders and broadcasters. Then the technologists arrive.",
      "unlocksBusinesses": ["tech", "telecom"],
@@ -96,7 +96,7 @@ LATER = [
 ]
 
 
-FINAL_GOAL_X = 4
+FINAL_GOAL_X = 6
 
 
 def scale_rewards(repo: Path, chapters: list) -> None:

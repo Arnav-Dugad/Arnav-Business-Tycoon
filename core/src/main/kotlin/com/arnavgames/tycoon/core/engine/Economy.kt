@@ -236,8 +236,14 @@ class Economy(val content: ContentPack) {
         var factor = Multiplier.of(b.level.toLong()) *
             tierMultiplier(def, b.level) *
             expansionMultiplier(def, b) *
-            Multiplier.ofDouble(round6(e * crossIncome(state, id, now) * commodityRevenueFactor(state, id))) *
-            globalMultiplier(state, now)
+            Multiplier.ofDouble(round6(e * crossIncome(state, id, now) * commodityRevenueFactor(state, id)))
+        // Market saturation: the business's own output approaches its market size (gross = M·(1 − e^(−raw/M))).
+        def.marketSize?.let { m ->
+            val raw = def.baseRevenue.toDollarsDouble() * factor.toDouble()
+            val cap = m.toDollarsDouble()
+            if (raw > 0 && cap > 0) factor *= Multiplier.ofDouble(round6(saturation(raw, cap) / raw))
+        }
+        factor *= globalMultiplier(state, now)
         conglomerateOf(state, id)?.let { factor *= it.incomeMultiplier }
         if (state.holdingName != null) factor *= content.balance.holdingIncomeMultiplier
         if (hasBoardSeatPerk(state, id)) factor *= boardSeatMultiplier
@@ -250,6 +256,9 @@ class Economy(val content: ContentPack) {
         val upkeep = gross * upkeepShare
         return BusinessRate(gross, upkeep, gross - upkeep, e)
     }
+
+    /** M·(1 − e^(−x/M)): linear while small, flattening toward M. */
+    fun saturation(x: Double, m: Double): Double = if (x / m < 1e-6) x else m * (1.0 - kotlin.math.exp(-x / m))
 
     fun totalNetRate(state: GameState, managedOnly: Boolean = false, now: Long = state.simTimeMs): Rate =
         state.businesses.values
@@ -293,13 +302,30 @@ class Economy(val content: ContentPack) {
         if (state.luxury.owned.isNotEmpty()) nw += luxury.collectionValue(state)
         if (state.finance.loans.isNotEmpty() || state.finance.creditLine.isPositive) nw -= credit.loanDebt(state)
         for (b in state.businesses.values) {
-            val def = content.businessById[b.id] ?: continue
-            nw += investedIn(def, b.level) * Multiplier.of("0.6") + b.stored
+            if (content.businessById[b.id] == null) continue
+            nw += businessValue(state, b.id) + b.stored
         }
         return nw
     }
 
+    /**
+     * What a business is worth: 60% of what was invested in it, but never more than a few days of what it earns
+     * (real businesses are valued on earnings; a saturated business doesn't keep getting more valuable).
+     */
+    fun businessValue(state: GameState, id: String): Money {
+        val b = state.businesses[id] ?: return Money.ZERO
+        val def = content.businessById[id] ?: return Money.ZERO
+        val byCost = investedIn(def, b.level) * Multiplier.of("0.6")
+        val net = businessRate(state, id).net
+        // Earning: a few days of net earnings. Mothballed or loss-making: a fifth of what its market could pay.
+        val cap = if (net.perSecond().isPositive) net.over(VALUATION_SECONDS)
+            else def.marketSize?.let { Rate.perSecond(it).over(VALUATION_SECONDS) * Multiplier.of("0.2") } ?: (byCost * Multiplier.of("0.2"))
+        return byCost.min(cap)
+    }
+
     companion object {
+        /** Valuation multiple: one game day of net earnings. */
+        const val VALUATION_SECONDS = 86_400L
         const val E_MIN = 0.25
         const val E_MAX = 2.5
         private val MC: MathContext = MathContext.DECIMAL128

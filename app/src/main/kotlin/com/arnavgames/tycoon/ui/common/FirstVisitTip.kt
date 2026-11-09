@@ -34,7 +34,7 @@ enum class Intro(val key: String, val title: String, val body: String) {
     ),
     Estates(
         "estates", "How property works",
-        "Tenants pay rent every few hours. Every district has its own price cycle: buy low, sell high, renovate for more rent.",
+        "Tenants pay rent every few hours. Every neighbourhood has its own price cycle: buy low, sell high, renovate for more rent.",
     ),
     Collection(
         "collection", "How collecting works",

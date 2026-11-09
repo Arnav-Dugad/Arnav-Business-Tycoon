@@ -110,24 +110,6 @@ fun GoalsScreen(
                 GoldButton("Claim everything · ${claims.size}", onClick = { vm.dispatchAll(claims, "Claimed ${claims.size} rewards") },
                     modifier = Modifier.fillMaxWidth().testTag("claim-everything"), leadingIcon = AbtIcons.Gift)
             }
-            // Your next move in the story, with "Show me" taking you straight to it (moved here from Empire).
-            empire?.mission?.let { mi ->
-                item(key = "next-move") {
-                    val go: (() -> Unit)? = mi.goTo?.let { target ->
-                        {
-                            when {
-                                target.startsWith("business:") -> onOpenBusiness(target.removePrefix("business:"))
-                                target == "counter" -> onSwitchTab("counter")
-                                target == "hq" -> onOpenCompany()
-                                target.startsWith("tab:") -> onSwitchTab(target.removePrefix("tab:"))
-                                target.startsWith("open:") -> onSwitchTab("businesses:$target")
-                                else -> onSwitchTab("businesses")
-                            }
-                        }
-                    }
-                    com.arnavgames.tycoon.ui.empire.NextMoveCard(mi, onClaim = { vm.dispatch(Command.ClaimMission(mi.id)) }, onGo = go)
-                }
-            }
             empire?.crown?.let { cr -> item(key = "crown") { com.arnavgames.tycoon.ui.empire.CrownReadyCard(cr, onOpen = onOpenDynasty) } }
             mentorLine?.let { l -> item(key = "mentor") { com.arnavgames.tycoon.ui.empire.MentorCard(vm.mentor.name, l.text, onDismiss = { vm.mentor.dismiss() }) } }
             item(key = "ladder") { LadderCard(ladder) { vm.dispatch(Command.ClaimDailyReward) } }
@@ -155,7 +137,20 @@ fun GoalsScreen(
                                             GoldProgress(vm.goalProgress(s, mi.goal).toFloat(), height = 3.dp, label = "${mi.title} progress")
                                         }
                                     }
-                                    if (claimable) { Spacer(Modifier.width(Space.sm)); PillAction("Claim", true, { vm.dispatch(Command.ClaimMission(mi.id)) }) }
+                                    if (claimable) { Spacer(Modifier.width(Space.sm)); PillAction("Claim", true, { vm.dispatch(Command.ClaimMission(mi.id)) }, modifier = Modifier.testTag("claim-story")) }
+                                    else if (!complete && mi.id == empire?.mission?.id) empire?.mission?.goTo?.let { target ->
+                                        Spacer(Modifier.width(Space.sm))
+                                        PillAction("Show me", true, {
+                                            when {
+                                                target.startsWith("business:") -> onOpenBusiness(target.removePrefix("business:"))
+                                                target == "counter" -> onSwitchTab("counter")
+                                                target == "hq" -> onOpenCompany()
+                                                target.startsWith("tab:") -> onSwitchTab(target.removePrefix("tab:"))
+                                                target.startsWith("open:") -> onSwitchTab("businesses:$target")
+                                                else -> onSwitchTab("businesses")
+                                            }
+                                        }, style = com.arnavgames.tycoon.designsystem.components.PillStyle.Glass)
+                                    }
                                 }
                             }
                         }
@@ -181,7 +176,7 @@ fun GoalsScreen(
                 item(key = "weekly") { MissionList(weekly, fmt, onClaim = { vm.dispatch(Command.ClaimWeekly(it)) }, onReroll = null) }
             }
             item(key = "ach") {
-                val done = achievements.count { it.state == 2 }
+                val done = achievements.count { it.state >= 1 }
                 val ready = achievements.count { it.state == 1 }
                 AurumCard(Modifier.fillMaxWidth().testTag("goals-achievements"), onClick = onOpenAchievements, highlighted = ready > 0) {
                     Row(verticalAlignment = Alignment.CenterVertically) {

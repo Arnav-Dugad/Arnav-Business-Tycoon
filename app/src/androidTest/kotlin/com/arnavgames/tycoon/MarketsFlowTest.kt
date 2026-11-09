@@ -69,7 +69,7 @@ class MarketsFlowTest {
         // Open the first stock in the list.
         scrollTo("· Defensive")
         rule.onAllNodesWithText("· Defensive", substring = true).onFirst().performSemanticsAction(SemanticsActions.OnClick)
-        waitForText("24-hour change")
+        waitForText("Change over 24 hours")
         // Choose an amount (a quarter of the maximum), then buy.
         scrollTo("How much to buy")
         rule.onNodeWithText("25%").performClick()
@@ -77,7 +77,12 @@ class MarketsFlowTest {
         rule.onNode(hasText("Buy ·", substring = true) and isEnabled()).performClick()
 
         // The position appears on the instrument and in the portfolio on the Markets tab.
+        // The ticket sits right under the chart, so the position card is further down the page.
+        rule.waitForIdle()
+        Thread.sleep(1_000)
+        scrollTo("Your position")
         waitForText("Your position")
+        scrollTo("Gain or loss")
         waitForText("Gain or loss")
         rule.onNodeWithContentDescription("Back").performClick()
         rule.waitForIdle()
@@ -85,7 +90,7 @@ class MarketsFlowTest {
         waitForText("Your positions")
         scrollTo("· Defensive")
         rule.onAllNodesWithText("· Defensive", substring = true).onFirst().performSemanticsAction(SemanticsActions.OnClick)
-        waitForText("24-hour change")
+        waitForText("Change over 24 hours")
         scrollTo("Trade")
         rule.onAllNodesWithText("Sell", substring = false).onFirst().performClick()
         rule.onNodeWithText("Max").performClick()

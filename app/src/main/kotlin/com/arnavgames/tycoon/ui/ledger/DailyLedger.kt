@@ -62,7 +62,7 @@ object DailyLedger {
         val goals = events.filterIsInstance<GameEvent.MissionCompleted>().mapNotNull { e -> c.chapters.flatMap { it.missions }.firstOrNull { it.id == e.missionId } }
         if (goals.isNotEmpty()) {
             out += Story("Trophy", if (goals.size == 1) "Goal reached: ${goals.first().title}" else "${goals.size} goals reached",
-                "Claim the reward on the Next Move card.", Tone.Good, 75)
+                "Claim the reward on the Goals tab.", Tone.Good, 75)
         }
 
         // The world.

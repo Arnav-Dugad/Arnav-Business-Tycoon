@@ -3,6 +3,8 @@ package com.arnavgames.tycoon
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.hasContentDescription
 import androidx.compose.ui.test.hasText
+import androidx.compose.ui.test.onAllNodesWithTag
+import androidx.compose.ui.test.hasTestTag
 import androidx.compose.ui.test.performScrollToIndex
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onAllNodesWithText
@@ -80,17 +82,17 @@ class FirstSessionFlowTest {
         waitForText("a customer")
         // Story rewards are claimed on the Goals tab (the next-move card).
         nav("Goals")
-        rule.onNodeWithTag("goals-list").performScrollToNode(hasText("Claim $", substring = true))
-        waitForText("Claim $")
-        rule.onAllNodesWithText("Claim $", substring = true).onFirst().performClick()
+        rule.onNodeWithTag("goals-list").performScrollToNode(hasTestTag("claim-story"))
+        rule.waitUntil(15_000) { rule.onAllNodesWithTag("claim-story").fetchSemanticsNodes().isNotEmpty() }
+        rule.onAllNodesWithTag("claim-story").onFirst().performClick()
 
         // Serve customers on the Counter tab until the 60-customer mission completes, then claim its Favor on Goals.
         nav("Counter")
         tapCounter(60)
         nav("Goals")
-        rule.onNodeWithTag("goals-list").performScrollToNode(hasText("Claim $", substring = true))
-        waitForText("Claim $")
-        rule.onAllNodesWithText("Claim $", substring = true).onFirst().performClick()
+        rule.onNodeWithTag("goals-list").performScrollToNode(hasTestTag("claim-story"))
+        rule.waitUntil(15_000) { rule.onAllNodesWithTag("claim-story").fetchSemanticsNodes().isNotEmpty() }
+        rule.onAllNodesWithTag("claim-story").onFirst().performClick()
         // The Favor shows in the Empire header.
         nav("Empire")
         rule.waitUntil(5_000) { rule.onAllNodes(hasContentDescription("5 Favor")).fetchSemanticsNodes().isNotEmpty() }

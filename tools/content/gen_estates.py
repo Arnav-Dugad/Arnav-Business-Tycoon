@@ -1,12 +1,14 @@
-"""Generates content/data/estates.json: 6 real cities, 40 districts, 10 property types, 8 skyscraper designs,
-40 tenant events and real-estate tunables (docs/GDD.md §7, docs/ECONOMY.md §6).
+"""Generates content/data/estates.json: 22 real cities and their neighbourhoods, 10 property types, 8 skyscraper
+designs, 40 tenant events and real-estate tunables (docs/GDD.md §7, docs/ECONOMY.md §6).
 
-City price scales follow the business price ladder: each city's prices are pegged to the opening price of the first
-business of the chapter that unlocks it, so property stays relevant as the empire grows.
+Real-world money (owner decision 2026-11-09): city prices come from researched prime prices per square metre
+(tools/content/data/cities_real.json, sources inside), relative to Lisbon = 1. Property types are priced as real
+property is; neighbourhood yields follow the real gross rental yields (scaled to game days).
 
 Usage: python -I tools/content/gen_estates.py <repo-root>
 """
 import json
+import re
 import math
 import random
 import sys
@@ -85,8 +87,12 @@ DISTRICT_SETS = {
 }
 
 # Map projection used for x/y (the app draws a stylised world map over the same window).
-MAP_LON = (-90.0, 85.0)
-MAP_LAT = (5.0, 62.0)
+MAP_LON = (-130.0, 160.0)
+MAP_LAT = (-45.0, 65.0)
+# Real gross yield (% a year) → rent a game day. 5% a year → 3% a game day (the economy runs on game days).
+YIELD_PER_DAY = 0.006
+REAL = json.loads((Path(__file__).parent / "data" / "cities_real.json").read_text(encoding="utf-8"))
+LISBON_PRIME = next(c["primePriceUsdPerSqm"] for c in REAL["cities"] if c["id"] == "lisbon")
 
 
 def project(lon, lat):
@@ -96,16 +102,16 @@ def project(lon, lat):
 # id, name, icon, base price ($ at scale 1), yield multiplier, renovation (cost share, hours, value +, rent +),
 # sale hours, disaster risk, businesses it can host
 TYPES = [
-    ("apartment", "Apartment", "Buildings", 25_000, 1.00, (0.10, 2, 0.15, 0.12), 2, 1.0, []),
-    ("townhouse", "Townhouse", "House", 60_000, 0.95, (0.12, 3, 0.18, 0.14), 3, 1.0, []),
-    ("villa", "Villa", "Villa", 250_000, 0.80, (0.14, 5, 0.22, 0.16), 5, 1.2, []),
-    ("office_floor", "Office floor", "Briefcase", 120_000, 1.05, (0.10, 3, 0.14, 0.15), 3, 0.8, ["bank", "tech", "media"]),
-    ("retail_unit", "Retail unit", "Store", 45_000, 1.10, (0.09, 2, 0.13, 0.15), 2, 1.0, ["retail", "restaurants", "fashion"]),
-    ("warehouse", "Warehouse", "Warehouse", 80_000, 1.15, (0.08, 3, 0.12, 0.12), 4, 1.1, ["logistics", "factory"]),
-    ("hotel_plot", "Hotel plot", "Bed", 900_000, 0.90, (0.16, 6, 0.25, 0.20), 6, 1.2, ["hotels"]),
-    ("land", "Land", "Plot", 10_000, 0.50, (0.20, 4, 0.30, 0.25), 6, 0.6, []),
-    ("penthouse", "Penthouse", "Tower", 600_000, 0.85, (0.15, 5, 0.22, 0.18), 4, 1.0, []),
-    ("mixed_use", "Mixed-use block", "Buildings", 400_000, 1.00, (0.12, 6, 0.18, 0.16), 5, 1.0, ["retail", "restaurants", "fashion"]),
+    ("apartment", "Apartment", "Buildings", 450_000, 1.00, (0.10, 2, 0.15, 0.12), 2, 1.0, []),
+    ("townhouse", "Townhouse", "House", 1_200_000, 0.95, (0.12, 3, 0.18, 0.14), 3, 1.0, []),
+    ("villa", "Villa", "Villa", 3_500_000, 0.80, (0.14, 5, 0.22, 0.16), 5, 1.2, []),
+    ("office_floor", "Office floor", "Briefcase", 5_000_000, 1.05, (0.10, 3, 0.14, 0.15), 3, 0.8, ["bank", "tech", "media"]),
+    ("retail_unit", "Retail unit", "Store", 900_000, 1.10, (0.09, 2, 0.13, 0.15), 2, 1.0, ["retail", "restaurants", "fashion"]),
+    ("warehouse", "Warehouse", "Warehouse", 4_000_000, 1.15, (0.08, 3, 0.12, 0.12), 4, 1.1, ["logistics", "factory"]),
+    ("hotel_plot", "Hotel plot", "Bed", 25_000_000, 0.90, (0.16, 6, 0.25, 0.20), 6, 1.2, ["hotels"]),
+    ("land", "Land", "Plot", 1_500_000, 0.50, (0.20, 4, 0.30, 0.25), 6, 0.6, []),
+    ("penthouse", "Penthouse", "Tower", 6_000_000, 0.85, (0.15, 5, 0.22, 0.18), 4, 1.0, []),
+    ("mixed_use", "Mixed-use block", "Buildings", 15_000_000, 1.00, (0.12, 6, 0.18, 0.16), 5, 1.0, ["retail", "restaurants", "fashion"]),
 ]
 
 # Skyscraper designs: id, name, floors, stage cost multiples of the city scale, stage hours, value multiple, floor rent share, landmark boost
@@ -213,23 +219,25 @@ EVENTS = [
 
 def main(repo: Path) -> None:
     rng = random.Random(SEED)
-    unlocks = {b["id"]: Decimal(b["unlockCost"]) for b in json.loads((repo / "content/data/businesses.json").read_text(encoding="utf-8"))}
     cities, districts = [], []
-    for cid, name, chapter, lon, lat, desc, ref in CITIES:
+    for rc in REAL["cities"]:
+        cid, name, chapter, lon, lat, desc = rc["id"], rc["name"], rc["chapter"], rc["longitude"], rc["latitude"], rc["description"]
         x, y = project(lon, lat)
-        scale = FIXED_SCALE.get(cid) or (unlocks[ref] / Decimal(1000)).quantize(Decimal(1))
+        scale = (Decimal(rc["primePriceUsdPerSqm"]) / Decimal(LISBON_PRIME)).quantize(Decimal("0.01"))
         cities.append({
             "id": cid, "name": name, "chapter": chapter, "x": x, "y": y, "longitude": lon, "latitude": lat, "description": desc, "priceScale": f"{scale}",
             "periodDays": round(rng.uniform(6.0, 12.0), 2), "amplitude": round(rng.uniform(0.02, 0.05), 3), "phase": round(rng.uniform(0, 2 * math.pi), 3),
         })
-        for dname, tier, yld, cbd, risk, types in DISTRICT_SETS[cid]:
+        for n in rc["neighbourhoods"]:
+            dname, tier, cbd, risk, types = n["name"], n["tier"], n["cbd"], n["risk"], n["types"]
+            yld = round(n["grossYieldPct"] * YIELD_PER_DAY, 4)
             ascii_name = unicodedata.normalize("NFKD", dname).encode("ascii", "ignore").decode()
-            did = cid[:3] + "_" + ascii_name.lower().replace(" ", "_").replace("'", "")
+            did = cid[:3] + "_" + re.sub(r"_+", "_", re.sub(r"[^a-z0-9]+", "_", ascii_name.lower().replace("'", ""))).strip("_")
             districts.append({
                 "id": did, "city": cid, "name": dname, "tier": tier, "yieldPerDay": yld, "cbd": cbd, "risk": risk, "types": types,
                 "periodDays": round(rng.uniform(4.0, 9.0), 2), "amplitude": round(rng.uniform(0.04, 0.12), 3),
                 "phase": round(rng.uniform(0, 2 * math.pi), 3), "trendPerDay": round(rng.uniform(-0.001, 0.006), 4),
-                "x": round(min(0.95, max(0.05, x + rng.uniform(-0.07, 0.07))), 3), "y": round(min(0.95, max(0.05, y + rng.uniform(-0.06, 0.06))), 3),
+                "x": round(min(0.98, max(0.02, x + rng.uniform(-0.01, 0.01))), 3), "y": round(min(0.98, max(0.02, y + rng.uniform(-0.01, 0.01))), 3),
             })
     types = [{
         "id": tid, "name": name, "icon": icon, "basePrice": f"{price}.00", "yieldMultiplier": ym,
@@ -237,8 +245,8 @@ def main(repo: Path) -> None:
         "saleHours": sh, "risk": risk, "hosts": hosts,
     } for tid, name, icon, price, ym, r, sh, risk, hosts in TYPES]
     towers = [{
-        "id": tid, "name": name, "floors": floors, "stageCosts": [f"{c}.00" for c in costs], "stageHours": hours,
-        "stageNames": ["Foundation", "Structure", "Floors", "Fit-out"], "value": f"{value}.00",
+        "id": tid, "name": name, "floors": floors, "stageCosts": [f"{c * 150}.00" for c in costs], "stageHours": hours,
+        "stageNames": ["Foundation", "Structure", "Floors", "Fit-out"], "value": f"{value * 150}.00",
         "floorRentPerDay": rent, "landmarkBoost": boost,
     } for tid, name, floors, costs, hours, value, rent, boost in TOWERS]
     config = {
@@ -263,7 +271,7 @@ def main(repo: Path) -> None:
         "repairCost": 0.06,
         "repairHours": 2,
         "maxRenovations": 3,
-        "maxProperties": 40,
+        "maxProperties": 150,
         "hostedUpkeepFactor": 0.9,
         "towerConstructionDiscount": 0.8,
         "unlocks": {"estates": 2, "mortgages": 3, "skyscrapers": 5},

@@ -135,8 +135,8 @@ class MarketTest {
         val huge = math.slippage(s, id, 1e15)
         assertTrue(small < 0.001 && small < mid && mid < huge, "$small $mid $huge")
         assertEquals(m.config.slippageMax, huge)
-        // Deeper markets in later chapters mean less slippage for the same order.
-        assertTrue(math.slippage(atChapter(s, 8), id, 1e8) < mid)
+        // Real-world money (1.8.0): companies have their real size in every chapter, so the same order slips the same.
+        assertEquals(mid, math.slippage(atChapter(s, 8), id, 1e8))
     }
 
     @Test
@@ -159,8 +159,8 @@ class MarketTest {
         assertEquals(listOf(stock.id), math.boardSeats(s))
         val rateAfter = engine.economy.businessRate(s, "retail").gross
         assertEquals(rateBefore * com.arnavgames.tycoon.core.money.Multiplier.of("1.05"), rateAfter)
-        // A later chapter deepens the market: the same shares become a smaller stake.
-        assertTrue(math.stake(atChapter(s, 5), stock.id) < m.config.boardSeatStake)
+        // Companies keep their real size in later chapters: the stake is the same.
+        assertEquals(math.stake(s, stock.id), math.stake(atChapter(s, 5), stock.id))
     }
 
     @Test

@@ -143,7 +143,14 @@ class Money private constructor(private val small: Long, private val big: BigInt
 object MoneySerializer : KSerializer<Money> {
     override val descriptor = PrimitiveSerialDescriptor("Money", PrimitiveKind.STRING)
     override fun serialize(encoder: Encoder, value: Money) = encoder.encodeString(value.toCentsString())
-    override fun deserialize(decoder: Decoder): Money = Money.parseCents(decoder.decodeString())
+    override fun deserialize(decoder: Decoder): Money {
+        val m = Money.parseCents(decoder.decodeString())
+        val f = scaleOnRead.get() ?: return m
+        return Money.ofDollars(java.math.BigDecimal(m.cents).movePointLeft(2).multiply(f, java.math.MathContext.DECIMAL128))
+    }
+
+    /** Set only while converting an old save to real-world money (EconomyConversion): every amount read is scaled. */
+    val scaleOnRead: ThreadLocal<java.math.BigDecimal?> = ThreadLocal()
 }
 
 fun Iterable<Money>.sumMoney(): Money = fold(Money.ZERO) { acc, m -> acc + m }

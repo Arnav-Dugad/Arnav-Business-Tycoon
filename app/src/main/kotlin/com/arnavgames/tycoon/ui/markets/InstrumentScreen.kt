@@ -84,7 +84,7 @@ fun InstrumentScreen(vm: GameViewModel, instrumentId: String, onBack: () -> Unit
     GlassScaffold(title = ui.name, onBack = onBack) {
         // The instrument's own painting, else (stocks) its sector's business painting.
         item(key = "art") {
-            val m = Modifier.fillMaxWidth().height(150.dp).clip(com.arnavgames.tycoon.designsystem.theme.AurumShapes.large)
+            val m = Modifier.fillMaxWidth().height(96.dp).clip(com.arnavgames.tycoon.designsystem.theme.AurumShapes.large)
             com.arnavgames.tycoon.ui.common.ArtOr(com.arnavgames.tycoon.ui.common.Art.instrument(ui.assetClass, ui.id), m) { ui.art?.let { com.arnavgames.tycoon.ui.common.Illustration(it, m) } }
         }
         item(key = "hero") {
@@ -110,57 +110,13 @@ fun InstrumentScreen(vm: GameViewModel, instrumentId: String, onBack: () -> Unit
                     Text(ui.price, style = Aurum.type.numberHero, color = c.textPrimary, modifier = Modifier.weight(1f))
                     ChangeLabel(ui.change * 100)
                 }
-                Text("24-hour change", style = Aurum.type.bodySmall, color = c.textTertiary)
+                Text("Change over 24 hours →", style = Aurum.type.bodySmall, color = c.textTertiary)
                 Spacer(Modifier.height(Space.md))
                 val pts = if (range == Range.Day) ui.day else ui.week
                 val ch = if (pts.size > 1) pts.last() / pts.first() - 1.0 else 0.0
                 PriceChart(pts, if (range == Range.Day) "one day" else "one week", ch, Modifier.fillMaxWidth().height(180.dp))
                 Spacer(Modifier.height(Space.sm))
                 SegmentedSelector(Range.entries, range, { it.label }, { range = it }, Modifier.fillMaxWidth())
-            }
-        }
-        item(key = "about") {
-            AurumCard(Modifier.fillMaxWidth()) {
-                Text(ui.about, style = Aurum.type.body, color = c.textSecondary)
-                Spacer(Modifier.height(Space.md))
-                FlowRow(horizontalArrangement = Arrangement.spacedBy(Space.md), verticalArrangement = Arrangement.spacedBy(Space.md), maxItemsInEachRow = 2) {
-                    ui.stats.forEach { st ->
-                        Column(Modifier.weight(1f).widthIn(min = 120.dp).semantics(mergeDescendants = true) {}) {
-                            Text(st.label.uppercase(), style = Aurum.type.overline, color = c.textTertiary)
-                            Spacer(Modifier.height(Space.xxs))
-                            Text(st.value, style = Aurum.type.titleSmall, color = c.textPrimary)
-                        }
-                    }
-                }
-            }
-        }
-        if (ui.holdingValue != null || ui.stake != null) {
-            item(key = "position") {
-                AurumCard(Modifier.fillMaxWidth(), highlighted = ui.holdingValue != null) {
-                    Text("Your position", style = Aurum.type.title, color = c.textPrimary)
-                    Spacer(Modifier.height(Space.sm))
-                    if (ui.holdingValue != null) {
-                        KeyValue("Value", fmt(ui.holdingValue))
-                        KeyValue("Holding", "${ui.holdingQty} ${MarketsMapper.unitWord(ui.assetClass)}", divider = true)
-                        KeyValue("Paid", fmt(ui.costBasis!!), divider = true)
-                        KeyValue("Gain or loss", MarketsMapper.signed(ui.pnl!!, fmt), divider = true, color = if (ui.pnl.isNegative) c.loss else c.gain)
-                    } else {
-                        Text("You don't own any yet.", style = Aurum.type.body, color = c.textSecondary)
-                    }
-                    ui.stake?.let { stake ->
-                        Spacer(Modifier.height(Space.md))
-                        val seat = stake >= ui.boardSeatStake
-                        Text(
-                            if (seat) "Board seat held: you own ${pctOf(stake)}." else "Own ${pctOf(ui.boardSeatStake)} for a board seat" +
-                                (ui.seatCost?.let { " (about ${fmt(it * com.arnavgames.tycoon.core.money.Multiplier.ofDouble(((ui.boardSeatStake - stake) / ui.boardSeatStake).coerceIn(0.0, 1.0)))} more)" } ?: "") +
-                                ". You own ${pctOf(stake)}.",
-                            style = Aurum.type.bodySmall, color = if (seat) c.gain else c.textSecondary,
-                        )
-                        Spacer(Modifier.height(Space.xs))
-                        GoldProgress((stake / ui.boardSeatStake).toFloat().coerceIn(0f, 1f), label = "Board seat progress")
-                        if (stake >= ui.divisionStake) Text("Division stake: opening a business in this sector costs 25% less.", style = Aurum.type.bodySmall, color = c.gain)
-                    }
-                }
             }
         }
         item(key = "ticket") {
@@ -242,6 +198,50 @@ fun InstrumentScreen(vm: GameViewModel, instrumentId: String, onBack: () -> Unit
                 }
                 Spacer(Modifier.height(Space.xs))
                 Text("Orders fill at the current price plus slippage. Fees are 0.1%; realised gains pay 10% tax.", style = Aurum.type.bodySmall, color = c.textTertiary)
+            }
+        }
+        item(key = "about") {
+            AurumCard(Modifier.fillMaxWidth()) {
+                Text(ui.about, style = Aurum.type.body, color = c.textSecondary)
+                Spacer(Modifier.height(Space.md))
+                FlowRow(horizontalArrangement = Arrangement.spacedBy(Space.md), verticalArrangement = Arrangement.spacedBy(Space.md), maxItemsInEachRow = 2) {
+                    ui.stats.forEach { st ->
+                        Column(Modifier.weight(1f).widthIn(min = 120.dp).semantics(mergeDescendants = true) {}) {
+                            Text(st.label.uppercase(), style = Aurum.type.overline, color = c.textTertiary)
+                            Spacer(Modifier.height(Space.xxs))
+                            Text(st.value, style = Aurum.type.titleSmall, color = c.textPrimary)
+                        }
+                    }
+                }
+            }
+        }
+        if (ui.holdingValue != null || ui.stake != null) {
+            item(key = "position") {
+                AurumCard(Modifier.fillMaxWidth(), highlighted = ui.holdingValue != null) {
+                    Text("Your position", style = Aurum.type.title, color = c.textPrimary)
+                    Spacer(Modifier.height(Space.sm))
+                    if (ui.holdingValue != null) {
+                        KeyValue("Value", fmt(ui.holdingValue))
+                        KeyValue("Holding", "${ui.holdingQty} ${MarketsMapper.unitWord(ui.assetClass)}", divider = true)
+                        KeyValue("Paid", fmt(ui.costBasis!!), divider = true)
+                        KeyValue("Gain or loss", MarketsMapper.signed(ui.pnl!!, fmt), divider = true, color = if (ui.pnl.isNegative) c.loss else c.gain)
+                    } else {
+                        Text("You don't own any yet.", style = Aurum.type.body, color = c.textSecondary)
+                    }
+                    ui.stake?.let { stake ->
+                        Spacer(Modifier.height(Space.md))
+                        val seat = stake >= ui.boardSeatStake
+                        Text(
+                            if (seat) "Board seat held: you own ${pctOf(stake)}." else "Own ${pctOf(ui.boardSeatStake)} for a board seat" +
+                                (ui.seatCost?.let { " (about ${fmt(it * com.arnavgames.tycoon.core.money.Multiplier.ofDouble(((ui.boardSeatStake - stake) / ui.boardSeatStake).coerceIn(0.0, 1.0)))} more)" } ?: "") +
+                                ". You own ${pctOf(stake)}.",
+                            style = Aurum.type.bodySmall, color = if (seat) c.gain else c.textSecondary,
+                        )
+                        Spacer(Modifier.height(Space.xs))
+                        GoldProgress((stake / ui.boardSeatStake).toFloat().coerceIn(0f, 1f), label = "Board seat progress")
+                        if (stake >= ui.divisionStake) Text("Division stake: opening a business in this sector costs 25% less.", style = Aurum.type.bodySmall, color = c.gain)
+                    }
+                }
             }
         }
         if (ui.news.isNotEmpty()) {

@@ -206,7 +206,7 @@
           "type": "ownBusiness",
           "businessId": "factory"
         },
-        "rewardCash": "7500000.00"
+        "rewardCash": "3000000.00"
       },
       {
         "id": "c3_factory_25",
@@ -228,7 +228,7 @@
           "type": "ownBusiness",
           "businessId": "fashion"
         },
-        "rewardCash": "75000000.00",
+        "rewardCash": "12000000.00",
         "rewardFavor": 20
       },
       {
@@ -284,7 +284,7 @@
           "type": "ownBusiness",
           "businessId": "mining"
         },
-        "rewardCash": "862500000.00",
+        "rewardCash": "50000000.00",
         "rewardFavor": 20
       },
       {
@@ -295,7 +295,7 @@
           "type": "ownBusiness",
           "businessId": "energy"
         },
-        "rewardCash": "9918750000.00"
+        "rewardCash": "200000000.00"
       },
       {
         "id": "c4_hotels",
@@ -305,7 +305,7 @@
           "type": "ownBusiness",
           "businessId": "hotels"
         },
-        "rewardCash": "114065625000.00",
+        "rewardCash": "750000000.00",
         "rewardFavor": 25
       },
       {
@@ -316,7 +316,7 @@
           "type": "conglomerates",
           "count": 1
         },
-        "rewardCash": "1725000000.00",
+        "rewardCash": "100000000.00",
         "rewardBullion": 30
       },
       {
@@ -327,7 +327,7 @@
           "type": "auctionsWon",
           "count": 1
         },
-        "rewardCash": "1725000000.00",
+        "rewardCash": "100000000.00",
         "rewardBullion": 20
       },
       {
@@ -338,18 +338,18 @@
           "type": "propertiesOwned",
           "count": 5
         },
-        "rewardCash": "1725000000.00",
+        "rewardCash": "100000000.00",
         "rewardBullion": 20
       },
       {
         "id": "c4_networth",
-        "title": "Trillionaire",
-        "description": "Reach a net worth of $1 trillion.",
+        "title": "Ten billion",
+        "description": "Reach a net worth of $10 billion.",
         "goal": {
           "type": "netWorth",
-          "amount": "1000000000000.00"
+          "amount": "10000000000.00"
         },
-        "rewardCash": "1725000000.00",
+        "rewardCash": "100000000.00",
         "rewardBullion": 30
       }
     ]
@@ -371,7 +371,7 @@
           "type": "ownBusiness",
           "businessId": "bank"
         },
-        "rewardCash": "410636250000.00",
+        "rewardCash": "1250000000.00",
         "rewardFavor": 25
       },
       {
@@ -382,7 +382,7 @@
           "type": "hireManager",
           "businessId": "bank"
         },
-        "rewardCash": "821272500000.00"
+        "rewardCash": "2500000000.00"
       },
       {
         "id": "c5_construction",
@@ -392,7 +392,7 @@
           "type": "ownBusiness",
           "businessId": "construction"
         },
-        "rewardCash": "1478290500000.00"
+        "rewardCash": "2000000000.00"
       },
       {
         "id": "c5_construction_25",
@@ -403,7 +403,7 @@
           "businessId": "construction",
           "level": 25
         },
-        "rewardCash": "821272500000.00"
+        "rewardCash": "2500000000.00"
       },
       {
         "id": "c5_media",
@@ -413,7 +413,7 @@
           "type": "ownBusiness",
           "businessId": "media"
         },
-        "rewardCash": "5321845800000.00",
+        "rewardCash": "3000000000.00",
         "rewardFavor": 25
       },
       {
@@ -424,7 +424,7 @@
           "type": "hireManager",
           "businessId": "media"
         },
-        "rewardCash": "821272500000.00"
+        "rewardCash": "2500000000.00"
       },
       {
         "id": "c5_ten_businesses",
@@ -434,7 +434,7 @@
           "type": "businessesOwned",
           "count": 10
         },
-        "rewardCash": "821272500000.00",
+        "rewardCash": "2500000000.00",
         "rewardBullion": 35
       }
     ]
@@ -456,7 +456,7 @@
           "type": "ownBusiness",
           "businessId": "tech"
         },
-        "rewardCash": "19158644880000.00",
+        "rewardCash": "4500000000.00",
         "rewardFavor": 30
       },
       {
@@ -467,7 +467,7 @@
           "type": "hireManager",
           "businessId": "tech"
         },
-        "rewardCash": "38317289760000.00"
+        "rewardCash": "9000000000.00"
       },
       {
         "id": "c6_telecom",
@@ -477,7 +477,7 @@
           "type": "ownBusiness",
           "businessId": "telecom"
         },
-        "rewardCash": "68971121568000.00"
+        "rewardCash": "6500000000.00"
       },
       {
         "id": "c6_telecom_25",
@@ -488,7 +488,7 @@
           "businessId": "telecom",
           "level": 25
         },
-        "rewardCash": "38317289760000.00"
+        "rewardCash": "9000000000.00"
       },
       {
         "id": "c6_two_conglomerates",
@@ -498,7 +498,7 @@
           "type": "conglomerates",
           "count": 2
         },
-        "rewardCash": "38317289760000.00",
+        "rewardCash": "9000000000.00",
         "rewardBullion": 40
       }
     ]
@@ -520,7 +520,7 @@
           "type": "ownBusiness",
           "businessId": "airline"
         },
-        "rewardCash": "248296037644800.00",
+        "rewardCash": "9000000000.00",
         "rewardFavor": 35
       },
       {
@@ -531,7 +531,7 @@
           "type": "hireManager",
           "businessId": "airline"
         },
-        "rewardCash": "496592075289600.00"
+        "rewardCash": "18000000000.00"
       },
       {
         "id": "c7_pharma",
@@ -541,7 +541,7 @@
           "type": "ownBusiness",
           "businessId": "pharma"
         },
-        "rewardCash": "893865735521280.00"
+        "rewardCash": "12500000000.00"
       },
       {
         "id": "c7_pharma_10",
@@ -552,7 +552,7 @@
           "businessId": "pharma",
           "level": 10
         },
-        "rewardCash": "496592075289600.00"
+        "rewardCash": "18000000000.00"
       },
       {
         "id": "c7_three_conglomerates",
@@ -562,7 +562,7 @@
           "type": "conglomerates",
           "count": 3
         },
-        "rewardCash": "496592075289600.00",
+        "rewardCash": "18000000000.00",
         "rewardBullion": 50
       }
     ]
@@ -581,7 +581,7 @@
           "type": "ownBusiness",
           "businessId": "sports"
         },
-        "rewardCash": "3217916647876608.00",
+        "rewardCash": "16000000000.00",
         "rewardFavor": 40
       },
       {
@@ -593,7 +593,7 @@
           "businessId": "sports",
           "level": 10
         },
-        "rewardCash": "6435833295753216.00"
+        "rewardCash": "32000000000.00"
       },
       {
         "id": "c8_space",
@@ -603,7 +603,7 @@
           "type": "ownBusiness",
           "businessId": "space"
         },
-        "rewardCash": "11584499932355788.80"
+        "rewardCash": "22500000000.00"
       },
       {
         "id": "c8_space_10",
@@ -614,7 +614,7 @@
           "businessId": "space",
           "level": 10
         },
-        "rewardCash": "6435833295753216.00"
+        "rewardCash": "32000000000.00"
       },
       {
         "id": "c8_networth",
@@ -622,7 +622,7 @@
         "description": "Reach a net worth worthy of a dynasty.",
         "goal": {
           "type": "netWorth",
-          "amount": "92675999458846310.40"
+          "amount": "270000000000.00"
         },
         "rewardCash": "0.00",
         "rewardBullion": 100

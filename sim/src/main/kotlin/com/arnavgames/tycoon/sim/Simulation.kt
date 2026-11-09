@@ -202,7 +202,7 @@ class Simulation(private val engine: GameEngine, private val contentHash: String
                 println("[trace ${bot.name}#$seed] t=${"%.1f".format(minuteNow / 1440.0)}d ch=${s.progress.chapter} hq=${s.hq.level} slots=${eco.usedSlots(s)}/${eco.slots(s)} " +
                     "levels=${s.businesses.values.sortedBy { it.id }.joinToString(",") { it.id.take(4) + it.level + if (it.mothballed) "z" else "" }} " +
                     "blockers=${engine.content.conglomerates.filter { it.id !in s.conglomerates }.joinToString("; ") { it.id + ":" + (eco.conglomerateBlocker(s, it) ?: "ok") }} " +
-                    "biz=${s.businesses.size} cash=${com.arnavgames.tycoon.core.money.MoneyFormat.short(s.cash)} nw=${com.arnavgames.tycoon.core.money.MoneyFormat.short(nw)} congl=${s.conglomerates.size} open=[$open] " +
+                    "biz=${s.businesses.size} cash=${com.arnavgames.tycoon.core.money.MoneyFormat.short(s.cash)} nw=${com.arnavgames.tycoon.core.money.MoneyFormat.short(nw)} congl=${s.conglomerates.size} rate=${com.arnavgames.tycoon.core.money.MoneyFormat.short(eco.totalNetRate(s).perSecond())}/s open=[$open] " +
                     "portfolio=${com.arnavgames.tycoon.core.money.MoneyFormat.short(engine.market.math.portfolioValue(s))} " +
                     "income=" + s.ledger.balances.filterKeys { it.startsWith("revenue:") }.entries.sortedBy { it.value }.take(4)
                         .joinToString(",") { it.key.removePrefix("revenue:") + ":" + com.arnavgames.tycoon.core.money.MoneyFormat.short(-it.value) })

@@ -66,7 +66,6 @@ class CrownFlowTest {
         rule.waitUntil(400_000) { rule.onAllNodesWithText("Pass the Crown").fetchSemanticsNodes().isNotEmpty() }
         rule.onAllNodesWithText("Pass the Crown").onFirst().performSemanticsAction(SemanticsActions.OnClick)
         waitForText("Heir trait")
-        rule.onAllNodes(hasScrollAction()).onFirst().performScrollToNode(hasTestTag("crown-go"))
         rule.onNodeWithTag("crown-go").performSemanticsAction(SemanticsActions.OnClick)
         waitForText("Retire the founder?")
         rule.onNodeWithTag("crown-confirm").performSemanticsAction(SemanticsActions.OnClick)

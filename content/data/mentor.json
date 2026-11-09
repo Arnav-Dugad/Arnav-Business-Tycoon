@@ -259,7 +259,7 @@
   {
    "id": "m_c4_networth",
    "trigger": "mission:c4_networth",
-   "text": "A trillionaire. There's no rulebook up here. Write a good one."
+   "text": "Ten billion. There's no rulebook up here. Write a good one."
   },
   {
    "id": "m_c5_bank",
@@ -819,7 +819,7 @@
   {
    "id": "tip_4_10",
    "trigger": "tip:4",
-   "text": "A trillion. Somewhere, a rival is drawing up plans about you. Draw yours first."
+   "text": "Ten billion. Somewhere, a rival is drawing up plans about you. Draw yours first."
   },
   {
    "id": "tip_5_1",

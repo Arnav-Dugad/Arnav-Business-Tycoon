@@ -65,6 +65,10 @@ Licenses accepted by the validator: `CC0-1.0`, `PDM-1.0`, `PD`, `CC-BY-2.0`, `CC
   - `make_queue3.py` writes the subjects from the content. Stock and coin names are parodies of real brands, so prompts describe the business (its sector, character and a scene) and never use the name.
   - Processed at 640×427 landscape and 384×384 square, WebP q70, into `img/{stock,sector,fund,bond,coin,commodity,product,card,tenant}/`.
   - In the app, `ArtOr(path) { fallback }` shows the painting when it is bundled, else the old monogram or icon tile.
+- **Fourth and fifth waves** (1.8.0, real-world cities):
+  - 16 new cities (`batches/w4_cities.tsv`) and 95 neighbourhoods (`batches/w5_neighbourhoods.tsv`, subjects built from `content/data/estates.json`). Each neighbourhood is described by its character: business district, residential, working streets or mixed.
+  - Every image was reviewed on contact sheets. Rejects: the Hollywood hill sign (regenerated). Mexico City's Centro Histórico was dropped, because every attempt showed the national flag on the Zócalo.
+  - Neighbourhood paintings (768×512, q72) appear on property pages and as list thumbnails via `Art.pick(district, property type)`.
 
 ## 3c. Museum works (built in Phase 8)
 - `tools/art/fetch_aic.py` queries the Art Institute of Chicago API for highlighted works with `is_public_domain = true` (CC0), downloads 600-px IIIF images into the cache, writes 480-px WebP to `app/src/main/assets/img/art/` and `credits.json` (title, artist, date, credit line, source URL, CC0). Contact sheets are reviewed before use. 99 works (80 paintings, 19 sculptures), 2.1 MB.

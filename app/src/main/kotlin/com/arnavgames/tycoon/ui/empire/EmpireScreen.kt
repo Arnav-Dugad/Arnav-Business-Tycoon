@@ -45,6 +45,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
@@ -181,7 +182,7 @@ fun EmpireScreen(
             item(key = "biz-header") {
                 Column {
                     SectionHeader("Your businesses") {
-                        com.arnavgames.tycoon.ui.common.SortToggle(
+                        if (e.businesses.size >= 3) com.arnavgames.tycoon.ui.common.SortToggle(
                             listOf(com.arnavgames.tycoon.ui.common.Choice("default", "Opened"), com.arnavgames.tycoon.ui.common.Choice("income", "Income"), com.arnavgames.tycoon.ui.common.Choice("level", "Level"), com.arnavgames.tycoon.ui.common.Choice("tier", "Next tier"), com.arnavgames.tycoon.ui.common.Choice("name", "A to Z")),
                             bizSort, { bizSort = it }, Modifier.testTag("biz-sort"),
                         )
@@ -299,8 +300,10 @@ private fun EmpireHeader(e: EmpireUi, fmt: (Money) -> String, modifier: Modifier
 internal fun CurrencyPill(icon: androidx.compose.ui.graphics.vector.ImageVector, value: String, label: String, tint: androidx.compose.ui.graphics.Color, onClick: () -> Unit) {
     val c = Aurum.colors
     Row(
-        Modifier.clip(AurumShapes.pill).clickable(onClickLabel = "What is $label?", onClick = onClick)
-            .glass(AurumShapes.pill, GlassWeight.Thin, blur = false).padding(horizontal = Space.sm + 2.dp, vertical = 4.dp)
+        // A full 48 dp touch target around the slim pill.
+        Modifier.heightIn(min = Space.touch).clip(AurumShapes.pill).clickable(onClickLabel = "What is $label?", onClick = onClick)
+            .padding(vertical = 8.dp)
+            .glass(AurumShapes.pill, GlassWeight.Thin, blur = false).padding(horizontal = Space.sm + 2.dp, vertical = 6.dp)
             .semantics(mergeDescendants = true) { contentDescription = "$value $label" },
         verticalAlignment = Alignment.CenterVertically,
     ) {
@@ -319,7 +322,7 @@ internal enum class GuideWhere { Empire, Counter }
 internal fun guideText(e: EmpireUi, where: GuideWhere): String? = when {
     e.onboardingStep !in 1..4 -> null
     e.mission?.claimable == true ->
-        if (where == GuideWhere.Empire) "You've earned a reward. Tap Claim on the card below." else "Reward waiting on the Empire tab."
+        "You've earned a reward: claim it on the Goals tab."
     else -> when (e.onboardingStep) {
         1 -> if (where == GuideWhere.Counter) "Tap anywhere to serve customers. Every customer pays cash." else "Open the Counter tab and serve a few customers."
         2 -> if (where == GuideWhere.Empire) "Buy a level for your kiosk. It earns more every second, even without you." else "Nice. Now open Empire and buy a level for your kiosk."
@@ -375,24 +378,14 @@ internal fun MentorCard(name: String, text: String, onDismiss: () -> Unit) {
         Spacer(Modifier.width(Space.md))
         Column(Modifier.weight(1f)) {
             Text(name.uppercase(), style = Aurum.type.overline, color = c.goldText)
-            // Typewriter reveal: the unrevealed part is drawn transparent so the card never changes size, and screen
-            // readers get the whole line at once. Reduced motion shows it immediately.
+            // The whole line fades in at once (reduced motion: instantly), so the card is never half-written.
             val line = "“$text”"
             val reduced = Aurum.reducedMotion
-            var shown by remember(line) { mutableIntStateOf(if (reduced) line.length else 0) }
-            androidx.compose.runtime.LaunchedEffect(line, reduced) {
-                if (reduced) { shown = line.length; return@LaunchedEffect }
-                while (shown < line.length) { delay(16); shown = (shown + 1).coerceAtMost(line.length) }
-            }
-            Text(
-                androidx.compose.ui.text.buildAnnotatedString {
-                    append(line.substring(0, shown))
-                    withStyle(androidx.compose.ui.text.SpanStyle(color = androidx.compose.ui.graphics.Color.Transparent)) { append(line.substring(shown)) }
-                },
-                style = Aurum.type.body, color = c.textPrimary,
-            )
+            val alpha = remember(line) { androidx.compose.animation.core.Animatable(if (reduced) 1f else 0f) }
+            androidx.compose.runtime.LaunchedEffect(line) { alpha.animateTo(1f, androidx.compose.animation.core.tween(350)) }
+            Text(line, style = Aurum.type.body, color = c.textPrimary, modifier = Modifier.graphicsLayer { this.alpha = alpha.value })
         }
-        androidx.compose.material3.IconButton(onClick = onDismiss, modifier = Modifier.size(32.dp)) {
+        androidx.compose.material3.IconButton(onClick = onDismiss, modifier = Modifier.size(48.dp)) {
             AbtIcon(AbtIcons.Close, "Dismiss", tint = c.textTertiary, size = 16.dp)
         }
     }
@@ -461,7 +454,7 @@ fun BusinessCard(b: BusinessUi, fmt: (Money) -> String, onOpen: () -> Unit, onBu
             if (!stacked) {
                 Column(horizontalAlignment = Alignment.End) {
                     Text(rateText, style = Aurum.type.number, color = if (b.mothballed) c.textTertiary else c.textPrimary)
-                    Text(if (b.mothballed) "mothballed" else "per second", style = Aurum.type.label, color = c.textTertiary)
+                    if (b.mothballed) Text("mothballed", style = Aurum.type.label, color = c.textTertiary)
                 }
             }
         }
@@ -591,7 +584,7 @@ internal fun MomentOverlay(vm: GameViewModel, modifier: Modifier) {
                 is GameEvent.AuctionWon -> Moment("Sold to you!", "The hammer fell in your favour. Find it in your showroom.")
                 is GameEvent.AuctionLost -> Moment("Outbid", if (ev.winner.isNotEmpty()) "${ev.winner} took the lot this time." else "The lot went to another bidder.")
                 is GameEvent.Foreclosure -> Moment("Property repossessed", "The mortgage outgrew the property's value, so the bank sold it.")
-                is GameEvent.TowerCompleted -> Moment("Skyscraper complete", "Floors lease one an hour, and the district's prices just rose.")
+                is GameEvent.TowerCompleted -> Moment("Skyscraper complete", "Floors lease one an hour, and the neighbourhood's prices just rose.")
                 is GameEvent.Disaster -> if (!ev.insured) Moment("Disaster damage", "One of your properties was damaged. Repair it on the Estates tab.") else null
                 is GameEvent.EarningsSeason -> Moment("Earnings season", "${ev.beats} companies beat estimates, ${ev.misses} missed. Check the Markets tab.")
                 else -> null

@@ -364,7 +364,7 @@ private fun BuyRow(p: ProductDef, blocker: String?, bullion: Long, ctx: StoreCtx
             // Bullion earned in play leads (gold when affordable); the demo price is the quiet option.
             val canBullion = p.bullionPrice?.let { bullion >= it } == true
             p.bullionPrice?.let { price ->
-                PillAction("${"%,d".format(price)} Bullion", canBullion, { ctx.vm.dispatch(Command.BuyWithBullion(p.id)) }, style = if (canBullion) PillStyle.Gold else PillStyle.Glass,
+                PillAction("Buy · ${"%,d".format(price)} Bullion", canBullion, { ctx.vm.dispatch(Command.BuyWithBullion(p.id)) }, style = if (canBullion) PillStyle.Gold else PillStyle.Glass,
                     modifier = Modifier.testTag("buy-${p.id}"))
             }
             p.demoPrice?.let { price ->

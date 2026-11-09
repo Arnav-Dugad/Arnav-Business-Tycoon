@@ -42,7 +42,8 @@ internal object DebugScenarios {
      */
     private fun lateGame(engine: GameEngine, base: GameState): GameState {
         fun GameState.run(c: Command) = (engine.apply(this, c) as? CommandResult.Ok)?.state ?: this
-        val grant = Money.ofCents(BigInteger.TEN.pow(26))
+        // Real-world money (1.8.0): half a trillion dollars is a late-game fortune.
+        val grant = Money.ofDollars(500_000_000_000)
         var s = base.copy(ledger = Grants.grant(base.ledger, base.simTimeMs, "debug scenario", grant, 500, 400))
         s = s.run(Command.AdvanceOnboarding(5))
         val content = engine.content
@@ -140,6 +141,8 @@ internal object DebugScenarios {
             s = s.run(Command.StartExpansion("retail", "market_stall"))
             s = engine.advance(s, 10 * 60_000L).state
         }
+        // Savings for a first flat (real-world prices: a Lisbon apartment is about half a million dollars).
+        s = s.copy(ledger = Grants.grant(s.ledger, s.simTimeMs, "debug scenario", Money.ofDollars(1_500_000), 0, 0))
         return engine.advance(s, 60_000).state
     }
 
@@ -201,6 +204,8 @@ internal object DebugScenarios {
         fun GameState.run(c: Command) = (engine.apply(this, c) as? CommandResult.Ok)?.state ?: this
         val content = engine.content
         var s = lateGame(engine, base)
+        // The finale needs every business at Scale Tier 2 and a $270B fortune: top up to an end-game sum.
+        s = s.copy(ledger = Grants.grant(s.ledger, s.simTimeMs, "debug scenario", Money.ofDollars(3_000_000_000_000), 0, 0))
         var guard = 0
         while (!engine.dynasty.canPrestige(s) && guard++ < 40) {
             content.chapters.flatMap { it.missions }.forEach { s = s.run(Command.ClaimMission(it.id)) }
@@ -218,7 +223,13 @@ internal object DebugScenarios {
             // a manager is still missing (a first manager costs 13× its business's opening price).
             val wanted = content.chapters.flatMap { it.missions }.mapNotNull { (it.goal as? com.arnavgames.tycoon.core.content.GoalDef.HireManager)?.businessId }.toSet()
             val managerMissing = s.businesses.values.any { it.id in wanted && it.managerId == null && !it.mothballed }
-            if (!managerMissing) content.businesses.forEach { b -> s = s.run(Command.BuyLevels(b.id, -1)) }
+            // Buy toward what the finale asks for (Scale Tier 3 on the early businesses, Tier 2 on the big ones), newest
+            // first, rather than maxing the small shops (at real prices their high levels would swallow the fortune).
+            if (!managerMissing) content.businesses.sortedByDescending { it.chapter }.forEach { b ->
+                val target = if (b.chapter <= 3) 50 else 25
+                val have = s.businesses[b.id]?.level ?: return@forEach
+                if (have < target) s = s.run(Command.BuyLevels(b.id, target - have))
+            }
             content.conglomerates.forEach { s = s.run(Command.FormConglomerate(it.id)) }
             s = engine.advance(s, 30 * 60_000L).state
         }
