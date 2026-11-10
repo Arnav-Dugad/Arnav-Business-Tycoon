@@ -38,7 +38,7 @@ enum class Intro(val key: String, val title: String, val body: String) {
     ),
     Collection(
         "collection", "How collecting works",
-        "Pieces on display earn Status, and Status gets you discounts and better auctions. A new lot goes up every two hours.",
+        "Pieces on display earn Status, and Status gets you discounts and better auctions. A new sale opens every six hours and stays open for most of them.",
     ),
 }
 

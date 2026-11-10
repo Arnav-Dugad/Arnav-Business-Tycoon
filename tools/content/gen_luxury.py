@@ -271,7 +271,7 @@ def main(repo: Path) -> None:
     config = {
         "dealerFee": 0.02, "dealerBuyback": 0.85, "showroomUpgradeBase": "250000.00", "showroomUpgradeGrowth": 6.0, "showroomCapacityStep": 0.5,
         "artCyclePeriodDays": 6.0, "artCycleAmplitude": 0.15,
-        "auctionEveryHours": 2, "auctionMinSeconds": 2700, "auctionExtendSeconds": 30, "auctionBidIncrement": 0.05,
+        "auctionEveryHours": 6, "auctionMinSeconds": 16200, "auctionExtendSeconds": 30, "auctionBidIncrement": 0.05,
         "auctionOpeningShare": 0.6, "auctionBiddersMin": 3, "auctionBiddersMax": 5, "auctionValuationSd": 0.15,
         "unlocks": {"collection": 2, "auctions": 3},
     }

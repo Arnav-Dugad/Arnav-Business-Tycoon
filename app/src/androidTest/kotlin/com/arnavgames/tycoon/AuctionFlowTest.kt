@@ -50,7 +50,8 @@ class AuctionFlowTest {
 
     @Test
     fun proxyBidWinsAndThePieceIsShown() {
-        waitForText("Raw Power", timeout = 60_000)
+        // The scenario (Chapter 3, a live sale 45 s from the hammer) is ready when Empire shows the businesses.
+        waitForText("Your businesses", timeout = 240_000)
         rule.onNodeWithContentDescription("More", substring = true).performClick()
         rule.waitForIdle()
         rule.onNodeWithTag("door-collection").performSemanticsAction(androidx.compose.ui.semantics.SemanticsActions.OnClick)

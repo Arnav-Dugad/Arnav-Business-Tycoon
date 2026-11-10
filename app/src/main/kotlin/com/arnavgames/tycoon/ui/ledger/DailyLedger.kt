@@ -50,7 +50,7 @@ object DailyLedger {
         }
         events.filterIsInstance<GameEvent.AuctionLost>().take(1).forEach { l ->
             val name = c.luxury.itemById[l.itemId]?.name ?: "the lot"
-            out += Story("Gem", "Outbid on $name", "${l.winner} took it. New lots arrive every two hours.", Tone.Neutral, 40)
+            out += Story("Gem", "Outbid on $name", "${l.winner} took it. A new sale opens every six hours.", Tone.Neutral, 40)
         }
         events.filterIsInstance<GameEvent.ExpansionCompleted>().takeIf { it.isNotEmpty() }?.let { done ->
             val first = done.first()

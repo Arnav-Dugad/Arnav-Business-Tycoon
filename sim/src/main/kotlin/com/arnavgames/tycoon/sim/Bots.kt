@@ -144,6 +144,24 @@ internal class Planner(private val engine: GameEngine) {
             .minOrNull()
     }
 
+    /**
+     * Levels the current chapter asks for ("Get Telecom to level 25"), bought in one go when affordable: what a player
+     * does after tapping "Show me" on the Goals tab, even when those levels are poor value on their own.
+     */
+    fun missionLevels(s: GameState): GameState {
+        val ch = engine.content.chapters.firstOrNull { it.number == s.progress.chapter } ?: return s
+        var st = s
+        for (mi in ch.missions) {
+            if (mi.id in st.progress.completedMissions) continue
+            val g = mi.goal as? com.arnavgames.tycoon.core.content.GoalDef.BusinessLevel ?: continue
+            val b = st.businesses[g.businessId] ?: continue
+            if (b.level >= g.level) continue
+            val cost = eco.levelCost(engine.content.business(b.id), b.level, g.level - b.level)
+            if (cost <= st.cash) st = engine.tryApply(st, Command.BuyLevels(b.id, g.level - b.level))
+        }
+        return st
+    }
+
     fun openNewBusinesses(s: GameState, maxShareOfCash: Double): GameState {
         var st = s
         for (def in engine.content.businesses) {
@@ -571,6 +589,7 @@ class IdleBot : Bot {
         s = p.openNewBusinesses(s, if (story != null && story <= s.cash) 1.0 else 0.7)
         val saving = p.storyTarget(s, income, 48 * 3600L) ?: Money.ZERO
         s = p.formConglomerates(s, 0.5)
+        s = p.missionLevels(s)
         repeat(400) {
             // Idle players buy the obvious best-value upgrade (they hire managers above, so most income keeps flowing).
             val best = p.options(s, managedOnly = false).filter { s.cash - it.cost >= saving }.minByOrNull { it.paybackSeconds } ?: return@repeat

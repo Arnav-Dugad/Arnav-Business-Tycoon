@@ -182,6 +182,12 @@ class LuxuryEngine(val c: LuxuryContent, private val extraBonus: (GameState, Str
     fun slotOf(minute: Long) = minute / (cfg.auctionEveryHours * 60L)
 
     /**
+     * The last scheduled slot, or -1 if it lies in the future: saves from before 1.8.1 counted 2-hour slots, and a
+     * longer interval renumbers them, which would otherwise pause auctions until the new numbering caught up.
+     */
+    private fun lastSlot(state: GameState, slot: Long) = state.luxury.lastAuctionSlot.let { if (it > slot) -1L else it }
+
+    /**
      * Each auction starts at a seeded moment inside its slot (0–75 min after the slot begins), so a player with a fixed
      * daily routine still catches auctions instead of always arriving just after one closes.
      */
@@ -192,7 +198,7 @@ class LuxuryEngine(val c: LuxuryContent, private val extraBonus: (GameState, Str
         val minute = state.simTimeMs / 60_000
         val slot = slotOf(minute)
         val thisStart = startMinute(state.worldSeed, slot)
-        val next = if (slot > state.luxury.lastAuctionSlot && minute < thisStart) thisStart else startMinute(state.worldSeed, slot + 1)
+        val next = if (slot > lastSlot(state, slot) && minute < thisStart) thisStart else startMinute(state.worldSeed, slot + 1)
         return next * 60_000L
     }
 
@@ -204,8 +210,12 @@ class LuxuryEngine(val c: LuxuryContent, private val extraBonus: (GameState, Str
         // Auctions are for premium lots: rare or legendary pieces worth at least $250K.
         val pool = c.items.filter { it.rarity != "common" && it.price >= Money.ofDollars(250_000) && it.id !in state.luxury.owned && categoryUnlocked(state, it.category) }
         if (pool.isEmpty()) return state.copy(luxury = state.luxury.copy(lastAuctionSlot = slot))
-        // The house invites you to sales in your league: lots up to 20 % of your peak net worth (else the cheapest few).
-        val league = pool.filter { it.price.toDollarsDouble() <= 0.2 * state.stats.peakNetWorth.toDollarsDouble() }
+        // The house invites you to sales in your league: lots up to 20 % of your peak net worth and half your cash, so
+        // you can actually bid (a fortune tied up in businesses is no use in a saleroom). Else the cheapest few.
+        val league = pool.filter {
+            val price = it.price.toDollarsDouble()
+            price <= 0.2 * state.stats.peakNetWorth.toDollarsDouble() && price <= 0.5 * state.cash.toDollarsDouble()
+        }
             .ifEmpty { pool.sortedBy { it.price }.take(5) }
         val item = league[r.nextInt(league.size)]
         val value = marketPrice(item, state.simTimeMs)
@@ -352,7 +362,7 @@ class LuxuryEngine(val c: LuxuryContent, private val extraBonus: (GameState, Str
         if (c.items.isEmpty() || minute <= state.luxury.tick) return state
         var s = state.copy(luxury = state.luxury.copy(tick = minute))
         val slot = slotOf(minute)
-        if (isUnlocked(s, "auctions") && s.luxury.auction == null && slot > s.luxury.lastAuctionSlot && minute >= startMinute(s.worldSeed, slot)) s = startAuction(s, slot, events)
+        if (isUnlocked(s, "auctions") && s.luxury.auction == null && slot > lastSlot(s, slot) && minute >= startMinute(s.worldSeed, slot)) s = startAuction(s, slot, events)
         if (minute % (6 * 60) == 0L && s.luxury.owned.isNotEmpty()) {
             var upkeep = Money.ZERO
             for (id in s.luxury.owned.keys.sorted()) {

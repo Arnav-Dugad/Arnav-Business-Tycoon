@@ -172,10 +172,11 @@ internal object DebugScenarios {
             s = engine.advance(s, 30 * 60_000L).state
         }
         var guard = 0
-        while (s.luxury.auction == null && guard++ < 300) s = engine.advance(s, 60_000).state
+        // A sale opens once in every 6-hour slot: wait up to two slots for one.
+        while (s.luxury.auction == null && guard++ < 150) s = engine.advance(s, 5 * 60_000L).state
         val a = s.luxury.auction ?: return s
         s = s.run(Command.SetMaxBid(engine.luxury.marketPrice(content.luxury.itemById.getValue(a.item), s.simTimeMs) * 10L))
-        val target = (s.luxury.auction?.closeSim ?: s.simTimeMs) - 45_000
+        val target = (s.luxury.auction?.closeSim ?: s.simTimeMs) - 90_000
         if (target > s.simTimeMs) s = engine.advance(s, target - s.simTimeMs).state
         return s
     }

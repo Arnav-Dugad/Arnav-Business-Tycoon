@@ -28,6 +28,10 @@ data class Highlight(val icon: String, val title: String, val body: String)
  */
 object WhatsNew {
     private val notes: Map<String, List<Highlight>> = mapOf(
+        "1.8.1" to listOf(
+            Highlight("Clock", "Auctions you can catch", "Each sale now stays open for four and a half hours, with a new one every six, and the lots on offer are ones your cash can actually bid on."),
+            Highlight("Globe", "Clearer property news", "Tenant and repair news names the city, and Mexico City's historic centre has its painting."),
+        ),
         "1.8.0" to listOf(
             Highlight("Cash", "Real-world money", "Prices now match the real world, from a Lisbon flat to a $45 billion space company. The richest people are worth hundreds of billions, and so can you be."),
             Highlight("Globe", "22 cities on every continent", "Riyadh, Tokyo, Singapore, Paris, Sydney, São Paulo, Monaco and more: 135 real neighbourhoods, each with real prices and its own painting."),

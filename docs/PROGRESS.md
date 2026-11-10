@@ -571,6 +571,14 @@ Evidence: core 176/176, sim 3/3, app 29/29 JVM tests (including `NotificationPla
 - Emulator rules tests passed 15 of 15. The deployed rules match the repo (deploy skipped the upload as unchanged).
 - Owner-side metadata check: 1 cloud save (rev 24, fresh), plus 1 profile, 1 leaderboard entry and 1 friend code.
 
+## 1.8.1 (overnight 2026-11-10): auctions you can catch
+- Auctions run 4.5 hours, one every 6 hours (so a sale always closes before the next opens), like an online timed sale. They were 45 minutes every 2 hours, which a twice-a-day player rarely caught: idle first auction win went from 4.5 d to 2.0 d.
+- Lots are also capped at half the player's cash.
+- Saves from before keep getting auctions: a "last slot" from the old 2-hour numbering is treated as stale.
+- Property news names the city ("in Alfama, Lisbon").
+- Mexico City's historic centre has its painting.
+- Simulator: the idle bot follows "Show me" on level goals. Sim (1 seed): active Chapter 8 **5.0 d** (in band); idle 6.0 d (band 8-10 d, faster than the old idle-game design). TUNING_LOG has the runs.
+
 ## 1.8.0 (owner request 2026-11-09 night, owner choice "real-world money"): the real-world economy
 **Economy (tools/content/gen_businesses.py + real_world.py, reproducible: regen gives byte-identical content)**
 - Unlock prices are real: a kiosk, then a $6M factory … a $45B space company. Revenue follows, divided by a per-chapter stretch (3: 3.5, 4-7: 6). The big businesses (chapter 4 on) grow by ×1.14 a level, and their managers cost 0.2× the old ratio.
@@ -583,7 +591,7 @@ Evidence: core 176/176, sim 3/3, app 29/29 JVM tests (including `NotificationPla
 - Sells market positions at today's price and scales all money by how much the player's own businesses shrank.
 - Caps the result at a real fortune for the chapter ($1M in chapter 1 … $1T). Extreme idle-game levels on chapter 3+ businesses are trimmed to fit, never below level 50.
 - Bullion, Favor and progress are kept. Every golden save from 1.0.0-1.3.0 converts balanced and idempotent, and stays below $10T. The owner's chapter-5 save converts to $68B and $4.5M/s.
-**Cities:** 22 cities with real neighbourhoods and prices, including Riyadh. 135 neighbourhood paintings (95 new this release), shown on property pages and as the thumbnail on every listing and owned row. Mexico City's historic centre has no painting yet, because every attempt showed a flag.
+**Cities:** 22 cities with real neighbourhoods and prices, including Riyadh. 135 neighbourhood paintings (95 new this release), shown on property pages and as the thumbnail on every listing and owned row. Mexico City's historic centre was repainted as a side street (the Zócalo views all showed the flag).
 **Other:** the Fortune List shows the gap to the next name, or your lead. The debug scenarios use real-world sums.
 
 ## 1.7.0 (owner request 2026-11-09 night): exact trading, businesses-only Empire, cities without districts

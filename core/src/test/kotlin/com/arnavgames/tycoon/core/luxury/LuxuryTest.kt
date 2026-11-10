@@ -128,7 +128,7 @@ class LuxuryTest {
         val item = s.luxury.auction!!.item
         // Keep bidding whenever outbid, every 5 seconds, until the hammer falls.
         var guard = 0
-        while (s.luxury.auction != null && guard++ < 2_000) {
+        while (s.luxury.auction != null && guard++ < 5_000) { // a sale runs 4.5 hours (3,240 steps of 5 s)
             if (s.luxury.auction!!.leader != LuxuryEngine.PLAYER) s = s.run(Command.BidAuction)
             s = s.adv(5_000)
         }
@@ -144,7 +144,7 @@ class LuxuryTest {
         val estimate = lux.marketPrice(c.itemById.getValue(a.item), s.simTimeMs)
         s = s.run(Command.SetMaxBid(estimate * 3L))
         assertEquals(LuxuryEngine.PLAYER, s.luxury.auction!!.leader)
-        s = s.adv(2 * hour) // away: the proxy answers every rival
+        s = s.adv(6 * hour) // away for the whole 4.5-hour sale: the proxy answers every rival
         assertTrue(a.item in s.luxury.owned, "won by proxy")
         trial(s)
     }

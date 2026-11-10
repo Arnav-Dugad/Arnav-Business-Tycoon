@@ -120,7 +120,7 @@ object NotificationPlanner {
                 }
                 is GameEvent.AuctionLost -> if (e.itemId == stake) {
                     val name = c.luxury.itemById[e.itemId]?.name ?: "the lot"
-                    out += Raw(t, NotifyCategory.Auctions, "Outbid on $name", "${e.winner} went higher than your maximum. New lots arrive every two hours.")
+                    out += Raw(t, NotifyCategory.Auctions, "Outbid on $name", "${e.winner} went higher than your maximum. A new sale opens every six hours.")
                 }
                 else -> Unit
             }
