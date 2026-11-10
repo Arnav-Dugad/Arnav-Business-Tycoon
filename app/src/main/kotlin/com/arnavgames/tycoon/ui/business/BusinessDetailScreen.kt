@@ -98,7 +98,14 @@ fun BusinessDetailScreen(vm: GameViewModel, businessId: String, onBack: () -> Un
             Spacer(Modifier.width(Space.sm))
             Column(Modifier.weight(1f)) {
                 Text("Level ${b.level} → ${b.level + ui.buyCount}", style = Aurum.type.bodySmall, color = c.textSecondary, maxLines = 1)
-                if (ui.buyGain.isPositive) Text("+${MoneyFormat.perSecond(ui.buyGain, notation)} income", style = Aurum.type.label, color = if (ui.canAfford) c.gain else c.textTertiary, maxLines = 1)
+                if (ui.buyGain.isPositive) {
+                    val payback = ui.buyCost.toDollarsDouble() / ui.buyGain.toDollarsDouble()
+                    val slow = payback > 6 * 3600.0
+                    Text(
+                        "+${MoneyFormat.perSecond(ui.buyGain, notation)} income" + if (slow) " · pays back in ${com.arnavgames.tycoon.ui.empire.slowPayback(payback)}" else "",
+                        style = Aurum.type.label, color = when { !ui.canAfford -> c.textTertiary; slow -> c.warning; else -> c.gain }, maxLines = 1,
+                    )
+                }
             }
             PillAction("Buy · ${fmt(ui.buyCost)}", enabled = ui.canAfford && !b.mothballed, onClick = { vm.dispatch(Command.BuyLevels(def.id, if (qty == BuyQty.Max) -1 else qty.count)) }, modifier = Modifier.testTag("detail-buy"))
         }

@@ -149,6 +149,8 @@ internal class Planner(private val engine: GameEngine) {
      * does after tapping "Show me" on the Goals tab, even when those levels are poor value on their own.
      */
     fun missionLevels(s: GameState): GameState {
+        // Chapter 1 is paced by the onboarding guide the bots already follow (and was tuned that way).
+        if (s.progress.chapter <= 1) return s
         val ch = engine.content.chapters.firstOrNull { it.number == s.progress.chapter } ?: return s
         var st = s
         for (mi in ch.missions) {
@@ -156,8 +158,15 @@ internal class Planner(private val engine: GameEngine) {
             val g = mi.goal as? com.arnavgames.tycoon.core.content.GoalDef.BusinessLevel ?: continue
             val b = st.businesses[g.businessId] ?: continue
             if (b.level >= g.level) continue
-            val cost = eco.levelCost(engine.content.business(b.id), b.level, g.level - b.level)
-            if (cost <= st.cash) st = engine.tryApply(st, Command.BuyLevels(b.id, g.level - b.level))
+            // As many of the missing levels as the cash allows (a player keeps tapping Buy toward the goal).
+            val def = engine.content.business(b.id)
+            var lo = 0
+            var hi = g.level - b.level
+            while (lo < hi) {
+                val mid = (lo + hi + 1) / 2
+                if (eco.levelCost(def, b.level, mid) <= st.cash) lo = mid else hi = mid - 1
+            }
+            if (lo > 0) st = engine.tryApply(st, Command.BuyLevels(b.id, lo))
         }
         return st
     }
@@ -429,8 +438,9 @@ internal class Planner(private val engine: GameEngine) {
         return o.outcomes.sumOf { oc ->
             oc.p * oc.effects.sumOf { e ->
                 when (e.type) {
-                    "cash" -> e.hours
-                    "donation", "rd" -> -e.hours * 0.9
+                    // A business card's cash is priced in that business's income (DeskEngine.hourly).
+                    "cash" -> e.hours * (if (card.business != null && share > 0) share else 1.0)
+                    "donation", "rd" -> -e.hours * 0.9 * (if (card.business != null && share > 0) share else 1.0)
                     "income" -> e.pct * e.hours * (if (e.target == "all") 1.0 else share)
                     "credit" -> e.points * 0.01
                     // Selling means rebuying later: count the rebuild cost and a day of lost income.
@@ -451,12 +461,12 @@ internal class Planner(private val engine: GameEngine) {
             val def = engine.content.world.cardById[card.card] ?: continue
             val usable = def.options.indices.filter { i ->
                 val o = def.options[i]
-                engine.desk.optionAvailable(s, card, o) && engine.desk.maxCost(s, o) <= s.cash
+                engine.desk.optionAvailable(s, card, o) && engine.desk.maxCost(s, o, card) <= s.cash
             }
             if (usable.isEmpty()) continue
             val pick = when (style) {
                 "random" -> usable[rng!!.nextInt(usable.size)]
-                "safe" -> usable.minWith(compareBy<Int> { engine.desk.maxCost(s, def.options[it]) }.thenByDescending { optionValue(s, card, def.options[it]) })
+                "safe" -> usable.minWith(compareBy<Int> { engine.desk.maxCost(s, def.options[it], card) }.thenByDescending { optionValue(s, card, def.options[it]) })
                 else -> usable.maxBy { optionValue(s, card, def.options[it]) }
             }
             val before = s.cash
@@ -538,6 +548,7 @@ class ActiveBot(override val name: String = "active", private val reserveFractio
         s = p.openNewBusinesses(s, if (story != null && story <= s.cash) 1.0 else 0.7)
         val saving = p.storyTarget(s, income, 24 * 3600L) ?: Money.ZERO
         s = p.formConglomerates(s, 0.5)
+        s = p.missionLevels(s)
         if (sessionStart) s = p.cheapDelayedActions(s, 0.05)
         // Greedy: keep buying the fastest payback until money runs out (respecting any reserve).
         repeat(400) {

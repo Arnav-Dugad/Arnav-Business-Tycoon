@@ -571,7 +571,37 @@ Evidence: core 176/176, sim 3/3, app 29/29 JVM tests (including `NotificationPla
 - Emulator rules tests passed 15 of 15. The deployed rules match the repo (deploy skipped the upload as unchanged).
 - Owner-side metadata check: 1 cloud save (rev 24, fresh), plus 1 profile, 1 leaderboard entry and 1 friend code.
 
-## 1.8.1 (overnight 2026-11-10): auctions you can catch
+## 1.8.2 (owner request 2026-11-10: "play the game in every possible way … fix everything", rival portraits)
+Played on the emulator from a fresh install through every tab and mechanic, using cheats, then the debug lategame, world and crown scenarios.
+
+**Broken mechanics found and fixed**
+- Manager and expansion prices were never rescaled for real-world money:
+  - 4-5★ managers cost up to $2.4 quadrillion, and the late third expansions up to $7.2 quadrillion. None of these could ever be bought.
+  - Managers 3-5★ now cost about 3,000 / 12,000 / 38,000 seconds of full-market income (each at least 2× the star below). Chapter 1's top managers are set by knob t09.
+  - Expansions are capped at 200 / 2,000 / 20,000 seconds of full-market income.
+- Chapter 2's farms, factories and fashion houses had the ×10 market meant for the tiny Chapter 1 shops, so they out-earned airlines and space companies all game. Only Chapter 1 keeps it now.
+- Business value is book value: what was invested, capped at a day of earnings. It was 60%, so buying a level that paid back in a minute cut net worth by 40%.
+- Desk cards about one business were priced in the whole empire's income: a $43B influencer for Restaurants, $123B to clean a pipeline leak. They are now priced in that business's income (`DeskEngine.hourly(s, card)`).
+- Nemesis cards offered two choices that did nothing. Now:
+  - "Bring it on": +3% income for a day, and the rivalry worsens.
+  - "Study their playbook": costs 1 h of income for +6% over 12 h.
+- A card with no outcome text reported "Bring it on: Bring it on." It now reports what the choice does.
+- The daily reward strip ticked tomorrow's day after today's claim. Day 1's "1 h of income" paid $0 to a new player; it now has a $250/h floor.
+
+**UX**
+- The Frenzy pill no longer overlaps the cash on the Counter.
+- Buy buttons say when a purchase pays back slowly (over 6 h). Max on a saturated kiosk would spend $732M for +$647/s.
+- The More doors keep a fixed order (only locked ones move last). They had reshuffled whenever a badge appeared.
+- The Achievements door counts claimable ones as earned ("0 of 150 · 64 to claim").
+- Auction countdowns show hours ("2h 47m", not "167m 44s").
+- Dynasty shows a locked IPO card that explains how to open it.
+- The cheats banner after agreeing says the first cheat makes the save a sandbox.
+
+**Art:** 92 rival portraits (132 of 220 now; see ART_PIPELINE). Credits ran out; the rest come after 2026-12-01.
+
+**Simulator:** both bots follow "Show me" on level goals, buying as many levels toward the goal as cash allows.
+
+
 - Auctions run 4.5 hours, one every 6 hours (so a sale always closes before the next opens), like an online timed sale. They were 45 minutes every 2 hours, which a twice-a-day player rarely caught: idle first auction win went from 4.5 d to 2.0 d.
 - Lots are also capped at half the player's cash.
 - Saves from before keep getting auctions: a "last slot" from the old 2-hour numbering is treated as stale.

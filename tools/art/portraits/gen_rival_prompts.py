@@ -62,17 +62,67 @@ FEATURES = {
 }
 
 
+# Second wave (owner request 2026-11-10: portraits for every rival). Only rivals without the "portrait" flag use these,
+# so the first 40 prompts (and their images) are unchanged.
+FEMALE_2 = {
+    "Savitri Jindall", "MacKenzie Scotch", "Susanne Klatter", "Iris Fontbonna", "Diane Hendrix", "Mariana Brandão",
+    "Sakura Morishita", "Chiara Vianello", "Meera Chaudhary", "Amira Mansour", "Giulia Santangelo", "Fernanda Teixeira",
+    "Rafaela Figueiredo", "Layla Al-Qasimi", "Ji-woo Seo", "Valentina Arrieta", "Henrike Steinberg", "Nandini Khanna",
+    "Yui Takahara", "Harriet Wexford", "Mariana Sequeira", "Clémence Beaulieu", "Madison Holcomb", "Rafaela Carvalho",
+    "Brooke Rutledge", "Paige Rutledge", "Olivia Harrowgate", "Inês Sequeira", "Harriet Ashworth", "Kendall Whitaker",
+    "Layla Nassar", "Chiara Moretti", "Charlotte Holloway", "Madison McAllister", "Mei Huang", "Noor Mansour",
+    "Eleanor Ashworth", "Xiu Huang", "Blair Delacroix", "Amira Al-Qasimi", "Paige McAllister", "Eleanor Blackwood",
+    "Annika Lindqvist", "Lucía Cifuentes", "Priya Khanna", "Meera Malhotra", "Isha Venkataraman", "Margaux Vasseur",
+    "Eleanor Montague", "Imogen Sterling", "Madison Rutledge", "Chiara Bellandi", "Adaeze Diallo", "Leonie Albrecht",
+    "Madison Castellan", "Olivia Montague",
+}
+REGION_2 = {
+    "Bengaluru": "South Asian", "Delhi": "South Asian", "Pune": "South Asian", "Hyderabad": "South Asian", "Chennai": "South Asian",
+    "Ningde": "Chinese", "Foshan": "Chinese", "Singapore": "Singaporean Chinese", "Seoul": "Korean", "Busan": "Korean",
+    "Osaka": "Japanese", "Doha": "Arab", "Riyadh": "Arab", "Cairo": "Egyptian", "Lagos": "West African", "Accra": "West African",
+    "Johannesburg": "Black South African", "São Paulo": "Brazilian", "Rio de Janeiro": "Brazilian", "Buenos Aires": "Argentine",
+    "Santiago": "Chilean",
+}
+HAIR_M = ["a shaved head", "curly grey hair", "a silver buzz cut", "a bald crown with a white fringe", "spiky dark hair",
+          "a swept-back mane of grey hair", "short tight curls", "a neat side parting", "wavy shoulder-length hair", "a receding hairline"]
+HAIR_F = ["a sleek silver bob", "long wavy dark hair", "a high ponytail", "a short pixie cut", "a tidy chignon",
+          "voluminous curls", "a sharp asymmetric bob", "long straight grey hair", "braids pinned up", "a soft shoulder-length cut"]
+EXTRA_M = ["round tortoiseshell glasses", "a bushy moustache", "a neat goatee", "heavy dark eyebrows", "a bold red scarf",
+           "a bow tie", "a gold signet ring", "rimless glasses", "a short white beard", "a dimpled chin"]
+EXTRA_F = ["cat-eye glasses", "statement earrings", "a silk scarf", "a string of pearls", "bold red lipstick",
+           "round gold glasses", "a sharp blazer with wide lapels", "a jade pendant", "freckles", "a gentle laugh line"]
+
+
+# Overrides after review (2026-11-10): these prompts drifted toward real people or real brands.
+FEATURES_2_FIX = {
+    "jack_mah": "a wide round face, a thick black pompadour and a bright orange bow tie",
+    "jack_dorsee": "a round face, short curly red hair, freckles and a bright yellow raincoat",
+}
+PROP_2_FIX = {"layla_al_qasimi": "a plain white canvas shoe with no logo, stripes or marks"}
+
+
+def features_2(r: dict, woman: bool) -> str:
+    if r["id"] in FEATURES_2_FIX:
+        return FEATURES_2_FIX[r["id"]]
+    import hashlib
+    h = int(hashlib.sha256(r["id"].encode()).hexdigest(), 16)
+    hair, extra = (HAIR_F, EXTRA_F) if woman else (HAIR_M, EXTRA_M)
+    return f"{hair[h % len(hair)]} and {extra[(h // 97) % len(extra)]}"
+
+
 def prompt(r: dict) -> str:
-    who = "woman" if r["name"] in FEMALE else "man"
+    second = not r.get("portrait")
+    woman = r["name"] in FEMALE or (second and r["name"] in FEMALE_2)
+    who = "woman" if woman else "man"
     age = r["age"]
     decade = "in her" if who == "woman" else "in his"
-    prop = PROP.get(r["source"], "a symbol of their business")
-    region = REGION_BY_CITY.get(r["city"])
-    extra = FEATURES.get(r["id"])
+    prop = (PROP_2_FIX.get(r["id"]) if second else None) or PROP.get(r["source"]) or (f"a small object that hints at {r['source'].lower()} (no text, no logo)" if second else "a symbol of their business")
+    region = REGION_BY_CITY.get(r["city"]) or (REGION_2.get(r["city"]) if second else None)
+    extra = FEATURES.get(r["id"]) or (features_2(r, woman) if second else None)
     if region or extra:
         who = f"{region + ' ' if region else ''}{who}{' with ' + extra if extra else ''}"
     return (
-        f"Premium editorial caricature portrait, head and shoulders, of an invented billionaire tycoon character: a {who} {decade} "
+        f"Premium editorial caricature portrait, head and shoulders, of an invented billionaire tycoon character: {'an' if who[0] in 'AEIOU' else 'a'} {who} {decade} "
         f"{(age // 10) * 10}s who made a fortune from {r['source'].lower()}, wearing {STYLE[r['archetype']]}, holding {prop}. "
         "Playful exaggerated proportions (slightly larger head, expressive eyes), painterly digital illustration with soft "
         "lighting, smooth deep navy and muted gold background gradient, centered, looking at the viewer. "
@@ -86,8 +136,6 @@ def main(repo: Path) -> None:
     existing = {e["id"]: e for e in json.loads(path.read_text(encoding="utf-8"))} if path.exists() else {}
     out = []
     for r in world["rivals"]:
-        if not r.get("portrait"):
-            continue
         e = existing.get(r["id"], {})
         new_prompt = prompt(r)
         if e and e.get("prompt") != new_prompt:

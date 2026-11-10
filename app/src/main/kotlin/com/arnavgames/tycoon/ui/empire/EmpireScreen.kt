@@ -502,7 +502,16 @@ fun BusinessCard(b: BusinessUi, fmt: (Money) -> String, onOpen: () -> Unit, onBu
             }
             Column(horizontalAlignment = Alignment.End) {
                 SmallAction("Buy ×${b.buyCount} · ${fmt(b.buyCost)}", enabled = b.canAfford, onClick = onBuy, gold = true)
-                if (b.buyGain.isPositive) Text("+${MoneyFormat.perSecond(b.buyGain)} income", style = Aurum.type.label, color = if (b.canAfford) c.gain else c.textTertiary, modifier = Modifier.padding(top = 2.dp, end = Space.sm))
+                if (b.buyGain.isPositive) {
+                    // Say plainly when a purchase is poor value (a saturated market, or levels far past the sweet spot).
+                    val payback = b.buyCost.toDollarsDouble() / b.buyGain.toDollarsDouble()
+                    val slow = payback > 6 * 3600.0
+                    Text(
+                        "+${MoneyFormat.perSecond(b.buyGain)} income" + if (slow) " · pays back in ${slowPayback(payback)}" else "",
+                        style = Aurum.type.label, color = when { !b.canAfford -> c.textTertiary; slow -> c.warning; else -> c.gain },
+                        modifier = Modifier.padding(top = 2.dp, end = Space.sm),
+                    )
+                }
             }
         }
     }
@@ -622,3 +631,11 @@ internal fun MomentOverlay(vm: GameViewModel, modifier: Modifier) {
 
 /** The guide line for the Counter tab (null once the tutorial is done). */
 fun counterGuide(e: EmpireUi): String? = guideText(e, GuideWhere.Counter)
+
+/** "9 h", "13 days", "over a year": how long a slow purchase takes to earn back its price. */
+internal fun slowPayback(sec: Double): String = when {
+    !sec.isFinite() -> "never"
+    sec < 172_800 -> "${(sec / 3600).toInt()} h"
+    sec < 365.0 * 86_400 -> "${(sec / 86_400).toInt()} days"
+    else -> "over a year"
+}

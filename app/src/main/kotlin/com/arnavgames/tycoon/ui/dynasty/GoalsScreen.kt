@@ -207,7 +207,7 @@ private fun LadderCard(l: LadderUi, onClaim: () -> Unit) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             Column(Modifier.weight(1f)) {
                 Text("Daily reward", style = Aurum.type.title, color = c.textPrimary)
-                Text(buildList {
+                Text((if (l.available) "" else "Tomorrow: ") + buildList {
                     if (l.cashHours > 0) add("${String.format(Locale.US, "%.0f", l.cashHours)} h of income")
                     if (l.bullion > 0) add("${l.bullion} Bullion")
                     if (l.favor > 0) add("${l.favor} Favor")
@@ -217,9 +217,11 @@ private fun LadderCard(l: LadderUi, onClaim: () -> Unit) {
         }
         Spacer(Modifier.height(Space.md))
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(Space.xs)) {
+            // l.day is the next reward. Once today's is claimed, today is the day before it (day 7 when it wrapped to 1).
+            val todayDay = if (l.available) l.day else ((l.day + 5) % 7) + 1
             (1..7).forEach { d ->
-                val past = d < l.day
-                val today = d == l.day
+                val past = d < todayDay
+                val today = d == todayDay
                 Box(
                     Modifier.weight(1f).aspectRatio(0.8f).clip(AurumShapes.small)
                         .background(

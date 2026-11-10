@@ -315,9 +315,10 @@ class Economy(val content: ContentPack) {
     fun businessValue(state: GameState, id: String): Money {
         val b = state.businesses[id] ?: return Money.ZERO
         val def = content.businessById[id] ?: return Money.ZERO
-        val byCost = investedIn(def, b.level) * Multiplier.of("0.6")
+        // Book value: what was put in (1.8.2; it was 60%, so a purchase that paid back in minutes still cut net worth).
+        val byCost = investedIn(def, b.level)
         val net = businessRate(state, id).net
-        // Earning: a few days of net earnings. Mothballed or loss-making: a fifth of what its market could pay.
+        // Capped at a day of net earnings, so over-buying a saturated business does lose value. Mothballed or loss-making: a fifth of what its market could pay.
         val cap = if (net.perSecond().isPositive) net.over(VALUATION_SECONDS)
             else def.marketSize?.let { Rate.perSecond(it).over(VALUATION_SECONDS) * Multiplier.of("0.2") } ?: (byCost * Multiplier.of("0.2"))
         return byCost.min(cap)

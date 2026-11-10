@@ -13964,23 +13964,45 @@
    "options": [
     {
      "label": "Bring it on",
-     "detail": "",
+     "detail": "Rally the team: +3% income for a day. They take it personally.",
      "outcomes": [
       {
        "p": 1.0,
        "text": "",
-       "effects": []
+       "effects": [
+        {
+         "type": "income",
+         "target": "all",
+         "pct": 0.03,
+         "hours": 24
+        },
+        {
+         "type": "relation",
+         "points": -10
+        }
+       ]
       }
      ]
     },
     {
      "label": "Study their playbook",
-     "detail": "",
+     "detail": "Costs 1 h of income; +6% income for 12 h.",
      "outcomes": [
       {
        "p": 1.0,
        "text": "",
-       "effects": []
+       "effects": [
+        {
+         "type": "cash",
+         "hours": -1.0
+        },
+        {
+         "type": "income",
+         "target": "all",
+         "pct": 0.06,
+         "hours": 12
+        }
+       ]
       }
      ]
     }
@@ -13997,23 +14019,45 @@
    "options": [
     {
      "label": "Bring it on",
-     "detail": "",
+     "detail": "Rally the team: +3% income for a day. They take it personally.",
      "outcomes": [
       {
        "p": 1.0,
        "text": "",
-       "effects": []
+       "effects": [
+        {
+         "type": "income",
+         "target": "all",
+         "pct": 0.03,
+         "hours": 24
+        },
+        {
+         "type": "relation",
+         "points": -10
+        }
+       ]
       }
      ]
     },
     {
      "label": "Study their playbook",
-     "detail": "",
+     "detail": "Costs 1 h of income; +6% income for 12 h.",
      "outcomes": [
       {
        "p": 1.0,
        "text": "",
-       "effects": []
+       "effects": [
+        {
+         "type": "cash",
+         "hours": -1.0
+        },
+        {
+         "type": "income",
+         "target": "all",
+         "pct": 0.06,
+         "hours": 12
+        }
+       ]
       }
      ]
     }
@@ -14030,23 +14074,45 @@
    "options": [
     {
      "label": "Bring it on",
-     "detail": "",
+     "detail": "Rally the team: +3% income for a day. They take it personally.",
      "outcomes": [
       {
        "p": 1.0,
        "text": "",
-       "effects": []
+       "effects": [
+        {
+         "type": "income",
+         "target": "all",
+         "pct": 0.03,
+         "hours": 24
+        },
+        {
+         "type": "relation",
+         "points": -10
+        }
+       ]
       }
      ]
     },
     {
      "label": "Study their playbook",
-     "detail": "",
+     "detail": "Costs 1 h of income; +6% income for 12 h.",
      "outcomes": [
       {
        "p": 1.0,
        "text": "",
-       "effects": []
+       "effects": [
+        {
+         "type": "cash",
+         "hours": -1.0
+        },
+        {
+         "type": "income",
+         "target": "all",
+         "pct": 0.06,
+         "hours": 12
+        }
+       ]
       }
      ]
     }
@@ -14063,23 +14129,45 @@
    "options": [
     {
      "label": "Bring it on",
-     "detail": "",
+     "detail": "Rally the team: +3% income for a day. They take it personally.",
      "outcomes": [
       {
        "p": 1.0,
        "text": "",
-       "effects": []
+       "effects": [
+        {
+         "type": "income",
+         "target": "all",
+         "pct": 0.03,
+         "hours": 24
+        },
+        {
+         "type": "relation",
+         "points": -10
+        }
+       ]
       }
      ]
     },
     {
      "label": "Study their playbook",
-     "detail": "",
+     "detail": "Costs 1 h of income; +6% income for 12 h.",
      "outcomes": [
       {
        "p": 1.0,
        "text": "",
-       "effects": []
+       "effects": [
+        {
+         "type": "cash",
+         "hours": -1.0
+        },
+        {
+         "type": "income",
+         "target": "all",
+         "pct": 0.06,
+         "hours": 12
+        }
+       ]
       }
      ]
     }
@@ -14096,23 +14184,45 @@
    "options": [
     {
      "label": "Bring it on",
-     "detail": "",
+     "detail": "Rally the team: +3% income for a day. They take it personally.",
      "outcomes": [
       {
        "p": 1.0,
        "text": "",
-       "effects": []
+       "effects": [
+        {
+         "type": "income",
+         "target": "all",
+         "pct": 0.03,
+         "hours": 24
+        },
+        {
+         "type": "relation",
+         "points": -10
+        }
+       ]
       }
      ]
     },
     {
      "label": "Study their playbook",
-     "detail": "",
+     "detail": "Costs 1 h of income; +6% income for 12 h.",
      "outcomes": [
       {
        "p": 1.0,
        "text": "",
-       "effects": []
+       "effects": [
+        {
+         "type": "cash",
+         "hours": -1.0
+        },
+        {
+         "type": "income",
+         "target": "all",
+         "pct": 0.06,
+         "hours": 12
+        }
+       ]
       }
      ]
     }
@@ -14129,23 +14239,45 @@
    "options": [
     {
      "label": "Bring it on",
-     "detail": "",
+     "detail": "Rally the team: +3% income for a day. They take it personally.",
      "outcomes": [
       {
        "p": 1.0,
        "text": "",
-       "effects": []
+       "effects": [
+        {
+         "type": "income",
+         "target": "all",
+         "pct": 0.03,
+         "hours": 24
+        },
+        {
+         "type": "relation",
+         "points": -10
+        }
+       ]
       }
      ]
     },
     {
      "label": "Study their playbook",
-     "detail": "",
+     "detail": "Costs 1 h of income; +6% income for 12 h.",
      "outcomes": [
       {
        "p": 1.0,
        "text": "",
-       "effects": []
+       "effects": [
+        {
+         "type": "cash",
+         "hours": -1.0
+        },
+        {
+         "type": "income",
+         "target": "all",
+         "pct": 0.06,
+         "hours": 12
+        }
+       ]
       }
      ]
     }
@@ -14162,23 +14294,45 @@
    "options": [
     {
      "label": "Bring it on",
-     "detail": "",
+     "detail": "Rally the team: +3% income for a day. They take it personally.",
      "outcomes": [
       {
        "p": 1.0,
        "text": "",
-       "effects": []
+       "effects": [
+        {
+         "type": "income",
+         "target": "all",
+         "pct": 0.03,
+         "hours": 24
+        },
+        {
+         "type": "relation",
+         "points": -10
+        }
+       ]
       }
      ]
     },
     {
      "label": "Study their playbook",
-     "detail": "",
+     "detail": "Costs 1 h of income; +6% income for 12 h.",
      "outcomes": [
       {
        "p": 1.0,
        "text": "",
-       "effects": []
+       "effects": [
+        {
+         "type": "cash",
+         "hours": -1.0
+        },
+        {
+         "type": "income",
+         "target": "all",
+         "pct": 0.06,
+         "hours": 12
+        }
+       ]
       }
      ]
     }

@@ -221,11 +221,22 @@ class DeskEngine(private val content: ContentPack, private val economy: Economy,
     fun hourly(s: GameState): Money = economy.totalNetRate(s).over(3600)
 
     /**
+     * The hour of income a card is priced in. A card about one business (an influencer for Restaurants) is priced in
+     * that business's income, not the whole empire's: a late-game empire was asked $43B for a restaurant promotion.
+     */
+    fun hourly(s: GameState, card: CardState?): Money {
+        val id = card?.business ?: return hourly(s)
+        if (id !in s.businesses) return hourly(s)
+        val own = economy.businessRate(s, id).net.over(3600)
+        return if (own.isPositive) own else hourly(s)
+    }
+
+    /**
      * Cash a card pays for [hours] of income, capped at a tenth of net worth: a deal never pays more than a real
      * windfall could (late-game income per hour can rival a fortune, and cards would out-earn the businesses).
      */
-    fun windfall(s: GameState, hours: Double): Money {
-        val amt = hourly(s) * Multiplier.ofDouble(kotlin.math.abs(hours))
+    fun windfall(s: GameState, hours: Double, card: CardState? = null): Money {
+        val amt = hourly(s, card) * Multiplier.ofDouble(kotlin.math.abs(hours))
         val cap = economy.netWorth(s) * Multiplier.of("0.10")
         return if (cap.isPositive) amt.min(cap) else amt
     }
@@ -240,8 +251,8 @@ class DeskEngine(private val content: ContentPack, private val economy: Economy,
         option.requires != "ally" || math.hasAlly(s, except = card.rival)
 
     /** The most cash an option could cost (all outcomes considered), so the player can always afford what they pick. */
-    fun maxCost(s: GameState, option: CardOptionDef): Money {
-        val h = hourly(s)
+    fun maxCost(s: GameState, option: CardOptionDef, card: CardState? = null): Money {
+        val h = hourly(s, card)
         return option.outcomes.maxOfOrNull { oc ->
             oc.effects.filter { (it.type == "cash" && it.hours < 0) || it.type == "donation" || it.type == "rd" }
                 .fold(Money.ZERO) { a, e -> a + h * Multiplier.ofDouble(kotlin.math.abs(e.hours)) }
@@ -262,7 +273,7 @@ class DeskEngine(private val content: ContentPack, private val economy: Economy,
         val def = w.cardById[card.card] ?: return Result.Err(GameError.NotFound("card definition"))
         val option = def.options.getOrNull(optionIndex) ?: return Result.Err(GameError.Invalid("No such option"))
         if (!optionAvailable(s0, card, option)) return Result.Err(GameError.Locked("You need an ally: a rival whose relationship with you is ${cc.allyRelation} or more"))
-        val cost = maxCost(s0, option)
+        val cost = maxCost(s0, option, card)
         if (cost > s0.cash) return Result.Err(GameError.InsufficientFunds(cost, s0.cash))
         if (card.business != null && card.business !in s0.businesses) {
             // The business is gone (sold or never re-opened): the card simply lapses.
@@ -282,12 +293,12 @@ class DeskEngine(private val content: ContentPack, private val economy: Economy,
         val idx = ps.indices.firstOrNull { x -= ps[it]; x < 0 } ?: ps.lastIndex
         val outcome = option.outcomes[idx]
         var s = s0.copy(world = s0.world.copy(cards = s0.world.cards - card))
-        val h = hourly(s0)
+        val h = hourly(s0, card)
         var good: Boolean? = null
         for (e in outcome.effects) {
             when (e.type) {
                 "cash" -> {
-                    val amt = if (e.hours > 0) windfall(s0, e.hours) else h * Multiplier.ofDouble(kotlin.math.abs(e.hours))
+                    val amt = if (e.hours > 0) windfall(s0, e.hours, card) else h * Multiplier.ofDouble(kotlin.math.abs(e.hours))
                     if (!amt.isPositive) continue
                     s = if (e.hours > 0) {
                         good = good ?: true
@@ -316,7 +327,8 @@ class DeskEngine(private val content: ContentPack, private val economy: Economy,
                 "sell" -> s = sellBusiness(s, card.business!!, e.multiple, card.rival, events)
             }
         }
-        val result = fill(outcome.text.ifEmpty { option.label + "." }, s0, card)
+        // Single-outcome options often have no outcome text: say what the choice does rather than repeat its label.
+        val result = fill(outcome.text.ifEmpty { option.detail.ifEmpty { "Done." } }, s0, card)
         events += GameEvent.CardResolved(card.id, fill(def.title, s0, card), result)
         return Result.Ok(log(s, fill(def.title, s0, card), "${fill(option.label, s0, card)}: $result", good))
     }

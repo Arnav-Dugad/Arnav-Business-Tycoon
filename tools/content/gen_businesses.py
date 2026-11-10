@@ -155,8 +155,23 @@ def real_world(out: list) -> None:
     # The first-chapter shops are small and cheap; a low ceiling there only slowed the opening (Chapter 1 took 1.7 h
     # instead of ~20 min), so their market is ten times roomier.
     for b in out:
-        early = Decimal(10) if b["chapter"] <= 2 else Decimal(1)
+        # Only the Chapter 1 shops get the roomier market (1.8.2): with it, Chapter 2's farms, factories and fashion
+        # houses out-earned airlines and space companies for the rest of the game.
+        early = Decimal(10) if b["chapter"] <= 1 else Decimal(os.environ.get("ABT_CH2_MARKET", "1")) if b["chapter"] == 2 else Decimal(1)
         b["marketSize"] = money(Decimal(b["baseRevenue"]) * Decimal(360) * MARKET_X * early)
+        # Better managers (3-5 stars) add about 7% output each. They used to cost up to 270 million times the business's
+        # price (idle-game numbers no real fortune reaches). Now each pays back in about half a day to two days of the
+        # business's full-market income, and every star costs at least twice the one below.
+        # Expansions likewise: the idle-game ladder put the third expansion of the late businesses in the quadrillions.
+        # Capped at 200 / 2,000 / 20,000 seconds of full-market income (never raised).
+        for e, cap in zip(b["expansions"], (Decimal(200), Decimal(2000), Decimal(20000))):
+            e["cost"] = money(min(Decimal(e["cost"]), Decimal(b["marketSize"]) * cap))
+        secs = {3: Decimal(3000), 4: Decimal(12000), 5: Decimal(38000)}
+        prev = None
+        for m in sorted(b["managers"], key=lambda m: m["stars"]):
+            if m["stars"] in secs:
+                m["cost"] = money(max(Decimal(b["marketSize"]) * secs[m["stars"]], prev * 2))
+            prev = Decimal(m["cost"])
 
 
 def money(d: Decimal) -> str:

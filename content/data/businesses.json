@@ -81,7 +81,7 @@
         "name": "Leena Okafor-Hale",
         "title": "Merchandising Director",
         "stars": 4,
-        "cost": "90000000.00",
+        "cost": "21600000.00",
         "policy": "Balanced",
         "trait": "Reads shoppers like a book."
       },
@@ -90,7 +90,7 @@
         "name": "Dario Vance",
         "title": "Chief Retail Officer",
         "stars": 5,
-        "cost": "30000000000.00",
+        "cost": "68400000.00",
         "policy": "Aggressive",
         "trait": "Prices to the edge, every time."
       }
@@ -217,7 +217,7 @@
         "name": "Sun-Hee Park",
         "title": "Executive Chef",
         "stars": 4,
-        "cost": "2500000000.00",
+        "cost": "216000000.00",
         "policy": "Aggressive",
         "trait": "Chases the perfect review."
       },
@@ -226,7 +226,7 @@
         "name": "Odette Marchetti",
         "title": "Culinary Director",
         "stars": 5,
-        "cost": "700000000000.00",
+        "cost": "684000000.00",
         "policy": "Balanced",
         "trait": "Every table, every night."
       }
@@ -371,7 +371,7 @@
         "name": "Vikram Rao-Bennett",
         "title": "Network Planner",
         "stars": 4,
-        "cost": "110000000000.00",
+        "cost": "3888000000.00",
         "policy": "Balanced",
         "trait": "Sees the whole map at once."
       },
@@ -380,7 +380,7 @@
         "name": "Marisol Quintero",
         "title": "Chief Logistics Officer",
         "stars": 5,
-        "cost": "40000000000000.00",
+        "cost": "12312000000.00",
         "policy": "Aggressive",
         "trait": "Not one empty truck."
       }
@@ -531,7 +531,7 @@
         "name": "Priya Nandakumar",
         "title": "Agronomist",
         "stars": 3,
-        "cost": "3000000000.00",
+        "cost": "826200000.00",
         "policy": "Balanced",
         "trait": "Reads soil like a ledger."
       },
@@ -540,7 +540,7 @@
         "name": "Joaquín Ellery",
         "title": "Commodities Lead",
         "stars": 4,
-        "cost": "1050000000000.00",
+        "cost": "3304800000.00",
         "policy": "Aggressive",
         "trait": "Plants for the price spike."
       },
@@ -549,7 +549,7 @@
         "name": "Annika Thorsby",
         "title": "Head of Agriculture",
         "stars": 5,
-        "cost": "405000000000000.00",
+        "cost": "10465200000.00",
         "policy": "Balanced",
         "trait": "Turns weather into profit."
       }
@@ -569,7 +569,7 @@
         "name": "Grain Silos",
         "description": "Store the harvest, sell at the peak.",
         "requiresLevel": 20,
-        "cost": "1950000000.00",
+        "cost": "550800000.00",
         "durationSeconds": 2400,
         "multiplier": "1.5"
       },
@@ -578,7 +578,7 @@
         "name": "Agri-Science Lab",
         "description": "Seeds bred for your fields.",
         "requiresLevel": 45,
-        "cost": "240000000000.00",
+        "cost": "5508000000.00",
         "durationSeconds": 9000,
         "multiplier": "2"
       }
@@ -588,7 +588,7 @@
       "kind": "farmland",
       "params": {}
     },
-    "marketSize": "2754000.00"
+    "marketSize": "275400.00"
   },
   {
     "id": "factory",
@@ -663,7 +663,7 @@
         "name": "Grace Achterberg",
         "title": "Plant Manager",
         "stars": 3,
-        "cost": "12000000000.00",
+        "cost": "1123632000.00",
         "policy": "Balanced",
         "trait": "Finds the bottleneck first."
       },
@@ -672,7 +672,7 @@
         "name": "Rohan Castellanos",
         "title": "Operations Director",
         "stars": 4,
-        "cost": "4200000000000.00",
+        "cost": "4494528000.00",
         "policy": "Aggressive",
         "trait": "Runs every line flat out."
       },
@@ -681,7 +681,7 @@
         "name": "Mei-Lin Ostrova",
         "title": "Chief Manufacturing Officer",
         "stars": 5,
-        "cost": "1620000000000000.00",
+        "cost": "14232672000.00",
         "policy": "Balanced",
         "trait": "Lean to the last bolt."
       }
@@ -701,7 +701,7 @@
         "name": "Supplier Park",
         "description": "Your suppliers move in next door.",
         "requiresLevel": 20,
-        "cost": "7800000000.00",
+        "cost": "749088000.00",
         "durationSeconds": 2400,
         "multiplier": "1.5"
       },
@@ -710,7 +710,7 @@
         "name": "Smart Foundry",
         "description": "Self-tuning production.",
         "requiresLevel": 45,
-        "cost": "960000000000.00",
+        "cost": "7490880000.00",
         "durationSeconds": 9000,
         "multiplier": "2"
       }
@@ -720,7 +720,7 @@
       "kind": "factory",
       "params": {}
     },
-    "marketSize": "3745440.00"
+    "marketSize": "374544.00"
   },
   {
     "id": "fashion",
@@ -795,7 +795,7 @@
         "name": "Tariq Bellamy",
         "title": "Merchandiser",
         "stars": 3,
-        "cost": "48000000000.00",
+        "cost": "3460460400.00",
         "policy": "Balanced",
         "trait": "Follows the hints, hedges the rest."
       },
@@ -804,7 +804,7 @@
         "name": "Ines Varga",
         "title": "Trend Director",
         "stars": 4,
-        "cost": "16800000000000.00",
+        "cost": "13841841600.00",
         "policy": "Aggressive",
         "trait": "All in on the next big thing."
       },
@@ -813,7 +813,7 @@
         "name": "Lucian Abara",
         "title": "Creative Director",
         "stars": 5,
-        "cost": "6480000000000000.00",
+        "cost": "43832498400.00",
         "policy": "Balanced",
         "trait": "Sees seasons coming."
       }
@@ -824,7 +824,7 @@
         "name": "Flagship Salon",
         "description": "A showroom on the grand boulevard.",
         "requiresLevel": 5,
-        "cost": "240000000.00",
+        "cost": "230697360.00",
         "durationSeconds": 600,
         "multiplier": "1.25"
       },
@@ -833,7 +833,7 @@
         "name": "Runway Week Show",
         "description": "Your collection, the city's attention.",
         "requiresLevel": 20,
-        "cost": "31200000000.00",
+        "cost": "2306973600.00",
         "durationSeconds": 2400,
         "multiplier": "1.5"
       },
@@ -842,7 +842,7 @@
         "name": "Couture Atelier",
         "description": "Made-to-measure for the few.",
         "requiresLevel": 45,
-        "cost": "3840000000000.00",
+        "cost": "23069736000.00",
         "durationSeconds": 9000,
         "multiplier": "2"
       }
@@ -852,7 +852,7 @@
       "kind": "fashion",
       "params": {}
     },
-    "marketSize": "11534868.00"
+    "marketSize": "1153486.80"
   },
   {
     "id": "mining",
@@ -927,7 +927,7 @@
         "name": "Saskia Lindqvist-Rao",
         "title": "Geologist",
         "stars": 3,
-        "cost": "200000000000.00",
+        "cost": "2923117200.00",
         "policy": "Balanced",
         "trait": "Surveys before every claim."
       },
@@ -936,7 +936,7 @@
         "name": "Hector Nakamura",
         "title": "Mine Director",
         "stars": 4,
-        "cost": "70000000000000.00",
+        "cost": "11692468800.00",
         "policy": "Aggressive",
         "trait": "Digs deeper than anyone."
       },
@@ -945,7 +945,7 @@
         "name": "Olufemi Carrow",
         "title": "Chief Mining Officer",
         "stars": 5,
-        "cost": "27000000000000000.00",
+        "cost": "37026151200.00",
         "policy": "Balanced",
         "trait": "Grade over gamble."
       }
@@ -956,7 +956,7 @@
         "name": "Ore Crusher",
         "description": "More ore from every tonne.",
         "requiresLevel": 5,
-        "cost": "1000000000.00",
+        "cost": "194874480.00",
         "durationSeconds": 600,
         "multiplier": "1.25"
       },
@@ -965,7 +965,7 @@
         "name": "Rail Spur",
         "description": "Straight from pit to port.",
         "requiresLevel": 20,
-        "cost": "130000000000.00",
+        "cost": "1948744800.00",
         "durationSeconds": 2400,
         "multiplier": "1.5"
       },
@@ -974,7 +974,7 @@
         "name": "Autonomous Haul Fleet",
         "description": "Trucks that drive themselves.",
         "requiresLevel": 45,
-        "cost": "16000000000000.00",
+        "cost": "19487448000.00",
         "durationSeconds": 9000,
         "multiplier": "2"
       }
@@ -1059,7 +1059,7 @@
         "name": "Freya Kowalczyk",
         "title": "Trading Desk Lead",
         "stars": 3,
-        "cost": "800000000000.00",
+        "cost": "10400000000.00",
         "policy": "Balanced",
         "trait": "Half hedged, half nerve."
       },
@@ -1068,7 +1068,7 @@
         "name": "Nikolai Brennan",
         "title": "Spot Trader",
         "stars": 4,
-        "cost": "280000000000000.00",
+        "cost": "32408510400.00",
         "policy": "Aggressive",
         "trait": "Lives on the spot price."
       },
@@ -1077,7 +1077,7 @@
         "name": "Amaya Sorensen",
         "title": "Chief Energy Officer",
         "stars": 5,
-        "cost": "108000000000000000.00",
+        "cost": "102626949600.00",
         "policy": "Balanced",
         "trait": "Keeps the lights and margins on."
       }
@@ -1088,7 +1088,7 @@
         "name": "Solar Farm",
         "description": "Free fuel, every sunny day.",
         "requiresLevel": 5,
-        "cost": "4000000000.00",
+        "cost": "540141840.00",
         "durationSeconds": 600,
         "multiplier": "1.25"
       },
@@ -1097,7 +1097,7 @@
         "name": "Grid Storage Banks",
         "description": "Sell power when it is scarce.",
         "requiresLevel": 20,
-        "cost": "520000000000.00",
+        "cost": "5401418400.00",
         "durationSeconds": 2400,
         "multiplier": "1.5"
       },
@@ -1106,7 +1106,7 @@
         "name": "Fusion Pilot Plant",
         "description": "The future, plugged in.",
         "requiresLevel": 45,
-        "cost": "64000000000000.00",
+        "cost": "54014184000.00",
         "durationSeconds": 9000,
         "multiplier": "2"
       }
@@ -1191,7 +1191,7 @@
         "name": "Callum Ferreira",
         "title": "Revenue Manager",
         "stars": 3,
-        "cost": "3000000000000.00",
+        "cost": "39000000000.00",
         "policy": "Balanced",
         "trait": "Prices to the season."
       },
@@ -1200,7 +1200,7 @@
         "name": "Yasmin Delacroix",
         "title": "Director of Sales",
         "stars": 4,
-        "cost": "1050000000000000.00",
+        "cost": "127533571200.00",
         "policy": "Aggressive",
         "trait": "Premium or nothing."
       },
@@ -1209,7 +1209,7 @@
         "name": "Takeshi Abernathy",
         "title": "Chief Hospitality Officer",
         "stars": 5,
-        "cost": "405000000000000000.00",
+        "cost": "403856308800.00",
         "policy": "Balanced",
         "trait": "Every guest, every night."
       }
@@ -1220,7 +1220,7 @@
         "name": "Rooftop Pool",
         "description": "The best view in town.",
         "requiresLevel": 5,
-        "cost": "15000000000.00",
+        "cost": "2125559520.00",
         "durationSeconds": 600,
         "multiplier": "1.25"
       },
@@ -1229,7 +1229,7 @@
         "name": "Convention Centre",
         "description": "Fill rooms with every conference.",
         "requiresLevel": 20,
-        "cost": "1950000000000.00",
+        "cost": "21255595200.00",
         "durationSeconds": 2400,
         "multiplier": "1.5"
       },
@@ -1238,7 +1238,7 @@
         "name": "Private Island Resort",
         "description": "Where the wealthy go to vanish.",
         "requiresLevel": 45,
-        "cost": "240000000000000.00",
+        "cost": "212555952000.00",
         "durationSeconds": 9000,
         "multiplier": "2"
       }
@@ -1323,7 +1323,7 @@
         "name": "Kwame Lindberg",
         "title": "Credit Officer",
         "stars": 3,
-        "cost": "1000000000000.00",
+        "cost": "21994923600.00",
         "policy": "Balanced",
         "trait": "Risk priced right."
       },
@@ -1332,7 +1332,7 @@
         "name": "Sebastian Okoro",
         "title": "Head of Lending",
         "stars": 4,
-        "cost": "350000000000000.00",
+        "cost": "87979694400.00",
         "policy": "Aggressive",
         "trait": "Every applicant is an opportunity."
       },
@@ -1341,7 +1341,7 @@
         "name": "Ingrid Mbeki-Shaw",
         "title": "Chief Risk Officer",
         "stars": 5,
-        "cost": "135000000000000000.00",
+        "cost": "278602365600.00",
         "policy": "Balanced",
         "trait": "Calm in every cycle."
       }
@@ -1352,7 +1352,7 @@
         "name": "Private Banking Desk",
         "description": "Serve the very wealthy.",
         "requiresLevel": 5,
-        "cost": "25000000000.00",
+        "cost": "1466328240.00",
         "durationSeconds": 600,
         "multiplier": "1.25"
       },
@@ -1361,7 +1361,7 @@
         "name": "Trading Floor",
         "description": "Markets, all day long.",
         "requiresLevel": 20,
-        "cost": "3250000000000.00",
+        "cost": "14663282400.00",
         "durationSeconds": 2400,
         "multiplier": "1.5"
       },
@@ -1370,7 +1370,7 @@
         "name": "Clearing House",
         "description": "Every payment passes through you.",
         "requiresLevel": 45,
-        "cost": "400000000000000.00",
+        "cost": "146632824000.00",
         "durationSeconds": 9000,
         "multiplier": "2"
       }
@@ -1455,7 +1455,7 @@
         "name": "Leilani Hart",
         "title": "Estimator",
         "stars": 3,
-        "cost": "1600000000000.00",
+        "cost": "24385665600.00",
         "policy": "Balanced",
         "trait": "Bids what it is worth."
       },
@@ -1464,7 +1464,7 @@
         "name": "Viktor Asamoah",
         "title": "Bid Director",
         "stars": 4,
-        "cost": "560000000000000.00",
+        "cost": "97542662400.00",
         "policy": "Aggressive",
         "trait": "Holds out for the rich contracts."
       },
@@ -1473,7 +1473,7 @@
         "name": "Paloma Strand",
         "title": "Chief Construction Officer",
         "stars": 5,
-        "cost": "216000000000000000.00",
+        "cost": "308885097600.00",
         "policy": "Balanced",
         "trait": "On time, on budget."
       }
@@ -1484,7 +1484,7 @@
         "name": "Tower Crane Fleet",
         "description": "Build taller, faster.",
         "requiresLevel": 5,
-        "cost": "40000000000.00",
+        "cost": "1625711040.00",
         "durationSeconds": 600,
         "multiplier": "1.25"
       },
@@ -1493,7 +1493,7 @@
         "name": "Precast Plant",
         "description": "Buildings made in sections.",
         "requiresLevel": 20,
-        "cost": "5200000000000.00",
+        "cost": "16257110400.00",
         "durationSeconds": 2400,
         "multiplier": "1.5"
       },
@@ -1502,7 +1502,7 @@
         "name": "Architecture Studio",
         "description": "Landmarks people pay to see.",
         "requiresLevel": 45,
-        "cost": "640000000000000.00",
+        "cost": "162571104000.00",
         "durationSeconds": 9000,
         "multiplier": "2"
       }
@@ -1587,7 +1587,7 @@
         "name": "Felix Marchetti-Wu",
         "title": "Commissioning Editor",
         "stars": 3,
-        "cost": "2400000000000.00",
+        "cost": "31200000000.00",
         "policy": "Balanced",
         "trait": "Backs quality."
       },
@@ -1596,7 +1596,7 @@
         "name": "Rana Holloway",
         "title": "Head of Content",
         "stars": 4,
-        "cost": "840000000000000.00",
+        "cost": "108145152000.00",
         "policy": "Aggressive",
         "trait": "Swings for the blockbuster."
       },
@@ -1605,7 +1605,7 @@
         "name": "Anders Okafor",
         "title": "Chief Content Officer",
         "stars": 5,
-        "cost": "324000000000000000.00",
+        "cost": "342459648000.00",
         "policy": "Balanced",
         "trait": "Knows what audiences want."
       }
@@ -1616,7 +1616,7 @@
         "name": "Sound Stages",
         "description": "Film everything in-house.",
         "requiresLevel": 5,
-        "cost": "60000000000.00",
+        "cost": "1802419200.00",
         "durationSeconds": 600,
         "multiplier": "1.25"
       },
@@ -1625,7 +1625,7 @@
         "name": "Streaming App",
         "description": "Your channels in every pocket.",
         "requiresLevel": 20,
-        "cost": "7800000000000.00",
+        "cost": "18024192000.00",
         "durationSeconds": 2400,
         "multiplier": "1.5"
       },
@@ -1634,7 +1634,7 @@
         "name": "Studio Lot",
         "description": "Blockbusters on your back lot.",
         "requiresLevel": 45,
-        "cost": "960000000000000.00",
+        "cost": "180241920000.00",
         "durationSeconds": 9000,
         "multiplier": "2"
       }
@@ -1719,7 +1719,7 @@
         "name": "Arjun Whitlock",
         "title": "Product Lead",
         "stars": 3,
-        "cost": "3600000000000.00",
+        "cost": "46800000000.00",
         "policy": "Balanced",
         "trait": "Launches on the hype curve."
       },
@@ -1728,7 +1728,7 @@
         "name": "Lena Szabo-Grant",
         "title": "VP of Product",
         "stars": 4,
-        "cost": "1260000000000000.00",
+        "cost": "115459300800.00",
         "policy": "Aggressive",
         "trait": "Ship early, ship often."
       },
@@ -1737,7 +1737,7 @@
         "name": "Mateus Obi",
         "title": "Chief Technology Officer",
         "stars": 5,
-        "cost": "486000000000000000.00",
+        "cost": "365621119200.00",
         "policy": "Balanced",
         "trait": "Builds what lasts."
       }
@@ -1748,7 +1748,7 @@
         "name": "Research Campus",
         "description": "Bright minds, one address.",
         "requiresLevel": 5,
-        "cost": "90000000000.00",
+        "cost": "1924321680.00",
         "durationSeconds": 600,
         "multiplier": "1.25"
       },
@@ -1757,7 +1757,7 @@
         "name": "Chip Fabrication Plant",
         "description": "Make your own silicon.",
         "requiresLevel": 20,
-        "cost": "11700000000000.00",
+        "cost": "19243216800.00",
         "durationSeconds": 2400,
         "multiplier": "1.5"
       },
@@ -1766,7 +1766,7 @@
         "name": "Advanced Computing Lab",
         "description": "Problems solved before they exist.",
         "requiresLevel": 45,
-        "cost": "1440000000000000.00",
+        "cost": "192432168000.00",
         "durationSeconds": 9000,
         "multiplier": "2"
       }
@@ -1851,7 +1851,7 @@
         "name": "Aiko Brannigan",
         "title": "Capacity Planner",
         "stars": 3,
-        "cost": "5200000000000.00",
+        "cost": "67600000000.00",
         "policy": "Balanced",
         "trait": "Utilization just right."
       },
@@ -1860,7 +1860,7 @@
         "name": "Emeka Vossberg",
         "title": "Growth Director",
         "stars": 4,
-        "cost": "1820000000000000.00",
+        "cost": "135200000000.00",
         "policy": "Aggressive",
         "trait": "Runs the network hot."
       },
@@ -1869,7 +1869,7 @@
         "name": "Helena Marsh-Idowu",
         "title": "Chief Network Officer",
         "stars": 5,
-        "cost": "702000000000000000.00",
+        "cost": "374180832000.00",
         "policy": "Balanced",
         "trait": "Five nines, always."
       }
@@ -1880,7 +1880,7 @@
         "name": "Fibre Backbone",
         "description": "Light-speed between every city.",
         "requiresLevel": 5,
-        "cost": "130000000000.00",
+        "cost": "1969372800.00",
         "durationSeconds": 600,
         "multiplier": "1.25"
       },
@@ -1889,7 +1889,7 @@
         "name": "Hyperscale Data Centre",
         "description": "Rent compute to the world.",
         "requiresLevel": 20,
-        "cost": "16900000000000.00",
+        "cost": "19693728000.00",
         "durationSeconds": 2400,
         "multiplier": "1.5"
       },
@@ -1898,7 +1898,7 @@
         "name": "Subsea Cable",
         "description": "Connect continents.",
         "requiresLevel": 45,
-        "cost": "2080000000000000.00",
+        "cost": "196937280000.00",
         "durationSeconds": 9000,
         "multiplier": "2"
       }
@@ -1983,7 +1983,7 @@
         "name": "Gustavo Lindgren",
         "title": "Network Planner",
         "stars": 3,
-        "cost": "7200000000000.00",
+        "cost": "93600000000.00",
         "policy": "Balanced",
         "trait": "Fares for every season."
       },
@@ -1992,7 +1992,7 @@
         "name": "Simone Okwuosa",
         "title": "Commercial Director",
         "stars": 4,
-        "cost": "2520000000000000.00",
+        "cost": "187200000000.00",
         "policy": "Aggressive",
         "trait": "Pushes the schedule."
       },
@@ -2001,7 +2001,7 @@
         "name": "Henrik Adebayo",
         "title": "Chief Airline Officer",
         "stars": 5,
-        "cost": "972000000000000000.00",
+        "cost": "384122908800.00",
         "policy": "Balanced",
         "trait": "Safe skies, full cabins."
       }
@@ -2012,7 +2012,7 @@
         "name": "Premium Lounges",
         "description": "Comfort worth paying for.",
         "requiresLevel": 5,
-        "cost": "180000000000.00",
+        "cost": "2021699520.00",
         "durationSeconds": 600,
         "multiplier": "1.25"
       },
@@ -2021,7 +2021,7 @@
         "name": "Maintenance Hangar",
         "description": "Fix planes on your own schedule.",
         "requiresLevel": 20,
-        "cost": "23400000000000.00",
+        "cost": "20216995200.00",
         "durationSeconds": 2400,
         "multiplier": "1.5"
       },
@@ -2030,7 +2030,7 @@
         "name": "Long-Haul Fleet",
         "description": "Non-stop to everywhere.",
         "requiresLevel": 45,
-        "cost": "2880000000000000.00",
+        "cost": "202169952000.00",
         "durationSeconds": 9000,
         "multiplier": "2"
       }
@@ -2115,7 +2115,7 @@
         "name": "Dr. Kofi Lindqvist",
         "title": "Head of Trials",
         "stars": 3,
-        "cost": "10000000000000.00",
+        "cost": "130000000000.00",
         "policy": "Balanced",
         "trait": "A steady pipeline."
       },
@@ -2124,7 +2124,7 @@
         "name": "Dr. Ayasha Moreno",
         "title": "R&D Director",
         "stars": 4,
-        "cost": "3500000000000000.00",
+        "cost": "260000000000.00",
         "policy": "Aggressive",
         "trait": "Funds everything promising."
       },
@@ -2133,7 +2133,7 @@
         "name": "Dr. Viktor Hallam",
         "title": "Chief Scientific Officer",
         "stars": 5,
-        "cost": "1350000000000000000.00",
+        "cost": "520000000000.00",
         "policy": "Balanced",
         "trait": "Science first, sales follow."
       }
@@ -2144,7 +2144,7 @@
         "name": "Clinical Trial Network",
         "description": "Recruit patients worldwide.",
         "requiresLevel": 5,
-        "cost": "250000000000.00",
+        "cost": "1912703040.00",
         "durationSeconds": 600,
         "multiplier": "1.25"
       },
@@ -2153,7 +2153,7 @@
         "name": "Active Ingredient Plant",
         "description": "Make your own compounds.",
         "requiresLevel": 20,
-        "cost": "32500000000000.00",
+        "cost": "19127030400.00",
         "durationSeconds": 2400,
         "multiplier": "1.5"
       },
@@ -2162,7 +2162,7 @@
         "name": "Genomics Centre",
         "description": "Medicine tailored to the patient.",
         "requiresLevel": 45,
-        "cost": "4000000000000000.00",
+        "cost": "191270304000.00",
         "durationSeconds": 9000,
         "multiplier": "2"
       }
@@ -2247,7 +2247,7 @@
         "name": "Lucia Ferrante",
         "title": "Director of Football",
         "stars": 3,
-        "cost": "12800000000000.00",
+        "cost": "166400000000.00",
         "policy": "Balanced",
         "trait": "Signs smart."
       },
@@ -2256,7 +2256,7 @@
         "name": "Kenji Albrecht",
         "title": "Head Coach",
         "stars": 4,
-        "cost": "4480000000000000.00",
+        "cost": "332800000000.00",
         "policy": "Aggressive",
         "trait": "Trophies at any cost."
       },
@@ -2265,7 +2265,7 @@
         "name": "Aurelia Mensah",
         "title": "Club President",
         "stars": 5,
-        "cost": "1728000000000000000.00",
+        "cost": "665600000000.00",
         "policy": "Balanced",
         "trait": "Builds dynasties."
       }
@@ -2276,7 +2276,7 @@
         "name": "Training Ground",
         "description": "Champions are built here.",
         "requiresLevel": 5,
-        "cost": "320000000000.00",
+        "cost": "1988067600.00",
         "durationSeconds": 600,
         "multiplier": "1.25"
       },
@@ -2285,7 +2285,7 @@
         "name": "New Stadium",
         "description": "Sixty thousand seats, sold out.",
         "requiresLevel": 20,
-        "cost": "41600000000000.00",
+        "cost": "19880676000.00",
         "durationSeconds": 2400,
         "multiplier": "1.5"
       },
@@ -2294,7 +2294,7 @@
         "name": "Global Academy",
         "description": "Tomorrow's stars, today.",
         "requiresLevel": 45,
-        "cost": "5120000000000000.00",
+        "cost": "198806760000.00",
         "durationSeconds": 9000,
         "multiplier": "2"
       }
@@ -2379,7 +2379,7 @@
         "name": "Dr. Tobias Achterberg",
         "title": "Mission Planner",
         "stars": 3,
-        "cost": "18000000000000.00",
+        "cost": "234000000000.00",
         "policy": "Balanced",
         "trait": "Satellites first."
       },
@@ -2388,7 +2388,7 @@
         "name": "Rhiannon Okeke",
         "title": "Head of Missions",
         "stars": 4,
-        "cost": "6300000000000000.00",
+        "cost": "468000000000.00",
         "policy": "Aggressive",
         "trait": "Shoots for the asteroid."
       },
@@ -2397,7 +2397,7 @@
         "name": "Dr. Malik Fontaine",
         "title": "Chief Space Officer",
         "stars": 5,
-        "cost": "2430000000000000000.00",
+        "cost": "936000000000.00",
         "policy": "Balanced",
         "trait": "Reaches for the stars, carefully."
       }
@@ -2408,7 +2408,7 @@
         "name": "Launch Complex",
         "description": "Your own pad on the coast.",
         "requiresLevel": 5,
-        "cost": "450000000000.00",
+        "cost": "2066402160.00",
         "durationSeconds": 600,
         "multiplier": "1.25"
       },
@@ -2417,7 +2417,7 @@
         "name": "Reusable Boosters",
         "description": "Rockets that land and fly again.",
         "requiresLevel": 20,
-        "cost": "58500000000000.00",
+        "cost": "20664021600.00",
         "durationSeconds": 2400,
         "multiplier": "1.5"
       },
@@ -2426,7 +2426,7 @@
         "name": "Orbital Station",
         "description": "A home above the clouds.",
         "requiresLevel": 45,
-        "cost": "7200000000000000.00",
+        "cost": "206640216000.00",
         "durationSeconds": 9000,
         "multiplier": "2"
       }

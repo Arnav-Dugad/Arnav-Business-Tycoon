@@ -28,6 +28,11 @@ data class Highlight(val icon: String, val title: String, val body: String)
  */
 object WhatsNew {
     private val notes: Map<String, List<Highlight>> = mapOf(
+        "1.8.2" to listOf(
+            Highlight("Empire", "Every upgrade within reach", "Top managers and big expansions were priced in the trillions. Now they're real late-game purchases, and buy buttons warn you when a purchase pays back slowly."),
+            Highlight("Sparkle", "Fairer decisions", "A card about one business is priced from that business's income, so no more $43 billion influencers. Your nemesis's arrival is now a real choice."),
+            Highlight("Frame", "92 new rival portraits", "Most of the world's richest now have a face, plus many small fixes found by playing every part of the game."),
+        ),
         "1.8.1" to listOf(
             Highlight("Clock", "Auctions you can catch", "Each sale now stays open for four and a half hours, with a new one every six, and the lots on offer are ones your cash can actually bid on."),
             Highlight("Globe", "Clearer property news", "Tenant and repair news names the city, and Mexico City's historic centre has its painting."),

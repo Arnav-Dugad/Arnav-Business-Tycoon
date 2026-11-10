@@ -832,10 +832,11 @@ WORLD2 = [
 for wid, title, text, opts in WORLD2:
     card(wid, "world", 2, "none", title, text, *opts)
 
-# ----- Nemesis intro cards (one option, story only) -----
+# ----- Nemesis intro cards (a first move against this chapter's nemesis) -----
 for chn, (name, beats) in NEMESES.items():
     card(f"nemesis_{chn}", "nemesis", chn, "none", "Your nemesis", beats[0],
-         O("Bring it on", "", []), O("Study their playbook", "", []), weight=0.0)
+         O("Bring it on", "Rally the team: +3% income for a day. They take it personally.", ["inc all +3 24", "rel -10"]),
+         O("Study their playbook", "Costs 1 h of income; +6% income for 12 h.", ["cash -1", "inc all +6 12"]), weight=0.0)
 
 
 def main(repo: Path) -> None:

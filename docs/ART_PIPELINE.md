@@ -70,6 +70,18 @@ Licenses accepted by the validator: `CC0-1.0`, `PDM-1.0`, `PD`, `CC-BY-2.0`, `CC
   - Every image was reviewed on contact sheets. Rejects: the Hollywood hill sign (regenerated). Mexico City's Centro Histórico showed the national flag on the Zócalo three times; it was repainted as a side street ("no flags, no flagpoles").
   - Neighbourhood paintings (768×512, q72) appear on property pages and as list thumbnails via `Art.pick(district, property type)`.
 
+- **Rival portraits, second wave** (owner request 2026-11-10: "Make Rival portraits").
+  - `gen_rival_prompts.py` now writes prompts for all 220 rivals. The first 40 prompts are unchanged.
+  - New rivals get a gender, an appearance cue from their home city, and a deterministic hair/accessory pair (`features_2`), so the faces stay varied and invented.
+  - 92 accepted after contact-sheet review, so 132 of 220 now have portraits.
+  - Rejected:
+    - `jack_dorsee`: three attempts resembled a famous tech founder.
+    - `jack_mah`: too close to the real person.
+    - `layla_al_qasimi`: drew a real sneaker brand mark.
+
+    Their prompts now carry overrides (`FEATURES_2_FIX`, `PROP_2_FIX`).
+  - Figma AI credits ran out after 101 images; they reset 2026-12-01. The remaining 88 regenerate from `rivals.json`, using entries with an empty `sourceUrl`.
+
 ## 3c. Museum works (built in Phase 8)
 - `tools/art/fetch_aic.py` queries the Art Institute of Chicago API for highlighted works with `is_public_domain = true` (CC0), downloads 600-px IIIF images into the cache, writes 480-px WebP to `app/src/main/assets/img/art/` and `credits.json` (title, artist, date, credit line, source URL, CC0). Contact sheets are reviewed before use. 99 works (80 paintings, 19 sculptures), 2.1 MB.
 

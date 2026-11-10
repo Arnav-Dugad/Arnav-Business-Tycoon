@@ -147,6 +147,7 @@ fun CheatsScreen(vm: GameViewModel, onBack: () -> Unit, onOpenSlots: () -> Unit)
                     Text(
                         when {
                             sandbox -> "$uses cheat${if (uses == 1L) "" else "s"} used · kept off leaderboards"
+                            mainSlot && unlocked -> "Your first cheat makes this save a sandbox"
                             mainSlot -> "Your main game is clean"
                             else -> "A side slot: it never reaches leaderboards"
                         },

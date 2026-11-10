@@ -121,7 +121,7 @@ fun MoreScreen(
             DoorSpec("door-dynasty", AbtIcons.Crown, "Your Dynasty", "Generation ${dy.generation}" + if (dy.canPrestige) " · crown ready" else "",
                 if (dy.canPrestige) "Crown ready" else null, onOpenDynasty, false, A.chapter(8)),
             DoorSpec("menu-store", AbtIcons.Bullion, "Store", "${s.ledger.bullion.centsOrNull ?: 0} Bullion", null, onOpenStore, false, A.luxuryCategory("jewelry")),
-            DoorSpec("door-achievements", AbtIcons.Trophy, "Achievements", "${dy.achievementsDone} of ${dy.achievementsTotal}",
+            DoorSpec("door-achievements", AbtIcons.Trophy, "Achievements", "${dy.achievementsDone + dy.achievementsClaimable} of ${dy.achievementsTotal}",
                 if (dy.achievementsClaimable > 0) "${dy.achievementsClaimable} to claim" else null, onOpenAchievements, false, A.event("global_boom")),
             DoorSpec("door-desk", AbtIcons.Cards, "The Desk", if (cardsWaiting > 0) "$cardsWaiting waiting" else "All clear",
                 if (cardsWaiting > 0) "Decisions waiting" else null, onOpenDesk, false, A.card("r_board_seat")),
@@ -129,8 +129,8 @@ fun MoreScreen(
             DoorSpec("door-finance", AbtIcons.Bank, "Finance", "Credit, loans and taxes", null, onOpenFinance, false, A.business("bank")),
             DoorSpec("door-social", AbtIcons.Rivals, "Friends", "Leagues, gifts and lots", null, onOpenSocial, false, A.city("london")),
         )
-        // Open places with something waiting first, locked ones last.
-        doors.sortedWith(compareBy<DoorSpec>({ it.locked }, { it.badge == null })).chunked(2).forEachIndexed { i, pair ->
+        // A fixed order (people find places by where they are); only locked places move to the end.
+        doors.sortedBy { it.locked }.chunked(2).forEachIndexed { i, pair ->
             item(key = "doors-$i") {
                 Row(Modifier.fillMaxWidth().height(IntrinsicSize.Min), horizontalArrangement = Arrangement.spacedBy(Space.md)) {
                     pair.forEach { d ->

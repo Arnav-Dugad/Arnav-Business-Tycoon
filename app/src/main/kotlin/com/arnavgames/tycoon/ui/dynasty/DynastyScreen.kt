@@ -177,6 +177,13 @@ fun DynastyScreen(
                     }
                 }
             }
+            // Say the IPO exists before it opens, and how to get there.
+            if (!dy.ipoAvailable && dy.ipoFloat == null) item(key = "ipo-locked") {
+                AurumCard(Modifier.fillMaxWidth()) {
+                    Text("IPO", style = Aurum.type.overline, color = c.textTertiary)
+                    Text("Take your empire public for a huge cash raise. Opens once you form the holding company (Company page, after your mergers).", style = Aurum.type.body, color = c.textSecondary)
+                }
+            }
             if (dy.ipoAvailable || dy.ipoFloat != null) item(key = "ipo") {
                 AurumCard(Modifier.fillMaxWidth()) {
                     Text("IPO", style = Aurum.type.overline, color = c.goldText)

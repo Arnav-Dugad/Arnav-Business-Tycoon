@@ -182,7 +182,9 @@ class ProgressionEngine(private val content: ContentPack, private val economy: E
     fun claimLadder(s: GameState): Result {
         if (!ladderAvailable(s)) return Result.Err(GameError.Locked("Come back tomorrow"))
         val step = nextLadderStep(s) ?: return Result.Err(GameError.NotFound("reward"))
-        val cash = economy.totalNetRate(s).over(3600) * Multiplier.ofDouble(step.cashHours * rewardScale(s.progress.chapter))
+        // At least $25 an hour's worth: on day one a new player has almost no income, and "1 h of income" paid $0.
+        val cash = (economy.totalNetRate(s).over(3600) * Multiplier.ofDouble(step.cashHours * rewardScale(s.progress.chapter)))
+            .max(Money.ofDollars(25) * Multiplier.ofDouble(step.cashHours))
         val vipBullion = if (economy.store.vipActive(s)) content.store.config.vipLadderBullion else 0L
         val ledger = Grants.grant(s.ledger, s.simTimeMs, "daily reward (day ${step.day})", cash, step.bullion + vipBullion, step.favor)
         return Result.Ok(meta(s.copy(ledger = ledger)) { it.copy(ladderClaimed = it.ladderClaimed + 1, ladderLastDay = d.day(s.simTimeMs), counters = it.counters + ("ladder" to ((it.counters["ladder"] ?: 0) + 1))) })

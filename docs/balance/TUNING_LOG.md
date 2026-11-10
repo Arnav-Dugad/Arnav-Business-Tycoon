@@ -159,3 +159,13 @@ All runs are 1 seed, one thread, low priority: the owner asked for light laptop 
 | g15 | Late cost growth 1.15 | Identical milestones (active 4.5 d, idle 6.5 d) | Money is not the late bottleneck; chapter goals are. Reverted to 1.14. Lengthening Chapters 6–8 (e.g. Space 25 instead of 10) is left as a design decision for the owner |
 | i2 | Auction lots also capped at half the player's cash (`LuxuryEngine.startAuction` league) | see below | No change in the idle first win (4.5 d): the twice-a-day player rarely caught a 45-minute sale |
 | a6 | Sales open for 5 h (later 4.5 h, so one always closes before the next slot), one every 6 h | Idle first auction win **2.0 d** (was 4.5 d); idle Chapter 4 3.0 d (was 4.5 d); active Chapter 8 **5.0 d** (in band); idle Chapter 8 6.0 d | Shipped in 1.8.1 |
+
+## 2026-11-10 — 1.8.2, prices never rescaled (found by playing on the emulator)
+
+| Step | Change | Result (1 seed) | Verdict |
+|---|---|---|---|
+| m1 | 3-5★ managers on market size (3,000 / 12,000 / 38,000 s of full-market income); expansions capped at 200 / 2,000 / 20,000 s | Active Chapter 8 **4.2 d** (was 5.0); post-game net worth past $7T | Unreachable purchases fixed, but the late game got faster |
+| m2 | Chapter 3+ market size ×0.5 | Active Chapter 8 still 4.2 d | Not the lever: Chapter 2's farms, factories and fashion (on the ×10 "early" market) were the top earners all game |
+| m3 | ×10 market for Chapter 1 only; book-value business valuation | Late businesses now earn the most; active Chapter 5 took 3 days (bot never bought Construction to 25) | Bot fix needed |
+| m5 | Both bots buy toward level goals with the cash they have (from Chapter 2); business-card pricing in that business's income | Active: Ch1 21 m, Ch2 3.9 h, Ch3 24.5 h, Ch4 29.5 h, Ch8 **4.5 d**. Idle: Ch2 **12 h** (was 24 h), Ch8 6.5 d, first auction 2.5 d | Shipped in 1.8.2. The late story stays faster than the old bands; a design call for the owner (longer late chapters) |
+| — | Daily reward floor $250/h → **$25/h** | The $250 floor moved the first manager to 2 min (smoke test band 2.5-16) | Fixed |

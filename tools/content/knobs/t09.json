@@ -1,0 +1,8 @@
+{
+  "_note": "1.8.2: 4-5 star managers of the Chapter 1 shops on the market-size rule (about half a day to two days of full-market income each), replacing idle-game prices up to $40T.",
+  "businesses": {
+    "retail": { "managers": { "retail_leena": "21600000.00", "retail_dario": "68400000.00" } },
+    "restaurants": { "managers": { "rest_sunhee": "216000000.00", "rest_odette": "684000000.00" } },
+    "logistics": { "managers": { "log_vikram": "3888000000.00", "log_marisol": "12312000000.00" } }
+  }
+}

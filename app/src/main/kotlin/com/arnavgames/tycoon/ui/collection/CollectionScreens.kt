@@ -229,7 +229,7 @@ fun CollectionScreen(vm: GameViewModel, onOpenCategory: (String) -> Unit, onOpen
     }
 }
 
-private fun secs(ms: Long): String { val s = (ms / 1000).coerceAtLeast(0); return if (s >= 60) "${s / 60}m ${s % 60}s" else "${s}s" }
+private fun secs(ms: Long): String = com.arnavgames.tycoon.ui.common.countdownText(ms)
 
 @Composable
 private fun CollectionHeader(col: CollectionUi, fmt: (Money) -> String, modifier: Modifier, onBack: (() -> Unit)? = null) {

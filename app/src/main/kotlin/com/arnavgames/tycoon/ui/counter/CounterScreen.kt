@@ -255,13 +255,13 @@ fun CounterScreen(vm: GameViewModel, guide: String? = null) {
                 "${fmt(h.perTap)} a customer" + (if (h.combo > 1) " · combo ×${"%.2f".format(h.comboMultiplier)}" else "") + if (h.frenzyActive) " · frenzy ×3" else "",
                 style = Aurum.type.bodySmall, color = if (h.combo > 1 || h.frenzyActive) c.goldText else c.textSecondary,
             )
-        }
-        Box(Modifier.align(Alignment.TopEnd).statusBarsPadding().padding(top = Space.sm, end = Space.md)) {
+            // Under the cash, centred: in the corner it collided with large amounts.
+            Spacer(Modifier.height(Space.sm))
             FrenzyPill(h.frenzyActive, h.frenzyCharges, countdownText(h.frenzyEndsAtSim - h.simNow)) { vm.dispatch(Command.ActivateFrenzy) }
         }
         guide?.let { g ->
             Row(
-                Modifier.align(Alignment.TopCenter).statusBarsPadding().padding(top = 128.dp, start = Space.gutter, end = Space.gutter).fillMaxWidth()
+                Modifier.align(Alignment.TopCenter).statusBarsPadding().padding(top = 168.dp, start = Space.gutter, end = Space.gutter).fillMaxWidth()
                     .glass(AurumShapes.medium, GlassWeight.Regular, blur = false).padding(Space.sm),
                 verticalAlignment = Alignment.CenterVertically,
             ) {

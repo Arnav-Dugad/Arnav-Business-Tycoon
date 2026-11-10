@@ -73,14 +73,14 @@ class WorldMapper(private val engine: GameEngine, private val portraitIds: Set<S
 
     /** Plain-language effects: "Costs $1.2M (half an hour of income) · tax-deductible", "+4% Retail Stores income for a day". */
     fun describe(effects: List<com.arnavgames.tycoon.core.content.CardEffectDef>, s: GameState, cs: com.arnavgames.tycoon.core.state.CardState): List<String> {
-        val hourly = engine.desk.hourly(s)
+        val hourly = engine.desk.hourly(s, cs)
         fun money(h: Double) = com.arnavgames.tycoon.core.money.MoneyFormat.compact(hourly * com.arnavgames.tycoon.core.money.Multiplier.ofDouble(kotlin.math.abs(h)))
         val biz = cs.business?.let { engine.content.businessById[it]?.name } ?: "your business"
         val rival = cs.rival?.let { w.rivalById[it]?.name } ?: "the rival"
         return effects.map { e ->
             when (e.type) {
                 // Costs show the amount on the right of the option, so the text says it in time instead.
-                "cash" -> if (e.hours >= 0) "Gain ${com.arnavgames.tycoon.core.money.MoneyFormat.compact(engine.desk.windfall(s, e.hours))}" else "Costs ${hoursText(e.hours)}"
+                "cash" -> if (e.hours >= 0) "Gain ${com.arnavgames.tycoon.core.money.MoneyFormat.compact(engine.desk.windfall(s, e.hours, cs))}" else "Costs ${hoursText(e.hours)}"
                 "donation" -> "Donates ${hoursText(e.hours)} · tax-deductible"
                 "rd" -> "Invests ${hoursText(e.hours)} in research · R&D tax credit"
                 "income" -> {
@@ -125,7 +125,7 @@ class WorldMapper(private val engine: GameEngine, private val portraitIds: Set<S
             fun touchesIncome(o: com.arnavgames.tycoon.core.content.CardOptionDef) = o.outcomes.any { oc -> oc.effects.any { it.type == "income" } }
             val othersHurt = def.options.count(::hurtsIncome)
             val options = def.options.mapIndexed { i, o ->
-                val cost = desk.maxCost(s, o)
+                val cost = desk.maxCost(s, o, cs)
                 val ally = desk.optionAvailable(s, cs, o)
                 // Say what each choice really does, from its effects (always complete, in plain words).
                 // Effects every outcome shares (usually the cost) are said once; each outcome lists only what differs.
